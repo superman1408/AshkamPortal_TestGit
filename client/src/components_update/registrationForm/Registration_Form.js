@@ -24,15 +24,15 @@ import { createPost, updatePost } from "../../action/posts";
 const RegistrationForm = ({ currentId, setCurrentId }) => {
   const options = ["Married", "Single"];
 
-  const [startDate, setStartDate] = useState();
+  const [dob,setdob] = useState(null)
 
   const UsFormatter = new Intl.DateTimeFormat("en-US");
-  const fromDate = UsFormatter.format(startDate);
+  const date = UsFormatter.format(dob);
 
   const [postData, setPostData] = useState({
     firstName: "",
     lastName: "",
-    fromDate: "",
+    dob: date,
     female: "",
 
     email: "",
@@ -77,7 +77,7 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
     console.log({
       firstName: data.get("firstName"),
       lastName: data.get("lastName"),
-      fromDate: data.get("fromDate"),
+      dob: date,
       female: data.get("female"),
       email: data.get("email"),
       maritalStatus: data.get("maritalStatus"),
@@ -95,7 +95,7 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
       relationship: data.get("relationship"),
     });
 
-    console.log("date", fromDate);
+    console.log("date", date);
   };
 
   // eslint-disable-next-line no-unused-vars
@@ -121,6 +121,14 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
       emergencyContact: "",
       relationship: "",
     });
+  };
+
+
+
+
+  const handleDOB = (newValue) => {
+    setdob(newValue)
+    
   };
 
   return (
@@ -171,16 +179,13 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={["DatePicker"]}>
                 <DatePicker
-                  value={postData.startDate}
-                  // onChange={(startDate) => setStartDate(startDate)}
+                  value={dob}
                   required
                   fullWidth
                   name="birthDate"
-                  selected={startDate}
                   dateFormat="dd/MM/yyyy"
-                  // value={postData.birthDate}
-                  onChange={(e) =>
-                    setPostData({ ...postData, fromDate: e.target.value })
+                  onChange={(newValue) =>
+                    handleDOB(newValue)
                   }
                 />
               </DemoContainer>
