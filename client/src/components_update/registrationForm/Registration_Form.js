@@ -17,14 +17,16 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-import FileBase from "react-file-base64";
+// import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
 import { createPost, updatePost } from "../../action/posts";
 
 const RegistrationForm = ({ currentId, setCurrentId }) => {
   const options = ["Married", "Single"];
 
-  const [dob,setdob] = useState(null)
+  const [dob,setdob] = useState("");
+
+  const [gender,setGender] = useState("");
 
   const UsFormatter = new Intl.DateTimeFormat("en-US");
   const date = UsFormatter.format(dob);
@@ -32,9 +34,8 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
     firstName: "",
     lastName: "",
-    dob: date,
-    female: "",
-
+    dob: "",
+    gender: "",
     email: "",
     maritalStatus: "",
     streetAddress: "",
@@ -57,55 +58,47 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
 
   const dispatch = useDispatch();
 
-  // to view postdata
-  useEffect(() => {
-    if (post) return setPostData(post);
-  }, [post]);
+
+
+
+
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log("button is clicked");
+
+    // setPostData({ ...postData, dob: dob})
+    setPostData({ ...postData, gender: gender})
+
+    console.log("Gender", postData.gender);
+    console.log("date", date);
+    setPostData({ ...postData, dob: date})
+    console.log(postData.dob)
+
     if (currentId) {
       dispatch(updatePost(currentId, postData));
     } else {
       dispatch(createPost(postData));
     }
-
-    // ________for displaying textfield inputs in console_____________________
-
-    const data = new FormData(e.currentTarget);
-    console.log({
-      firstName: data.get("firstName"),
-      lastName: data.get("lastName"),
-      dob: date,
-      female: data.get("female"),
-      email: data.get("email"),
-      maritalStatus: data.get("maritalStatus"),
-      streetAddress: data.get("streetAddress"),
-      city: data.get("city"),
-      state: data.get("state"),
-      pincode: data.get("pincode"),
-      jobTitle: data.get("jobTitle"),
-      employeeId: data.get("employeeId"),
-      department: data.get("department"),
-      supervisor: data.get("supervisor"),
-      emergencyName: data.get("emergencyName"),
-      emergencyAddress: data.get("emergencyAddress"),
-      emergencyContact: data.get("emergencyContact"),
-      relationship: data.get("relationship"),
-    });
-
-    console.log("date", date);
+    console.log( postData);
   };
 
-  // eslint-disable-next-line no-unused-vars
+
+
+
+    // to view postdata
+    useEffect(() => {
+      if (postData.dob || postData.gender == null) return console.log("Data not present");
+    }, [postData]);
+
+
   const handleReset = () => {
-    // setCurrentId(null);
     setPostData({
       firstName: "",
       lastName: "",
-      fromDate: "",
-      female: "",
+      dob: "",
+      gender: "",
       email: "",
       maritalStatus: "",
       streetAddress: "",
@@ -126,10 +119,20 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
 
 
 
-  const handleDOB = (newValue) => {
-    setdob(newValue)
-    
+  // const handleDOB = (newValue) => {
+  //   setdob(newValue)
+  //   const UsFormatter = new Intl.DateTimeFormat("en-US");
+  //   const date = UsFormatter.format(dob);
+  //   setPostData({ ...postData, dob: date})
+  // };
+
+
+  const handleGender = (e) => {
+    setGender(e.target.value)
+    setPostData({...postData ,gender : gender});
   };
+
+
 
   return (
     <Paper elevation={24} sx={{ width: "800px", marginLeft: "300px" }}>
@@ -185,52 +188,29 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
                   name="birthDate"
                   dateFormat="dd/MM/yyyy"
                   onChange={(newValue) =>
-                    handleDOB(newValue)
+                    setdob(newValue)
                   }
                 />
               </DemoContainer>
             </LocalizationProvider>
           </div>
           <div>
-            <Typography>Gender</Typography>
-            <RadioGroup
-              aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue="null"
-              name="radio-buttons-group"
-              // value={value}
-              // onChange={handleChange}
-            >
-              <FormControlLabel
-                // value="female"
-                control={<Radio />}
-                label="Female"
-                name="female"
-                value={postData.female}
-                onChange={(e) =>
-                  setPostData({ ...postData, female: e.target.value })
-                }
-              />
-              <FormControlLabel value="male" control={<Radio />} label="Male" />
-              <FormControlLabel
-                // value="other"
-                control={<Radio />}
-                label="Other"
-                name="male"
-                value={postData.male}
-                onChange={(e) =>
-                  setPostData({ ...postData, male: e.target.value })
-                }
-              />
-            </RadioGroup>
+            <FormControl>
+              <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                value={gender}
+                name="radio-buttons-group"
+                onChange={(e) => {
+                  handleGender(e)
+                }}
+              >
+                <FormControlLabel value="Female" control={<Radio />} label="Female" />
+                <FormControlLabel value="Male" control={<Radio />} label="Male" />
+                <FormControlLabel value="Other" control={<Radio />} label="Other" />
+              </RadioGroup>
+            </FormControl>
           </div>
-          {/* <Typography>Gender</Typography>
-          <Autocomplete
-            options={options}
-            style={{ width: 300 }}
-            renderInput={(params) => (
-              <TextField {...params} label="Select" variant="outlined" />
-            )}
-          /> */}
           <div>
             <Typography>Email</Typography>
             <TextField
