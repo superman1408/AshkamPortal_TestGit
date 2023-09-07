@@ -7,17 +7,16 @@ import {
   Typography,
   Button,
 } from "@mui/material";
+
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
-// import FileBase from "react-file-base64";
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import Radio from '@mui/joy/Radio';
+import RadioGroup from '@mui/joy/RadioGroup';
 import { useDispatch, useSelector } from "react-redux";
 import { createPost, updatePost } from "../../action/posts";
 
@@ -26,10 +25,10 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
 
   const [dob,setdob] = useState("");
 
-  const [gender,setGender] = useState("");
+  
 
-  const UsFormatter = new Intl.DateTimeFormat("en-US");
-  const date = UsFormatter.format(dob);
+  // const UsFormatter = new Intl.DateTimeFormat("en-US");
+  // const date = UsFormatter.format(dob);
 
   const [postData, setPostData] = useState({
     firstName: "",
@@ -68,13 +67,12 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // setPostData({ ...postData, dob: dob})
-    setPostData({ ...postData, gender: gender})
+    // setPostData({ ...postData, dob: date})
+    // // setPostData({ ...postData, gender: gender})
 
-    console.log("Gender", postData.gender);
-    console.log("date", date);
-    setPostData({ ...postData, dob: date})
-    console.log(postData.dob)
+    // console.log("date", date);
+    // setPostData({ ...postData, dob: date})
+    // console.log(dob)
 
     if (currentId) {
       dispatch(updatePost(currentId, postData));
@@ -119,18 +117,15 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
 
 
 
-  // const handleDOB = (newValue) => {
-  //   setdob(newValue)
-  //   const UsFormatter = new Intl.DateTimeFormat("en-US");
-  //   const date = UsFormatter.format(dob);
-  //   setPostData({ ...postData, dob: date})
-  // };
-
-
-  const handleGender = (e) => {
-    setGender(e.target.value)
-    setPostData({...postData ,gender : gender});
+  const handleDOB = (dob) => {
+    setdob(dob)
+    const UsFormatter = new Intl.DateTimeFormat("en-US");
+    const date = UsFormatter.format(dob);
+    setPostData({ ...postData, dob: date})
   };
+
+
+
 
 
 
@@ -143,8 +138,6 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
           </div>
           <Divider
             sx={{
-              // marginLeft: "10px",
-              // marginRight: "2px",
               borderWidth: "7px",
             }}
           />
@@ -187,27 +180,22 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
                   fullWidth
                   name="birthDate"
                   dateFormat="dd/MM/yyyy"
-                  onChange={(newValue) =>
-                    setdob(newValue)
-                  }
+                  onChange={handleDOB}
                 />
               </DemoContainer>
             </LocalizationProvider>
           </div>
           <div>
             <FormControl>
-              <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
+              <FormLabel>Gender</FormLabel>
               <RadioGroup
-                aria-labelledby="demo-radio-buttons-group-label"
-                value={gender}
-                name="radio-buttons-group"
-                onChange={(e) => {
-                  handleGender(e)
-                }}
+                defaultValue="female"
+                name="controlled-radio-buttons-group"
+                onChange={(e) => setPostData({ ...postData, gender: e.target.value})}
               >
-                <FormControlLabel value="Female" control={<Radio />} label="Female" />
-                <FormControlLabel value="Male" control={<Radio />} label="Male" />
-                <FormControlLabel value="Other" control={<Radio />} label="Other" />
+                <Radio value="female" label="Female" color="success" />
+                <Radio value="male" label="Male" color="success" />
+                <Radio value="other" label="Other" color="success" />
               </RadioGroup>
             </FormControl>
           </div>
@@ -226,7 +214,6 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
             />
             <h5>example@example.com</h5>
           </div>
-
           <div>
             <Typography>Marital Status</Typography>
             <Autocomplete
@@ -303,8 +290,6 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
           </div>
           <Divider
             sx={{
-              // marginLeft: "10px",
-              // marginRight: "2px",
               borderWidth: "7px",
             }}
           />
@@ -366,8 +351,6 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
 
           <Divider
             sx={{
-              // marginLeft: "10px",
-              // marginRight: "2px",
               borderWidth: "7px",
             }}
           />
