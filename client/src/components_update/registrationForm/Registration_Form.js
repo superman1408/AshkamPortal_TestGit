@@ -13,19 +13,17 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
-import Radio from '@mui/joy/Radio';
-import RadioGroup from '@mui/joy/RadioGroup';
+import FormControl from "@mui/joy/FormControl";
+import FormLabel from "@mui/joy/FormLabel";
+import Radio from "@mui/joy/Radio";
+import RadioGroup from "@mui/joy/RadioGroup";
 import { useDispatch, useSelector } from "react-redux";
 import { createPost, updatePost } from "../../action/posts";
 
 const RegistrationForm = ({ currentId, setCurrentId }) => {
   const options = ["Married", "Single"];
 
-  const [dob,setdob] = useState("");
-
-  
+  const [dob, setdob] = useState("");
 
   // const UsFormatter = new Intl.DateTimeFormat("en-US");
   // const date = UsFormatter.format(dob);
@@ -57,13 +55,6 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
 
   const dispatch = useDispatch();
 
-
-
-
-
-
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -79,17 +70,18 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
     } else {
       dispatch(createPost(postData));
     }
-    console.log( postData);
+    console.log(postData);
   };
 
+  // to view postdata
+  useEffect(() => {
+    if (postData.dob || postData.gender == null)
+      return console.log("Data not present");
+  }, [postData]);
 
-
-
-    // to view postdata
-    useEffect(() => {
-      if (postData.dob || postData.gender == null) return console.log("Data not present");
-    }, [postData]);
-
+  useEffect(() => {
+    if (post) return setPostData(post);
+  }, [post]);
 
   const handleReset = () => {
     setPostData({
@@ -114,20 +106,12 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
     });
   };
 
-
-
-
   const handleDOB = (dob) => {
-    setdob(dob)
+    setdob(dob);
     const UsFormatter = new Intl.DateTimeFormat("en-US");
     const date = UsFormatter.format(dob);
-    setPostData({ ...postData, dob: date})
+    setPostData({ ...postData, dob: date });
   };
-
-
-
-
-
 
   return (
     <Paper elevation={24} sx={{ width: "800px", marginLeft: "300px" }}>
@@ -191,7 +175,9 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
               <RadioGroup
                 defaultValue="female"
                 name="controlled-radio-buttons-group"
-                onChange={(e) => setPostData({ ...postData, gender: e.target.value})}
+                onChange={(e) =>
+                  setPostData({ ...postData, gender: e.target.value })
+                }
               >
                 <Radio value="female" label="Female" color="success" />
                 <Radio value="male" label="Male" color="success" />
@@ -218,7 +204,7 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
             <Typography>Marital Status</Typography>
             <Autocomplete
               options={options}
-              style={{ width: 300 }}
+              style={{ width: 500 }}
               renderInput={(params) => (
                 <TextField
                   {...params}
