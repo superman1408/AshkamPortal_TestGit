@@ -48,7 +48,7 @@ const App = () => {
             element={<Communication />}
           />
           <Route path="/aboutUs" exact element={<AboutUS />} />
-          <Route path="/dashboard" exact element={<Dashboard />} />
+          <Route path="/home" exact element={<Dashboard />} />
         </Routes>
       </Container>
     </BrowserRouter>
