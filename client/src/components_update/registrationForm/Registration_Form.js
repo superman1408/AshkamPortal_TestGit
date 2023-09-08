@@ -21,12 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createPost, updatePost } from "../../action/posts";
 
 const RegistrationForm = ({ currentId, setCurrentId }) => {
-  const options = ["Married", "Single"];
-
   const [dob, setdob] = useState("");
-
-  // const UsFormatter = new Intl.DateTimeFormat("en-US");
-  // const date = UsFormatter.format(dob);
 
   const [postData, setPostData] = useState({
     firstName: "",
@@ -58,13 +53,6 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // setPostData({ ...postData, dob: date})
-    // // setPostData({ ...postData, gender: gender})
-
-    // console.log("date", date);
-    // setPostData({ ...postData, dob: date})
-    // console.log(dob)
-
     if (currentId) {
       dispatch(updatePost(currentId, postData));
     } else {
@@ -74,10 +62,10 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
   };
 
   // to view postdata
-  useEffect(() => {
-    if (postData.dob || postData.gender == null)
-      return console.log("Data not present");
-  }, [postData]);
+  // useEffect(() => {
+  //   if (postData.dob || postData.gender == null)
+  //     return console.log("Data not present");
+  // }, [postData]);
 
   useEffect(() => {
     if (post) return setPostData(post);
@@ -202,22 +190,15 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
           </div>
           <div>
             <Typography>Marital Status</Typography>
-            <Autocomplete
-              options={options}
-              style={{ width: 500 }}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Select"
-                  variant="outlined"
-                  name="maritalStatus"
-                  value={postData.maritalStatus}
-                  onChange={(e) =>
-                    setPostData({ ...postData, maritalStatus: e.target.value })
-                  }
-                />
-              )}
-            />
+            <select
+              name="maritalStatus"
+              onChange={(e) =>
+                setPostData({ ...postData, maritalStatus: e.target.value })
+              }
+            >
+              <option value="single">Single</option>
+              <option value="married">Married</option>
+            </select>
           </div>
           <div>
             <Typography>Address</Typography>
