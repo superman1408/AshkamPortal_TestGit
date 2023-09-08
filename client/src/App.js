@@ -20,6 +20,7 @@ import Communication from "./components_update/Leave/Communication/communication
 import AboutUS from "./components_update/AboutUs/aboutUs";
 
 import RegistrationForm from "./components_update/registrationForm/Registration_Form";
+import Dashboard from "./components_update/Dashboard/Dashboard";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -47,6 +48,7 @@ const App = () => {
             element={<Communication />}
           />
           <Route path="/aboutUs" exact element={<AboutUS />} />
+          <Route path="/dashboard" exact element={<Dashboard />} />
         </Routes>
       </Container>
     </BrowserRouter>
