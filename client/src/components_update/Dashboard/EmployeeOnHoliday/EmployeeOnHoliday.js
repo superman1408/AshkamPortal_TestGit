@@ -23,7 +23,7 @@ const EmployeeOnHoliday = () => {
     <div>
         <Box
                     sx={{
-                      width: "360px",
+                      width: "340px",
                       height: "150px",
                       marginTop: "10px",
                       marginLeft: "20px",

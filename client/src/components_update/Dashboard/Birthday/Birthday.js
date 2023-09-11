@@ -46,7 +46,7 @@ const Birthday = () => {
     <div>
         <Box
                     sx={{
-                      width: "360px",
+                      width: "340px",
                       height: "70px",
                       marginTop: "10px",
                       marginLeft: "20px",

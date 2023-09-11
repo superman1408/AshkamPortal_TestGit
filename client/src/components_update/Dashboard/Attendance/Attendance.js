@@ -20,7 +20,7 @@ const Attendance = () => {
     <div>
         <Box
                     sx={{
-                      width: "360px",
+                      width: "340px",
                       height: "40px",
                       marginTop: "10px",
                       marginLeft: "20px",

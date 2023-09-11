@@ -138,73 +138,7 @@ const Admin = () => {
         <Grid sx={{ display: "flex", flexDirection: "row" }}>
           {/*------------------------------------------------Panel----------------------------------------------- */}
           <Panel/>
-          {/* <Grid sx={{ mr: "30px" }}>
-            <IconButton
-              size="200px"
-              color="secondary"
-              sx={{
-                ml: "75px",
-                display: {
-                  xs: "block",
-                  sm: "block",
-                },
-              }}
-            >
-              <GroupsIcon />
-            </IconButton>
-            <Typography sx={{ marginLeft: "60px", color: "indigo" }}>
-              Employee
-            </Typography>
-            <Typography sx={{ marginLeft: "50px", color: "indigo" }}>
-              Management
-            </Typography>
-
-            <Divider sx={{ mb: 8 }} />
-
-            <Box sx={{ mb: 2 }}>
-              <ListItemButton>
-                <ListItemIcon>
-                  <DashboardIcon sx={{ color: "secondary.main" }} />
-                </ListItemIcon>
-                <ListItemText primary="Dashboard" />
-              </ListItemButton>
-
-              <ListItemButton>
-                <ListItemIcon>
-                  <EventAvailableIcon sx={{ color: "secondary.main" }} />
-                </ListItemIcon>
-                <ListItemText primary="Attendance" />
-              </ListItemButton>
-
-              <ListItemButton>
-                <ListItemIcon>
-                  <PeopleAltIcon sx={{ color: "secondary.main" }} />
-                </ListItemIcon>
-                <ListItemText primary="Employee" />
-              </ListItemButton>
-
-              <ListItemButton>
-                <ListItemIcon>
-                  <AnalyticsIcon sx={{ color: "secondary.main" }} />
-                </ListItemIcon>
-                <ListItemText primary="Analytics" />
-              </ListItemButton>
-
-              <ListItemButton>
-                <ListItemIcon>
-                  <BadgeIcon sx={{ color: "secondary.main" }} />
-                </ListItemIcon>
-                <ListItemText primary="Report Attendance" />
-              </ListItemButton>
-
-              <ListItemButton>
-                <ListItemIcon>
-                  <SettingsIcon sx={{ color: "secondary.main" }} />
-                </ListItemIcon>
-                <ListItemText primary="settings" />
-              </ListItemButton>
-            </Box>
-          </Grid> */}
+         
 
           {/* ----------------------------------------Dashboard section-------------------------------------------------*/}
           <Grid
@@ -270,40 +204,6 @@ const Admin = () => {
               <Grid sx={{ display: "flex", flexDirection: "column " }}>
                 <Grid>
                   <Attendance/>
-                  {/* <Box
-                    sx={{
-                      width: "380px",
-                      height: "40px",
-                      marginTop: "10px",
-                      marginLeft: "20px",
-                      padding: "10px",
-                      bgcolor: "#777a79",
-                      boxShadow: 1,
-                      borderRadius: "10px",
-                    }}
-                  >
-                    <Grid
-                      sx={{
-                        display: "flex",
-                        flexDirection: "row",
-                      }}
-                    >
-                      <Grid sx={{ marginLeft: "40px" }}>
-                        <Typography>attendance</Typography>
-                        <Typography>30</Typography>
-                      </Grid>
-
-                      <Grid sx={{ marginLeft: "40px" }}>
-                        <Typography>Late</Typography>
-                        <Typography>3</Typography>
-                      </Grid>
-
-                      <Grid sx={{ marginLeft: "40px" }}>
-                        <Typography>absent</Typography>
-                        <Typography>2</Typography>
-                      </Grid>
-                    </Grid>
-                  </Box> */}
                 </Grid>
 
                 <Grid>

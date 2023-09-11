@@ -31,7 +31,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 const Panel = () => {
   return (
     <div>
-        <Grid sx={{ width:"200px" }}>
+        <Grid sx={{ width:"220px" }}>
             <IconButton
               size="200px"
               color="secondary"
@@ -45,10 +45,10 @@ const Panel = () => {
             >
               <GroupsIcon />
             </IconButton>
-            <Typography sx={{ marginLeft: "60px", color: "indigo" }}>
+            <Typography sx={{ marginLeft: "70px", color: "indigo" }}>
               Employee
             </Typography>
-            <Typography sx={{ marginLeft: "50px", color: "indigo" }}>
+            <Typography sx={{ marginLeft: "60px", color: "indigo" }}>
               Management
             </Typography>
 
