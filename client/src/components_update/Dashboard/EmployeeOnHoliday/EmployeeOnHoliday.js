@@ -23,7 +23,7 @@ const EmployeeOnHoliday = () => {
     <div>
         <Box
                     sx={{
-                      width: "380px",
+                      width: "360px",
                       height: "150px",
                       marginTop: "10px",
                       marginLeft: "20px",
@@ -71,7 +71,7 @@ const EmployeeOnHoliday = () => {
 
                     <Divider />
                     <div>
-                      <Stack flexDirection="row" spacing={2}>
+                      <Stack flexDirection="row" spacing={2} marginTop={2}>
                         <Avatar
                           sx={{
                             width: 40,

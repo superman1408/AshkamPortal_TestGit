@@ -51,6 +51,8 @@ import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import LogoutIcon from "@mui/icons-material/Logout";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import Panel from "./Panel/Panel";
+import Attendance from "./Attendance/Attendance";
 
 
 
@@ -128,14 +130,15 @@ const Admin = () => {
           display: "flex",
           flexDirection: "row",
           marginTop: "2px",
-          padding: "10px",
+          padding: "0px",
           bgcolor: "background.paper",
           boxShadow: 1,
         }}
       >
         <Grid sx={{ display: "flex", flexDirection: "row" }}>
           {/*------------------------------------------------Panel----------------------------------------------- */}
-          <Grid sx={{ mr: "30px" }}>
+          <Panel/>
+          {/* <Grid sx={{ mr: "30px" }}>
             <IconButton
               size="200px"
               color="secondary"
@@ -201,7 +204,7 @@ const Admin = () => {
                 <ListItemText primary="settings" />
               </ListItemButton>
             </Box>
-          </Grid>
+          </Grid> */}
 
           {/* ----------------------------------------Dashboard section-------------------------------------------------*/}
           <Grid
@@ -210,7 +213,7 @@ const Admin = () => {
               marginBottom: "5px",
               flexDirection: "column",
               bgcolor: "#f0f2f1",
-              padding: "2px",
+              
             }}
           >
             <Grid
@@ -221,12 +224,12 @@ const Admin = () => {
             >
               <Stack flexDirection="row" spacing={2}>
                 <Avatar
-                  sx={{ width: 40, height: 40, marginLeft: "750px" }}
+                  sx={{ width: 40, height: 40, marginLeft: "0px" }}
                   alt="Femy sharp"
                   src={avatar1}
                 />
               </Stack>
-              <ListItemButton sx={{ marginLeft: "0px" }}>
+              <ListItemButton sx={{ marginLeft: "30px" }}>
                 <ListItemIcon>
                   <NotificationsIcon sx={{ color: "secondary.main" }} />
                 </ListItemIcon>
@@ -266,14 +269,15 @@ const Admin = () => {
 
               <Grid sx={{ display: "flex", flexDirection: "column " }}>
                 <Grid>
-                  <Box
+                  <Attendance/>
+                  {/* <Box
                     sx={{
                       width: "380px",
                       height: "40px",
                       marginTop: "10px",
                       marginLeft: "20px",
                       padding: "10px",
-                      bgcolor: "background.paper",
+                      bgcolor: "#777a79",
                       boxShadow: 1,
                       borderRadius: "10px",
                     }}
@@ -282,7 +286,6 @@ const Admin = () => {
                       sx={{
                         display: "flex",
                         flexDirection: "row",
-                        bgcolor: "#e9edf7",
                       }}
                     >
                       <Grid sx={{ marginLeft: "40px" }}>
@@ -300,7 +303,7 @@ const Admin = () => {
                         <Typography>2</Typography>
                       </Grid>
                     </Grid>
-                  </Box>
+                  </Box> */}
                 </Grid>
 
                 <Grid>
