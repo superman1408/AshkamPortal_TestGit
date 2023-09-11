@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { Container } from "@mui/material";
 
@@ -21,6 +22,7 @@ import AboutUS from "./components_update/AboutUs/aboutUs";
 
 import RegistrationForm from "./components_update/registrationForm/Registration_Form";
 import Dashboard from "./components_update/Dashboard/Dashboard";
+import Navibar from "./components_update/Navbar/Navibar";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -28,12 +30,12 @@ const App = () => {
   return (
     <BrowserRouter>
       <Container maxWidth={false}>
-        <Header />
+          <Navibar />
         <Routes>
           {/* this part need to be examined after ward */}
 
           <Route
-            path="/"
+            path="/auth"
             exact
             element={user ? <Home /> : <Authentication />}
           />
