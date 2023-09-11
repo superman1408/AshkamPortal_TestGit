@@ -33,7 +33,7 @@ const EmployeeOnHoliday = () => {
                       borderRadius: "10px",
                     }}
                   >
-                    <Typography sx={{ fontWeight: "bolder" }}>
+                    <Typography sx={{ fontWeight: "bolder" , mb:"10px"}}>
                       Employees on Holiday
                     </Typography>
                     <div>

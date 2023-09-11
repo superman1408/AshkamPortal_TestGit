@@ -78,7 +78,7 @@ const Birthday = () => {
                     <Button
                       sx={{
                         marginLeft: "110px",
-                        marginRight: "160px",
+                        marginRight: "140px",
                         bgcolor: "#ecd0f5",
                         fontSize: "13px",
                       }}
