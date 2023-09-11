@@ -17,6 +17,7 @@ import FormControl from "@mui/joy/FormControl";
 import FormLabel from "@mui/joy/FormLabel";
 import Radio from "@mui/joy/Radio";
 import RadioGroup from "@mui/joy/RadioGroup";
+import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
 import { createPost, updatePost } from "../../action/posts";
 
@@ -30,6 +31,7 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
     gender: "",
     email: "",
     maritalStatus: "",
+    contactNumber: "",
     streetAddress: "",
     city: "",
     state: "",
@@ -42,6 +44,7 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
     emergencyAddress: "",
     emergencyContact: "",
     relationship: "",
+    selectedFile: "",
   });
 
   const post = useSelector((state) =>
@@ -79,6 +82,7 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
       gender: "",
       email: "",
       maritalStatus: "",
+      contactNumber: "",
       streetAddress: "",
       city: "",
       state: "",
@@ -91,6 +95,7 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
       emergencyAddress: "",
       emergencyContact: "",
       relationship: "",
+      selectedFile: "",
     });
   };
 
@@ -102,19 +107,43 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
   };
 
   return (
-    <Paper elevation={24} sx={{ width: "800px", marginLeft: "300px" }}>
-      <Grid sx={{ marginLeft: "30px", marginRight: "30px" }}>
+    <Paper elevation={24} sx={{ width: "800px", justifyContent: "center" }}>
+      <Grid
+        sx={{ marginLeft: "30px", marginRight: "30px", marginBottom: "30px" }}
+      >
         <form onSubmit={handleSubmit}>
           <div style={{ textAlign: "center" }}>
-            <h1>Employee Registration Form</h1>
+            <Typography
+              variant="h4"
+              component="div"
+              sx={{
+                flexGrow: 1,
+                fontSize: "30px",
+                fontWeight: "bold",
+                marginTop: "20px",
+                marginBottom: "20px",
+              }}
+            >
+              Employee Registration Form
+            </Typography>
           </div>
+
           <Divider
             sx={{
               borderWidth: "7px",
             }}
           />
+
           <div sx={{ display: "flex", flexDirection: "row" }}>
-            <Typography>Full Name</Typography>
+            <Typography
+              sx={{
+                margin: "30px 0px 0px 0px",
+                fontSize: "18px",
+                fontWeight: "200px",
+              }}
+            >
+              Full Name
+            </Typography>
             <TextField
               type="text"
               name="firstName"
@@ -122,7 +151,7 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
               required
               fullWidth
               label="First Name"
-              sx={{ marginTop: "20px" }}
+              sx={{ marginTop: "10px" }}
               value={postData.firstName}
               onChange={(e) =>
                 setPostData({ ...postData, firstName: e.target.value })
@@ -135,31 +164,68 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
               required
               fullWidth
               label="Last Name"
-              sx={{ marginTop: "20px" }}
+              sx={{ marginTop: "10px" }}
               value={postData.lastName}
               onChange={(e) =>
                 setPostData({ ...postData, lastName: e.target.value })
               }
             />
           </div>
-          <div>
-            <Typography>Date of birth</Typography>
+
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <Grid sx={{ fontSize: "20px", marginTop: "40px" }}>
+              <FileBase
+                type="file"
+                multiple={false}
+                onDone={({ base64 }) =>
+                  setPostData({ ...postData, selectedFile: base64 })
+                }
+              />
+            </Grid>
+
+            <div style={{ width: "150px", height: "100px", marginTop: "40px" }}>
+              <img
+                style={{ width: "150px", height: "100px" }}
+                src={postData.selectedFile}
+                alt="Profile_Picture"
+              />
+            </div>
+          </div>
+
+          <div style={{ marginTop: "30px" }}>
+            {/* <Typography
+              sx={{
+                margin: "30px 0px 0px 0px",
+                fontSize: "18px",
+                fontWeight: "200px",
+              }}
+            >
+              Date of birth
+            </Typography> */}
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={["DatePicker"]}>
                 <DatePicker
                   value={dob}
-                  required
-                  fullWidth
                   name="birthDate"
                   dateFormat="dd/MM/yyyy"
+                  label="Date of Birth"
                   onChange={handleDOB}
                 />
               </DemoContainer>
             </LocalizationProvider>
           </div>
+
           <div>
             <FormControl>
-              <FormLabel>Gender</FormLabel>
+              <Typography
+                sx={{
+                  margin: "30px 0px 0px 0px",
+                  fontSize: "18px",
+                  fontWeight: "200px",
+                }}
+              >
+                Gender
+              </Typography>
               <RadioGroup
                 defaultValue="female"
                 name="controlled-radio-buttons-group"
@@ -167,42 +233,102 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
                   setPostData({ ...postData, gender: e.target.value })
                 }
               >
-                <Radio value="female" label="Female" color="success" />
-                <Radio value="male" label="Male" color="success" />
-                <Radio value="other" label="Other" color="success" />
+                <Radio value="female" label="Female" color="primary" />
+                <Radio value="male" label="Male" color="primary" />
+                <Radio value="other" label="Other" color="primary" />
               </RadioGroup>
             </FormControl>
           </div>
           <div>
-            <Typography>Email</Typography>
+            {/* <Typography
+              sx={{
+                margin: "30px 0px 0px 0px",
+                fontSize: "18px",
+                fontWeight: "200px",
+              }}
+            >
+              Email
+            </Typography> */}
             <TextField
+              sx={{ marginTop: "30px" }}
               variant="outlined"
               required
               fullWidth
               type="email"
               name="email"
+              label="Email"
+              placeholder="example@example.com"
               value={postData.email}
               onChange={(e) =>
                 setPostData({ ...postData, email: e.target.value })
               }
             />
-            <h5>example@example.com</h5>
           </div>
           <div>
-            <Typography>Marital Status</Typography>
+            {/* <Typography
+              sx={{
+                margin: "30px 0px 0px 0px",
+                fontSize: "18px",
+                fontWeight: "200px",
+              }}
+            >
+              Marital Status
+            </Typography> */}
             <select
+              style={{
+                width: "300px",
+                height: "50px",
+                fontSize: "16px",
+                marginTop: "30px",
+              }}
               name="maritalStatus"
               onChange={(e) =>
                 setPostData({ ...postData, maritalStatus: e.target.value })
               }
             >
+              <option value="none" selected disabled hidden>
+                Marital Status
+              </option>
               <option value="single">Single</option>
               <option value="married">Married</option>
             </select>
           </div>
+
           <div>
-            <Typography>Address</Typography>
+            {/* <Typography
+              sx={{
+                margin: "30px 0px 0px 0px",
+                fontSize: "18px",
+                fontWeight: "200px",
+              }}
+            >
+              Contact Number
+            </Typography> */}
             <TextField
+              sx={{ marginTop: "30px" }}
+              variant="outlined"
+              required
+              fullWidth
+              label="Contact Number"
+              name="contactNumber"
+              value={postData.contactNumber}
+              onChange={(e) =>
+                setPostData({ ...postData, contactNumber: e.target.value })
+              }
+            />
+          </div>
+          <div>
+            <Typography
+              sx={{
+                margin: "30px 0px 0px 0px",
+                fontSize: "18px",
+                fontWeight: "200px",
+              }}
+            >
+              Address
+            </Typography>
+            <TextField
+              sx={{ marginTop: "10px" }}
               variant="outlined"
               required
               fullWidth
@@ -214,9 +340,11 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
               }
             />
           </div>
-          <div style={{ display: "flex" }}>
+          {/* <div style={{ display: "flex" }}> */}
+          <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
             <div>
               <TextField
+                sx={{ marginTop: "10px" }}
                 variant="outlined"
                 required
                 fullWidth
@@ -230,6 +358,7 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
             </div>
             <div>
               <TextField
+                sx={{ marginTop: "10px" }}
                 variant="outlined"
                 required
                 fullWidth
@@ -241,34 +370,33 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
                 }
               />
             </div>
-          </div>
-          <div>
-            <TextField
-              variant="outlined"
-              required
-              fullWidth
-              label="Pincode"
-              name="pincode"
-              value={postData.pincode}
-              onChange={(e) =>
-                setPostData({ ...postData, pincode: e.target.value })
-              }
-            />
-          </div>
-          <Divider
-            sx={{
-              borderWidth: "7px",
-            }}
-          />
+
+            {/* </div> */}
+            <div>
+              <TextField
+                sx={{ marginTop: "10px" }}
+                variant="outlined"
+                required
+                fullWidth
+                label="Pincode"
+                name="pincode"
+                value={postData.pincode}
+                onChange={(e) =>
+                  setPostData({ ...postData, pincode: e.target.value })
+                }
+              />
+            </div>
+          </Grid>
+
+          <Divider sx={{ margin: "20px 0px 20px 0px", borderWidth: "7px" }} />
           <h2>Job Informations</h2>
           <div sx={{ display: "flex", flexDirection: "row" }}>
-            <Typography>Title</Typography>
+            {/* <Typography className={classes.typography}>Title</Typography> */}
             <TextField
               variant="outlined"
               required
               fullWidth
-              label=""
-              sx={{ marginTop: "20px" }}
+              label="Job Role"
               name="jobTitle"
               value={postData.jobTitle}
               onChange={(e) =>
@@ -277,11 +405,13 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
             />
           </div>
           <div>
-            <Typography>Employee Id</Typography>
+            {/* <Typography className={classes.typography}>Employee Id</Typography> */}
             <TextField
+              sx={{ marginTop: "10px" }}
               variant="outlined"
               required
               fullWidth
+              label="Employee Id"
               name="employeeId"
               value={postData.employeeId}
               onChange={(e) =>
@@ -290,11 +420,13 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
             />
           </div>
           <div>
-            <Typography>Department</Typography>
+            {/* <Typography className={classes.typography}>Department</Typography> */}
             <TextField
+              sx={{ marginTop: "10px" }}
               variant="outlined"
               required
               fullWidth
+              label="Department"
               name="department"
               value={postData.department}
               onChange={(e) =>
@@ -303,11 +435,13 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
             />
           </div>
           <div>
-            <Typography>Supervisor</Typography>
+            {/* <Typography className={classes.typography}>Supervisor</Typography> */}
             <TextField
+              sx={{ marginTop: "10px" }}
               variant="outlined"
               required
               fullWidth
+              label="Reporting Manager"
               name="supervisor"
               value={postData.supervisor}
               onChange={(e) =>
@@ -316,20 +450,15 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
             />
           </div>
 
-          <Divider
-            sx={{
-              borderWidth: "7px",
-            }}
-          />
+          <Divider sx={{ margin: "20px 0px 20px 0px", borderWidth: "7px" }} />
           <h2>Emergency Contact Informations</h2>
           <div sx={{ display: "flex", flexDirection: "row" }}>
-            <Typography>Name</Typography>
+            {/* <Typography className={classes.typography}>Name</Typography> */}
             <TextField
               variant="outlined"
               required
               fullWidth
-              label=""
-              sx={{ marginTop: "20px" }}
+              label="Name"
               name="emergencyName"
               value={postData.emergencyName}
               onChange={(e) =>
@@ -338,11 +467,13 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
             />
           </div>
           <div>
-            <Typography>Address</Typography>
+            {/* <Typography className={classes.typography}>Address</Typography> */}
             <TextField
+              sx={{ marginTop: "10px" }}
               variant="outlined"
               required
               fullWidth
+              label="Address"
               name="emergencyAddress"
               value={postData.emergencyAddress}
               onChange={(e) =>
@@ -351,11 +482,15 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
             />
           </div>
           <div>
-            <Typography>Contact Number</Typography>
+            {/* <Typography className={classes.typography}>
+              Contact Number
+            </Typography> */}
             <TextField
+              sx={{ marginTop: "10px" }}
               variant="outlined"
               required
               fullWidth
+              label="Contact Number"
               name="emergencyContact"
               value={postData.emergencyContact}
               onChange={(e) =>
@@ -364,11 +499,13 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
             />
           </div>
           <div>
-            <Typography>Relationship</Typography>
+            {/* <Typography className={classes.typography}>Relationship</Typography> */}
             <TextField
+              sx={{ marginTop: "10px" }}
               variant="outlined"
               required
               fullWidth
+              label="Relationship"
               name="relationship"
               value={postData.relationship}
               onChange={(e) =>
@@ -377,15 +514,29 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
             />
           </div>
 
-          <Grid container>
+          <Grid
+            container
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+
+              marginTop: "20px",
+              marginBottom: "20px",
+            }}
+          >
             <Grid>
-              <Button type="submit" variant="contained">
+              <Button type="submit" variant="contained" required fullWidth>
                 Register
               </Button>
             </Grid>
 
             <Grid>
-              <Button variant="contained" onClick={handleReset}>
+              <Button
+                variant="contained"
+                onClick={handleReset}
+                required
+                fullWidth
+              >
                 Clear
               </Button>
             </Grid>

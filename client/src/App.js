@@ -27,7 +27,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Container maxWidth={false}>
+      <Container maxWidth={false} sx={{ justifyContent: "center" }}>
         <Header />
         <Routes>
           {/* this part need to be examined after ward */}
