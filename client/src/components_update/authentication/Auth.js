@@ -147,9 +147,10 @@ const Auth = () => {
                 sx={{ marginTop: "10px" }}
                 name="password"
                 type="password"
-                varaint="outlined"
+                variant="outlined"
                 required
                 fullWidth
+                autoComplete="on"
                 label="Password"
                 onChange={(e) =>
                   setFormData({ ...formData, password: e.target.value })
@@ -160,10 +161,11 @@ const Auth = () => {
                   sx={{ marginTop: "10px" }}
                   name="confirmPassword"
                   type="password"
-                  varaint="outlined"
+                  variant="outlined"
                   required
                   fullWidth
                   label="Confirm Password"
+                  autoComplete="on"
                   onChange={(e) =>
                     setFormData({
                       ...formData,
