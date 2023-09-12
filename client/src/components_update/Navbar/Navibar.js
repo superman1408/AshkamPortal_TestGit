@@ -17,7 +17,7 @@ const Navibar = () => {
       <Navbar sticky='top' expand="lg" className="bg-body-tertiary">
       <Container fluid>
         <Navbar.Brand href="/auth">
-          <img src={LOGO} alt="logo" style={{ width: "100px" }} />
+          <img src={LOGO} alt="logo" style={{ width: "220px" }} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -31,9 +31,9 @@ const Navibar = () => {
                 <HomeIcon sx={{ fontSize: "30px" }} />
               </IconButton>
             </Nav.Link>
-            <Nav.Link href="/profile">Registration</Nav.Link>
-            <NavDropdown title="Message" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="/mail/:id/leave">Leave S</NavDropdown.Item>
+            <Nav.Link href="/profile" style={{marginTop:'8px'}} >Registration</Nav.Link>
+            <NavDropdown title="Message" id="navbarScrollingDropdown" style={{marginTop:'8px'}}>
+              <NavDropdown.Item href="/mail/:id/leave">Leave Section</NavDropdown.Item>
               <NavDropdown.Item href="/mail/:id/communication">
                 Inbox
               </NavDropdown.Item>
@@ -42,7 +42,7 @@ const Navibar = () => {
                 Something else here
               </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link href="/aboutUs" >
+            <Nav.Link href="/aboutUs" style={{marginTop:'8px'}} >
               About Us
             </Nav.Link>
           </Nav>
