@@ -57,7 +57,7 @@ const Panel = () => {
   const switchMode = () => {
     setUser(null);
     dispatch({ type: LOGOUT });
-    navigate("/");
+    navigate("/auth");
   };
 
 
