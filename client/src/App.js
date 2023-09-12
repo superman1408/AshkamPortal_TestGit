@@ -28,7 +28,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Container maxWidth={false} sx={{ justifyContent: "center" }}>
-        <Header />
+        {/* <Header /> */}
         <Routes>
           {/* this part need to be examined after ward */}
 
@@ -39,16 +39,16 @@ const App = () => {
           />
           {/* <Route path="/profile" exact element={<Form />} /> */}
           <Route path="/profile" exact element={<RegistrationForm />} />
-          <Route path="/mail/:id/leave" exact element={<Leave />} />
+          {/* <Route path="/mail/:id/leave" exact element={<Leave />} /> */}
           {/* <Route path="/mail/:id/leave" exact element={<Leave />} /> */}
 
-          <Route
+          {/* <Route
             path="/mail/:id/communication"
             exact
             element={<Communication />}
           />
           <Route path="/aboutUs" exact element={<AboutUS />} />
-          <Route path="/home" exact element={<Dashboard />} />
+          <Route path="/home" exact element={<Dashboard />} /> */}
         </Routes>
       </Container>
     </BrowserRouter>

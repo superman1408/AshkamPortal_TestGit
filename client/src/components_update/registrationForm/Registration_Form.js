@@ -100,7 +100,7 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
 
   return (
     <Container
-      maxWidth={true}
+      maxwidth="true"
       sx={{
         display: "flex",
         justifyContent: "center",
@@ -266,10 +266,7 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
                   setPostData({ ...postData, maritalStatus: e.target.value })
                 }
               >
-                <option value="default" selected disabled="disabled" hidden>
-                  Marital Status
-                </option>
-
+                <option value="none">Marital Status</option>
                 <option value="single">Single</option>
                 <option value="married">Married</option>
               </select>
