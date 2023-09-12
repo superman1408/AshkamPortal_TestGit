@@ -23,17 +23,15 @@ import {
   } from "@mui/material";
 
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import GroupsIcon from "@mui/icons-material/Groups";
-import SearchIcon from "@mui/icons-material/Search";
-import SearchIconWrapper from "@mui/icons-material/Search";
-import InputBase from "@mui/material/InputBase";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
 import BadgeIcon from "@mui/icons-material/Badge";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import LogoutIcon from "@mui/icons-material/Logout";
-import NotificationsIcon from "@mui/icons-material/Notifications";
+
+
+import avatar1 from "../../../image/Profile.jpg";
 
 const Panel = () => {
   const [Btn, setBtn] = useState(false);
@@ -66,19 +64,19 @@ const Panel = () => {
   return (
     <div>
         <Grid sx={{ width:"220px" }}>
-            <IconButton
-              size="200px"
-              sx={{
+            <Stack flexDirection="row" sx={{
                 ml: "85px",
                 display: {
                   xs: "block",
                   sm: "block",
                 },
-                color:"#038f7c"
-              }}
-            >
-              <GroupsIcon />
-            </IconButton>
+              }}>
+                <Avatar
+                  sx={{ width: 40, height: 40, marginLeft: "10px" }}
+                  alt="Femy sharp"
+                  src={avatar1}
+                />
+              </Stack>
             <Typography sx={{ marginLeft: "70px", color: "black" }}>
               Employee
             </Typography>

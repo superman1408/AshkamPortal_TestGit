@@ -7,7 +7,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 // import Navbar from "../Navbar/navbar";
 
 import { LOGOUT } from "../../constants/actionTypes";
-import avatar1 from "../../image/Profile.jpg";
+// import avatar1 from "../../image/Profile.jpg";
 
 import WeeklyActivity from "./WeeklyActivity/WeeklyActivity";
 import Skill from "./Skills/Skill";
@@ -86,16 +86,9 @@ const Admin = () => {
               }}
             >
               
-              <Button sx={{ marginLeft: "930px" }}>
+              <Button sx={{ marginLeft: "1000px" }}>
                   <NotificationsIcon sx={{ color: "#038f7c" }} />
               </Button>
-              <Stack flexDirection="row">
-                <Avatar
-                  sx={{ width: 40, height: 40, marginLeft: "10px" }}
-                  alt="Femy sharp"
-                  src={avatar1}
-                />
-              </Stack>
             </Grid>
 
             <Grid sx={{ display: "flex", flexDirection: "row" }}>
