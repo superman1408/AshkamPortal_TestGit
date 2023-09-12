@@ -25,7 +25,7 @@ const Attendance = () => {
                       marginTop: "10px",
                       marginLeft: "20px",
                       padding: "10px",
-                      bgcolor: "#777a79",
+                      bgcolor: "#b1b5b5",
                       boxShadow: 1,
                       borderRadius: "10px",
                     }}

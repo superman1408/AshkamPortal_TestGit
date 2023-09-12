@@ -1,5 +1,12 @@
 import React from 'react';
 
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate, useLocation } from "react-router-dom";
+import decode from "jwt-decode";
+
+import { LOGOUT } from "../../../constants/actionTypes";
+
 import {
     Box,
     Grid,
@@ -29,26 +36,53 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 
 const Panel = () => {
+  const [Btn, setBtn] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const location = useLocation();
+
+  const navigate = useNavigate();
+
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+
+  useEffect(() => {
+    const token = user?.token;
+    if (token) {
+      const decodedToken = decode(token);
+      if (decodedToken.exp * 1000 < new Date().getTime()) switchMode();
+    }
+    setUser(JSON.parse(localStorage.getItem("profile")));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
+
+  const switchMode = () => {
+    setUser(null);
+    dispatch({ type: LOGOUT });
+    navigate("/");
+  };
+
+
   return (
     <div>
         <Grid sx={{ width:"220px" }}>
             <IconButton
               size="200px"
-              color="secondary"
               sx={{
-                ml: "75px",
+                ml: "85px",
                 display: {
                   xs: "block",
                   sm: "block",
                 },
+                color:"#038f7c"
               }}
             >
               <GroupsIcon />
             </IconButton>
-            <Typography sx={{ marginLeft: "70px", color: "indigo" }}>
+            <Typography sx={{ marginLeft: "70px", color: "black" }}>
               Employee
             </Typography>
-            <Typography sx={{ marginLeft: "60px", color: "indigo" }}>
+            <Typography sx={{ marginLeft: "60px", color: "black" }}>
               Management
             </Typography>
 
@@ -57,44 +91,53 @@ const Panel = () => {
             <Box sx={{ mb: 2 }}>
               <ListItemButton>
                 <ListItemIcon>
-                  <DashboardIcon sx={{ color: "secondary.main" }} />
+                  <DashboardIcon sx={{ color: "#038f7c" }} />
                 </ListItemIcon>
                 <ListItemText primary="Dashboard" />
               </ListItemButton>
 
               <ListItemButton>
                 <ListItemIcon>
-                  <EventAvailableIcon sx={{ color: "secondary.main" }} />
+                  <EventAvailableIcon sx={{ color: "#038f7c" }} />
                 </ListItemIcon>
                 <ListItemText primary="Attendance" />
               </ListItemButton>
 
               <ListItemButton>
                 <ListItemIcon>
-                  <PeopleAltIcon sx={{ color: "secondary.main" }} />
+                  <PeopleAltIcon sx={{ color: "#038f7c" }} />
                 </ListItemIcon>
                 <ListItemText primary="Employee" />
               </ListItemButton>
 
               <ListItemButton>
                 <ListItemIcon>
-                  <AnalyticsIcon sx={{ color: "secondary.main" }} />
+                  <AnalyticsIcon sx={{ color: "#038f7c" }} />
                 </ListItemIcon>
                 <ListItemText primary="Analytics" />
               </ListItemButton>
 
               <ListItemButton>
                 <ListItemIcon>
-                  <BadgeIcon sx={{ color: "secondary.main" }} />
+                  <BadgeIcon sx={{ color: "#038f7c" }} />
                 </ListItemIcon>
                 <ListItemText primary="Report Attendance" />
               </ListItemButton>
 
+
+
               <ListItemButton>
                 <ListItemIcon>
-                  <SettingsIcon sx={{ color: "secondary.main" }} />
+                  <SettingsIcon sx={{ color: "#038f7c" }} />
                 </ListItemIcon>
                 <ListItemText primary="settings" />
+              </ListItemButton>
+
+              <ListItemButton>
+                <ListItemIcon>
+                  <LogoutIcon sx={{ color: "#038f7c" }} />
+                </ListItemIcon>
+                <ListItemText onClick={switchMode} primary="logout" />
               </ListItemButton>
             </Box>
           </Grid>

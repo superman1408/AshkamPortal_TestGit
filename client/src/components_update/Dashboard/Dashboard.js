@@ -39,17 +39,7 @@ import {
   Button,
 } from "@mui/material";
 
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import GroupsIcon from "@mui/icons-material/Groups";
-import SearchIcon from "@mui/icons-material/Search";
-import SearchIconWrapper from "@mui/icons-material/Search";
-import InputBase from "@mui/material/InputBase";
-import SettingsIcon from "@mui/icons-material/Settings";
-import AnalyticsIcon from "@mui/icons-material/Analytics";
-import BadgeIcon from "@mui/icons-material/Badge";
-import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import EventAvailableIcon from "@mui/icons-material/EventAvailable";
-import LogoutIcon from "@mui/icons-material/Logout";
+
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Panel from "./Panel/Panel";
 import Attendance from "./Attendance/Attendance";
@@ -58,70 +48,9 @@ import Attendance from "./Attendance/Attendance";
 
 
 
-const settings = ["Theme", "Keyboard shortcuts", "settings", "Extensions"];
+// const settings = ["Theme", "Keyboard shortcuts", "settings", "Extensions"];
 
 const Admin = () => {
-  const [date, setDate] = useState(new Date());
-  const [dimension, setDimension] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
-
-  const [Btn, setBtn] = useState(false);
-
-  const detectSize = () => {
-    setDimension({ width: window.innerWidth, height: window.innerHeight });
-  };
-
-  
-
-  useEffect(() => {
-    window.addEventListener("resize", detectSize);
-    return () => {
-      window.removeEventListener("resize", detectSize);
-    };
-  }, [dimension]);
-
-  const dispatch = useDispatch();
-
-  const location = useLocation();
-
-  const navigate = useNavigate();
-
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
-
-  useEffect(() => {
-    const token = user?.token;
-    if (token) {
-      const decodedToken = decode(token);
-      if (decodedToken.exp * 1000 < new Date().getTime()) switchMode();
-    }
-    setUser(JSON.parse(localStorage.getItem("profile")));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location]);
-
-  const switchMode = () => {
-    setUser(null);
-    dispatch({ type: LOGOUT });
-    navigate("/");
-  };
-
-  const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: "inherit",
-    "& .MuiInputBase-input": {
-      padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create("width"),
-      width: "100%",
-      [theme.breakpoints.up("sm")]: {
-        width: "12ch",
-        "&:focus": {
-          width: "20ch",
-        },
-      },
-    },
-  }));
 
   return (
     <div>
@@ -136,11 +65,11 @@ const Admin = () => {
         }}
       >
         <Grid sx={{ display: "flex", flexDirection: "row" }}>
-          {/*------------------------------------------------Panel----------------------------------------------- */}
+          {/*------------------Panel----------------------------- */}
           <Panel/>
          
 
-          {/* ----------------------------------------Dashboard section-------------------------------------------------*/}
+          {/* ---------------Dashboard section-------------------------*/}
           <Grid
             sx={{
               display: "flex",
@@ -156,26 +85,17 @@ const Admin = () => {
                 flexDirection: "row",
               }}
             >
-              <Stack flexDirection="row" spacing={2}>
+              
+              <Button sx={{ marginLeft: "930px" }}>
+                  <NotificationsIcon sx={{ color: "#038f7c" }} />
+              </Button>
+              <Stack flexDirection="row">
                 <Avatar
-                  sx={{ width: 40, height: 40, marginLeft: "0px" }}
+                  sx={{ width: 40, height: 40, marginLeft: "10px" }}
                   alt="Femy sharp"
                   src={avatar1}
                 />
               </Stack>
-              <ListItemButton sx={{ marginLeft: "30px" }}>
-                <ListItemIcon>
-                  <NotificationsIcon sx={{ color: "secondary.main" }} />
-                </ListItemIcon>
-                <ListItemText primary="Notification" />
-              </ListItemButton>
-              <Divider orientation="vertical" />
-              <ListItemButton>
-                <ListItemIcon>
-                  <LogoutIcon sx={{ color: "secondary.main" }} />
-                </ListItemIcon>
-                <ListItemText onClick={switchMode} primary="logout" />
-              </ListItemButton>
             </Grid>
 
             <Grid sx={{ display: "flex", flexDirection: "row" }}>
@@ -190,15 +110,17 @@ const Admin = () => {
                 <Grid sx={{ display: "flex", flexDirection: "row" }}>
                   <Grid>
                     <TotalEmployee/>
-                    
                   </Grid>
+
                   <Grid>
                     <Skill/>
                   </Grid>
                 </Grid>
+
                 <Grid>
                 <WeeklyActivity/>
                 </Grid>
+
               </Grid>
 
               <Grid sx={{ display: "flex", flexDirection: "column " }}>
@@ -217,6 +139,7 @@ const Admin = () => {
                 <Grid>
                   <Calender/>
                 </Grid>
+
               </Grid>
             </Grid>
           </Grid>
