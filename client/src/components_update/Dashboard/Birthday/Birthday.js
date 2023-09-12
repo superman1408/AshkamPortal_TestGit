@@ -46,11 +46,12 @@ const Birthday = () => {
     <div>
         <Box
                     sx={{
-                      width: "340px",
-                      height: "70px",
+                      // width: "340px",
+                      // height: "70px",
+                      display: "flex",
                       marginTop: "10px",
                       marginLeft: "20px",
-                      padding: "10px",
+                      padding: "2px",
                       bgcolor: "background.paper",
                       boxShadow: 1,
                       borderRadius: "10px",
@@ -58,27 +59,28 @@ const Birthday = () => {
                       backgroundSize: "cover",
                     }}
                   >
-                    <Stack flexDirection="row" spacing={2}>
+                    <Stack flexDirection="row">
                       <Avatar
-                        sx={{ width: 40, height: 40, marginLeft: "20px" }}
+                        sx={{ width: 40, height: 40, marginLeft: "20px", marginTop: "10px" }}
                         alt="Femy sharp"
                         src={avatar1}
                       />
                     </Stack>
+                    <Grid>
                     <Typography
                       variant="h6"
-                      sx={{ marginLeft: "100px", marginTop: "-50px" }}
+                      sx={{ marginLeft: "40px" }}
                     >
                       Femy sharp
                     </Typography>
-                    <Typography sx={{ marginLeft: "100px", fontSize: "13px" }}>
+                    <Typography sx={{ marginLeft: "40px", fontSize: "13px" }}>
                       Has birthday today
                     </Typography>
 
                     <Button
                       sx={{
-                        marginLeft: "110px",
-                        marginRight: "140px",
+                        marginLeft: "50px",
+                        marginRight: "0px",
                         bgcolor: "#ecd0f5",
                         fontSize: "13px",
                       }}
@@ -93,7 +95,7 @@ const Birthday = () => {
                         tweenDuration={100}
                       />
                     )}
-
+                   </Grid>
                     <div class="btn-particles"></div>
                   </Box>
     </div>

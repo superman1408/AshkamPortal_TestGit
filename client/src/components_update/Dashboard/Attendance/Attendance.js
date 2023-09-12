@@ -20,8 +20,9 @@ const Attendance = () => {
     <div>
         <Box
                     sx={{
-                      width: "340px",
-                      height: "40px",
+                      display:"flex",
+                      // width: "340px",
+                      // height: "40px",
                       marginTop: "10px",
                       marginLeft: "20px",
                       padding: "10px",

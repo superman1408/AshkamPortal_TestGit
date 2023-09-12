@@ -23,21 +23,22 @@ const EmployeeOnHoliday = () => {
     <div>
         <Box
                     sx={{
-                      width: "340px",
-                      height: "150px",
+                      // width: "340px",
+                      // height: "150px",
+                      display: "flex",
                       marginTop: "10px",
                       marginLeft: "20px",
-                      padding: "10px",
+                      padding: "2px",
                       bgcolor: "#e9edf7",
                       boxShadow: 1,
                       borderRadius: "10px",
                     }}
                   >
-                    <Typography sx={{ fontWeight: "bolder" , mb:"10px"}}>
+                    <Typography sx={{ fontWeight: "bold" , mb:"1px"}}>
                       Employees on Holiday
                     </Typography>
                     <div>
-                      <Stack flexDirection="row" spacing={2}>
+                      <Stack flexDirection="row">
                         <Avatar
                           sx={{
                             width: 40,
@@ -52,7 +53,7 @@ const EmployeeOnHoliday = () => {
                     </div>
                     <Typography
                       sx={{
-                        marginLeft: "100px",
+                        marginLeft: "0px",
                         marginRight: "20px",
                         marginTop: "-30px",
                       }}
@@ -62,7 +63,7 @@ const EmployeeOnHoliday = () => {
                     <Typography
                       sx={{
                         color: "#f7100c",
-                        marginLeft: "250px",
+                        marginLeft: "0px",
                         marginTop: "-20px",
                       }}
                     >
@@ -86,7 +87,7 @@ const EmployeeOnHoliday = () => {
                     </div>
                     <Typography
                       sx={{
-                        marginLeft: "100px",
+                        marginLeft: "0px",
                         marginRight: "30px",
                         marginTop: "-30px",
                       }}
@@ -96,7 +97,7 @@ const EmployeeOnHoliday = () => {
                     <Typography
                       sx={{
                         color: "#f7100c",
-                        marginLeft: "250px",
+                        marginLeft: "0px",
                         marginTop: "-20px",
                       }}
                     >
