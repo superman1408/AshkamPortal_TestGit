@@ -17,7 +17,7 @@ const Calender = () => {
     <div>
         <Box
                     sx={{
-                      width: "400px",
+                      width: "360px",
                       height: "320px",
                       marginTop: "10px",
                       marginLeft: "20px",

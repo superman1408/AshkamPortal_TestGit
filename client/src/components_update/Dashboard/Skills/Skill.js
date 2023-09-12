@@ -51,7 +51,7 @@ const Skill = () => {
                         <MoreVertIcon />
                       </IconButton>
 
-                      <Stack direction="row" spacing={1} marginLeft={2}>
+                      <Stack direction="row" spacing={1} marginLeft={1}>
                         <Avatar
                           sx={{
                             width: "30px",
@@ -69,13 +69,13 @@ const Skill = () => {
                         direction="row"
                         spacing={1}
                         marginTop={1}
-                        marginLeft={2}
+                        marginLeft={1}
                       >
                         <Avatar
                           sx={{
                             width: "30px",
                             height: "30px",
-                            marginRight: "20px",
+                            marginRight: "50px",
                             bgcolor: "#5a508a",
                           }}
                         >
@@ -87,7 +87,7 @@ const Skill = () => {
                       <Stack
                         direction="row"
                         spacing={1}
-                        marginLeft={2}
+                        marginLeft={1}
                         marginTop={1}
                       >
                         <Avatar

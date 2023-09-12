@@ -21,6 +21,7 @@ import AboutUS from "./components_update/AboutUs/aboutUs";
 
 import RegistrationForm from "./components_update/registrationForm/Registration_Form";
 import Dashboard from "./components_update/Dashboard/Dashboard";
+import Panel from "./components_update/Dashboard/Panel/Panel";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -49,6 +50,7 @@ const App = () => {
           />
           <Route path="/aboutUs" exact element={<AboutUS />} />
           <Route path="/home" exact element={<Dashboard />} />
+          <Route path="/Panel" exact element={<Panel />} />
         </Routes>
       </Container>
     </BrowserRouter>

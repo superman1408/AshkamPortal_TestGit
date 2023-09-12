@@ -16,7 +16,7 @@ import {
 
 import avatar1 from "../../../image/Profile.jpg";
 import avatar2 from "../../../image/profile1.jpg";
-import Image from "../../../image/birthday2.png";
+import Image from "../../../image/Balloon.png";
 
 
 import ReactConfetti from "react-confetti";
@@ -46,7 +46,7 @@ const Birthday = () => {
     <div>
         <Box
                     sx={{
-                      width: "380px",
+                      width: "340px",
                       height: "70px",
                       marginTop: "10px",
                       marginLeft: "20px",
@@ -78,7 +78,7 @@ const Birthday = () => {
                     <Button
                       sx={{
                         marginLeft: "110px",
-                        marginRight: "170px",
+                        marginRight: "140px",
                         bgcolor: "#ecd0f5",
                         fontSize: "13px",
                       }}
