@@ -29,6 +29,7 @@ import BadgeIcon from "@mui/icons-material/Badge";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import LogoutIcon from "@mui/icons-material/Logout";
+import ForwardToInboxTwoToneIcon from '@mui/icons-material/ForwardToInboxTwoTone';
 
 
 import avatar1 from "../../../image/Profile.jpg";
@@ -96,6 +97,13 @@ const Panel = () => {
 
               <ListItemButton>
                 <ListItemIcon>
+                  <ForwardToInboxTwoToneIcon sx={{ color: "#038f7c" }} />
+                </ListItemIcon>
+                <ListItemText primary="Inbox" />
+              </ListItemButton>
+
+              <ListItemButton>
+                <ListItemIcon>
                   <EventAvailableIcon sx={{ color: "#038f7c" }} />
                 </ListItemIcon>
                 <ListItemText primary="Attendance" />
@@ -114,6 +122,9 @@ const Panel = () => {
                 </ListItemIcon>
                 <ListItemText primary="Analytics" />
               </ListItemButton>
+
+             
+
 
               <ListItemButton>
                 <ListItemIcon>
