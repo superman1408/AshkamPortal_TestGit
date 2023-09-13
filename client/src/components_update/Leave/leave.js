@@ -6,7 +6,6 @@ import {
   Grid,
   TextField,
   Typography,
-  Paper,
   Container,
 } from "@mui/material";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
@@ -123,172 +122,306 @@ const Leave = () => {
   };
 
   return (
-    <Container sx={{ display: "flex" }}>
+    <div style={{ padding: "5px", display: "flex" }}>
       <Panel />
-      <Paper>
-        <form autoComplete="off" onSubmit={handleSubmit}>
-          <Typography variant="h4" sx={{ padding: "3px", textAlign: "center" }}>
-            LEAVE CONTAINER
-          </Typography>
+      <form autoComplete="off" onSubmit={handleSubmit}>
+        <Typography variant="h6" sx={{ padding: "3px", textAlign: "center" }}>
+          Inbox- farheen.k@ashkamenergy.com
+        </Typography>
+        <div
+          style={{ backgroundColor: "blue", padding: "5px", display: "flex" }}
+        >
+          <Card elevation={10} sx={{ padding: "5px", width: "700px" }}>
+            <TextField
+              type="email"
+              name="recipient"
+              label="Recipient"
+              variant="outlined"
+              required
+              fullWidth
+              sx={{ marginTop: "10px" }}
+              onChange={(e) =>
+                setMailData({ ...mailData, recipient: e.target.value })
+              }
+            />
 
-          <Box container component="main" className={classes.mainContainer}>
-            <Box container sx={{ padding: "5px" }}>
-              <Card sx={{ padding: "10px" }}>
-                <TextField
-                  type="email"
-                  name="recipient"
-                  label="Recipient"
-                  variant="outlined"
-                  required
-                  fullWidth
-                  sx={{ marginTop: "10px" }}
-                  onChange={(e) =>
-                    setMailData({ ...mailData, recipient: e.target.value })
-                  }
-                />
+            <Grid
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+              }}
+            >
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DemoContainer components={["DatePicker"]}>
+                  <DatePicker
+                    label="From"
+                    value={valueTo}
+                    onChange={(newValue) => setValueTo(newValue)}
+                    required
+                    fullWidth
+                  />
+                </DemoContainer>
+              </LocalizationProvider>
 
-                <Grid
-                  sx={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                    justifyContent: "space-between",
-                  }}
+              <div style={{ margin: "10px 0px" }}>
+                <select
+                  value={select ? select : ""}
+                  onChange={handleSelect}
+                  placeholder="Select Leave"
+                  className={classes.dropDown}
                 >
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DemoContainer components={["DatePicker"]}>
-                      <DatePicker
-                        label="From"
-                        value={valueTo}
-                        onChange={(newValue) => setValueTo(newValue)}
-                        required
-                        fullWidth
-                      />
-                    </DemoContainer>
-                  </LocalizationProvider>
+                  {options.map((option) => (
+                    <option key={option.value}>{option.label}</option>
+                  ))}
+                </select>
+              </div>
+            </Grid>
 
-                  <div style={{ margin: "10px 0px" }}>
-                    <select
-                      value={select ? select : ""}
-                      onChange={handleSelect}
-                      placeholder="Select Leave"
-                      className={classes.dropDown}
-                    >
-                      {options.map((option) => (
-                        <option key={option.value}>{option.label}</option>
-                      ))}
-                    </select>
-                  </div>
-                </Grid>
-
-                <Grid>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DemoContainer components={["DatePicker"]}>
-                      <DatePicker
-                        label="To"
-                        value={valueFrom}
-                        required
-                        halfWidth
-                        onChange={(newValue) => setValueFrom(newValue)}
-                      />
-                    </DemoContainer>
-                  </LocalizationProvider>
-                </Grid>
-
-                {select && (
-                  <TextField
-                    name="subject"
-                    label="Subject"
+            <Grid>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DemoContainer components={["DatePicker"]}>
+                  <DatePicker
+                    label="To"
+                    value={valueFrom}
                     required
-                    fullWidth
-                    sx={{ marginTop: "10px", fontWeight: "500px" }}
-                    value={
-                      (mailData.subject = `Applying for ${leaveType} from ${fromDate} to ${toDate}`)
-                    }
-                    onChange={(e) =>
-                      setMailData({
-                        ...mailData,
-                        [e.target.subject]: e.target.value,
-                      })
-                    }
+                    halfWidth
+                    onChange={(newValue) => setValueFrom(newValue)}
                   />
-                )}
-                <Grid>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    multiline
-                    minRows={4}
-                    sx={{ marginTop: "10px", fontWeight: "200px" }}
-                    onChange={(e) =>
-                      setMailData({
-                        ...mailData,
-                        requiredMessage: e.target.value,
-                      })
-                    }
-                  />
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    type="submit"
-                    sx={{
-                      "@media (max-width: 600px)": {
-                        marginLeft: "auto",
-                        marginTop: "10px",
-                      },
+                </DemoContainer>
+              </LocalizationProvider>
+            </Grid>
 
-                      "@media (min-width: 600px)": {
-                        marginLeft: "900px",
-                        marginTop: "10px",
-                      },
-                    }}
-                  >
-                    Send
-                  </Button>
-                </Grid>
-              </Card>
-            </Box>
-            <Box>
-              <Card>
-                <div>
-                  <Button
-                    variant="contained"
-                    fullWidth
-                    color="primary"
-                    sx={{ margin: " 40px 10px 30px 10px" }}
-                    onClick={() => {
-                      navigate(`/mail/${id}/communication`, {
-                        replace: true,
-                      });
-                      console.log(id);
-                    }}
-                  >
-                    Inbox
-                  </Button>
-                </div>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DateCalendar />
-                </LocalizationProvider>
-                <div style={{ width: "300px", height: "300px" }}>
-                  <CChart
-                    type="doughnut"
-                    data={{
-                      labels: ["Working Days", "Active Days"],
-                      datasets: [
-                        {
-                          backgroundColor: ["#1565C0", "#ba68c8"],
-                          data: [240, 190],
-                        },
-                      ],
-                    }}
-                  />
-                </div>
-              </Card>
-            </Box>
-          </Box>
-        </form>
-      </Paper>
-    </Container>
+            {select && (
+              <TextField
+                name="subject"
+                label="Subject"
+                required
+                fullWidth
+                sx={{ marginTop: "10px", fontWeight: "500px" }}
+                value={
+                  (mailData.subject = `Applying for ${leaveType} from ${fromDate} to ${toDate}`)
+                }
+                onChange={(e) =>
+                  setMailData({
+                    ...mailData,
+                    [e.target.subject]: e.target.value,
+                  })
+                }
+              />
+            )}
+            <Grid>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                multiline
+                minRows={4}
+                sx={{ marginTop: "10px", fontWeight: "200px" }}
+                onChange={(e) =>
+                  setMailData({
+                    ...mailData,
+                    requiredMessage: e.target.value,
+                  })
+                }
+              />
+
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                sx={{ float: "right" }}
+                // sx={{
+                //   "@media (max-width: 600px)": {
+                //     marginLeft: "auto",
+                //     marginTop: "10px",
+                //   },
+
+                //   "@media (min-width: 600px)": {
+                //     marginLeft: "900px",
+                //     marginTop: "10px",
+                //   },
+                // }}
+              >
+                Send
+              </Button>
+            </Grid>
+          </Card>
+          <div>
+            <Card>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DateCalendar />{" "}
+              </LocalizationProvider>
+            </Card>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    //   <Box sx={{ backgroundColor: "blue" }}>
+    //     <form autoComplete="off" onSubmit={handleSubmit}>
+    //       <Typography variant="h4" sx={{ padding: "3px", textAlign: "center" }}>
+    //         LEAVE CONTAINER
+    //       </Typography>
+
+    //       {/* <Box container component="main" className={classes.mainContainer}> */}
+    //       {/* <Box container sx={{ padding: "5px" }}> */}
+    //       <Card sx={{ padding: "10px", width: "calc(20% - 10px + 40rem)" }}>
+    //         <TextField
+    //           type="email"
+    //           name="recipient"
+    //           label="Recipient"
+    //           variant="outlined"
+    //           required
+    //           fullWidth
+    //           sx={{ marginTop: "10px" }}
+    //           onChange={(e) =>
+    //             setMailData({ ...mailData, recipient: e.target.value })
+    //           }
+    //         />
+
+    //         <Grid
+    //           sx={{
+    //             display: "flex",
+    //             flexWrap: "wrap",
+    //             justifyContent: "space-between",
+    //           }}
+    //         >
+    //           <LocalizationProvider dateAdapter={AdapterDayjs}>
+    //             <DemoContainer components={["DatePicker"]}>
+    //               <DatePicker
+    //                 label="From"
+    //                 value={valueTo}
+    //                 onChange={(newValue) => setValueTo(newValue)}
+    //                 required
+    //                 fullWidth
+    //               />
+    //             </DemoContainer>
+    //           </LocalizationProvider>
+
+    //           <div style={{ margin: "10px 0px" }}>
+    //             <select
+    //               value={select ? select : ""}
+    //               onChange={handleSelect}
+    //               placeholder="Select Leave"
+    //               className={classes.dropDown}
+    //             >
+    //               {options.map((option) => (
+    //                 <option key={option.value}>{option.label}</option>
+    //               ))}
+    //             </select>
+    //           </div>
+    //         </Grid>
+
+    //         <Grid>
+    //           <LocalizationProvider dateAdapter={AdapterDayjs}>
+    //             <DemoContainer components={["DatePicker"]}>
+    //               <DatePicker
+    //                 label="To"
+    //                 value={valueFrom}
+    //                 required
+    //                 halfWidth
+    //                 onChange={(newValue) => setValueFrom(newValue)}
+    //               />
+    //             </DemoContainer>
+    //           </LocalizationProvider>
+    //         </Grid>
+
+    //         {select && (
+    //           <TextField
+    //             name="subject"
+    //             label="Subject"
+    //             required
+    //             fullWidth
+    //             sx={{ marginTop: "10px", fontWeight: "500px" }}
+    //             value={
+    //               (mailData.subject = `Applying for ${leaveType} from ${fromDate} to ${toDate}`)
+    //             }
+    //             onChange={(e) =>
+    //               setMailData({
+    //                 ...mailData,
+    //                 [e.target.subject]: e.target.value,
+    //               })
+    //             }
+    //           />
+    //         )}
+    //         <Grid>
+    //           <TextField
+    //             variant="outlined"
+    //             required
+    //             fullWidth
+    //             multiline
+    //             minRows={4}
+    //             sx={{ marginTop: "10px", fontWeight: "200px" }}
+    //             onChange={(e) =>
+    //               setMailData({
+    //                 ...mailData,
+    //                 requiredMessage: e.target.value,
+    //               })
+    //             }
+    //           />
+    //           <Button
+    //             variant="contained"
+    //             color="primary"
+    //             type="submit"
+    //             // sx={{
+    //             //   "@media (max-width: 600px)": {
+    //             //     marginLeft: "auto",
+    //             //     marginTop: "10px",
+    //             //   },
+
+    //             //   "@media (min-width: 600px)": {
+    //             //     marginLeft: "900px",
+    //             //     marginTop: "10px",
+    //             //   },
+    //             // }}
+    //           >
+    //             Send
+    //           </Button>
+    //         </Grid>
+    //       </Card>
+    //       {/* </Box> */}
+
+    //       <Box>
+    //         <Card>
+    //           <div>
+    //             <Button
+    //               variant="contained"
+    //               fullWidth
+    //               color="primary"
+    //               sx={{ margin: " 40px 10px 30px 10px" }}
+    //               onClick={() => {
+    //                 navigate(`/mail/${id}/communication`, {
+    //                   replace: true,
+    //                 });
+    //                 console.log(id);
+    //               }}
+    //             >
+    //               Inbox
+    //             </Button>
+    //           </div>
+    //           <LocalizationProvider dateAdapter={AdapterDayjs}>
+    //             <DateCalendar />
+    //           </LocalizationProvider>
+    //           <div style={{ width: "300px", height: "300px" }}>
+    //             <CChart
+    //               type="doughnut"
+    //               data={{
+    //                 labels: ["Working Days", "Active Days"],
+    //                 datasets: [
+    //                   {
+    //                     backgroundColor: ["#1565C0", "#ba68c8"],
+    //                     data: [240, 190],
+    //                   },
+    //                 ],
+    //               }}
+    //             />
+    //           </div>
+    //         </Card>
+    //         {/* </Box> */}
+    //       </Box>
+    //     </form>
+    //   </Box>
+    // </Container>
   );
 };
 
