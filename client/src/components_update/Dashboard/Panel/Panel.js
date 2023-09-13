@@ -94,7 +94,7 @@ const Panel = () => {
                 </ListItemIcon>
                 <ListItemText primary="Dashboard" />
               </ListItemButton>
-
+{/* inbox added here */}
               <ListItemButton>
                 <ListItemIcon>
                   <ForwardToInboxTwoToneIcon sx={{ color: "#038f7c" }} />
