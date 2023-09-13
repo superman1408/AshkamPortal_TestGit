@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-import { IconButton } from "@mui/material";
+import { IconButton,Grid } from "@mui/material";
 
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -11,6 +11,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import HomeIcon from "@mui/icons-material/Home";
 import LOGO from "../images/Company.png";
+import NotificationsNoneRoundedIcon from '@mui/icons-material/NotificationsNoneRounded';
 
 const Navibar = () => {
   return (
@@ -46,6 +47,18 @@ const Navibar = () => {
               About Us
             </Nav.Link>
           </Nav>
+          <Grid
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                margin:'5px',
+              }}
+            >
+              
+              {/* <Button > */}
+                  <NotificationsNoneRoundedIcon />
+              {/* </Button> */}
+            </Grid>
           <Form className="d-flex">
             <Form.Control
               type="search"

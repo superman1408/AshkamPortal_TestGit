@@ -79,18 +79,6 @@ const Admin = () => {
               
             }}
           >
-            <Grid
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-              }}
-            >
-              
-              <Button sx={{ marginLeft: "1000px" }}>
-                  <NotificationsIcon sx={{ color: "#038f7c" }} />
-              </Button>
-            </Grid>
-
             <Grid sx={{ display: "flex", flexDirection: "row" }}>
               <Grid>
                 <Typography
