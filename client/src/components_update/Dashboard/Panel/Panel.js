@@ -87,20 +87,20 @@ const Panel = () => {
 
         <Divider sx={{ mb: 6, ml: 0, mr: 0 }} />
 
-        <Box sx={{ mb: 2 }}>
-          <ListItemButton>
-            <ListItemIcon>
-              <DashboardIcon sx={{ color: "#038f7c" }} />
-            </ListItemIcon>
-            <ListItemText primary="Dashboard" />
-          </ListItemButton>
-
-          <ListItemButton>
-            <ListItemIcon>
-              <EventAvailableIcon sx={{ color: "#038f7c" }} />
-            </ListItemIcon>
-            <ListItemText primary="Attendance" />
-          </ListItemButton>
+            <Box sx={{ mb: 2 }}>
+              <ListItemButton>
+                <ListItemIcon>
+                  <DashboardIcon sx={{ color: "#038f7c" }} />
+                </ListItemIcon>
+                <ListItemText primary="Dashboard" />
+              </ListItemButton>
+{/* inbox added here */}
+              <ListItemButton>
+                <ListItemIcon>
+                  <ForwardToInboxTwoToneIcon sx={{ color: "#038f7c" }} />
+                </ListItemIcon>
+                <ListItemText primary="Inbox" />
+              </ListItemButton>
 
           <ListItemButton>
             <ListItemIcon>
