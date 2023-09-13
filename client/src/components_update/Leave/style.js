@@ -6,6 +6,7 @@ export default makeStyles(() => ({
 
     "@media (max-width: 600px)": {
       flexDirection: "column",
+      marginTop: "20px",
     },
 
     "@media (min-width: 600px)": {

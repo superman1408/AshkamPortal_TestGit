@@ -16,13 +16,11 @@ import EmployeeOnHoliday from "./EmployeeOnHoliday/EmployeeOnHoliday";
 import Calender from "./Calender/Calender";
 import Birthday from "./Birthday/Birthday";
 
-
 import decode from "jwt-decode";
 import { Link } from "react-router-dom";
 // import { Search } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 // import "./style.css";
-
 
 import {
   Box,
@@ -39,19 +37,14 @@ import {
   Button,
 } from "@mui/material";
 
-
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Panel from "./Panel/Panel";
 import Attendance from "./Attendance/Attendance";
-
-
-
-
+import { Card } from "@material-ui/core";
 
 // const settings = ["Theme", "Keyboard shortcuts", "settings", "Extensions"];
 
 const Admin = () => {
-
   return (
     <div>
       <Box
@@ -66,8 +59,7 @@ const Admin = () => {
       >
         <Grid sx={{ display: "flex", flexDirection: "row" }}>
           {/*------------------Panel----------------------------- */}
-          <Panel/>
-         
+          <Panel />
 
           {/* ---------------Dashboard section-------------------------*/}
           <Grid
@@ -76,7 +68,6 @@ const Admin = () => {
               marginBottom: "5px",
               flexDirection: "column",
               bgcolor: "#f0f2f1",
-              
             }}
           >
             <Grid sx={{ display: "flex", flexDirection: "row" }}>
@@ -90,37 +81,35 @@ const Admin = () => {
 
                 <Grid sx={{ display: "flex", flexDirection: "row" }}>
                   <Grid>
-                    <TotalEmployee/>
+                    <TotalEmployee />
                   </Grid>
 
                   <Grid>
-                    <Skill/>
+                    <Skill />
                   </Grid>
                 </Grid>
 
                 <Grid>
-                <WeeklyActivity/>
+                  <WeeklyActivity />
                 </Grid>
-
               </Grid>
 
               <Grid sx={{ display: "flex", flexDirection: "column " }}>
                 <Grid>
-                  <Attendance/>
+                  <Attendance />
                 </Grid>
 
                 <Grid>
-                  <Birthday/>
+                  <Birthday />
                 </Grid>
 
                 <Grid>
-                  <EmployeeOnHoliday/>
+                  <EmployeeOnHoliday />
                 </Grid>
 
-                <Grid>
-                  <Calender/>
+                <Grid sx={{ boxShadow: "1", border: "1 px solid black" }}>
+                  <Calender />
                 </Grid>
-
               </Grid>
             </Grid>
           </Grid>

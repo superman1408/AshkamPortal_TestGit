@@ -173,7 +173,7 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
             </div>
 
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <Grid sx={{ fontSize: "20px", marginTop: "40px" }}>
+              <Grid sx={{ marginTop: "40px" }}>
                 <FileBase
                   type="file"
                   multiple={false}
@@ -266,7 +266,7 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
                   setPostData({ ...postData, maritalStatus: e.target.value })
                 }
               >
-                <option value="none">Marital Status</option>
+                <option value="">Marital Status</option>
                 <option value="single">Single</option>
                 <option value="married">Married</option>
               </select>
@@ -357,7 +357,7 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
             </Grid>
 
             <Divider sx={{ margin: "20px 0px 20px 0px", borderWidth: "7px" }} />
-            <h2>Job Informations</h2>
+            <h4>Job Informations</h4>
             <div sx={{ display: "flex", flexDirection: "row" }}>
               <TextField
                 variant="outlined"
@@ -415,7 +415,7 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
             </div>
 
             <Divider sx={{ margin: "20px 0px 20px 0px", borderWidth: "7px" }} />
-            <h2>Emergency Contact Informations</h2>
+            <h4>Emergency Contact Informations</h4>
             <div sx={{ display: "flex", flexDirection: "row" }}>
               <TextField
                 variant="outlined"
