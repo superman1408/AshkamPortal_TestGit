@@ -14,6 +14,13 @@ import LOGO from "../images/Company.png";
 import NotificationsNoneRoundedIcon from '@mui/icons-material/NotificationsNoneRounded';
 
 const Navibar = () => {
+  
+
+  const notify = () => {
+    console.log("Notification is clicked...!!!");
+  };
+
+
   return (
       <Navbar sticky='top' expand="lg" className="bg-body-tertiary">
       <Container fluid>
@@ -54,10 +61,9 @@ const Navibar = () => {
                 margin:'5px',
               }}
             >
-              
-              {/* <Button > */}
+              <IconButton to="/" id="notification" onClick={notify}>
                   <NotificationsNoneRoundedIcon />
-              {/* </Button> */}
+              </IconButton>
             </Grid>
           <Form className="d-flex">
             <Form.Control
