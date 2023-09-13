@@ -61,7 +61,8 @@ const Navibar = () => {
                 margin:'5px',
               }}
             >
-              <IconButton to="/" id="notification" onClick={notify}>
+              {/* comment is added */}
+              <IconButton to="/auth" id="notification" onClick={notify}>
                   <NotificationsNoneRoundedIcon />
               </IconButton>
             </Grid>
