@@ -86,12 +86,12 @@ const Admin = () => {
               }}
             >
               
-              <Button sx={{ marginLeft: "1000px" }}>
+              {/* <Button sx={{ marginLeft: "1000px" }}>
                   <NotificationsIcon sx={{ color: "#038f7c" }} />
-              </Button>
+              </Button> */}
             </Grid>
 
-            <Grid sx={{ display: "flex", flexDirection: "row" }}>
+            <Grid sx={{ display: "flex", flexDirection: "row", marginTop:"20px" }}>
               <Grid>
                 <Typography
                   variant="h5"

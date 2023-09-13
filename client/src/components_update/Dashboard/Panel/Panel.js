@@ -123,17 +123,12 @@ const Panel = () => {
                 <ListItemText primary="Analytics" />
               </ListItemButton>
 
-             
-
-
               <ListItemButton>
                 <ListItemIcon>
                   <BadgeIcon sx={{ color: "#038f7c" }} />
                 </ListItemIcon>
                 <ListItemText primary="Report Attendance" />
               </ListItemButton>
-
-
 
               <ListItemButton>
                 <ListItemIcon>

@@ -17,19 +17,19 @@ const Calender = () => {
     <div>
         <Box
                     sx={{
-                      width: "360px",
-                      height: "320px",
+                      display:"flex",
                       marginTop: "10px",
                       marginLeft: "20px",
-
+                      marginRight: "0px",
                       bgcolor: "#9e9e9e",
                       boxShadow: 1,
                       borderRadius: "10px",
                     }}
                   >
+                  
                     <LocalizationProvider
                       dateAdapter={AdapterDayjs}
-                      sx={{ width: "350px", height: "150px" }}
+                      sx={{ display:"flex", marginLeft:"0px" }}
                     >
                       <DateCalendar
                         showDaysOutsideCurrentMonth
@@ -37,6 +37,7 @@ const Calender = () => {
                         onChange={onChange}
                       />
                     </LocalizationProvider>
+              
                   </Box>
     </div>
   )
