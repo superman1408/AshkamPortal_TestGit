@@ -1,62 +1,70 @@
-import React from 'react';
+import React from "react";
 import { CChart } from "@coreui/react-chartjs";
-import {Box, Typography} from "@mui/material";
-
+import { Box, Typography, Grid } from "@mui/material";
 
 const chart = () => {
   return (
     <div>
-        <Box
-                  sx={{
-                    width: "640px",
-                    height: "417px",
-                    marginTop: "20px",
-                    marginLeft: "20px",
-                    padding: "10px",
-                    bgcolor: "background.paper",
-                    boxShadow: 1,
-                    borderRadius: "10px",
-                  }}
-                >
-                  <Typography sx={{ fontWeight: "bolder" }}>
-                    Weekly Activity
-                  </Typography>
+      <Box
+        sx={{
+          // width: "640px",
+          // height: "417px",
+          display: "flex",
+          marginTop: "20px",
+          marginLeft: "20px",
+          padding: "10px",
+          bgcolor: "background.paper",
+          boxShadow: 1,
+          borderRadius: "10px",
+        }}
+      >
+        <Grid sx={{ display: "flex", flexDirection: "column" }}>
+          <Grid>
+            <Typography sx={{ fontWeight: "bolder" }}>
+              Weekly Activity
+            </Typography>
+          </Grid>
 
-                  {/*----------------------------------------------------Line Chart------------------------------------------------------*/}
-                  <CChart
-                    type="line"
-                    data={{
-                      datasets: [
-                        {
-                          data: [8137119, 9431691, 10266674],
-                          label: "Infected",
-                          borderColor: "#1565C0",
-                          fill: true,
-                          lineTension: 0.5,
-                        },
-                        {
-                          data: [1216410, 1371390, 1477380],
-                          label: "Deaths",
-                          borderColor: "#ba68c8",
-                          backgroundColor: "rgba(255, 0, 0, 0.5)",
-                          fill: true,
-                          lineTension: 0.5,
-                        },
-                      ],
-                      labels: ["January", "February", "March"],
-                    }}
-                    options={{
-                      plugins: {
-                        legend: {
-                          display: true,
-                          position: "top",
-                        },
-                      },
-                    }}
-                  />
-                </Box>
+          {/*----------------------------------------------------Line Chart------------------------------------------------------*/}
+          <Grid>
+            <CChart
+              width="600px"
+              height="400px"
+              type="line"
+              data={{
+                datasets: [
+                  {
+                    data: [8137119, 9431691, 10266674],
+                    label: "Infected",
+                    borderColor: "#1565C0",
+                    fill: true,
+                    lineTension: 0.5,
+                  },
+                  {
+                    data: [1216410, 1371390, 1477380],
+                    label: "Deaths",
+                    borderColor: "#ba68c8",
+                    backgroundColor: "rgba(255, 0, 0, 0.5)",
+                    fill: true,
+                    lineTension: 0.5,
+                  },
+                ],
+                labels: ["January", "February", "March"],
+              }}
+              options={{
+                plugins: {
+                  legend: {
+                    display: true,
+                    position: "top",
+                  },
+                },
+              }}
+            />
+          </Grid>
+        </Grid>
+      </Box>
     </div>
-  )
-}
+  );
+};
 
-export default chart
+export default chart;

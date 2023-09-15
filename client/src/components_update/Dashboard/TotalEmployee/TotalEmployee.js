@@ -127,16 +127,19 @@ const TotalEmployee = () => {
                 height: "50px",
               }}
             > */}
-            {/* <div
-                style={{
-                  width: "200px",
-                  height: "100px",
-                  marginLeft: "30px",
-                }}
-              > */}
-            {/*-------------------------------------------------------------------Doughtnut Chart----------------------------------------------------------------*/}
-            {/* <CChart
+            <Grid
+              sx={{
+                width: "200px",
+                // height: "100px",
+                marginRight: "0px",
+                marginLeft: "10px",
+              }}
+            >
+              {/*-------------------------------------------------------------------Doughtnut Chart----------------------------------------------------------------*/}
+              <CChart
                 type="doughnut"
+                height="30px"
+                marginTop="0px"
                 data={{
                   datasets: [
                     {
@@ -149,20 +152,20 @@ const TotalEmployee = () => {
                 options={{
                   plugins: {
                     legend: {
-                      position: "right",
+                      position: "bottom",
                     },
 
-                    responsive: true,
-                    plugins: {
-                      tooltip: {
-                        enabled: false, // <-- this option disables tooltips
-                      },
-                    },
+                    // responsive: true,
+                    // plugins: {
+                    //   tooltip: {
+                    //     enabled: true, // <-- this option disables tooltips
+                    //   },
+                    // },
                   },
                 }}
-              /> */}
+              />
 
-            <Grid
+              {/* <Grid
               sx={{
                 display: "flex",
                 width: "200px",
@@ -182,8 +185,8 @@ const TotalEmployee = () => {
                   },
                 ]}
               />
+            </Grid> */}
             </Grid>
-            {/* </div> */}
           </Grid>
         </Grid>
       </Box>
