@@ -123,23 +123,6 @@ const Panel = () => {
                 <ListItemText primary="Report Attendance" />
               </ListItemButton>
 
-<<<<<<< HEAD
-          <ListItemButton>
-            <ListItemIcon>
-              <SettingsIcon sx={{ color: "#038f7c" }} />
-            </ListItemIcon>
-            <ListItemText primary="settings" />
-          </ListItemButton>
-
-          <ListItemButton>
-            <ListItemIcon>
-              <LogoutIcon sx={{ color: "#038f7c" }} />
-            </ListItemIcon>
-            <ListItemText onClick={switchMode} primary="logout" />
-          </ListItemButton>
-        </Box>
-      </Grid>
-=======
               <ListItemButton>
                 <ListItemIcon>
                   <SettingsIcon sx={{ color: "#038f7c" }} />
@@ -155,7 +138,6 @@ const Panel = () => {
               </ListItemButton>
             </Box>
           </Grid>
->>>>>>> dashboard-fix
     </div>
   );
 };
