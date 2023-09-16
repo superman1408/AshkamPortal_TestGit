@@ -67,7 +67,13 @@ const TotalEmployee = () => {
           </Grid>
 
           <Grid sx={{ display: "flex", flexDirection: "row" }}>
-            <Grid sx={{ display: "flex", flexDirection: "column" }}>
+            <Grid
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                marginRight: "40px",
+              }}
+            >
               <Grid sx={{ display: "flex", flexDirection: "row" }}>
                 <Grid>
                   <IconButton
@@ -93,7 +99,13 @@ const TotalEmployee = () => {
                 </Grid>
               </Grid>
 
-              <Grid sx={{ display: "flex", flexDirection: "row" }}>
+              <Grid
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  marginBottom: "60px",
+                }}
+              >
                 <Grid>
                   <IconButton
                     height="40px"
@@ -129,10 +141,11 @@ const TotalEmployee = () => {
             > */}
             <Grid
               sx={{
-                width: "200px",
+                width: "150px",
                 // height: "100px",
                 marginRight: "0px",
                 marginLeft: "10px",
+                border: "1px solid black",
               }}
             >
               {/*-------------------------------------------------------------------Doughtnut Chart----------------------------------------------------------------*/}
@@ -145,9 +158,11 @@ const TotalEmployee = () => {
                     {
                       backgroundColor: ["#1565C0", "#ba68c8"],
                       data: [27, 5],
+                      visible: false,
                     },
                   ],
                   labels: ["Men", "Women"],
+                  visible: false,
                 }}
                 options={{
                   plugins: {
