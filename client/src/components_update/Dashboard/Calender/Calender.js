@@ -21,7 +21,7 @@ const Calender = () => {
           marginTop: "10px",
           marginLeft: "20px",
           marginRight: "0px",
-          bgcolor: "#9e9e9e",
+          // bgcolor: "#9e9e9e",
           boxShadow: 1,
           borderRadius: "10px",
         }}
