@@ -1,5 +1,7 @@
 import React from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
+import { Grid } from '@mui/material';
+import Panel from '../../Dashboard/Panel/Panel';
 
 
 // import Inbox from './Inbox/inbox';
@@ -26,7 +28,10 @@ const Communication = () => {
 
 
   return (
-    <div  className='flex flex-cols-2 border-[8px] p-2 m-2'>
+    <Grid  sx={{ display: "flex", flexDirection: "col", padding: '2px',  }}>
+      <Grid sx={{ display: "flex", flexDirection: "row", marginRight: '10px' }}>
+          <Panel />
+      </Grid>
       <h1>Messages</h1><br/>
       {/* <div>
         {
@@ -56,7 +61,7 @@ const Communication = () => {
       </div> */}
       
       
-    </div>
+    </Grid>
   )
 }
 
