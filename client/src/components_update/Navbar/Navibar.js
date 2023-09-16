@@ -40,16 +40,16 @@ const Navibar = () => {
               </IconButton>
             </Nav.Link>
             <Nav.Link href="/profile" style={{marginTop:'8px'}} >Registration</Nav.Link>
+
             <NavDropdown title="Message" id="navbarScrollingDropdown" style={{marginTop:'8px'}}>
               <NavDropdown.Item href="/mail/:id/leave">Leave Section</NavDropdown.Item>
-              <NavDropdown.Item href="/mail/:id/communication">
-                Inbox
-              </NavDropdown.Item>
+              <NavDropdown.Item href="/mail/:id/communication">Inbox</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action5">
                 Something else here
               </NavDropdown.Item>
             </NavDropdown>
+            
             <Nav.Link href="/aboutUs" style={{marginTop:'8px'}} >
               About Us
             </Nav.Link>
