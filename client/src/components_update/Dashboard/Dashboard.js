@@ -40,7 +40,10 @@ import {
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Panel from "./Panel/Panel";
 import Attendance from "./Attendance/Attendance";
+<<<<<<< HEAD
 import { Card } from "@material-ui/core";
+=======
+>>>>>>> dashboard-fix
 
 // const settings = ["Theme", "Keyboard shortcuts", "settings", "Extensions"];
 
@@ -70,7 +73,24 @@ const Admin = () => {
               bgcolor: "#f0f2f1",
             }}
           >
+<<<<<<< HEAD
             <Grid sx={{ display: "flex", flexDirection: "row" }}>
+=======
+            <Grid
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              {/* <Button sx={{ marginLeft: "1000px" }}>
+                  <NotificationsIcon sx={{ color: "#038f7c" }} />
+              </Button> */}
+            </Grid>
+
+            <Grid
+              sx={{ display: "flex", flexDirection: "row", marginTop: "20px" }}
+            >
+>>>>>>> dashboard-fix
               <Grid>
                 <Typography
                   variant="h5"
@@ -79,7 +99,7 @@ const Admin = () => {
                   Welcome Admin!
                 </Typography>
 
-                <Grid sx={{ display: "flex", flexDirection: "row" }}>
+                <Grid sx={{ display: "flex" }}>
                   <Grid>
                     <TotalEmployee />
                   </Grid>
@@ -107,7 +127,11 @@ const Admin = () => {
                   <EmployeeOnHoliday />
                 </Grid>
 
+<<<<<<< HEAD
                 <Grid sx={{ boxShadow: "1", border: "1 px solid black" }}>
+=======
+                <Grid>
+>>>>>>> dashboard-fix
                   <Calender />
                 </Grid>
               </Grid>

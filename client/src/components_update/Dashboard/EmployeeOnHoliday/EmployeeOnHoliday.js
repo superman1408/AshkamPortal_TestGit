@@ -34,9 +34,13 @@ const EmployeeOnHoliday = () => {
                       borderRadius: "10px",
                     }}
                   >
-                    <Typography sx={{ fontWeight: "bold" , mb:"1px"}}>
+                    <Grid sx={{display:"flex", flexDirection:"column"}}>
+                    <Grid>
+                    <Typography sx={{ fontWeight: "bolder" , mb:"1px", ml:"10px"}}>
                       Employees on Holiday
                     </Typography>
+                    </Grid>
+                    <Grid sx={{display:"flex", flexDirection:"row"}}>
                     <div>
                       <Stack flexDirection="row">
                         <Avatar
@@ -51,28 +55,35 @@ const EmployeeOnHoliday = () => {
                         />
                       </Stack>
                     </div>
+                    <Grid>
                     <Typography
                       sx={{
-                        marginLeft: "0px",
-                        marginRight: "20px",
-                        marginTop: "-30px",
+                        marginLeft: "30px",
+                        marginRight: "30px",
+                        marginTop: "10px",
                       }}
                     >
                       unhealthy
                     </Typography>
+                    </Grid>
+                    <Grid>
                     <Typography
                       sx={{
                         color: "#f7100c",
-                        marginLeft: "0px",
-                        marginTop: "-20px",
+                        marginLeft: "30px",
+                        marginTop: "10px",
                       }}
                     >
                       only today
                     </Typography>
-
-                    <Divider />
+                    </Grid>
+                    </Grid>
+                    <Divider orientation='horizontal' />
+                    
+                      <Grid sx={{display:"flex", flexDirection:"row"}}>
+                      <Grid>
                     <div>
-                      <Stack flexDirection="row" spacing={2} marginTop={2}>
+                      <Stack flexDirection="row">
                         <Avatar
                           sx={{
                             width: 40,
@@ -85,24 +96,33 @@ const EmployeeOnHoliday = () => {
                         />
                       </Stack>
                     </div>
+                    </Grid>
+                    
+                    <Grid>
                     <Typography
                       sx={{
-                        marginLeft: "0px",
+                        marginLeft: "30px",
                         marginRight: "30px",
-                        marginTop: "-30px",
+                        marginTop: "10px",
                       }}
                     >
                       On holiday
                     </Typography>
+                    </Grid>
+
+                    <Grid>
                     <Typography
                       sx={{
                         color: "#f7100c",
-                        marginLeft: "0px",
-                        marginTop: "-20px",
+                        marginLeft: "20px",
+                        marginTop: "10px",
                       }}
                     >
                       21st to 22nd
                     </Typography>
+                    </Grid>
+                    </Grid>
+                    </Grid>
                   </Box>
     </div>
   )
