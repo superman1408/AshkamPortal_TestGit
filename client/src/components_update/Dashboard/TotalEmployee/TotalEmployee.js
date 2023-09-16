@@ -7,8 +7,21 @@ import ManIcon from "@mui/icons-material/Man";
 
 import { CChart } from "@coreui/react-chartjs";
 import DonutChart from "react-donut-chart";
+import { Chart } from "react-google-charts";
 
 const TotalEmployee = () => {
+  const data = [
+    ["Task", "Hours per Day"],
+    ["Men", 27],
+    ["Women", 6],
+  ];
+
+  const options = {
+    is3D: true,
+    backgroundColor: {
+      fill: "#cae8e5",
+    },
+  };
   return (
     <div>
       <Box
@@ -53,6 +66,7 @@ const TotalEmployee = () => {
                 Total Employees
               </Typography>
             </Grid>
+
             <Grid>
               <Typography
                 sx={{
@@ -71,7 +85,7 @@ const TotalEmployee = () => {
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                marginRight: "40px",
+                marginRight: "10px",
               }}
             >
               <Grid sx={{ display: "flex", flexDirection: "row" }}>
@@ -81,11 +95,12 @@ const TotalEmployee = () => {
                     width="40px"
                     color="primary"
                     sx={{
-                      mt: "30px",
-                      display: {
-                        xs: "flex",
-                        sm: "flex",
-                      },
+                      display: "flex",
+                      mt: "20px",
+                      // display: {
+                      //   xs: "flex",
+                      //   sm: "flex",
+                      // },
                     }}
                   >
                     <ManIcon />
@@ -93,7 +108,13 @@ const TotalEmployee = () => {
                 </Grid>
 
                 <Grid>
-                  <Typography sx={{ marginLeft: "0px", marginTop: "40px" }}>
+                  <Typography
+                    sx={{
+                      marginLeft: "0px",
+                      marginTop: "30px",
+                      // display: "flex",
+                    }}
+                  >
                     : 27
                   </Typography>
                 </Grid>
@@ -103,7 +124,7 @@ const TotalEmployee = () => {
                 sx={{
                   display: "flex",
                   flexDirection: "row",
-                  marginBottom: "60px",
+                  marginBottom: "0px",
                 }}
               >
                 <Grid>
@@ -112,7 +133,7 @@ const TotalEmployee = () => {
                     width="40px"
                     color="primary"
                     sx={{
-                      mt: "10px",
+                      mt: "0px",
                       display: {
                         xs: "flex",
                         sm: "flex",
@@ -124,7 +145,7 @@ const TotalEmployee = () => {
                 </Grid>
 
                 <Grid>
-                  <Typography sx={{ marginLeft: "0px", marginTop: "20px" }}>
+                  <Typography sx={{ marginLeft: "0px", marginTop: "8px" }}>
                     : 05
                   </Typography>
                 </Grid>
@@ -141,15 +162,39 @@ const TotalEmployee = () => {
             > */}
             <Grid
               sx={{
-                width: "150px",
-                // height: "100px",
-                marginRight: "0px",
-                marginLeft: "10px",
-                border: "1px solid black",
+                width: "250px",
+                height: "130px",
+                // marginRight: "0px",
+                marginLeft: "0px",
+                // border: "1px solid black",
               }}
             >
               {/*-------------------------------------------------------------------Doughtnut Chart----------------------------------------------------------------*/}
-              <CChart
+
+              <Chart
+                marginLeft={"0px"}
+                chartType="PieChart"
+                data={data}
+                options={options}
+                width={"250px"}
+                height={"130px"}
+              />
+
+              {/* <DonutChart
+                width={150}
+                height={300}
+                onMouseEnter={(item) => reactDonutChartOnMouseEnter(item)}
+                strokeColor={reactDonutChartStrokeColor}
+                data={reactDonutChartdata}
+                colors={reactDonutChartBackgroundColor}
+                innerRadius={reactDonutChartInnerRadius}
+                // selectedOffset={reactDonutChartSelectedOffset}
+                onClick={(item, toggled) =>
+                  reactDonutChartHandleClick(item, toggled)
+                }
+              /> */}
+
+              {/* <CChart
                 type="doughnut"
                 height="30px"
                 marginTop="0px"
@@ -169,38 +214,9 @@ const TotalEmployee = () => {
                     legend: {
                       position: "bottom",
                     },
-
-                    // responsive: true,
-                    // plugins: {
-                    //   tooltip: {
-                    //     enabled: true, // <-- this option disables tooltips
-                    //   },
-                    // },
                   },
                 }}
-              />
-
-              {/* <Grid
-              sx={{
-                display: "flex",
-                width: "200px",
-                height: "150px",
-                backgroundColor: "red",
-              }}
-            >
-              <DonutChart
-                data={[
-                  {
-                    label: "Men",
-                    value: 27,
-                  },
-                  {
-                    label: "Women",
-                    value: 6,
-                  },
-                ]}
-              />
-            </Grid> */}
+              /> */}
             </Grid>
           </Grid>
         </Grid>
