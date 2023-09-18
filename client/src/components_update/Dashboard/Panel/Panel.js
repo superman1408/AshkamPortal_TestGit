@@ -19,6 +19,7 @@ import {
   Stack,
   Avatar,
   Button,
+  Card,
 } from "@mui/material";
 
 import DashboardIcon from "@mui/icons-material/Dashboard";
@@ -60,12 +61,13 @@ const Panel = () => {
   };
 
   return (
-    <div>
+    <Card elevation={5}>
       <Grid
         sx={{
           display: "flex",
           flexDirection: "column",
           bgcolor: "background.paper",
+          boxShadow: "1px",
         }}
       >
         <Grid>
@@ -154,7 +156,7 @@ const Panel = () => {
           </Box>
         </Grid>
       </Grid>
-    </div>
+    </Card>
   );
 };
 
