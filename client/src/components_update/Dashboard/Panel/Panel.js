@@ -28,7 +28,7 @@ import BadgeIcon from "@mui/icons-material/Badge";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import LogoutIcon from "@mui/icons-material/Logout";
-import ForwardToInboxTwoToneIcon from '@mui/icons-material/ForwardToInboxTwoTone';
+import ForwardToInboxTwoToneIcon from "@mui/icons-material/ForwardToInboxTwoTone";
 
 import avatar1 from "../../../image/Profile.jpg";
 
@@ -61,83 +61,99 @@ const Panel = () => {
 
   return (
     <div>
-      <Grid sx={{ width: "220px", backgroundColor: "lightgrey" }}>
-        <Stack
-          flexDirection="row"
-          sx={{
-            ml: "85px",
-            display: {
-              xs: "block",
-              sm: "block",
-            },
-          }}
-        >
-          <Avatar
-            sx={{ width: 40, height: 40, marginLeft: "10px" }}
-            alt="Femy sharp"
-            src={avatar1}
-          />
-        </Stack>
-        <Typography sx={{ marginLeft: "70px", color: "black" }}>
-          Employee
-        </Typography>
-        <Typography sx={{ marginLeft: "60px", color: "black" }}>
-          Management
-        </Typography>
+      <Grid
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          bgcolor: "background.paper",
+        }}
+      >
+        <Grid>
+          <Stack
+            flexDirection="row"
+            sx={{
+              mt: "10px",
+              ml: "85px",
+              display: {
+                xs: "block",
+                sm: "block",
+              },
+            }}
+          >
+            <Avatar
+              sx={{ width: 40, height: 40, marginLeft: "10px" }}
+              alt="Femy sharp"
+              src={avatar1}
+            />
+          </Stack>
+        </Grid>
+        <Grid>
+          <Typography
+            sx={{ marginLeft: "80px", color: "black", marginTop: "10px" }}
+          >
+            Employee
+          </Typography>
+          <Typography sx={{ marginLeft: "70px", color: "black" }}>
+            Management
+          </Typography>
+        </Grid>
 
         <Divider sx={{ mb: 6, ml: 0, mr: 0 }} />
 
-            <Box sx={{ mb: 2 }}>
-              <ListItemButton>
-                <ListItemIcon>
-                  <DashboardIcon sx={{ color: "#038f7c" }} />
-                </ListItemIcon>
-                <ListItemText primary="Dashboard" />
-              </ListItemButton>
-{/* inbox added here */}
-              <ListItemButton>
-                <ListItemIcon>
-                  <ForwardToInboxTwoToneIcon sx={{ color: "#038f7c" }} />
-                </ListItemIcon>
-                <ListItemText primary="Inbox" />
-              </ListItemButton>
+        <Grid>
+          <Box sx={{ mb: "10px" }}>
+            <ListItemButton sx={{ mb: "10px" }}>
+              <ListItemIcon>
+                <DashboardIcon sx={{ color: "#038f7c" }} />
+              </ListItemIcon>
+              <ListItemText primary="Dashboard" />
+            </ListItemButton>
 
-          <ListItemButton>
-            <ListItemIcon>
-              <PeopleAltIcon sx={{ color: "#038f7c" }} />
-            </ListItemIcon>
-            <ListItemText primary="Employee" />
-          </ListItemButton>
+            {/* inbox added here */}
+            <ListItemButton sx={{ mb: "10px" }}>
+              <ListItemIcon>
+                <ForwardToInboxTwoToneIcon sx={{ color: "#038f7c" }} />
+              </ListItemIcon>
+              <ListItemText primary="Inbox" />
+            </ListItemButton>
 
-          <ListItemButton>
-            <ListItemIcon>
-              <AnalyticsIcon sx={{ color: "#038f7c" }} />
-            </ListItemIcon>
-            <ListItemText primary="Analytics" />
-          </ListItemButton>
+            <ListItemButton sx={{ mb: "10px" }}>
+              <ListItemIcon>
+                <PeopleAltIcon sx={{ color: "#038f7c" }} />
+              </ListItemIcon>
+              <ListItemText primary="Employee" />
+            </ListItemButton>
 
-              <ListItemButton>
-                <ListItemIcon>
-                  <BadgeIcon sx={{ color: "#038f7c" }} />
-                </ListItemIcon>
-                <ListItemText primary="Report Attendance" />
-              </ListItemButton>
+            <ListItemButton sx={{ mb: "10px" }}>
+              <ListItemIcon>
+                <AnalyticsIcon sx={{ color: "#038f7c" }} />
+              </ListItemIcon>
+              <ListItemText primary="Analytics" />
+            </ListItemButton>
 
-              <ListItemButton>
-                <ListItemIcon>
-                  <SettingsIcon sx={{ color: "#038f7c" }} />
-                </ListItemIcon>
-                <ListItemText primary="settings" />
-              </ListItemButton>
+            <ListItemButton sx={{ mb: "10px" }}>
+              <ListItemIcon>
+                <BadgeIcon sx={{ color: "#038f7c" }} />
+              </ListItemIcon>
+              <ListItemText primary="Report Attendance" />
+            </ListItemButton>
 
-              <ListItemButton>
-                <ListItemIcon>
-                  <LogoutIcon sx={{ color: "#038f7c" }} />
-                </ListItemIcon>
-                <ListItemText onClick={switchMode} primary="logout" />
-              </ListItemButton>
-            </Box>
-          </Grid>
+            <ListItemButton sx={{ mb: "10px" }}>
+              <ListItemIcon>
+                <SettingsIcon sx={{ color: "#038f7c" }} />
+              </ListItemIcon>
+              <ListItemText primary="settings" />
+            </ListItemButton>
+
+            <ListItemButton sx={{ mb: "10px" }}>
+              <ListItemIcon>
+                <LogoutIcon sx={{ color: "#038f7c" }} />
+              </ListItemIcon>
+              <ListItemText onClick={switchMode} primary="logout" />
+            </ListItemButton>
+          </Box>
+        </Grid>
+      </Grid>
     </div>
   );
 };

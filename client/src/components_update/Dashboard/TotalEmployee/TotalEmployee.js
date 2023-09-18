@@ -152,18 +152,10 @@ const TotalEmployee = () => {
               </Grid>
             </Grid>
 
-            {/* <div
-              sx={{
-                backgroundcolor: "pink",
-                display: "flex",
-                width: "100px",
-                height: "50px",
-              }}
-            > */}
             <Grid
               sx={{
                 width: "250px",
-                height: "130px",
+                height: "120px",
                 // marginRight: "0px",
                 marginLeft: "0px",
                 // border: "1px solid black",
@@ -177,46 +169,8 @@ const TotalEmployee = () => {
                 data={data}
                 options={options}
                 width={"250px"}
-                height={"130px"}
+                height={"100px"}
               />
-
-              {/* <DonutChart
-                width={150}
-                height={300}
-                onMouseEnter={(item) => reactDonutChartOnMouseEnter(item)}
-                strokeColor={reactDonutChartStrokeColor}
-                data={reactDonutChartdata}
-                colors={reactDonutChartBackgroundColor}
-                innerRadius={reactDonutChartInnerRadius}
-                // selectedOffset={reactDonutChartSelectedOffset}
-                onClick={(item, toggled) =>
-                  reactDonutChartHandleClick(item, toggled)
-                }
-              /> */}
-
-              {/* <CChart
-                type="doughnut"
-                height="30px"
-                marginTop="0px"
-                data={{
-                  datasets: [
-                    {
-                      backgroundColor: ["#1565C0", "#ba68c8"],
-                      data: [27, 5],
-                      visible: false,
-                    },
-                  ],
-                  labels: ["Men", "Women"],
-                  visible: false,
-                }}
-                options={{
-                  plugins: {
-                    legend: {
-                      position: "bottom",
-                    },
-                  },
-                }}
-              /> */}
             </Grid>
           </Grid>
         </Grid>

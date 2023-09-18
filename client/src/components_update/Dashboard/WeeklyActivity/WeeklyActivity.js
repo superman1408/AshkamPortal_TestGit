@@ -19,7 +19,9 @@ const chart = () => {
         }}
       >
         <Grid sx={{ display: "flex", flexDirection: "column" }}>
-          <Grid>
+          <Grid
+            sx={{ marginLeft: "20px", marginTop: "10px", marginBottom: "10px" }}
+          >
             <Typography sx={{ fontWeight: "bolder" }}>
               Weekly Activity
             </Typography>
@@ -35,14 +37,14 @@ const chart = () => {
                 datasets: [
                   {
                     data: [8137119, 9431691, 10266674],
-                    label: "Infected",
+                    label: "Revenue",
                     borderColor: "#1565C0",
                     fill: true,
                     lineTension: 0.5,
                   },
                   {
                     data: [1216410, 1371390, 1477380],
-                    label: "Deaths",
+                    label: "Expenditure",
                     borderColor: "#ba68c8",
                     backgroundColor: "rgba(255, 0, 0, 0.5)",
                     fill: true,

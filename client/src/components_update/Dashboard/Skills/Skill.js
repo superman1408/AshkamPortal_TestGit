@@ -27,14 +27,20 @@ const Skill = () => {
           marginTop: "20px",
           marginLeft: "20px",
           padding: "10px",
-          bgcolor: "#9e9e9e",
+          bgcolor: "background.paper",
           boxShadow: 1,
           borderRadius: "10px",
         }}
       >
         <Grid sx={{ display: "flex", flexDirection: "column" }}>
           <Grid sx={{ display: "flex", flexDirection: "row" }}>
-            <Grid>
+            <Grid
+              sx={{
+                marginBottom: "20px",
+                marginTop: "5px",
+                marginLeft: "10px",
+              }}
+            >
               <Typography sx={{ fontWeight: "bolder" }}>Top skills</Typography>
             </Grid>
             <Grid>
@@ -42,7 +48,7 @@ const Skill = () => {
                 size="50px"
                 color="black"
                 sx={{
-                  ml: "170px",
+                  ml: "160px",
                   mt: "0px",
                   display: {
                     xs: "flex",
