@@ -10,6 +10,9 @@ import {
 import { useNavigate } from "react-router-dom";
 import { signin, signup } from "../../action/auth";
 import { useDispatch } from "react-redux";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import image from "../images/ship1.jpg";
@@ -20,6 +23,10 @@ const initialData = {
   email: "",
   password: "",
   confirmPassword: "",
+};
+
+const handleCheckBox = () => {
+  console.log("Admin is clicked");
 };
 
 const Auth = () => {
@@ -99,6 +106,36 @@ const Auth = () => {
           </label>
 
           <form autoComplete="true" onSubmit={handleSubmit}>
+            {isSignUp && (
+              <div style={{ display: "flex" }}>
+                <FormGroup
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    marginLeft: "40px",
+                    float: "inherit",
+                  }}
+                  onChange={handleCheckBox}
+                >
+                  <FormControlLabel
+                    required
+                    control={<Checkbox />}
+                    label="Admin"
+                  />
+                  <FormControlLabel
+                    required
+                    control={<Checkbox />}
+                    label="Manager"
+                  />
+                  <FormControlLabel
+                    required
+                    control={<Checkbox />}
+                    label="Employee"
+                  />
+                </FormGroup>
+              </div>
+            )}
             <div style={{ marginTop: "30px", display: "flex" }}>
               {isSignUp && (
                 <TextField
