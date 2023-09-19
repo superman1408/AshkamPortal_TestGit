@@ -23,10 +23,7 @@ const initialData = {
   email: "",
   password: "",
   confirmPassword: "",
-};
-
-const handleCheckBox = () => {
-  console.log("Admin is clicked");
+  role: "",
 };
 
 const Auth = () => {
@@ -49,6 +46,17 @@ const Auth = () => {
 
   const switchMode = () => {
     setisSignUp((prevState) => !prevState);
+  };
+
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleCheckboxChange = (option, event) => {
+    setSelectedOption(option);
+    console.log(option);
+    setFormData({
+      ...formData,
+      role: option,
+    });
   };
 
   return (
@@ -107,33 +115,34 @@ const Auth = () => {
 
           <form autoComplete="true" onSubmit={handleSubmit}>
             {isSignUp && (
-              <div style={{ display: "flex" }}>
-                <FormGroup
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "center",
-                    marginLeft: "40px",
-                    float: "inherit",
-                  }}
-                  onChange={handleCheckBox}
-                >
-                  <FormControlLabel
-                    required
-                    control={<Checkbox />}
-                    label="Admin"
+              <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+                <label>
+                  <input
+                    name="role"
+                    type="checkbox"
+                    checked={selectedOption === "admin"}
+                    onChange={() => handleCheckboxChange("admin")}
                   />
-                  <FormControlLabel
-                    required
-                    control={<Checkbox />}
-                    label="Manager"
+                  Admin
+                </label>
+                <label>
+                  <input
+                    name="role"
+                    type="checkbox"
+                    checked={selectedOption === "manager"}
+                    onChange={() => handleCheckboxChange("manager")}
                   />
-                  <FormControlLabel
-                    required
-                    control={<Checkbox />}
-                    label="Employee"
+                  Manager
+                </label>
+                <label>
+                  <input
+                    name="role"
+                    type="checkbox"
+                    checked={selectedOption === "employee"}
+                    onChange={() => handleCheckboxChange("employee")}
                   />
-                </FormGroup>
+                  Employee
+                </label>
               </div>
             )}
             <div style={{ marginTop: "30px", display: "flex" }}>
