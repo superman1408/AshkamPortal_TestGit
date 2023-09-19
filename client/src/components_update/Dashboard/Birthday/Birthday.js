@@ -79,7 +79,7 @@ const Birthday = () => {
             sx={{
               marginLeft: "50px",
               marginRight: "0px",
-              bgcolor: "#ecd0f5",
+              // bgcolor: "#ecd0f5",
               fontSize: "13px",
             }}
             onClick={() => setBtn(!Btn)}
