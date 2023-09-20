@@ -5,8 +5,8 @@ import WcIcon from "@mui/icons-material/Wc";
 import WomanIcon from "@mui/icons-material/Woman";
 import ManIcon from "@mui/icons-material/Man";
 
-import { CChart } from "@coreui/react-chartjs";
-import DonutChart from "react-donut-chart";
+// import { CChart } from "@coreui/react-chartjs";
+// import DonutChart from "react-donut-chart";
 import { Chart } from "react-google-charts";
 
 const TotalEmployee = () => {
