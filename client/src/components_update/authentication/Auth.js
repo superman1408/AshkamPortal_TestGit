@@ -10,6 +10,9 @@ import {
 import { useNavigate } from "react-router-dom";
 import { signin, signup } from "../../action/auth";
 import { useDispatch } from "react-redux";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import image from "../images/ship1.jpg";
@@ -20,6 +23,7 @@ const initialData = {
   email: "",
   password: "",
   confirmPassword: "",
+  role: "",
 };
 
 const Auth = () => {
@@ -42,6 +46,17 @@ const Auth = () => {
 
   const switchMode = () => {
     setisSignUp((prevState) => !prevState);
+  };
+
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleCheckboxChange = (option, event) => {
+    setSelectedOption(option);
+    console.log(option);
+    setFormData({
+      ...formData,
+      role: option,
+    });
   };
 
   return (
@@ -99,6 +114,37 @@ const Auth = () => {
           </label>
 
           <form autoComplete="true" onSubmit={handleSubmit}>
+            {isSignUp && (
+              <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+                <label>
+                  <input
+                    name="role"
+                    type="checkbox"
+                    checked={selectedOption === "admin"}
+                    onChange={() => handleCheckboxChange("admin")}
+                  />
+                  Admin
+                </label>
+                <label>
+                  <input
+                    name="role"
+                    type="checkbox"
+                    checked={selectedOption === "manager"}
+                    onChange={() => handleCheckboxChange("manager")}
+                  />
+                  Manager
+                </label>
+                <label>
+                  <input
+                    name="role"
+                    type="checkbox"
+                    checked={selectedOption === "employee"}
+                    onChange={() => handleCheckboxChange("employee")}
+                  />
+                  Employee
+                </label>
+              </div>
+            )}
             <div style={{ marginTop: "30px", display: "flex" }}>
               {isSignUp && (
                 <TextField

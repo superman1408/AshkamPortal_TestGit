@@ -34,6 +34,7 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
     city: "",
     state: "",
     pincode: "",
+    jobSkills: "",
     jobTitle: "",
     employeeId: "",
     department: "",
@@ -79,6 +80,7 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
       city: "",
       state: "",
       pincode: "",
+      jobSkills: "",
       jobTitle: "",
       employeeId: "",
       department: "",
@@ -198,15 +200,15 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DemoContainer components={["DatePicker"]}>
                   <DatePicker
+                    label="Date of Birth"
                     slotProps={{
                       textField: {
                         error: false,
                       },
                     }}
                     value={dob}
-                    name="birthDate"
-                    dateFormat="dd/MM/yyyy"
-                    label="Date of Birth"
+                    required
+                    halfWidth
                     onChange={handleDOB}
                   />
                 </DemoContainer>
@@ -360,6 +362,20 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
             <h4>Job Informations</h4>
             <div sx={{ display: "flex", flexDirection: "row" }}>
               <TextField
+                variant="outlined"
+                required
+                fullWidth
+                label="Skills"
+                name="jobSkills"
+                value={postData.jobSkills}
+                onChange={(e) =>
+                  setPostData({ ...postData, jobSkills: e.target.value })
+                }
+              />
+            </div>
+            <div>
+              <TextField
+                sx={{ marginTop: "10px" }}
                 variant="outlined"
                 required
                 fullWidth
