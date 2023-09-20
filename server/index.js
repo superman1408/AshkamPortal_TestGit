@@ -4,10 +4,9 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
+import userRouters from './routes/user.js';
 
-import postsRouters from './routers/posts.js';
-import userRouters from './routers/users.js';
-// import messageRouters from './routers/mail.js';
+
 
 
 const app = express();
@@ -21,9 +20,7 @@ app.use(bodyParser.urlencoded({ extended:true, limit: '35mb'}));
 app.use(cors());
 
 
-app.use('/posts', postsRouters);
-app.use('/user', userRouters);
-// app.use('/message', messageRouters);
+app.get('/user', userRouters);
 
 
 

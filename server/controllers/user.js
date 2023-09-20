@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
-import AuthenticateUser from '../model/userAuthDetail.js';
+import AuthenticateUser from '../model/authDetails.js';
 
 
 export const signin = async (req,res) => {
