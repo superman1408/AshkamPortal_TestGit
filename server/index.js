@@ -9,6 +9,15 @@ const app = express();
 dotenv.config();
 
 const PORT = process.env.PORT || 5050;
+const CONNECT = process.env.CONNECTION_URL;
+app.use(express.static("client"));
+app.use(bodyParser.json({ extended: true, limit: '35mb' }));
+app.use(bodyParser.urlencoded({ extended:true, limit: '35mb'}));
+app.use(cors());
 
+// console.log(CONNECT);
 
-app.listen(PORT,() => {console.log(`SERVER IS RUNNING AT PORT **${PORT}`)});
+mongoose.set('strictQuery', true);
+mongoose.connect(CONNECT, { useNewUrlParser: true }, { useUnifiedTopology: true })
+    .then(() => app.listen(PORT, () => { console.log('Listening at ' + PORT + '\nMongoDB database is connected..!!')}))
+    .catch((error) => console.log(error));
