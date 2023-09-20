@@ -5,6 +5,11 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 
+import postsRouters from './routers/posts.js';
+import userRouters from './routers/users.js';
+// import messageRouters from './routers/mail.js';
+
+
 const app = express();
 dotenv.config();
 
@@ -15,7 +20,18 @@ app.use(bodyParser.json({ extended: true, limit: '35mb' }));
 app.use(bodyParser.urlencoded({ extended:true, limit: '35mb'}));
 app.use(cors());
 
-// console.log(CONNECT);
+
+app.use('/posts', postsRouters);
+app.use('/user', userRouters);
+// app.use('/message', messageRouters);
+
+
+
+
+app.get('/', (req, res) => {
+    res.status(200).send('I am a SuperMan');
+});
+
 
 mongoose.set('strictQuery', true);
 mongoose.connect(CONNECT, { useNewUrlParser: true }, { useUnifiedTopology: true })
