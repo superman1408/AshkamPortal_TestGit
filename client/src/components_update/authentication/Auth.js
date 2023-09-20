@@ -44,11 +44,14 @@ const Auth = () => {
     console.log(formData);
   };
 
+
   const switchMode = () => {
     setisSignUp((prevState) => !prevState);
   };
 
+
   const [selectedOption, setSelectedOption] = useState(null);
+
 
   const handleCheckboxChange = (option, event) => {
     setSelectedOption(option);
@@ -59,16 +62,8 @@ const Auth = () => {
     });
   };
 
+
   return (
-    // <Box
-    //   container
-    //   component="main"
-    //   sx={{
-    //     backgroundImage: `url(${image})`,
-    //     backgroundRepeat: "no-repeat",
-    //     backgroundSize: "cover",
-    //   }}
-    // >
     <Grid
       container
       spacing={0}
