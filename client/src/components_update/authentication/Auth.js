@@ -87,7 +87,6 @@ const Auth = () => {
           marginTop: "50px",
         }}
       >
-        {" "}
         <Grid>
           <div
             style={{
@@ -216,27 +215,28 @@ const Auth = () => {
                 />
               )}
             </div>
-
-            <Button
-              variant="contained"
-              required
-              fullWidth
-              type="submit"
-              sx={{ marginTop: "10px" }}
-            >
-              {isSignUp ? "Sign Up" : "Sign In"}
-            </Button>
-
-            <Button onClick={switchMode}>
-              {isSignUp
-                ? "Already have an account? Login!"
-                : "Don't have an account ? Register here!"}
-            </Button>
+            <div>
+              <Button
+                variant="contained"
+                required
+                fullWidth
+                type="submit"
+                sx={{ marginTop: "10px" }}
+                >
+                {isSignUp ? "Sign Up" : "Sign In"}
+              </Button>
+            </div>
+            <div>
+              <Button onClick={switchMode}>
+                {isSignUp
+                  ? "Already have an account? Login!"
+                  : "Don't have an account ? Register here!"}
+              </Button>
+            </div>
           </form>
         </Grid>
       </Card>
     </Grid>
-    // </Box>
   );
 };
 

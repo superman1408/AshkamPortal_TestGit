@@ -38,7 +38,7 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
     jobTitle: "",
     employeeId: "",
     department: "",
-    ReportingManager: "",
+    reportingManager: "",
     emergencyName: "",
     emergencyAddress: "",
     emergencyContact: "",
@@ -46,11 +46,15 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
     selectedFile: "",
   });
 
+
   const post = useSelector((state) =>
     currentId ? state.posts.find((p) => p._id === currentId) : null
   );
 
+
+
   const dispatch = useDispatch();
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -84,7 +88,7 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
       jobTitle: "",
       employeeId: "",
       department: "",
-      ReportingManager: "",
+      reportingManager: "",
       emergencyName: "",
       emergencyAddress: "",
       emergencyContact: "",
@@ -423,9 +427,9 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
                 fullWidth
                 label="Reporting Manager"
                 name="ReportingManager"
-                value={postData.ReportingManager}
+                value={postData.reportingManager}
                 onChange={(e) =>
-                  setPostData({ ...postData, ReportingManager: e.target.value })
+                  setPostData({ ...postData, reportingManager: e.target.value })
                 }
               />
             </div>
