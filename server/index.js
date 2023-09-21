@@ -12,22 +12,35 @@ import userRouters from './routes/user.js';
 const app = express();
 dotenv.config();
 
-const PORT = process.env.PORT || 5050;
+const PORT = process.env.PORT || 8080;
+
 const CONNECT = process.env.CONNECTION_URL;
+
 app.use(express.static("client"));
 app.use(bodyParser.json({ extended: true, limit: '35mb' }));
 app.use(bodyParser.urlencoded({ extended:true, limit: '35mb'}));
 app.use(cors());
 
-
-app.get('/user', userRouters);
+app.use('/user', userRouters);
 
 
 
 
 app.get('/', (req, res) => {
     res.status(200).send('I am a SuperMan');
+    console.log("Super is here..!!");
 });
+
+// app.get('/user/signup', (req, res) => {
+//     res.status(200).send('Checking routing 10000....!!');
+//     console.log("Super is checking routing sign up..!!");
+// });
+
+
+// app.get('/user/signin', (req, res) => {
+//     res.status(200).send('Checking routing 50000....!!');
+//     console.log("Super is checking routing sign IN..!!");
+// });
 
 
 mongoose.set('strictQuery', true);
