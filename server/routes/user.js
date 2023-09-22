@@ -6,11 +6,9 @@ import { signin, signup } from '../controllers/user.js';
 const router = express.Router();
 
 
-router.get('/signin', signin);
+router.post('/signin', signin);
 
-router.get('/signup', (req, res) => {
-    res.status(200).send("Sign IN command")
-});
+router.post('/signup', signup);
 
 
 export default router;
