@@ -20,7 +20,7 @@ import Panel from "../Dashboard/Panel/Panel";
 import { sendMail, sendMailData } from "../../action/mail";
 import Calender from "../Dashboard/Calender/Calender";
 import { CChart } from "@coreui/react-chartjs";
-import ChartComponent from "./rough";
+import ChartComponent from "./pieGraph";
 
 const Leave = () => {
   const classes = useStyles();

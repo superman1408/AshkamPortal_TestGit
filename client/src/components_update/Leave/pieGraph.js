@@ -8,16 +8,10 @@ am4core.useTheme(am4themes_animated);
 const ChartComponent = () => {
   useEffect(() => {
     const chart = am4core.create("chartdiv", am4charts.PieChart3D);
-    chart.hiddenState.properties.opacity = 0;
-
-    chart.legend = new am4charts.Legend();
-
-    // chart.alignLabels = false;
-
     chart.data = [
       {
         name: "Available",
-        status: 10,
+        status: 13,
       },
       {
         name: "Total",
@@ -33,9 +27,12 @@ const ChartComponent = () => {
 
     series.ticks.template.disabled = false;
     series.alignLabels = false;
-    series.labels.template.text = "{category} : {value.formatNumber('#.0')}";
+    series.labels.template.text = "";
     series.labels.template.radius = am4core.percent(5);
-    // series.labels.template.fill = am4core.color("white");
+
+    const legend = new am4charts.Legend();
+    legend.labels.template.html = "<b>{category}</b> : [ {value} ]";
+    chart.legend = legend;
 
     return () => {
       chart.dispose(); // Cleanup when the component unmounts
@@ -43,17 +40,19 @@ const ChartComponent = () => {
   }, []);
 
   return (
-    <div
-      id="chartdiv"
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        width: "100%",
-        height: "220px",
-        marginTop: "10px",
-        marginLeft: "00px",
-      }}
-    />
+    <>
+      <div
+        id="chartdiv"
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          width: "100%",
+          height: "220px",
+          marginTop: "10px",
+          marginLeft: "00px",
+        }}
+      />
+    </>
   );
 };
 
