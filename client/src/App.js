@@ -12,8 +12,7 @@ import RegistrationForm from "./components_update/registrationForm/Registration_
 import Dashboard from "./components_update/Dashboard/Dashboard";
 import Navibar from "./components_update/Navbar/Navibar";
 import Communication from "./components_update/Leave/Communication/Communication";
-
-
+import PaySlip from "./components_update/PaySlip/PaySlip";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -40,6 +39,7 @@ const App = () => {
           />
           <Route path="/aboutUs" exact element={<AboutUS />} />
           <Route path="/home" exact element={<Dashboard />} />
+          <Route path="/payslip" exact element={<PaySlip />} />
         </Routes>
       </Container>
     </BrowserRouter>
