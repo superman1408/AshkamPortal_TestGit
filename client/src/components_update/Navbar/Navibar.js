@@ -1,8 +1,12 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
+import decode from 'jwt-decode';
+
+import { LOGOUT } from '../../constants/actionTypes';
 
 import { IconButton,Grid } from "@mui/material";
-
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -14,10 +18,33 @@ import LOGO from "../images/Company.png";
 import NotificationsNoneRoundedIcon from '@mui/icons-material/NotificationsNoneRounded';
 
 const Navibar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [user,setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+
+  useEffect(() => {
+      const token = user?.token;
+      if(token) {
+          const decodedToken = decode(token);
+          if(decodedToken.exp * 1000 < new Date().getTime()) handleLogout();
+      }
+      setUser(JSON.parse(localStorage.getItem('profile')));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[location]);
   
 
   const notify = () => {
     console.log("Notification is clicked...!!!");
+  };
+
+
+  const handleLogout = () => {
+    console.log('logout');
+        dispatch({ type: LOGOUT });
+        setUser(null);
+        navigate('/auth');
   };
 
 
@@ -27,7 +54,10 @@ const Navibar = () => {
         <Navbar.Brand href="/auth">
           <img src={LOGO} alt="logo" style={{ width: "220px" }} />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
+        <div class="flex">
+        {user ? (
+          <div>
+            <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
@@ -76,6 +106,12 @@ const Navibar = () => {
             <Button variant="outline-success">Search</Button>
           </Form>
         </Navbar.Collapse>
+          </div>
+        ) : (
+          <div >Please Login to your account</div>
+        )}
+        </div>
+        
       </Container>
     </Navbar>
   )
