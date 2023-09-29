@@ -82,7 +82,7 @@ const Navibar = () => {
                       Inbox
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action5">
+                    <NavDropdown.Item href="/mail/:id/payslip">
                       Something else here
                     </NavDropdown.Item>
                   </NavDropdown>
