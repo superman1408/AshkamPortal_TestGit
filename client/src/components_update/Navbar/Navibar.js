@@ -1,28 +1,24 @@
-import React from 'react';
+import React from "react";
 
+import { IconButton, Grid } from "@mui/material";
 
-import { IconButton,Grid } from "@mui/material";
-
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import HomeIcon from "@mui/icons-material/Home";
 import LOGO from "../images/Company.png";
-import NotificationsNoneRoundedIcon from '@mui/icons-material/NotificationsNoneRounded';
+import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneRounded";
 
 const Navibar = () => {
-  
-
   const notify = () => {
     console.log("Notification is clicked...!!!");
   };
 
-
   return (
-      <Navbar sticky='top' expand="lg" className="bg-body-tertiary">
+    <Navbar sticky="top" expand="lg" className="bg-body-tertiary">
       <Container fluid>
         <Navbar.Brand href="/auth">
           <img src={LOGO} alt="logo" style={{ width: "220px" }} />
@@ -31,7 +27,7 @@ const Navibar = () => {
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
+            style={{ maxHeight: "100px" }}
             navbarScroll
           >
             <Nav.Link href="/home">
@@ -39,33 +35,43 @@ const Navibar = () => {
                 <HomeIcon sx={{ fontSize: "30px" }} />
               </IconButton>
             </Nav.Link>
-            <Nav.Link href="/profile" style={{marginTop:'8px'}} >Registration</Nav.Link>
+            <Nav.Link href="/profile" style={{ marginTop: "8px" }}>
+              Registration
+            </Nav.Link>
 
-            <NavDropdown title="Message" id="navbarScrollingDropdown" style={{marginTop:'8px'}}>
-              <NavDropdown.Item href="/mail/:id/leave">Leave Section</NavDropdown.Item>
-              <NavDropdown.Item href="/mail/:id/communication">Inbox</NavDropdown.Item>
+            <NavDropdown
+              title="Message"
+              id="navbarScrollingDropdown"
+              style={{ marginTop: "8px" }}
+            >
+              <NavDropdown.Item href="/mail/:id/leave">
+                Leave Section
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/mail/:id/communication">
+                Inbox
+              </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
+              <NavDropdown.Item href="/mail/:id/payslip">
                 Something else here
               </NavDropdown.Item>
             </NavDropdown>
-            
-            <Nav.Link href="/aboutUs" style={{marginTop:'8px'}} >
+
+            <Nav.Link href="/aboutUs" style={{ marginTop: "8px" }}>
               About Us
             </Nav.Link>
           </Nav>
           <Grid
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                margin:'5px',
-              }}
-            >
-              {/* comment is added */}
-              <IconButton to="/auth" id="notification" onClick={notify}>
-                  <NotificationsNoneRoundedIcon />
-              </IconButton>
-            </Grid>
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              margin: "5px",
+            }}
+          >
+            {/* comment is added */}
+            <IconButton to="/auth" id="notification" onClick={notify}>
+              <NotificationsNoneRoundedIcon />
+            </IconButton>
+          </Grid>
           <Form className="d-flex">
             <Form.Control
               type="search"
@@ -78,7 +84,7 @@ const Navibar = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-  )
-}
+  );
+};
 
 export default Navibar;

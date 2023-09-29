@@ -1,25 +1,15 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Button,
-  Card,
-  Grid,
-  TextField,
-  Typography,
-  Container,
-} from "@mui/material";
+import { Button, Card, Grid, TextField, Typography } from "@mui/material";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import useStyles from "./style";
 import Panel from "../Dashboard/Panel/Panel";
 import { sendMail, sendMailData } from "../../action/mail";
 import Calender from "../Dashboard/Calender/Calender";
-import { CChart } from "@coreui/react-chartjs";
 import ChartComponent from "./pieGraph";
 
 const Leave = () => {
