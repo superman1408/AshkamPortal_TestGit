@@ -10,9 +10,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { signin, signup } from "../../action/auth";
 import { useDispatch } from "react-redux";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
+
 
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import image from "../images/ship1.jpg";
@@ -44,11 +42,14 @@ const Auth = () => {
     console.log(formData);
   };
 
+
   const switchMode = () => {
     setisSignUp((prevState) => !prevState);
   };
 
+
   const [selectedOption, setSelectedOption] = useState(null);
+
 
   const handleCheckboxChange = (option, event) => {
     setSelectedOption(option);
@@ -59,16 +60,8 @@ const Auth = () => {
     });
   };
 
+
   return (
-    // <Box
-    //   container
-    //   component="main"
-    //   sx={{
-    //     backgroundImage: `url(${image})`,
-    //     backgroundRepeat: "no-repeat",
-    //     backgroundSize: "cover",
-    //   }}
-    // >
     <Grid
       container
       spacing={0}
@@ -92,7 +85,6 @@ const Auth = () => {
           marginTop: "50px",
         }}
       >
-        {" "}
         <Grid>
           <div
             style={{
@@ -221,27 +213,28 @@ const Auth = () => {
                 />
               )}
             </div>
-
-            <Button
-              variant="contained"
-              required
-              fullWidth
-              type="submit"
-              sx={{ marginTop: "10px" }}
-            >
-              {isSignUp ? "Sign Up" : "Sign In"}
-            </Button>
-
-            <Button onClick={switchMode}>
-              {isSignUp
-                ? "Already have an account? Login!"
-                : "Don't have an account ? Register here!"}
-            </Button>
+            <div>
+              <Button
+                variant="contained"
+                required
+                fullWidth
+                type="submit"
+                sx={{ marginTop: "10px" }}
+                >
+                {isSignUp ? "Sign Up" : "Sign In"}
+              </Button>
+            </div>
+            <div>
+              <Button onClick={switchMode}>
+                {isSignUp
+                  ? "Already have an account? Login!"
+                  : "Don't have an account ? Register here!"}
+              </Button>
+            </div>
           </form>
         </Grid>
       </Card>
     </Grid>
-    // </Box>
   );
 };
 

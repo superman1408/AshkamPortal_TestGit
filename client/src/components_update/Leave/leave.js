@@ -228,7 +228,7 @@ const Leave = () => {
                 required
                 fullWidth
                 multiline
-                minRows={4}
+                minRows={8}
                 sx={{ marginTop: "10px", fontWeight: "200px" }}
                 onChange={(e) =>
                   setMailData({
