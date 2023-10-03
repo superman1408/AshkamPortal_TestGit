@@ -4,7 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "@mui/material";
 
-import Home from "./components_update/Home";
+import Home from "./components_update/Dashboard/Dashboard";
+// import Home from "./components_update/Check/check";
 import Authentication from "./components_update/authentication/Auth";
 import Leave from "./components_update/Leave/leave";
 import AboutUS from "./components_update/AboutUs/aboutUs";
