@@ -16,6 +16,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import HomeIcon from "@mui/icons-material/Home";
 // import LOGO from "../images/Company.png";
 import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneRounded";
+import { cyan } from "@mui/material/colors";
 
 const Navibar = () => {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ const Navibar = () => {
 
   return (
     <Navbar sticky="top" expand="lg" className="bg-body-tertiary">
-      <Container fluid>
+      <Container fluid style={{backgroundColor: "cyan"}}>
         {/* <Navbar.Brand href="/auth">
           <img src={LOGO} alt="logo" style={{ width: "220px" }} />
         </Navbar.Brand> */}
