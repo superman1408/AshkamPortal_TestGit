@@ -15,10 +15,8 @@ import {
   ListItemButton,
   ListItemText,
   ListItemIcon,
-  Search,
   Stack,
   Avatar,
-  Button,
   Card,
 } from "@mui/material";
 
@@ -27,14 +25,14 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
 import BadgeIcon from "@mui/icons-material/Badge";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import EventAvailableIcon from "@mui/icons-material/EventAvailable";
+// import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ForwardToInboxTwoToneIcon from "@mui/icons-material/ForwardToInboxTwoTone";
 
 import avatar1 from "../../../image/Profile.jpg";
 
 const Panel = () => {
-  const [Btn, setBtn] = useState(false);
+  // const [Btn, setBtn] = useState(false);
 
   const dispatch = useDispatch();
 

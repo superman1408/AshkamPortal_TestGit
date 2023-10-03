@@ -1,8 +1,14 @@
 import React from "react";
+// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { CChart } from "@coreui/react-chartjs";
-import { Box, Typography, Grid } from "@mui/material";
+import { Box, Typography, Grid, ButtonBase } from "@mui/material";
 
-const chart = () => {
+const WeeklyActivity = () => {
+  const navigate = useNavigate();
+  // const location = useLocation();
+
+
   return (
     <div>
       <Box
@@ -18,6 +24,7 @@ const chart = () => {
           borderRadius: "10px",
         }}
       >
+        <ButtonBase onClick={() => {navigate('/aboutUs')}}>
         <Grid sx={{ display: "flex", flexDirection: "column" }}>
           <Grid
             sx={{ marginLeft: "20px", marginTop: "10px", marginBottom: "10px" }}
@@ -64,9 +71,10 @@ const chart = () => {
             />
           </Grid>
         </Grid>
+        </ButtonBase>
       </Box>
     </div>
   );
 };
 
-export default chart;
+export default WeeklyActivity;
