@@ -30,22 +30,31 @@ const PaySlip = () => {
             <Divider orientation="horizontal" />
             <Grid>
               <TextField
+                type="text"
+                name="lastName"
                 id="standard-basic"
                 label="Employee Id"
                 variant="standard"
+                fullWidth
               />
             </Grid>
             <Grid>
               <TextField
+                type="text"
+                name="lastName"
                 id="standard-basic"
                 label="Employee Name"
                 variant="standard"
+                fullWidth
               />
 
               <TextField
+                type="text"
+                name="lastName"
                 id="standard-basic"
                 label="last Name"
                 variant="standard"
+                fullWidth
               />
             </Grid>
           </Grid>

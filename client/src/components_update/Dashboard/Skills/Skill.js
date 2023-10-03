@@ -16,6 +16,10 @@ import {
 
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
+let name = "Java";
+
+const topSkills = ["Java", "Python", "JavaScript"];
+
 const Skill = () => {
   return (
     <div>
@@ -70,10 +74,11 @@ const Skill = () => {
                   marginRight: "20px",
                   bgcolor: "#505c2e",
                 }}
+                alt="avatar"
               >
-                UX
+                {name.charAt(0)}
               </Avatar>
-              UX design
+              <Typography>{name}</Typography>
             </Stack>
           </Grid>
 

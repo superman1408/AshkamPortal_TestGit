@@ -18,9 +18,6 @@ const Calender = () => {
       <Box
         sx={{
           display: "flex",
-          marginTop: "10px",
-          marginLeft: "20px",
-          marginRight: "0px",
           bgcolor: "background.paper",
           boxShadow: 1,
           borderRadius: "10px",

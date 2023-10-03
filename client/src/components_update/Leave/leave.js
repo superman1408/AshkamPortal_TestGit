@@ -1,25 +1,16 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Button,
-  Card,
-  Grid,
-  TextField,
-  Typography,
-  Container,
-} from "@mui/material";
+import { Button, Card, Grid, TextField, Typography } from "@mui/material";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-import { CChart } from "@coreui/react-chartjs";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import useStyles from "./style";
 import Panel from "../Dashboard/Panel/Panel";
 import { sendMail, sendMailData } from "../../action/mail";
 import Calender from "../Dashboard/Calender/Calender";
+import ChartComponent from "./pieGraph";
 
 const Leave = () => {
   const classes = useStyles();
@@ -137,7 +128,7 @@ const Leave = () => {
           style={{
             padding: "5px",
             display: "flex",
-            marginLeft: "20px",
+            marginLeft: "10px",
           }}
         >
           <Card
@@ -147,7 +138,7 @@ const Leave = () => {
               width: {
                 sx: 1.0, // 100%
                 sm: 250,
-                md: 650,
+                md: 700,
               },
             }}
           >
@@ -237,7 +228,7 @@ const Leave = () => {
                 required
                 fullWidth
                 multiline
-                minRows={4}
+                minRows={8}
                 sx={{ marginTop: "10px", fontWeight: "200px" }}
                 onChange={(e) =>
                   setMailData({
@@ -266,25 +257,23 @@ const Leave = () => {
                 },
               }}
             >
-              {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DateCalendar />{" "}
-              </LocalizationProvider> */}
-
               <Calender />
             </Card>
-            <Card
-              elevation={10}
-              sx={{
-                display: "flexWrap",
-                padding: "5px",
-                height: "auto",
+            <Card elevation={10} sx={{ marginTop: "10px", padding: "5px" }}>
+              <ChartComponent />
+            </Card>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+};
 
-                marginTop: "10px",
-              }}
-            >
-              <div
+export default Leave;
+
+/* <div
                 style={{
-                  backgroundColor: "blue",
+                  backgroundColor: "#4dabf5",
                   height: "50px",
                   border: "2px solid white",
                 }}
@@ -300,9 +289,9 @@ const Leave = () => {
                   Total Leave - 24
                 </Typography>
               </div>
-              <div
-                style={{
-                  backgroundColor: "green",
+              <Grid
+                sx={{
+                  backgroundColor: "#f73378",
                   height: "50px",
                   border: "2px solid white",
                 }}
@@ -317,13 +306,4 @@ const Leave = () => {
                 >
                   Available Leave - 14
                 </Typography>
-              </div>
-            </Card>
-          </div>
-        </div>
-      </form>
-    </div>
-  );
-};
-
-export default Leave;
+              </Grid> */

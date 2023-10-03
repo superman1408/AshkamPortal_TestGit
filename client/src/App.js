@@ -12,7 +12,7 @@ import RegistrationForm from "./components_update/registrationForm/Registration_
 import Dashboard from "./components_update/Dashboard/Dashboard";
 import Navibar from "./components_update/Navbar/Navibar";
 import Communication from "./components_update/Leave/Communication/Communication";
-import PaySlip from "./components_update/PaySlip/PaySlip";
+import Payslip from "./components_update/payslip";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -22,12 +22,15 @@ const App = () => {
       <Container maxWidth={false}>
         <Navibar />
         <Routes>
+          <Route
+          exact path="/" element={<Authentication/>}  
+          />
           {/* this part need to be examined after ward */}
 
           <Route
             path="/auth"
             exact
-            element={user ? <Home /> : <Authentication />}
+            element={!user ? <Authentication /> : <Home/>}
           />
           {/* <Route path="/profile" exact element={<Form />} /> */}
           <Route path="/profile" exact element={<RegistrationForm />} />
@@ -37,6 +40,9 @@ const App = () => {
             exact
             element={<Communication />}
           />
+
+          <Route path="/mail/:id/payslip" exact element={<PaySlip />} />
+
           <Route path="/aboutUs" exact element={<AboutUS />} />
           <Route path="/home" exact element={<Dashboard />} />
           <Route path="/payslip" exact element={<PaySlip />} />

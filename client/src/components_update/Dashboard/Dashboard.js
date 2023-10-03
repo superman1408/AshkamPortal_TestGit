@@ -119,7 +119,13 @@ const Admin = () => {
                   <EmployeeOnHoliday />
                 </Grid>
 
-                <Grid>
+                <Grid
+                  sx={{
+                    marginTop: "10px",
+                    marginLeft: "20px",
+                    marginRight: "0px",
+                  }}
+                >
                   <Calender />
                 </Grid>
               </Grid>
