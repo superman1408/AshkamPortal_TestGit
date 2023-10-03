@@ -35,6 +35,7 @@ import {
   Stack,
   Avatar,
   Button,
+  TextField,
 } from "@mui/material";
 
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -42,6 +43,8 @@ import Panel from "./Panel/Panel";
 import Attendance from "./Attendance/Attendance";
 
 // const settings = ["Theme", "Keyboard shortcuts", "settings", "Extensions"];
+
+const user = JSON.parse(localStorage.getItem("profile"));
 
 const Admin = () => {
   return (
@@ -87,9 +90,7 @@ const Admin = () => {
                 <Typography
                   variant="h5"
                   sx={{ display: "flex", marginLeft: "80px" }}
-                >
-                  Welcome Admin!
-                </Typography>
+                >{`Welcome ${user.result.role.toUpperCase()} !`}</Typography>
 
                 <Grid sx={{ display: "flex" }}>
                   <Grid>

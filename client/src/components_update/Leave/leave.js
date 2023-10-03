@@ -5,7 +5,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { json, useNavigate, useParams } from "react-router-dom";
 import useStyles from "./style";
 import Panel from "../Dashboard/Panel/Panel";
 import { sendMail, sendMailData } from "../../action/mail";
@@ -22,6 +22,8 @@ const Leave = () => {
   const posts = useSelector((state) => state.posts);
 
   const { id } = useParams();
+
+  const user = JSON.parse(localStorage.getItem("profile"));
 
   // console.log(id);
 
@@ -120,9 +122,10 @@ const Leave = () => {
     >
       <Panel />
       <form autoComplete="off" onSubmit={handleSubmit}>
-        <Typography variant="h6" sx={{ padding: "3px", textAlign: "center" }}>
-          Inbox- farheen.k@ashkamenergy.com
-        </Typography>
+        <Typography
+          variant="h6"
+          sx={{ padding: "3px", textAlign: "center" }}
+        >{`Inbox - ${user.result.email}`}</Typography>
         <div
           className={classes.mainContainer}
           style={{
