@@ -16,7 +16,7 @@ const PaySlip = () => {
       maxWidth="true"
       style={{
         display: "flex",
-        // justifyContent: "center",
+        justifyContent: "center",
         marginTop: "20px",
       }}
     >
@@ -31,8 +31,8 @@ const PaySlip = () => {
           display: "flex",
           bgcolor: "background.paper",
           boxShadow: "5px",
-          width: "900px",
-          marginLeft: "200px",
+          // width: "900px",
+          // marginLeft: "100px",
           // marginRight: "50px",
           marginTop: "10px",
         }}
@@ -69,7 +69,7 @@ const PaySlip = () => {
               Employee Pay Summary
             </Typography>
 
-            <Divider orientation="horizontal" color="black" />
+            <Divider orientation="horizontal" color="grey" />
 
             <TextField
               sx={{ display: "flex", mt: "10px" }}
@@ -83,6 +83,7 @@ const PaySlip = () => {
             <Grid sx={{ display: "flex", flexDirection: "row" }}>
               <Grid>
                 <TextField
+                  sx={{ display: "flex", mr: "20px" }}
                   type="text"
                   name="firstName"
                   // id="standard-basic"
@@ -116,6 +117,43 @@ const PaySlip = () => {
               />
             </Grid>
           </Grid>
+
+          <TextField
+            type="text"
+            name="UAN"
+            // id="standard-basic"
+            label="UAN No."
+            variant="outlined"
+            fullWidth
+            required
+          />
+          <TextField
+            type="text"
+            name="payDays"
+            // id="standard-basic"
+            label="Pay Days"
+            variant="outlined"
+            fullWidth
+            required
+          />
+          <TextField
+            type="text"
+            name="payPeriod"
+            // id="standard-basic"
+            label="payPeriod"
+            variant="outlined"
+            fullWidth
+            required
+          />
+          <TextField
+            type="text"
+            name="payDate"
+            // id="standard-basic"
+            label="payDate"
+            variant="outlined"
+            fullWidth
+            required
+          />
         </Grid>
       </Paper>
     </div>
