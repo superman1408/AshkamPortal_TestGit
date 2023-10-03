@@ -29,7 +29,7 @@ const App = () => {
           <Route
             path="/auth"
             exact
-            element={!user ? <Authentication /> : <Home/>}
+            element={!user ? <Authentication /> : <Dashboard/>}
           />
           {/* <Route path="/profile" exact element={<Form />} /> */}
           <Route path="/profile" exact element={<RegistrationForm />} />
