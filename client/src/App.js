@@ -22,12 +22,15 @@ const App = () => {
       <Container maxWidth={false}>
         <Navibar />
         <Routes>
+          <Route
+          exact path="/" element={<Authentication/>}  
+          />
           {/* this part need to be examined after ward */}
 
           <Route
             path="/auth"
             exact
-            element={user ? <Home /> : <Authentication />}
+            element={!user ? <Authentication /> : <Dashboard/>}
           />
           {/* <Route path="/profile" exact element={<Form />} /> */}
           <Route path="/profile" exact element={<RegistrationForm />} />
