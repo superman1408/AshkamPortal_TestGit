@@ -28,9 +28,7 @@ const App = () => {
         </header>
         <Navibar />
         <Routes>
-          <Route
-          exact path="/" element={<Authentication/>}  
-          />
+          <Route exact path="/" element={<Authentication />} />
           {/* this part need to be examined after ward */}
 
           <Route
