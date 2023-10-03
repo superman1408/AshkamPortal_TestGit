@@ -48,16 +48,16 @@ const Navibar = () => {
   return (
     <Navbar sticky="top" expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Navbar.Brand href="/auth">
+        {/* <Navbar.Brand href="/auth">
           <img src={LOGO} alt="logo" style={{ width: "220px" }} />
-        </Navbar.Brand>
-        <div class="flex">
+        </Navbar.Brand> */}
+        <div class="flex justify-between">
           {user ? (
             <div>
               <Navbar.Toggle aria-controls="navbarScroll" />
               <Navbar.Collapse id="navbarScroll">
                 <Nav
-                  className="me-auto my-2 my-lg-0"
+                  className="me-auto my-0 my-lg-0"
                   style={{ maxHeight: "100px" }}
                   navbarScroll
                 >
@@ -95,7 +95,8 @@ const Navibar = () => {
                   sx={{
                     display: "flex",
                     flexDirection: "row",
-                    margin: "5px",
+                    margin: "15px",
+                    marginLeft: "550px",
                   }}
                 >
                   {/* comment is added */}
