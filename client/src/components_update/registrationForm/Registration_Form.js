@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Divider,
   Grid,
@@ -18,6 +18,8 @@ import RadioGroup from "@mui/joy/RadioGroup";
 import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
 import { createPost, updatePost } from "../../action/posts";
+
+import { useReactToPrint } from "react-to-print";
 
 const RegistrationForm = ({ currentId, setCurrentId }) => {
   const [dob, setdob] = useState("");
@@ -46,15 +48,11 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
     selectedFile: "",
   });
 
-
   const post = useSelector((state) =>
     currentId ? state.posts.find((p) => p._id === currentId) : null
   );
 
-
-
   const dispatch = useDispatch();
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -104,8 +102,18 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
     setPostData({ ...postData, dob: date });
   };
 
+  // ________________test code _________________________________
+
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    documentTitle: "Visitor Pass",
+    onAfterPrint: () => console.log("Printed PDF successfully!"),
+  });
+
   return (
     <Container
+      ref={componentRef}
       maxwidth="true"
       sx={{
         display: "flex",
@@ -517,6 +525,10 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
                 >
                   Clear
                 </Button>
+              </Grid>
+
+              <Grid>
+                <Button onClick={handlePrint}> Print</Button>
               </Grid>
             </Grid>
           </form>
