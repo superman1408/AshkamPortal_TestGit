@@ -3,21 +3,18 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "@mui/material";
-
-// import Home from "./components_update/Home";
-import Authentication from "./components_update/authentication/Auth";
-import Leave from "./components_update/Leave/leave";
-import AboutUS from "./components_update/AboutUs/aboutUs";
-import RegistrationForm from "./components_update/registrationForm/Registration_Form";
-import Dashboard from "./components_update/Dashboard/Dashboard";
-import Navibar from "./components_update/Navbar/Navibar";
-import Communication from "./components_update/Leave/Communication/Communication";
-import PaySlip from "./components_update/PaySlip/PaySlip";
-import LOGO from './components_update/images/Company.png';
+import Authentication from "./components/authentication/Auth";
+import Leave from "./components/Leave/leave";
+import AboutUS from "./components/AboutUs/aboutUs";
+import RegistrationForm from "./components/registrationForm/Registration_Form";
+import Dashboard from "./components/dashboard/Dashboard";
+import Navibar from "./components/Navbar/Navibar";
+import Communication from "./components/Leave/Communication/Communication";
+import LOGO from "./assets/Company.png";
+import PaySlip from "./components/Payslip/PaySlip";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
-
   return (
     <BrowserRouter>
       <Container maxWidth={false}>
