@@ -14,7 +14,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import HomeIcon from "@mui/icons-material/Home";
-// import LOGO from "../images/Company.png";
+import LOGO from "../images/Company.png";
 import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneRounded";
 
 const Navibar = () => {
@@ -47,23 +47,23 @@ const Navibar = () => {
 
   return (
     <Navbar sticky="top" expand="lg" className="bg-body-tertiary">
-      <Container fluid >
-        {/* <Navbar.Brand href="/auth">
+      <Container fluid>
+        <Navbar.Brand href="/auth">
           <img src={LOGO} alt="logo" style={{ width: "220px" }} />
-        </Navbar.Brand> */}
-        <div class="flex justify-between">
+        </Navbar.Brand>
+        <div class="flex">
           {user ? (
             <div>
               <Navbar.Toggle aria-controls="navbarScroll" />
               <Navbar.Collapse id="navbarScroll">
                 <Nav
-                  className="me-auto my-0 my-lg-0"
+                  className="me-auto my-2 my-lg-0"
                   style={{ maxHeight: "100px" }}
                   navbarScroll
                 >
                   <Nav.Link href="/home">
                     <IconButton to="/home" id="home">
-                      <HomeIcon sx={{ fontSize: "30px", backgroundColor: "white" }} />
+                      <HomeIcon sx={{ fontSize: "30px" }} />
                     </IconButton>
                   </Nav.Link>
                   <Nav.Link href="/profile" style={{ marginTop: "8px" }}>
@@ -82,7 +82,7 @@ const Navibar = () => {
                       Inbox
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="/mail/:id/payslip">
+                    <NavDropdown.Item href="/payslip">
                       Something else here
                     </NavDropdown.Item>
                   </NavDropdown>
@@ -95,13 +95,12 @@ const Navibar = () => {
                   sx={{
                     display: "flex",
                     flexDirection: "row",
-                    margin: "15px",
-                    marginLeft: "550px",
+                    margin: "5px",
                   }}
                 >
                   {/* comment is added */}
                   <IconButton to="/auth" id="notification" onClick={notify}>
-                    <NotificationsNoneRoundedIcon sx={{backgroundColor: "white"}} />
+                    <NotificationsNoneRoundedIcon />
                   </IconButton>
                 </Grid>
                 <Form className="d-flex">
@@ -116,9 +115,7 @@ const Navibar = () => {
               </Navbar.Collapse>
             </div>
           ) : (
-            <div>
-              <h6 style={{color: "black"}}>Please Login to your account</h6>
-            </div>
+            <div>Please Login to your account</div>
           )}
         </div>
       </Container>

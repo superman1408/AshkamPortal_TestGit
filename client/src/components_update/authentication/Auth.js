@@ -10,12 +10,17 @@ import {
 import { useNavigate } from "react-router-dom";
 import { signin, signup } from "../../action/auth";
 import { useDispatch } from "react-redux";
+<<<<<<< HEAD
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import ManageAccountsOutlinedIcon from "@mui/icons-material/ManageAccountsOutlined";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
 import BadgeIcon from "@mui/icons-material/Badge";
+=======
+
+
+>>>>>>> pay-slip
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import image from "../images/ship1.jpg";
 
@@ -46,11 +51,14 @@ const Auth = () => {
     console.log(formData);
   };
 
+
   const switchMode = () => {
     setisSignUp((prevState) => !prevState);
   };
 
+
   const [selectedOption, setSelectedOption] = useState(null);
+
 
   const handleCheckboxChange = (option, event) => {
     setSelectedOption(option);
@@ -60,6 +68,7 @@ const Auth = () => {
       role: option,
     });
   };
+
 
   return (
     <Grid
@@ -253,7 +262,11 @@ const Auth = () => {
                 fullWidth
                 type="submit"
                 sx={{ marginTop: "10px" }}
+<<<<<<< HEAD
               >
+=======
+                >
+>>>>>>> pay-slip
                 {isSignUp ? "Sign Up" : "Sign In"}
               </Button>
             </div>

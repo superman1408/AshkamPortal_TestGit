@@ -48,11 +48,15 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
     selectedFile: "",
   });
 
+
   const post = useSelector((state) =>
     currentId ? state.posts.find((p) => p._id === currentId) : null
   );
 
+
+
   const dispatch = useDispatch();
+
 
   const handleSubmit = (e) => {
     e.preventDefault();

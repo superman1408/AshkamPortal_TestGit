@@ -6,7 +6,11 @@ import AuthenticateUser from '../model/authDetails.js';
 
 export const signin = async (req,res) => {
     const { email, password } = req.body;
+<<<<<<< HEAD
     // console.log("HELLO SIGN UP");
+=======
+    console.log("HELLO SIGN UP");
+>>>>>>> pay-slip
     // res.status(200).send('sign IN');
 
     try {
@@ -33,7 +37,11 @@ export const signin = async (req,res) => {
 
 export const signup = async (req,res) => {
     const { firstName, lastName, email, password, confirmPassword, role } = req.body;
+<<<<<<< HEAD
     // console.log(req.body);
+=======
+    console.log(req.body);
+>>>>>>> pay-slip
     // res.status(200).send('sign UP');
 
     try {
