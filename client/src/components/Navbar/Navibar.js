@@ -95,7 +95,8 @@ const Navibar = () => {
                   sx={{
                     display: "flex",
                     flexDirection: "row",
-                    margin: "5px",
+                    margin: "15px",
+                    marginLeft: "550px"
                   }}
                 >
                   {/* comment is added */}
