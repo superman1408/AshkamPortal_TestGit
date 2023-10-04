@@ -4,12 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "@mui/material";
 
-<<<<<<< HEAD
-// import Home from "./components_update/Dashboard/Dashboard";
-// import Home from "./components_update/Check/check";
-=======
 // import Home from "./components_update/Home";
->>>>>>> pay-slip
 import Authentication from "./components_update/authentication/Auth";
 import Leave from "./components_update/Leave/leave";
 import AboutUS from "./components_update/AboutUs/aboutUs";
@@ -17,12 +12,8 @@ import RegistrationForm from "./components_update/registrationForm/Registration_
 import Dashboard from "./components_update/Dashboard/Dashboard";
 import Navibar from "./components_update/Navbar/Navibar";
 import Communication from "./components_update/Leave/Communication/Communication";
-<<<<<<< HEAD
-// import Payslip from "./components_update/payslip";
-import LOGO from "./components_update/images/Company.png";
-=======
 import PaySlip from "./components_update/PaySlip/PaySlip";
->>>>>>> pay-slip
+import LOGO from './components_update/images/Company.png';
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -39,15 +30,11 @@ const App = () => {
           <Route exact path="/" element={<Authentication />} />
           {/* this part need to be examined after ward */}
 
-<<<<<<< HEAD
-          <Route path="/auth" exact element={<Authentication />} />
-=======
           <Route
             path="/auth"
             exact
             element={!user ? <Authentication /> : <Dashboard />}
           />
->>>>>>> pay-slip
           {/* <Route path="/profile" exact element={<Form />} /> */}
           <Route path="/profile" exact element={<RegistrationForm />} />
           <Route path="/mail/:id/leave" exact element={<Leave />} />

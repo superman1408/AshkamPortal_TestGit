@@ -48,9 +48,9 @@ const Navibar = () => {
   return (
     <Navbar sticky="top" expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Navbar.Brand href="/auth">
+        {/* <Navbar.Brand href="/auth">
           <img src={LOGO} alt="logo" style={{ width: "220px" }} />
-        </Navbar.Brand>
+        </Navbar.Brand> */}
         <div class="flex">
           {user ? (
             <div>
