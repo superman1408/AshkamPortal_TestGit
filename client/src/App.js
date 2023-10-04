@@ -33,7 +33,7 @@ const App = () => {
           <Route
             path="/auth"
             exact
-            element={!user ? <Authentication /> : <Dashboard />}
+            element={!user && <Authentication /> }
           />
           {/* <Route path="/profile" exact element={<Form />} /> */}
           <Route path="/profile" exact element={<RegistrationForm />} />
