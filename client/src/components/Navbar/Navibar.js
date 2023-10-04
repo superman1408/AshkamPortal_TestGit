@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import decode from "jwt-decode";
-import Marquee from "react-fast-marquee";
 
 import { LOGOUT } from "../../constants/actionTypes";
 
@@ -15,6 +14,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import HomeIcon from "@mui/icons-material/Home";
+// import LOGO from "../images/Company.png";
 import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneRounded";
 
 const Navibar = () => {
@@ -47,23 +47,23 @@ const Navibar = () => {
 
   return (
     <Navbar sticky="top" expand="lg" className="bg-body-tertiary">
-      <Container fluid>
+      <Container fluid >
         {/* <Navbar.Brand href="/auth">
           <img src={LOGO} alt="logo" style={{ width: "220px" }} />
         </Navbar.Brand> */}
-        <div class="flex">
+        <div class="flex justify-between">
           {user ? (
             <div>
               <Navbar.Toggle aria-controls="navbarScroll" />
               <Navbar.Collapse id="navbarScroll">
                 <Nav
-                  className="me-auto my-2 my-lg-0"
+                  className="me-auto my-0 my-lg-0"
                   style={{ maxHeight: "100px" }}
                   navbarScroll
                 >
                   <Nav.Link href="/home">
                     <IconButton to="/home" id="home">
-                      <HomeIcon sx={{ fontSize: "30px" }} />
+                      <HomeIcon sx={{ fontSize: "30px", backgroundColor: "white" }} />
                     </IconButton>
                   </Nav.Link>
                   <Nav.Link href="/profile" style={{ marginTop: "8px" }}>
@@ -82,7 +82,7 @@ const Navibar = () => {
                       Inbox
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="/payslip">
+                    <NavDropdown.Item href="/mail/:id/payslip">
                       Something else here
                     </NavDropdown.Item>
                   </NavDropdown>
@@ -96,12 +96,12 @@ const Navibar = () => {
                     display: "flex",
                     flexDirection: "row",
                     margin: "15px",
-                    marginLeft: "550px"
+                    marginLeft: "550px",
                   }}
                 >
                   {/* comment is added */}
                   <IconButton to="/auth" id="notification" onClick={notify}>
-                    <NotificationsNoneRoundedIcon />
+                    <NotificationsNoneRoundedIcon sx={{backgroundColor: "white"}} />
                   </IconButton>
                 </Grid>
                 <Form className="d-flex">
@@ -117,7 +117,7 @@ const Navibar = () => {
             </div>
           ) : (
             <div>
-              <Marquee style={{color: "black"}}>Please Login to your account</Marquee>
+              <h6 style={{color: "black"}}>Please Login to your account</h6>
             </div>
           )}
         </div>

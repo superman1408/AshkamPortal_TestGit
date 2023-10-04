@@ -8,7 +8,6 @@ const WeeklyActivity = () => {
   const navigate = useNavigate();
   // const location = useLocation();
 
-
   return (
     <div>
       <Box
@@ -24,53 +23,61 @@ const WeeklyActivity = () => {
           borderRadius: "10px",
         }}
       >
-        <ButtonBase onClick={() => {navigate('/aboutUs')}}>
-        <Grid sx={{ display: "flex", flexDirection: "column" }}>
-          <Grid
-            sx={{ marginLeft: "20px", marginTop: "10px", marginBottom: "10px" }}
-          >
-            <Typography sx={{ fontWeight: "bolder" }}>
-              Weekly Activity
-            </Typography>
-          </Grid>
+        <ButtonBase
+          onClick={() => {
+            navigate("/aboutUs");
+          }}
+        >
+          <Grid sx={{ display: "flex", flexDirection: "column" }}>
+            <Grid
+              sx={{
+                marginLeft: "20px",
+                marginTop: "10px",
+                marginBottom: "10px",
+              }}
+            >
+              <Typography sx={{ fontWeight: "bolder" }}>
+                Weekly Activity
+              </Typography>
+            </Grid>
 
-          {/*----------------------------------------------------Line Chart------------------------------------------------------*/}
-          <Grid>
-            <CChart
-              width="600px"
-              height="400px"
-              type="line"
-              data={{
-                datasets: [
-                  {
-                    data: [8137119, 9431691, 10266674],
-                    label: "Revenue",
-                    borderColor: "#1565C0",
-                    fill: true,
-                    lineTension: 0.5,
+            {/*----------------------------------------------------Line Chart------------------------------------------------------*/}
+            <Grid>
+              <CChart
+                width="600px"
+                height="400px"
+                type="line"
+                data={{
+                  datasets: [
+                    {
+                      data: [8137119, 9431691, 10266674],
+                      label: "Revenue",
+                      borderColor: "#1565C0",
+                      fill: true,
+                      lineTension: 0.5,
+                    },
+                    {
+                      data: [1216410, 1371390, 1477380],
+                      label: "Expenditure",
+                      borderColor: "#ba68c8",
+                      backgroundColor: "rgba(255, 0, 0, 0.5)",
+                      fill: true,
+                      lineTension: 0.5,
+                    },
+                  ],
+                  labels: ["January", "February", "March"],
+                }}
+                options={{
+                  plugins: {
+                    legend: {
+                      display: true,
+                      position: "top",
+                    },
                   },
-                  {
-                    data: [1216410, 1371390, 1477380],
-                    label: "Expenditure",
-                    borderColor: "#ba68c8",
-                    backgroundColor: "rgba(255, 0, 0, 0.5)",
-                    fill: true,
-                    lineTension: 0.5,
-                  },
-                ],
-                labels: ["January", "February", "March"],
-              }}
-              options={{
-                plugins: {
-                  legend: {
-                    display: true,
-                    position: "top",
-                  },
-                },
-              }}
-            />
+                }}
+              />
+            </Grid>
           </Grid>
-        </Grid>
         </ButtonBase>
       </Box>
     </div>
