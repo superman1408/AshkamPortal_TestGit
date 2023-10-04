@@ -10,8 +10,12 @@ import {
 import { useNavigate } from "react-router-dom";
 import { signin, signup } from "../../action/auth";
 import { useDispatch } from "react-redux";
-
-
+import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import ManageAccountsOutlinedIcon from "@mui/icons-material/ManageAccountsOutlined";
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
+import BadgeIcon from "@mui/icons-material/Badge";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import image from "../images/ship1.jpg";
 
@@ -42,14 +46,11 @@ const Auth = () => {
     console.log(formData);
   };
 
-
   const switchMode = () => {
     setisSignUp((prevState) => !prevState);
   };
 
-
   const [selectedOption, setSelectedOption] = useState(null);
-
 
   const handleCheckboxChange = (option, event) => {
     setSelectedOption(option);
@@ -59,7 +60,6 @@ const Auth = () => {
       role: option,
     });
   };
-
 
   return (
     <Grid
@@ -108,35 +108,68 @@ const Auth = () => {
           <form autoComplete="true" onSubmit={handleSubmit}>
             {isSignUp && (
               <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-                <label>
-                  <input
-                    name="role"
-                    type="checkbox"
-                    checked={selectedOption === "admin"}
-                    onChange={() => handleCheckboxChange("admin")}
-                  />
-                  Admin
-                </label>
-                <label>
-                  <input
-                    name="role"
-                    type="checkbox"
-                    checked={selectedOption === "manager"}
-                    onChange={() => handleCheckboxChange("manager")}
-                  />
-                  Manager
-                </label>
-                <label>
-                  <input
-                    name="role"
-                    type="checkbox"
-                    checked={selectedOption === "employee"}
-                    onChange={() => handleCheckboxChange("employee")}
-                  />
-                  Employee
-                </label>
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <div style={{ alignItems: "center" }}>
+                    {selectedOption === "admin" ? (
+                      <AdminPanelSettingsIcon />
+                    ) : (
+                      <AdminPanelSettingsOutlinedIcon />
+                    )}
+                  </div>
+
+                  <label>
+                    <input
+                      name="role"
+                      type="checkbox"
+                      checked={selectedOption === "admin"}
+                      onChange={() => handleCheckboxChange("admin")}
+                    />
+                    Admin
+                  </label>
+                </div>
+
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <div style={{ alignItems: "center" }}>
+                    {selectedOption === "manager" ? (
+                      <ManageAccountsIcon />
+                    ) : (
+                      <ManageAccountsOutlinedIcon />
+                    )}
+                  </div>
+
+                  <label>
+                    <input
+                      name="role"
+                      type="checkbox"
+                      checked={selectedOption === "manager"}
+                      onChange={() => handleCheckboxChange("manager")}
+                    />
+                    Manager
+                  </label>
+                </div>
+
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                  <div style={{ alignItems: "center" }}>
+                    {selectedOption === "employee" ? (
+                      <BadgeIcon />
+                    ) : (
+                      <BadgeOutlinedIcon />
+                    )}
+                  </div>
+
+                  <label>
+                    <input
+                      name="role"
+                      type="checkbox"
+                      checked={selectedOption === "employee"}
+                      onChange={() => handleCheckboxChange("employee")}
+                    />
+                    Employee
+                  </label>
+                </div>
               </div>
             )}
+
             <div style={{ marginTop: "30px", display: "flex" }}>
               {isSignUp && (
                 <TextField
@@ -220,7 +253,7 @@ const Auth = () => {
                 fullWidth
                 type="submit"
                 sx={{ marginTop: "10px" }}
-                >
+              >
                 {isSignUp ? "Sign Up" : "Sign In"}
               </Button>
             </div>

@@ -31,11 +31,7 @@ const App = () => {
           <Route exact path="/" element={<Authentication />} />
           {/* this part need to be examined after ward */}
 
-          <Route
-            path="/auth"
-            exact
-            element={!user && <Authentication />}
-          />
+          <Route path="/auth" exact element={<Authentication />} />
           {/* <Route path="/profile" exact element={<Form />} /> */}
           <Route path="/profile" exact element={<RegistrationForm />} />
           <Route path="/mail/:id/leave" exact element={<Leave />} />
@@ -48,7 +44,7 @@ const App = () => {
           <Route path="/home" exact element={<Dashboard />} />
         </Routes>
       </Container>
-      <footer>           ASHKAM ENERGY PRIVATE LIMITED ©️ me 2023</footer>
+      <footer> ASHKAM ENERGY PRIVATE LIMITED ©️ me 2023</footer>
     </BrowserRouter>
   );
 };
