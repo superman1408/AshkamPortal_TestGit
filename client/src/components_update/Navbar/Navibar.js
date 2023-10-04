@@ -16,7 +16,6 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import HomeIcon from "@mui/icons-material/Home";
 // import LOGO from "../images/Company.png";
 import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneRounded";
-import { cyan } from "@mui/material/colors";
 
 const Navibar = () => {
   const dispatch = useDispatch();
@@ -48,7 +47,7 @@ const Navibar = () => {
 
   return (
     <Navbar sticky="top" expand="lg" className="bg-body-tertiary">
-      <Container fluid style={{backgroundColor: "cyan"}}>
+      <Container fluid >
         {/* <Navbar.Brand href="/auth">
           <img src={LOGO} alt="logo" style={{ width: "220px" }} />
         </Navbar.Brand> */}
@@ -64,7 +63,7 @@ const Navibar = () => {
                 >
                   <Nav.Link href="/home">
                     <IconButton to="/home" id="home">
-                      <HomeIcon sx={{ fontSize: "30px" }} />
+                      <HomeIcon sx={{ fontSize: "30px", backgroundColor: "white" }} />
                     </IconButton>
                   </Nav.Link>
                   <Nav.Link href="/profile" style={{ marginTop: "8px" }}>
@@ -102,7 +101,7 @@ const Navibar = () => {
                 >
                   {/* comment is added */}
                   <IconButton to="/auth" id="notification" onClick={notify}>
-                    <NotificationsNoneRoundedIcon />
+                    <NotificationsNoneRoundedIcon sx={{backgroundColor: "white"}} />
                   </IconButton>
                 </Grid>
                 <Form className="d-flex">
@@ -117,7 +116,9 @@ const Navibar = () => {
               </Navbar.Collapse>
             </div>
           ) : (
-            <div>Please Login to your account</div>
+            <div>
+              <h6 style={{color: "black"}}>Please Login to your account</h6>
+            </div>
           )}
         </div>
       </Container>
