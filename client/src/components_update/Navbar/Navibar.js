@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import decode from "jwt-decode";
+import Marquee from "react-fast-marquee";
 
 import { LOGOUT } from "../../constants/actionTypes";
 
@@ -115,7 +116,9 @@ const Navibar = () => {
               </Navbar.Collapse>
             </div>
           ) : (
-            <div>Please Login to your account</div>
+            <div>
+              <Marquee style={{color: "black"}}>Please Login to your account</Marquee>
+            </div>
           )}
         </div>
       </Container>
