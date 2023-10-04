@@ -25,7 +25,7 @@ const WeeklyActivity = () => {
       >
         <ButtonBase
           onClick={() => {
-            navigate("/aboutUs");
+            navigate("/fullweeklyactivity"); // Full Weekly Activity route
           }}
         >
           <Grid sx={{ display: "flex", flexDirection: "column" }}>

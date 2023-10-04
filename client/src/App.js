@@ -12,6 +12,8 @@ import Navibar from "./components/Navbar/Navibar";
 import Communication from "./components/Leave/Communication/Communication";
 import LOGO from "./assets/Company.png";
 import PaySlip from "./components/Payslip/PaySlip";
+import FullWeekly from "./components/WeeklyActivity/FullWeekly";
+import BirthdayMail from "./components/Birthday/BirthdayMail";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -41,10 +43,22 @@ const App = () => {
 
           <Route path="/aboutUs" exact element={<AboutUS />} />
           <Route path="/home" exact element={<Dashboard />} />
-          <Route path="/payslip" exact element={<PaySlip />} />
+          <Route path="/mail/:id/payslip" exact element={<PaySlip />} />
+          <Route path="/fullweeklyactivity" exact element={<FullWeekly />} />
+          <Route path="/birthdaymail" exact element={<BirthdayMail />} />
         </Routes>
       </Container>
-      <footer> ASHKAM ENERGY PRIVATE LIMITED ©️ me 2023</footer>
+      <footer
+        style={{
+          backgroundColor: "#17325C",
+          color: "white",
+          width: "100%",
+          marginTop: "5px",
+          textAlign: "center",
+        }}
+      >
+        ASHKAM ENERGY PRIVATE LIMITED ©️ me 2023
+      </footer>
     </BrowserRouter>
   );
 };

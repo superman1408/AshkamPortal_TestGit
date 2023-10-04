@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  Grid,
-  Box,
-  Typography,
-  Paper,
-  Divider,
-  Input,
-  TextField,
-  Container,
-} from "@mui/material";
+import { Grid, Typography, Paper, Divider, TextField } from "@mui/material";
 
 const PaySlip = () => {
   return (

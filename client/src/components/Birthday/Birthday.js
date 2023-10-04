@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Box, Grid, Typography, Stack, Avatar, Button } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Typography,
+  Stack,
+  Avatar,
+  Button,
+  ButtonBase,
+} from "@mui/material";
+
+import { useNavigate } from "react-router-dom";
 
 import avatar1 from "../../assets/Profile.jpg";
 import avatar2 from "../../assets/profile1.jpg";
@@ -25,6 +35,8 @@ const Birthday = () => {
     };
   }, [dimension]);
 
+  const navigate = useNavigate();
+
   return (
     <div>
       <Box
@@ -42,46 +54,52 @@ const Birthday = () => {
           backgroundSize: "cover",
         }}
       >
-        <Stack flexDirection="row">
-          <Avatar
-            sx={{
-              width: 40,
-              height: 40,
-              marginLeft: "20px",
-              marginTop: "10px",
-            }}
-            alt="Femy sharp"
-            src={avatar1}
-          />
-        </Stack>
-        <Grid>
-          <Typography variant="h6" sx={{ marginLeft: "40px" }}>
-            Femy sharp
-          </Typography>
-          <Typography sx={{ marginLeft: "40px", fontSize: "13px" }}>
-            Has birthday today
-          </Typography>
-
-          <Button
-            sx={{
-              marginLeft: "50px",
-              marginRight: "0px",
-              // bgcolor: "#ecd0f5",
-              fontSize: "13px",
-            }}
-            onClick={() => setBtn(!Btn)}
-          >
-            wish him
-          </Button>
-          {Btn && (
-            <ReactConfetti
-              width={dimension.width}
-              height={dimension.height}
-              tweenDuration={100}
+        <ButtonBase
+          onClick={() => {
+            navigate("/birthdaymail"); // Full Weekly Activity route
+          }}
+        >
+          <Stack flexDirection="row">
+            <Avatar
+              sx={{
+                width: 40,
+                height: 40,
+                marginLeft: "20px",
+                marginTop: "10px",
+              }}
+              alt="Femy sharp"
+              src={avatar1}
             />
-          )}
-        </Grid>
-        <div class="btn-particles"></div>
+          </Stack>
+          <Grid>
+            <Typography variant="h6" sx={{ marginLeft: "40px" }}>
+              Femy sharp
+            </Typography>
+            <Typography sx={{ marginLeft: "40px", fontSize: "13px" }}>
+              Has birthday today
+            </Typography>
+
+            <Button
+              sx={{
+                marginLeft: "50px",
+                marginRight: "0px",
+                // bgcolor: "#ecd0f5",
+                fontSize: "13px",
+              }}
+              onClick={() => setBtn(!Btn)}
+            >
+              wish him
+            </Button>
+            {Btn && (
+              <ReactConfetti
+                width={dimension.width}
+                height={dimension.height}
+                tweenDuration={100}
+              />
+            )}
+          </Grid>
+          <div class="btn-particles"></div>
+        </ButtonBase>
       </Box>
     </div>
   );
