@@ -12,9 +12,18 @@ import {
   Button,
 } from "@mui/material";
 
-
-
 const PaySlip = () => {
+  // const Print = () => {
+  //   console.log("print");
+  //   //   let printContents = document.getElementById('printablediv').innerHTML;
+  //   //   let originalContents = document.body.innerHTML;
+  //   //   document.body.innerHTML = printContents;
+  //   //   window.print();
+  //   //  document.body.innerHTML = originalContents;
+  // };
+
+  // <div id="printablediv">Print me</div>;
+
   return (
     <div
       maxWidth="true"
@@ -24,11 +33,6 @@ const PaySlip = () => {
         marginTop: "20px",
       }}
     >
-      {/* <Box
-        sx={{
-          "& > :not(style)": { m: 1, width: "25ch" },
-        }}
-      > */}
       <Paper
         elevation={20}
         sx={{
@@ -67,7 +71,11 @@ const PaySlip = () => {
             }}
           />
 
-          <Typography sx={{ marginTop: "20px", marginBottom: "0px" }}>
+          <Typography
+            variant="h4"
+            fontFamily={""}
+            sx={{ marginTop: "20px", marginBottom: "0px" }}
+          >
             Employee Pay Summary
           </Typography>
 
@@ -86,7 +94,7 @@ const PaySlip = () => {
           <Grid sx={{ display: "flex", flexDirection: "row" }}>
             <Grid>
               <TextField
-                sx={{ display: "flex", mr: "20px" }}
+                sx={{ display: "flex", mr: "50px" }}
                 type="text"
                 margin="normal"
                 name="firstName"
@@ -99,65 +107,92 @@ const PaySlip = () => {
 
             <Grid>
               <TextField
+                sx={{ display: "flex", mr: "50px" }}
+                type="text"
+                margin="normal"
+                name="middleName"
+                label="Middle Name"
+                variant="outlined"
+                required
+              />
+            </Grid>
+
+            <Grid>
+              <TextField
+                sx={{ display: "flex", mr: "20px" }}
                 type="text"
                 margin="normal"
                 name="lastName"
+                // id="standard-basic"
                 label="Last Name"
+                variant="outlined"
+                fullWidth
+                required
+              />
+            </Grid>
+          </Grid>
+
+          <Grid sx={{ display: "flex", flexDirection: "row" }}>
+            <Grid>
+              <TextField
+                sx={{ display: "flex", mr: "40px" }}
+                type="text"
+                size="small"
+                margin="normal"
+                name="UAN"
+                // id="standard-basic"
+                label="UAN No."
+                variant="outlined"
+                required
+              />
+            </Grid>
+
+            <Grid>
+              <TextField
+                sx={{ display: "flex", mr: "40px" }}
+                type="text"
+                size="small"
+                margin="normal"
+                name="payDays"
+                // id="standard-basic"
+                label="Pay Days"
+                variant="outlined"
+                required
+              />
+            </Grid>
+
+            <Grid>
+              <TextField
+                sx={{ display: "flex", mr: "40px" }}
+                type="text"
+                size="small"
+                margin="normal"
+                name="payPeriod"
+                // id="standard-basic"
+                label="payPeriod"
+                variant="outlined"
+                required
+              />
+            </Grid>
+
+            <Grid>
+              <TextField
+                sx={{ display: "flex", mr: "20px" }}
+                type="text"
+                size="small"
+                margin="normal"
+                name="payDate"
+                label="payDate"
                 variant="outlined"
                 required
               />
             </Grid>
           </Grid>
 
-          <TextField
-            type="text"
-            margin="normal"
-            name="lastName"
-            // id="standard-basic"
-            label="last Name"
-            variant="outlined"
-            required
-          />
-
-          <TextField
-            type="text"
-            margin="normal"
-            name="UAN"
-            // id="standard-basic"
-            label="UAN No."
-            variant="outlined"
-            required
-          />
-
-          <TextField
-            type="text"
-            margin="normal"
-            name="payDays"
-            // id="standard-basic"
-            label="Pay Days"
-            variant="outlined"
-            required
-          />
-          <TextField
-            type="text"
-            margin="normal"
-            name="payPeriod"
-            // id="standard-basic"
-            label="payPeriod"
-            variant="outlined"
-            required
-          />
-          <TextField
-            type="text"
-            margin="normal"
-            name="payDate"
-            // id="standard-basic"
-            label="payDate"
-            variant="outlined"
-            required
-          />
-
-          <Typography sx={{ marginTop: "50px", marginBottom: "0px" }}>
+          <Typography
+            variant="h4"
+            sx={{ marginTop: "50px", marginBottom: "0px" }}
+          >
             Income Details
           </Typography>
 
@@ -172,8 +207,10 @@ const PaySlip = () => {
                   marginTop: "20px",
                 }}
               >
-                <Typography>Earnings</Typography>
-                <Typography marginLeft={30}>Amount</Typography>
+                <Typography variant="h6">Earnings</Typography>
+                <Typography variant="h6" marginLeft={30}>
+                  Amount
+                </Typography>
               </Grid>
               <Divider orientation="horizontal" color="grey" />
               <Grid sx={{ display: "flex", flexDirection: "row" }}>
@@ -280,11 +317,7 @@ const PaySlip = () => {
               </Grid>
 
               <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                <Typography
-                  marginTop={3}
-                  marginRight={16}
-                  fontFamily="bolder"
-                >
+                <Typography marginTop={3} marginRight={18} fontFamily="bolder">
                   Gross Earnings (Rs)
                 </Typography>
                 <TextField
@@ -307,12 +340,14 @@ const PaySlip = () => {
                   marginTop: "20px",
                 }}
               >
-                <Typography>Deductions</Typography>
-                <Typography marginLeft={30}>Amount</Typography>
+                <Typography variant="h6">Deductions</Typography>
+                <Typography variant="h6" marginLeft={30}>
+                  Amount
+                </Typography>
               </Grid>
               <Divider orientation="horizontal" color="grey" />
 
-              <Typography marginTop={4} marginRight={18}>
+              <Typography marginTop={3} marginRight={18} fontStyle={"inherit"}>
                 Provident fund
               </Typography>
               <Grid sx={{ display: "flex", flexDirection: "row" }}>
@@ -373,7 +408,7 @@ const PaySlip = () => {
               <Grid sx={{ display: "flex", flexDirection: "row" }}>
                 <Typography
                   marginTop={3}
-                  marginRight={23}
+                  marginRight={22}
                   alignItems={"center"}
                 >
                   Employee's Contribution
@@ -392,7 +427,7 @@ const PaySlip = () => {
               <Grid sx={{ display: "flex", flexDirection: "row" }}>
                 <Typography
                   marginTop={3}
-                  marginRight={23}
+                  marginRight={22}
                   alignItems={"center"}
                 >
                   Employeer's Contribution
