@@ -63,7 +63,7 @@ const Navibar = () => {
                 >
                   <Nav.Link href="/home">
                     <IconButton to="/home" id="home">
-                      <HomeIcon sx={{ fontSize: "30px", backgroundColor: "white" }} />
+                      <HomeIcon sx={{ fontSize: "30px" }} />
                     </IconButton>
                   </Nav.Link>
                   <Nav.Link href="/profile" style={{ marginTop: "8px" }}>
@@ -78,15 +78,15 @@ const Navibar = () => {
                     <NavDropdown.Item href="/mail/:id/leave">
                       Leave Section
                     </NavDropdown.Item>
+                    {/* <NavDropdown.Divider /> */}
                     <NavDropdown.Item href="/mail/:id/communication">
                       Inbox
                     </NavDropdown.Item>
-                    <NavDropdown.Divider />
+                    {/* <NavDropdown.Divider /> */}
                     <NavDropdown.Item href="/payslip">
-                      Something else here
+                      PaySlip
                     </NavDropdown.Item>
                   </NavDropdown>
-
                   <Nav.Link href="/aboutUs" style={{ marginTop: "8px" }}>
                     About Us
                   </Nav.Link>
@@ -101,7 +101,7 @@ const Navibar = () => {
                 >
                   {/* comment is added */}
                   <IconButton to="/auth" id="notification" onClick={notify}>
-                    <NotificationsNoneRoundedIcon sx={{backgroundColor: "white"}} />
+                    <NotificationsNoneRoundedIcon  />
                   </IconButton>
                 </Grid>
                 <Form className="d-flex">
