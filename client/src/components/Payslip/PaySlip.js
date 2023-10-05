@@ -13,6 +13,17 @@ import {
 } from "@mui/material";
 
 const PaySlip = () => {
+  // const Print = () => {
+  //   console.log("print");
+  //   //   let printContents = document.getElementById('printablediv').innerHTML;
+  //   //   let originalContents = document.body.innerHTML;
+  //   //   document.body.innerHTML = printContents;
+  //   //   window.print();
+  //   //  document.body.innerHTML = originalContents;
+  // };
+
+  // <div id="printablediv">Print me</div>;
+
   return (
     <div
       maxWidth="true"
