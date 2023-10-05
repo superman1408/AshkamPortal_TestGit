@@ -46,14 +46,11 @@ const Auth = () => {
     console.log(formData);
   };
 
-
   const switchMode = () => {
     setisSignUp((prevState) => !prevState);
   };
 
-
   const [selectedOption, setSelectedOption] = useState(null);
-
 
   const handleCheckboxChange = (option, event) => {
     setSelectedOption(option);
@@ -63,7 +60,6 @@ const Auth = () => {
       role: option,
     });
   };
-
 
   return (
     <Grid
@@ -86,7 +82,7 @@ const Auth = () => {
           flexWrap: "wrap",
           textAlign: "center",
           marginTop: "30px",
-          padding: "2px",
+          padding: "10px",
         }}
       >
         <Grid>
@@ -174,7 +170,7 @@ const Auth = () => {
               </div>
             )}
 
-            <div style={{ marginTop: "30px", display: "flex" }}>
+            {/* <div style={{ marginTop: "30px", display: "flex" }}>
               {isSignUp && (
                 <TextField
                   label="First Name"
@@ -199,12 +195,13 @@ const Auth = () => {
                   }
                 />
               )}
-            </div>
+            </div> */}
             <div
               style={{
                 display: "flex",
                 flexDirection: "column",
                 marginTop: "10px",
+              
               }}
             >
               <TextField
@@ -264,7 +261,7 @@ const Auth = () => {
             <div>
               <Button onClick={switchMode}>
                 {isSignUp
-                  ? "Already have an account? Login!"
+                  ? "  Already have an account? Login here!  "
                   : "Don't have an account ? Register here!"}
               </Button>
             </div>

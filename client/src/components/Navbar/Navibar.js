@@ -47,7 +47,7 @@ const Navibar = () => {
 
   return (
     <Navbar sticky="top" expand="lg" className="bg-body-tertiary">
-      <Container fluid >
+      <Container fluid>
         {/* <Navbar.Brand href="/auth">
           <img src={LOGO} alt="logo" style={{ width: "220px" }} />
         </Navbar.Brand> */}
@@ -83,9 +83,7 @@ const Navibar = () => {
                       Inbox
                     </NavDropdown.Item>
                     {/* <NavDropdown.Divider /> */}
-                    <NavDropdown.Item href="/payslip">
-                      PaySlip
-                    </NavDropdown.Item>
+                    <NavDropdown.Item href="/payslip">PaySlip</NavDropdown.Item>
                   </NavDropdown>
                   <Nav.Link href="/aboutUs" style={{ marginTop: "8px" }}>
                     About Us
@@ -101,7 +99,7 @@ const Navibar = () => {
                 >
                   {/* comment is added */}
                   <IconButton to="/auth" id="notification" onClick={notify}>
-                    <NotificationsNoneRoundedIcon  />
+                    <NotificationsNoneRoundedIcon />
                   </IconButton>
                 </Grid>
                 <Form className="d-flex">
@@ -117,7 +115,9 @@ const Navibar = () => {
             </div>
           ) : (
             <div>
-              <Marquee style={{color: "black"}}>Please Login to your account</Marquee>
+              <Marquee style={{ color: "black" }}>
+                Please Login to your account
+              </Marquee>
             </div>
           )}
         </div>
