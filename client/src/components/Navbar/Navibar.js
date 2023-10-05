@@ -14,8 +14,8 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import HomeIcon from "@mui/icons-material/Home";
-// import LOGO from "../images/Company.png";
 import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneRounded";
+import Marquee from "react-fast-marquee";
 
 const Navibar = () => {
   const dispatch = useDispatch();
@@ -117,7 +117,7 @@ const Navibar = () => {
             </div>
           ) : (
             <div>
-              <h6 style={{color: "black"}}>Please Login to your account</h6>
+              <Marquee style={{color: "black"}}>Please Login to your account</Marquee>
             </div>
           )}
         </div>
