@@ -1,7 +1,7 @@
 import React from "react";
 
 const FullWeekly = () => {
-  return <div>FullWeekly</div>;
+  return <div>To Do List</div>;
 };
 
 export default FullWeekly;

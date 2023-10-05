@@ -11,7 +11,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import Navibar from "./components/Navbar/Navibar";
 import Communication from "./components/Leave/Communication/Communication";
 import LOGO from "./assets/Company.png";
-import FullWeekly from "./components/WeeklyActivity/FullWeekly";
+import FullWeekly from "./components/WeeklyActivity/Activity/FullWeekly";
 import BirthdayMail from "./components/Birthday/BirthdayMail";
 import PaySlip from "./components/Payslip/PaySlip";
 
