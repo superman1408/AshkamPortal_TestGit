@@ -11,7 +11,6 @@ import Dashboard from "./components/dashboard/Dashboard";
 import Navibar from "./components/Navbar/Navibar";
 import Communication from "./components/Leave/Communication/Communication";
 import LOGO from "./assets/Company.png";
-import PaySlip from "./components/Payslip/PaySlip";
 import FullWeekly from "./components/WeeklyActivity/FullWeekly";
 import BirthdayMail from "./components/Birthday/BirthdayMail";
 
@@ -43,7 +42,6 @@ const App = () => {
 
           <Route path="/aboutUs" exact element={<AboutUS />} />
           <Route path="/home" exact element={<Dashboard />} />
-          <Route path="/mail/:id/payslip" exact element={<PaySlip />} />
           <Route path="/fullweeklyactivity" exact element={<FullWeekly />} />
           <Route path="/birthdaymail" exact element={<BirthdayMail />} />
         </Routes>
