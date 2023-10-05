@@ -14,6 +14,7 @@ import LOGO from "./assets/Company.png";
 import FullWeekly from "./components/WeeklyActivity/Activity/FullWeekly";
 import BirthdayMail from "./components/Birthday/BirthdayMail";
 import PaySlip from "./components/Payslip/PaySlip";
+import EmployeeAttendance from "./components/Attendance/EmployeeAttendance";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -44,6 +45,11 @@ const App = () => {
           <Route path="/aboutUs" exact element={<AboutUS />} />
           <Route path="/home" exact element={<Dashboard />} />
           <Route path="/fullweeklyactivity" exact element={<FullWeekly />} />
+          <Route
+            path="/employeeAttendance"
+            exact
+            element={<EmployeeAttendance />}
+          />
           <Route path="/birthdaymail" exact element={<BirthdayMail />} />
           <Route path="/payslip" exact element={<PaySlip />} />
         </Routes>
