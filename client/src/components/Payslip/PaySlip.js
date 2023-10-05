@@ -13,14 +13,14 @@ import {
 } from "@mui/material";
 
 const PaySlip = () => {
-  // const Print = () => {
-  //   console.log("print");
-  //   //   let printContents = document.getElementById('printablediv').innerHTML;
-  //   //   let originalContents = document.body.innerHTML;
-  //   //   document.body.innerHTML = printContents;
-  //   //   window.print();
-  //   //  document.body.innerHTML = originalContents;
-  // };
+  const Print = () => {
+    console.log("print");
+    //   let printContents = document.getElementById('printablediv').innerHTML;
+    //   let originalContents = document.body.innerHTML;
+    //   document.body.innerHTML = printContents;
+    //   window.print();
+    //  document.body.innerHTML = originalContents;
+  };
 
   // <div id="printablediv">Print me</div>;
 
@@ -54,6 +54,7 @@ const PaySlip = () => {
         >
           <Typography
             variant="h4"
+            marginLeft={60}
             sx={{
               // flexGrow: 1,
               fontSize: "30px",
@@ -72,8 +73,9 @@ const PaySlip = () => {
           />
 
           <Typography
-            variant="h4"
+            variant="h5"
             fontFamily={""}
+            marginLeft={1}
             sx={{ marginTop: "20px", marginBottom: "0px" }}
           >
             Employee Pay Summary
@@ -190,8 +192,8 @@ const PaySlip = () => {
           </Grid>
 
           <Typography
-            variant="h4"
-            sx={{ marginTop: "50px", marginBottom: "0px" }}
+            variant="h5"
+            sx={{ marginTop: "50px", marginLeft: "10px" }}
           >
             Income Details
           </Typography>
@@ -458,7 +460,9 @@ const PaySlip = () => {
             </Grid>
             <Grid>
               <Button
+                type="button"
                 sx={{ bgcolor: "skyblue", color: "black", marginLeft: "900px" }}
+                onClick={Print}
               >
                 Print
               </Button>
