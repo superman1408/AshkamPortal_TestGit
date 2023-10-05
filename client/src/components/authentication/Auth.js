@@ -17,7 +17,8 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
 import BadgeIcon from "@mui/icons-material/Badge";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import image from "../../assets/shipImages.jpg";
+import image from "../../assets/ProfileShipImage.png";
+import useStyles from "./Style";
 
 const initialData = {
   firstName: "",
@@ -61,6 +62,8 @@ const Auth = () => {
     });
   };
 
+  const classes = useStyles();
+
   return (
     <Grid
       container
@@ -76,13 +79,13 @@ const Auth = () => {
       }}
     >
       <Card
+        className={classes.card}
         elevation={10}
         sx={{
           display: "flex",
           flexWrap: "wrap",
           textAlign: "center",
-          marginTop: "30px",
-          padding: "10px",
+          marginTop: "60px",
         }}
       >
         <Grid>
@@ -94,16 +97,13 @@ const Auth = () => {
               marginTop: "10px",
             }}
           >
-            <Avatar color="primary">
-              <AccountCircleIcon />
-            </Avatar>
+            <AccountCircleIcon fontSize="large" color="primary" />
           </div>
 
-          <h1>{isSignUp ? "Register" : "Login"}</h1>
-          <Typography color="#0B7882">Welcome to Ashkam 👋 </Typography>
-          <label>
-            <b>{isSignUp ? " " : "Please Sign In to your account"}</b>
-          </label>
+          <h2 style={{ fontFamily: "Abril Fatface", fontWeight: "bold" }}>
+            {isSignUp ? "Register" : "Login"}
+          </h2>
+          {/* <Typography color="#0B7882">Welcome to Ashkam 👋 </Typography> */}
 
           <form autoComplete="true" onSubmit={handleSubmit}>
             {isSignUp && (
@@ -111,14 +111,18 @@ const Auth = () => {
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <div style={{ alignItems: "center" }}>
                     {selectedOption === "admin" ? (
-                      <AdminPanelSettingsIcon />
+                      <AdminPanelSettingsIcon
+                        fontSize="small"
+                        style={{ color: "#17325C" }}
+                      />
                     ) : (
-                      <AdminPanelSettingsOutlinedIcon />
+                      <AdminPanelSettingsOutlinedIcon fontSize="10px" />
                     )}
                   </div>
 
                   <label>
                     <input
+                      style={{ marginRight: "5px", padding: "2px" }}
                       name="role"
                       type="checkbox"
                       checked={selectedOption === "admin"}
@@ -131,14 +135,18 @@ const Auth = () => {
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <div style={{ alignItems: "center" }}>
                     {selectedOption === "manager" ? (
-                      <ManageAccountsIcon />
+                      <ManageAccountsIcon
+                        fontSize="small"
+                        style={{ color: "#17325C" }}
+                      />
                     ) : (
-                      <ManageAccountsOutlinedIcon />
+                      <ManageAccountsOutlinedIcon fontSize="10px" />
                     )}
                   </div>
 
                   <label>
                     <input
+                      style={{ marginRight: "5px", padding: "2px" }}
                       name="role"
                       type="checkbox"
                       checked={selectedOption === "manager"}
@@ -151,14 +159,18 @@ const Auth = () => {
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <div style={{ alignItems: "center" }}>
                     {selectedOption === "employee" ? (
-                      <BadgeIcon />
+                      <BadgeIcon
+                        fontSize="small"
+                        style={{ color: "#17325C" }}
+                      />
                     ) : (
-                      <BadgeOutlinedIcon />
+                      <BadgeOutlinedIcon fontSize="10px" />
                     )}
                   </div>
 
                   <label>
                     <input
+                      style={{ marginRight: "5px", padding: "2px" }}
                       name="role"
                       type="checkbox"
                       checked={selectedOption === "employee"}
@@ -200,8 +212,7 @@ const Auth = () => {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                marginTop: "10px",
-              
+                marginTop: "30px",
               }}
             >
               <TextField
