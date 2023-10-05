@@ -13,6 +13,7 @@ import Communication from "./components/Leave/Communication/Communication";
 import LOGO from "./assets/Company.png";
 import FullWeekly from "./components/WeeklyActivity/FullWeekly";
 import BirthdayMail from "./components/Birthday/BirthdayMail";
+import PaySlip from "./components/Payslip/PaySlip";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -44,6 +45,7 @@ const App = () => {
           <Route path="/home" exact element={<Dashboard />} />
           <Route path="/fullweeklyactivity" exact element={<FullWeekly />} />
           <Route path="/birthdaymail" exact element={<BirthdayMail />} />
+          <Route path="/payslip" exact element={<PaySlip />} />
         </Routes>
       </Container>
       <footer
