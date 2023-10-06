@@ -467,7 +467,7 @@ const PaySlip = () => {
                 <Grid sx={{ display: "flex", flexDirection: "row" }}>
                   <Typography
                     marginTop={3}
-                    marginRight={22}
+                    marginRight={15}
                     alignItems={"center"}
                   >
                     Employee's Contribution
@@ -486,7 +486,7 @@ const PaySlip = () => {
                 <Grid sx={{ display: "flex", flexDirection: "row" }}>
                   <Typography
                     marginTop={3}
-                    marginRight={22}
+                    marginRight={14}
                     alignItems={"center"}
                   >
                     Employeer's Contribution
