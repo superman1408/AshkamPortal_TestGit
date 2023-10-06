@@ -22,7 +22,19 @@ import { createPost, updatePost } from "../../action/posts";
 import { useReactToPrint } from "react-to-print";
 
 const RegistrationForm = ({ currentId, setCurrentId }) => {
+  const dispatch = useDispatch();
+  const componentRef = useRef();
   const [dob, setdob] = useState("");
+
+  const post = useSelector((state) =>
+    currentId ? state.posts.find((p) => p._id === currentId) : null
+  );
+
+
+  useEffect(() => {
+    if (post) return setPostData(post);
+  }, [post]);
+
 
   const [postData, setPostData] = useState({
     firstName: "",
@@ -49,13 +61,11 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
   });
 
 
-  const post = useSelector((state) =>
-    currentId ? state.posts.find((p) => p._id === currentId) : null
-  );
+  
 
 
 
-  const dispatch = useDispatch();
+  
 
 
   const handleSubmit = (e) => {
@@ -69,9 +79,11 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
     console.log(postData);
   };
 
-  useEffect(() => {
-    if (post) return setPostData(post);
-  }, [post]);
+
+
+  
+
+
 
   const handleReset = () => {
     setPostData({
@@ -99,6 +111,8 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
     });
   };
 
+
+
   const handleDOB = (dob) => {
     setdob(dob);
     const UsFormatter = new Intl.DateTimeFormat("en-US");
@@ -106,14 +120,18 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
     setPostData({ ...postData, dob: date });
   };
 
+
   // ________________test code _________________________________
 
-  const componentRef = useRef();
+  
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: "Visitor Pass",
     onAfterPrint: () => console.log("Printed PDF successfully!"),
   });
+
+
+  
 
   return (
     <Container
