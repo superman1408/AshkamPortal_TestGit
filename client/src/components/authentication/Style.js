@@ -10,4 +10,16 @@ export default makeStyles((theme) => ({
   card: {
     padding: "10px",
   },
+
+//   card:hover :{
+//     content:"",
+//     position:absolute,
+//     top:"-50%",
+//     left:"-50%",
+//     width:"380px",
+//     height:"420px",
+//     background:"linear-gradient(0deg)"
+
+
+//   }
 }));

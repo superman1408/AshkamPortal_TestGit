@@ -20,6 +20,8 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import image from "../../assets/ProfileShipImage.png";
 import useStyles from "./Style";
 
+import { ToastContainer } from "react-toastify";
+
 const initialData = {
   firstName: "",
   lastName: "",
@@ -268,6 +270,12 @@ const Auth = () => {
               >
                 {isSignUp ? "Sign Up" : "Sign In"}
               </Button>
+              {isSignUp ? (
+                ""
+              ) : (
+                <ToastContainer  />
+              )}
+              {/* this is required for rendering taost it works as a container*/}
             </div>
             <div>
               <Button onClick={switchMode}>
