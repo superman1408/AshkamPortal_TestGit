@@ -1,4 +1,5 @@
 import React from "react";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import {
   Grid,
@@ -36,6 +37,8 @@ const PaySlip = () => {
   //   },
   // });
 
+  const matches = useMediaQuery("(min-width:600px)");
+
   return (
     <Container
       maxWidth="true"
@@ -53,7 +56,7 @@ const PaySlip = () => {
             xs: "0",
             sm: "600",
           },
-          // flexWrap: "nowrap",
+          flexWrap: "wrap",
           bgcolor: "background.paper",
           boxShadow: "5px",
           // width: "900px",
@@ -65,7 +68,13 @@ const PaySlip = () => {
         <Grid
           sx={{
             display: "flex",
-            flexDirection: "column",
+            flexDirection: {
+              sm: "column",
+              xs: "column",
+              md: "column",
+              lg: "column",
+              xl: "column",
+            },
             marginLeft: "30px",
             marginRight: "30px",
             marginBottom: "30px",
@@ -76,6 +85,7 @@ const PaySlip = () => {
               variant="h4"
               marginLeft={60}
               sx={{
+                display: "flex",
                 // flexGrow: 1,
                 fontSize: "30px",
                 fontWeight: "bold",
@@ -115,7 +125,18 @@ const PaySlip = () => {
               required
             />
 
-            <Grid sx={{ display: "flex", flexDirection: "row" }}>
+            <Grid
+              sx={{
+                display: "flex",
+                flexDirection: {
+                  sm: "column",
+                  xs: "column",
+                  md: "row",
+                  lg: "row",
+                  xl: "row",
+                },
+              }}
+            >
               <Grid>
                 <TextField
                   sx={{ display: "flex", mr: "50px" }}
@@ -444,7 +465,7 @@ const PaySlip = () => {
                 <Grid sx={{ display: "flex", flexDirection: "row" }}>
                   <Typography
                     marginTop={3}
-                    marginRight={22}
+                    marginRight={15}
                     alignItems={"center"}
                   >
                     Employee's Contribution
@@ -463,7 +484,7 @@ const PaySlip = () => {
                 <Grid sx={{ display: "flex", flexDirection: "row" }}>
                   <Typography
                     marginTop={3}
-                    marginRight={22}
+                    marginRight={14}
                     alignItems={"center"}
                   >
                     Employeer's Contribution
