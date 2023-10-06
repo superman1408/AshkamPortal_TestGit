@@ -32,7 +32,7 @@ export const signin = async (req,res) => {
 
 
 export const signup = async (req,res) => {
-    const { firstName, lastName, email, password, confirmPassword, role } = req.body;
+    const {  email, password, confirmPassword, role } = req.body;
     // console.log(req.body);
     // res.status(200).send('sign UP');
 
@@ -45,7 +45,7 @@ export const signup = async (req,res) => {
 
         const hashedPassword = await bcrypt.hash(password, 12);
 
-        const result = await AuthenticateUser.create({ email, password: hashedPassword,role, name: `${ firstName } ${ lastName }`});
+        const result = await AuthenticateUser.create({ email, password: hashedPassword, role });
 
         const token = jwt.sign({ email: result.email, id: result._id}, 'test', {expiresIn:"1h"});
 
