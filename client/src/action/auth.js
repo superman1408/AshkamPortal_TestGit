@@ -2,6 +2,10 @@ import { AUTH } from "../constants/actionTypes";
 
 import * as API from "../api/index";
 
+import { toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+
 export const signin = (formData, navigate) => async (dispatch) => {
   try {
     // signIn block
@@ -11,10 +15,13 @@ export const signin = (formData, navigate) => async (dispatch) => {
     navigate("/profile", { replace: true });
   } catch (error) {
     console.log(error);
+
+    // toast coding for error message
+    toast.error("Username or password incorrect !!", {
+      position: toast.POSITION.TOP_CENTER,
+    });
   }
 };
-
-
 
 export const signup = (formData, navigate) => async (dispatch) => {
   try {
