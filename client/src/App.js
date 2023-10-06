@@ -18,6 +18,7 @@ import EmployeeAttendance from "./components/Attendance/EmployeeAttendance";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
+
   return (
     <BrowserRouter>
       <Container maxWidth={false}>

@@ -1,4 +1,5 @@
 import React from "react";
+import useScreenSize from "../ScreenSize/UseScreenSize";
 
 import {
   Grid,
@@ -13,6 +14,8 @@ import {
 } from "@mui/material";
 
 const PaySlip = () => {
+  const screenSize = useScreenSize();
+
   const Print = () => {
     console.log("print");
     //   let printContents = document.getElementById('printablediv').innerHTML;
@@ -41,6 +44,8 @@ const PaySlip = () => {
       maxWidth="true"
       sx={{
         display: "flex",
+        width: { screenSize },
+        height: { screenSize },
         justifyContent: "center",
         marginTop: "20px",
       }}
@@ -65,7 +70,13 @@ const PaySlip = () => {
         <Grid
           sx={{
             display: "flex",
-            flexDirection: "column",
+            flexDirection: {
+              sm: "column",
+              xs: "column",
+              md: "column",
+              lg: "column",
+              xl: "column",
+            },
             marginLeft: "30px",
             marginRight: "30px",
             marginBottom: "30px",
@@ -76,6 +87,7 @@ const PaySlip = () => {
               variant="h4"
               marginLeft={60}
               sx={{
+                display: "flex",
                 // flexGrow: 1,
                 fontSize: "30px",
                 fontWeight: "bold",
@@ -115,7 +127,18 @@ const PaySlip = () => {
               required
             />
 
-            <Grid sx={{ display: "flex", flexDirection: "row" }}>
+            <Grid
+              sx={{
+                display: "flex",
+                flexDirection: {
+                  sm: "column",
+                  xs: "column",
+                  md: "row",
+                  lg: "row",
+                  xl: "row",
+                },
+              }}
+            >
               <Grid>
                 <TextField
                   sx={{ display: "flex", mr: "50px" }}
