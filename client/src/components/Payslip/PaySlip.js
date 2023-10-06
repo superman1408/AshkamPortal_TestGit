@@ -1,5 +1,5 @@
 import React from "react";
-import useScreenSize from "../ScreenSize/UseScreenSize";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import {
   Grid,
@@ -14,8 +14,6 @@ import {
 } from "@mui/material";
 
 const PaySlip = () => {
-  const screenSize = useScreenSize();
-
   const Print = () => {
     console.log("print");
     //   let printContents = document.getElementById('printablediv').innerHTML;
@@ -39,13 +37,13 @@ const PaySlip = () => {
   //   },
   // });
 
+  const matches = useMediaQuery("(min-width:600px)");
+
   return (
     <Container
       maxWidth="true"
       sx={{
         display: "flex",
-        width: { screenSize },
-        height: { screenSize },
         justifyContent: "center",
         marginTop: "20px",
       }}
@@ -58,7 +56,7 @@ const PaySlip = () => {
             xs: "0",
             sm: "600",
           },
-          // flexWrap: "nowrap",
+          flexWrap: "wrap",
           bgcolor: "background.paper",
           boxShadow: "5px",
           // width: "900px",
