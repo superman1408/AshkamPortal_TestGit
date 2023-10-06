@@ -30,6 +30,8 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
     currentId ? state.posts.find((p) => p._id === currentId) : null
   );
 
+  console.log(currentId);
+
 
   useEffect(() => {
     if (post) return setPostData(post);
@@ -131,7 +133,7 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
   });
 
 
-  
+
 
   return (
     <Container
