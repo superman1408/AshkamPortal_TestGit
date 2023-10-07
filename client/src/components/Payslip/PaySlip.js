@@ -1,5 +1,8 @@
-import React from "react";
-import useMediaQuery from "@mui/material/useMediaQuery";
+import React, { useRef } from "react";
+import { useState, useEffect } from "react";
+import { useReactToPrint } from "react-to-print";
+
+// import useMediaQuery from "react-responsive";
 
 import {
   Grid,
@@ -13,31 +16,36 @@ import {
   Button,
 } from "@mui/material";
 
-const PaySlip = () => {
-  const Print = () => {
-    console.log("print");
-    //   let printContents = document.getElementById('printablediv').innerHTML;
-    //   let originalContents = document.body.innerHTML;
-    //   document.body.innerHTML = printContents;
-    //   window.print();
-    //  document.body.innerHTML = originalContents;
+const PaySlip = ({currentId, setCurrentId}) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
   };
 
-  // <div id="printablediv">Print me</div>;
+  //choose the screen size
+  const handleResize = () => {
+    if (window.innerWidth < 720) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  };
 
-  // const theme = createTheme({
-  //   breakpoints: {
-  //     values: {
-  //       xs: 0,
-  //       sm: 600,
-  //       md: 900,
-  //       lg: 1200,
-  //       xl: 1536,
-  //     },
-  //   },
-  // });
+  // create an event listener
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+  });
 
-  const matches = useMediaQuery("(min-width:600px)");
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    documentTitle: "Visitor Pass",
+    onAfterPrint: () => console.log("Printed PDF successfully!"),
+  });
+
+  // const matches = useMediaQuery("(min-width:600px)");
+  // const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
 
   return (
     <Container
@@ -65,476 +73,486 @@ const PaySlip = () => {
           marginTop: "10px",
         }}
       >
-        <Grid
-          sx={{
-            display: "flex",
-            flexDirection: {
-              sm: "column",
-              xs: "column",
-              md: "column",
-              lg: "column",
-              xl: "column",
-            },
-            marginLeft: "30px",
-            marginRight: "30px",
-            marginBottom: "30px",
-          }}
-        >
-          <Grid>
-            <Typography
-              variant="h4"
-              marginLeft={60}
-              sx={{
-                display: "flex",
-                // flexGrow: 1,
-                fontSize: "30px",
-                fontWeight: "bold",
-                marginTop: "20px",
-                marginBottom: "10px",
-              }}
-            >
-              Salary Slip
-            </Typography>
+        <form onSubmit={handleSubmit}>
+          <Grid
+            sx={{
+              display: "flex",
+              flexDirection: {
+                sm: "column",
+                xs: "column",
+                md: "column",
+                lg: "column",
+                xl: "column",
+              },
+              marginLeft: "30px",
+              marginRight: "30px",
+              marginBottom: "30px",
+            }}
+          >
+            <Grid>
+              <Typography
+                variant="h4"
+                marginLeft={60}
+                sx={{
+                  display: "flex",
+                  // flexGrow: 1,
+                  fontSize: "30px",
+                  fontWeight: "bold",
+                  marginTop: "20px",
+                  marginBottom: "10px",
+                }}
+              >
+                Salary Slip
+              </Typography>
 
-            <Divider
-              sx={{
-                borderWidth: "2px",
-              }}
-            />
-          </Grid>
-
-          <Grid>
-            <Typography
-              variant="h5"
-              fontFamily={""}
-              marginLeft={1}
-              sx={{ display: "flex", marginTop: "20px", marginBottom: "0px" }}
-            >
-              Employee Pay Summary
-            </Typography>
-
-            <Divider orientation="horizontal" color="grey" />
-
-            <TextField
-              sx={{ display: "flex", mt: "10px" }}
-              margin="normal"
-              type="text"
-              name="employeeId"
-              label="Employee Id"
-              variant="outlined"
-              required
-            />
-
-            <Grid
-              sx={{
-                display: "flex",
-                flexDirection: {
-                  sm: "column",
-                  xs: "column",
-                  md: "row",
-                  lg: "row",
-                  xl: "row",
-                },
-              }}
-            >
-              <Grid>
-                <TextField
-                  sx={{ display: "flex", mr: "50px" }}
-                  type="text"
-                  margin="normal"
-                  name="firstName"
-                  // id="standard-basic"
-                  label="First Name"
-                  variant="outlined"
-                  required
-                />
-              </Grid>
-
-              <Grid>
-                <TextField
-                  sx={{ display: "flex", mr: "50px" }}
-                  type="text"
-                  margin="normal"
-                  name="middleName"
-                  label="Middle Name"
-                  variant="outlined"
-                  required
-                />
-              </Grid>
-
-              <Grid>
-                <TextField
-                  sx={{ display: "flex", mr: "20px" }}
-                  type="text"
-                  margin="normal"
-                  name="lastName"
-                  // id="standard-basic"
-                  label="Last Name"
-                  variant="outlined"
-                  fullWidth
-                  required
-                />
-              </Grid>
+              <Divider
+                sx={{
+                  borderWidth: "2px",
+                }}
+              />
             </Grid>
 
-            <Grid sx={{ display: "flex", flexDirection: "row" }}>
-              <Grid>
-                <TextField
-                  sx={{ display: "flex", mr: "40px" }}
-                  type="text"
-                  size="small"
-                  margin="normal"
-                  name="UAN"
-                  // id="standard-basic"
-                  label="UAN No."
-                  variant="outlined"
-                  required
-                />
-              </Grid>
+            <Grid>
+              <Typography
+                variant="h5"
+                fontFamily={""}
+                marginLeft={1}
+                sx={{ display: "flex", marginTop: "20px", marginBottom: "0px" }}
+              >
+                Employee Pay Summary
+              </Typography>
 
-              <Grid>
-                <TextField
-                  sx={{ display: "flex", mr: "40px" }}
-                  type="text"
-                  size="small"
-                  margin="normal"
-                  name="payDays"
-                  // id="standard-basic"
-                  label="Pay Days"
-                  variant="outlined"
-                  required
-                />
-              </Grid>
+              <Divider orientation="horizontal" color="grey" />
 
-              <Grid>
-                <TextField
-                  sx={{ display: "flex", mr: "40px" }}
-                  type="text"
-                  size="small"
-                  margin="normal"
-                  name="payPeriod"
-                  // id="standard-basic"
-                  label="payPeriod"
-                  variant="outlined"
-                  required
-                />
-              </Grid>
+              <TextField
+                sx={{ display: "flex", mt: "10px" }}
+                margin="normal"
+                type="text"
+                name="employeeId"
+                label="Employee Id"
+                variant="outlined"
+                required
+              />
 
-              <Grid>
-                <TextField
-                  sx={{ display: "flex", mr: "20px" }}
-                  type="text"
-                  size="small"
-                  margin="normal"
-                  name="payDate"
-                  label="payDate"
-                  variant="outlined"
-                  required
-                />
-              </Grid>
-            </Grid>
-          </Grid>
-
-          <Grid>
-            <Typography
-              variant="h5"
-              sx={{ marginTop: "50px", marginLeft: "10px" }}
-            >
-              Income Details
-            </Typography>
-
-            <Divider orientation="horizontal" color="grey" />
-
-            <Grid sx={{ display: "flex", flexDirection: "row", mb: "10px" }}>
-              <Grid sx={{ display: "flex", flexDirection: "column" }}>
-                <Grid
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    marginTop: "20px",
-                  }}
-                >
-                  <Typography variant="h6">Earnings</Typography>
-                  <Typography variant="h6" marginLeft={30}>
-                    Amount
-                  </Typography>
-                </Grid>
-                <Divider orientation="horizontal" color="grey" />
-                <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                  <Typography marginTop={3} marginRight={30}>
-                    Basic
-                  </Typography>
+              <Grid
+                sx={{
+                  display: "flex",
+                  flexDirection: {
+                    sm: "column",
+                    xs: "column",
+                    md: "row",
+                    lg: "row",
+                    xl: "row",
+                  },
+                }}
+              >
+                <Grid>
                   <TextField
+                    sx={{ display: "flex", mr: "50px" }}
+                    type="text"
+                    margin="normal"
+                    name="firstName"
+                    // id="standard-basic"
+                    label="First Name"
+                    variant="outlined"
+                    required
+                  />
+                </Grid>
+
+                <Grid>
+                  <TextField
+                    sx={{ display: "flex", mr: "50px" }}
+                    type="text"
+                    margin="normal"
+                    name="middleName"
+                    label="Middle Name"
+                    variant="outlined"
+                    required
+                  />
+                </Grid>
+
+                <Grid>
+                  <TextField
+                    sx={{ display: "flex", mr: "20px" }}
+                    type="text"
+                    margin="normal"
+                    name="lastName"
+                    // id="standard-basic"
+                    label="Last Name"
+                    variant="outlined"
+                    required
+                  />
+                </Grid>
+              </Grid>
+
+              <Grid sx={{ display: "flex", flexDirection: "row" }}>
+                <Grid>
+                  <TextField
+                    sx={{ display: "flex", mr: "50px" }}
+                    type="text"
+                    size="small"
+                    margin="normal"
+                    name="UAN"
+                    // id="standard-basic"
+                    label="UAN No."
+                    variant="outlined"
+                    required
+                  />
+                </Grid>
+
+                <Grid>
+                  <TextField
+                    sx={{ display: "flex", mr: "50px" }}
+                    type="text"
+                    size="small"
+                    margin="normal"
+                    name="payDays"
+                    // id="standard-basic"
+                    label="Pay Days"
+                    variant="outlined"
+                    required
+                  />
+                </Grid>
+
+                <Grid>
+                  <TextField
+                    sx={{ display: "flex", mr: "50px" }}
+                    type="text"
+                    size="small"
+                    margin="normal"
+                    name="payPeriod"
+                    // id="standard-basic"
+                    label="payPeriod"
+                    variant="outlined"
+                    required
+                  />
+                </Grid>
+
+                <Grid>
+                  <TextField
+                    sx={{ display: "flex", mr: "20px" }}
                     type="text"
                     size="small"
                     margin="normal"
                     name="payDate"
-                    // id="standard-basic"
-                    label="amount"
+                    label="payDate"
                     variant="outlined"
+                    required
                   />
                 </Grid>
-                <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                  <Typography marginTop={3} marginRight={15}>
-                    House rent allowance
-                  </Typography>
-                  <TextField
-                    type="text"
-                    size="small"
-                    margin="normal"
-                    name="amount"
-                    // id="standard-basic"
-                    label="amount"
-                    variant="outlined"
-                  />
-                </Grid>
-                <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                  <Typography marginTop={3} marginRight={14}>
-                    Conveyance allowance
-                  </Typography>
-                  <TextField
-                    type="text"
-                    size="small"
-                    margin="normal"
-                    name="amount"
-                    // id="standard-basic"
-                    label="amount"
-                    variant="outlined"
-                  />
+              </Grid>
+            </Grid>
+
+            <Grid>
+              <Typography
+                variant="h5"
+                sx={{ marginTop: "50px", marginLeft: "10px" }}
+              >
+                Income Details
+              </Typography>
+
+              <Divider orientation="horizontal" color="grey" />
+
+              <Grid sx={{ display: "flex", flexDirection: "row", mb: "10px" }}>
+                <Grid sx={{ display: "flex", flexDirection: "column" }}>
+                  <Grid
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      marginTop: "20px",
+                    }}
+                  >
+                    <Typography variant="h6">Earnings</Typography>
+                    <Typography variant="h6" marginLeft={30}>
+                      Amount
+                    </Typography>
+                  </Grid>
+                  <Divider orientation="horizontal" color="grey" />
+                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
+                    <Typography marginTop={3} marginRight={30}>
+                      Basic
+                    </Typography>
+                    <TextField
+                      type="text"
+                      size="small"
+                      margin="normal"
+                      name="payDate"
+                      // id="standard-basic"
+                      label="amount"
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
+                    <Typography marginTop={3} marginRight={15}>
+                      House rent allowance
+                    </Typography>
+                    <TextField
+                      type="text"
+                      size="small"
+                      margin="normal"
+                      name="amount"
+                      // id="standard-basic"
+                      label="amount"
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
+                    <Typography marginTop={3} marginRight={14}>
+                      Conveyance allowance
+                    </Typography>
+                    <TextField
+                      type="text"
+                      size="small"
+                      margin="normal"
+                      name="amount"
+                      // id="standard-basic"
+                      label="amount"
+                      variant="outlined"
+                    />
+                  </Grid>
+
+                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
+                    <Typography marginTop={3} marginRight={21}>
+                      Communication
+                    </Typography>
+                    <TextField
+                      type="text"
+                      size="small"
+                      margin="normal"
+                      name="amount"
+                      // id="standard-basic"
+                      label="amount"
+                      variant="outlined"
+                    />
+                  </Grid>
+
+                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
+                    <Typography marginTop={3} marginRight={18}>
+                      Uniform allowance
+                    </Typography>
+                    <TextField
+                      type="text"
+                      size="small"
+                      margin="normal"
+                      name="amount"
+                      // id="standard-basic"
+                      label="amount"
+                      variant="outlined"
+                    />
+                  </Grid>
+
+                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
+                    <Typography marginTop={3} marginRight={18}>
+                      Medical allowance
+                    </Typography>
+                    <TextField
+                      type="text"
+                      size="small"
+                      margin="normal"
+                      name="amount"
+                      // id="standard-basic"
+                      label="amount"
+                      variant="outlined"
+                    />
+                  </Grid>
+
+                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
+                    <Typography marginTop={3} marginRight={24}>
+                      City Factors
+                    </Typography>
+                    <TextField
+                      size="small"
+                      type="text"
+                      margin="normal"
+                      name="amount"
+                      // id="standard-basic"
+                      label="amount"
+                      variant="outlined"
+                    />
+                  </Grid>
+
+                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
+                    <Typography
+                      marginTop={3}
+                      marginRight={18}
+                      fontFamily="bolder"
+                    >
+                      Gross Earnings (Rs)
+                    </Typography>
+                    <TextField
+                      size="small"
+                      type="text"
+                      margin="normal"
+                      name="amount"
+                      // id="standard-basic"
+                      label="amount"
+                      variant="outlined"
+                    />
+                  </Grid>
                 </Grid>
 
-                <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                  <Typography marginTop={3} marginRight={21}>
-                    Communication
-                  </Typography>
-                  <TextField
-                    type="text"
-                    size="small"
-                    margin="normal"
-                    name="amount"
-                    // id="standard-basic"
-                    label="amount"
-                    variant="outlined"
-                  />
-                </Grid>
+                <Grid
+                  sx={{ display: "flex", flexDirection: "column", ml: "80px" }}
+                >
+                  <Grid
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      marginTop: "20px",
+                    }}
+                  >
+                    <Typography variant="h6">Deductions</Typography>
+                    <Typography variant="h6" marginLeft={30}>
+                      Amount
+                    </Typography>
+                  </Grid>
+                  <Divider orientation="horizontal" color="grey" />
 
-                <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                  <Typography marginTop={3} marginRight={18}>
-                    Uniform allowance
-                  </Typography>
-                  <TextField
-                    type="text"
-                    size="small"
-                    margin="normal"
-                    name="amount"
-                    // id="standard-basic"
-                    label="amount"
-                    variant="outlined"
-                  />
-                </Grid>
-
-                <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                  <Typography marginTop={3} marginRight={18}>
-                    Medical allowance
-                  </Typography>
-                  <TextField
-                    type="text"
-                    size="small"
-                    margin="normal"
-                    name="amount"
-                    // id="standard-basic"
-                    label="amount"
-                    variant="outlined"
-                  />
-                </Grid>
-
-                <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                  <Typography marginTop={3} marginRight={24}>
-                    City Factors
-                  </Typography>
-                  <TextField
-                    size="small"
-                    type="text"
-                    margin="normal"
-                    name="amount"
-                    // id="standard-basic"
-                    label="amount"
-                    variant="outlined"
-                  />
-                </Grid>
-
-                <Grid sx={{ display: "flex", flexDirection: "row" }}>
                   <Typography
                     marginTop={3}
                     marginRight={18}
-                    fontFamily="bolder"
+                    sx={{ font: "bolder" }}
                   >
-                    Gross Earnings (Rs)
+                    Provident fund
                   </Typography>
-                  <TextField
-                    size="small"
-                    type="text"
-                    margin="normal"
-                    name="amount"
-                    // id="standard-basic"
-                    label="amount"
-                    variant="outlined"
-                  />
+                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
+                    <Typography marginTop={3} marginRight={15}>
+                      Employee's Contribution
+                    </Typography>
+                    <TextField
+                      type="text"
+                      size="small"
+                      margin="normal"
+                      name="payDate"
+                      // id="standard-basic"
+                      label="amount"
+                      variant="outlined"
+                    />
+                  </Grid>
+
+                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
+                    <Typography
+                      marginTop={3}
+                      marginRight={14}
+                      alignItems={"center"}
+                    >
+                      Employeer's Contribution
+                    </Typography>
+                    <TextField
+                      type="text"
+                      size="small"
+                      margin="normal"
+                      name="payDate"
+                      // id="standard-basic"
+                      label="amount"
+                      variant="outlined"
+                    />
+                  </Grid>
+                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
+                    <Typography
+                      marginTop={3}
+                      marginRight={23}
+                      alignItems={"center"}
+                    >
+                      Professinal Tax
+                    </Typography>
+                    <TextField
+                      type="text"
+                      size="small"
+                      margin="normal"
+                      name="payDate"
+                      // id="standard-basic"
+                      label="amount"
+                      variant="outlined"
+                    />
+                  </Grid>
+
+                  <Typography
+                    marginTop={4}
+                    marginRight={18}
+                    sx={{ font: "bolder" }}
+                  >
+                    ESIC
+                  </Typography>
+                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
+                    <Typography
+                      marginTop={3}
+                      marginRight={15}
+                      alignItems={"center"}
+                    >
+                      Employee's Contribution
+                    </Typography>
+                    <TextField
+                      type="text"
+                      size="small"
+                      margin="normal"
+                      name="payDate"
+                      // id="standard-basic"
+                      label="amount"
+                      variant="outlined"
+                    />
+                  </Grid>
+
+                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
+                    <Typography
+                      marginTop={3}
+                      marginRight={14}
+                      alignItems={"center"}
+                    >
+                      Employeer's Contribution
+                    </Typography>
+                    <TextField
+                      type="text"
+                      size="small"
+                      margin="normal"
+                      name="payDate"
+                      // id="standard-basic"
+                      label="amount"
+                      variant="outlined"
+                    />
+                  </Grid>
                 </Grid>
               </Grid>
+            </Grid>
 
+            <Grid>
+              {/* ---------------Button---------------- */}
               <Grid
-                sx={{ display: "flex", flexDirection: "column", ml: "80px" }}
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  marginTop: "60px",
+                }}
               >
-                <Grid
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    marginTop: "20px",
-                  }}
-                >
-                  <Typography variant="h6">Deductions</Typography>
-                  <Typography variant="h6" marginLeft={30}>
-                    Amount
-                  </Typography>
-                </Grid>
-                <Divider orientation="horizontal" color="grey" />
-
-                <Typography
-                  marginTop={3}
-                  marginRight={18}
-                  fontStyle={"inherit"}
-                >
-                  Provident fund
-                </Typography>
-                <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                  <Typography marginTop={3} marginRight={15}>
-                    Employee's Contribution
-                  </Typography>
-                  <TextField
-                    type="text"
-                    size="small"
-                    margin="normal"
-                    name="payDate"
-                    // id="standard-basic"
-                    label="amount"
-                    variant="outlined"
-                  />
-                </Grid>
-
-                <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                  <Typography
-                    marginTop={3}
-                    marginRight={14}
-                    alignItems={"center"}
+                <Grid>
+                  <Button
+                    sx={{
+                      bgcolor: "skyblue",
+                      color: "black",
+                      marginLeft: "20px",
+                    }}
+                    onClick={handleResize}
                   >
-                    Employeer's Contribution
-                  </Typography>
-                  <TextField
-                    type="text"
-                    size="small"
-                    margin="normal"
-                    name="payDate"
-                    // id="standard-basic"
-                    label="amount"
-                    variant="outlined"
-                  />
+                    Generate
+                  </Button>
                 </Grid>
-                <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                  <Typography
-                    marginTop={3}
-                    marginRight={23}
-                    alignItems={"center"}
+                <Grid>
+                  <Button
+                    type="button"
+                    sx={{
+                      bgcolor: "skyblue",
+                      color: "black",
+                      marginLeft: "900px",
+                    }}
+                    onClick={handlePrint}
                   >
-                    Professinal Tax
-                  </Typography>
-                  <TextField
-                    type="text"
-                    size="small"
-                    margin="normal"
-                    name="payDate"
-                    // id="standard-basic"
-                    label="amount"
-                    variant="outlined"
-                  />
-                </Grid>
-
-                <Typography marginTop={4} marginRight={18}>
-                  ESIC
-                </Typography>
-                <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                  <Typography
-                    marginTop={3}
-                    marginRight={15}
-                    alignItems={"center"}
-                  >
-                    Employee's Contribution
-                  </Typography>
-                  <TextField
-                    type="text"
-                    size="small"
-                    margin="normal"
-                    name="payDate"
-                    // id="standard-basic"
-                    label="amount"
-                    variant="outlined"
-                  />
-                </Grid>
-
-                <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                  <Typography
-                    marginTop={3}
-                    marginRight={14}
-                    alignItems={"center"}
-                  >
-                    Employeer's Contribution
-                  </Typography>
-                  <TextField
-                    type="text"
-                    size="small"
-                    margin="normal"
-                    name="payDate"
-                    // id="standard-basic"
-                    label="amount"
-                    variant="outlined"
-                  />
+                    Print
+                  </Button>
                 </Grid>
               </Grid>
             </Grid>
           </Grid>
-
-          <Grid>
-            {/* ---------------Button---------------- */}
-            <Grid
-              sx={{ display: "flex", flexDirection: "row", marginTop: "60px" }}
-            >
-              <Grid>
-                <Button
-                  sx={{
-                    bgcolor: "skyblue",
-                    color: "black",
-                    marginLeft: "20px",
-                  }}
-                >
-                  Generate
-                </Button>
-              </Grid>
-              <Grid>
-                <Button
-                  type="button"
-                  sx={{
-                    bgcolor: "skyblue",
-                    color: "black",
-                    marginLeft: "900px",
-                  }}
-                  onClick={Print}
-                >
-                  Print
-                </Button>
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
+        </form>
       </Paper>
     </Container>
   );
