@@ -1,6 +1,8 @@
 import React, { useRef } from "react";
 import { useState, useEffect } from "react";
 import { useReactToPrint } from "react-to-print";
+import ReactToPrint from "react-to-print";
+// import ComponentToPrint from "react-to-print";
 
 import { UseSelector } from "react-redux";
 
@@ -158,6 +160,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                 label="Employee Id"
                 variant="outlined"
                 required
+                value={postData.employeeId}
+                onChange={(e) =>
+                  setPostData({ ...postData, employeeId: e.target.value })
+                }
               />
 
               <Grid
@@ -182,6 +188,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     label="First Name"
                     variant="outlined"
                     required
+                    value={postData.firstName}
+                    onChange={(e) =>
+                      setPostData({ ...postData, firstName: e.target.value })
+                    }
                   />
                 </Grid>
 
@@ -194,6 +204,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     label="Middle Name"
                     variant="outlined"
                     required
+                    value={postData.middleName}
+                    onChange={(e) =>
+                      setPostData({ ...postData, middleName: e.target.value })
+                    }
                   />
                 </Grid>
 
@@ -207,6 +221,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     label="Last Name"
                     variant="outlined"
                     required
+                    value={postData.lastName}
+                    onChange={(e) =>
+                      setPostData({ ...postData, lastName: e.target.value })
+                    }
                   />
                 </Grid>
               </Grid>
@@ -218,7 +236,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     type="text"
                     size="small"
                     margin="normal"
-                    name="UAN"
+                    name="uanNo"
                     // id="standard-basic"
                     label="UAN No."
                     variant="outlined"
@@ -302,7 +320,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       type="text"
                       size="small"
                       margin="normal"
-                      name="payDate"
+                      name="basic"
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
@@ -316,7 +334,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       type="text"
                       size="small"
                       margin="normal"
-                      name="amount"
+                      name="houseRent"
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
@@ -330,7 +348,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       type="text"
                       size="small"
                       margin="normal"
-                      name="amount"
+                      name="conveyance"
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
@@ -345,7 +363,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       type="text"
                       size="small"
                       margin="normal"
-                      name="amount"
+                      name="communication"
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
@@ -360,7 +378,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       type="text"
                       size="small"
                       margin="normal"
-                      name="amount"
+                      name="uniform"
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
@@ -375,7 +393,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       type="text"
                       size="small"
                       margin="normal"
-                      name="amount"
+                      name="medical"
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
@@ -390,7 +408,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       size="small"
                       type="text"
                       margin="normal"
-                      name="amount"
+                      name="cityFactor"
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
@@ -409,7 +427,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       size="small"
                       type="text"
                       margin="normal"
-                      name="amount"
+                      name="grossEarnings"
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
@@ -449,7 +467,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       type="text"
                       size="small"
                       margin="normal"
-                      name="payDate"
+                      name="employeeContribution_pf"
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
@@ -468,7 +486,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       type="text"
                       size="small"
                       margin="normal"
-                      name="payDate"
+                      name="employeerContribution_pf"
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
@@ -486,7 +504,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       type="text"
                       size="small"
                       margin="normal"
-                      name="payDate"
+                      name="employeeContribution_esic"
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
@@ -512,7 +530,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       type="text"
                       size="small"
                       margin="normal"
-                      name="payDate"
+                      name="employeerContribution_esic"
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
@@ -551,6 +569,14 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                 }}
               >
                 <Grid>
+                  {/* button to trigger printing of target component */}
+                  {/* <ReactToPrint
+                    trigger={() => <Button>Print this out!</Button>}
+                    content={() => componentRef}
+                  /> */}
+                  {/* component to be printed */}
+                  //{" "}
+                  {/* <ComponentToPrint ref={(el) => (componentRef = el)} /> */}
                   <Button
                     sx={{
                       bgcolor: "skyblue",
