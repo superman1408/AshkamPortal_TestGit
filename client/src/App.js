@@ -23,11 +23,12 @@ const App = () => {
       <Container maxWidth={false}>
         <header>
           {/* <h1>My Cool application is here</h1> */}
-          <img src={LOGO} alt="logo" style={{ width: "220px" }} />
+          <img src={LOGO} alt="logo" style={{ width: "185px" }} />
+          <h6>Thrieving   On   Excellence</h6>
         </header>
         <Navibar />
         <Routes>
-          <Route exact path="/" element={<Authentication />} />
+          <Route exact path="/" element={!user ? (<Authentication />) : (<Dashboard/>)} />
           {/* this part need to be examined after ward */}
 
           <Route path="/auth" exact element={!user && <Authentication />} />

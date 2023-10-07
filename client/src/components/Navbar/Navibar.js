@@ -46,7 +46,8 @@ const Navibar = () => {
   };
 
   return (
-    <Navbar sticky="top" expand="lg" className="bg-body-tertiary">
+    <Navbar sticky="top" expand="lg" className="navbar-custom"  >
+      {/* className=" bg-body-tertiary justify-content-between" */}
       <Container fluid>
         {/* <Navbar.Brand href="/auth">
           <img src={LOGO} alt="logo" style={{ width: "220px" }} />

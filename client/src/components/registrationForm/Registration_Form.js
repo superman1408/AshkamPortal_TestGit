@@ -26,11 +26,13 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
   const componentRef = useRef();
   const [dob, setdob] = useState("");
 
+  const user = JSON.parse(localStorage.getItem('profile'));
+
   const post = useSelector((state) =>
     currentId ? state.posts.find((p) => p._id === currentId) : null
   );
 
-  console.log(currentId);
+  console.log(user);
 
 
   useEffect(() => {
