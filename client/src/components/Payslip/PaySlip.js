@@ -25,8 +25,6 @@ import { useSelector } from "react-redux";
 const PaySlip = ({ currentId, setCurrentId }) => {
   const dispatch = useDispatch();
 
-  const [isMobile, setIsMobile] = useState(false);
-
   const [postData, setPostData] = useState({
     employeeId: "",
     firstName: "",
@@ -72,13 +70,12 @@ const PaySlip = ({ currentId, setCurrentId }) => {
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
-    documentTitle: "Visitor Pass",
-    onAfterPrint: () => console.log("Printed PDF successfully!"),
   });
 
   return (
     <Container
       maxWidth="true"
+      ref={componentRef}
       sx={{
         display: "flex",
         justifyContent: "center",
