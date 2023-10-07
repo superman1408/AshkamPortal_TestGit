@@ -2,6 +2,10 @@ import React, { useRef } from "react";
 import { useState, useEffect } from "react";
 import { useReactToPrint } from "react-to-print";
 
+import { UseSelector } from "react-redux";
+
+import { createPost, updatePost } from "../../action/posts";
+
 // import useMediaQuery from "react-responsive";
 
 import {
@@ -15,37 +19,62 @@ import {
   Container,
   Button,
 } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
-const PaySlip = ({currentId, setCurrentId}) => {
+const PaySlip = ({ currentId, setCurrentId }) => {
+  const dispatch = useDispatch();
+
   const [isMobile, setIsMobile] = useState(false);
+
+  const [postData, setPostData] = useState({
+    employeeId: "",
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    uanNo: "",
+    payDays: "",
+    payPeriod: "",
+    payDate: "",
+    basic: "",
+    houseRent: "",
+    conveyance: "",
+    communication: "",
+    uniform: "",
+    medical: "",
+    cityFactor: "",
+    employeeContribution_pf: "",
+    employeerContribution_pf: "",
+    employeeContribution_esic: "",
+    employeerContribution_esic: "",
+  });
+
+  const post = useSelector((state) =>
+    currentId ? state.posts.find((p) => p._id === currentId) : null
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  };
 
-  //choose the screen size
-  const handleResize = () => {
-    if (window.innerWidth < 720) {
-      setIsMobile(true);
+    if (currentId) {
+      dispatch(updatePost(currentId, postData));
     } else {
-      setIsMobile(false);
+      dispatch(createPost(postData));
     }
   };
 
-  // create an event listener
+  // to view postdata
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
-  });
+    if (post) return setPostData(post);
+  }, [post]);
 
+  // to print data
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: "Visitor Pass",
     onAfterPrint: () => console.log("Printed PDF successfully!"),
   });
-
-  // const matches = useMediaQuery("(min-width:600px)");
-  // const isMobile = useMediaQuery({ query: `(max-width: 760px)` });
 
   return (
     <Container
@@ -531,7 +560,6 @@ const PaySlip = ({currentId, setCurrentId}) => {
                       color: "black",
                       marginLeft: "20px",
                     }}
-                    onClick={handleResize}
                   >
                     Generate
                   </Button>
