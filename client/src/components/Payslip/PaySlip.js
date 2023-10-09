@@ -92,10 +92,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
             xs: "0",
             sm: "600",
           },
-          flexWrap: "wrap",
+          flexWrap: "nowrap",
           bgcolor: "background.paper",
           boxShadow: "5px",
-          // width: "900px",
+          width: "900px",
           // marginLeft: "100px",
           // marginRight: "50px",
           marginTop: "10px",
@@ -213,7 +213,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
 
                 <Grid>
                   <TextField
-                    sx={{ display: "flex", mr: "20px" }}
+                    sx={{ display: "flex", mr: "0px" }}
                     type="text"
                     margin="normal"
                     name="lastName"
@@ -241,6 +241,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     label="UAN No."
                     variant="outlined"
                     required
+                    value={postData.uanNo}
+                    onChange={(e) =>
+                      setPostData({ ...postData, uanNo: e.target.value })
+                    }
                   />
                 </Grid>
 
@@ -255,6 +259,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     label="Pay Days"
                     variant="outlined"
                     required
+                    value={postData.uanNo}
+                    onChange={(e) =>
+                      setPostData({ ...postData, uanNo: e.target.value })
+                    }
                   />
                 </Grid>
 
@@ -269,6 +277,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     label="payPeriod"
                     variant="outlined"
                     required
+                    value={postData.uanNo}
+                    onChange={(e) =>
+                      setPostData({ ...postData, uanNo: e.target.value })
+                    }
                   />
                 </Grid>
 
@@ -282,6 +294,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     label="payDate"
                     variant="outlined"
                     required
+                    value={postData.uanNo}
+                    onChange={(e) =>
+                      setPostData({ ...postData, uanNo: e.target.value })
+                    }
                   />
                 </Grid>
               </Grid>
@@ -324,6 +340,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
+                      value={postData.uanNo}
+                      onChange={(e) =>
+                        setPostData({ ...postData, uanNo: e.target.value })
+                      }
                     />
                   </Grid>
                   <Grid sx={{ display: "flex", flexDirection: "row" }}>
@@ -338,6 +358,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
+                      value={postData.uanNo}
+                      onChange={(e) =>
+                        setPostData({ ...postData, uanNo: e.target.value })
+                      }
                     />
                   </Grid>
                   <Grid sx={{ display: "flex", flexDirection: "row" }}>
@@ -352,6 +376,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
+                      value={postData.uanNo}
+                      onChange={(e) =>
+                        setPostData({ ...postData, uanNo: e.target.value })
+                      }
                     />
                   </Grid>
 
@@ -367,6 +395,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
+                      value={postData.uanNo}
+                      onChange={(e) =>
+                        setPostData({ ...postData, uanNo: e.target.value })
+                      }
                     />
                   </Grid>
 
@@ -382,6 +414,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
+                      value={postData.uanNo}
+                      onChange={(e) =>
+                        setPostData({ ...postData, uanNo: e.target.value })
+                      }
                     />
                   </Grid>
 
@@ -397,6 +433,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
+                      value={postData.uanNo}
+                      onChange={(e) =>
+                        setPostData({ ...postData, uanNo: e.target.value })
+                      }
                     />
                   </Grid>
 
@@ -412,6 +452,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
+                      value={postData.uanNo}
+                      onChange={(e) =>
+                        setPostData({ ...postData, uanNo: e.target.value })
+                      }
                     />
                   </Grid>
 
@@ -431,6 +475,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
+                      value={postData.uanNo}
+                      onChange={(e) =>
+                        setPostData({ ...postData, uanNo: e.target.value })
+                      }
                     />
                   </Grid>
                 </Grid>
@@ -471,6 +519,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
+                      value={postData.uanNo}
+                      onChange={(e) =>
+                        setPostData({ ...postData, uanNo: e.target.value })
+                      }
                     />
                   </Grid>
 
@@ -490,6 +542,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
+                      value={postData.uanNo}
+                      onChange={(e) =>
+                        setPostData({ ...postData, uanNo: e.target.value })
+                      }
                     />
                   </Grid>
                   <Grid sx={{ display: "flex", flexDirection: "row" }}>
@@ -508,6 +564,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
+                      value={postData.uanNo}
+                      onChange={(e) =>
+                        setPostData({ ...postData, uanNo: e.target.value })
+                      }
                     />
                   </Grid>
 
@@ -530,10 +590,17 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       type="text"
                       size="small"
                       margin="normal"
-                      name="employeerContribution_esic"
+                      name="employeeContribution_esic"
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
+                      value={postData.employeeContribution_esic}
+                      onChange={(e) =>
+                        setPostData({
+                          ...postData,
+                          employeeContribution_esic: e.target.value,
+                        })
+                      }
                     />
                   </Grid>
 
@@ -549,10 +616,17 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       type="text"
                       size="small"
                       margin="normal"
-                      name="payDate"
+                      name="employeerContribution_esic"
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
+                      value={postData.employeerContribution_esic}
+                      onChange={(e) =>
+                        setPostData({
+                          ...postData,
+                          employeerContribution_esic: e.target.value,
+                        })
+                      }
                     />
                   </Grid>
                 </Grid>
@@ -574,8 +648,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     trigger={() => <Button>Print this out!</Button>}
                     content={() => componentRef}
                   /> */}
-                  {/* component to be printed */}
-                  //{" "}
+                  {/* component to be printed */}{" "}
                   {/* <ComponentToPrint ref={(el) => (componentRef = el)} /> */}
                   <Button
                     sx={{
@@ -593,7 +666,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     sx={{
                       bgcolor: "skyblue",
                       color: "black",
-                      marginLeft: "900px",
+                      alignItems: "right",
                     }}
                     onClick={handlePrint}
                   >
