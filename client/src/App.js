@@ -24,7 +24,7 @@ const App = () => {
         <header>
           {/* <h1>My Cool application is here</h1> */}
           <img src={LOGO} alt="logo" style={{ width: "185px" }} />
-          <h6>Thrieving   On   Excellence</h6>
+          <h6>Thriving   On   Excellence</h6>
         </header>
         <Navibar />
         <Routes>
