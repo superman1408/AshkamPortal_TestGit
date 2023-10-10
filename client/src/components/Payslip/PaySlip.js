@@ -259,9 +259,9 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     label="Pay Days"
                     variant="outlined"
                     required
-                    value={postData.uanNo}
+                    value={postData.payDays}
                     onChange={(e) =>
-                      setPostData({ ...postData, uanNo: e.target.value })
+                      setPostData({ ...postData, payDays: e.target.value })
                     }
                   />
                 </Grid>
@@ -277,9 +277,9 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     label="payPeriod"
                     variant="outlined"
                     required
-                    value={postData.uanNo}
+                    value={postData.payPeriod}
                     onChange={(e) =>
-                      setPostData({ ...postData, uanNo: e.target.value })
+                      setPostData({ ...postData, payPeriod: e.target.value })
                     }
                   />
                 </Grid>
@@ -294,9 +294,9 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     label="payDate"
                     variant="outlined"
                     required
-                    value={postData.uanNo}
+                    value={postData.payDate}
                     onChange={(e) =>
-                      setPostData({ ...postData, uanNo: e.target.value })
+                      setPostData({ ...postData, payDate: e.target.value })
                     }
                   />
                 </Grid>
@@ -329,7 +329,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                   </Grid>
                   <Divider orientation="horizontal" color="grey" />
                   <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                    <Typography marginTop={3} marginRight={30}>
+                    <Typography marginTop={3} marginRight={30} >
                       Basic
                     </Typography>
                     <TextField
@@ -340,9 +340,9 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.uanNo}
+                      value={postData.basic}
                       onChange={(e) =>
-                        setPostData({ ...postData, uanNo: e.target.value })
+                        setPostData({ ...postData, basic: e.target.value })
                       }
                     />
                   </Grid>
@@ -358,9 +358,9 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.uanNo}
+                      value={postData.houseRent}
                       onChange={(e) =>
-                        setPostData({ ...postData, uanNo: e.target.value })
+                        setPostData({ ...postData, houseRent: e.target.value })
                       }
                     />
                   </Grid>
@@ -376,9 +376,9 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.uanNo}
+                      value={postData.conveyance}
                       onChange={(e) =>
-                        setPostData({ ...postData, uanNo: e.target.value })
+                        setPostData({ ...postData, conveyance: e.target.value })
                       }
                     />
                   </Grid>
@@ -395,9 +395,12 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.uanNo}
+                      value={postData.communication}
                       onChange={(e) =>
-                        setPostData({ ...postData, uanNo: e.target.value })
+                        setPostData({
+                          ...postData,
+                          communication: e.target.value,
+                        })
                       }
                     />
                   </Grid>
@@ -414,9 +417,9 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.uanNo}
+                      value={postData.uniform}
                       onChange={(e) =>
-                        setPostData({ ...postData, uanNo: e.target.value })
+                        setPostData({ ...postData, uniform: e.target.value })
                       }
                     />
                   </Grid>
@@ -433,9 +436,9 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.uanNo}
+                      value={postData.medical}
                       onChange={(e) =>
-                        setPostData({ ...postData, uanNo: e.target.value })
+                        setPostData({ ...postData, medical: e.target.value })
                       }
                     />
                   </Grid>
@@ -452,9 +455,9 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.uanNo}
+                      value={postData.cityFactor}
                       onChange={(e) =>
-                        setPostData({ ...postData, uanNo: e.target.value })
+                        setPostData({ ...postData, cityFactor: e.target.value })
                       }
                     />
                   </Grid>
@@ -462,7 +465,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                   <Grid sx={{ display: "flex", flexDirection: "row" }}>
                     <Typography
                       marginTop={3}
-                      marginRight={18}
+                      // marginRight={18}
                       fontFamily="bolder"
                     >
                       Gross Earnings (Rs)
@@ -475,9 +478,12 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.uanNo}
+                      value={postData.grossEarnings}
                       onChange={(e) =>
-                        setPostData({ ...postData, uanNo: e.target.value })
+                        setPostData({
+                          ...postData,
+                          grossEarnings: e.target.value,
+                        })
                       }
                     />
                   </Grid>
@@ -502,7 +508,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
 
                   <Typography
                     marginTop={3}
-                    marginRight={18}
+                    // marginRight={18}
                     sx={{ font: "bolder" }}
                   >
                     Provident fund
@@ -519,9 +525,12 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.uanNo}
+                      value={postData.employeeContribution_pf}
                       onChange={(e) =>
-                        setPostData({ ...postData, uanNo: e.target.value })
+                        setPostData({
+                          ...postData,
+                          employeeContribution_pf: e.target.value,
+                        })
                       }
                     />
                   </Grid>
@@ -529,7 +538,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                   <Grid sx={{ display: "flex", flexDirection: "row" }}>
                     <Typography
                       marginTop={3}
-                      marginRight={14}
+                      // marginRight={14}
                       alignItems={"center"}
                     >
                       Employeer's Contribution
@@ -542,16 +551,19 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.uanNo}
+                      value={postData.uaemployeerContribution_pfnNo}
                       onChange={(e) =>
-                        setPostData({ ...postData, uanNo: e.target.value })
+                        setPostData({
+                          ...postData,
+                          employeerContribution_pf: e.target.value,
+                        })
                       }
                     />
                   </Grid>
                   <Grid sx={{ display: "flex", flexDirection: "row" }}>
                     <Typography
                       marginTop={3}
-                      marginRight={23}
+                      // marginRight={23}
                       alignItems={"center"}
                     >
                       Professinal Tax
@@ -560,20 +572,20 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       type="text"
                       size="small"
                       margin="normal"
-                      name="employeeContribution_esic"
+                      name="pf"
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.uanNo}
+                      value={postData.pf}
                       onChange={(e) =>
-                        setPostData({ ...postData, uanNo: e.target.value })
+                        setPostData({ ...postData, pf: e.target.value })
                       }
                     />
                   </Grid>
 
                   <Typography
                     marginTop={4}
-                    marginRight={18}
+                    // marginRight={18}
                     sx={{ font: "bolder" }}
                   >
                     ESIC
@@ -581,7 +593,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                   <Grid sx={{ display: "flex", flexDirection: "row" }}>
                     <Typography
                       marginTop={3}
-                      marginRight={15}
+                      // marginRight={15}
                       alignItems={"center"}
                     >
                       Employee's Contribution
@@ -607,7 +619,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                   <Grid sx={{ display: "flex", flexDirection: "row" }}>
                     <Typography
                       marginTop={3}
-                      marginRight={14}
+                      // marginRight={14}
                       alignItems={"center"}
                     >
                       Employeer's Contribution
