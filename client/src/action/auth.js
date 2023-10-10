@@ -17,7 +17,7 @@ export const signin = (formData, navigate) => async (dispatch) => {
     console.log(error);
 
     // toast coding for error message
-    toast.error("Username or password incorrect !!", {
+    toast.error("Username or password incorrect", {
       position: toast.POSITION.TOP_CENTER,
     });
   }

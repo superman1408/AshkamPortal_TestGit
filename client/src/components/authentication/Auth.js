@@ -18,8 +18,7 @@ import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
 import BadgeIcon from "@mui/icons-material/Badge";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import image from "../../assets/ProfileShipImage.png";
-import useStyles from "./Style";
-
+import "./style.css";
 import { ToastContainer } from "react-toastify";
 
 const initialData = {
@@ -64,8 +63,6 @@ const Auth = () => {
     });
   };
 
-  const classes = useStyles();
-
   return (
     <Grid
       container
@@ -81,14 +78,14 @@ const Auth = () => {
       }}
     >
       <Card
-        className={classes.card}
+        className="card"
         elevation={10}
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          textAlign: "center",
-          marginTop: "60px",
-        }}
+        // sx={{
+        //   display: "flex",
+        //   flexWrap: "wrap",
+        //   textAlign: "center",
+        //   marginTop: "60px",
+        // }}
       >
         <Grid>
           <div
@@ -270,11 +267,7 @@ const Auth = () => {
               >
                 {isSignUp ? "Sign Up" : "Sign In"}
               </Button>
-              {isSignUp ? (
-                ""
-              ) : (
-                <ToastContainer  />
-              )}
+              {isSignUp ? "" : <ToastContainer />}
               {/* this is required for rendering taost it works as a container*/}
             </div>
             <div>

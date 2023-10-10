@@ -1,0 +1,37 @@
+.card {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  margin-top: 60px;
+  position: relative;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 50px;
+  left: 200;
+
+  background-color: linear-gradient(
+    0deg,
+    transparent,
+    transparent,
+    black,
+    black,
+    black
+  );
+  z-index: 1;
+  animation: animate 6s linear infinite;
+  transform-origin: bottom right;
+  overflow: hidden;
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
