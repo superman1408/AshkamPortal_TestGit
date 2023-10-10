@@ -29,10 +29,10 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
   const user = JSON.parse(localStorage.getItem('profile'));
 
   const post = useSelector((state) =>
-    currentId ? state.posts.find((p) => p._id === currentId) : null
+    currentId ? state.user.find((p) => p._id === currentId) : null
   );
 
-  console.log(user);
+  console.log(post);
 
 
   useEffect(() => {
