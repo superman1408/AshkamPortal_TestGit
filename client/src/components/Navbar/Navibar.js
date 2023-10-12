@@ -83,9 +83,7 @@ const Navibar = () => {
                       Inbox
                     </NavDropdown.Item>
                     {/* <NavDropdown.Divider /> */}
-                    <NavDropdown.Item href="/roughpayslip">
-                      PaySlip
-                    </NavDropdown.Item>
+                    <NavDropdown.Item href="/payslip">PaySlip</NavDropdown.Item>
                   </NavDropdown>
                   <Nav.Link href="/aboutUs" style={{ marginTop: "8px" }}>
                     About Us

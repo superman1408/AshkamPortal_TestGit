@@ -15,7 +15,7 @@ import {
   Grid,
   Box,
   Typography,
-  Paper,
+  Card,
   Divider,
   Input,
   TextField,
@@ -78,7 +78,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
 
   return (
     <Container
-      maxWidth="true"
+      fluid
       ref={componentRef}
       sx={{
         display: "flex",
@@ -86,7 +86,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
         marginTop: "20px",
       }}
     >
-      <Paper
+      <Card
         elevation={20}
         sx={{
           display: "flex",
@@ -94,13 +94,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
             xs: "0",
             sm: "600",
           },
-          flexWrap: "nowrap",
-          bgcolor: "background.paper",
+          bgcolor: "background.Card",
           boxShadow: "5px",
-          width: "900px",
-          // marginLeft: "100px",
-          // marginRight: "50px",
-          marginTop: "10px",
+          width: "auto",
+          justifyContent: "center",
         }}
       >
         <form onSubmit={handleSubmit}>
@@ -114,6 +111,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                 lg: "column",
                 xl: "column",
               },
+              padding: "20px",
+              justifyContent: "center",
+              alignContent: "center",
+              textAlign: "center",
               marginLeft: "30px",
               marginRight: "30px",
               marginBottom: "30px",
@@ -155,13 +156,12 @@ const PaySlip = ({ currentId, setCurrentId }) => {
               <Divider orientation="horizontal" color="grey" />
 
               <TextField
-                sx={{ display: "flex", mt: "10px" }}
+                sx={{ display: "flex", mt: "10px", width: "auto" }}
                 margin="normal"
                 type="text"
                 name="employeeId"
                 label="Employee Id"
                 variant="outlined"
-                required
                 value={postData.employeeId}
                 onChange={(e) =>
                   setPostData({ ...postData, employeeId: e.target.value })
@@ -171,25 +171,26 @@ const PaySlip = ({ currentId, setCurrentId }) => {
               <Grid
                 sx={{
                   display: "flex",
-                  flexDirection: {
-                    sm: "column",
-                    xs: "column",
-                    md: "row",
-                    lg: "row",
-                    xl: "row",
-                  },
+                  // flexDirection: {
+                  //   sm: "column",
+                  //   xs: "column",
+                  //   md: "row",
+                  //   lg: "row",
+                  //   xl: "row",
+                  // },
+                  // justifyContent: "space-between",
                 }}
               >
                 <Grid>
                   <TextField
-                    sx={{ display: "flex", mr: "50px" }}
                     type="text"
-                    margin="normal"
+                    // margin="normal"
                     name="firstName"
                     // id="standard-basic"
                     label="First Name"
                     variant="outlined"
                     required
+                    fullWidth
                     value={postData.firstName}
                     onChange={(e) =>
                       setPostData({ ...postData, firstName: e.target.value })
@@ -197,32 +198,31 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                   />
                 </Grid>
 
+                {/* <Grid>
+                    <TextField
+                      sx={{ display: "flex", mr: "50px" }}
+                      type="text"
+                      margin="normal"
+                      name="middleName"
+                      label="Middle Name"
+                      variant="outlined"
+                      required
+                      value={postData.middleName}
+                      onChange={(e) =>
+                        setPostData({ ...postData, middleName: e.target.value })
+                      }
+                    />
+                  </Grid> */}
                 <Grid>
                   <TextField
-                    sx={{ display: "flex", mr: "50px" }}
                     type="text"
-                    margin="normal"
-                    name="middleName"
-                    label="Middle Name"
-                    variant="outlined"
-                    required
-                    value={postData.middleName}
-                    onChange={(e) =>
-                      setPostData({ ...postData, middleName: e.target.value })
-                    }
-                  />
-                </Grid>
-
-                <Grid>
-                  <TextField
-                    sx={{ display: "flex", mr: "0px" }}
-                    type="text"
-                    margin="normal"
+                    // margin="normal"
                     name="lastName"
                     // id="standard-basic"
                     label="Last Name"
                     variant="outlined"
                     required
+                    fullwidth
                     value={postData.lastName}
                     onChange={(e) =>
                       setPostData({ ...postData, lastName: e.target.value })
@@ -231,10 +231,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                 </Grid>
               </Grid>
 
-              <Grid sx={{ display: "flex", flexDirection: "row" }}>
+              <Grid sx={{ display: "flex", justifyContent: "stretch" }}>
                 <Grid>
                   <TextField
-                    sx={{ display: "flex", mr: "50px" }}
+                    sx={{ display: "flex" }}
                     type="text"
                     size="small"
                     margin="normal"
@@ -252,7 +252,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
 
                 <Grid>
                   <TextField
-                    sx={{ display: "flex", mr: "50px" }}
+                    sx={{ display: "flex" }}
                     type="text"
                     size="small"
                     margin="normal"
@@ -267,10 +267,11 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     }
                   />
                 </Grid>
-
+              </Grid>
+              <Grid sx={{ display: "flex", flexDirection: "row" }}>
                 <Grid>
                   <TextField
-                    sx={{ display: "flex", mr: "50px" }}
+                    sx={{ display: "flex" }}
                     type="text"
                     size="small"
                     margin="normal"
@@ -288,7 +289,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
 
                 <Grid>
                   <TextField
-                    sx={{ display: "flex", mr: "20px" }}
+                    sx={{ display: "flex" }}
                     type="text"
                     size="small"
                     margin="normal"
@@ -315,19 +316,31 @@ const PaySlip = ({ currentId, setCurrentId }) => {
 
               <Divider orientation="horizontal" color="grey" />
 
-              <Grid sx={{ display: "flex", flexDirection: "row", mb: "10px" }}>
+              <Grid
+                sx={{
+                  display: "flex",
+                  mb: "10px",
+                  "@media (max-width: 600px)": {
+                    flexDirection: "column",
+                  },
+
+                  "@media (min-width: 600px)": {
+                    flexDirection: "row",
+                  },
+                  justifyContent: "space-between",
+                }}
+              >
                 <Grid sx={{ display: "flex", flexDirection: "column" }}>
                   <Grid
                     sx={{
                       display: "flex",
-                      flexDirection: "row",
                       marginTop: "20px",
+                      // marginRight: "10px",
+                      justifyContent: "space-between",
                     }}
                   >
                     <Typography variant="h6">Earnings</Typography>
-                    <Typography variant="h6" marginLeft={30}>
-                      Amount
-                    </Typography>
+                    <Typography variant="h6">Amount</Typography>
                   </Grid>
                   <Divider orientation="horizontal" color="grey" />
                   <Grid sx={{ display: "flex", flexDirection: "row" }}>
@@ -352,10 +365,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       />
                     </Grid>
                   </Grid>
-                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                    <Typography marginTop={3} marginRight={15}>
-                      House rent allowance
-                    </Typography>
+                  <Grid
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Typography marginTop={3}>House rent allowance</Typography>
                     <TextField
                       type="text"
                       size="small"
@@ -370,10 +383,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       }
                     />
                   </Grid>
-                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                    <Typography marginTop={3} marginRight={14}>
-                      Conveyance allowance
-                    </Typography>
+                  <Grid
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Typography marginTop={3}>Conveyance allowance</Typography>
                     <TextField
                       type="text"
                       size="small"
@@ -389,10 +402,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     />
                   </Grid>
 
-                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                    <Typography marginTop={3} marginRight={21}>
-                      Communication
-                    </Typography>
+                  <Grid
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Typography marginTop={3}>Communication</Typography>
                     <TextField
                       type="text"
                       size="small"
@@ -411,10 +424,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     />
                   </Grid>
 
-                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                    <Typography marginTop={3} marginRight={18}>
-                      Uniform allowance
-                    </Typography>
+                  <Grid
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Typography marginTop={3}>Uniform allowance</Typography>
                     <TextField
                       type="text"
                       size="small"
@@ -430,10 +443,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     />
                   </Grid>
 
-                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                    <Typography marginTop={3} marginRight={18}>
-                      Medical allowance
-                    </Typography>
+                  <Grid
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Typography marginTop={3}>Medical allowance</Typography>
                     <TextField
                       type="text"
                       size="small"
@@ -449,10 +462,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     />
                   </Grid>
 
-                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                    <Typography marginTop={3} marginRight={24}>
-                      City Factors
-                    </Typography>
+                  <Grid
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Typography marginTop={3}>City Factors</Typography>
                     <TextField
                       size="small"
                       type="text"
@@ -468,14 +481,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     />
                   </Grid>
 
-                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                    <Typography
-                      marginTop={3}
-                      // marginRight={18}
-                      fontFamily="bolder"
-                    >
-                      Gross Earnings (Rs)
-                    </Typography>
+                  <Grid
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Typography marginTop={3}>Gross Earnings (Rs)</Typography>
                     <TextField
                       size="small"
                       type="text"
@@ -495,32 +504,26 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                   </Grid>
                 </Grid>
 
-                <Grid
-                  sx={{ display: "flex", flexDirection: "column", ml: "80px" }}
-                >
+                <Grid sx={{ display: "flex", flexDirection: "column" }}>
                   <Grid
                     sx={{
                       display: "flex",
-                      flexDirection: "row",
+                      justifyContent: "space-between",
                       marginTop: "20px",
                     }}
                   >
                     <Typography variant="h6">Deductions</Typography>
-                    <Typography variant="h6" marginLeft={30}>
-                      Amount
-                    </Typography>
+                    <Typography variant="h6">Amount</Typography>
                   </Grid>
                   <Divider orientation="horizontal" color="grey" />
 
-                  <Typography
-                    marginTop={3}
-                    // marginRight={18}
-                    sx={{ font: "bolder" }}
-                  >
+                  <Typography marginTop={3} sx={{ fontWeight: "bold" }}>
                     Provident fund
                   </Typography>
-                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                    <Typography marginTop={3} marginRight={15}>
+                  <Grid
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Typography marginTop={3}>
                       Employee's Contribution
                     </Typography>
                     <TextField
@@ -541,12 +544,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     />
                   </Grid>
 
-                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                    <Typography
-                      marginTop={3}
-                      // marginRight={14}
-                      alignItems={"center"}
-                    >
+                  <Grid
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Typography marginTop={3} alignItems={"center"}>
                       Employeer's Contribution
                     </Typography>
                     <TextField
@@ -566,12 +567,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                       }
                     />
                   </Grid>
-                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                    <Typography
-                      marginTop={3}
-                      // marginRight={23}
-                      alignItems={"center"}
-                    >
+                  <Grid
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Typography marginTop={3} alignItems={"center"}>
                       Professinal Tax
                     </Typography>
                     <TextField
@@ -592,11 +591,13 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                   <Typography
                     marginTop={4}
                     // marginRight={18}
-                    sx={{ font: "bolder" }}
+                    sx={{ fontWeight: "bold" }}
                   >
                     ESIC
                   </Typography>
-                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
+                  <Grid
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
                     <Typography
                       marginTop={3}
                       // marginRight={15}
@@ -622,7 +623,9 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     />
                   </Grid>
 
-                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
+                  <Grid
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
                     <Typography
                       marginTop={3}
                       // marginRight={14}
@@ -656,23 +659,17 @@ const PaySlip = ({ currentId, setCurrentId }) => {
               <Grid
                 sx={{
                   display: "flex",
-                  flexDirection: "row",
-                  marginTop: "60px",
+                  justifyContent: "space-between",
+                  // margin: "60px 80px 0px 100px",
                 }}
               >
                 <Grid>
-                  {/* button to trigger printing of target component */}
-                  {/* <ReactToPrint
-                    trigger={() => <Button>Print this out!</Button>}
-                    content={() => componentRef}
-                  /> */}
-                  {/* component to be printed */}{" "}
-                  {/* <ComponentToPrint ref={(el) => (componentRef = el)} /> */}
                   <Button
+                    required
+                    fullWidth
                     sx={{
                       bgcolor: "skyblue",
                       color: "black",
-                      marginLeft: "20px",
                     }}
                   >
                     Generate
@@ -680,7 +677,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                 </Grid>
                 <Grid>
                   <Button
-                    type="button"
+                    type="submit"
                     sx={{
                       bgcolor: "skyblue",
                       color: "black",
@@ -695,7 +692,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
             </Grid>
           </Grid>
         </form>
-      </Paper>
+      </Card>
     </Container>
   );
 };
