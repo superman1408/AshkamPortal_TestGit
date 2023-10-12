@@ -158,6 +158,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
               <TextField
                 sx={{ display: "flex", mt: "10px", width: "auto" }}
                 margin="normal"
+                size="small"
                 type="text"
                 name="employeeId"
                 label="Employee Id"
@@ -178,60 +179,9 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                   //   lg: "row",
                   //   xl: "row",
                   // },
-                  // justifyContent: "space-between",
+                  justifyContent: "space-between",
                 }}
               >
-                <Grid>
-                  <TextField
-                    type="text"
-                    // margin="normal"
-                    name="firstName"
-                    // id="standard-basic"
-                    label="First Name"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    value={postData.firstName}
-                    onChange={(e) =>
-                      setPostData({ ...postData, firstName: e.target.value })
-                    }
-                  />
-                </Grid>
-
-                {/* <Grid>
-                    <TextField
-                      sx={{ display: "flex", mr: "50px" }}
-                      type="text"
-                      margin="normal"
-                      name="middleName"
-                      label="Middle Name"
-                      variant="outlined"
-                      required
-                      value={postData.middleName}
-                      onChange={(e) =>
-                        setPostData({ ...postData, middleName: e.target.value })
-                      }
-                    />
-                  </Grid> */}
-                <Grid>
-                  <TextField
-                    type="text"
-                    // margin="normal"
-                    name="lastName"
-                    // id="standard-basic"
-                    label="Last Name"
-                    variant="outlined"
-                    required
-                    fullwidth
-                    value={postData.lastName}
-                    onChange={(e) =>
-                      setPostData({ ...postData, lastName: e.target.value })
-                    }
-                  />
-                </Grid>
-              </Grid>
-
-              <Grid sx={{ display: "flex", justifyContent: "stretch" }}>
                 <Grid>
                   <TextField
                     sx={{ display: "flex" }}
@@ -246,6 +196,61 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     value={postData.uanNo}
                     onChange={(e) =>
                       setPostData({ ...postData, uanNo: e.target.value })
+                    }
+                  />
+                </Grid>
+
+                <Grid>
+                  <TextField
+                    type="text"
+                    margin="normal"
+                    size="small"
+                    name="firstName"
+                    // id="standard-basic"
+                    label="First Name"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    value={postData.firstName}
+                    onChange={(e) =>
+                      setPostData({ ...postData, firstName: e.target.value })
+                    }
+                  />
+                </Grid>
+
+                <Grid>
+                  <TextField
+                    type="text"
+                    margin="normal"
+                    size="small"
+                    name="lastName"
+                    // id="standard-basic"
+                    label="Last Name"
+                    variant="outlined"
+                    required
+                    fullwidth
+                    value={postData.lastName}
+                    onChange={(e) =>
+                      setPostData({ ...postData, lastName: e.target.value })
+                    }
+                  />
+                </Grid>
+              </Grid>
+
+              <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
+                <Grid>
+                  <TextField
+                    sx={{ display: "flex" }}
+                    type="text"
+                    size="small"
+                    margin="normal"
+                    name="payDate"
+                    label="payDate"
+                    variant="outlined"
+                    required
+                    value={postData.payDate}
+                    onChange={(e) =>
+                      setPostData({ ...postData, payDate: e.target.value })
                     }
                   />
                 </Grid>
@@ -267,8 +272,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     }
                   />
                 </Grid>
-              </Grid>
-              <Grid sx={{ display: "flex", flexDirection: "row" }}>
+
                 <Grid>
                   <TextField
                     sx={{ display: "flex" }}
@@ -286,24 +290,10 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     }
                   />
                 </Grid>
-
-                <Grid>
-                  <TextField
-                    sx={{ display: "flex" }}
-                    type="text"
-                    size="small"
-                    margin="normal"
-                    name="payDate"
-                    label="payDate"
-                    variant="outlined"
-                    required
-                    value={postData.payDate}
-                    onChange={(e) =>
-                      setPostData({ ...postData, payDate: e.target.value })
-                    }
-                  />
-                </Grid>
               </Grid>
+              <Grid
+                sx={{ display: "flex", justifyContent: "space-between" }}
+              ></Grid>
             </Grid>
 
             <Grid>
@@ -504,7 +494,13 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                   </Grid>
                 </Grid>
 
-                <Grid sx={{ display: "flex", flexDirection: "column" }}>
+                <Grid
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    marginLeft: "50px",
+                  }}
+                >
                   <Grid
                     sx={{
                       display: "flex",
