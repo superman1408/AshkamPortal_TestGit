@@ -320,7 +320,12 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                   justifyContent: "space-between",
                 }}
               >
-                <Grid sx={{ display: "flex", flexDirection: "column" }}>
+                <Grid
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
                   <Grid
                     sx={{
                       display: "flex",
@@ -343,11 +348,9 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                         size="small"
                         margin="normal"
                         name="basic"
-                        alignContent="right"
                         // id="standard-basic"
                         label="amount"
                         variant="outlined"
-                        sx={{ marginLeft: "100px" }}
                         value={postData.basic}
                         onChange={(e) =>
                           setPostData({ ...postData, basic: e.target.value })
@@ -356,7 +359,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     </Grid>
                   </Grid>
                   <Grid
-                    sx={{ display: "flex", justifyContent: "space-between" }}
+                    sx={{ display: "flex", justifyContent: "space-evenly" }}
                   >
                     <Typography marginTop={3}>House rent allowance</Typography>
                     <TextField
