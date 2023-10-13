@@ -501,7 +501,7 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                   sx={{
                     display: "flex",
                     flexDirection: "column",
-                    // marginLeft: "50px",
+                    marginLeft: "50px",
                   }}
                 >
                   <Grid
