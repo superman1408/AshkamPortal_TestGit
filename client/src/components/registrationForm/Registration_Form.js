@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import {
   Divider,
   Grid,
-  Paper,
+  Card,
   TextField,
   Typography,
   Button,
@@ -32,11 +32,9 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
 
   console.log(currentId);
 
-
   useEffect(() => {
     if (post) return setPostData(post);
   }, [post]);
-
 
   const [postData, setPostData] = useState({
     firstName: "",
@@ -62,14 +60,6 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
     selectedFile: "",
   });
 
-
-  
-
-
-
-  
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -80,12 +70,6 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
     }
     console.log(postData);
   };
-
-
-
-  
-
-
 
   const handleReset = () => {
     setPostData({
@@ -113,8 +97,6 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
     });
   };
 
-
-
   const handleDOB = (dob) => {
     setdob(dob);
     const UsFormatter = new Intl.DateTimeFormat("en-US");
@@ -122,21 +104,17 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
     setPostData({ ...postData, dob: date });
   };
 
-
   // ________________test code _________________________________
 
-  
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: "Visitor Pass",
     onAfterPrint: () => console.log("Printed PDF successfully!"),
   });
 
-
-
-
   return (
     <Container
+      fluid
       ref={componentRef}
       maxwidth="true"
       sx={{
@@ -145,7 +123,7 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
         marginTop: "20px",
       }}
     >
-      <Paper elevation={24} sx={{ width: "800px", justifyContent: "center" }}>
+      <Card elevation={24} sx={{ width: "800px", justifyContent: "center" }}>
         <Grid
           sx={{ marginLeft: "30px", marginRight: "30px", marginBottom: "30px" }}
         >
@@ -557,7 +535,7 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
             </Grid>
           </form>
         </Grid>
-      </Paper>
+      </Card>
     </Container>
   );
 };
