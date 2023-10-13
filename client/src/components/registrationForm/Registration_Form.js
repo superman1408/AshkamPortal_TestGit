@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+
 import {
   Divider,
   Grid,
@@ -8,6 +9,7 @@ import {
   Button,
   Container,
 } from "@mui/material";
+
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers";
@@ -16,8 +18,8 @@ import FormControl from "@mui/joy/FormControl";
 import Radio from "@mui/joy/Radio";
 import RadioGroup from "@mui/joy/RadioGroup";
 import FileBase from "react-file-base64";
-import { useDispatch, useSelector } from "react-redux";
-import { createPost, updatePost } from "../../action/posts";
+import { useDispatch } from "react-redux";
+import { updatePost } from "../../action/posts";
 
 import { useReactToPrint } from "react-to-print";
 
@@ -29,22 +31,13 @@ const RegistrationForm = () => {
 
   const user = JSON.parse(localStorage.getItem('profile'));
 
-  const post = useSelector((state) =>
-    currentId ? user.result.find((p) => p._id === currentId) : null
-  );
+
+  useEffect(() => {
+    if (!currentId) return setCurrentId(user.result._id);
+  }, [currentId, user]);
 
 
-  console.log(user.result._id);
-
-  
-
-
-  // useEffect(() => {
-  //   if (post) return setPostData(user);
-  // }, [post,user]);
-
-
-  // console.log(post);
+  console.log(currentId);
 
   
 
@@ -82,13 +75,14 @@ const RegistrationForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (currentId) {
       dispatch(updatePost(currentId, postData));
+      console.log(currentId);
     } else {
-      dispatch(createPost(postData));
+      // dispatch(createPost(postData));
+      console.log("Not set current ID");
     }
-    console.log(postData);
+    // console.log(postData);
   };
 
 

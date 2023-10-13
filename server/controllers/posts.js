@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 
-import PostMessage from "../model/postMessage.js";
+import AuthenticateUser from "../model/authDetails.js";
 
 // ________________________get operation___________________________
 
 export const getPosts = async (req, res) => {
   try {
-    const postMessage = await PostMessage.find();
+    const postMessage = await AuthenticateUser.find();
     // console.log(postMessage);
     res.status(200).json(postMessage);
   } catch (error) {
@@ -14,10 +14,13 @@ export const getPosts = async (req, res) => {
   }
 };
 
+
+
+
 export const getPost = async (req, res) => {
   const { id } = req.params;
   try {
-    const postMessage = await PostMessage.findById(id);
+    const postMessage = await AuthenticateUser.findById(id);
     res.status(200).json(postMessage);
   } catch (error) {
     console.log(error);
@@ -26,9 +29,12 @@ export const getPost = async (req, res) => {
 
 // ________________________create operation___________________________
 
+
+
+
 export const createPost = async (req, res) => {
   const Post = req.body;
-  const newPost = new PostMessage(Post);
+  const newPost = new AuthenticateUser(Post);
   try {
     await newPost.save();
     res.status(201).json(newPost);
@@ -46,7 +52,7 @@ export const updatePost = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(_id))
     return res.status(404).send("no post with that id found");
 
-  const updatedPost = await PostMessage.findByIdAndUpdate(
+  const updatedPost = await AuthenticateUser.findByIdAndUpdate(
     _id,
     { ...post, _id },
     {
@@ -60,44 +66,54 @@ export const updatePost = async (req, res) => {
 
 // ________________________delete operation___________________________
 
+
+
+
 export const deletePost = async (req, res) => {
   const { id } = req.params;
 
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).send("no post with that id found");
 
-  await PostMessage.findByIdAndRemove(id);
+  await AuthenticateUser.findByIdAndRemove(id);
   res.json({ message: "Post deleted successfully" });
 };
+
+
+
+
 
 export const sendData = async (req, res) => {
   const { id } = req.params;
   const value = req.body;
   // console.log(id);
 
-  const post = await PostMessage.findById(id);
+  const post = await AuthenticateUser.findById(id);
   post.recipient.push(value.recipient);
   post.requiredMessage.push(value.requiredMessage);
   post.subject.push(value.subject);
 
-  const updatePost = await PostMessage.findByIdAndUpdate(id, post, {
+  const updatePost = await AuthenticateUser.findByIdAndUpdate(id, post, {
     new: true,
   });
   res.status(200).json(updatePost);
 };
 
+
+
+
 export const updatedStatus = async (req, res) => {
   console.log("Yes i can change the status");
   const { id } = req.params;
-  console.log(id);
+  // console.log(id);
   const value = req.body;
-  console.log(value);
+  // console.log(value);
 
-  const post = await PostMessage.findById(id);
+  const post = await AuthenticateUser.findById(id);
 
   post.status.push(value.status);
 
-  const statusUpdate = await PostMessage.findByIdAndUpdate(id, post, {
+  const statusUpdate = await AuthenticateUser.findByIdAndUpdate(id, post, {
     new: true,
   });
   res.status(200).json(statusUpdate);
