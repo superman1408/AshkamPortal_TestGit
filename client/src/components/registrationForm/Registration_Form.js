@@ -21,7 +21,8 @@ import { createPost, updatePost } from "../../action/posts";
 
 import { useReactToPrint } from "react-to-print";
 
-const RegistrationForm = ({ currentId, setCurrentId }) => {
+const RegistrationForm = () => {
+  const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
   const componentRef = useRef();
   const [dob, setdob] = useState("");
@@ -29,16 +30,23 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
   const user = JSON.parse(localStorage.getItem('profile'));
 
   const post = useSelector((state) =>
-    currentId ? state.user.find((p) => p._id === currentId) : null
+    currentId ? user.result.find((p) => p._id === currentId) : null
   );
 
-  console.log(post);
+
+  console.log(user.result._id);
+
+  
 
 
-  useEffect(() => {
-    if (post) return setPostData(post);
-  }, [post]);
+  // useEffect(() => {
+  //   if (post) return setPostData(user);
+  // }, [post,user]);
 
+
+  // console.log(post);
+
+  
 
   const [postData, setPostData] = useState({
     firstName: "",
