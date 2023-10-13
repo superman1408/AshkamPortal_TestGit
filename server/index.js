@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 import userRouters from './routes/user.js';
+import postsRouters from './routes/posts.js';
 
 
 
@@ -22,6 +23,7 @@ app.use(bodyParser.urlencoded({ limit: '35mb', extended: true}));
 app.use(cors());
 
 app.use('/user', userRouters);
+app.use('/posts', postsRouters);
 
 
 

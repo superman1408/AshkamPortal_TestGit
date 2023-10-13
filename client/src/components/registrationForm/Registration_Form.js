@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+
 import {
   Divider,
   Grid,
@@ -8,6 +9,7 @@ import {
   Button,
   Container,
 } from "@mui/material";
+
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers";
@@ -16,25 +18,27 @@ import FormControl from "@mui/joy/FormControl";
 import Radio from "@mui/joy/Radio";
 import RadioGroup from "@mui/joy/RadioGroup";
 import FileBase from "react-file-base64";
-import { useDispatch, useSelector } from "react-redux";
-import { createPost, updatePost } from "../../action/posts";
+import { useDispatch } from "react-redux";
+import { updatePost } from "../../action/posts";
 
 import { useReactToPrint } from "react-to-print";
 
-const RegistrationForm = ({ currentId, setCurrentId }) => {
+const RegistrationForm = () => {
+  const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
   const componentRef = useRef();
   const [dob, setdob] = useState("");
 
-  const post = useSelector((state) =>
-    currentId ? state.posts.find((p) => p._id === currentId) : null
-  );
+  const user = JSON.parse(localStorage.getItem('profile'));
 
-  console.log(currentId);
 
   useEffect(() => {
-    if (post) return setPostData(post);
-  }, [post]);
+    if (!currentId) return setCurrentId(user.result._id);
+  }, [currentId, user]);
+
+
+
+  
 
   const [postData, setPostData] = useState({
     firstName: "",
@@ -60,16 +64,21 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
     selectedFile: "",
   });
 
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (currentId) {
       dispatch(updatePost(currentId, postData));
+      console.log(currentId);
     } else {
-      dispatch(createPost(postData));
+      // dispatch(createPost(postData));
+      console.log("Not set current ID");
     }
-    console.log(postData);
+    // console.log(postData);
   };
+
+
 
   const handleReset = () => {
     setPostData({
@@ -97,6 +106,8 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
     });
   };
 
+
+
   const handleDOB = (dob) => {
     setdob(dob);
     const UsFormatter = new Intl.DateTimeFormat("en-US");
@@ -104,13 +115,18 @@ const RegistrationForm = ({ currentId, setCurrentId }) => {
     setPostData({ ...postData, dob: date });
   };
 
+
   // ________________test code _________________________________
 
+  
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: "Visitor Pass",
     onAfterPrint: () => console.log("Printed PDF successfully!"),
   });
+
+
+
 
   return (
     <Container
