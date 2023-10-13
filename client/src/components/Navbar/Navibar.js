@@ -46,7 +46,7 @@ const Navibar = () => {
   };
 
   return (
-    <Navbar sticky="top" expand="lg" className="navbar-custom"  >
+    <Navbar sticky="top" expand="lg" className="bg-body-tertiary">
       {/* className=" bg-body-tertiary justify-content-between" */}
       <Container fluid>
         {/* <Navbar.Brand href="/auth">
