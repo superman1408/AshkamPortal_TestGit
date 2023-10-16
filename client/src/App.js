@@ -34,12 +34,16 @@ const App = () => {
               justifyContent: "space-evenly",
             }}
           >
-            <img src={LOGO} alt="logo" style={{ width: "220px" }} />
+            <img src={LOGO} alt="logo" style={{ width: "185px" }} />
           </div>
         </header>
         <Navibar />
         <Routes>
-          <Route exact path="/" element={!user ? (<Authentication />) : (<Dashboard/>)} />
+          <Route
+            exact
+            path="/"
+            element={!user ? <Authentication /> : <Dashboard />}
+          />
           {/* this part need to be examined after ward */}
 
           <Route path="/auth" exact element={!user && <Authentication />} />
