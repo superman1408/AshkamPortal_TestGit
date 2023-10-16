@@ -2,14 +2,11 @@ import React, { useRef } from "react";
 import { useState, useEffect } from "react";
 import { useReactToPrint } from "react-to-print";
 import ReactToPrint from "react-to-print";
-// import ComponentToPrint from "react-to-print";
 // import useStyle from "./Style";
 
 import { UseSelector } from "react-redux";
 
 import { createPost, updatePost } from "../../action/posts";
-
-// import useMediaQuery from "react-responsive";
 
 import {
   Grid,
@@ -25,9 +22,9 @@ import {
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
-const PaySlip = ({ currentId, setCurrentId }) => {
+const PaySlip = () => {
+  const [currentId, setCurrentId] = useState();
   const dispatch = useDispatch();
-  // const classes = useStyle();
 
   const [postData, setPostData] = useState({
     employeeId: "",
@@ -338,28 +335,28 @@ const PaySlip = ({ currentId, setCurrentId }) => {
                     <Typography variant="h6">Amount</Typography>
                   </Grid>
                   <Divider orientation="horizontal" color="grey" />
-                  <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                    <Grid
-                      sx={{ display: "flex", justifyContent: "space-between" }}
-                    >
-                      <Typography marginTop={3}>Basic</Typography>
-                      <TextField
-                        type="text"
-                        size="small"
-                        margin="normal"
-                        name="basic"
-                        // id="standard-basic"
-                        label="amount"
-                        variant="outlined"
-                        value={postData.basic}
-                        onChange={(e) =>
-                          setPostData({ ...postData, basic: e.target.value })
-                        }
-                      />
-                    </Grid>
-                  </Grid>
+
                   <Grid
-                    sx={{ display: "flex", justifyContent: "space-evenly" }}
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Typography marginTop={3}>Basic</Typography>
+                    <TextField
+                      type="text"
+                      size="small"
+                      margin="normal"
+                      name="basic"
+                      // id="standard-basic"
+                      label="amount"
+                      variant="outlined"
+                      value={postData.basic}
+                      onChange={(e) =>
+                        setPostData({ ...postData, basic: e.target.value })
+                      }
+                    />
+                  </Grid>
+
+                  <Grid
+                    sx={{ display: "flex", justifyContent: "space-between" }}
                   >
                     <Typography marginTop={3}>House rent allowance</Typography>
                     <TextField
