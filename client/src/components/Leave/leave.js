@@ -122,10 +122,6 @@ const Leave = () => {
     >
       <Panel />
       <form autoComplete="off" onSubmit={handleSubmit}>
-        <Typography
-          variant="h6"
-          sx={{ padding: "3px", textAlign: "center" }}
-        >{`Inbox - ${user.result.email}`}</Typography>
         <div
           className={classes.mainContainer}
           style={{
@@ -134,129 +130,140 @@ const Leave = () => {
             marginLeft: "10px",
           }}
         >
-          <Card
-            elevation={10}
-            sx={{
-              padding: "10px",
-              width: {
-                sx: 1.0, // 100%
-                sm: 250,
-                md: 700,
-              },
-            }}
-          >
-            <TextField
-              type="email"
-              name="recipient"
-              label="Recipient"
-              variant="outlined"
-              required
-              fullWidth
-              sx={{ marginTop: "10px" }}
-              onChange={(e) =>
-                setMailData({ ...mailData, recipient: e.target.value })
-              }
-            />
-
-            <Grid
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <Typography
+              variant="h6"
               sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                "@media (max-width: 600px)": {
-                  flexDirection: "column",
+                padding: "5px",
+                textAlign: "center",
+              }}
+            >{`${user.result.email}`}</Typography>
+            <Card
+              elevation={10}
+              sx={{
+                padding: "10px",
+                width: {
+                  sx: 1.0, // 100%
+                  sm: 250,
+                  md: 700,
                 },
               }}
             >
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DemoContainer components={["DatePicker"]}>
-                  <DatePicker
-                    label="From"
-                    value={valueTo}
-                    onChange={(newValue) => setValueTo(newValue)}
-                    required
-                    fullWidth
-                  />
-                </DemoContainer>
-              </LocalizationProvider>
-
-              <div style={{ margin: "10px 0px" }}>
-                <select
-                  value={select ? select : ""}
-                  onChange={handleSelect}
-                  placeholder="Select Leave"
-                  className={classes.dropDown}
-                >
-                  {options.map((option) => (
-                    <option key={option.value}>{option.label}</option>
-                  ))}
-                </select>
-              </div>
-            </Grid>
-
-            <Grid>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DemoContainer components={["DatePicker"]}>
-                  <DatePicker
-                    label="To"
-                    value={valueFrom}
-                    required
-                    halfWidth
-                    onChange={(newValue) => setValueFrom(newValue)}
-                  />
-                </DemoContainer>
-              </LocalizationProvider>
-            </Grid>
-
-            {select && (
               <TextField
-                name="subject"
-                label="Subject"
-                required
-                fullWidth
-                sx={{ marginTop: "10px", fontWeight: "500px" }}
-                value={
-                  (mailData.subject = `Applying for ${leaveType} from ${fromDate} to ${toDate}`)
-                }
-                onChange={(e) =>
-                  setMailData({
-                    ...mailData,
-                    [e.target.subject]: e.target.value,
-                  })
-                }
-              />
-            )}
-            <Grid>
-              <TextField
+                type="email"
+                name="recipient"
+                label="Recipient"
                 variant="outlined"
                 required
                 fullWidth
-                multiline
-                minRows={8}
-                sx={{ marginTop: "10px", fontWeight: "200px" }}
+                sx={{ marginTop: "10px" }}
                 onChange={(e) =>
-                  setMailData({
-                    ...mailData,
-                    requiredMessage: e.target.value,
-                  })
+                  setMailData({ ...mailData, recipient: e.target.value })
                 }
               />
 
-              <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-                sx={{ float: "right", marginTop: "10px" }}
+              <Grid
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  "@media (max-width: 600px)": {
+                    flexDirection: "column",
+                  },
+                }}
               >
-                Send
-              </Button>
-            </Grid>
-          </Card>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DemoContainer components={["DatePicker"]}>
+                    <DatePicker
+                      label="From"
+                      value={valueTo}
+                      onChange={(newValue) => setValueTo(newValue)}
+                      required
+                      fullWidth
+                    />
+                  </DemoContainer>
+                </LocalizationProvider>
+
+                <div style={{ margin: "10px 0px" }}>
+                  <select
+                    value={select ? select : ""}
+                    onChange={handleSelect}
+                    placeholder="Select Leave"
+                    className={classes.dropDown}
+                  >
+                    {options.map((option) => (
+                      <option key={option.value}>{option.label}</option>
+                    ))}
+                  </select>
+                </div>
+              </Grid>
+
+              <Grid>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DemoContainer components={["DatePicker"]}>
+                    <DatePicker
+                      label="To"
+                      value={valueFrom}
+                      required
+                      halfWidth
+                      onChange={(newValue) => setValueFrom(newValue)}
+                    />
+                  </DemoContainer>
+                </LocalizationProvider>
+              </Grid>
+
+              {select && (
+                <TextField
+                  name="subject"
+                  label="Subject"
+                  required
+                  fullWidth
+                  sx={{ marginTop: "10px", fontWeight: "500px" }}
+                  value={
+                    (mailData.subject = `Applying for ${leaveType} from ${fromDate} to ${toDate}`)
+                  }
+                  onChange={(e) =>
+                    setMailData({
+                      ...mailData,
+                      [e.target.subject]: e.target.value,
+                    })
+                  }
+                />
+              )}
+              <Grid>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  multiline
+                  minRows={8}
+                  sx={{ marginTop: "10px", fontWeight: "200px" }}
+                  onChange={(e) =>
+                    setMailData({
+                      ...mailData,
+                      requiredMessage: e.target.value,
+                    })
+                  }
+                />
+
+                <Button
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  sx={{ float: "right", marginTop: "10px" }}
+                >
+                  Send
+                </Button>
+              </Grid>
+            </Card>
+          </div>
           <div style={{ marginLeft: "10px" }}>
             <Card
               elevation={10}
               sx={{
+                marginTop: "40px",
+                height: "320px",
                 "@media (max-width: 600px)": {
-                  marginTop: "20px",
+                  // marginTop: "20px",
                 },
               }}
             >

@@ -86,7 +86,7 @@ const PaySlip = () => {
       <Card
         elevation={20}
         sx={{
-          display: "flex",
+          // display: "flex",
           display: {
             xs: "0",
             sm: "600",
