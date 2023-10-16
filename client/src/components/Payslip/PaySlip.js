@@ -76,7 +76,6 @@ const PaySlip = () => {
   return (
     <Container
       fluid
-      ref={componentRef}
       sx={{
         display: "flex",
         justifyContent: "center",
@@ -85,6 +84,7 @@ const PaySlip = () => {
     >
       <Card
         elevation={20}
+        ref={componentRef}
         sx={{
           // display: "flex",
           display: {
