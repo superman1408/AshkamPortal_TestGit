@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import Navbar from "../Navbar/navbar";
 
 import WeeklyActivity from "../WeeklyActivity/WeeklyActivity";
@@ -11,10 +11,12 @@ import Birthday from "../Birthday/Birthday";
 import { Box, Grid, Typography } from "@mui/material";
 import Panel from "../Panel/Panel";
 import Attendance from "../Attendance/Attendance";
-
-const user = JSON.parse(localStorage.getItem("profile"));
+// import { useLocation } from "react-router-dom";
+// import { useDispatch } from "react-redux";
 
 const Admin = () => {
+  const user = JSON.parse(localStorage.getItem("profile"));
+
   return (
     <div>
       <Box
@@ -60,11 +62,19 @@ const Admin = () => {
               sx={{ display: "flex", flexDirection: "row", marginTop: "20px" }}
             >
               <Grid>
-                <Typography
-                  variant="h5"
-                  sx={{ display: "flex", marginLeft: "80px" }}
-                >{`Welcome ${user.result.role.toUpperCase()} !`}</Typography>
-
+                <div>
+                  <Typography
+                    variant="h5"
+                    sx={{
+                      display: "flex",
+                      marginLeft: "80px",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Welcome
+                    {` ${user.result.role.toUpperCase()} !`}
+                  </Typography>
+                </div>
                 <Grid sx={{ display: "flex" }}>
                   <Grid>
                     <TotalEmployee />
@@ -110,5 +120,5 @@ const Admin = () => {
     </div>
   );
 };
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>;
+// {/* <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>; */}
 export default Admin;
