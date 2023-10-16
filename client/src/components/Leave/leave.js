@@ -6,6 +6,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useDispatch, useSelector } from "react-redux";
 import { json, useNavigate, useParams } from "react-router-dom";
+import MailIcon from "@mui/icons-material/Mail";
 import useStyles from "./style";
 import Panel from "../Panel/Panel";
 import { sendMail, sendMailData } from "../../action/mail";
@@ -131,13 +132,18 @@ const Leave = () => {
           }}
         >
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <Typography
-              variant="h6"
-              sx={{
-                padding: "5px",
-                textAlign: "center",
-              }}
-            >{`${user.result.email}`}</Typography>
+            <Grid>
+              <Typography
+                variant="h6"
+                sx={{
+                  padding: "5px",
+                  textAlign: "center",
+                }}
+              >
+                <MailIcon />
+                {`${user.result.email}`}
+              </Typography>
+            </Grid>
             <Card
               elevation={10}
               sx={{
