@@ -31,7 +31,7 @@ import ForwardToInboxTwoToneIcon from "@mui/icons-material/ForwardToInboxTwoTone
 
 import avatar1 from "../../assets/Profile.jpg";
 
-const Panel = () => {
+const Panel = (post) => {
   // const [Btn, setBtn] = useState(false);
 
   const dispatch = useDispatch();
@@ -94,7 +94,10 @@ const Panel = () => {
                 bgcolor: "orange",
               }}
             >
-              {user.result.email.charAt(0).toUpperCase()}
+              {/* {post.firstName} */}
+
+              {user.result.firstName.charAt(0).toUpperCase() +
+                user.result.lastName.charAt(0).toUpperCase()}
             </Avatar>
           </Stack>
         </Grid>
