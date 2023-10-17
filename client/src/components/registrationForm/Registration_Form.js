@@ -29,23 +29,18 @@ const RegistrationForm = () => {
   const componentRef = useRef();
   const [dob, setdob] = useState("");
 
-  const user = JSON.parse(localStorage.getItem('profile'));
-
+  const user = JSON.parse(localStorage.getItem("profile"));
 
   useEffect(() => {
     if (!currentId) return setCurrentId(user.result._id);
   }, [currentId, user]);
-
-
-
-  
 
   const [postData, setPostData] = useState({
     firstName: "",
     lastName: "",
     dob: "",
     gender: "",
-    email: "",
+    email: user.result.email,
     maritalStatus: "",
     contactNumber: "",
     streetAddress: "",
@@ -64,8 +59,6 @@ const RegistrationForm = () => {
     selectedFile: "",
   });
 
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (currentId) {
@@ -77,8 +70,6 @@ const RegistrationForm = () => {
     }
     // console.log(postData);
   };
-
-
 
   const handleReset = () => {
     setPostData({
@@ -106,8 +97,6 @@ const RegistrationForm = () => {
     });
   };
 
-
-
   const handleDOB = (dob) => {
     setdob(dob);
     const UsFormatter = new Intl.DateTimeFormat("en-US");
@@ -115,18 +104,13 @@ const RegistrationForm = () => {
     setPostData({ ...postData, dob: date });
   };
 
-
   // ________________test code _________________________________
 
-  
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: "Visitor Pass",
     onAfterPrint: () => console.log("Printed PDF successfully!"),
   });
-
-
-
 
   return (
     <Container
@@ -280,9 +264,9 @@ const RegistrationForm = () => {
                 label="Email"
                 placeholder="example@example.com"
                 value={postData.email}
-                onChange={(e) =>
-                  setPostData({ ...postData, email: e.target.value })
-                }
+                // onChange={(e) =>
+                //   setPostData({ ...postData, email: e.target.value })
+                // }
               />
             </div>
             <div>
