@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useState, useEffect } from "react";
 import { useReactToPrint } from "react-to-print";
-import ReactToPrint from "react-to-print";
+
 // import useStyle from "./Style";
 
 import { UseSelector } from "react-redux";
@@ -25,12 +25,12 @@ import { useSelector } from "react-redux";
 const PaySlip = () => {
   const [currentId, setCurrentId] = useState();
   const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem("profile"));
 
   const [postData, setPostData] = useState({
-    employeeId: "",
-    firstName: "",
-    middleName: "",
-    lastName: "",
+    employeeId: user.result.employeeId,
+    firstName: user.result.firstName,
+    lastName: user.result.lastName,
     uanNo: "",
     payDays: "",
     payPeriod: "",
@@ -161,9 +161,9 @@ const PaySlip = () => {
                 label="Employee Id"
                 variant="outlined"
                 value={postData.employeeId}
-                onChange={(e) =>
-                  setPostData({ ...postData, employeeId: e.target.value })
-                }
+                // onChange={(e) =>
+                //   setPostData({ ...postData, employeeId: e.target.value })
+                // }
               />
 
               <Grid
@@ -209,9 +209,9 @@ const PaySlip = () => {
                     required
                     fullWidth
                     value={postData.firstName}
-                    onChange={(e) =>
-                      setPostData({ ...postData, firstName: e.target.value })
-                    }
+                    // onChange={(e) =>
+                    //   setPostData({ ...postData, firstName: e.target.value })
+                    // }
                   />
                 </Grid>
 
@@ -227,9 +227,9 @@ const PaySlip = () => {
                     required
                     fullwidth
                     value={postData.lastName}
-                    onChange={(e) =>
-                      setPostData({ ...postData, lastName: e.target.value })
-                    }
+                    // onChange={(e) =>
+                    //   setPostData({ ...postData, lastName: e.target.value })
+                    // }
                   />
                 </Grid>
               </Grid>
