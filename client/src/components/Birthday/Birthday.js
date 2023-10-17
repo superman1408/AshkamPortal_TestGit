@@ -17,8 +17,11 @@ import Image from "../../assets/Balloon.png";
 
 import ReactConfetti from "react-confetti";
 
+import AlertDialogSlide from "../Birthday/BirthdayMail";
+
 const Birthday = () => {
-  const [Btn, setBtn] = useState(false);
+  const user = JSON.parse(localStorage.getItem("profile"));
+
   const [dimension, setDimension] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -55,9 +58,9 @@ const Birthday = () => {
         }}
       >
         <ButtonBase
-          onClick={() => {
-            navigate("/birthdaymail"); // Full Weekly Activity route
-          }}
+        // onClick={() => {
+        //   navigate("/birthdaymail"); // Full Weekly Activity route
+        // }}
         >
           <Stack flexDirection="row">
             <Avatar
@@ -78,7 +81,6 @@ const Birthday = () => {
             <Typography sx={{ marginLeft: "40px", fontSize: "13px" }}>
               Has birthday today
             </Typography>
-
             <Button
               sx={{
                 marginLeft: "50px",
@@ -86,17 +88,17 @@ const Birthday = () => {
                 // bgcolor: "#ecd0f5",
                 fontSize: "13px",
               }}
-              onClick={() => setBtn(!Btn)}
+              // onClick={() => setBtn(!Btn)}
             >
-              wish him
+              {" "}
+              <AlertDialogSlide />
             </Button>
-            {Btn && (
+            {/* {Btn && (
               <ReactConfetti
                 width={dimension.width}
                 height={dimension.height}
                 tweenDuration={100}
-              />
-            )}
+              /> */}
           </Grid>
           <div class="btn-particles"></div>
         </ButtonBase>
