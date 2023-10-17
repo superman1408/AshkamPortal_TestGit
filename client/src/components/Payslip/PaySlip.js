@@ -27,14 +27,20 @@ const PaySlip = () => {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
 
+  const today = new Date();
+  const date =
+    today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
+
+  const month = today.getMonth() + 1;
+
   const [postData, setPostData] = useState({
     employeeId: user.result.employeeId,
     firstName: user.result.firstName,
     lastName: user.result.lastName,
     uanNo: "",
     payDays: "",
-    payPeriod: "",
-    payDate: "",
+    payPeriod: month,
+    payDate: date,
     basic: "",
     houseRent: "",
     conveyance: "",
