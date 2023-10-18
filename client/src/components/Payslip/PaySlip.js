@@ -31,7 +31,10 @@ const PaySlip = () => {
   const date =
     today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
 
-  const month = today.getMonth() + 1;
+  const month = new Date().toLocaleString("en-US", {
+    month: "long",
+    year: "numeric",
+  });
 
   const daysInThisMonth = () => {
     var now = new Date();
