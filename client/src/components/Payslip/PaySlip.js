@@ -23,7 +23,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
 const PaySlip = () => {
-  const [currentId, setCurrentId] = useState();
+  // const [currentId, setCurrentId] = useState();
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
 
@@ -33,12 +33,17 @@ const PaySlip = () => {
 
   const month = today.getMonth() + 1;
 
+  const daysInThisMonth = () => {
+    var now = new Date();
+    return new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+  };
+
   const [postData, setPostData] = useState({
     employeeId: user.result.employeeId,
     firstName: user.result.firstName,
     lastName: user.result.lastName,
     uanNo: "",
-    payDays: "",
+    payDays: daysInThisMonth(),
     payPeriod: month,
     payDate: date,
     basic: "",
@@ -54,24 +59,24 @@ const PaySlip = () => {
     employeerContribution_esic: "",
   });
 
-  const post = useSelector((state) =>
-    currentId ? state.posts.find((p) => p._id === currentId) : null
-  );
+  // const post = useSelector((state) =>
+  //   currentId ? state.posts.find((p) => p._id === currentId) : null
+  // );
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (currentId) {
-      dispatch(updatePost(currentId, postData));
-    } else {
-      dispatch(createPost(postData));
-    }
+    // if (currentId) {
+    //   dispatch(updatePost(currentId, postData));
+    // } else {
+    //   dispatch(createPost(postData));
+    // }
   };
 
   // to view postdata
-  useEffect(() => {
-    if (post) return setPostData(post);
-  }, [post]);
+  // useEffect(() => {
+  //   if (post) return setPostData(post);
+  // }, [post]);
 
   // to print data
   const componentRef = useRef();
