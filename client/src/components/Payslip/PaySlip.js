@@ -31,14 +31,31 @@ const PaySlip = () => {
   const date =
     today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
 
+  //to print current month
   const month = new Date().toLocaleString("en-US", {
     month: "long",
     year: "numeric",
   });
 
+  const makeDate = new Date();
+  const prev = new Date(makeDate.setMonth(makeDate.getMonth() - 1));
+
+  // to print Previous Month
+  const formatter = new Intl.DateTimeFormat("default", {
+    month: "long",
+    year: "numeric",
+  });
+  const date1 = new Date();
+
+  const number = 1;
+  const prevMonth = formatter.format(
+    new Date(date1.getFullYear(), date1.getMonth() - `${number}`)
+  );
+
+  //To print total days in month
   const daysInThisMonth = () => {
     var now = new Date();
-    return new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+    return new Date(now.getFullYear(), now.getMonth() - 1, 0).getDate();
   };
 
   const [postData, setPostData] = useState({
@@ -47,7 +64,7 @@ const PaySlip = () => {
     lastName: user.result.lastName,
     uanNo: "",
     payDays: daysInThisMonth(),
-    payPeriod: month,
+    payPeriod: prevMonth,
     payDate: date,
     basic: "",
     houseRent: "",
