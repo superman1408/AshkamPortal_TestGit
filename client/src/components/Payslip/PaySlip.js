@@ -52,10 +52,12 @@ const PaySlip = () => {
     new Date(date1.getFullYear(), date1.getMonth() - `${number}`)
   );
 
-  //To print total days in month
-  const daysInThisMonth = () => {
+  //To print total days in previous month
+  const daysInThisPrevMonth = () => {
     var now = new Date();
-    return new Date(now.getFullYear(), now.getMonth() - 1, 0).getDate();
+    return (
+      new Date(now.getFullYear(), now.getMonth() - 1, 0).getDate() - `${number}`
+    );
   };
 
   const [postData, setPostData] = useState({
@@ -63,7 +65,7 @@ const PaySlip = () => {
     firstName: user.result.firstName,
     lastName: user.result.lastName,
     uanNo: "",
-    payDays: daysInThisMonth(),
+    payDays: daysInThisPrevMonth(),
     payPeriod: prevMonth,
     payDate: date,
     basic: "",
@@ -73,10 +75,14 @@ const PaySlip = () => {
     uniform: "",
     medical: "",
     cityFactor: "",
+    grossEarnings: "",
+    netSalary: "",
     employeeContribution_pf: "",
     employeerContribution_pf: "",
     employeeContribution_esic: "",
     employeerContribution_esic: "",
+    tds: "",
+    totalDeduction: "",
   });
 
   // const post = useSelector((state) =>
@@ -523,6 +529,30 @@ const PaySlip = () => {
                       }
                     />
                   </Grid>
+
+                  <Grid
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Typography marginTop={3} sx={{ fontWeight: "bold" }}>
+                      Net Salary (Rs)
+                    </Typography>
+                    <TextField
+                      size="small"
+                      type="text"
+                      margin="normal"
+                      name="netSalary"
+                      // id="standard-basic"
+                      label="amount"
+                      variant="outlined"
+                      value={postData.netSalary}
+                      onChange={(e) =>
+                        setPostData({
+                          ...postData,
+                          netSalary: e.target.value,
+                        })
+                      }
+                    />
+                  </Grid>
                 </Grid>
 
                 <Grid
@@ -673,6 +703,66 @@ const PaySlip = () => {
                         setPostData({
                           ...postData,
                           employeerContribution_esic: e.target.value,
+                        })
+                      }
+                    />
+                  </Grid>
+
+                  <Grid
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      marginTop: "25px",
+                    }}
+                  >
+                    <Typography
+                      marginTop={3}
+                      // marginRight={14}
+                      fontWeight="bold"
+                    >
+                      TDS
+                    </Typography>
+                    <TextField
+                      type="text"
+                      size="small"
+                      margin="normal"
+                      name="tds"
+                      // id="standard-basic"
+                      label="amount"
+                      variant="outlined"
+                      value={postData.tds}
+                      onChange={(e) =>
+                        setPostData({
+                          ...postData,
+                          tds: e.target.value,
+                        })
+                      }
+                    />
+                  </Grid>
+
+                  <Grid
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Typography
+                      marginTop={3}
+                      // marginRight={14}
+                      sx={{ fontWeight: "bold" }}
+                    >
+                      Total Deductions
+                    </Typography>
+                    <TextField
+                      type="text"
+                      size="small"
+                      margin="normal"
+                      name="totalDeduction"
+                      // id="standard-basic"
+                      label="amount"
+                      variant="outlined"
+                      value={postData.totalDeduction}
+                      onChange={(e) =>
+                        setPostData({
+                          ...postData,
+                          totalDeduction: e.target.value,
                         })
                       }
                     />
