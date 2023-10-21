@@ -44,9 +44,21 @@ const WeeklyActivity = () => {
             {/*----------------------------------------------------Line Chart------------------------------------------------------*/}
             <Grid>
               <CChart
-                style={{ display: "flex" }}
-                // width="600px"
-                // height="400px"
+                style={{
+                  display: "flex",
+                  "@media (max-width: 600px)": {
+                    flexDirection: "column",
+                    display: "flex",
+                  },
+
+                  "@media (min-width: 600px)": {
+                    flexDirection: "row",
+                    width: "600px",
+                    height: "400px",
+                  },
+                }}
+                width="600px"
+                height="400px"
                 type="line"
                 data={{
                   datasets: [
