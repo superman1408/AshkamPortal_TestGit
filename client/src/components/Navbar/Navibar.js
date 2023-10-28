@@ -24,6 +24,7 @@ const Navibar = () => {
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
 
+
   useEffect(() => {
     const token = user?.token;
     if (token) {
@@ -38,12 +39,38 @@ const Navibar = () => {
     console.log("Notification is clicked...!!!");
   };
 
+
+
   const handleLogout = () => {
     console.log("logout");
     dispatch({ type: LOGOUT });
     setUser(null);
     navigate("/auth");
   };
+
+
+  
+  const openPage = (id, action) => {
+    console.log(action);
+    switch(action) {
+      case 'leave':
+        navigate(`/mail/${id}/leave`);
+        break;
+      case 'inbox':
+        navigate(`/mail/${id}/communication`);
+        break;
+      case 'payslip':
+        navigate(`/${id}/payslip`);
+        break;
+      case "registration":
+        navigate(`/${id}/profile`);
+        break;
+      default:
+        console.log("Click something dude..!!");
+    }
+  };
+
+
 
   return (
     <Navbar sticky="top" expand="lg" className="bg-body-tertiary">
@@ -67,7 +94,7 @@ const Navibar = () => {
                       <HomeIcon sx={{ fontSize: "30px" }} />
                     </IconButton>
                   </Nav.Link>
-                  <Nav.Link href="/profile" style={{ marginTop: "8px" }}>
+                  <Nav.Link onClick={() => openPage(user.result._id, "registration")} id="registration" style={{ marginTop: "8px" }}>
                     Registration
                   </Nav.Link>
 
@@ -76,15 +103,17 @@ const Navibar = () => {
                     id="navbarScrollingDropdown"
                     style={{ marginTop: "8px" }}
                   >
-                    <NavDropdown.Item href="/mail/:id/leave">
+                    <NavDropdown.Item onClick={() => openPage(user.result._id, "leave")} id="leave">
                       Leave Section
                     </NavDropdown.Item>
                     {/* <NavDropdown.Divider /> */}
-                    <NavDropdown.Item href="/mail/:id/communication">
+                    <NavDropdown.Item onClick={() => openPage(user.result._id, "inbox")} id="inbox">
                       Inbox
                     </NavDropdown.Item>
                     {/* <NavDropdown.Divider /> */}
-                    <NavDropdown.Item href="/payslip">PaySlip</NavDropdown.Item>
+                    <NavDropdown.Item onClick={() => openPage(user.result._id, "payslip")} id="payslip">
+                      Pay Slips
+                    </NavDropdown.Item>
                   </NavDropdown>
                   <Nav.Link href="/aboutUs" style={{ marginTop: "8px" }}>
                     About Us
