@@ -18,6 +18,7 @@ import EmployeeAttendance from "./components/Attendance/EmployeeAttendance";
 // import RoughPayslip from "./components/Payslip/RoughPayslip";
 
 const App = () => {
+  
   const user = JSON.parse(localStorage.getItem("profile"));
 
   return (
@@ -59,7 +60,7 @@ const App = () => {
           {/* <Route path="/mail/:id/payslip" exact element={<Payslip />} /> */}
 
           <Route path="/aboutUs" exact element={<AboutUS />} />
-          <Route path="/home" exact element={<Dashboard />} />
+          <Route path="/home" exact element={<Dashboard  />} />
           <Route path="/fullweeklyactivity" exact element={<FullWeekly />} />
           <Route
             path="/employeeAttendance"
