@@ -87,7 +87,7 @@ const Birthday = () => {
             />
           </Stack>
           <Grid>
-            {posts.map((post) => {
+            {/* {posts.map((post) => {
               console.log(post.dob);
 
               let day = new Date(post.dob).getDate();
@@ -109,7 +109,7 @@ const Birthday = () => {
               } else {
                 console.log("No birthday");
               }
-            })}
+            })} */}
 
             <Typography sx={{ marginLeft: "40px", fontSize: "13px" }}>
               Has birthday today
