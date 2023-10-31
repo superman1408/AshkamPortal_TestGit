@@ -7,9 +7,9 @@ import AuthenticateUser from "../model/authDetails.js";
 export const getPosts = async (req, res) => {
   try {
     const postMessage = await AuthenticateUser.find({});
-    console.log(postMessage);
+    // console.log(postMessage);
     res.status(200).json(postMessage);
-    console.log("postMessage", postMessage);
+    // console.log("postMessage", postMessage);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }

@@ -32,7 +32,7 @@ export const signup = (formData, navigate) => async (dispatch) => {
     // signUp block
     const { data } = await API.signUp(formData);
     dispatch({ type: AUTH, data });
-    navigate("/profile", { replace: true });
+    navigate("/home", { replace: true });
   } catch (error) {
     console.log(error);
   }
