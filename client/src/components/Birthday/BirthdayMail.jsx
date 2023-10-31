@@ -31,6 +31,7 @@ export default function AlertDialogSlide() {
 
   const handleClose = () => {
     setOpen(false);
+    console.log(`Message is sent by {result.user}`);
   };
 
   // const handleMaxWidthChange = (event: SelectChangeEvent<typeof maxWidth>) => {

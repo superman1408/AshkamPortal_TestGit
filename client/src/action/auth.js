@@ -13,6 +13,7 @@ export const signin = (formData, navigate) => async (dispatch) => {
 
     dispatch({ type: AUTH, data });
     navigate("/home", { replace: true });
+    console.log(data);
   } catch (error) {
     console.log(error);
 

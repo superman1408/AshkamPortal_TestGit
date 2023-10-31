@@ -6,16 +6,14 @@ import AuthenticateUser from "../model/authDetails.js";
 
 export const getPosts = async (req, res) => {
   try {
-    const postMessage = await AuthenticateUser.find();
-    // console.log(postMessage);
+    const postMessage = await AuthenticateUser.find({});
+    console.log(postMessage);
     res.status(200).json(postMessage);
+    console.log("postMessage", postMessage);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
 };
-
-
-
 
 export const getPost = async (req, res) => {
   const { id } = req.params;
@@ -28,9 +26,6 @@ export const getPost = async (req, res) => {
 };
 
 // ________________________create operation___________________________
-
-
-
 
 export const createPost = async (req, res) => {
   const Post = req.body;
@@ -66,9 +61,6 @@ export const updatePost = async (req, res) => {
 
 // ________________________delete operation___________________________
 
-
-
-
 export const deletePost = async (req, res) => {
   const { id } = req.params;
 
@@ -78,10 +70,6 @@ export const deletePost = async (req, res) => {
   await AuthenticateUser.findByIdAndRemove(id);
   res.json({ message: "Post deleted successfully" });
 };
-
-
-
-
 
 export const sendData = async (req, res) => {
   const { id } = req.params;
@@ -98,9 +86,6 @@ export const sendData = async (req, res) => {
   });
   res.status(200).json(updatePost);
 };
-
-
-
 
 export const updatedStatus = async (req, res) => {
   console.log("Yes i can change the status");
