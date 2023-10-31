@@ -29,7 +29,7 @@ import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ForwardToInboxTwoToneIcon from "@mui/icons-material/ForwardToInboxTwoTone";
 
-import avatar1 from "../../assets/Profile.jpg";
+// import avatar1 from "../../assets/Profile.jpg";
 
 const Panel = (post) => {
   // const [Btn, setBtn] = useState(false);
@@ -51,6 +51,7 @@ const Panel = (post) => {
     setUser(JSON.parse(localStorage.getItem("profile")));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
+  
 
   const switchMode = () => {
     setUser(null);
@@ -96,8 +97,8 @@ const Panel = (post) => {
             >
               {/* {post.firstName} */}
 
-              {user.result.firstName.charAt(0).toUpperCase() +
-                user.result.lastName.charAt(0).toUpperCase()}
+              {/* {user.result.firstName.charAt(0).toUpperCase() +
+                user.result.lastName.charAt(0).toUpperCase()} */}
             </Avatar>
           </Stack>
         </Grid>
