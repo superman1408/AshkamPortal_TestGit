@@ -15,9 +15,10 @@ import FullWeekly from "./components/WeeklyActivity/Activity/FullWeekly";
 import BirthdayMail from "./components/Birthday/BirthdayMail";
 import PaySlip from "./components/Payslip/PaySlip";
 import EmployeeAttendance from "./components/Attendance/EmployeeAttendance";
+// import Rough from "./components/Rough/rough";
+// import RoughPayslip from "./components/Payslip/RoughPayslip";
 
 const App = () => {
-  
   const user = JSON.parse(localStorage.getItem("profile"));
 
   return (
@@ -59,7 +60,7 @@ const App = () => {
           {/* <Route path="/mail/:id/payslip" exact element={<Payslip />} /> */}
 
           <Route path="/aboutUs" exact element={<AboutUS />} />
-          <Route path="/home" exact element={<Dashboard  />} />
+          <Route path="/home" exact element={<Dashboard />} />
           <Route path="/fullweeklyactivity" exact element={<FullWeekly />} />
           <Route
             path="/employeeAttendance"
@@ -67,7 +68,8 @@ const App = () => {
             element={<EmployeeAttendance />}
           />
           <Route path="/birthdaymail" exact element={<BirthdayMail />} />
-          <Route path="/:id/payslip" exact element={<PaySlip />} />
+          <Route path="/payslip" exact element={<PaySlip />} />
+          {/* <Route path="/rough" exact element={<Rough />} /> */}
           {/* <Route path="/roughpayslip" exact element={<RoughPayslip />} /> */}
         </Routes>
       </Container>

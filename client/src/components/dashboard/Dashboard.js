@@ -133,9 +133,9 @@ const Admin = () => {
                   <Attendance />
                 </Grid>
 
-                <Grid>
+                {/* <Grid>
                   <Birthday />
-                </Grid>
+                </Grid> */}
 
                 <Grid>
                   <EmployeeOnHoliday />
