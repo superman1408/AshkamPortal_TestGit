@@ -3,9 +3,7 @@ import {
   Button,
   Grid,
   TextField,
-  Typography,
   Card,
-  Avatar,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { signin, signup } from "../../action/auth";
