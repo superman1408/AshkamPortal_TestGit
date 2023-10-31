@@ -1,4 +1,6 @@
 import React from "react";
+
+import { useSelector } from "react-redux";
 // import Navbar from "../Navbar/navbar";
 
 import WeeklyActivity from "../WeeklyActivity/WeeklyActivity";
@@ -16,6 +18,11 @@ import Attendance from "../Attendance/Attendance";
 
 const Admin = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
+  const posts = useSelector((state) => state.posts);
+
+  console.log(posts);
+
+
 
   return (
     <div>
