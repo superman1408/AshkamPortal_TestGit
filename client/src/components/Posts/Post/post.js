@@ -44,15 +44,13 @@ const Post = ({ post, setCurrentId }) => {
           </div>
           <div style={{ marginLeft: "50px" }}>
             <Typography sx={{ marginTop: "10px" }}>
-              Name : {post.employeeName}
+              Name : {post.firstName} {post.lastName}
             </Typography>
 
             <Typography sx={{ marginTop: "10px" }}>
               Id : {post.employeeId}
             </Typography>
-            <Typography sx={{ marginTop: "10px" }}>
-              Designation : {post.designation}
-            </Typography>
+
             <Typography sx={{ marginTop: "10px" }}>
               Department : {post.department}
             </Typography>
@@ -61,6 +59,51 @@ const Post = ({ post, setCurrentId }) => {
             </Typography>
             <Typography sx={{ marginTop: "10px" }}>
               Email : {post.email}
+            </Typography>
+            <Typography sx={{ marginTop: "10px" }}>
+              Date of Birth : {post.dob}
+            </Typography>
+
+            <Typography sx={{ marginTop: "10px" }}>
+              Gender : {post.gender}
+            </Typography>
+            <Typography sx={{ marginTop: "10px" }}>
+              Marital Status : {post.maritalStatus}
+            </Typography>
+            <Typography sx={{ marginTop: "10px" }}>
+              Job Title : {post.jobTitle}
+            </Typography>
+            <Typography sx={{ marginTop: "10px" }}>
+              Job Skill : {post.jobSkill}
+            </Typography>
+            <Typography sx={{ marginTop: "10px" }}>
+              Reporting Manager : {post.reportingManager}
+            </Typography>
+            <Typography sx={{ marginTop: "10px" }}>
+              Street Address : {post.streetAddress}
+            </Typography>
+
+            <Typography sx={{ marginTop: "10px" }}>
+              City : {post.city}
+            </Typography>
+            <Typography sx={{ marginTop: "10px" }}>
+              State : {post.state}
+            </Typography>
+            <Typography sx={{ marginTop: "10px" }}>
+              Pincode : {post.pincode}
+            </Typography>
+            <Typography sx={{ marginTop: "10px" }}>
+              Emergency Name : {post.emergencyName}
+            </Typography>
+            <Typography sx={{ marginTop: "10px" }}>
+              Emergency Contact : {post.emergencyContact}
+            </Typography>
+            <Typography sx={{ marginTop: "10px" }}>
+              relationship : {post.relationship}
+            </Typography>
+
+            <Typography sx={{ marginTop: "10px" }}>
+              Emergency Address : {post.emergencyAddress}
             </Typography>
           </div>
           <div className={classes.button_Container}>
@@ -74,12 +117,10 @@ const Post = ({ post, setCurrentId }) => {
             <Button
               color="primary"
               variant="contained"
-              onClick={
-                (() => {
-                  console.log("profile");
-                  navigate(`/mail/${post._id}/leave`, { replace: true });
-                })
-              }
+              onClick={() => {
+                console.log("profile");
+                navigate(`/mail/${post._id}/leave`, { replace: true });
+              }}
             >
               Mail
             </Button>

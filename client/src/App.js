@@ -15,7 +15,6 @@ import FullWeekly from "./components/WeeklyActivity/Activity/FullWeekly";
 import BirthdayMail from "./components/Birthday/BirthdayMail";
 import PaySlip from "./components/Payslip/PaySlip";
 import EmployeeAttendance from "./components/Attendance/EmployeeAttendance";
-// import RoughPayslip from "./components/Payslip/RoughPayslip";
 
 const App = () => {
   
