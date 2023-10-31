@@ -1,6 +1,4 @@
 import React from "react";
-
-// import { useSelector } from "react-redux";
 // import Navbar from "../Navbar/navbar";
 
 import WeeklyActivity from "../WeeklyActivity/WeeklyActivity";
@@ -18,8 +16,6 @@ import Attendance from "../Attendance/Attendance";
 
 const Admin = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
-
-
 
   return (
     <div>
@@ -42,19 +38,7 @@ const Admin = () => {
           },
         }}
       >
-        <Grid
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            "@media (max-width: 600px)": {
-              flexDirection: "column",
-            },
-
-            "@media (min-width: 600px)": {
-              flexDirection: "row",
-            },
-          }}
-        >
+        <Grid sx={{ display: "flex", flexDirection: "row" }}>
           {/*------------------Panel----------------------------- */}
           <Panel />
 
@@ -75,18 +59,7 @@ const Admin = () => {
             ></Grid>
 
             <Grid
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                marginTop: "20px",
-                "@media (max-width: 600px)": {
-                  flexDirection: "column",
-                },
-
-                "@media (min-width: 600px)": {
-                  flexDirection: "row",
-                },
-              }}
+              sx={{ display: "flex", flexDirection: "row", marginTop: "20px" }}
             >
               <Grid>
                 <div>
@@ -102,18 +75,7 @@ const Admin = () => {
                     {` ${user.result.role.toUpperCase()} !`}
                   </Typography>
                 </div>
-                <Grid
-                  sx={{
-                    display: "flex",
-                    "@media (max-width: 600px)": {
-                      flexDirection: "column",
-                    },
-
-                    "@media (min-width: 600px)": {
-                      flexDirection: "row",
-                    },
-                  }}
-                >
+                <Grid sx={{ display: "flex" }}>
                   <Grid>
                     <TotalEmployee />
                   </Grid>
@@ -133,9 +95,9 @@ const Admin = () => {
                   <Attendance />
                 </Grid>
 
-                {/* <Grid>
+                <Grid>
                   <Birthday />
-                </Grid> */}
+                </Grid>
 
                 <Grid>
                   <EmployeeOnHoliday />

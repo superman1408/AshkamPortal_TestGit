@@ -96,8 +96,8 @@ const Panel = (post) => {
             >
               {/* {post.firstName} */}
 
-              {user.result.firstName.charAt(0).toUpperCase() +
-                user.result.lastName.charAt(0).toUpperCase()}
+              {/* {user.result.firstName.charAt(0).toUpperCase() +
+                user.result.lastName.charAt(0).toUpperCase()} */}
             </Avatar>
           </Stack>
         </Grid>

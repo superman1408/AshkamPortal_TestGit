@@ -22,12 +22,15 @@ import { useDispatch } from "react-redux";
 import { updatePost } from "../../action/posts";
 
 import { useReactToPrint } from "react-to-print";
+import { useNavigate } from "react-router-dom";
 
 const RegistrationForm = () => {
   const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
   const componentRef = useRef();
   const [dob, setdob] = useState("");
+
+  const navigate = useNavigate();
 
   const user = JSON.parse(localStorage.getItem("profile"));
 
@@ -64,6 +67,7 @@ const RegistrationForm = () => {
     if (currentId) {
       dispatch(updatePost(currentId, postData));
       console.log(currentId);
+      navigate("/home");
     } else {
       // dispatch(createPost(postData));
       console.log("Not set current ID");
