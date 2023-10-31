@@ -68,7 +68,7 @@ const App = () => {
             element={<EmployeeAttendance />}
           />
           <Route path="/birthdaymail" exact element={<BirthdayMail />} />
-          <Route path="/payslip" exact element={<PaySlip />} />
+          <Route path="/:id/payslip" exact element={<PaySlip />} />
           {/* <Route path="/rough" exact element={<Rough />} /> */}
           {/* <Route path="/roughpayslip" exact element={<RoughPayslip />} /> */}
         </Routes>
