@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../action/posts";
 
 import image from "../../assets/final.jpg";
+
 import CurrentbirthdayPosts from "../Birthday/CurrentbirthdayPosts";
 
 const Transition = React.forwardRef(function Transition(
