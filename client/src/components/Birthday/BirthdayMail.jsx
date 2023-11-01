@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import Dialog, { DialogProps } from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -8,7 +8,12 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import { TransitionProps } from "@mui/material/transitions";
 import { TextField, Typography } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+
+import { getPosts } from "../../action/posts";
+
 import image from "../../assets/final.jpg";
+import CurrentbirthdayPosts from "../Birthday/CurrentbirthdayPosts";
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -40,6 +45,25 @@ export default function AlertDialogSlide() {
   //     event.target.value
   //   );
   // };
+
+  const [currentId, setCurrentId] = useState(null);
+
+  const dispatch = useDispatch();
+
+  const posts = useSelector((state) => state.posts);
+  console.log(posts);
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch, currentId]);
+
+  const currentDay = new Date().getDate();
+  const currentMonth = new Date().getMonth() + 1;
+  // const UsFormatter = new Intl.DateTimeFormat("en-US");
+  // const currentDate = UsFormatter.format(date);
+  // const currentDate = UsFormatter.format(date);
+  console.log("currentDay", currentDay);
+  console.log("currentMonth", currentMonth);
 
   return (
     <div>
@@ -77,7 +101,31 @@ export default function AlertDialogSlide() {
             Let Google help apps determine location. This means sending anonymous
             location data to Google, even when no apps are running.
           </DialogContentText> */}
-          <Typography>tira@gmail.com</Typography>
+          <div>
+            {/* {posts.map((post) => {
+              console.log(post.dob);
+
+              let day = new Date(post.dob).getDate();
+              let month = new Date(post.dob).getMonth() + 1;
+              console.log(day);
+              console.log(month);
+
+              if (currentDay === day && currentMonth === month) {
+                console.log(post.firstName, "'s birthday");
+                return (
+                  <Typography
+                    post={post}
+                    sx={{ marginLeft: "10px", fontWeight: "bold" }}
+                  >
+                    {post.email}
+                  </Typography>
+                );
+              } else {
+                console.log("No birthday");
+              }
+            })} */}
+            <CurrentbirthdayPosts />
+          </div>
           <TextField
             autoFocus
             margin="dense"
@@ -86,6 +134,7 @@ export default function AlertDialogSlide() {
             type="text"
             fullWidth
             variant="standard"
+            sx={{ marginTop: "30px" }}
           />
         </DialogContent>
         <DialogActions>
