@@ -63,7 +63,7 @@ const Navibar = () => {
         navigate(`/${id}/payslip`);
         break;
       case "registration":
-        navigate(`/profile`);
+        navigate(`/${id}/profile`);
         break;
       default:
         console.log("Click something dude..!!");

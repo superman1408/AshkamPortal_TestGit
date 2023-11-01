@@ -24,12 +24,15 @@ export const signin = (formData, navigate) => async (dispatch) => {
   }
 };
 
+
+
+
 export const signup = (formData, navigate) => async (dispatch) => {
   try {
     // signUp block
     const { data } = await API.signUp(formData);
     dispatch({ type: AUTH, data });
-    navigate("/profile", { replace: true });
+    navigate("/home", { replace: true });
   } catch (error) {
     console.log(error);
   }

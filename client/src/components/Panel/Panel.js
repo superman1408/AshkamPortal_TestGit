@@ -31,7 +31,7 @@ import ForwardToInboxTwoToneIcon from "@mui/icons-material/ForwardToInboxTwoTone
 
 // import avatar1 from "../../assets/Profile.jpg";
 
-const Panel = (post) => {
+const Panel = () => {
   // const [Btn, setBtn] = useState(false);
 
   const dispatch = useDispatch();

@@ -40,7 +40,7 @@ const Admin = () => {
       >
         <Grid sx={{ display: "flex", flexDirection: "row" }}>
           {/*------------------Panel----------------------------- */}
-          <Panel />
+          <Panel prop={user.result._id} />
 
           {/* ---------------Dashboard section-------------------------*/}
           <Grid
