@@ -73,6 +73,7 @@ const Auth = () => {
       <Card
         className="card"
         elevation={10}
+        sx={{ width: "60vh" }}
         // sx={{
         //   display: "flex",
         //   flexWrap: "wrap",
@@ -204,7 +205,7 @@ const Auth = () => {
               style={{
                 display: "flex",
                 flexDirection: "column",
-                marginTop: "30px",
+                marginTop: "10px",
               }}
             >
               <TextField
