@@ -1,60 +1,76 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
-import AuthenticateUser from '../model/authDetails.js';
+import AuthenticateUser from "../model/authDetails.js";
 
+export const signin = async (req, res) => {
+  const { email, password } = req.body;
+  // console.log("HELLO SIGN UP");
+  // res.status(200).send('sign IN');
 
-export const signin = async (req,res) => {
-    const { email, password } = req.body;
-    // console.log("HELLO SIGN UP");
-    // res.status(200).send('sign IN');
+  try {
+    const existingUser = await AuthenticateUser.findOne({ email: email });
 
-    try {
-        const existingUser = await AuthenticateUser.findOne({ email: email});
+    if (!existingUser)
+      return res.status(404).json({ message: "User does not exist" });
 
-        if (!existingUser) return res.status(404).json({message: "User does not exist"});
+    const isPasswordsMatch = await bcrypt.compare(
+      password,
+      existingUser.password
+    );
 
-        const isPasswordsMatch = await bcrypt.compare(password, existingUser.password);
+    if (!isPasswordsMatch)
+      return res.status(400).json({ message: "Passwords do not match" });
 
-        if (!isPasswordsMatch) return res.status(400).json({message: "Passwords do not match"});
+    const token = jwt.sign(
+      {
+        email: existingUser.email,
+        id: existingUser._id,
+        role: existingUser.role,
+      },
+      "test",
+      { expiresIn: "1h" }
+    );
 
-        const token = jwt.sign({email: existingUser.email, id: existingUser._id, role: existingUser.role },'test', {expiresIn:"1h"});
-
-        res.status(200).json({result: existingUser, token});
-
-    } catch (error) {
-        res.status(500).json({message:'Something went wrong'});
-        // console.log(error);
-    }
+    res.status(200).json({ result: existingUser, token });
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong" });
+    // console.log(error);
+  }
 };
 
+export const signup = async (req, res) => {
+  const { email, password, confirmPassword, role, firstName, lastName } =
+    req.body;
+  // console.log(req.body);
+  // res.status(200).send('sign UP');
 
+  try {
+    const existingUser = await AuthenticateUser.findOne({ email });
 
+    if (existingUser)
+      return res.status(400).json({ message: "User already exist bro" });
 
-export const signup = async (req,res) => {
-    const {  email, password, confirmPassword, role } = req.body;
-    // console.log(req.body);
-    // res.status(200).send('sign UP');
+    if (password !== confirmPassword)
+      return res.status(400).json({ message: "Passwords do not match" });
 
-    try {
-        const existingUser = await AuthenticateUser.findOne({ email });
+    const hashedPassword = await bcrypt.hash(password, 12);
 
-        if(existingUser) return res.status(400).json({message: "User already exist bro"});
+    const result = await AuthenticateUser.create({
+      email,
+      password: hashedPassword,
+      role,
+      firstName,
+      lastName,
+    });
 
-        if(password !== confirmPassword) return res.status(400).json({message: "Passwords do not match"});
+    const token = jwt.sign({ email: result.email, id: result._id }, "test", {
+      expiresIn: "1h",
+    });
 
-        const hashedPassword = await bcrypt.hash(password, 12);
-
-        const result = await AuthenticateUser.create({ email, password: hashedPassword, role });
-
-        const token = jwt.sign({ email: result.email, id: result._id}, 'test', {expiresIn:"1h"});
-
-
-        res.status(200).json({result, token});
-
-
-    } catch (error) {
-        res.status(500).json({message:'Something went wrong'});
-        // console.log(error);
-    }
+    res.status(200).json({ result, token });
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong" });
+    // console.log(error);
+  }
 };

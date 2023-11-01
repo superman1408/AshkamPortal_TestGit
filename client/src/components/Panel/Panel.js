@@ -51,7 +51,6 @@ const Panel = (post) => {
     setUser(JSON.parse(localStorage.getItem("profile")));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
-  
 
   const switchMode = () => {
     setUser(null);
@@ -97,8 +96,8 @@ const Panel = (post) => {
             >
               {/* {post.firstName} */}
 
-              {/* {user.result.firstName.charAt(0).toUpperCase() +
-                user.result.lastName.charAt(0).toUpperCase()} */}
+              {user.result.firstName.charAt(0).toUpperCase() +
+                user.result.lastName.charAt(0).toUpperCase()}
             </Avatar>
           </Stack>
         </Grid>

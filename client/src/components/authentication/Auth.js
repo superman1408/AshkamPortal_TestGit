@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Grid,
-  TextField,
-  Card,
-} from "@mui/material";
+import { Button, Grid, TextField, Card } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { signin, signup } from "../../action/auth";
 import { useDispatch } from "react-redux";
@@ -179,7 +174,7 @@ const Auth = () => {
               </div>
             )}
 
-            {/* <div style={{ marginTop: "30px", display: "flex" }}>
+            <div style={{ marginTop: "30px", display: "flex" }}>
               {isSignUp && (
                 <TextField
                   label="First Name"
@@ -204,7 +199,7 @@ const Auth = () => {
                   }
                 />
               )}
-            </div> */}
+            </div>
             <div
               style={{
                 display: "flex",
