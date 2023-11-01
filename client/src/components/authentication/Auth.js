@@ -70,17 +70,7 @@ const Auth = () => {
         backgroundSize: "cover",
       }}
     >
-      <Card
-        className="card"
-        elevation={10}
-        sx={{ width: "60vh" }}
-        // sx={{
-        //   display: "flex",
-        //   flexWrap: "wrap",
-        //   textAlign: "center",
-        //   marginTop: "60px",
-        // }}
-      >
+      <Card className="card" elevation={10} sx={{ width: "60vh" }}>
         <Grid>
           <div
             style={{

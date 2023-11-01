@@ -80,12 +80,6 @@ const Panel = (post) => {
               },
             }}
           >
-            {/* <Avatar
-              sx={{ width: 40, height: 40, marginLeft: "10px" }}
-              alt="Femy sharp"
-              src={avatar1}
-            /> */}
-
             <Avatar
               sx={{
                 width: 40,
