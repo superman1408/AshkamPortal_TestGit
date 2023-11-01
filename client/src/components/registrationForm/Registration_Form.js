@@ -245,16 +245,22 @@ const RegistrationForm = () => {
                   Gender
                 </Typography>
                 <RadioGroup
-                  defaultValue="female"
+                  // defaultValue="female"
                   name="controlled-radio-buttons-group"
                   onChange={(e) =>
-                    setPostData({ ...postData, gender: e.target.value })
+                    setPostData(
+                      { ...postData, gender: e.target.value },
+                      console.log(e.target.value)
+                    )
                   }
                 >
                   <Radio value="female" label="Female" color="primary" />
                   <Radio value="male" label="Male" color="primary" />
                   <Radio value="other" label="Other" color="primary" />
                 </RadioGroup>
+                <span style={{ fontSize: "12px" }}>
+                  ** Please select the desired value
+                </span>
               </FormControl>
             </div>
             <div>
