@@ -251,7 +251,7 @@ const Auth = () => {
               >
                 {isSignUp ? "Sign Up" : "Sign In"}
               </Button>
-              {isSignUp ? "" : <ToastContainer />}
+              {isSignUp ? <ToastContainer /> : <ToastContainer />}
               {/* this is required for rendering taost it works as a container*/}
             </div>
             <div>

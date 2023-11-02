@@ -32,5 +32,8 @@ export const signup = (formData, navigate) => async (dispatch) => {
     navigate("/profile", { replace: true });
   } catch (error) {
     console.log(error);
+    toast.error("Password and Confirm Password does not match ", {
+      position: toast.POSITION.TOP_CENTER,
+    });
   }
 };
