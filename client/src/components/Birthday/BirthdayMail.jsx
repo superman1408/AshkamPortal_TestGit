@@ -15,12 +15,7 @@ import { getPosts } from "../../action/posts";
 import image from "../../assets/final.jpg";
 import CurrentbirthdayPosts from "../Birthday/CurrentbirthdayPosts";
 
-const Transition = React.forwardRef(function Transition(
-  props: TransitionProps & {
-    children: React.ReactElement<any, any>,
-  },
-  ref: React.Ref<unknown>
-) {
+const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
