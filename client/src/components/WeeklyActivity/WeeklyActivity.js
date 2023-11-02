@@ -49,16 +49,17 @@ const WeeklyActivity = () => {
                   "@media (max-width: 600px)": {
                     flexDirection: "column",
                     display: "flex",
+                    // width: "600px",
+                    // height: "400px",
                   },
 
                   "@media (min-width: 600px)": {
                     flexDirection: "row",
-                    width: "600px",
-                    height: "400px",
+                    display: "flex",
                   },
+                  width: "600px",
+                  height: "400px",
                 }}
-                width="600px"
-                height="400px"
                 type="line"
                 data={{
                   datasets: [
