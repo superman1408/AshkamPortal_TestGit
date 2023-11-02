@@ -42,7 +42,7 @@ const Birthday = () => {
   const dispatch = useDispatch();
 
   const posts = useSelector((state) => state.posts);
-  console.log(posts);
+  // console.log(posts);
 
   useEffect(() => {
     dispatch(getPosts());
@@ -53,8 +53,6 @@ const Birthday = () => {
   // const UsFormatter = new Intl.DateTimeFormat("en-US");
   // const currentDate = UsFormatter.format(date);
   // const currentDate = UsFormatter.format(date);
-  console.log("currentDay", currentDay);
-  console.log("currentMonth", currentMonth);
 
   return (
     <div>
@@ -88,15 +86,10 @@ const Birthday = () => {
           </Stack>
           <Grid>
             {posts.map((post) => {
-              console.log(post.dob);
-
               let day = new Date(post.dob).getDate();
               let month = new Date(post.dob).getMonth() + 1;
-              console.log(day);
-              console.log(month);
 
               if (currentDay === day && currentMonth === month) {
-                console.log(post.firstName, "'s birthday");
                 return (
                   <Typography
                     post={post}
@@ -106,8 +99,6 @@ const Birthday = () => {
                     {post.firstName + " " + post.lastName}
                   </Typography>
                 );
-              } else {
-                console.log("No birthday");
               }
             })}
 
