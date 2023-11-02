@@ -18,6 +18,7 @@ import {
   Stack,
   Avatar,
   Card,
+  Drawer,
 } from "@mui/material";
 
 import DashboardIcon from "@mui/icons-material/Dashboard";
@@ -31,7 +32,8 @@ import ForwardToInboxTwoToneIcon from "@mui/icons-material/ForwardToInboxTwoTone
 
 // import avatar1 from "../../assets/Profile.jpg";
 
-const Panel = () => {
+const Panel = (post) => {
+  const [state, setState] = React.useState();
   // const [Btn, setBtn] = useState(false);
 
   const dispatch = useDispatch();
@@ -56,6 +58,19 @@ const Panel = () => {
     setUser(null);
     dispatch({ type: LOGOUT });
     navigate("/auth");
+  };
+
+  const toggleDrawer = (state) => (event) => {
+    event.preventDefault();
+    if (
+      event &&
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setState(state);
   };
 
   return (
