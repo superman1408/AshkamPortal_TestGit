@@ -35,5 +35,9 @@ export const signup = (formData, navigate) => async (dispatch) => {
     navigate("/home", { replace: true });
   } catch (error) {
     console.log(error);
+    // toast coding for error message
+    toast.error("password Don't match IDIOT", {
+      position: toast.POSITION.TOP_CENTER,
+    });
   }
 };
