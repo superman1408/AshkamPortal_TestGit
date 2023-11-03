@@ -10,6 +10,13 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
 import BadgeIcon from "@mui/icons-material/Badge";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import OutlinedInput from "@mui/material/OutlinedInput";
 import image from "../../assets/ProfileShipImage.png";
 import "./style.css";
 import { ToastContainer } from "react-toastify";
@@ -27,6 +34,13 @@ const Auth = () => {
   const [isSignUp, setisSignUp] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   const [formData, setFormData] = useState(initialData);
 
@@ -209,19 +223,38 @@ const Auth = () => {
                   setFormData({ ...formData, email: e.target.value })
                 }
               />
-              <TextField
+
+              <FormControl
                 sx={{ marginTop: "10px" }}
+                variant="outlined"
                 name="password"
                 type="password"
-                variant="outlined"
-                required
-                fullWidth
                 autoComplete="on"
-                label="Password"
                 onChange={(e) =>
                   setFormData({ ...formData, password: e.target.value })
                 }
-              />
+              >
+                <InputLabel htmlFor="outlined-adornment-password">
+                  Password
+                </InputLabel>
+                <OutlinedInput
+                  type={showPassword ? "text" : "password"}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  label="Password"
+                />
+              </FormControl>
+
               {isSignUp && (
                 <TextField
                   sx={{ marginTop: "10px" }}
