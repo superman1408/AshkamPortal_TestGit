@@ -256,14 +256,11 @@ const Auth = () => {
               </FormControl>
 
               {isSignUp && (
-                <TextField
+                <FormControl
                   sx={{ marginTop: "10px" }}
-                  name="confirmPassword"
-                  type="password"
                   variant="outlined"
-                  required
-                  fullWidth
-                  label="Confirm Password"
+                  name="confirmPassword"
+                  type="confirmPassword"
                   autoComplete="on"
                   onChange={(e) =>
                     setFormData({
@@ -271,7 +268,44 @@ const Auth = () => {
                       confirmPassword: e.target.value,
                     })
                   }
-                />
+                >
+                  <InputLabel htmlFor="outlined-adornment-confirmPassword">
+                    Confirm Password
+                  </InputLabel>
+                  <OutlinedInput
+                    type={showPassword ? "text" : "password"}
+                    endAdornment={
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          onMouseDown={handleMouseDownPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <Visibility /> : <VisibilityOff />}
+                        </IconButton>
+                      </InputAdornment>
+                    }
+                    label="Confirm Password"
+                  />
+                </FormControl>
+
+                // <TextField
+                //   sx={{ marginTop: "10px" }}
+                //   name="confirmPassword"
+                //   type="password"
+                //   variant="outlined"
+                //   required
+                //   fullWidth
+                //   label="Confirm Password"
+                //   autoComplete="on"
+                //   onChange={(e) =>
+                //     setFormData({
+                //       ...formData,
+                //       confirmPassword: e.target.value,
+                //     })
+                //   }
+                // />
               )}
             </div>
             <div>
