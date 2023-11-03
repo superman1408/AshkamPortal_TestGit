@@ -64,7 +64,7 @@ export default function AlertDialogSlide() {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Wish Him
+        Wish 
       </Button>
       <Dialog
         open={open}
@@ -83,7 +83,7 @@ export default function AlertDialogSlide() {
           "& .MuiDialog-container": {
             "& .MuiPaper-root": {
               width: "100%",
-              height: "50%",
+              // height: "50%",
               maxWidth: "500px", // Set your width here
             },
           },

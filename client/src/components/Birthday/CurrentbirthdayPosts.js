@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 
-import { Typography } from "@mui/material";
+import { TextField, Typography, Avatar } from "@mui/material";
 
 import { useDispatch, useSelector } from "react-redux";
 
 import { getPosts } from "../../action/posts";
+
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+
+import InputAdornment from "@mui/material/InputAdornment";
 
 const CurrentbirthdayPosts = () => {
   const [currentId, setCurrentId] = useState(null);
@@ -29,9 +33,24 @@ const CurrentbirthdayPosts = () => {
 
         if (currentDay === day && currentMonth === month) {
           return (
-            <Typography post={post} variant="h6" sx={{ marginLeft: "10px" }}>
-              {post.email}
-            </Typography>
+            // <Typography post={post} variant="h6" sx={{ marginLeft: "10px" }}>
+            //   {post.email}
+            // </Typography>
+            <>
+              <div style={{ display: "flex", marginTop: "10px" }}>
+                <TextField
+                  sx={{ backgroundColor: "#CEE1F9" }}
+                  value={post.email}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <AccountCircleIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </div>
+            </>
           );
         }
       })}
