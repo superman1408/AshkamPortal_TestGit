@@ -699,6 +699,7 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
+                      
                       value={postData.employeerContribution_esic}
                       onChange={(e) =>
                         setPostData({
