@@ -7,6 +7,7 @@ import {
   Avatar,
   Button,
   ButtonBase,
+  Card,
 } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
@@ -60,7 +61,7 @@ const Birthday = () => {
         sx={{
           // width: "340px",
           // height: "70px",
-          display: "flex",
+          // display: "flex",
           marginTop: "10px",
           marginLeft: "20px",
           padding: "2px",
@@ -71,61 +72,76 @@ const Birthday = () => {
           backgroundSize: "cover",
         }}
       >
-        <ButtonBase>
-          <Stack flexDirection="row">
-            <Avatar
-              sx={{
-                width: 40,
-                height: 40,
-                marginLeft: "20px",
-                marginTop: "10px",
-              }}
-              alt="Femy sharp"
-              src={avatar1}
-            />
-          </Stack>
-          <Grid>
-            {posts.map((post) => {
-              let day = new Date(post.dob).getDate();
-              let month = new Date(post.dob).getMonth() + 1;
+        {/* <ButtonBase> */}
 
-              if (currentDay === day && currentMonth === month) {
-                return (
-                  <Typography
-                    post={post}
-                    variant="h6"
-                    sx={{ marginLeft: "40px" }}
+        <Grid>
+          {posts.map((post) => {
+            let day = new Date(post.dob).getDate();
+            let month = new Date(post.dob).getMonth() + 1;
+
+            if (currentDay === day && currentMonth === month) {
+              return (
+                <>
+                  <Card
+                    elevation={15}
+                    sx={{
+                      display: "flex",
+                      marginTop: "15px",
+                      alignItems: "center",
+                      width: "70%",
+                    }}
                   >
-                    {post.firstName + " " + post.lastName}
-                  </Typography>
-                );
-              }
-            })}
+                    <Avatar
+                      sx={{
+                        width: 30,
+                        height: 30,
+                        marginLeft: "20px",
+                      }}
+                      alt="user"
+                      src={avatar1}
+                    />
+                    <Typography
+                      post={post}
+                      variant="h6"
+                      sx={{
+                        marginLeft: "20px",
+                        fontSize: "18px",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {post.firstName + " " + post.lastName}
+                    </Typography>
+                  </Card>
+                </>
+              );
+            }
+          })}
 
-            <Typography sx={{ marginLeft: "40px", fontSize: "13px" }}>
-              Has birthday today
-            </Typography>
-            <Button
-              sx={{
-                marginLeft: "50px",
-                marginRight: "0px",
-                // bgcolor: "#ecd0f5",
-                fontSize: "13px",
-              }}
-              // onClick={() => setBtn(!Btn)}
-            >
-              {" "}
-              <AlertDialogSlide />
-            </Button>
-            {/* {Btn && (
+          {/* <Typography sx={{ textAlign: "center", fontSize: "13px" }}>
+            Has birthday today
+          </Typography> */}
+          <Button
+            sx={{
+              // marginLeft: "50px",
+              // marginRight: "0px",
+              // bgcolor: "#ecd0f5",
+              fontSize: "13px",
+              marginLeft: "20vh",
+            }}
+            // onClick={() => setBtn(!Btn)}
+          >
+            {" "}
+            <AlertDialogSlide />
+          </Button>
+          {/* {Btn && (
               <ReactConfetti
                 width={dimension.width}
                 height={dimension.height}
                 tweenDuration={100}
               /> */}
-          </Grid>
-          <div class="btn-particles"></div>
-        </ButtonBase>
+        </Grid>
+        <div class="btn-particles"></div>
+        {/* </ButtonBase> */}
       </Box>
     </div>
   );
