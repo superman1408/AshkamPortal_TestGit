@@ -1,87 +1,96 @@
 import mongoose from "mongoose";
 
 const authSchema = mongoose.Schema({
-  firstName: { 
+  firstName: {
     type: String,
-    require: true
+    require: true,
   },
   lastName: {
     type: String,
-    require: true
+    require: true,
   },
   dob: {
     type: String,
-    require :true
+    require: true,
   },
   gender: {
     type: String,
-    require :true
+    require: true,
   },
   maritalStatus: {
     type: String,
-    require :true
+    require: true,
   },
-  email: { 
+  email: {
     type: String,
-    require: true
+    require: true,
   },
   contactNumber: {
     type: String,
-    require :true
+    require: true,
   },
   password: {
     type: String,
-    require: true
+    require: true,
   },
   confirmPassword: {
     type: String,
-    require :true
+    require: true,
   },
   role: {
     type: String,
-    require :true
+    require: true,
   },
   employeeId: {
-    type: String
+    type: String,
   },
   department: {
-    type: String
+    type: String,
   },
   jobTitle: {
-    type: String
+    type: String,
   },
   jobSkill: {
-    type: String
+    type: String,
   },
   reportingManager: {
-    type: String
+    type: String,
   },
   streetAddress: {
-    type: String
+    type: String,
   },
   city: {
-    type: String
+    type: String,
   },
   state: {
-    type: String
+    type: String,
   },
   pincode: {
-    type: String
+    type: String,
   },
   selectedFile: {
-    type: String
+    type: String,
   },
   emergencyName: {
-    type: String
+    type: String,
   },
   emergencyContact: {
-    type: String
+    type: String,
   },
   relationship: {
-    type: String
+    type: String,
   },
   emergencyAddress: {
-    type: String
+    type: String,
+  },
+  recipient: {
+    type: [String],
+  },
+  requiredMessage: {
+    type: [String],
+  },
+  subject: {
+    type: [String],
   },
 });
 
