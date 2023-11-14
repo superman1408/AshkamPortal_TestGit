@@ -57,8 +57,8 @@ const WeeklyActivity = () => {
                 //     height: "400px",
                 //   },
                 // }}
-                width="600px"
-                height="400px"
+                width={600}
+                height={400}
                 type="line"
                 data={{
                   datasets: [

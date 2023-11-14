@@ -37,7 +37,7 @@ const Calender = () => {
           >
             <DateCalendar
               showDaysOutsideCurrentMonth
-              show
+              show="true"
               onChange={onChange}
             />
           </LocalizationProvider>

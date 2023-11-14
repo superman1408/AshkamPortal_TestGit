@@ -38,7 +38,7 @@ const CurrentbirthdayPosts = () => {
             // <Typography post={post} variant="h6" sx={{ marginLeft: "10px" }}>
             //   {post.email}
             // </Typography>
-            <>
+            <React.Fragment key={post.dob}>
               <div style={{ display: "flex", marginTop: "10px" }}>
                 <TextField
                   sx={{ backgroundColor: "#CEE1F9" }}
@@ -52,7 +52,7 @@ const CurrentbirthdayPosts = () => {
                   }}
                 />
               </div>
-            </>
+            </React.Fragment>
           );
         } else {
           // console.log("No birthday");
