@@ -18,9 +18,9 @@ const AboutUs = () => {
   //   tweenFunctions.easeInQuad(1, 0, 50, 5); // => 4
 
   useEffect(() => {
-    window.addEventListener("resize", detectSize);
+    window.addEventListener("resize", detectSize, { passive: true });
     return () => {
-      window.removeEventListener("resize", detectSize);
+      window.removeEventListener("resize", detectSize, { passive: true });
     };
   }, [dimension]);
   return (

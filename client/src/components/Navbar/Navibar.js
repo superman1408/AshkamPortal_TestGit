@@ -24,7 +24,6 @@ const Navibar = () => {
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
 
-
   useEffect(() => {
     const token = user?.token;
     if (token) {
@@ -39,8 +38,6 @@ const Navibar = () => {
     console.log("Notification is clicked...!!!");
   };
 
-
-
   const handleLogout = () => {
     console.log("logout");
     dispatch({ type: LOGOUT });
@@ -48,18 +45,16 @@ const Navibar = () => {
     navigate("/auth");
   };
 
-
-  
   const openPage = (id, action) => {
     console.log(action);
-    switch(action) {
-      case 'leave':
+    switch (action) {
+      case "leave":
         navigate(`/mail/${id}/leave`);
         break;
-      case 'inbox':
+      case "inbox":
         navigate(`/mail/${id}/communication`);
         break;
-      case 'payslip':
+      case "payslip":
         navigate(`/${id}/payslip`);
         break;
       case "registration":
@@ -70,8 +65,6 @@ const Navibar = () => {
     }
   };
 
-
-
   return (
     <Navbar sticky="top" expand="lg" className="bg-body-tertiary">
       {/* className=" bg-body-tertiary justify-content-between" */}
@@ -79,7 +72,7 @@ const Navibar = () => {
         {/* <Navbar.Brand href="/auth">
           <img src={LOGO} alt="logo" style={{ width: "220px" }} />
         </Navbar.Brand> */}
-        <div class="flex justify-between">
+        <div>
           {user ? (
             <div>
               <Navbar.Toggle aria-controls="navbarScroll" />
@@ -90,11 +83,15 @@ const Navibar = () => {
                   navbarScroll
                 >
                   <Nav.Link href="/home">
-                    <IconButton to="/home" id="home">
+                    <IconButton id="home">
                       <HomeIcon sx={{ fontSize: "30px" }} />
                     </IconButton>
                   </Nav.Link>
-                  <Nav.Link onClick={() => openPage(user.result._id, "registration")} id="registration" style={{ marginTop: "8px" }}>
+                  <Nav.Link
+                    onClick={() => openPage(user.result._id, "registration")}
+                    id="registration"
+                    style={{ marginTop: "8px" }}
+                  >
                     Registration
                   </Nav.Link>
 
@@ -103,15 +100,24 @@ const Navibar = () => {
                     id="navbarScrollingDropdown"
                     style={{ marginTop: "8px" }}
                   >
-                    <NavDropdown.Item onClick={() => openPage(user.result._id, "leave")} id="leave">
+                    <NavDropdown.Item
+                      onClick={() => openPage(user.result._id, "leave")}
+                      id="leave"
+                    >
                       Leave Section
                     </NavDropdown.Item>
                     {/* <NavDropdown.Divider /> */}
-                    <NavDropdown.Item onClick={() => openPage(user.result._id, "inbox")} id="inbox">
+                    <NavDropdown.Item
+                      onClick={() => openPage(user.result._id, "inbox")}
+                      id="inbox"
+                    >
                       Inbox
                     </NavDropdown.Item>
                     {/* <NavDropdown.Divider /> */}
-                    <NavDropdown.Item onClick={() => openPage(user.result._id, "payslip")} id="payslip">
+                    <NavDropdown.Item
+                      onClick={() => openPage(user.result._id, "payslip")}
+                      id="payslip"
+                    >
                       Pay Slips
                     </NavDropdown.Item>
                   </NavDropdown>

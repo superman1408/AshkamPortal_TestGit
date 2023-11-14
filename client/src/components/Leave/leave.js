@@ -23,6 +23,7 @@ const Leave = () => {
   const posts = useSelector((state) => state.posts);
 
   const { id } = useParams();
+  console.log(id);
 
   const user = JSON.parse(localStorage.getItem("profile"));
 
@@ -96,7 +97,7 @@ const Leave = () => {
     e.preventDefault();
 
     if (mailData) {
-      // dispatch(sendMail(mailData, navigate));
+      dispatch(sendMail(mailData, navigate));
       dispatch(sendMailData(id, mailData));
       if (posts) {
         posts.map((post) =>
@@ -113,7 +114,7 @@ const Leave = () => {
       requiredMessage: "",
       subject: "",
     });
-    console.log("clicked me in clear");
+    console.log("clicked me to clear");
   };
 
   return (
