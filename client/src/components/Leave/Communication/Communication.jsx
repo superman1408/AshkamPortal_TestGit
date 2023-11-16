@@ -21,12 +21,14 @@ const Communication = () => {
 
   return (
     <Grid sx={{ flexDirection: "col", padding: "2px" }}>
-      <Grid sx={{ display: "flex", flexDirection: "row", marginRight: "10px" }}>
-        <Panel />
+      <Grid sx={{ display: "flex", flexDirection: "col", marginRight: "10px" }}>
+        <div>
+          <Panel />
+        </div>
+        <h1>Messages</h1>
       </Grid>
-      <h1>Messages</h1>
-      <br />
-      <div>
+      
+      {/* <div>
         {user &&
           posts.map(
             (post) =>
@@ -47,7 +49,7 @@ const Communication = () => {
                 </div>
               )
           )}
-      </div>
+      </div>  */}
     </Grid>
   );
 };
