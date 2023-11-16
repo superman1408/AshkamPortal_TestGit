@@ -28,11 +28,8 @@ const CurrentbirthdayPosts = () => {
   return (
     <>
       {posts.map((post) => {
-<<<<<<< HEAD
-=======
         // console.log(post.dob);
 
->>>>>>> birthdayLayout
         let day = new Date(post.dob).getDate();
         let month = new Date(post.dob).getMonth() + 1;
 
@@ -57,11 +54,8 @@ const CurrentbirthdayPosts = () => {
               </div>
             </React.Fragment>
           );
-<<<<<<< HEAD
-=======
         } else {
           // console.log("No birthday");
->>>>>>> birthdayLayout
         }
       })}
     </>

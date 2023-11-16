@@ -264,7 +264,7 @@ const Auth = () => {
                   required
                   fullWidth
                   label="Confirm Password"
-                  autoComplete="on"
+                  autoComplete="off"
                   onChange={(e) =>
                     setFormData({
                       ...formData,

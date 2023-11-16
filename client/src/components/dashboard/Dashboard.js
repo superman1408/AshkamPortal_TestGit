@@ -25,17 +25,8 @@ const Admin = () => {
           flexDirection: "row",
           marginTop: "2px",
           padding: "0px",
-          // bgcolor: "background.paper",
+          bgcolor: "background.paper",
           boxShadow: 1,
-
-          "@media (max-width: 600px)": {
-            flexDirection: "column",
-            marginTop: "20px",
-          },
-
-          "@media (min-width: 600px)": {
-            flexDirection: "row",
-          },
         }}
       >
         <Grid sx={{ display: "flex", flexDirection: "row" }}>

@@ -111,8 +111,8 @@ const Birthday = () => {
             }
           })}
 
-          <Button
-            sx={{
+          <div
+            style={{
               // marginLeft: "50px",
               // marginRight: "0px",
               // bgcolor: "#ecd0f5",
@@ -122,7 +122,7 @@ const Birthday = () => {
           >
             {" "}
             <AlertDialogSlide />
-          </Button>
+          </div>
         </Grid>
       </Box>
     </div>

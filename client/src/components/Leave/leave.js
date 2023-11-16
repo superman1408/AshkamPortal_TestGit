@@ -277,7 +277,7 @@ const Leave = () => {
               <Calender />
             </Card>
             <Card elevation={10} sx={{ marginTop: "10px", padding: "5px" }}>
-              <ChartComponent />
+              <ChartComponent style={{ willchange: "transform" }} />
             </Card>
           </div>
         </div>
