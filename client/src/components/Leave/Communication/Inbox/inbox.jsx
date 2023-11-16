@@ -9,7 +9,7 @@ const Inbox = ({ post, setCurrentId }) => {
   };
 
   return (
-    <Card className="flex flex-row justify-between p-4 ">
+    <Card>
       <ButtonBase onClick={openMessage}>
         <CardHeader className="flex flex-row shadow-2xl p-2 ">
           <div className="w-[90px] flex-wrap p-2">
