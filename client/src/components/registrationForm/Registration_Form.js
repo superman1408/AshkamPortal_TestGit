@@ -39,8 +39,8 @@ const RegistrationForm = () => {
   }, [currentId, user]);
 
   const [postData, setPostData] = useState({
-    firstName: "",
-    lastName: "",
+    firstName: user.result.firstName,
+    lastName: user.result.lastName,
     dob: "",
     gender: "",
     email: user.result.email,
@@ -253,7 +253,6 @@ const RegistrationForm = () => {
                       console.log(e.target.value)
                     )
                   }
-                  
                 >
                   <Radio value="female" label="Female" color="primary" />
                   <Radio value="male" label="Male" color="primary" />
