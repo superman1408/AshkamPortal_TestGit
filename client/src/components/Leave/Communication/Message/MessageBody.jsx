@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Typography, Avatar } from "@material-ui/core";
 import { useDispatch } from "react-redux";
-import { getPost, updateStatus } from "../../../../actions/posts";
+import { getPost, updateStatus } from "../../../../action/posts";
 import { CircularProgress } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 

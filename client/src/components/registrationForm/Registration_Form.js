@@ -118,7 +118,7 @@ const RegistrationForm = () => {
 
   return (
     <Container
-      fluid
+      fluid="true"
       ref={componentRef}
       maxwidth="true"
       sx={{
@@ -253,7 +253,6 @@ const RegistrationForm = () => {
                       console.log(e.target.value)
                     )
                   }
-                  
                 >
                   <Radio value="female" label="Female" color="primary" />
                   <Radio value="male" label="Male" color="primary" />

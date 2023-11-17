@@ -47,24 +47,16 @@ export default function AlertDialogSlide() {
   const dispatch = useDispatch();
 
   const posts = useSelector((state) => state.posts);
-  console.log(posts);
+  // console.log(posts);
 
   useEffect(() => {
     dispatch(getPosts());
   }, [dispatch, currentId]);
 
-  const currentDay = new Date().getDate();
-  const currentMonth = new Date().getMonth() + 1;
-  // const UsFormatter = new Intl.DateTimeFormat("en-US");
-  // const currentDate = UsFormatter.format(date);
-  // const currentDate = UsFormatter.format(date);
-  console.log("currentDay", currentDay);
-  console.log("currentMonth", currentMonth);
-
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Wish 
+        Wish
       </Button>
       <Dialog
         open={open}

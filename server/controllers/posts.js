@@ -71,15 +71,20 @@ export const deletePost = async (req, res) => {
   res.json({ message: "Post deleted successfully" });
 };
 
+// __________________________________________________________________________________
+
 export const sendData = async (req, res) => {
   const { id } = req.params;
   const value = req.body;
-  // console.log(id);
+  console.log("value", value);
+  console.log("value of this part is working");
+  console.log(id);
 
   const post = await AuthenticateUser.findById(id);
   post.recipient.push(value.recipient);
   post.requiredMessage.push(value.requiredMessage);
   post.subject.push(value.subject);
+  console.log(value.recipient);
 
   const updatePost = await AuthenticateUser.findByIdAndUpdate(id, post, {
     new: true,

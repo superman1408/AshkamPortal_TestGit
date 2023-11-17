@@ -259,9 +259,16 @@ const Auth = () => {
                 <FormControl
                   sx={{ marginTop: "10px" }}
                   variant="outlined"
+<<<<<<< HEAD
                   name="confirmPassword"
                   type="confirmPassword"
                   autoComplete="on"
+=======
+                  required
+                  fullWidth
+                  label="Confirm Password"
+                  autoComplete="off"
+>>>>>>> ae2089063b23b1d2afb950a20d846ccc19d2568e
                   onChange={(e) =>
                     setFormData({
                       ...formData,

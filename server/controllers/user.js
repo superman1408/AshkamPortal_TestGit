@@ -5,8 +5,7 @@ import AuthenticateUser from "../model/authDetails.js";
 
 export const signin = async (req, res) => {
   const { email, password } = req.body;
-  // console.log("HELLO SIGN UP");
-  // res.status(200).send('sign IN');
+
 
   try {
     const existingUser = await AuthenticateUser.findOne({ email: email });
@@ -35,15 +34,15 @@ export const signin = async (req, res) => {
     res.status(200).json({ result: existingUser, token });
   } catch (error) {
     res.status(500).json({ message: "Something went wrong" });
-    // console.log(error);
   }
 };
+
+
+
 
 export const signup = async (req, res) => {
   const { email, password, confirmPassword, role, firstName, lastName } =
     req.body;
-  // console.log(req.body);
-  // res.status(200).send('sign UP');
 
   try {
     const existingUser = await AuthenticateUser.findOne({ email });

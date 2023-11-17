@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 
 import userRouters from "./routes/user.js";
 import postsRouters from "./routes/posts.js";
+import mailRouters from "./routes/mail.js";
 
 const app = express();
 dotenv.config();
@@ -21,6 +22,7 @@ app.use(cors());
 
 app.use("/user", userRouters);
 app.use("/posts", postsRouters);
+app.use("/mail", mailRouters);
 
 app.get("/", (req, res) => {
   res.status(200).send("I am a SuperMan");

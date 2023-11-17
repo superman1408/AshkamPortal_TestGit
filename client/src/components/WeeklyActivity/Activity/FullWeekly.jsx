@@ -1,7 +1,53 @@
 import React from "react";
 
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col"; 
+import Button from "react-bootstrap/Button"; 
+import InputGroup from "react-bootstrap/InputGroup"; 
+import FormControl from "react-bootstrap/FormControl"; 
+// import ListGroup from "react-bootstrap/ListGroup"; 
+
 const FullWeekly = () => {
-  return <div>To Do List</div>;
+  return (
+    <div>
+      {/* <strong>To Do List</strong> */}
+      <Row 
+					style={{ 
+						display: "flex", 
+						justifyContent: "center", 
+						alignItems: "center", 
+						fontSize: "3rem", 
+						fontWeight: "bolder", 
+					}} 
+				> 
+					TODO LIST 
+			</Row>
+      <hr /> 
+ 				<Row> 
+ 					<Col md={{ span: 5, offset: 4 }}> 
+ 						<InputGroup className="mb-3"> 
+ 							<FormControl 
+								placeholder="add item . . . "
+								size="lg" 
+								onChange={(item) => {} 
+								} 
+								aria-label="add something"
+								aria-describedby="basic-addon2"
+							/> 
+ 							<InputGroup> 
+ 								<Button 
+									variant="dark"
+									className="mt-2"
+									onClick={() => {}} 
+								> 
+ 									ADD 
+ 								</Button> 
+ 							</InputGroup> 
+ 						</InputGroup> 
+ 					</Col> 
+ 				</Row>
+    </div>
+  )
 };
 
 export default FullWeekly;

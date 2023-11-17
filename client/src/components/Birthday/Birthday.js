@@ -51,17 +51,11 @@ const Birthday = () => {
 
   const currentDay = new Date().getDate();
   const currentMonth = new Date().getMonth() + 1;
-  // const UsFormatter = new Intl.DateTimeFormat("en-US");
-  // const currentDate = UsFormatter.format(date);
-  // const currentDate = UsFormatter.format(date);
 
   return (
     <div>
       <Box
         sx={{
-          // width: "340px",
-          // height: "70px",
-          // display: "flex",
           marginTop: "10px",
           marginLeft: "20px",
           padding: "2px",
@@ -81,7 +75,7 @@ const Birthday = () => {
 
             if (currentDay === day && currentMonth === month) {
               return (
-                <>
+                <React.Fragment key={post.dob}>
                   <Card
                     elevation={15}
                     sx={{
@@ -112,36 +106,24 @@ const Birthday = () => {
                       {post.firstName + " " + post.lastName}
                     </Typography>
                   </Card>
-                </>
+                </React.Fragment>
               );
             }
           })}
 
-          {/* <Typography sx={{ textAlign: "center", fontSize: "13px" }}>
-            Has birthday today
-          </Typography> */}
-          <Button
-            sx={{
+          <div
+            style={{
               // marginLeft: "50px",
               // marginRight: "0px",
               // bgcolor: "#ecd0f5",
               fontSize: "13px",
               marginLeft: "20vh",
             }}
-            // onClick={() => setBtn(!Btn)}
           >
             {" "}
             <AlertDialogSlide />
-          </Button>
-          {/* {Btn && (
-              <ReactConfetti
-                width={dimension.width}
-                height={dimension.height}
-                tweenDuration={100}
-              /> */}
+          </div>
         </Grid>
-        <div class="btn-particles"></div>
-        {/* </ButtonBase> */}
       </Box>
     </div>
   );

@@ -21,7 +21,6 @@ const Inbox = ({ post, setCurrentId }) => {
               className="p-0"
             />
           </div>
-
           <div className="flex flex-col">
             <Typography variant="h5" color="blue" className="text-[24px]">
               {post?.name}
