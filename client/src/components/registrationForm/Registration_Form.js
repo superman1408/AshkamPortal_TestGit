@@ -81,7 +81,7 @@ const RegistrationForm = () => {
       lastName: "",
       dob: "",
       gender: "",
-      email: "",
+      email: user.result.email,
       maritalStatus: "",
       contactNumber: "",
       streetAddress: "",
