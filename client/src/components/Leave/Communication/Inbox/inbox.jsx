@@ -1,14 +1,4 @@
-import {
-  Box,
-  ButtonBase,
-  Card,
-  CardHeader,
-  CardMedia,
-  Grid,
-  Typography,
-  Button,
-  Avatar,
-} from "@mui/material";
+import { ButtonBase, Typography, Button, Avatar, Grid } from "@mui/material";
 import React from "react";
 // import Message from "../Message/message";
 
@@ -24,28 +14,33 @@ const Inbox = ({ post, setCurrentId }) => {
       <Button required fullWidth>
         <ButtonBase
           sx={{
-            bgcolor: "pink",
-            width: "100%",
+            bgcolor: "#aee3e8",
+            width: "50vh",
             padding: "5px",
-            height: "100px",
+            height: "80px",
           }}
           onClick={openMessage}
         >
-          <div>
+          <Grid
+            sx={{ display: "flex", width: "calc(100%)", marginLeft: "20px" }}
+          >
             <Avatar
               alt="avatar"
               src={post?.selectedFile}
-              withBorder={true}
+              withborder="true"
               color="green"
             />
-          </div>
 
-          <div className="grid grid-rows-2">
-            <Typography variant="h5" color="blue">
+            <Typography variant="h6" color="black" sx={{ marginLeft: "20px" }}>
+              {post?.email}
+            </Typography>
+          </Grid>
+
+          {/* <div width="calc(50%)">
+            <Typography variant="h5" color="black">
               {post?.name}
             </Typography>
-            <Typography variant="h6">{post?.email}</Typography>
-          </div>
+          </div> */}
         </ButtonBase>
       </Button>
     </div>

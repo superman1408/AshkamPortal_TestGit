@@ -1,14 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Box,
-  Grid,
-  Typography,
-  Stack,
-  Avatar,
-  Button,
-  ButtonBase,
-  Card,
-} from "@mui/material";
+import { Box, Grid, Typography, Avatar, Card } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
 

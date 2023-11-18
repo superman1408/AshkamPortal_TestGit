@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Grid } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { Grid, TextField } from "@mui/material";
 import Panel from "../../Panel/Panel";
 
 import Inbox from "./Inbox/inbox";
@@ -20,34 +20,37 @@ const Communication = () => {
   }, [dispatch, currentId]);
 
   return (
-    <div style={{ padding: "5px", display: "flex" }}>
-      <div>
-        {" "}
-        <Panel />
+    <>
+      <div style={{ padding: "5px", display: "flex" }}>
+        <div>
+          <Panel />
+        </div>
+        <Grid sx={{ bgcolor: "#047782", display: "flex", width: "100%" }}>
+          <div>
+            {user &&
+              posts.map(
+                (post) =>
+                  post.name === user.result.name && (
+                    <div key={post.name}>
+                      <Inbox post={post} setCurrentId={setCurrentId} />
+                    </div>
+                  )
+              )}
+          </div>
+          <div>
+            {user &&
+              posts.map(
+                (post) =>
+                  post._id === currentId && (
+                    <div key={post._id}>
+                      <MessageBody post={post} currentId={currentId} />
+                    </div>
+                  )
+              )}
+          </div>
+        </Grid>
       </div>
-      <div>
-        {user &&
-          posts.map(
-            (post) =>
-              post.name === user.result.name && (
-                <div key={post.name}>
-                  <Inbox post={post} setCurrentId={setCurrentId} />
-                </div>
-              )
-          )}
-      </div>
-      <div>
-        {user &&
-          posts.map(
-            (post) =>
-              post._id === currentId && (
-                <div key={post.contact}>
-                  <MessageBody post={post} currentId={currentId} />
-                </div>
-              )
-          )}
-      </div>
-    </div>
+    </>
   );
 };
 

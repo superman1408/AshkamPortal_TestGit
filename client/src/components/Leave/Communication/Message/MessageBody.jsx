@@ -1,17 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getPost, updateStatus } from "../../../../action/posts";
-import { CircularProgress } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
-import {
-  Box,
-  Button,
-  Card,
-  Grid,
-  Typography,
-  Avatar,
-  TextField,
-} from "@mui/material";
+import { Button, Card, Typography, Avatar } from "@mui/material";
 
 const Message = ({ post, currentId }) => {
   const [activeStatus, setActiveStatus] = useState({ status: "pending" });
@@ -52,7 +43,7 @@ const Message = ({ post, currentId }) => {
       console.log("3 is there");
       // updateArray();
     }
-  }, [isLoading]);
+  }, [currentId, dispatch, isLoading]);
 
   //  ----------------- handle accept----------------------
   const handleAccept = () => {
@@ -100,7 +91,8 @@ const Message = ({ post, currentId }) => {
     });
   }
 
-  // console.log(array);
+  // const color = () =>  {item.status === "Accepted" ? (return('green') : return('red')) }
+  // // console.log(array);
 
   return (
     currentId && (
@@ -110,12 +102,12 @@ const Message = ({ post, currentId }) => {
             elevation={10}
             sx={{
               padding: "5px",
-              width: "70%",
+              width: "100%",
               margin: "10px",
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
-              bgcolor: "#cbe3f5",
+              bgcolor: "#aee3e8",
             }}
           >
             <div key={post.login} className="translate-x-[42%]">
@@ -129,13 +121,13 @@ const Message = ({ post, currentId }) => {
             <div className="grid grid-rows-2 justify-between items-center">
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <div key={post.contact} style={{ display: "flex" }}>
-                  <Avatar
+                  {/* <Avatar
                     alt="avatar"
                     src={post.selectedFile}
                     size="xs"
                     withborder={true}
                     className="p-0.5"
-                  />
+                  /> */}
                   <Typography sx={{ margin: "5px 5px" }}>
                     {post.employeeName}
                   </Typography>
@@ -163,8 +155,8 @@ const Message = ({ post, currentId }) => {
                   })()}
                 </div> */}
 
-                {post.status ? (
-                  <Typography sx={{ marginTop: "10px" }}>
+                {item.status ? (
+                  <Typography sx={{ marginTop: "20px", float: "right" }}>
                     Status :{item.status}
                   </Typography>
                 ) : (
