@@ -1,26 +1,19 @@
 import React, { useRef } from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useReactToPrint } from "react-to-print";
 
 // import useStyle from "./Style";
 
-import { UseSelector } from "react-redux";
-
-import { createPost, updatePost } from "../../action/posts";
-
 import {
   Grid,
-  Box,
   Typography,
   Card,
   Divider,
-  Input,
   TextField,
   Container,
   Button,
 } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 
 const PaySlip = () => {
   // const [currentId, setCurrentId] = useState();
@@ -55,9 +48,10 @@ const PaySlip = () => {
   //To print total days in previous month
   const daysInThisPrevMonth = () => {
     var now = new Date();
-    return (
-      new Date(now.getFullYear(), now.getMonth() - 1, 0).getDate() - `${number}`
-    );
+    const prevMonth = now.getMonth();
+    console.log("prevMonth", prevMonth);
+    console.log("now", now);
+    return new Date(now.getFullYear(), prevMonth, 0).getDate();
   };
 
   const [postData, setPostData] = useState({

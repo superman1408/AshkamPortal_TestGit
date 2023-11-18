@@ -1,33 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { Typography, Avatar } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { getPost, updateStatus } from "../../../../action/posts";
-import { CircularProgress } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
+import { Button, Card, Typography, Avatar } from "@mui/material";
 
-const MessageBody = ({ post, currentId }) => {
+const Message = ({ post, currentId }) => {
   const [activeStatus, setActiveStatus] = useState({ status: "pending" });
   const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log("1");
 
   let array = [];
 
-  const updateArray = async () => {
-    console.log(post.emailTo.length);
-    for (let index = 0; index < post.emailTo.length; index++) {
+  const updateArray = async (post) => {
+    const array = [];
+    for (let index = 0; index < post.recipient.length; index++) {
       await array.push({
-        emailTo: post.emailTo[index],
+        emailTo: post.recipient[index],
         subject: post.subject[index],
-        message: post.message[index],
+        message: post.requiredMessage[index],
         status: post.status[index],
-        attachment: post.attachment[index],
       });
     }
     setLoading(false);
-    console.log("2");
   };
+
+  // useEffect(() => {
+  //   if (post) {
+  //     dispatch(getPost(currentId));
+  //     // updateArray(post);
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (isLoading === true) {
@@ -40,8 +43,9 @@ const MessageBody = ({ post, currentId }) => {
       console.log("3 is there");
       // updateArray();
     }
-  }, [isLoading]);
+  }, [currentId, dispatch, isLoading]);
 
+  //  ----------------- handle accept----------------------
   const handleAccept = () => {
     console.log(activeStatus.status);
     // e.preventDefault();
@@ -54,10 +58,12 @@ const MessageBody = ({ post, currentId }) => {
     } else {
       console.log("Status already set");
     }
-    // setActiveStatus({...activeStatus, status : "Accepted"});
+    setActiveStatus({ ...activeStatus, status: "Accepted" });
     console.log("4");
     navigate("/");
   };
+
+  // ---------------handle reject ---------------------------
 
   const handleReject = () => {
     console.log(activeStatus.status);
@@ -71,58 +77,92 @@ const MessageBody = ({ post, currentId }) => {
     } else {
       console.log("Status already set");
     }
-    // setActiveStatus({...activeStatus, status : "Rejected"});
+    setActiveStatus({ ...activeStatus, status: "Rejected" });
     console.log("5");
     navigate("/");
   };
 
-  for (let index = 0; index < post.emailTo.length; index++) {
+  for (let index = 0; index < post.recipient.length; index++) {
     array.push({
-      emailTo: post.emailTo[index],
+      emailTo: post.recipient[index],
       subject: post.subject[index],
-      message: post.message[index],
+      message: post.requiredMessage[index],
       status: post.status[index],
-      attachment: post.attachment[index],
     });
-
-    console.log("6");
   }
 
-  console.log("7");
+  // const color = () =>  {item.status === "Accepted" ? (return('green') : return('red')) }
+  // // console.log(array);
 
-  return isLoading ? (
-    <CircularProgress />
-  ) : (
+  return (
     currentId && (
-      <div key={post.id} className="w-[800px] flex flex-col   p-2 border">
+      <div>
         {array.map((item) => (
-          <div key={item.length} className="w-full shadow-2xl  p-2 m-2">
-            <div key={post.login} className="content-center">
-              <Typography className="font-sans  text-[28px] text-center p-2 m-2">
+          <Card
+            elevation={10}
+            sx={{
+              padding: "5px",
+              width: "100%",
+              margin: "10px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              bgcolor: "#aee3e8",
+            }}
+          >
+            <div key={post.login} className="translate-x-[42%]">
+              <Typography
+                variant="h6"
+                sx={{ textAlign: "center", padding: "5px", fontWeight: "bold" }}
+              >
                 {item.subject}
               </Typography>
             </div>
-            <div className="grid grid-row p-2 m-2">
-              <div className="flex justify-between p-2 m-2">
-                <div key={post.contact} className="w-[125px]  gap-5">
-                  <Avatar
+            <div className="grid grid-rows-2 justify-between items-center">
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <div key={post.contact} style={{ display: "flex" }}>
+                  {/* <Avatar
                     alt="avatar"
                     src={post.selectedFile}
                     size="xs"
-                    withBorder={true}
+                    withborder={true}
                     className="p-0.5"
-                  />
-                  <Typography className="tracking-wide">{post.name}</Typography>
+                  /> */}
+                  <Typography sx={{ margin: "5px 5px" }}>
+                    {post.employeeName}
+                  </Typography>
                 </div>
-                {item.status && (
-                  // isLoading === false && (
-                  <div key={post.department} className="">
-                    {/* setActiveStatus({{...activeStatus,status:item.status}}) */}
-                    <Typography alignright="true">
-                      Status :{item.status}
-                    </Typography>
-                  </div>
-                  // )
+
+                {/*  Need to understand later */}
+
+                {/* <div>
+                  {(() => {
+                    if (post.status) {
+                      return (
+                        <Typography sx={{ marginTop: "10px" }}>
+                          Status: {item.status}
+                        </Typography>
+                      );
+                    } else {
+                      return (
+                        // <Typography sx={{ marginTop: "10px" }}>
+                        //   Status: Pending
+                        // </Typography>
+
+                        <TextField />
+                      );
+                    }
+                  })()}
+                </div> */}
+
+                {item.status ? (
+                  <Typography sx={{ marginTop: "20px", float: "right" }}>
+                    Status :{item.status}
+                  </Typography>
+                ) : (
+                  <Typography sx={{ marginTop: "10px" }}>
+                    Status : Pending
+                  </Typography>
                 )}
               </div>
               <div
@@ -130,34 +170,34 @@ const MessageBody = ({ post, currentId }) => {
                 style={{
                   border: "2px solid black",
                   padding: "2px",
-                  margin: "2px",
+                  marginTop: "10px",
                 }}
               >
-                <Typography className="p-2 m-2">{item.message}</Typography>
+                <Typography sx={{ padding: "10px", bgcolor: "white" }}>
+                  {item.message}
+                </Typography>
               </div>
               <div
                 key={post._id}
-                className="flex flex-row justify-between gap-4 m-5"
+                style={{
+                  display: "flex",
+                  justifyContent: "space-evenly",
+                  marginTop: "10px",
+                }}
               >
-                <button
-                  className="rounded-full ring-2 ring-green-500"
-                  onClick={handleAccept}
-                >
+                <Button variant="contained" onClick={handleAccept}>
                   Accept
-                </button>
-                <button
-                  className="rounded-full ring-2 ring-red-500"
-                  onClick={handleReject}
-                >
+                </Button>
+                <Button variant="contained" onClick={handleReject}>
                   Reject
-                </button>
+                </Button>
               </div>
             </div>
-          </div>
+          </Card>
         ))}
       </div>
     )
   );
 };
 
-export default MessageBody;
+export default Message;

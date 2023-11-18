@@ -92,6 +92,10 @@ const authSchema = mongoose.Schema({
   subject: {
     type: [String],
   },
+  status: {
+    type: [String],
+    default: [],
+  },
 });
 
 const AuthDetails = mongoose.model("AuthDetails", authSchema);
