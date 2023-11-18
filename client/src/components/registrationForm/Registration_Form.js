@@ -39,8 +39,8 @@ const RegistrationForm = () => {
   }, [currentId, user]);
 
   const [postData, setPostData] = useState({
-    firstName: "",
-    lastName: "",
+    firstName: user.result.firstName,
+    lastName: user.result.lastName,
     dob: "",
     gender: "",
     email: user.result.email,
@@ -81,7 +81,7 @@ const RegistrationForm = () => {
       lastName: "",
       dob: "",
       gender: "",
-      email: "",
+      email: user.result.email,
       maritalStatus: "",
       contactNumber: "",
       streetAddress: "",
