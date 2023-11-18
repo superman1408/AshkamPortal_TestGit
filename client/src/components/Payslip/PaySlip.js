@@ -113,7 +113,7 @@ const PaySlip = () => {
 
   return (
     <Container
-      fluid
+      fluid="true"
       sx={{
         display: "flex",
         justifyContent: "center",
@@ -245,7 +245,7 @@ const PaySlip = () => {
                     label="First Name"
                     variant="outlined"
                     required
-                    fullWidth
+                    // fullWidth
                     value={postData.firstName}
                     // onChange={(e) =>
                     //   setPostData({ ...postData, firstName: e.target.value })
@@ -263,7 +263,7 @@ const PaySlip = () => {
                     label="Last Name"
                     variant="outlined"
                     required
-                    fullwidth
+                    // fullwidth
                     value={postData.lastName}
                     // onChange={(e) =>
                     //   setPostData({ ...postData, lastName: e.target.value })
@@ -699,7 +699,6 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      
                       value={postData.employeerContribution_esic}
                       onChange={(e) =>
                         setPostData({
@@ -785,7 +784,7 @@ const PaySlip = () => {
                 <Grid>
                   <Button
                     required
-                    fullWidth
+                    fullWidth={true}
                     sx={{
                       bgcolor: "skyblue",
                       color: "black",
