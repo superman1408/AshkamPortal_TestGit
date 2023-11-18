@@ -48,10 +48,10 @@ const PaySlip = () => {
   //To print total days in previous month
   const daysInThisPrevMonth = () => {
     var now = new Date();
-    const prevMonth = now.getMonth();
-    console.log("prevMonth", prevMonth);
+    const prevMonth1 = now.getMonth();
+    console.log("prevMonth", prevMonth1);
     console.log("now", now);
-    return new Date(now.getFullYear(), prevMonth, 0).getDate();
+    return new Date(now.getFullYear(), prevMonth1, 0).getDate();
   };
 
   const [postData, setPostData] = useState({
@@ -238,7 +238,7 @@ const PaySlip = () => {
                     label="First Name"
                     variant="outlined"
                     required
-                    // fullWidth
+                    fullWidth={true}
                     value={postData.firstName}
                     // onChange={(e) =>
                     //   setPostData({ ...postData, firstName: e.target.value })
@@ -256,7 +256,7 @@ const PaySlip = () => {
                     label="Last Name"
                     variant="outlined"
                     required
-                    // fullwidth
+                    fullwidth="true"
                     value={postData.lastName}
                     // onChange={(e) =>
                     //   setPostData({ ...postData, lastName: e.target.value })
