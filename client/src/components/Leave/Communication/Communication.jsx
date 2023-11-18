@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Grid } from "@mui/material";
+import { Grid, TextField } from "@mui/material";
 import Panel from "../../Panel/Panel";
 
 import Inbox from "./Inbox/inbox";
@@ -20,15 +20,12 @@ const Communication = () => {
   }, [dispatch, currentId]);
 
   return (
-    <Grid sx={{ flexDirection: "col", padding: "2px" }}>
-      <Grid sx={{ display: "flex", flexDirection: "col", marginRight: "10px" }}>
-        <div>
-          <Panel />
-        </div>
-        <h1>Messages</h1>
-      </Grid>
-      
-      {/* <div>
+    <div style={{ padding: "5px", display: "flex" }}>
+      <div>
+        {" "}
+        <Panel />
+      </div>
+      <div>
         {user &&
           posts.map(
             (post) =>
@@ -44,13 +41,13 @@ const Communication = () => {
           posts.map(
             (post) =>
               post._id === currentId && (
-                <div key={post.contact} className="grid grid-row gap-1">
+                <div key={post.contact}>
                   <MessageBody post={post} currentId={currentId} />
                 </div>
               )
           )}
-      </div>  */}
-    </Grid>
+      </div>
+    </div>
   );
 };
 

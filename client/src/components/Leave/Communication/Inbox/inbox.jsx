@@ -1,37 +1,54 @@
+import {
+  Box,
+  ButtonBase,
+  Card,
+  CardHeader,
+  CardMedia,
+  Grid,
+  Typography,
+  Button,
+  Avatar,
+} from "@mui/material";
 import React from "react";
-import { Card, CardHeader, Typography, Avatar } from "@material-ui/core";
-import { ButtonBase } from "@material-ui/core";
+// import Message from "../Message/message";
 
 const Inbox = ({ post, setCurrentId }) => {
   const openMessage = (e) => {
+    console.log("button is workin");
     e.stopPropagation();
     setCurrentId(post._id);
   };
 
   return (
-    <Card className="flex flex-row justify-between p-4 ">
-      <ButtonBase onClick={openMessage}>
-        <CardHeader className="flex flex-row shadow-2xl p-2 ">
-          <div className="w-[90px] flex-wrap p-2">
+    <div>
+      <Button required fullWidth>
+        <ButtonBase
+          sx={{
+            bgcolor: "pink",
+            width: "100%",
+            padding: "5px",
+            height: "100px",
+          }}
+          onClick={openMessage}
+        >
+          <div>
             <Avatar
               alt="avatar"
               src={post?.selectedFile}
               withBorder={true}
               color="green"
-              className="p-0"
             />
           </div>
-          <div className="flex flex-col">
-            <Typography variant="h5" color="blue" className="text-[24px]">
+
+          <div className="grid grid-rows-2">
+            <Typography variant="h5" color="blue">
               {post?.name}
             </Typography>
-            <Typography variant="h6" color="pink" className="text-[12px]">
-              {post?.email}
-            </Typography>
+            <Typography variant="h6">{post?.email}</Typography>
           </div>
-        </CardHeader>
-      </ButtonBase>
-    </Card>
+        </ButtonBase>
+      </Button>
+    </div>
   );
 };
 
