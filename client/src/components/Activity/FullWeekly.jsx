@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+
+import { useDispatch } from "react-redux";
+
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
@@ -7,11 +10,18 @@ import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import ListGroup from "react-bootstrap/ListGroup";
 
+
+import { toDoList } from "../../action/posts";
+
 const FullWeekly = () => {
   const [state, setState] = useState({
     userInput: "",
     list: [],
   });
+
+  const dispatch = useDispatch();
+
+
 
   const addItem = () => {
     if (state.userInput !== "") {
@@ -32,8 +42,14 @@ const FullWeekly = () => {
         list,
         userInput: "",
       });
+      console.log(state);
+      dispatch(toDoList(state));
+      } else {
+        console.log("Error in adding..!!");
     }
   };
+
+
 
   // Function to delete item from list use id to delete
   const deleteItem = (key) => {
@@ -49,6 +65,8 @@ const FullWeekly = () => {
     });
   };
 
+
+
   const editItem = (index) => {
     const todos = [...state.list];
     const editedTodo = prompt("Edit the todo:");
@@ -61,6 +79,7 @@ const FullWeekly = () => {
     }
   };
 
+
   // Set a user input value
   const updateInput = (value) => {
     // console.log(value);
@@ -69,6 +88,8 @@ const FullWeekly = () => {
       userInput: value,
     });
   };
+
+
 
   return (
     <div>
