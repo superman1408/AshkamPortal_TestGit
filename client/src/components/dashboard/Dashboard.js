@@ -18,7 +18,7 @@ const Admin = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
 
   return (
-    <div>
+    <div style={{ minheight: "100%" }}>
       <Box
         sx={{
           display: "flex",

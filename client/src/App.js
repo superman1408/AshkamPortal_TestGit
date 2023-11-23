@@ -23,67 +23,73 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Container maxWidth={false}>
-        <header>
-          {/* <h1>My Cool application is here</h1> */}
-          <div
-            style={{
-              display: {
-                xs: "0",
-                sm: "600",
-              },
-              justifyContent: "space-evenly",
-            }}
-          >
-            <img src={LOGO} alt="logo" style={{ width: "185px" }} />
-          </div>
-        </header>
-        <Navibar />
-        <Routes>
-          <Route
-            exact
-            path="/"
-            element={!user ? <Authentication /> : <Dashboard />}
-          />
-          {/* this part need to be examined after ward */}
-
-          <Route path="/auth" exact element={!user && <Authentication />} />
-          {/* <Route path="/profile" exact element={<Form />} /> */}
-          <Route path="/:id/profile" exact element={<RegistrationForm />} />
-          <Route path="/mail/:id/leave" exact element={<Leave />} />
-          <Route
-            path="/mail/:id/communication"
-            exact
-            element={<Communication />}
-          />
-
-          {/* <Route path="/mail/:id/payslip" exact element={<Payslip />} /> */}
-
-          <Route path="/aboutUs" exact element={<AboutUS />} />
-          <Route path="/home" exact element={<Dashboard />} />
-          <Route path="/fullweeklyactivity" exact element={<FullWeekly />} />
-          <Route
-            path="/employeeAttendance"
-            exact
-            element={<EmployeeAttendance />}
-          />
-          <Route path="/birthdaymail" exact element={<BirthdayMail />} />
-          <Route path="/:id/payslip" exact element={<PaySlip />} />
-          {/* <Route path="/rough" exact element={<Rough />} /> */}
-          {/* <Route path="/roughpayslip" exact element={<RoughPayslip />} /> */}
-        </Routes>
-      </Container>
-      <footer
+      <div
         style={{
-          backgroundColor: "#17325C",
-          color: "white",
-          width: "100%",
-          marginTop: "5px",
-          textAlign: "center",
+          minheight: "100%",
         }}
       >
-        ASHKAM ENERGY PRIVATE LIMITED ©️ me 2023
-      </footer>
+        <Container maxWidth={false}>
+          <header>
+            {/* <h1>My Cool application is here</h1> */}
+            <div
+              style={{
+                display: {
+                  xs: "0",
+                  sm: "600",
+                },
+                justifyContent: "space-evenly",
+              }}
+            >
+              <img src={LOGO} alt="logo" style={{ width: "185px" }} />
+            </div>
+          </header>
+          <Navibar />
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={!user ? <Authentication /> : <Dashboard />}
+            />
+            {/* this part need to be examined after ward */}
+
+            <Route path="/auth" exact element={!user && <Authentication />} />
+            {/* <Route path="/profile" exact element={<Form />} /> */}
+            <Route path="/:id/profile" exact element={<RegistrationForm />} />
+            <Route path="/mail/:id/leave" exact element={<Leave />} />
+            <Route
+              path="/mail/:id/communication"
+              exact
+              element={<Communication />}
+            />
+
+            {/* <Route path="/mail/:id/payslip" exact element={<Payslip />} /> */}
+
+            <Route path="/aboutUs" exact element={<AboutUS />} />
+            <Route path="/home" exact element={<Dashboard />} />
+            <Route path="/fullweeklyactivity" exact element={<FullWeekly />} />
+            <Route
+              path="/employeeAttendance"
+              exact
+              element={<EmployeeAttendance />}
+            />
+            <Route path="/birthdaymail" exact element={<BirthdayMail />} />
+            <Route path="/:id/payslip" exact element={<PaySlip />} />
+            {/* <Route path="/rough" exact element={<Rough />} /> */}
+            {/* <Route path="/roughpayslip" exact element={<RoughPayslip />} /> */}
+          </Routes>
+        </Container>
+        <footer
+          style={{
+            backgroundColor: "#17325C",
+            color: "white",
+            width: "100%",
+            marginTop: "5px",
+            textAlign: "center",
+          }}
+        >
+          ASHKAM ENERGY PRIVATE LIMITED ©️ me 2023
+        </footer>
+      </div>
     </BrowserRouter>
   );
 };

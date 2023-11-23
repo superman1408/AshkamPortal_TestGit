@@ -78,7 +78,7 @@ const Auth = () => {
       alignItems="center"
       justify="center"
       style={{
-        minHeight: "100vh",
+        minheight: "100%",
         backgroundImage: `url(${image})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",

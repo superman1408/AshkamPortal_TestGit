@@ -97,45 +97,53 @@ const Message = ({ post, currentId }) => {
   return (
     currentId && (
       <div>
-        {array.map((item) => (
-          <Card
-            elevation={10}
-            sx={{
-              padding: "5px",
-              width: "100%",
-              margin: "10px",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              bgcolor: "#aee3e8",
-            }}
-          >
-            <div key={post.login} className="translate-x-[42%]">
-              <Typography
-                variant="h6"
-                sx={{ textAlign: "center", padding: "5px", fontWeight: "bold" }}
-              >
-                {item.subject}
-              </Typography>
-            </div>
-            <div className="grid grid-rows-2 justify-between items-center">
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <div key={post.contact} style={{ display: "flex" }}>
-                  {/* <Avatar
+        {" "}
+        <div style={{ width: "500", height: "600" }}>
+          {array.map((item) => (
+            <Card
+              elevation={10}
+              sx={{
+                padding: "5px",
+                width: "auto",
+                margin: "10px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                bgcolor: "#aee3e8",
+              }}
+            >
+              <div key={post.login} className="translate-x-[42%]">
+                <Typography
+                  variant="h6"
+                  sx={{
+                    textAlign: "center",
+                    padding: "5px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {item.subject}
+                </Typography>
+              </div>
+              <div className="grid grid-rows-2 justify-between items-center">
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <div key={post.contact} style={{ display: "flex" }}>
+                    {/* <Avatar
                     alt="avatar"
                     src={post.selectedFile}
                     size="xs"
                     withborder={true}
                     className="p-0.5"
                   /> */}
-                  <Typography sx={{ margin: "5px 5px" }}>
-                    {post.employeeName}
-                  </Typography>
-                </div>
+                    <Typography sx={{ margin: "5px 5px" }}>
+                      {post.employeeName}
+                    </Typography>
+                  </div>
 
-                {/*  Need to understand later */}
+                  {/*  Need to understand later */}
 
-                {/* <div>
+                  {/* <div>
                   {(() => {
                     if (post.status) {
                       return (
@@ -155,46 +163,47 @@ const Message = ({ post, currentId }) => {
                   })()}
                 </div> */}
 
-                {item.status ? (
-                  <Typography sx={{ marginTop: "20px", float: "right" }}>
-                    Status :{item.status}
+                  {item.status ? (
+                    <Typography sx={{ marginTop: "20px", float: "right" }}>
+                      Status :{item.status}
+                    </Typography>
+                  ) : (
+                    <Typography sx={{ marginTop: "10px" }}>
+                      Status : Pending
+                    </Typography>
+                  )}
+                </div>
+                <div
+                  key={post.punching}
+                  style={{
+                    border: "2px solid black",
+                    padding: "2px",
+                    marginTop: "10px",
+                  }}
+                >
+                  <Typography sx={{ padding: "10px", bgcolor: "white" }}>
+                    {item.message}
                   </Typography>
-                ) : (
-                  <Typography sx={{ marginTop: "10px" }}>
-                    Status : Pending
-                  </Typography>
-                )}
+                </div>
+                <div
+                  key={post._id}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-evenly",
+                    marginTop: "10px",
+                  }}
+                >
+                  <Button variant="contained" onClick={handleAccept}>
+                    Accept
+                  </Button>
+                  <Button variant="contained" onClick={handleReject}>
+                    Reject
+                  </Button>
+                </div>
               </div>
-              <div
-                key={post.punching}
-                style={{
-                  border: "2px solid black",
-                  padding: "2px",
-                  marginTop: "10px",
-                }}
-              >
-                <Typography sx={{ padding: "10px", bgcolor: "white" }}>
-                  {item.message}
-                </Typography>
-              </div>
-              <div
-                key={post._id}
-                style={{
-                  display: "flex",
-                  justifyContent: "space-evenly",
-                  marginTop: "10px",
-                }}
-              >
-                <Button variant="contained" onClick={handleAccept}>
-                  Accept
-                </Button>
-                <Button variant="contained" onClick={handleReject}>
-                  Reject
-                </Button>
-              </div>
-            </div>
-          </Card>
-        ))}
+            </Card>
+          ))}
+        </div>
       </div>
     )
   );

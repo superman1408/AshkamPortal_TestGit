@@ -1,5 +1,6 @@
 import { ButtonBase, Typography, Button, Avatar, Grid } from "@mui/material";
 import React from "react";
+
 // import Message from "../Message/message";
 
 const Inbox = ({ post, setCurrentId }) => {
