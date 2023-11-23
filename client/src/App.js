@@ -61,7 +61,7 @@ const App = () => {
 
           <Route path="/aboutUs" exact element={<AboutUS />} />
           <Route path="/home" exact element={<Dashboard />} />
-          <Route path="/fullweeklyactivity" exact element={<FullWeekly />} />
+          <Route path="posts/:id/fullweeklyactivity" exact element={<FullWeekly />} />
           <Route
             path="/employeeAttendance"
             exact

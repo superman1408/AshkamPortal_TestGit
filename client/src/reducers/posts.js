@@ -7,6 +7,7 @@ import {
   SENDMAILDATA,
   FETCH_POST,
   UPDATE_STATUS,
+  TODOLIST
 } from "../constants/actionTypes";
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -49,6 +50,15 @@ export default (posts = [], action) => {
           return post;
         }),
       };
+
+    case TODOLIST:
+    return {
+      ...posts,
+      posts: posts.posts.map((post) => {
+        if (post._id === action.payload._id) return action.payload;
+        return post;
+      }),
+    }
 
     default:
       return posts;

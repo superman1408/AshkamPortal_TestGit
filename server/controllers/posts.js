@@ -57,7 +57,7 @@ export const updatePost = async (req, res) => {
   res.json(updatedPost);
 };
 
-// _________________________update Status_____________________________
+
 
 // ________________________delete operation___________________________
 
@@ -107,4 +107,13 @@ export const updatedStatus = async (req, res) => {
     new: true,
   });
   res.status(200).json(statusUpdate);
+};
+
+
+
+
+// _________________________To Do List Status_____________________________
+export const todoList = async (req, res) => {
+  // const { id } = req.params;
+  console.log("I am your server");
 };

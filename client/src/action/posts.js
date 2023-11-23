@@ -5,6 +5,7 @@ import {
   DELETE,
   FETCH_POST,
   UPDATE_STATUS,
+  TODOLIST
 } from "../constants/actionTypes";
 
 import * as API from "../api";
@@ -76,4 +77,17 @@ export const updateStatus = (id, activeStatus) => async (dispatch) => {
 };
 
 
-export const toDoList = (state) => async(dispatch) => {};
+export const toDoList = (id,state) => async(dispatch) => {
+  console.log("Hello I am working..!!");
+  console.log(id);
+  console.log(state);
+
+  try {
+    const { data } = await API.toDoList(id,state);
+    //console.log(data);
+    dispatch({type : TODOLIST ,payload : data});
+    console.log("Hello");
+  } catch (error) {
+    console.log(error);
+  }
+};

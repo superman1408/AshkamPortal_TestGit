@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 
 
 import { useDispatch } from "react-redux";
@@ -20,6 +21,9 @@ const FullWeekly = () => {
   });
 
   const dispatch = useDispatch();
+  const { id } = useParams();
+
+
 
 
 
@@ -43,7 +47,7 @@ const FullWeekly = () => {
         userInput: "",
       });
       console.log(state);
-      dispatch(toDoList(state));
+      dispatch(toDoList(id,state));
       } else {
         console.log("Error in adding..!!");
     }
