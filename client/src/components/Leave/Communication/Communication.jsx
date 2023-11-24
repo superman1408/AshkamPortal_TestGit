@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid } from "@mui/material";
+import { Grid, Card, Divider } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import Panel from "../../Panel/Panel";
 
@@ -24,21 +24,27 @@ const Communication = () => {
   return (
     <>
       <div style={{ padding: "5px", display: "flex" }}>
-        <div>
+        <Card elevation={10}>
           <Panel />
-        </div>
-        <Grid sx={{ bgcolor: "#047782", display: "flex" }}>
+        </Card>
+        <Grid
+          sx={{
+            bgcolor: "#f0f2f1",
+            display: "flex",
+          }}
+        >
           <div
             style={{
               border: "0.5px dotted gray",
-              background: "white",
+              background: "#f0f2f1",
               height: "600px",
               overflow: "auto",
               // position: "fixed",
               top: "100px",
               // zIndex: 99999,
-              width: "350px",
+              width: "300px",
               pointerEvents: "auto",
+              marginLeft: "10px",
             }}
           >
             <div>
@@ -48,6 +54,7 @@ const Communication = () => {
                     post.name === user.result.name && (
                       <div key={post.name}>
                         <Inbox post={post} setCurrentId={setCurrentId} />
+                        <Divider variant="inset" sx={{ borderWidth: "1px",fontWeight:"15px" }} />
                       </div>
                     )
                 )}

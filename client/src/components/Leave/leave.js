@@ -120,168 +120,177 @@ const Leave = () => {
   return (
     <div
       className={classes.mainContainer}
-      style={{ padding: "5px", display: "flex" }}
+      style={{
+        padding: "1px",
+        display: "flex",
+        justifyContent: "space-between",
+      }}
     >
-      <Panel />
-      <form autoComplete="off" onSubmit={handleSubmit}>
-        <div
-          className={classes.mainContainer}
-          style={{
-            padding: "5px",
-            display: "flex",
-            marginLeft: "10px",
-          }}
-        >
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <Grid>
-              <Typography
-                variant="h6"
+      <div>
+        <Panel />
+      </div>
+      <div>
+        <form autoComplete="off" onSubmit={handleSubmit}>
+          <div
+            className={classes.mainContainer}
+            style={{
+              padding: "2px",
+              display: "flex",
+              // marginLeft: "2px",
+              bgcolor: "#f0f2f1",
+            }}
+          >
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <Grid>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    padding: "5px",
+                    textAlign: "center",
+                  }}
+                >
+                  <MailIcon />
+                  {`${user.result.email}`}
+                </Typography>
+              </Grid>
+              <Card
+                elevation={10}
                 sx={{
-                  padding: "5px",
-                  textAlign: "center",
-                }}
-              >
-                <MailIcon />
-                {`${user.result.email}`}
-              </Typography>
-            </Grid>
-            <Card
-              elevation={10}
-              sx={{
-                padding: "10px",
-                width: {
-                  sx: 1.0, // 100%
-                  sm: 250,
-                  md: 700,
-                },
-              }}
-            >
-              <TextField
-                type="email"
-                name="recipient"
-                label="Recipient"
-                variant="outlined"
-                required
-                fullWidth
-                sx={{ marginTop: "10px" }}
-                onChange={(e) =>
-                  setMailData({ ...mailData, recipient: e.target.value })
-                }
-              />
-
-              <Grid
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  "@media (max-width: 600px)": {
-                    flexDirection: "column",
+                  padding: "10px",
+                  width: {
+                    sx: 1.0, // 100%
+                    sm: 250,
+                    md: 700,
                   },
                 }}
               >
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DemoContainer components={["DatePicker"]}>
-                    <DatePicker
-                      label="From"
-                      value={valueTo}
-                      onChange={(newValue) => setValueTo(newValue)}
-                      required
-                      fullWidth
-                    />
-                  </DemoContainer>
-                </LocalizationProvider>
-
-                <div style={{ margin: "10px 0px" }}>
-                  <select
-                    value={select ? select : ""}
-                    onChange={handleSelect}
-                    placeholder="Select Leave"
-                    className={classes.dropDown}
-                  >
-                    {options.map((option) => (
-                      <option key={option.value}>{option.label}</option>
-                    ))}
-                  </select>
-                </div>
-              </Grid>
-
-              <Grid>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DemoContainer components={["DatePicker"]}>
-                    <DatePicker
-                      label="To"
-                      value={valueFrom}
-                      required
-                      halfWidth
-                      onChange={(newValue) => setValueFrom(newValue)}
-                    />
-                  </DemoContainer>
-                </LocalizationProvider>
-              </Grid>
-
-              {select && (
                 <TextField
-                  name="subject"
-                  label="Subject"
-                  required
-                  fullWidth
-                  sx={{ marginTop: "10px", fontWeight: "500px" }}
-                  value={
-                    (mailData.subject = `Applying for ${leaveType} from ${fromDate} to ${toDate}`)
-                  }
-                  onChange={(e) =>
-                    setMailData({
-                      ...mailData,
-                      [e.target.subject]: e.target.value,
-                    })
-                  }
-                />
-              )}
-              <Grid>
-                <TextField
+                  type="email"
+                  name="recipient"
+                  label="Recipient"
                   variant="outlined"
                   required
                   fullWidth
-                  multiline
-                  minRows={8}
-                  sx={{ marginTop: "10px", fontWeight: "200px" }}
+                  sx={{ marginTop: "10px" }}
                   onChange={(e) =>
-                    setMailData({
-                      ...mailData,
-                      requiredMessage: e.target.value,
-                    })
+                    setMailData({ ...mailData, recipient: e.target.value })
                   }
                 />
 
-                <Button
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                  sx={{ float: "right", marginTop: "10px" }}
+                <Grid
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    "@media (max-width: 600px)": {
+                      flexDirection: "column",
+                    },
+                  }}
                 >
-                  Send
-                </Button>
-              </Grid>
-            </Card>
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DemoContainer components={["DatePicker"]}>
+                      <DatePicker
+                        label="From"
+                        value={valueTo}
+                        onChange={(newValue) => setValueTo(newValue)}
+                        required
+                        fullWidth
+                      />
+                    </DemoContainer>
+                  </LocalizationProvider>
+
+                  <div style={{ margin: "10px 0px" }}>
+                    <select
+                      value={select ? select : ""}
+                      onChange={handleSelect}
+                      placeholder="Select Leave"
+                      className={classes.dropDown}
+                    >
+                      {options.map((option) => (
+                        <option key={option.value}>{option.label}</option>
+                      ))}
+                    </select>
+                  </div>
+                </Grid>
+
+                <Grid>
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DemoContainer components={["DatePicker"]}>
+                      <DatePicker
+                        label="To"
+                        value={valueFrom}
+                        required
+                        halfWidth
+                        onChange={(newValue) => setValueFrom(newValue)}
+                      />
+                    </DemoContainer>
+                  </LocalizationProvider>
+                </Grid>
+
+                {select && (
+                  <TextField
+                    name="subject"
+                    label="Subject"
+                    required
+                    fullWidth
+                    sx={{ marginTop: "10px", fontWeight: "500px" }}
+                    value={
+                      (mailData.subject = `Applying for ${leaveType} from ${fromDate} to ${toDate}`)
+                    }
+                    onChange={(e) =>
+                      setMailData({
+                        ...mailData,
+                        [e.target.subject]: e.target.value,
+                      })
+                    }
+                  />
+                )}
+                <Grid>
+                  <TextField
+                    variant="outlined"
+                    required
+                    fullWidth
+                    multiline
+                    minRows={8}
+                    sx={{ marginTop: "10px", fontWeight: "200px" }}
+                    onChange={(e) =>
+                      setMailData({
+                        ...mailData,
+                        requiredMessage: e.target.value,
+                      })
+                    }
+                  />
+
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    type="submit"
+                    sx={{ float: "right", marginTop: "10px" }}
+                  >
+                    Send
+                  </Button>
+                </Grid>
+              </Card>
+            </div>
+            <div style={{ marginLeft: "5px" }}>
+              <Card
+                elevation={10}
+                sx={{
+                  marginTop: "40px",
+                  height: "320px",
+                  "@media (max-width: 600px)": {
+                    // marginTop: "20px",
+                  },
+                }}
+              >
+                <Calender />
+              </Card>
+              <Card elevation={10} sx={{ marginTop: "10px", padding: "5px" }}>
+                <ChartComponent style={{ willchange: "transform" }} />
+              </Card>
+            </div>
           </div>
-          <div style={{ marginLeft: "10px" }}>
-            <Card
-              elevation={10}
-              sx={{
-                marginTop: "40px",
-                height: "320px",
-                "@media (max-width: 600px)": {
-                  // marginTop: "20px",
-                },
-              }}
-            >
-              <Calender />
-            </Card>
-            <Card elevation={10} sx={{ marginTop: "10px", padding: "5px" }}>
-              <ChartComponent style={{ willchange: "transform" }} />
-            </Card>
-          </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

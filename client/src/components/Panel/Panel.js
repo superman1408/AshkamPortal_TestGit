@@ -74,13 +74,14 @@ const Panel = (post) => {
   };
 
   return (
-    <Card elevation={5}>
+    <Card elevation={10}>
       <Grid
         sx={{
           display: "flex",
           flexDirection: "column",
           bgcolor: "background.paper",
-          boxShadow: "1px",
+          width: "100%",
+          height:"100vh"
         }}
       >
         <Grid>
