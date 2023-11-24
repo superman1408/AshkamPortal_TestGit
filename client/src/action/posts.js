@@ -77,13 +77,13 @@ export const updateStatus = (id, activeStatus) => async (dispatch) => {
 };
 
 
-export const toDoList = (id,state) => async(dispatch) => {
+export const todoList = (id,state) => async(dispatch) => {
   console.log("Hello I am working..!!");
   console.log(id);
   console.log(state);
 
   try {
-    const { data } = await API.toDoList(id,state);
+    const { data } = await API.todoList(id,state);
     //console.log(data);
     dispatch({type : TODOLIST ,payload : data});
     console.log("Hello");

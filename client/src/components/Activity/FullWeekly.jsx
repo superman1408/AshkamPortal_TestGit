@@ -12,7 +12,7 @@ import FormControl from "react-bootstrap/FormControl";
 import ListGroup from "react-bootstrap/ListGroup";
 
 
-import { toDoList } from "../../action/posts";
+import { todoList } from "../../action/posts";
 
 const FullWeekly = () => {
   const [state, setState] = useState({
@@ -47,7 +47,7 @@ const FullWeekly = () => {
         userInput: "",
       });
       console.log(state);
-      dispatch(toDoList(id,state));
+      dispatch(todoList(id,state));
       } else {
         console.log("Error in adding..!!");
     }

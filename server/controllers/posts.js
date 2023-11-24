@@ -114,6 +114,6 @@ export const updatedStatus = async (req, res) => {
 
 // _________________________To Do List Status_____________________________
 export const todoList = async (req, res) => {
-  // const { id } = req.params;
-  console.log("I am your server");
+  const { id } = req.params;
+  console.log(id);
 };
