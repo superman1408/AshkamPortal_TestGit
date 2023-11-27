@@ -20,6 +20,12 @@ const FullWeekly = () => {
     list: [],
   });
 
+
+  const [comment, setComment] = useState({
+    commentText: "",
+    comments: '',
+  })
+
   const dispatch = useDispatch();
   const { id } = useParams();
 
@@ -47,7 +53,8 @@ const FullWeekly = () => {
         userInput: "",
       });
       console.log(state);
-      dispatch(todoList(id,state));
+      setComment({state});
+      dispatch(todoList(id,comment));
       } else {
         console.log("Error in adding..!!");
     }
