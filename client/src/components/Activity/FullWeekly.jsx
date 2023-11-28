@@ -33,7 +33,7 @@ const FullWeekly = () => {
 
 
 
-  const addItem = () => {
+  const addItem = async () => {
     if (state.userInput !== "") {
       const userInput = {
         // Add a random id which is used to delete
@@ -42,10 +42,12 @@ const FullWeekly = () => {
         // Add a user value to list
         value: state.userInput,
       };
+      console.log(userInput);
 
       // Update list
       const list = [...state.list];
       list.push(userInput);
+      console.log(list);
 
       // reset state
       setState({
@@ -54,7 +56,10 @@ const FullWeekly = () => {
       });
       console.log(state);
       setComment({state});
-      dispatch(todoList(id,comment));
+      console.log(comment);
+      // list.push(userInput);
+
+      await dispatch(todoList(id,state));
       } else {
         console.log("Error in adding..!!");
     }

@@ -51,16 +51,16 @@ export default (posts = [], action) => {
         }),
       };
 
-    // case TODOLIST:
-    // return {
-    //   ...posts,
-    //   posts: posts.posts.map((post) => {
-    //     if (post._id === action.payload._id) return action.payload;
-    //     return post;
-    //   }),
-    // }
     case TODOLIST:
-      return [...posts, action.payload];
+    return {
+      ...posts,
+      posts: posts.posts.map((post) => {
+        if (post._id === action.payload._id) return action.payload;
+        return post;
+      }),
+    }
+    // case TODOLIST:
+    //   return [...posts, action.payload];
 
     default:
       return posts;
