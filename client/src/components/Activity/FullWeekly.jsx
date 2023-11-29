@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 
@@ -22,12 +22,18 @@ const FullWeekly = () => {
 
 
   const [comment, setComment] = useState({
-    commentText: "",
-    comments: '',
+    userInput: "",
+    list: [],
   })
 
   const dispatch = useDispatch();
   const { id } = useParams();
+
+
+
+  useEffect(() => {
+    // console.log(id);
+  },[]);
 
 
 
@@ -42,7 +48,7 @@ const FullWeekly = () => {
         // Add a user value to list
         value: state.userInput,
       };
-      console.log(userInput);
+      // console.log(userInput);
 
       // Update list
       const list = [...state.list];
@@ -50,16 +56,17 @@ const FullWeekly = () => {
       console.log(list);
 
       // reset state
-      setState({
-        list,
-        userInput: "",
+      setState(() => {
+        return {...state, list, userInput };
       });
+
       console.log(state);
-      setComment({state});
-      console.log(comment);
+      // setComment({state});
+      // console.log(comment);
       // list.push(userInput);
 
-      await dispatch(todoList(id,state));
+      // await dispatch(todoList(id,state));
+
       } else {
         console.log("Error in adding..!!");
     }
