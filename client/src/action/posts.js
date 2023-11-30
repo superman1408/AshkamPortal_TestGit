@@ -79,8 +79,8 @@ export const updateStatus = (id, activeStatus) => async (dispatch) => {
 
 export const todoList = (id,state) => async(dispatch) => {
   console.log("Hello I am working..!!");
-  console.log(id);
-  console.log(state);
+  // console.log(id);
+  // console.log(state);
 
   try {
     const { data } = await API.todoList(id,state);

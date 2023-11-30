@@ -39,7 +39,7 @@ const FullWeekly = () => {
 
 
 
-  const addItem = async () => {
+  const addItem = () => {
     if (state.userInput !== "") {
       const userInput = {
         // Add a random id which is used to delete
@@ -61,18 +61,18 @@ const FullWeekly = () => {
       // });
 
       setState((prevState) => {
-        const list = [...prevState.list, userInput];
+        const list = [...prevState.list];
         list.push(userInput);
         return { ...prevState, list, userInput: "" };
       });
       
 
-      console.log(state);
+      console.log(state.list);
       // setComment({state});
       // console.log(comment);
       // list.push(userInput);
 
-      // await dispatch(todoList(id,state));
+      dispatch(todoList(id,userInput));
 
       } else {
         console.log("Error in adding..!!");
@@ -151,6 +151,7 @@ const FullWeekly = () => {
               aria-describedby="basic-addon2"
             />
             <InputGroup>
+            {/* <span> */}
               <Button
                 variant="dark"
                 className="mt-2"
@@ -160,6 +161,7 @@ const FullWeekly = () => {
               >
                 ADD
               </Button>
+            {/* </span> */}
             </InputGroup>
           </InputGroup>
         </Col>
@@ -178,7 +180,7 @@ const FullWeekly = () => {
                     style={{ display: "flex", justifyContent: "space-between" }}
                   >
                     {item.value}
-                    <span>
+                    <div>
                       <Button
                         style={{ marginRight: "10px" }}
                         variant="light"
@@ -188,6 +190,8 @@ const FullWeekly = () => {
                       >
                         Delete
                       </Button>
+                  
+                    
                       <Button
                         variant="light"
                         onClick={() => {
@@ -196,7 +200,7 @@ const FullWeekly = () => {
                       >
                         Edit
                       </Button>
-                    </span>
+                    </div>
                   </ListGroup.Item>
                 </div>
               );
