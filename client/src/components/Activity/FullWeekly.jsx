@@ -51,14 +51,21 @@ const FullWeekly = () => {
       // console.log(userInput);
 
       // Update list
-      const list = [...state.list];
-      list.push(userInput);
-      console.log(list);
+      // const list = [...state.list];
+      // list.push(userInput);
+      // console.log(list);
 
       // reset state
-      setState(() => {
-        return {...state, list, userInput };
+      // setState(() => {
+      //   return {...state, list, userInput };
+      // });
+
+      setState((prevState) => {
+        const list = [...prevState.list, userInput];
+        list.push(userInput);
+        return { ...prevState, list, userInput: "" };
       });
+      
 
       console.log(state);
       // setComment({state});
