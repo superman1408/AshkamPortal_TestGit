@@ -23,7 +23,6 @@ const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
 
   return (
-    <div>
     <BrowserRouter>
       <Container maxWidth={false}>
         <header>
@@ -90,8 +89,7 @@ const App = () => {
         </footer>
         </div>
     </BrowserRouter>
-    </div>
-  );
+  )
 };
 
 export default App;

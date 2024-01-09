@@ -1,12 +1,29 @@
 import React, { useState } from 'react'
 
 const TimeSheetForm = () => {
-  const [formData, setFormData] = useState([]);
+  const [formData, setFormData] = useState({
+    employeeId: "",
+    startTime: "",
+    endTime: "",
+    jobCode:"",
+    hoursWorked:"",
+  })
 
 
 
-  const handleSubmit = () => {};
-  const handleInputChange = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
+
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+
+
   return (
     <div>
       <h2>Time Sheet Form</h2>
@@ -21,7 +38,7 @@ const TimeSheetForm = () => {
         </label>
         <label>
           Job Code:
-          <input type="text" name="employeeId" value={formData.jobCode} onChange={handleInputChange} />
+          <input type="text" name="jobCode" value={formData.jobCode} onChange={handleInputChange} />
         </label>
         <label>
           Hours Worked:
@@ -29,7 +46,7 @@ const TimeSheetForm = () => {
         </label>
         <label>
           End Date:
-          <input type="date" name="date" value={formData.end} onChange={handleInputChange} />
+          <input type="date" name="end" value={formData.end} onChange={handleInputChange} />
         </label>
         <button type="submit">Add Time Sheet</button>
       </form>
