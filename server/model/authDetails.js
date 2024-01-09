@@ -96,6 +96,10 @@ const authSchema = mongoose.Schema({
     type: [String],
     default: [],
   },
+  toDoList: {
+    type: [String],
+    default: [],
+  },
 });
 
 const AuthDetails = mongoose.model("AuthDetails", authSchema);

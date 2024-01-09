@@ -8,3 +8,5 @@ export const MAIL = "MAIL";
 export const SENDMAILDATA = "SENDMAILDATA";
 export const FETCH_POST = "FETCH_POST";
 export const UPDATE_STATUS = "UPDATE_STATUS";
+export const TODOLIST = "TODOLIST";
+
