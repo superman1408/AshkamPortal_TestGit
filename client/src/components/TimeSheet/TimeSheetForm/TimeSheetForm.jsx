@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { updatePost } from '../../../api';
 
 const TimeSheetForm = () => {
   const [formData, setFormData] = useState({
@@ -7,13 +10,22 @@ const TimeSheetForm = () => {
     endTime: "",
     jobCode:"",
     hoursWorked:"",
-  })
+  });
+
+  const dispatch = useDispatch();
+  const { id } = useParams();
 
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
+    console.log(id);
+    if (id) {
+      dispatch(updatePost(id, formData))
+    } else {
+      console.log("Error is inevitable")
+    }
   };
 
 
