@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
+
+import { useDispatch } from "react-redux";
 
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -7,11 +11,33 @@ import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import ListGroup from "react-bootstrap/ListGroup";
 
+
+import { todoList } from "../../action/posts";
+
 const FullWeekly = () => {
   const [state, setState] = useState({
     userInput: "",
     list: [],
   });
+
+
+  const [comment, setComment] = useState({
+    userInput: "",
+    list: [],
+  })
+
+  const dispatch = useDispatch();
+  const { id } = useParams();
+
+
+
+  useEffect(() => {
+    // console.log(id);
+  },[]);
+
+
+
+
 
   const addItem = () => {
     if (state.userInput !== "") {
@@ -22,18 +48,38 @@ const FullWeekly = () => {
         // Add a user value to list
         value: state.userInput,
       };
+      // console.log(userInput);
 
       // Update list
-      const list = [...state.list];
-      list.push(userInput);
+      // const list = [...state.list];
+      // list.push(userInput);
+      // console.log(list);
 
       // reset state
-      setState({
-        list,
-        userInput: "",
+      // setState(() => {
+      //   return {...state, list, userInput };
+      // });
+
+      setState((prevState) => {
+        const list = [...prevState.list];
+        list.push(userInput);
+        return { ...prevState, list, userInput: "" };
       });
+      
+
+      console.log(state.list);
+      // setComment({state});
+      // console.log(comment);
+      // list.push(userInput);
+
+      dispatch(todoList(id,userInput));
+
+      } else {
+        console.log("Error in adding..!!");
     }
   };
+
+
 
   // Function to delete item from list use id to delete
   const deleteItem = (key) => {
@@ -49,6 +95,8 @@ const FullWeekly = () => {
     });
   };
 
+
+
   const editItem = (index) => {
     const todos = [...state.list];
     const editedTodo = prompt("Edit the todo:");
@@ -61,6 +109,7 @@ const FullWeekly = () => {
     }
   };
 
+
   // Set a user input value
   const updateInput = (value) => {
     // console.log(value);
@@ -69,6 +118,8 @@ const FullWeekly = () => {
       userInput: value,
     });
   };
+
+
 
   return (
     <div>
@@ -100,6 +151,7 @@ const FullWeekly = () => {
               aria-describedby="basic-addon2"
             />
             <InputGroup>
+            {/* <span> */}
               <Button
                 variant="dark"
                 className="mt-2"
@@ -109,6 +161,7 @@ const FullWeekly = () => {
               >
                 ADD
               </Button>
+            {/* </span> */}
             </InputGroup>
           </InputGroup>
         </Col>
@@ -127,7 +180,7 @@ const FullWeekly = () => {
                     style={{ display: "flex", justifyContent: "space-between" }}
                   >
                     {item.value}
-                    <span>
+                    <div>
                       <Button
                         style={{ marginRight: "10px" }}
                         variant="light"
@@ -137,6 +190,8 @@ const FullWeekly = () => {
                       >
                         Delete
                       </Button>
+                  
+                    
                       <Button
                         variant="light"
                         onClick={() => {
@@ -145,7 +200,7 @@ const FullWeekly = () => {
                       >
                         Edit
                       </Button>
-                    </span>
+                    </div>
                   </ListGroup.Item>
                 </div>
               );

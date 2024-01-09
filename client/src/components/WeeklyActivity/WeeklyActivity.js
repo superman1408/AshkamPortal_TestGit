@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 // import { useNavigate } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { CChart } from "@coreui/react-chartjs";
 import { Box, Typography, Grid, ButtonBase } from "@mui/material";
 
 const WeeklyActivity = () => {
   const navigate = useNavigate();
-  // const location = useLocation();
+  const location = useLocation();
+
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
 
   return (
     <div>
@@ -25,7 +27,7 @@ const WeeklyActivity = () => {
       >
         <ButtonBase
           onClick={() => {
-            navigate("/fullweeklyactivity"); // Full Weekly Activity route
+            navigate(`/posts/${user.result._id}/fullweeklyactivity`); // Full Weekly Activity route
           }}
         >
           <Grid sx={{ display: "flex", flexDirection: "column" }}>

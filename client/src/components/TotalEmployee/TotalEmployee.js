@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, IconButton, Typography, Grid, Card } from "@mui/material";
+import { Box, IconButton, Typography, Grid } from "@mui/material";
 
 import WcIcon from "@mui/icons-material/Wc";
 import WomanIcon from "@mui/icons-material/Woman";

@@ -20,6 +20,7 @@ const postSchema = mongoose.Schema({
   requiredMessage: { type: [String], default: [] },
   subject: { type: [String], default: [] },
   status: { type: [String], default: [] },
+  toDoList: { type: [String], default: []},
 });
 
 const PostMessage = mongoose.model("PostMessage", postSchema);
