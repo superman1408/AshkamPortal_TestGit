@@ -50,7 +50,7 @@ const authSchema = mongoose.Schema({
   jobTitle: {
     type: String,
   },
-  jobSkill: {
+  jobSkills: {
     type: String,
   },
   reportingManager: {

@@ -30,14 +30,16 @@ const RegistrationForm = () => {
   const dispatch = useDispatch();
   const componentRef = useRef();
   const [dob, setdob] = useState("");
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     if (!currentId) return setCurrentId(user.result._id);
 
-    setPostData({
+    setPostData(() => ({
       ...postData,
+
       firstName: user.result.firstName,
       lastName: user.result.lastName,
       dob: user.result.dob,
@@ -59,7 +61,7 @@ const RegistrationForm = () => {
       emergencyContact: user.result.emergencyContact,
       relationship: user.result.relationship,
       selectedFile: user.result.selectedFile,
-    });
+    }));
   }, [currentId]);
 
   const [postData, setPostData] = useState({
@@ -91,13 +93,24 @@ const RegistrationForm = () => {
     if (currentId) {
       dispatch(updatePost(currentId, postData));
       console.log(currentId);
+
       navigate("/home");
     } else {
       // dispatch(createPost(postData));
       console.log("Not set current ID");
     }
-    // console.log(postData);
+
+    setFormSubmitted(true);
+    console.log("Form submitted:", formSubmitted);
   };
+
+  // useEffect(() => {
+  //   console.log("Before Form submitted:", formSubmitted);
+  //   setFormSubmitted(true);
+  //   console.log("After Form submitted:", formSubmitted);
+
+  //   // Additional logic related to form submission
+  // }, [formSubmitted]);
 
   const handleReset = () => {
     setPostData({
@@ -134,11 +147,12 @@ const RegistrationForm = () => {
 
   // ________________test code _________________________________
 
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-    documentTitle: "Visitor Pass",
-    onAfterPrint: () => console.log("Printed PDF successfully!"),
-  });
+  const handlePrint = () => {};
+  // useReactToPrint({
+  //   content: () => componentRef.current,
+  //   documentTitle: "Visitor Pass",
+  //   onAfterPrint: () => console.log("Printed PDF successfully!"),
+  // });
 
   return (
     <Container
@@ -188,6 +202,7 @@ const RegistrationForm = () => {
               >
                 Full Name
               </Typography>
+
               <TextField
                 type="text"
                 name="firstName"
@@ -201,6 +216,7 @@ const RegistrationForm = () => {
                   setPostData({ ...postData, firstName: e.target.value })
                 }
               />
+
               <TextField
                 type="text"
                 name="lastName"
@@ -354,7 +370,10 @@ const RegistrationForm = () => {
                 name="contactNumber"
                 value={postData.contactNumber}
                 onChange={(e) =>
-                  setPostData({ ...postData, contactNumber: e.target.value })
+                  setPostData({
+                    ...postData,
+                    contactNumber: e.target.value,
+                  })
                 }
               />
             </div>
@@ -597,3 +616,4 @@ const RegistrationForm = () => {
 };
 
 export default RegistrationForm;
+// Make Textfield non editable after clicking submit button in the first time & dispatch it to the server
