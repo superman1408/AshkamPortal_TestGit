@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 const TimeSheetForm = () => {
   const [formData, setFormData] = useState({
@@ -34,7 +34,7 @@ const TimeSheetForm = () => {
         </label>
         <label>
           Start Date:
-          <input type="date" name="date" value={formData.start} onChange={handleInputChange} />
+          <input type="date" name="startTime" value={formData.startTime} onChange={handleInputChange} />
         </label>
         <label>
           Job Code:
@@ -46,7 +46,7 @@ const TimeSheetForm = () => {
         </label>
         <label>
           End Date:
-          <input type="date" name="end" value={formData.end} onChange={handleInputChange} />
+          <input type="date" name="endTime" value={formData.endTime} onChange={handleInputChange} />
         </label>
         <button type="submit">Add Time Sheet</button>
       </form>
