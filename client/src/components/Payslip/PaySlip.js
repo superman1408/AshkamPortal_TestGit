@@ -17,6 +17,14 @@ import { useDispatch } from "react-redux";
 
 const PaySlip = () => {
   // const [currentId, setCurrentId] = useState();
+  const [total, setTotal] = useState(0);
+  const [basic, setBasic] = useState();
+  const [houseRent, setHouserent] = useState();
+
+  const calculateTotal = () => {
+    setTotal(basic + houseRent);
+  };
+
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
 
@@ -32,6 +40,7 @@ const PaySlip = () => {
 
   const makeDate = new Date();
   const prev = new Date(makeDate.setMonth(makeDate.getMonth() - 1));
+  console.log(prev);
 
   // to print Previous Month
   const formatter = new Intl.DateTimeFormat("default", {
@@ -62,8 +71,8 @@ const PaySlip = () => {
     payDays: daysInThisPrevMonth(),
     payPeriod: prevMonth,
     payDate: date,
-    basic: "",
-    houseRent: "",
+    // basic: "",
+    // houseRent: "",
     conveyance: "",
     communication: "",
     uniform: "",
@@ -164,7 +173,7 @@ const PaySlip = () => {
               >
                 Salary Slip
               </Typography>
-
+              <p>Total: {total || ""}</p>
               <Divider
                 sx={{
                   borderWidth: "2px",
@@ -379,7 +388,7 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.basic}
+                      value={basic}
                       onChange={(e) =>
                         setPostData({ ...postData, basic: e.target.value })
                       }
@@ -398,7 +407,7 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.houseRent}
+                      value={houseRent}
                       onChange={(e) =>
                         setPostData({ ...postData, houseRent: e.target.value })
                       }
@@ -609,7 +618,7 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.uaemployeerContribution_pfnNo}
+                      value={postData.employeerContribution_pf}
                       onChange={(e) =>
                         setPostData({
                           ...postData,
@@ -782,6 +791,7 @@ const PaySlip = () => {
                       bgcolor: "skyblue",
                       color: "black",
                     }}
+                    onClick={calculateTotal}
                   >
                     Generate
                   </Button>
