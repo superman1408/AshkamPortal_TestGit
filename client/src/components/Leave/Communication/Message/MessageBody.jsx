@@ -37,7 +37,7 @@ const Message = ({ post, currentId }) => {
       dispatch(getPost(currentId));
       updateArray();
       console.log("useEffect is running...!!!");
-      console.log("3");
+      console.log(currentId);
       setLoading(false);
     } else {
       console.log("3 is there");

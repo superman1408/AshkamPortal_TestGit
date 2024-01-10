@@ -1,0 +1,23 @@
+/* Print layout styles */
+.print-layout {
+  /* Add your styles for the normal screen view here */
+}
+
+/* Print-specific styles */
+@media print {
+  body {
+    visibility: hidden;
+  }
+
+  .print-layout {
+    /* Add your styles for the print layout here */
+  }
+
+  .print-layout h1 {
+    /* Add print-specific styles for headers */
+  }
+
+  .print-layout p {
+    /* Add print-specific styles for paragraphs */
+  }
+}

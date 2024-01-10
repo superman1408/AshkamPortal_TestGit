@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-
 import { useDispatch } from "react-redux";
 
 import Row from "react-bootstrap/Row";
@@ -11,7 +10,6 @@ import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import ListGroup from "react-bootstrap/ListGroup";
 
-
 import { todoList } from "../../action/posts";
 
 const FullWeekly = () => {
@@ -20,24 +18,17 @@ const FullWeekly = () => {
     list: [],
   });
 
-
   const [comment, setComment] = useState({
     userInput: "",
     list: [],
-  })
+  });
 
   const dispatch = useDispatch();
   const { id } = useParams();
 
-
-
   useEffect(() => {
     // console.log(id);
-  },[]);
-
-
-
-
+  }, []);
 
   const addItem = () => {
     if (state.userInput !== "") {
@@ -65,21 +56,17 @@ const FullWeekly = () => {
         list.push(userInput);
         return { ...prevState, list, userInput: "" };
       });
-      
 
       console.log(state.list);
       // setComment({state});
       // console.log(comment);
       // list.push(userInput);
 
-      dispatch(todoList(id,userInput));
-
-      } else {
-        console.log("Error in adding..!!");
+      dispatch(todoList(id, userInput));
+    } else {
+      console.log("Error in adding..!!");
     }
   };
-
-
 
   // Function to delete item from list use id to delete
   const deleteItem = (key) => {
@@ -95,8 +82,6 @@ const FullWeekly = () => {
     });
   };
 
-
-
   const editItem = (index) => {
     const todos = [...state.list];
     const editedTodo = prompt("Edit the todo:");
@@ -109,7 +94,6 @@ const FullWeekly = () => {
     }
   };
 
-
   // Set a user input value
   const updateInput = (value) => {
     // console.log(value);
@@ -118,8 +102,6 @@ const FullWeekly = () => {
       userInput: value,
     });
   };
-
-
 
   return (
     <div>
@@ -151,7 +133,7 @@ const FullWeekly = () => {
               aria-describedby="basic-addon2"
             />
             <InputGroup>
-            {/* <span> */}
+              {/* <span> */}
               <Button
                 variant="dark"
                 className="mt-2"
@@ -161,7 +143,7 @@ const FullWeekly = () => {
               >
                 ADD
               </Button>
-            {/* </span> */}
+              {/* </span> */}
             </InputGroup>
           </InputGroup>
         </Col>
@@ -190,8 +172,7 @@ const FullWeekly = () => {
                       >
                         Delete
                       </Button>
-                  
-                    
+
                       <Button
                         variant="light"
                         onClick={() => {

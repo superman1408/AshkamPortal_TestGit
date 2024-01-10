@@ -32,7 +32,7 @@ import ForwardToInboxTwoToneIcon from "@mui/icons-material/ForwardToInboxTwoTone
 
 // import avatar1 from "../../assets/Profile.jpg";
 
-const Panel = (post) => {
+const Panel = ({ post }) => {
   const [state, setState] = React.useState();
   // const [Btn, setBtn] = useState(false);
 
@@ -95,7 +95,7 @@ const Panel = (post) => {
               },
             }}
           >
-            <Avatar
+            {/* <Avatar
               sx={{
                 width: 40,
                 height: 40,
@@ -103,21 +103,35 @@ const Panel = (post) => {
                 bgcolor: "orange",
               }}
             >
-              {/* {post.firstName} */}
-
+             
               {user.result.firstName.charAt(0).toUpperCase() +
                 user.result.lastName.charAt(0).toUpperCase()}
-            </Avatar>
+            </Avatar> */}
+            {/* {post.firstName} */}
+
+            <Avatar
+              alt="avatar"
+              src={user.result.selectedFile}
+              sx={{
+                width: 40,
+                height: 40,
+                marginLeft: "10px",
+                bgcolor: "orange",
+              }}
+            />
           </Stack>
         </Grid>
         <Grid>
-          <Typography
+          {/* <Typography
             sx={{ marginLeft: "80px", color: "black", marginTop: "10px" }}
           >
             Employee
           </Typography>
           <Typography sx={{ marginLeft: "70px", color: "black" }}>
             Management
+          </Typography> */}
+          <Typography sx={{ textAlign: "center", margin: "20px 0px 20px 0px" }}>
+            {user.result.firstName + " " + user.result.lastName}
           </Typography>
         </Grid>
 
