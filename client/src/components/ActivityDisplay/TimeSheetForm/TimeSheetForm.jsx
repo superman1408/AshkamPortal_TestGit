@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { updatePost } from '../../../api';
+import { todoList} from '../../../api';
 
 const TimeSheetForm = () => {
   const [formData, setFormData] = useState({
@@ -22,7 +22,7 @@ const TimeSheetForm = () => {
     console.log(formData);
     console.log(id);
     if (id) {
-      dispatch(updatePost(id, formData))
+      dispatch(todoList(id, formData))
     } else {
       console.log("Error is inevitable")
     }

@@ -77,17 +77,29 @@ export const updateStatus = (id, activeStatus) => async (dispatch) => {
 };
 
 
-export const todoList = (id,state) => async(dispatch) => {
-  console.log("Hello I am working..!!");
+export const todoList = (id, formData) => async(dispatch) => {
+  // console.log("Hello I am working..!!");
   // console.log(id);
   // console.log(state);
 
   try {
-    const { data } = await API.todoList(id,state);
+    const { data } = await API.todoList(id, formData);
     //console.log(data);
-    dispatch({type : TODOLIST ,payload : data});
-    console.log("Hello");
+    dispatch({type : TODOLIST , payload : data});
+    // console.log("Hello");
   } catch (error) {
     console.log(error);
   }
 };
+
+
+
+// export const updatePost = (id, post) => async (dispatch) => {
+  // try {
+    // const { data } = await API.updatePost(id, post);
+
+    // dispatch({ type: UPDATE, payload: data });
+  // } catch (error) {
+    // console.log(error);
+  // }
+// };

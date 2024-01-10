@@ -17,7 +17,7 @@ import PaySlip from "./components/Payslip/PaySlip";
 import EmployeeAttendance from "./components/Attendance/EmployeeAttendance";
 // import Rough from "./components/Rough/rough";
 // import RoughPayslip from "./components/Payslip/RoughPayslip";
-import TimeSheet from "./components/TimeSheet/TimeSheet";
+import ActivityDisplay from './components/ActivityDisplay/ActivityDisplay';
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -63,7 +63,7 @@ const App = () => {
           <Route path="/aboutUs" exact element={<AboutUS />} />
           <Route path="/home" exact element={<Dashboard />} />
           {/* <Route path="posts/:id/fullweeklyactivity" exact element={<FullWeekly />} /> */}
-          <Route path="posts/:id/fullweeklyactivity" exact element={<TimeSheet />} />
+          <Route path="posts/:id/fullweeklyactivity" exact element={<ActivityDisplay />} />
           <Route
             path="/employeeAttendance"
             exact
