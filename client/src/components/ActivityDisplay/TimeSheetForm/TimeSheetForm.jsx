@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 import { useDispatch } from "react-redux";
 import { todoList} from '../../../api';
 
-const TimeSheetForm = () => {
+const TimeSheetForm = ({currentId}) => {
   const [formData, setFormData] = useState({
     employeeId: "",
     startTime: "",
@@ -13,16 +15,18 @@ const TimeSheetForm = () => {
   });
 
   const dispatch = useDispatch();
-  const { id } = useParams();
+  // const { id } = useParams();
+  const navigate = useNavigate();
 
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    console.log(id);
-    if (id) {
-      dispatch(todoList(id, formData))
+    console.log(currentId);
+    if (currentId) {
+      dispatch(todoList(currentId, formData).then(alert("Send to Data base")))
+      navigate("/home")
     } else {
       console.log("Error is inevitable")
     }

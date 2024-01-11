@@ -115,7 +115,36 @@ export const updatedStatus = async (req, res) => {
 // _________________________To Do List Status_____________________________
 export const todoList = async (req, res) => {
   const { id: _id } = req.params;
-  const  state  = req.body;
-  console.log(_id);
-  console.log(state);
+  const  post  = req.body;
+  // console.log(_id);
+  // console.log(post);
+
+  if (!mongoose.Types.ObjectId.isValid(_id))
+    return res.status(404).send("No user with that ID");
+
+    const updatedPost = await AuthenticateUser.findByIdAndUpdate(
+      _id,
+      { ...post, _id },
+      { new: true }
+    );
+    res.json(updatePost);
 };
+
+
+
+// export const updatePost = async (req, res) => {
+//   const { id: _id } = req.params;
+//   const post = req.body;
+
+//   if (!mongoose.Types.ObjectId.isValid(_id))
+//     return res.status(404).send("no post with that id found");
+
+//   const updatedPost = await AuthenticateUser.findByIdAndUpdate(
+//     _id,
+//     { ...post, _id },
+//     {
+//       new: true,
+//     }
+//   );
+//   res.json(updatedPost);
+// };
