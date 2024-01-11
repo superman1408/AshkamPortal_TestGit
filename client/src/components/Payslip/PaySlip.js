@@ -22,7 +22,7 @@ const PaySlip = () => {
   const [houseRent, setHouserent] = useState();
 
   const calculateTotal = () => {
-    setTotal(basic + houseRent);
+    setTotal(Number(basic) + Number(houseRent));
   };
 
   const dispatch = useDispatch();
@@ -389,9 +389,7 @@ const PaySlip = () => {
                       label="amount"
                       variant="outlined"
                       value={basic}
-                      onChange={(e) =>
-                        setPostData({ ...postData, basic: e.target.value })
-                      }
+                      onChange={(e) => setBasic(e.target.value)}
                     />
                   </Grid>
 
@@ -408,9 +406,7 @@ const PaySlip = () => {
                       label="amount"
                       variant="outlined"
                       value={houseRent}
-                      onChange={(e) =>
-                        setPostData({ ...postData, houseRent: e.target.value })
-                      }
+                      onChange={(e) => setHouserent(e.target.value)}
                     />
                   </Grid>
                   <Grid
