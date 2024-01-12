@@ -86,6 +86,8 @@ export const todoList = (id, post) => async(dispatch) => {
     const { data } = await API.todoList(id, post);
     //console.log(data);
     dispatch({type : TODOLIST , payload : data });
+
+    return data.todoList;
     // console.log("Hello");
   } catch (error) {
     console.log(error);

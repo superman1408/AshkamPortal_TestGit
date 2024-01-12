@@ -23,6 +23,6 @@ router.patch("/:id", auth, updatePost);
 
 router.delete("/:id", auth, deletePost);
 
-router.patch("/:id/todo", auth, todoList);
+router.post("/:id/todo", auth, todoList);
 
 export default router;

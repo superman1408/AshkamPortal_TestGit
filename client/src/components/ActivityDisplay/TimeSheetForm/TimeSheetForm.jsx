@@ -7,7 +7,6 @@ import { todoList} from '../../../api';
 
 const TimeSheetForm = ({currentId}) => {
   const [formData, setFormData] = useState({
-    employeeId: "",
     startTime: "",
     endTime: "",
     jobCode:"",
@@ -15,17 +14,16 @@ const TimeSheetForm = ({currentId}) => {
   });
 
   const dispatch = useDispatch();
-  // const { id } = useParams();
   const navigate = useNavigate();
 
 
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
+    // e.preventDefault();
     console.log(formData);
     console.log(currentId);
     if (currentId) {
-      dispatch(todoList(currentId, formData).then(alert("Send to Data base")))
+      await dispatch(todoList(formData, currentId).then(alert("Send to Data base")))
       navigate("/home")
     } else {
       console.log("Error is inevitable")
@@ -44,17 +42,17 @@ const TimeSheetForm = ({currentId}) => {
     <div>
       <h2>Time Sheet Form</h2>
       <form onSubmit={handleSubmit}>
-        <label>
+        {/* <label>
           Employee ID:
           <input type="text" name="employeeId" value={formData.employeeId} onChange={handleInputChange} />
+        </label> */}
+        <label>
+          Job Code:
+          <input type="text" name="jobCode" value={formData.jobCode} onChange={handleInputChange} />
         </label>
         <label>
           Start Date:
           <input type="date" name="startTime" value={formData.startTime} onChange={handleInputChange} />
-        </label>
-        <label>
-          Job Code:
-          <input type="text" name="jobCode" value={formData.jobCode} onChange={handleInputChange} />
         </label>
         <label>
           Hours Worked:
