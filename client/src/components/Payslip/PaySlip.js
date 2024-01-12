@@ -20,9 +20,23 @@ const PaySlip = () => {
   const [total, setTotal] = useState(0);
   const [basic, setBasic] = useState();
   const [houseRent, setHouserent] = useState();
+  const [conveyance, setConveyance] = useState();
+  const [communication, setCommunication] = useState();
+  const [uniform, setUniform] = useState();
+  const [medical, setMedical] = useState();
+  const [cityFactor, setCityFactor] = useState();
+  // const [uniform, setBasic] = useState();
 
   const calculateTotal = () => {
-    setTotal(Number(basic) + Number(houseRent));
+    setTotal(
+      basic +
+        houseRent +
+        conveyance +
+        communication +
+        uniform +
+        medical +
+        cityFactor
+    );
   };
 
   const dispatch = useDispatch();
@@ -73,11 +87,11 @@ const PaySlip = () => {
     payDate: date,
     // basic: "",
     // houseRent: "",
-    conveyance: "",
-    communication: "",
-    uniform: "",
-    medical: "",
-    cityFactor: "",
+    // conveyance: "",
+    // communication: "",
+    // uniform: "",
+    // medical: "",
+    // cityFactor: "",
     grossEarnings: "",
     netSalary: "",
     employeeContribution_pf: "",
@@ -389,7 +403,7 @@ const PaySlip = () => {
                       label="amount"
                       variant="outlined"
                       value={basic}
-                      onChange={(e) => setBasic(e.target.value)}
+                      onChange={(e) => setBasic(+e.target.value)}
                     />
                   </Grid>
 
@@ -406,7 +420,7 @@ const PaySlip = () => {
                       label="amount"
                       variant="outlined"
                       value={houseRent}
-                      onChange={(e) => setHouserent(e.target.value)}
+                      onChange={(e) => setHouserent(+e.target.value)}
                     />
                   </Grid>
                   <Grid
@@ -421,10 +435,8 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.conveyance}
-                      onChange={(e) =>
-                        setPostData({ ...postData, conveyance: e.target.value })
-                      }
+                      value={conveyance}
+                      onChange={(e) => setConveyance(+e.target.value)}
                     />
                   </Grid>
 
@@ -440,13 +452,8 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.communication}
-                      onChange={(e) =>
-                        setPostData({
-                          ...postData,
-                          communication: e.target.value,
-                        })
-                      }
+                      value={communication}
+                      onChange={(e) => setCommunication(+e.target.value)}
                     />
                   </Grid>
 
@@ -462,10 +469,8 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.uniform}
-                      onChange={(e) =>
-                        setPostData({ ...postData, uniform: e.target.value })
-                      }
+                      value={uniform}
+                      onChange={(e) => setUniform(+e.target.value)}
                     />
                   </Grid>
 
@@ -481,10 +486,8 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.medical}
-                      onChange={(e) =>
-                        setPostData({ ...postData, medical: e.target.value })
-                      }
+                      value={medical}
+                      onChange={(e) => setMedical(+e.target.value)}
                     />
                   </Grid>
 
@@ -500,10 +503,8 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.cityFactor}
-                      onChange={(e) =>
-                        setPostData({ ...postData, cityFactor: e.target.value })
-                      }
+                      value={cityFactor}
+                      onChange={(e) => setCityFactor(+e.target.value)}
                     />
                   </Grid>
 
