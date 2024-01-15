@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { useState } from "react";
 import { useReactToPrint } from "react-to-print";
 
@@ -37,7 +37,21 @@ const PaySlip = () => {
         medical +
         cityFactor
     );
+    // calculatePf();
+    // setTotal(isNaN(total) ? 0 : total);
   };
+
+  // const calculatePf = () => {
+  //   employeeContribution_pf = basic * 0.12;
+  //   employeeContribution_esic = basic * 0.4;
+  // };
+
+  console.log("Total after adding", total);
+
+  // const calculateNetSalary = () => {
+  //   employeeContribution_pf = basic * 0.12;
+  //   employeeContribution_esic = basic * 0.4;
+  // };
 
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -77,6 +91,10 @@ const PaySlip = () => {
     return new Date(now.getFullYear(), prevMonth1, 0).getDate();
   };
 
+  useEffect(() => {
+    calculateTotal();
+  }, []);
+
   const [postData, setPostData] = useState({
     employeeId: user.result.employeeId,
     firstName: user.result.firstName,
@@ -92,7 +110,7 @@ const PaySlip = () => {
     // uniform: "",
     // medical: "",
     // cityFactor: "",
-    grossEarnings: "",
+    // grossEarnings: total || "",
     netSalary: "",
     employeeContribution_pf: "",
     employeerContribution_pf: "",
@@ -101,6 +119,9 @@ const PaySlip = () => {
     tds: "",
     totalDeduction: "",
   });
+
+  console.log("total", total);
+  console.log("grossEarnings", postData.grossEarnings);
 
   // const post = useSelector((state) =>
   //   currentId ? state.posts.find((p) => p._id === currentId) : null
@@ -520,7 +541,7 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.grossEarnings}
+                      value={total || ""}
                       onChange={(e) =>
                         setPostData({
                           ...postData,
