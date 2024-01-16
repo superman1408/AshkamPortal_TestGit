@@ -25,6 +25,10 @@ const PaySlip = () => {
   const [uniform, setUniform] = useState();
   const [medical, setMedical] = useState();
   const [cityFactor, setCityFactor] = useState();
+
+  const [employeeContribution_pf, setEmployeeContribution_pf] = useState(0);
+  const [employeerContribution_pf, setEmployeerContribution_pf] = useState(0);
+  const [employeeContribution_esic, setEmployeeContribution_esic] = useState(0);
   // const [uniform, setBasic] = useState();
 
   const calculateTotal = () => {
@@ -37,14 +41,14 @@ const PaySlip = () => {
         medical +
         cityFactor
     );
-    // calculatePf();
-    // setTotal(isNaN(total) ? 0 : total);
+    calculatePf();
   };
 
-  // const calculatePf = () => {
-  //   employeeContribution_pf = basic * 0.12;
-  //   employeeContribution_esic = basic * 0.4;
-  // };
+  const calculatePf = () => {
+    setEmployeeContribution_pf(basic * 0.12);
+    setEmployeerContribution_pf(basic * 0.12);
+    setEmployeeContribution_esic(basic * 0.4);
+  };
 
   console.log("Total after adding", total);
 
@@ -112,9 +116,9 @@ const PaySlip = () => {
     // cityFactor: "",
     // grossEarnings: total || "",
     netSalary: "",
-    employeeContribution_pf: "",
-    employeerContribution_pf: "",
-    employeeContribution_esic: "",
+    // employeeContribution_pf: employeeContribution_pf || "",
+    // employeerContribution_pf: employeeContribution_pf || "",
+    // employeeContribution_esic: employeeContribution_esic || "",
     employeerContribution_esic: "",
     tds: "",
     totalDeduction: "",
@@ -612,7 +616,7 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.employeeContribution_pf}
+                      value={employeeContribution_pf || ""}
                       onChange={(e) =>
                         setPostData({
                           ...postData,
@@ -636,7 +640,7 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.employeerContribution_pf}
+                      value={employeerContribution_pf || ""}
                       onChange={(e) =>
                         setPostData({
                           ...postData,
@@ -691,7 +695,7 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.employeeContribution_esic}
+                      value={employeeContribution_esic || ""}
                       onChange={(e) =>
                         setPostData({
                           ...postData,
