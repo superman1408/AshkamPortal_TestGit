@@ -22,7 +22,7 @@ import { useDispatch } from "react-redux";
 import { updatePost } from "../../action/posts";
 
 import { useReactToPrint } from "react-to-print";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const RegistrationForm = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -33,6 +33,9 @@ const RegistrationForm = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
 
   const navigate = useNavigate();
+
+  const id = useParams();
+  console.log("id in registration page", id);
 
   useEffect(() => {
     if (!currentId) return setCurrentId(user.result._id);

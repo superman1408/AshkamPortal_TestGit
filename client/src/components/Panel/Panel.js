@@ -32,7 +32,7 @@ import ForwardToInboxTwoToneIcon from "@mui/icons-material/ForwardToInboxTwoTone
 
 // import avatar1 from "../../assets/Profile.jpg";
 
-const Panel = ({ post }) => {
+const Panel = (post) => {
   const [state, setState] = React.useState();
   // const [Btn, setBtn] = useState(false);
 
@@ -95,33 +95,31 @@ const Panel = ({ post }) => {
               },
             }}
           >
-            {/* <Avatar
+            <Avatar
               sx={{
                 width: 40,
                 height: 40,
                 marginLeft: "10px",
                 bgcolor: "orange",
               }}
-            >
-             
-              {user.result.firstName.charAt(0).toUpperCase() +
-                user.result.lastName.charAt(0).toUpperCase()}
-            </Avatar> */}
+              src={user.result.selectedFile}
+            />
             {/* {post.firstName} */}
 
-            <Avatar
-              alt="avatar"
-              src={user.result.selectedFile}
-              sx={{
-                width: 40,
-                height: 40,
-                marginLeft: "10px",
-                bgcolor: "orange",
-              }}
-            />
+            {/* {user.result.firstName.charAt(0).toUpperCase() +
+                user.result.lastName.charAt(0).toUpperCase()} */}
           </Stack>
         </Grid>
         <Grid>
+          <Typography
+            sx={{
+              justifyContent: "center",
+              textAlign: "center",
+              marginTop: "10px",
+            }}
+          >
+            {user.result.firstName + " " + user.result.lastName}
+          </Typography>
           {/* <Typography
             sx={{ marginLeft: "80px", color: "black", marginTop: "10px" }}
           >
@@ -130,9 +128,6 @@ const Panel = ({ post }) => {
           <Typography sx={{ marginLeft: "70px", color: "black" }}>
             Management
           </Typography> */}
-          <Typography sx={{ textAlign: "center", margin: "20px 0px 20px 0px" }}>
-            {user.result.firstName + " " + user.result.lastName}
-          </Typography>
         </Grid>
 
         <Divider sx={{ mb: 6, ml: 0, mr: 0 }} />
@@ -196,3 +191,55 @@ const Panel = ({ post }) => {
 };
 
 export default Panel;
+
+// import { ButtonBase, Typography, Button, Avatar, Grid } from "@mui/material";
+// import React from "react";
+
+// // import Message from "../Message/message";
+
+// const Inbox = ({ post, setCurrentId }) => {
+//   const openMessage = (e) => {
+//     console.log("button is workin");
+//     e.stopPropagation();
+//     setCurrentId(post._id);
+//   };
+
+//   return (
+//     <div>
+//       <Button required fullWidth>
+//         <ButtonBase
+//           sx={{
+//             bgcolor: "#aee3e8",
+//             width: "50vh",
+//             padding: "5px",
+//             height: "80px",
+//           }}
+//           onClick={openMessage}
+//         >
+//           <Grid
+//             sx={{ display: "flex", width: "calc(100%)", marginLeft: "20px" }}
+//           >
+//             <Avatar
+//               alt="avatar"
+//               src={post?.selectedFile}
+//               withborder="true"
+//               color="green"
+//             />
+
+//             <Typography variant="h6" color="black" sx={{ marginLeft: "20px" }}>
+//               {post?.firstName + " " + post?.lastName}
+//             </Typography>
+//           </Grid>
+
+//           {/* <div width="calc(50%)">
+//             <Typography variant="h5" color="black">
+//               {post?.name}
+//             </Typography>
+//           </div> */}
+//         </ButtonBase>
+//       </Button>
+//     </div>
+//   );
+// };
+
+// export default Inbox;

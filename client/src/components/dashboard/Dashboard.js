@@ -11,11 +11,15 @@ import Birthday from "../Birthday/Birthday";
 import { Box, Grid, Typography } from "@mui/material";
 import Panel from "../Panel/Panel";
 import Attendance from "../Attendance/Attendance";
+import { useParams } from "react-router-dom";
 // import { useLocation } from "react-router-dom";
 // import { useDispatch } from "react-redux";
 
 const Admin = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
+
+  const id = useParams();
+  console.log("id in home page", id);
 
   return (
     <div style={{ minheight: "100%" }}>

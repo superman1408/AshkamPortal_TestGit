@@ -5,15 +5,14 @@ import {
   updatePost,
   deletePost,
   getPost,
-  todoList
+  todoList,
 } from "../controllers/posts.js";
 
 import auth from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.get("/", getPosts
-);
+router.get("/", getPosts);
 
 router.get("/:id", getPost);
 

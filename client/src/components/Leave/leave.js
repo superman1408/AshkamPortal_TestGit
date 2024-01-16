@@ -23,7 +23,7 @@ const Leave = () => {
   const posts = useSelector((state) => state.posts);
 
   const { id } = useParams();
-  console.log(id);
+  console.log("id in leave page", id);
 
   const user = JSON.parse(localStorage.getItem("profile"));
 

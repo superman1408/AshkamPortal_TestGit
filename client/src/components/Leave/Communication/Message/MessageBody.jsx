@@ -37,7 +37,7 @@ const Message = ({ post, currentId }) => {
       dispatch(getPost(currentId));
       updateArray();
       console.log("useEffect is running...!!!");
-      console.log(currentId);
+      console.log("currentId", currentId);
       setLoading(false);
     } else {
       console.log("3 is there");
@@ -94,6 +94,8 @@ const Message = ({ post, currentId }) => {
   // const color = () =>  {item.status === "Accepted" ? (return('green') : return('red')) }
   // // console.log(array);
 
+  console.log(currentId);
+
   return (
     currentId && (
       <div>
@@ -128,14 +130,14 @@ const Message = ({ post, currentId }) => {
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
-                  <div key={post.contact} style={{ display: "flex" }}>
-                    {/* <Avatar
-                    alt="avatar"
-                    src={post.selectedFile}
-                    size="xs"
-                    withborder={true}
-                    className="p-0.5"
-                  /> */}
+                  <div key={post.selectedFile} style={{ display: "flex" }}>
+                    <Avatar
+                      alt="avatar"
+                      src={post.selectedFile}
+                      size="xs"
+                      withborder={true}
+                      className="p-0.5"
+                    />
                     <Typography sx={{ margin: "5px 5px" }}>
                       {post.employeeName}
                     </Typography>

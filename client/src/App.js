@@ -18,6 +18,7 @@ import EmployeeAttendance from "./components/Attendance/EmployeeAttendance";
 // import Rough from "./components/Rough/rough";
 // import RoughPayslip from "./components/Payslip/RoughPayslip";
 import TimeSheet from "./components/TimeSheet/TimeSheet";
+import Panel from "./components/Panel/Panel";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -63,7 +64,11 @@ const App = () => {
           <Route path="/aboutUs" exact element={<AboutUS />} />
           <Route path="/home" exact element={<Dashboard />} />
           {/* <Route path="posts/:id/fullweeklyactivity" exact element={<FullWeekly />} /> */}
-          <Route path="posts/:id/fullweeklyactivity" exact element={<TimeSheet />} />
+          <Route
+            path="posts/:id/fullweeklyactivity"
+            exact
+            element={<TimeSheet />}
+          />
           <Route
             path="/employeeAttendance"
             exact
@@ -71,11 +76,12 @@ const App = () => {
           />
           <Route path="/birthdaymail" exact element={<BirthdayMail />} />
           <Route path="/:id/payslip" exact element={<PaySlip />} />
+
           {/* <Route path="/rough" exact element={<Rough />} /> */}
           {/* <Route path="/roughpayslip" exact element={<RoughPayslip />} /> */}
         </Routes>
       </Container>
-        <div>
+      <div>
         <footer
           style={{
             backgroundColor: "#17325C",
@@ -87,9 +93,9 @@ const App = () => {
         >
           ASHKAM ENERGY PRIVATE LIMITED ©️ me 2023
         </footer>
-        </div>
+      </div>
     </BrowserRouter>
-  )
+  );
 };
 
 export default App;
