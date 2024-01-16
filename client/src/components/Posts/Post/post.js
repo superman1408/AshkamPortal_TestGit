@@ -18,6 +18,8 @@ const Post = ({ post, setCurrentId }) => {
 
   const dispatch = useDispatch();
 
+  // console.log(post);
+
   return (
     <Box
       container

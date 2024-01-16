@@ -5,11 +5,11 @@ import TimeSheetForm from '../TimeSheetForm/TimeSheetForm';
 
 const time = [{employeeId: "12345", jobCode: "AEPL-002-PL-001", start: "9th Jan 2024", hoursWorked: "5", end:"12th Jan 2024"}, {employeeId: "12345", jobCode: "AEPL-002-PL-001", start: "9th Jan 2024", hoursWorked: "5", end:"12th Jan 2024"}, {employeeId: "12345", jobCode: "AEPL-002-PL-001", start: "9th Jan 2024", hoursWorked: "5", end:"12th Jan 2024"}, {employeeId: "12345", jobCode: "AEPL-002-PL-001", start: "9th Jan 2024", hoursWorked: "5", end:"12th Jan 2024"}];
 
-const TimeSheet = ({currentId}) => {
+const TimeSheet = ({posts,currentId}) => {
   // console.log(currentId);
-  const  timeSheets  = useSelector((state) => state.posts);
+  // const  timeSheets  = useSelector((state) => state.posts);
 
-  console.log(timeSheets);
+  console.log(posts);
   return (
     <div>
       <TimeSheetForm currentId={currentId}/>
