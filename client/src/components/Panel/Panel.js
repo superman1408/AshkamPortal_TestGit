@@ -32,7 +32,7 @@ import ForwardToInboxTwoToneIcon from "@mui/icons-material/ForwardToInboxTwoTone
 
 // import avatar1 from "../../assets/Profile.jpg";
 
-const Panel = (post) => {
+const Panel = ({prop}) => {
   const [state, setState] = React.useState();
   // const [Btn, setBtn] = useState(false);
 
@@ -43,6 +43,8 @@ const Panel = (post) => {
   const navigate = useNavigate();
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+
+  // console.log(prop);
 
   useEffect(() => {
     const token = user?.token;
