@@ -51,8 +51,6 @@ const Auth = () => {
     } else {
       dispatch(signin(formData, navigate));
     }
-
-    console.log(formData);
   };
 
   const switchMode = () => {
