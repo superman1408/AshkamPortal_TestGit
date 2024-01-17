@@ -100,6 +100,24 @@ const authSchema = mongoose.Schema({
     type: [String],
     default: [],
   },
+  jobCode: {
+    type: [String],
+    require: true,
+    default: []
+  },
+  startTime: {
+    type: [String],
+    require: true,
+    default: Date.now
+  },
+  endTime: {
+    type: [String],
+    default: Date.now
+  },
+  hoursWorked: { type: [String], default: [] },
+  jobCode: { type: [String], default: [] },
+  startTime: { type: [String], default: [] },
+  endTime: { type: [String], default: [] },
 });
 
 const AuthDetails = mongoose.model("AuthDetails", authSchema);

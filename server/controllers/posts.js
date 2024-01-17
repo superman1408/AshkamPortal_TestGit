@@ -114,8 +114,23 @@ export const updatedStatus = async (req, res) => {
 
 // _________________________To Do List Status_____________________________
 export const todoList = async (req, res) => {
-  const { id: _id } = req.params;
-  const  state  = req.body;
-  console.log(_id);
-  console.log(state);
+  const { id } = req.params;
+  const  value   = req.body;
+
+  const user = await AuthenticateUser.findById(id)
+
+
+  try {
+    user.jobCode.push(value.formData.jobCode);
+    user.startTime.push(value.formData.startTime);
+    user.endTime.push(value.formData.endTime);
+    user.hoursWorked.push(value.formData.hoursWorked);
+
+
+    const updatedPost = await AuthenticateUser.findByIdAndUpdate(id, user, { new : true });
+
+    res.json(updatedPost);
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
 };
