@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import useStyles from "./style";
 import { deletePost } from "../../../action/posts";
 import { Box, Button, Typography, Card } from "@mui/material";
-import {} from "@material-ui/core";
+// import {} from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 
 // import Navbar from "../../Navbar/navbar";
