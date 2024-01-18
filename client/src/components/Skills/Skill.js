@@ -16,7 +16,7 @@ let name = "Java";
 const topSkills = ["Java", "Python", "JavaScript"];
 
 const Skill = () => {
-  return (
+  return (                                                                        
     <div>
       <Box
         sx={{

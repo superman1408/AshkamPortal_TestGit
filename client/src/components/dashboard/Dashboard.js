@@ -35,7 +35,7 @@ const Admin = () => {
       >
         <Grid sx={{ display: "flex", flexDirection: "row" }}>
           {/*------------------Panel----------------------------- */}
-          <Panel prop={user.result._id} />
+          <Panel prop={user.result} />
 
           {/* ---------------Dashboard section-------------------------*/}
           <Grid

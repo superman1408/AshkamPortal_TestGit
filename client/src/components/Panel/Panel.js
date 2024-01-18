@@ -32,7 +32,7 @@ import ForwardToInboxTwoToneIcon from "@mui/icons-material/ForwardToInboxTwoTone
 
 // import avatar1 from "../../assets/Profile.jpg";
 
-const Panel = ({prop}) => {
+const Panel = ({ prop }) => {
   const [state, setState] = React.useState();
   // const [Btn, setBtn] = useState(false);
 
@@ -44,7 +44,7 @@ const Panel = ({prop}) => {
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
 
-  // console.log(prop);
+  console.log("id in home page", prop);
 
   useEffect(() => {
     const token = user?.token;
@@ -104,7 +104,7 @@ const Panel = ({prop}) => {
                 marginLeft: "10px",
                 bgcolor: "orange",
               }}
-              src={user.result.selectedFile}
+              src={prop.selectedFile}
             />
             {/* {post.firstName} */}
 
@@ -120,7 +120,7 @@ const Panel = ({prop}) => {
               marginTop: "10px",
             }}
           >
-            {user.result.firstName + " " + user.result.lastName}
+            {prop.firstName + " " + prop.lastName}
           </Typography>
           {/* <Typography
             sx={{ marginLeft: "80px", color: "black", marginTop: "10px" }}

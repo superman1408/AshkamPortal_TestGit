@@ -17,12 +17,7 @@ import PaySlip from "./components/Payslip/PaySlip";
 import EmployeeAttendance from "./components/Attendance/EmployeeAttendance";
 // import Rough from "./components/Rough/rough";
 // import RoughPayslip from "./components/Payslip/RoughPayslip";
-<<<<<<< HEAD
-import TimeSheet from "./components/TimeSheet/TimeSheet";
-import Panel from "./components/Panel/Panel";
-=======
 import ActivityDisplay from './components/ActivityDisplay/ActivityDisplay';
->>>>>>> 298ef31cbca525adbb26f3d71b910e0185838482
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -68,15 +63,7 @@ const App = () => {
           <Route path="/aboutUs" exact element={<AboutUS />} />
           <Route path="/home" exact element={ <Dashboard /> } />
           {/* <Route path="posts/:id/fullweeklyactivity" exact element={<FullWeekly />} /> */}
-<<<<<<< HEAD
-          <Route
-            path="posts/:id/fullweeklyactivity"
-            exact
-            element={<TimeSheet />}
-          />
-=======
           <Route path="posts/:id/fullweeklyactivity" exact element={<ActivityDisplay />} />
->>>>>>> 298ef31cbca525adbb26f3d71b910e0185838482
           <Route
             path="/employeeAttendance"
             exact

@@ -23,9 +23,10 @@ import { updatePost } from "../../action/posts";
 
 import { useReactToPrint } from "react-to-print";
 import { useNavigate, useParams } from "react-router-dom";
+import { LOGOUT } from "../../constants/actionTypes";
 
 const RegistrationForm = () => {
-  const user = JSON.parse(localStorage.getItem("profile"));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
   const componentRef = useRef();
@@ -95,7 +96,9 @@ const RegistrationForm = () => {
     e.preventDefault();
     if (currentId) {
       dispatch(updatePost(currentId, postData));
-      console.log(currentId);
+      setUser(null);
+      // dispatch({ type: LOGOUT });
+      // console.log(currentId);
 
       navigate("/home");
     } else {
