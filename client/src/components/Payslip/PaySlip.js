@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { useState } from "react";
 import { useReactToPrint } from "react-to-print";
 
@@ -17,7 +17,50 @@ import { useDispatch } from "react-redux";
 
 const PaySlip = () => {
   // const [currentId, setCurrentId] = useState();
-  const dispatch = useDispatch();
+  const [total, setTotal] = useState(0);
+  const [basic, setBasic] = useState();
+  const [houseRent, setHouserent] = useState();
+  const [conveyance, setConveyance] = useState();
+  const [communication, setCommunication] = useState();
+  const [uniform, setUniform] = useState();
+  const [medical, setMedical] = useState();
+  const [cityFactor, setCityFactor] = useState();
+
+  const [employeeContribution_pf, setEmployeeContribution_pf] = useState(0);
+  const [employeerContribution_pf, setEmployeerContribution_pf] = useState(0);
+  const [employeeContribution_esic, setEmployeeContribution_esic] = useState(0);
+  const [totalDeduction, setTotalDeduction] = useState(0);
+  const [netSalary, setNetSalary] = useState(0);
+
+  const GS =
+    basic +
+    houseRent +
+    conveyance +
+    communication +
+    uniform +
+    medical +
+    cityFactor;
+
+  const pf = basic * 0.12;
+  const esic = GS * 0.04;
+
+  const totaldeduction = pf + pf + esic;
+  const net = GS - totaldeduction;
+
+  const calculateTotal = () => {
+    setTotal(GS);
+    calculatePf();
+  };
+
+  const calculatePf = () => {
+    setEmployeeContribution_pf(pf);
+    setEmployeerContribution_pf(pf);
+    setEmployeeContribution_esic(esic);
+    setTotalDeduction(totaldeduction);
+    setNetSalary(net);
+  };
+
+  // const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
 
   const today = new Date();
@@ -30,8 +73,9 @@ const PaySlip = () => {
     year: "numeric",
   });
 
-  const makeDate = new Date();
-  const prev = new Date(makeDate.setMonth(makeDate.getMonth() - 1));
+  // const makeDate = new Date();
+  // const prev = new Date(makeDate.setMonth(makeDate.getMonth() - 1));
+  // console.log(prev);
 
   // to print Previous Month
   const formatter = new Intl.DateTimeFormat("default", {
@@ -54,6 +98,10 @@ const PaySlip = () => {
     return new Date(now.getFullYear(), prevMonth1, 0).getDate();
   };
 
+  useEffect(() => {
+    calculateTotal();
+  }, []);
+
   const [postData, setPostData] = useState({
     employeeId: user.result.employeeId,
     firstName: user.result.firstName,
@@ -62,22 +110,18 @@ const PaySlip = () => {
     payDays: daysInThisPrevMonth(),
     payPeriod: prevMonth,
     payDate: date,
-    basic: "",
-    houseRent: "",
-    conveyance: "",
-    communication: "",
-    uniform: "",
-    medical: "",
-    cityFactor: "",
-    grossEarnings: "",
+
     netSalary: "",
-    employeeContribution_pf: "",
-    employeerContribution_pf: "",
-    employeeContribution_esic: "",
+    // employeeContribution_pf: employeeContribution_pf || "",
+    // employeerContribution_pf: employeeContribution_pf || "",
+    // employeeContribution_esic: employeeContribution_esic || "",
     employeerContribution_esic: "",
     tds: "",
     totalDeduction: "",
   });
+
+  console.log("total", total);
+  console.log("grossEarnings", postData.grossEarnings);
 
   // const post = useSelector((state) =>
   //   currentId ? state.posts.find((p) => p._id === currentId) : null
@@ -379,10 +423,8 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.basic}
-                      onChange={(e) =>
-                        setPostData({ ...postData, basic: e.target.value })
-                      }
+                      value={basic}
+                      onChange={(e) => setBasic(+e.target.value)}
                     />
                   </Grid>
 
@@ -398,10 +440,8 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.houseRent}
-                      onChange={(e) =>
-                        setPostData({ ...postData, houseRent: e.target.value })
-                      }
+                      value={houseRent}
+                      onChange={(e) => setHouserent(+e.target.value)}
                     />
                   </Grid>
                   <Grid
@@ -416,10 +456,8 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.conveyance}
-                      onChange={(e) =>
-                        setPostData({ ...postData, conveyance: e.target.value })
-                      }
+                      value={conveyance}
+                      onChange={(e) => setConveyance(+e.target.value)}
                     />
                   </Grid>
 
@@ -435,13 +473,8 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.communication}
-                      onChange={(e) =>
-                        setPostData({
-                          ...postData,
-                          communication: e.target.value,
-                        })
-                      }
+                      value={communication}
+                      onChange={(e) => setCommunication(+e.target.value)}
                     />
                   </Grid>
 
@@ -457,10 +490,8 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.uniform}
-                      onChange={(e) =>
-                        setPostData({ ...postData, uniform: e.target.value })
-                      }
+                      value={uniform}
+                      onChange={(e) => setUniform(+e.target.value)}
                     />
                   </Grid>
 
@@ -476,10 +507,8 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.medical}
-                      onChange={(e) =>
-                        setPostData({ ...postData, medical: e.target.value })
-                      }
+                      value={medical}
+                      onChange={(e) => setMedical(+e.target.value)}
                     />
                   </Grid>
 
@@ -495,10 +524,8 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.cityFactor}
-                      onChange={(e) =>
-                        setPostData({ ...postData, cityFactor: e.target.value })
-                      }
+                      value={cityFactor}
+                      onChange={(e) => setCityFactor(+e.target.value)}
                     />
                   </Grid>
 
@@ -514,7 +541,7 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.grossEarnings}
+                      value={total || ""}
                       onChange={(e) =>
                         setPostData({
                           ...postData,
@@ -538,7 +565,7 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.netSalary}
+                      value={netSalary || ""}
                       onChange={(e) =>
                         setPostData({
                           ...postData,
@@ -585,7 +612,7 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.employeeContribution_pf}
+                      value={employeeContribution_pf || ""}
                       onChange={(e) =>
                         setPostData({
                           ...postData,
@@ -609,7 +636,7 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.uaemployeerContribution_pfnNo}
+                      value={employeerContribution_pf || ""}
                       onChange={(e) =>
                         setPostData({
                           ...postData,
@@ -664,7 +691,7 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.employeeContribution_esic}
+                      value={employeeContribution_esic || ""}
                       onChange={(e) =>
                         setPostData({
                           ...postData,
@@ -752,7 +779,7 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.totalDeduction}
+                      value={totalDeduction || ""}
                       onChange={(e) =>
                         setPostData({
                           ...postData,
@@ -782,6 +809,7 @@ const PaySlip = () => {
                       bgcolor: "skyblue",
                       color: "black",
                     }}
+                    onClick={calculateTotal}
                   >
                     Generate
                   </Button>
