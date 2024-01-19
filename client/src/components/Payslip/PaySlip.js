@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { useState } from "react";
 import { useReactToPrint } from "react-to-print";
 import { useParams } from "react-router-dom";
@@ -26,21 +26,42 @@ const PaySlip = () => {
   const [uniform, setUniform] = useState();
   const [medical, setMedical] = useState();
   const [cityFactor, setCityFactor] = useState();
-  // const [uniform, setBasic] = useState();
+
+  const [employeeContribution_pf, setEmployeeContribution_pf] = useState(0);
+  const [employeerContribution_pf, setEmployeerContribution_pf] = useState(0);
+  const [employeeContribution_esic, setEmployeeContribution_esic] = useState(0);
+  const [totalDeduction, setTotalDeduction] = useState(0);
+  const [netSalary, setNetSalary] = useState(0);
+
+  const GS =
+    basic +
+    houseRent +
+    conveyance +
+    communication +
+    uniform +
+    medical +
+    cityFactor;
+
+  const pf = basic * 0.12;
+  const esic = GS * 0.04;
+
+  const totaldeduction = pf + pf + esic;
+  const net = GS - totaldeduction;
 
   const calculateTotal = () => {
-    setTotal(
-      basic +
-        houseRent +
-        conveyance +
-        communication +
-        uniform +
-        medical +
-        cityFactor
-    );
+    setTotal(GS);
+    calculatePf();
   };
 
-  const dispatch = useDispatch();
+  const calculatePf = () => {
+    setEmployeeContribution_pf(pf);
+    setEmployeerContribution_pf(pf);
+    setEmployeeContribution_esic(esic);
+    setTotalDeduction(totaldeduction);
+    setNetSalary(net);
+  };
+
+  // const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
 
   const today = new Date();
@@ -53,9 +74,9 @@ const PaySlip = () => {
     year: "numeric",
   });
 
-  const makeDate = new Date();
-  const prev = new Date(makeDate.setMonth(makeDate.getMonth() - 1));
-  console.log(prev);
+  // const makeDate = new Date();
+  // const prev = new Date(makeDate.setMonth(makeDate.getMonth() - 1));
+  // console.log(prev);
 
   // to print Previous Month
   const formatter = new Intl.DateTimeFormat("default", {
@@ -78,8 +99,14 @@ const PaySlip = () => {
     return new Date(now.getFullYear(), prevMonth1, 0).getDate();
   };
 
+<<<<<<< HEAD
   const { id } = useParams();
   console.log("Id in Payslip Page", id);
+=======
+  useEffect(() => {
+    calculateTotal();
+  }, []);
+>>>>>>> 5e877d696af845e64f38556efb48fd3457cde5d2
 
   const [postData, setPostData] = useState({
     employeeId: user.result.employeeId,
@@ -89,22 +116,18 @@ const PaySlip = () => {
     payDays: daysInThisPrevMonth(),
     payPeriod: prevMonth,
     payDate: date,
-    // basic: "",
-    // houseRent: "",
-    // conveyance: "",
-    // communication: "",
-    // uniform: "",
-    // medical: "",
-    // cityFactor: "",
-    grossEarnings: "",
+
     netSalary: "",
-    employeeContribution_pf: "",
-    employeerContribution_pf: "",
-    employeeContribution_esic: "",
+    // employeeContribution_pf: employeeContribution_pf || "",
+    // employeerContribution_pf: employeeContribution_pf || "",
+    // employeeContribution_esic: employeeContribution_esic || "",
     employeerContribution_esic: "",
     tds: "",
     totalDeduction: "",
   });
+
+  console.log("total", total);
+  console.log("grossEarnings", postData.grossEarnings);
 
   // const post = useSelector((state) =>
   //   currentId ? state.posts.find((p) => p._id === currentId) : null
@@ -191,7 +214,7 @@ const PaySlip = () => {
               >
                 Salary Slip
               </Typography>
-              <p>Total: {total || ""}</p>
+
               <Divider
                 sx={{
                   borderWidth: "2px",
@@ -524,7 +547,7 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.grossEarnings}
+                      value={total || ""}
                       onChange={(e) =>
                         setPostData({
                           ...postData,
@@ -548,7 +571,7 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.netSalary}
+                      value={netSalary || ""}
                       onChange={(e) =>
                         setPostData({
                           ...postData,
@@ -595,7 +618,7 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.employeeContribution_pf}
+                      value={employeeContribution_pf || ""}
                       onChange={(e) =>
                         setPostData({
                           ...postData,
@@ -619,7 +642,7 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.employeerContribution_pf}
+                      value={employeerContribution_pf || ""}
                       onChange={(e) =>
                         setPostData({
                           ...postData,
@@ -674,7 +697,7 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.employeeContribution_esic}
+                      value={employeeContribution_esic || ""}
                       onChange={(e) =>
                         setPostData({
                           ...postData,
@@ -762,7 +785,7 @@ const PaySlip = () => {
                       // id="standard-basic"
                       label="amount"
                       variant="outlined"
-                      value={postData.totalDeduction}
+                      value={totalDeduction || ""}
                       onChange={(e) =>
                         setPostData({
                           ...postData,
