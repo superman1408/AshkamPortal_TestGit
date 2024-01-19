@@ -19,10 +19,26 @@ const TimeSheet = ({post,currentId}) => {
   // },[post, dispatch, timeSheets, currentId])
 
   // console.log(post);
+
+  const array = [];
+  for (let i = 0; i < post.jobCode.length; i++) {
+    array.push({
+      job: post.jobCode[i],
+      hours: post.hoursWorked[i],
+      startTime: post.startTime[i],
+      endTime: post.endTime[i]
+    })
+    
+  };
+
+  console.log(array);
+
+
+
   return (
     <div>
         {
-          post.jobCode.map((item, i) => (
+          array.map((item, i) => (
             <Card
               elevation={10}
               sx={{
@@ -32,19 +48,19 @@ const TimeSheet = ({post,currentId}) => {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-                bgcolor: "#aee3e8",
+                bgcolor: "#FFFFFF",
               }}
             >
               <div key={i} className="translate-x-[42%]">
                 <Typography
                   variant="h6"
                   sx={{
-                    textAlign: "center",
+                    textAlign: "left",
                     padding: "5px",
                     fontWeight: "bold",
                   }}
                 >
-                  {item}
+                  JobCode: {item.job} ---- Start Time: {item.startTime} ---- Hours Of Work: {item.hours} ---- End Time: {item.endTime}
                 </Typography>
               </div>
             </Card>
