@@ -10,14 +10,23 @@ import {
   Button,
 } from "@mui/material";
 
+import { useNavigate, useNavigate } from "react-router-dom";
+
+import { useDispatch } from "react-redux";
+
+import { skillData } from "../../api";
+
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-const Skill = () => {
-  const initialData = {
+const Skill = ({ currentId }) => {
+  const [initialData, setInitialData] = useState({
     skill1: "",
     skill2: "",
     skill3: "",
-  };
+  });
+
+  const dispatch = useDispatch();
+  const useNavigate = useNavigate();
 
   const [isEditing, setIsEditing] = useState(false);
   const [editedData, setEditedData] = useState(initialData);
@@ -38,6 +47,14 @@ const Skill = () => {
     console.log("Saving:", editedData);
     // After saving, toggle back to view mode
     setIsEditing(false);
+
+    console.log(initialData);
+    console.log(currentId);
+    if (currentId) {
+      dispatch(skillData(initialData, currentId));
+    } else {
+      console.log("Error is inevitable");
+    }
   };
 
   return (

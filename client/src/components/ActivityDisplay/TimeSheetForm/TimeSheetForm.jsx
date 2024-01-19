@@ -1,42 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
-import { todoList} from '../../../api';
+import { todoList } from "../../../api";
 
-const TimeSheetForm = ({currentId}) => {
+const TimeSheetForm = ({ currentId }) => {
   const [formData, setFormData] = useState({
     startTime: "",
     endTime: "",
-    jobCode:"",
-    hoursWorked:"",
+    jobCode: "",
+    hoursWorked: "",
   });
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-
 
   const handleSubmit = async () => {
     // e.preventDefault();
     console.log(formData);
     console.log(currentId);
     if (currentId) {
-      await dispatch(todoList(formData, currentId).then(alert("Send to Data base")))
-      navigate("/home")
+      await dispatch(
+        todoList(formData, currentId).then(alert("Send to Data base"))
+      );
+      navigate("/home");
     } else {
-      console.log("Error is inevitable")
+      console.log("Error is inevitable");
     }
   };
-
-
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-
 
   return (
     <div>
@@ -48,24 +44,44 @@ const TimeSheetForm = ({currentId}) => {
         </label> */}
         <label>
           Job Code:
-          <input type="text" name="jobCode" value={formData.jobCode} onChange={handleInputChange} />
+          <input
+            type="text"
+            name="jobCode"
+            value={formData.jobCode}
+            onChange={handleInputChange}
+          />
         </label>
         <label>
           Start Date:
-          <input type="date" name="startTime" value={formData.startTime} onChange={handleInputChange} />
+          <input
+            type="date"
+            name="startTime"
+            value={formData.startTime}
+            onChange={handleInputChange}
+          />
         </label>
         <label>
           Hours Worked:
-          <input type="number" name="hoursWorked" value={formData.hoursWorked} onChange={handleInputChange} />
+          <input
+            type="number"
+            name="hoursWorked"
+            value={formData.hoursWorked}
+            onChange={handleInputChange}
+          />
         </label>
         <label>
           End Date:
-          <input type="date" name="endTime" value={formData.endTime} onChange={handleInputChange} />
+          <input
+            type="date"
+            name="endTime"
+            value={formData.endTime}
+            onChange={handleInputChange}
+          />
         </label>
         <button type="submit">Add Time Sheet</button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default TimeSheetForm
+export default TimeSheetForm;

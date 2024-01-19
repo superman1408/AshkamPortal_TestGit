@@ -32,7 +32,10 @@ export const signUp = (formData) => API.post("/user/signup", formData);
 
 export const sendMail = (formData) => API.post("/mail/sendmail", formData);
 
-export const todoList = (formData, id) => API.post(`/posts/${id}/todo`, {formData});
+export const todoList = (formData, id) =>
+  API.post(`/posts/${id}/todo`, { formData });
+
+export const skillData = (formData) => API.post(`/posts/skill`, formData);
 
 export const sendMailData = (id, formData) =>
   API.post(`/mail/${id}/mailData`, formData);

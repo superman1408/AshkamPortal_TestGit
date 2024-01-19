@@ -12,10 +12,11 @@ import { Box, Grid, Typography } from "@mui/material";
 import Panel from "../Panel/Panel";
 import Attendance from "../Attendance/Attendance";
 import { useParams } from "react-router-dom";
+import SkillDisplay from "../Skills/SkillDisplay";
 // import { useLocation } from "react-router-dom";
 // import { useDispatch } from "react-redux";
 
-const Admin = () => {
+const Admin = ({ currentId }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
 
   const id = useParams();
@@ -76,7 +77,7 @@ const Admin = () => {
                   </Grid>
 
                   <Grid sx={{ margin: "20px 0px 0px 20px" }}>
-                    <Skill />
+                    <SkillDisplay currentId={currentId} />
                   </Grid>
                 </Grid>
 

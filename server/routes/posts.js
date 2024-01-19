@@ -6,6 +6,7 @@ import {
   deletePost,
   getPost,
   todoList,
+  skillData,
 } from "../controllers/posts.js";
 
 import auth from "../middleware/auth.js";
@@ -23,5 +24,7 @@ router.patch("/:id", auth, updatePost);
 router.delete("/:id", auth, deletePost);
 
 router.post("/:id/todo", auth, todoList);
+
+router.post("/skill", skillData);
 
 export default router;

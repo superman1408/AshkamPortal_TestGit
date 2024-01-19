@@ -5,7 +5,8 @@ import {
   DELETE,
   FETCH_POST,
   UPDATE_STATUS,
-  TODOLIST
+  TODOLIST,
+  SKILLDATA,
 } from "../constants/actionTypes";
 
 import * as API from "../api";
@@ -76,8 +77,7 @@ export const updateStatus = (id, activeStatus) => async (dispatch) => {
   }
 };
 
-
-export const todoList = (id, post) => async(dispatch) => {
+export const todoList = (id, post) => async (dispatch) => {
   // console.log("Hello I am working..!!");
   // console.log(id);
   // console.log(state);
@@ -85,7 +85,7 @@ export const todoList = (id, post) => async(dispatch) => {
   try {
     const { data } = await API.todoList(id, post);
     //console.log(data);
-    dispatch({type : TODOLIST , payload : data });
+    dispatch({ type: TODOLIST, payload: data });
 
     return data.todoList;
     // console.log("Hello");
@@ -94,14 +94,29 @@ export const todoList = (id, post) => async(dispatch) => {
   }
 };
 
+export const skillData = (post) => async (dispatch) => {
+  // console.log("Hello I am working..!!");
+  // console.log(id);
+  // console.log(state);
 
+  try {
+    const { data } = await API.skillData(post);
+    console.log(data);
+    dispatch({ type: SKILLDATA, payload: data });
+
+    return data.skillData;
+    // console.log("Hello");
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // export const updatePost = (id, post) => async (dispatch) => {
-  // try {
-    // const { data } = await API.updatePost(id, post);
+// try {
+// const { data } = await API.updatePost(id, post);
 
-    // dispatch({ type: UPDATE, payload: data });
-  // } catch (error) {
-    // console.log(error);
-  // }
+// dispatch({ type: UPDATE, payload: data });
+// } catch (error) {
+// console.log(error);
+// }
 // };
