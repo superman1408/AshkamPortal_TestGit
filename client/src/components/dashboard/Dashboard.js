@@ -75,7 +75,7 @@ const Admin = () => {
                     <TotalEmployee />
                   </Grid>
 
-                  <Grid>
+                  <Grid sx={{ margin: "20px 0px 0px 20px" }}>
                     <Skill />
                   </Grid>
                 </Grid>

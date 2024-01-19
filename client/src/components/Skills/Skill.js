@@ -16,15 +16,13 @@ let name = "Java";
 const topSkills = ["Java", "Python", "JavaScript"];
 
 const Skill = () => {
-  return (                                                                        
+  return (
     <div>
       <Box
         sx={{
           // width: "300px",
           // height: "150px",
           display: "flex",
-          marginTop: "20px",
-          marginLeft: "20px",
           padding: "10px",
           bgcolor: "background.paper",
           boxShadow: 1,
