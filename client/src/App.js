@@ -17,8 +17,7 @@ import PaySlip from "./components/Payslip/PaySlip";
 import EmployeeAttendance from "./components/Attendance/EmployeeAttendance";
 // import Rough from "./components/Rough/rough";
 // import RoughPayslip from "./components/Payslip/RoughPayslip";
-import ActivityDisplay from './components/ActivityDisplay/ActivityDisplay';
-import Posts from "./components/Posts/posts";
+import ActivityDisplay from "./components/ActivityDisplay/ActivityDisplay";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -61,10 +60,14 @@ const App = () => {
 
           {/* <Route path="/mail/:id/payslip" exact element={<Payslip />} /> */}
 
-          <Route path="/aboutUs" exact element={<Posts />} />
-          <Route path="/home" exact element={ <Dashboard /> } />
+          <Route path="/aboutUs" exact element={<AboutUS />} />
+          <Route path="/home" exact element={<Dashboard />} />
           {/* <Route path="posts/:id/fullweeklyactivity" exact element={<FullWeekly />} /> */}
-          <Route path="posts/:id/fullweeklyactivity" exact element={<ActivityDisplay />} />
+          <Route
+            path="posts/:id/fullweeklyactivity"
+            exact
+            element={<ActivityDisplay />}
+          />
           <Route
             path="/employeeAttendance"
             exact
@@ -76,7 +79,7 @@ const App = () => {
           {/* <Route path="/roughpayslip" exact element={<RoughPayslip />} /> */}
         </Routes>
       </Container>
-        <div>
+      <div>
         <footer
           style={{
             backgroundColor: "#17325C",
@@ -88,9 +91,9 @@ const App = () => {
         >
           ASHKAM ENERGY PRIVATE LIMITED ©️ me 2023
         </footer>
-        </div>
+      </div>
     </BrowserRouter>
-  )
+  );
 };
 
 export default App;
