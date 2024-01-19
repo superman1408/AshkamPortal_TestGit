@@ -33,23 +33,27 @@ const ActivityDisplay = () => {
 
   return (
     // <div>ActivityDisplay</div>
-    <div>
-        <TimeSheetForm currentId={currentId}/>
+    <>
+      <div>
+          <TimeSheetForm currentId={currentId}/>
+      </div>
+      <div>
 
-        {
-          posts.map((post) => (
-            post._id === currentId && (
-              <div key={post._id}>
-                <TimeSheet post={post} currentId={currentId} />
-              </div>
-              
-            )
-            // <TimeSheet post={post} currentId={currentId}/>
-          ))
-        }
-        
-        
-    </div>
+          {
+            posts.map((post) => (
+              post._id === currentId && (
+                <div key={post._id}>
+                  <TimeSheet post={post} currentId={currentId} />
+                </div>
+                
+              )
+              // <TimeSheet post={post} currentId={currentId}/>
+            ))
+          }
+          
+          
+      </div>
+    </>
   )
 }
 
