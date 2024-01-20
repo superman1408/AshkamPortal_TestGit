@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Grid, Typography, Avatar, Card } from "@mui/material";
+import { Box, Grid, Typography, Avatar, Card, List } from "@mui/material";
 
 import { useNavigate } from "react-router-dom";
 
@@ -67,7 +67,14 @@ const Birthday = () => {
             if (currentDay === day && currentMonth === month) {
               return (
                 <React.Fragment key={post.dob}>
-                  <Card
+                  <Typography
+                    variant="h6"
+                    sx={{ fontWeight: "bold", textAlign: "center" }}
+                  >
+                    Today's Event
+                  </Typography>
+                  <div style={{ display: "flex", marginTop: "5px" }}>
+                    {/* <Card
                     elevation={15}
                     sx={{
                       display: "flex",
@@ -75,15 +82,17 @@ const Birthday = () => {
                       alignItems: "center",
                       width: "70%",
                     }}
-                  >
+                  > */}
+                    <Typography>{`\u2022`}</Typography>
                     <Avatar
+                      post={post}
                       sx={{
                         width: 30,
                         height: 30,
                         marginLeft: "20px",
                       }}
                       alt="user"
-                      src={avatar1}
+                      src={post.selectedFile}
                     />
                     <Typography
                       post={post}
@@ -96,11 +105,19 @@ const Birthday = () => {
                     >
                       {post.firstName + " " + post.lastName}
                     </Typography>
-                  </Card>
+                  </div>
+                  {/* </Card> */}
                 </React.Fragment>
               );
             }
           })}
+
+          {/* <Typography
+            variant="h6"
+            sx={{ fontWeight: "bold", textAlign: "center" }}
+          >
+            No Event Today
+          </Typography> */}
 
           <div
             style={{

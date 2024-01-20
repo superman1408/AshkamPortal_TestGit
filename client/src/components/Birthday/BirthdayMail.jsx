@@ -37,17 +37,26 @@ export default function AlertDialogSlide() {
   const dispatch = useDispatch();
 
   const posts = useSelector((state) => state.posts);
-  // console.log(posts);
+  console.log(posts);
 
   useEffect(() => {
     dispatch(getPosts());
   }, [dispatch, currentId]);
 
+  const hasEvents = posts.length > 0;
+
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Wish
-      </Button>
+      {hasEvents && (
+        <Button
+          variant="contained"
+          sx={{ marginLeft: "150px" }}
+          onClick={handleClickOpen}
+        >
+          Wish
+        </Button>
+      )}
+
       <Dialog
         open={open}
         TransitionComponent={Transition}

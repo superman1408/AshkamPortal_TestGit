@@ -20,9 +20,9 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const Skill = () => {
   const [formData, setFormData] = useState({
-    skill1: "",
-    skill2: "",
-    skill3: "",
+    skill1: "Java",
+    skill2: "Python",
+    skill3: "JavaScript",
   });
 
   const dispatch = useDispatch();

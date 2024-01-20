@@ -30,18 +30,18 @@ const Attendance = () => {
             }}
           >
             <Grid sx={{ marginLeft: "40px" }}>
-              <Typography>attendance</Typography>
-              <Typography sx={{ marginLeft: "30px" }}>30</Typography>
+              <Typography>Total</Typography>
+              <Typography>30</Typography>
             </Grid>
 
             <Grid sx={{ marginLeft: "40px" }}>
               <Typography>Present</Typography>
-              <Typography sx={{ marginLeft: "20px" }}>28</Typography>
+              <Typography>28</Typography>
             </Grid>
 
             <Grid sx={{ marginLeft: "40px" }}>
-              <Typography>absent</Typography>
-              <Typography sx={{ marginLeft: "20px" }}>2</Typography>
+              <Typography>Absent</Typography>
+              <Typography>2</Typography>
             </Grid>
           </Grid>
         </ButtonBase>

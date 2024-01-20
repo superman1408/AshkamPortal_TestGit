@@ -19,11 +19,13 @@ const TimeSheet = ({ post, currentId }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const loadingTimeout = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-    return () => clearTimeout(loadingTimeout);
-  }, []);
+    if (isLoading === true) {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+    }
+    // return () => clearTimeout(loadingTimeout);
+  }, [isLoading]);
 
   const array = [];
   for (let i = 0; i < post.jobCode.length; i++) {
@@ -47,7 +49,7 @@ const TimeSheet = ({ post, currentId }) => {
   return (
     <>
       {isLoading ? (
-        <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "flex", paddingLeft: "600px" }}>
           <CircularProgress />
         </Box>
       ) : (
