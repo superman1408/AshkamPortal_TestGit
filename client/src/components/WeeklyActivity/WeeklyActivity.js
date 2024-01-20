@@ -65,15 +65,15 @@ const WeeklyActivity = () => {
                 data={{
                   datasets: [
                     {
-                      data: [8137119, 9431691, 10266674],
-                      label: "Revenue",
+                      data: [45, 95, 75],
+                      label: "Complete",
                       borderColor: "#1565C0",
                       fill: true,
                       lineTension: 0.5,
                     },
                     {
-                      data: [1216410, 1371390, 1477380],
-                      label: "Expenditure",
+                      data: [15, 65, 55],
+                      label: "Pending",
                       borderColor: "#ba68c8",
                       backgroundColor: "rgba(255, 0, 0, 0.5)",
                       fill: true,
