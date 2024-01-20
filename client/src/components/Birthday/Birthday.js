@@ -49,7 +49,7 @@ const Birthday = () => {
         sx={{
           marginTop: "10px",
           marginLeft: "20px",
-          padding: "2px",
+          padding: "10px",
           bgcolor: "background.paper",
           boxShadow: 1,
           borderRadius: "10px",
