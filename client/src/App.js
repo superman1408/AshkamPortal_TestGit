@@ -18,6 +18,7 @@ import EmployeeAttendance from "./components/Attendance/EmployeeAttendance";
 // import Rough from "./components/Rough/rough";
 // import RoughPayslip from "./components/Payslip/RoughPayslip";
 import ActivityDisplay from "./components/ActivityDisplay/ActivityDisplay";
+import SkillDisplay from "./components/Skills/SkillDisplay";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -73,8 +74,11 @@ const App = () => {
             exact
             element={<EmployeeAttendance />}
           />
+
+          <Route path="posts/skill" exact element={<SkillDisplay />} />
           <Route path="/birthdaymail" exact element={<BirthdayMail />} />
           <Route path="/:id/payslip" exact element={<PaySlip />} />
+
           {/* <Route path="/rough" exact element={<Rough />} /> */}
           {/* <Route path="/roughpayslip" exact element={<RoughPayslip />} /> */}
         </Routes>

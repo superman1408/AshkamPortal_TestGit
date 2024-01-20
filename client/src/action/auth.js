@@ -13,7 +13,7 @@ export const signin = (formData, navigate) => async (dispatch) => {
 
     dispatch({ type: AUTH, data });
     navigate("/home", { replace: true });
-    // console.log(data);
+    console.log("data", formData);
   } catch (error) {
     console.log(error);
 
@@ -24,9 +24,6 @@ export const signin = (formData, navigate) => async (dispatch) => {
   }
 };
 
-
-
-
 export const signup = (formData, navigate) => async (dispatch) => {
   try {
     // signUp block
@@ -35,8 +32,8 @@ export const signup = (formData, navigate) => async (dispatch) => {
     navigate("/home", { replace: true });
   } catch (error) {
     console.log(error);
-    toast.error("Password and Confirm Password does not match ",{
+    toast.error("Password and Confirm Password does not match ", {
       position: toast.POSITION.TOP_CENTER,
-    })
+    });
   }
 };

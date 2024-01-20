@@ -32,7 +32,7 @@ import ForwardToInboxTwoToneIcon from "@mui/icons-material/ForwardToInboxTwoTone
 
 // import avatar1 from "../../assets/Profile.jpg";
 
-const Panel = ({prop}) => {
+const Panel = ({ prop }) => {
   const [state, setState] = React.useState();
   // const [Btn, setBtn] = useState(false);
 
@@ -44,7 +44,7 @@ const Panel = ({prop}) => {
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
 
-  // console.log(prop);
+  console.log("id in home page", prop);
 
   useEffect(() => {
     const token = user?.token;
@@ -105,23 +105,32 @@ const Panel = ({prop}) => {
                 marginLeft: "10px",
                 bgcolor: "orange",
               }}
-            >
-              {/* {post.firstName} */}
+              src={prop.selectedFile}
+            />
+            {/* {post.firstName} */}
 
-              {user.result.firstName.charAt(0).toUpperCase() +
-                user.result.lastName.charAt(0).toUpperCase()}
-            </Avatar>
+            {/* {user.result.firstName.charAt(0).toUpperCase() +
+                user.result.lastName.charAt(0).toUpperCase()} */}
           </Stack>
         </Grid>
         <Grid>
           <Typography
+            sx={{
+              justifyContent: "center",
+              textAlign: "center",
+              marginTop: "10px",
+            }}
+          >
+            {prop.firstName + " " + prop.lastName}
+          </Typography>
+          {/* <Typography
             sx={{ marginLeft: "80px", color: "black", marginTop: "10px" }}
           >
             Employee
           </Typography>
           <Typography sx={{ marginLeft: "70px", color: "black" }}>
             Management
-          </Typography>
+          </Typography> */}
         </Grid>
 
         <Divider sx={{ mb: 6, ml: 0, mr: 0 }} />
@@ -185,3 +194,55 @@ const Panel = ({prop}) => {
 };
 
 export default Panel;
+
+// import { ButtonBase, Typography, Button, Avatar, Grid } from "@mui/material";
+// import React from "react";
+
+// // import Message from "../Message/message";
+
+// const Inbox = ({ post, setCurrentId }) => {
+//   const openMessage = (e) => {
+//     console.log("button is workin");
+//     e.stopPropagation();
+//     setCurrentId(post._id);
+//   };
+
+//   return (
+//     <div>
+//       <Button required fullWidth>
+//         <ButtonBase
+//           sx={{
+//             bgcolor: "#aee3e8",
+//             width: "50vh",
+//             padding: "5px",
+//             height: "80px",
+//           }}
+//           onClick={openMessage}
+//         >
+//           <Grid
+//             sx={{ display: "flex", width: "calc(100%)", marginLeft: "20px" }}
+//           >
+//             <Avatar
+//               alt="avatar"
+//               src={post?.selectedFile}
+//               withborder="true"
+//               color="green"
+//             />
+
+//             <Typography variant="h6" color="black" sx={{ marginLeft: "20px" }}>
+//               {post?.firstName + " " + post?.lastName}
+//             </Typography>
+//           </Grid>
+
+//           {/* <div width="calc(50%)">
+//             <Typography variant="h5" color="black">
+//               {post?.name}
+//             </Typography>
+//           </div> */}
+//         </ButtonBase>
+//       </Button>
+//     </div>
+//   );
+// };
+
+// export default Inbox;

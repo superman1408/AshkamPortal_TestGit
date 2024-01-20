@@ -5,15 +5,15 @@ import {
   updatePost,
   deletePost,
   getPost,
-  todoList
+  todoList,
+  skillData,
 } from "../controllers/posts.js";
 
 import auth from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.get("/", getPosts
-);
+router.get("/", getPosts);
 
 router.get("/:id", getPost);
 
@@ -24,5 +24,7 @@ router.patch("/:id", auth, updatePost);
 router.delete("/:id", auth, deletePost);
 
 router.post("/:id/todo", auth, todoList);
+
+router.post("/skill", skillData);
 
 export default router;

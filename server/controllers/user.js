@@ -6,7 +6,6 @@ import AuthenticateUser from "../model/authDetails.js";
 export const signin = async (req, res) => {
   const { email, password } = req.body;
 
-
   try {
     const existingUser = await AuthenticateUser.findOne({ email: email });
 
@@ -36,9 +35,6 @@ export const signin = async (req, res) => {
     res.status(500).json({ message: "Something went wrong" });
   }
 };
-
-
-
 
 export const signup = async (req, res) => {
   const { email, password, confirmPassword, role, firstName, lastName } =

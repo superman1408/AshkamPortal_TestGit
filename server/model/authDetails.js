@@ -50,7 +50,7 @@ const authSchema = mongoose.Schema({
   jobTitle: {
     type: String,
   },
-  jobSkill: {
+  jobSkills: {
     type: String,
   },
   reportingManager: {
@@ -103,21 +103,31 @@ const authSchema = mongoose.Schema({
   jobCode: {
     type: [String],
     require: true,
-    default: []
+    default: [],
   },
   startTime: {
     type: [String],
     require: true,
-    default: Date.now
+    default: Date.now,
   },
   endTime: {
     type: [String],
-    default: Date.now
+    default: Date.now,
   },
   hoursWorked: { type: [String], default: [] },
   jobCode: { type: [String], default: [] },
   startTime: { type: [String], default: [] },
   endTime: { type: [String], default: [] },
+
+  skill1: {
+    type: String,
+  },
+  skill2: {
+    type: String,
+  },
+  skill3: {
+    type: String,
+  },
 });
 
 const AuthDetails = mongoose.model("AuthDetails", authSchema);

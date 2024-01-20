@@ -8,6 +8,7 @@ import MessageBody from "./Message/MessageBody";
 import { getPosts } from "../../../action/posts";
 
 import { Root, Overlay, Content } from "@radix-ui/react-dialog";
+import { useParams } from "react-router-dom";
 
 const Communication = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -16,6 +17,9 @@ const Communication = () => {
   const posts = useSelector((state) => state.posts);
 
   console.log(posts);
+
+  const id = useParams();
+  console.log("id in communication page", id);
 
   useEffect(() => {
     dispatch(getPosts());

@@ -57,8 +57,6 @@ export const updatePost = async (req, res) => {
   res.json(updatedPost);
 };
 
-
-
 // ________________________delete operation___________________________
 
 export const deletePost = async (req, res) => {
@@ -109,16 +107,12 @@ export const updatedStatus = async (req, res) => {
   res.status(200).json(statusUpdate);
 };
 
-
-
-
 // _________________________To Do List Status_____________________________
 export const todoList = async (req, res) => {
   const { id } = req.params;
-  const  value   = req.body;
+  const value = req.body;
 
-  const user = await AuthenticateUser.findById(id)
-
+  const user = await AuthenticateUser.findById(id);
 
   try {
     user.jobCode.push(value.formData.jobCode);
@@ -126,10 +120,37 @@ export const todoList = async (req, res) => {
     user.endTime.push(value.formData.endTime);
     user.hoursWorked.push(value.formData.hoursWorked);
 
-
-    const updatedPost = await AuthenticateUser.findByIdAndUpdate(id, user, { new : true });
+    const updatedPost = await AuthenticateUser.findByIdAndUpdate(id, user, {
+      new: true,
+    });
 
     res.json(updatedPost);
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+};
+
+// _________________________Skill Data Status_____________________________
+export const skillData = async (req, res) => {
+  const { id } = req.params;
+  const value = req.body;
+  console.log(value);
+
+  const user = await AuthenticateUser.findById(id);
+  console.log("user");
+
+  try {
+    user.skill1.push(value.formData.skill1);
+    user.skill2.push(value.formData.skill2);
+    user.skill3.push(value.formData.skill3);
+
+    const updatedPost = await AuthenticateUser.findByIdAndUpdate(id, user, {
+      new: true,
+    });
+
+    res.json(updatedPost);
+
+    console.log("value", value);
   } catch (error) {
     res.status(409).json({ message: error.message });
   }

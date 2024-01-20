@@ -33,7 +33,7 @@ const Inbox = ({ post, setCurrentId }) => {
             />
 
             <Typography variant="h6" color="black" sx={{ marginLeft: "20px" }}>
-              {post?.email}
+              {post?.firstName + " " + post?.lastName}
             </Typography>
           </Grid>
 

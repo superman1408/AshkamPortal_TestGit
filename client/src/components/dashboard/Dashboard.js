@@ -11,11 +11,16 @@ import Birthday from "../Birthday/Birthday";
 import { Box, Grid, Typography } from "@mui/material";
 import Panel from "../Panel/Panel";
 import Attendance from "../Attendance/Attendance";
+import { useParams } from "react-router-dom";
+import SkillDisplay from "../Skills/SkillDisplay";
 // import { useLocation } from "react-router-dom";
 // import { useDispatch } from "react-redux";
 
-const Admin = () => {
+const Admin = ({ currentId }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
+
+  const id = useParams();
+  console.log("id in home page", id);
 
   return (
     <div style={{ minheight: "100%" }}>
@@ -31,7 +36,7 @@ const Admin = () => {
       >
         <Grid sx={{ display: "flex", flexDirection: "row" }}>
           {/*------------------Panel----------------------------- */}
-          <Panel prop={user.result._id} />
+          <Panel prop={user.result} />
 
           {/* ---------------Dashboard section-------------------------*/}
           <Grid
@@ -71,8 +76,8 @@ const Admin = () => {
                     <TotalEmployee />
                   </Grid>
 
-                  <Grid>
-                    <Skill />
+                  <Grid sx={{ margin: "20px 0px 0px 20px" }}>
+                    <SkillDisplay currentId={currentId} />
                   </Grid>
                 </Grid>
 

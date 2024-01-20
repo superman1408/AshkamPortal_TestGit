@@ -22,28 +22,58 @@ import { useDispatch } from "react-redux";
 import { updatePost } from "../../action/posts";
 
 import { useReactToPrint } from "react-to-print";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { LOGOUT } from "../../constants/actionTypes";
 
 const RegistrationForm = () => {
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
   const componentRef = useRef();
   const [dob, setdob] = useState("");
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const navigate = useNavigate();
 
-  const user = JSON.parse(localStorage.getItem("profile"));
+  const id = useParams();
+  console.log("id in registration page", id);
 
   useEffect(() => {
     if (!currentId) return setCurrentId(user.result._id);
-  }, [currentId, user]);
+
+    setPostData(() => ({
+      ...postData,
+
+      firstName: user.result.firstName,
+      lastName: user.result.lastName,
+      dob: user.result.dob,
+      gender: user.result.gender,
+      email: user.result.email,
+      maritalStatus: user.result.maritalStatus,
+      contactNumber: user.result.contactNumber,
+      streetAddress: user.result.streetAddress,
+      city: user.result.city,
+      state: user.result.state,
+      pincode: user.result.pincode,
+      jobSkills: user.result.jobSkills,
+      jobTitle: user.result.jobTitle,
+      employeeId: user.result.employeeId,
+      department: user.result.department,
+      reportingManager: user.result.reportingManager,
+      emergencyName: user.result.emergencyName,
+      emergencyAddress: user.result.emergencyAddress,
+      emergencyContact: user.result.emergencyContact,
+      relationship: user.result.relationship,
+      selectedFile: user.result.selectedFile,
+    }));
+  }, [currentId]);
 
   const [postData, setPostData] = useState({
-    firstName: user.result.firstName,
-    lastName: user.result.lastName,
+    firstName: "",
+    lastName: "",
     dob: "",
     gender: "",
-    email: user.result.email,
+    email: "",
     maritalStatus: "",
     contactNumber: "",
     streetAddress: "",
@@ -66,14 +96,27 @@ const RegistrationForm = () => {
     e.preventDefault();
     if (currentId) {
       dispatch(updatePost(currentId, postData));
-      console.log(currentId);
+      setUser(null);
+      // dispatch({ type: LOGOUT });
+      // console.log(currentId);
+
       navigate("/home");
     } else {
       // dispatch(createPost(postData));
       console.log("Not set current ID");
     }
-    // console.log(postData);
+
+    setFormSubmitted(true);
+    console.log("Form submitted:", formSubmitted);
   };
+
+  // useEffect(() => {
+  //   console.log("Before Form submitted:", formSubmitted);
+  //   setFormSubmitted(true);
+  //   console.log("After Form submitted:", formSubmitted);
+
+  //   // Additional logic related to form submission
+  // }, [formSubmitted]);
 
   const handleReset = () => {
     setPostData({
@@ -81,7 +124,7 @@ const RegistrationForm = () => {
       lastName: "",
       dob: "",
       gender: "",
-      email: user.result.email,
+      email: "",
       maritalStatus: "",
       contactNumber: "",
       streetAddress: "",
@@ -110,11 +153,12 @@ const RegistrationForm = () => {
 
   // ________________test code _________________________________
 
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-    documentTitle: "Visitor Pass",
-    onAfterPrint: () => console.log("Printed PDF successfully!"),
-  });
+  const handlePrint = () => {};
+  // useReactToPrint({
+  //   content: () => componentRef.current,
+  //   documentTitle: "Visitor Pass",
+  //   onAfterPrint: () => console.log("Printed PDF successfully!"),
+  // });
 
   return (
     <Container
@@ -164,6 +208,7 @@ const RegistrationForm = () => {
               >
                 Full Name
               </Typography>
+
               <TextField
                 type="text"
                 name="firstName"
@@ -177,6 +222,7 @@ const RegistrationForm = () => {
                   setPostData({ ...postData, firstName: e.target.value })
                 }
               />
+
               <TextField
                 type="text"
                 name="lastName"
@@ -215,22 +261,30 @@ const RegistrationForm = () => {
             </div>
 
             <div style={{ marginTop: "30px" }}>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DemoContainer components={["DatePicker"]}>
-                  <DatePicker
-                    label="Date of Birth"
-                    slotProps={{
-                      textField: {
-                        error: false,
-                      },
-                    }}
-                    value={dob}
-                    required
-                    halfWidth
-                    onChange={handleDOB}
-                  />
-                </DemoContainer>
-              </LocalizationProvider>
+              {user.result.dob ? (
+                <div>
+                  {" "}
+                  <Typography>Date of Birth</Typography>
+                  <TextField value={user.result.dob} />
+                </div>
+              ) : (
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DemoContainer components={["DatePicker"]}>
+                    <DatePicker
+                      label="Date of Birth"
+                      slotProps={{
+                        textField: {
+                          error: false,
+                        },
+                      }}
+                      value={dob}
+                      required
+                      halfWidth
+                      onChange={handleDOB}
+                    />
+                  </DemoContainer>
+                </LocalizationProvider>
+              )}
             </div>
 
             <div>
@@ -244,23 +298,30 @@ const RegistrationForm = () => {
                 >
                   Gender
                 </Typography>
-                <RadioGroup
-                  // defaultValue="female"
-                  name="controlled-radio-buttons-group"
-                  onChange={(e) =>
-                    setPostData(
-                      { ...postData, gender: e.target.value },
-                      console.log(e.target.value)
-                    )
-                  }
-                >
-                  <Radio value="female" label="Female" color="primary" />
-                  <Radio value="male" label="Male" color="primary" />
-                  <Radio value="other" label="Other" color="primary" />
-                </RadioGroup>
-                <span style={{ fontSize: "12px" }}>
-                  ** Please select the desired value
-                </span>
+
+                {user.result.gender ? (
+                  <TextField halfWidth value={user.result.gender} />
+                ) : (
+                  <>
+                    <RadioGroup
+                      // defaultValue="female"
+                      name="controlled-radio-buttons-group"
+                      onChange={(e) =>
+                        setPostData(
+                          { ...postData, gender: e.target.value },
+                          console.log(e.target.value)
+                        )
+                      }
+                    >
+                      <Radio value="female" label="Female" color="primary" />
+                      <Radio value="male" label="Male" color="primary" />
+                      <Radio value="other" label="Other" color="primary" />
+                    </RadioGroup>
+                    <span style={{ fontSize: "12px" }}>
+                      ** Please select the desired value
+                    </span>
+                  </>
+                )}
               </FormControl>
             </div>
             <div>
@@ -274,28 +335,35 @@ const RegistrationForm = () => {
                 label="Email"
                 placeholder="example@example.com"
                 value={postData.email}
-                // onChange={(e) =>
-                //   setPostData({ ...postData, email: e.target.value })
-                // }
+                onChange={(e) =>
+                  setPostData({ ...postData, email: e.target.value })
+                }
               />
             </div>
             <div>
-              <select
-                style={{
-                  width: "300px",
-                  height: "50px",
-                  fontSize: "16px",
-                  marginTop: "30px",
-                }}
-                name="maritalStatus"
-                onChange={(e) =>
-                  setPostData({ ...postData, maritalStatus: e.target.value })
-                }
-              >
-                <option value="">Marital Status</option>
-                <option value="single">Single</option>
-                <option value="married">Married</option>
-              </select>
+              {user.result.maritalStatus ? (
+                <div style={{ marginTop: "10px" }}>
+                  <Typography>Marital Status</Typography>
+                  <TextField value={user.result.maritalStatus} />
+                </div>
+              ) : (
+                <select
+                  style={{
+                    width: "300px",
+                    height: "50px",
+                    fontSize: "16px",
+                    marginTop: "30px",
+                  }}
+                  name="maritalStatus"
+                  onChange={(e) =>
+                    setPostData({ ...postData, maritalStatus: e.target.value })
+                  }
+                >
+                  <option value="">Marital Status</option>
+                  <option value="single">Single</option>
+                  <option value="married">Married</option>
+                </select>
+              )}
             </div>
 
             <div>
@@ -308,7 +376,10 @@ const RegistrationForm = () => {
                 name="contactNumber"
                 value={postData.contactNumber}
                 onChange={(e) =>
-                  setPostData({ ...postData, contactNumber: e.target.value })
+                  setPostData({
+                    ...postData,
+                    contactNumber: e.target.value,
+                  })
                 }
               />
             </div>
@@ -551,3 +622,4 @@ const RegistrationForm = () => {
 };
 
 export default RegistrationForm;
+// Make Textfield non editable after clicking submit button in the first time & dispatch it to the server

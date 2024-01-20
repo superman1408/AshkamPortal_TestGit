@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { useState } from "react";
 import { useReactToPrint } from "react-to-print";
+import { useParams } from "react-router-dom";
 
 // import useStyle from "./Style";
 
@@ -98,9 +99,8 @@ const PaySlip = () => {
     return new Date(now.getFullYear(), prevMonth1, 0).getDate();
   };
 
-  useEffect(() => {
-    calculateTotal();
-  }, []);
+  const { id } = useParams();
+  console.log("Id in Payslip Page", id);
 
   const [postData, setPostData] = useState({
     employeeId: user.result.employeeId,
