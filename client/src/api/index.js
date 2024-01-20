@@ -22,7 +22,7 @@ export const fetchPost = (id) => API.get(`/posts/${id}`);
 export const create = (newPost) => API.post("/posts", newPost);
 
 export const updatePost = (id, updatedPost) =>
-  API.patch(`/posts/${id}`, updatedPost);
+  API.patch(`/posts/${id}/registration`, updatedPost);
 
 export const deletePost = (id) => API.delete(`/posts/${id}`);
 

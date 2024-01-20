@@ -19,7 +19,7 @@ router.get("/:id", getPost);
 
 router.post("/", auth, createPost);
 
-router.patch("/:id", auth, updatePost);
+router.patch("/:id/registration", auth, updatePost);
 
 router.delete("/:id", auth, deletePost);
 
