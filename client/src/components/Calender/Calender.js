@@ -21,14 +21,16 @@ const Calender = () => {
           bgcolor: "background.paper",
           boxShadow: 1,
           borderRadius: "10px",
+          justifyContent: "space-between",
         }}
       >
         <Grid
           sx={{
             display: "flex",
             marginLeft: "20px",
-            marginRight: "20px",
+            marginRight: "0px",
             marginTop: "10px",
+            justifyContent: "space-between",
           }}
         >
           <LocalizationProvider

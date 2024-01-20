@@ -29,7 +29,19 @@ const Admin = () => {
           boxShadow: 1,
         }}
       >
-        <Grid sx={{ display: "flex", flexDirection: "row" }}>
+        <Grid
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            "@media (max-width: 600px)": {
+              flexDirection: "column",
+            },
+
+            "@media (min-width: 600px)": {
+              flexDirection: "row",
+            },
+          }}
+        >
           {/*------------------Panel----------------------------- */}
           <Panel prop={user.result._id} />
 
@@ -50,7 +62,18 @@ const Admin = () => {
             ></Grid>
 
             <Grid
-              sx={{ display: "flex", flexDirection: "row", marginTop: "20px" }}
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                marginTop: "20px",
+                "@media (max-width: 600px)": {
+                  flexDirection: "column",
+                },
+
+                "@media (min-width: 600px)": {
+                  flexDirection: "row",
+                },
+              }}
             >
               <Grid>
                 <div>
@@ -60,6 +83,13 @@ const Admin = () => {
                       display: "flex",
                       marginLeft: "80px",
                       fontWeight: "bold",
+                      "@media (max-width: 600px)": {
+                        flexDirection: "column",
+                      },
+
+                      "@media (min-width: 600px)": {
+                        flexDirection: "row",
+                      },
                     }}
                   >
                     Welcome
