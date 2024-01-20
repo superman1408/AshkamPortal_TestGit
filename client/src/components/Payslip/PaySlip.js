@@ -99,14 +99,8 @@ const PaySlip = () => {
     return new Date(now.getFullYear(), prevMonth1, 0).getDate();
   };
 
-<<<<<<< HEAD
   const { id } = useParams();
   console.log("Id in Payslip Page", id);
-=======
-  useEffect(() => {
-    calculateTotal();
-  }, []);
->>>>>>> 5e877d696af845e64f38556efb48fd3457cde5d2
 
   const [postData, setPostData] = useState({
     employeeId: user.result.employeeId,

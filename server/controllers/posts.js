@@ -130,7 +130,7 @@ export const todoList = async (req, res) => {
   }
 };
 
-// _________________________To Do List Status_____________________________
+// _________________________Skill Data Status_____________________________
 export const skillData = async (req, res) => {
   const { id } = req.params;
   const value = req.body;
@@ -155,27 +155,3 @@ export const skillData = async (req, res) => {
     res.status(409).json({ message: error.message });
   }
 };
-
-// export const skillData = async (req, res) => {
-//   const { id } = req.params;
-//   const formData = req.body; // Assuming formData is an object with skill1, skill2, skill3 properties
-//   console.log(formData);
-
-//   try {
-//     const updatedPost = await AuthenticateUser.findByIdAndUpdate(
-//       id,
-//       {
-//         $push: {
-//           skill1: formData.skill1,
-//           skill2: formData.skill2,
-//           skill3: formData.skill3,
-//         },
-//       },
-//       { new: true }
-//     );
-
-//     res.json(updatedPost);
-//   } catch (error) {
-//     res.status(409).json({ message: error.message });
-//   }
-// };

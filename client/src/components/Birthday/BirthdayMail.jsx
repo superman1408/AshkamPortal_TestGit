@@ -23,9 +23,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function AlertDialogSlide() {
   const [open, setOpen] = React.useState(false);
 
-  // const [maxWidth, setMaxWidth] =
-  //   React.useState < DialogProps["maxWidth"] > "sm";
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -34,13 +31,6 @@ export default function AlertDialogSlide() {
     setOpen(false);
     console.log(`Message is sent by {result.user}`);
   };
-
-  // const handleMaxWidthChange = (event: SelectChangeEvent<typeof maxWidth>) => {
-  //   setMaxWidth(
-  //     // @ts-expect-error autofill of arbitrary value is not handled.
-  //     event.target.value
-  //   );
-  // };
 
   const [currentId, setCurrentId] = useState(null);
 
@@ -85,33 +75,7 @@ export default function AlertDialogSlide() {
       >
         <DialogTitle>{"Send Your Best Wishes!!!!"}</DialogTitle>
         <DialogContent>
-          {/* <DialogContentText id="alert-dialog-slide-description">
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
-          </DialogContentText> */}
           <div>
-            {/* {posts.map((post) => {
-              console.log(post.dob);
-
-              let day = new Date(post.dob).getDate();
-              let month = new Date(post.dob).getMonth() + 1;
-              console.log(day);
-              console.log(month);
-
-              if (currentDay === day && currentMonth === month) {
-                console.log(post.firstName, "'s birthday");
-                return (
-                  <Typography
-                    post={post}
-                    sx={{ marginLeft: "10px", fontWeight: "bold" }}
-                  >
-                    {post.email}
-                  </Typography>
-                );
-              } else {
-                console.log("No birthday");
-              }
-            })} */}
             <CurrentbirthdayPosts />
           </div>
           <TextField

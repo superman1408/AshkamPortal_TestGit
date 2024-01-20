@@ -18,10 +18,7 @@ import EmployeeAttendance from "./components/Attendance/EmployeeAttendance";
 // import Rough from "./components/Rough/rough";
 // import RoughPayslip from "./components/Payslip/RoughPayslip";
 import ActivityDisplay from "./components/ActivityDisplay/ActivityDisplay";
-<<<<<<< HEAD
 import SkillDisplay from "./components/Skills/SkillDisplay";
-=======
->>>>>>> 5e877d696af845e64f38556efb48fd3457cde5d2
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
