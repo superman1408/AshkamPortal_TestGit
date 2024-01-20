@@ -62,6 +62,18 @@ const Panel = ({ prop }) => {
     navigate("/auth");
   };
 
+  const dashboardMode = () => {
+    navigate("/home");
+  };
+
+  const inboxMode = (id) => {
+    navigate(`/mail/${id}/communication`);
+  };
+
+  const employeeMode = (id) => {
+    navigate(`/${id}/profile`);
+  };
+
   const toggleDrawer = (state) => (event) => {
     event.preventDefault();
     if (
@@ -105,12 +117,8 @@ const Panel = ({ prop }) => {
                 marginLeft: "10px",
                 bgcolor: "orange",
               }}
-              src={prop.selectedFile}
+              src={user.result.selectedFile}
             />
-            {/* {post.firstName} */}
-
-            {/* {user.result.firstName.charAt(0).toUpperCase() +
-                user.result.lastName.charAt(0).toUpperCase()} */}
           </Stack>
         </Grid>
         <Grid>
@@ -121,23 +129,16 @@ const Panel = ({ prop }) => {
               marginTop: "10px",
             }}
           >
-            {prop.firstName + " " + prop.lastName}
+            {user.result.firstName + " " + user.result.lastName}
           </Typography>
-          {/* <Typography
-            sx={{ marginLeft: "80px", color: "black", marginTop: "10px" }}
-          >
-            Employee
-          </Typography>
-          <Typography sx={{ marginLeft: "70px", color: "black" }}>
-            Management
-          </Typography> */}
         </Grid>
 
         <Divider sx={{ mb: 6, ml: 0, mr: 0 }} />
 
         <Grid>
           <Box sx={{ mb: "10px" }}>
-            <ListItemButton sx={{ mb: "10px" }}>
+            <ListItemButton sx={{ mb: "10px" }} onClick={dashboardMode}>
+             
               <ListItemIcon>
                 <DashboardIcon sx={{ color: "#038f7c" }} />
               </ListItemIcon>
@@ -145,14 +146,20 @@ const Panel = ({ prop }) => {
             </ListItemButton>
 
             {/* inbox added here */}
-            <ListItemButton sx={{ mb: "10px" }}>
+            <ListItemButton
+              sx={{ mb: "10px" }}
+              onClick={() => inboxMode(user.result._id, "inbox")}
+            >
               <ListItemIcon>
                 <ForwardToInboxTwoToneIcon sx={{ color: "#038f7c" }} />
               </ListItemIcon>
               <ListItemText primary="Inbox" />
             </ListItemButton>
 
-            <ListItemButton sx={{ mb: "10px" }}>
+            <ListItemButton
+              sx={{ mb: "10px" }}
+              onClick={() => employeeMode(user.result._id, "registration")}
+            >
               <ListItemIcon>
                 <PeopleAltIcon sx={{ color: "#038f7c" }} />
               </ListItemIcon>
@@ -173,12 +180,12 @@ const Panel = ({ prop }) => {
               <ListItemText primary="Report Attendance" />
             </ListItemButton>
 
-            <ListItemButton sx={{ mb: "10px" }}>
+            {/* <ListItemButton sx={{ mb: "10px" }}>
               <ListItemIcon>
                 <SettingsIcon sx={{ color: "#038f7c" }} />
               </ListItemIcon>
               <ListItemText primary="settings" />
-            </ListItemButton>
+            </ListItemButton> */}
 
             <ListItemButton sx={{ mb: "10px" }}>
               <ListItemIcon>
