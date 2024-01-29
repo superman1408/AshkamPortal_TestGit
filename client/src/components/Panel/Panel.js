@@ -95,7 +95,14 @@ const Panel = ({ prop }) => {
           flexDirection: "column",
           bgcolor: "background.paper",
           width: "100%",
-          height:"100vh"
+          height: "100vh",
+          "@media (max-width: 600px)": {
+            flexDirection: "column",
+          },
+
+          "@media (min-width: 600px)": {
+            flexDirection: "column",
+          },
         }}
       >
         <Grid>
@@ -124,8 +131,9 @@ const Panel = ({ prop }) => {
         <Grid>
           <Typography
             sx={{
-              justifyContent: "center",
-              textAlign: "center",
+              // justifyContent: "center",
+              // textAlign: "center",
+              marginLeft: "70px",
               marginTop: "10px",
             }}
           >
@@ -138,7 +146,6 @@ const Panel = ({ prop }) => {
         <Grid>
           <Box sx={{ mb: "10px" }}>
             <ListItemButton sx={{ mb: "10px" }} onClick={dashboardMode}>
-             
               <ListItemIcon>
                 <DashboardIcon sx={{ color: "#038f7c" }} />
               </ListItemIcon>
