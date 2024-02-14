@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 // import { useNavigate } from 'react-router-dom';
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { CChart } from "@coreui/react-chartjs";
 import { Box, Typography, Grid, ButtonBase } from "@mui/material";
 
 const WeeklyActivity = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+  // const location = useLocation();
 
+  // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
 
   return (

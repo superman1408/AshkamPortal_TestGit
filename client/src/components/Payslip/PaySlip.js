@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { useState } from "react";
 import { useReactToPrint } from "react-to-print";
 import { useParams } from "react-router-dom";
@@ -14,7 +14,7 @@ import {
   Container,
   Button,
 } from "@mui/material";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 
 const PaySlip = () => {
   // const [currentId, setCurrentId] = useState();
@@ -69,10 +69,10 @@ const PaySlip = () => {
     today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
 
   //to print current month
-  const month = new Date().toLocaleString("en-US", {
-    month: "long",
-    year: "numeric",
-  });
+  // const month = new Date().toLocaleString("en-US", {
+  //   month: "long",
+  //   year: "numeric",
+  // });
 
   // const makeDate = new Date();
   // const prev = new Date(makeDate.setMonth(makeDate.getMonth() - 1));

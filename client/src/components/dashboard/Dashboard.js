@@ -2,7 +2,7 @@ import React from "react";
 // import Navbar from "../Navbar/navbar";
 
 import WeeklyActivity from "../WeeklyActivity/WeeklyActivity";
-import Skill from "../Skills/Skill";
+// import Skill from "../Skills/Skill";
 import TotalEmployee from "../TotalEmployee/TotalEmployee";
 import EmployeeOnHoliday from "../EmployeeOnHoliday/EmployeeOnHoliday";
 import Calender from "../Calender/Calender";

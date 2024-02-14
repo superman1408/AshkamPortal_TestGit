@@ -21,9 +21,9 @@ import FileBase from "react-file-base64";
 import { useDispatch } from "react-redux";
 import { updatePost } from "../../action/posts";
 
-import { useReactToPrint } from "react-to-print";
+// import { useReactToPrint } from "react-to-print";
 import { useNavigate, useParams } from "react-router-dom";
-import { LOGOUT } from "../../constants/actionTypes";
+// import { LOGOUT } from "../../constants/actionTypes";
 
 const RegistrationForm = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
@@ -66,6 +66,7 @@ const RegistrationForm = () => {
       relationship: user.result.relationship,
       selectedFile: user.result.selectedFile,
     }));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentId]);
 
   const [postData, setPostData] = useState({

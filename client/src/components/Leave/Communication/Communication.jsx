@@ -7,7 +7,7 @@ import Inbox from "./Inbox/inbox";
 import MessageBody from "./Message/MessageBody";
 import { getPosts } from "../../../action/posts";
 
-import { Root, Overlay, Content } from "@radix-ui/react-dialog";
+// import { Root, Overlay, Content } from "@radix-ui/react-dialog";
 import { useParams } from "react-router-dom";
 
 const Communication = () => {

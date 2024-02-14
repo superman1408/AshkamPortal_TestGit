@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Box, Grid, Typography, Avatar, Card, List } from "@mui/material";
+import { Box, Grid, Typography, Avatar } from "@mui/material";
 
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
-import avatar1 from "../../assets/Profile.jpg";
+// import avatar1 from "../../assets/Profile.jpg";
 import Image from "../../assets/Balloon.png";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -29,6 +29,7 @@ const Birthday = () => {
     };
   }, [dimension]);
 
+  // eslint-disable-next-line no-unused-vars
   const [currentId, setCurrentId] = useState(null);
 
   const dispatch = useDispatch();
@@ -60,7 +61,8 @@ const Birthday = () => {
         {/* <ButtonBase> */}
 
         <Grid>
-          {posts.map((post) => {
+          {// eslint-disable-next-line
+          posts.map((post) => {
             let day = new Date(post.dob).getDate();
             let month = new Date(post.dob).getMonth() + 1;
 

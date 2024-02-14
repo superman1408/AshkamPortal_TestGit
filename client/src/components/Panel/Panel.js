@@ -18,11 +18,10 @@ import {
   Stack,
   Avatar,
   Card,
-  Drawer,
 } from "@mui/material";
 
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import SettingsIcon from "@mui/icons-material/Settings";
+// import SettingsIcon from "@mui/icons-material/Settings";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
 import BadgeIcon from "@mui/icons-material/Badge";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
@@ -33,6 +32,7 @@ import ForwardToInboxTwoToneIcon from "@mui/icons-material/ForwardToInboxTwoTone
 // import avatar1 from "../../assets/Profile.jpg";
 
 const Panel = ({ prop }) => {
+  // eslint-disable-next-line no-unused-vars
   const [state, setState] = React.useState();
   // const [Btn, setBtn] = useState(false);
 
@@ -74,18 +74,18 @@ const Panel = ({ prop }) => {
     navigate(`/${id}/profile`);
   };
 
-  const toggleDrawer = (state) => (event) => {
-    event.preventDefault();
-    if (
-      event &&
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
+  // const toggleDrawer = (state) => (event) => {
+  //   event.preventDefault();
+  //   if (
+  //     event &&
+  //     event.type === "keydown" &&
+  //     (event.key === "Tab" || event.key === "Shift")
+  //   ) {
+  //     return;
+  //   }
 
-    setState(state);
-  };
+  //   setState(state);
+  // };
 
   return (
     <Card elevation={10}>

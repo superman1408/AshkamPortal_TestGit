@@ -1,12 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 
 const Calender = () => {
+  // eslint-disable-next-line no-unused-vars
   const [date, setDate] = useState(new Date());
 
   const onChange = (date) => {

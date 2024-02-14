@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
-import Dialog, { DialogProps } from "@mui/material/Dialog";
+import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
+// import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
-import { TransitionProps } from "@mui/material/transitions";
-import { TextField, Typography } from "@mui/material";
+// import { TransitionProps } from "@mui/material/transitions";
+import { TextField } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getPosts } from "../../action/posts";
@@ -32,6 +32,7 @@ export default function AlertDialogSlide() {
     console.log(`Message is sent by {result.user}`);
   };
 
+  // eslint-disable-next-line no-unused-vars
   const [currentId, setCurrentId] = useState(null);
 
   const dispatch = useDispatch();
