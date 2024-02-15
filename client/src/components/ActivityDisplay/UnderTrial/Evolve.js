@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
-import './Style.css'; // Import CSS file for styling
-import { colors } from '@mui/material';
 
-const Evolve = () => {
+import { useDispatch } from 'react-redux';
+
+import './Style.css'; // Import CSS file for styling
+import { todoList } from '../../../api';
+
+
+const Evolve = ({ currentId }) => {
+  const dispatch = useDispatch();
   const [entries, setEntries] = useState([]);
   const [projectCode, setProjectCode] = useState('');
   const [activityCode, setActivityCode] = useState('');
@@ -11,7 +16,7 @@ const Evolve = () => {
   const [overTime, setOverTime] = useState('');
   const [editIndex, setEditIndex] = useState(-1);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newEntry = {
       projectCode,
@@ -25,10 +30,16 @@ const Evolve = () => {
         const updatedEntries = [ ...entries];
         updatedEntries[editIndex] = newEntry;
         setEntries(updatedEntries);
+        await dispatch(
+          todoList(entries, currentId)
+        )
         setEditIndex(-1); // Reset edit index
       }
       else {
         setEntries([...entries, newEntry]);
+        await dispatch(
+          todoList(entries, currentId)
+        )
       }
       clearForm();
     } 

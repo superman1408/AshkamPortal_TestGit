@@ -27,7 +27,7 @@ const ActivityDisplay = () => {
   return (
     // <div>ActivityDisplay</div>
     <>
-      <div><Evolve/></div>
+      <div><Evolve currentId={currentId}/></div>
       {/* <div>
         <TimeSheetForm currentId={currentId} />
       </div> */}

@@ -78,7 +78,7 @@ export const updateStatus = (id, activeStatus) => async (dispatch) => {
 };
 
 export const todoList = (id, post) => async (dispatch) => {
-  // console.log("Hello I am working..!!");
+  console.log("Hello I am working..!!");
   // console.log(id);
   // console.log(state);
 

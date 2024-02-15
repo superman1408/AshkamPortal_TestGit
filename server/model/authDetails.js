@@ -128,6 +128,30 @@ const authSchema = mongoose.Schema({
   skill3: {
     type: String,
   },
+  projectCode: {
+    type: [String],
+    default: []
+  }, // reference to Projects code for Time Sheet
+  activityCode: {
+    type: [String],
+    default: []
+  }, // reference to Projects code for Time Sheet
+  date: {
+    type: [String],
+    default: []
+  }, // reference to Projects code for Time Sheet
+  netTime: {
+    type: [String],
+    default: []
+  }, // reference to Projects code for Time Sheet
+  overTime: {
+    type: [String],
+    default: []
+  }, // reference to Projects code for Time Sheet
+  editIndex: {
+    type: [String],
+    default: []
+  }, // reference to Projects code for Time Sheet
 });
 
 const AuthDetails = mongoose.model("AuthDetails", authSchema);

@@ -111,6 +111,7 @@ export const updatedStatus = async (req, res) => {
 export const todoList = async (req, res) => {
   const { id } = req.params;
   const value = req.body;
+  console.log(value)
 
   const user = await AuthenticateUser.findById(id);
 
