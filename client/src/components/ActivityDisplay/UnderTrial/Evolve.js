@@ -64,6 +64,8 @@ const Evolve = () => {
     return totalNetTime + newEntry.netTime <= 48;
   };
 
+  
+
   const isSecondOrFourthSaturday = (date) => {
     const dayOfMonth = date.getDate();
     const weekOfMonth = Math.floor((dayOfMonth - 1) / 7) + 1;
@@ -90,6 +92,7 @@ const Evolve = () => {
     setDate('');
     setNetTime('');
     setOverTime('');
+    setEditIndex(-1)
   };
 
 
