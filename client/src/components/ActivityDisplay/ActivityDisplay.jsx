@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-import TimeSheet from "./TimeSheet/TimeSheet";
+// import TimeSheet from "./TimeSheet/TimeSheet";
 import { useParams } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import TimeSheetForm from "./TimeSheetForm/TimeSheetForm";
+// import TimeSheetForm from "./TimeSheetForm/TimeSheetForm";
+// import TimeTrial from "./UnderTrial/TimeTrial";
+import Evolve from "./UnderTrial/Evolve";
 import { getPosts } from "../../action/posts";
 
 const ActivityDisplay = () => {
@@ -25,10 +27,11 @@ const ActivityDisplay = () => {
   return (
     // <div>ActivityDisplay</div>
     <>
-      <div>
+      <div><Evolve/></div>
+      {/* <div>
         <TimeSheetForm currentId={currentId} />
-      </div>
-      <div>
+      </div> */}
+      {/* <div>
         {posts.map(
           (post) =>
             post._id === currentId && (
@@ -38,7 +41,7 @@ const ActivityDisplay = () => {
             )
           // <TimeSheet post={post} currentId={currentId}/>
         )}
-      </div>
+      </div> */}
     </>
   );
 };
