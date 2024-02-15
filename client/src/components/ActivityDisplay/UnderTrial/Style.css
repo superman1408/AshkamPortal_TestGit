@@ -25,19 +25,23 @@
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    color: #e55d17;
   }
   
   button {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #047681;
+    color: rgb(243, 239, 239);
     padding: 10px 20px;
+    margin: 2px;
+    /* display: flex; */
+    /* display: inline-flex; */
     border: none;
     border-radius: 4px;
     cursor: pointer;
   }
   
   button:hover {
-    background-color: #45a049;
+    background-color: #e55d17;
   }
   
   .time-sheet-table {
@@ -52,7 +56,7 @@
   
   .time-sheet-table th {
     background-color: #f2f2f2;
-    text-align: left;
+    text-align: center;
   }
   
   .time-sheet-table tbody tr:nth-child(even) {

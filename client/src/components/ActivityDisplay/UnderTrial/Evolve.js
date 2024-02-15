@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Style.css'; // Import CSS file for styling
+import { colors } from '@mui/material';
 
 const Evolve = () => {
   const [entries, setEntries] = useState([]);
@@ -8,6 +9,7 @@ const Evolve = () => {
   const [date, setDate] = useState('');
   const [netTime, setNetTime] = useState('');
   const [overTime, setOverTime] = useState('');
+  const [editIndex, setEditIndex] = useState(-1);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,12 +21,23 @@ const Evolve = () => {
       overTime: parseFloat(overTime),
     };
     if (validateEntry(newEntry)) {
-      setEntries([...entries, newEntry]);
+      if (editIndex !== -1) {
+        const updatedEntries = [ ...entries];
+        updatedEntries[editIndex] = newEntry;
+        setEntries(updatedEntries);
+        setEditIndex(-1); // Reset edit index
+      }
+      else {
+        setEntries([...entries, newEntry]);
+      }
       clearForm();
-    } else {
+    } 
+    else {
       alert('Invalid entry! Please check your input values and try again. Selected Date must not fall under "SUNDAY" & 2nd-4th "SATURDAY".');
     }
   };
+
+
 
   const validateEntry = (newEntry) => {
     const today = new Date(date);
@@ -57,6 +70,20 @@ const Evolve = () => {
     return weekOfMonth === 2 || weekOfMonth === 4;
   };
 
+
+
+
+  const editEntry = (index) => {
+    const entryToEdit = entries[index];
+    setProjectCode(entryToEdit.projectCode);
+    setActivityCode(entryToEdit.activityCode);
+    setDate(entryToEdit.date);
+    setNetTime(entryToEdit.netTime.toString());
+    setOverTime(entryToEdit.overTime.toString());
+    setEditIndex(index);
+  };
+
+
   const clearForm = () => {
     setProjectCode('');
     setActivityCode('');
@@ -65,52 +92,69 @@ const Evolve = () => {
     setOverTime('');
   };
 
+
+  const deleteEntry = (index) => {
+    const updatedEntries = [...entries];
+    updatedEntries.splice(index, 1);
+    setEntries(updatedEntries);
+  };
+
+
+
   return (
     <div className="time-sheet-container">
-      <h1>Time Sheet</h1>
+      <h1 style={{color: '#16355d'}}>Time Sheet</h1>
       <form onSubmit={handleSubmit} className="time-sheet-form">
         <div className="form-group">
-          <label htmlFor="projectCode">Project Code:</label>
+          <label style={{color: '#16355d'}} htmlFor="projectCode">Project Code:</label>
           <input type="text" id="projectCode" value={projectCode} onChange={(e) => setProjectCode(e.target.value)} />
         </div>
         <div className="form-group">
-          <label htmlFor="activityCode">Activity Code:</label>
+          <label style={{color: '#16355d'}} htmlFor="activityCode">Activity Code:</label>
           <input type="text" id="activityCode" value={activityCode} onChange={(e) => setActivityCode(e.target.value)} />
         </div>
         <div className="form-group">
-          <label htmlFor="date">Date:</label>
+          <label style={{color: '#16355d'}} htmlFor="date">Date:</label>
           <input type="date" id="date" value={date} onChange={(e) => setDate(e.target.value)} />
         </div>
         <div className="form-group">
-          <label htmlFor="netTime">Net Time (hrs):</label>
+          <label style={{color: '#16355d'}} htmlFor="netTime">Net Time (hrs):</label>
           <input type="number" id="netTime" value={netTime} onChange={(e) => setNetTime(e.target.value)} />
         </div>
         <div className="form-group">
-          <label htmlFor="overTime">Over Time (hrs):</label>
+          <label style={{color: '#16355d'}} htmlFor="overTime">Over Time (hrs):</label>
           <input type="number" id="overTime" value={overTime} onChange={(e) => setOverTime(e.target.value)} />
         </div>
-        <button type="submit">Submit</button>
+        <div style={{display: 'flex', justifyContent: 'space-around'}}>
+          <button type="submit">{editIndex !== -1 ? 'Update' : 'Submit'}</button>
+          <button type="button" onClick={clearForm}>Clear</button>
+        </div>
+        
       </form>
       <hr />
-      <h2>Time Sheet Entries</h2>
+      <h2 style={{color: '#16355d'}}>Time Sheet Entries</h2>
       <table className="time-sheet-table">
         <thead>
           <tr>
-            <th>Project Code</th>
-            <th>Activity Code</th>
-            <th>Date</th>
-            <th>Net Time (hrs)</th>
-            <th>Over Time (hrs)</th>
+            <th style={{color: '#16355d'}}>Project Code</th>
+            <th style={{color: '#16355d'}}>Activity Code</th>
+            <th style={{color: '#16355d'}}>Date</th>
+            <th style={{color: '#16355d'}}>Net Time (hrs)</th>
+            <th style={{color: '#16355d'}}>Over Time (hrs)</th>
           </tr>
         </thead>
         <tbody>
           {entries.map((entry, index) => (
             <tr key={index}>
-              <td>{entry.projectCode}</td>
-              <td>{entry.activityCode}</td>
-              <td>{entry.date}</td>
-              <td>{entry.netTime}</td>
-              <td>{entry.overTime}</td>
+              <td style={{color: '#e55d17'}}>{entry.projectCode}</td>
+              <td style={{color: '#e55d17'}}>{entry.activityCode}</td>
+              <td style={{color: '#e55d17'}}>{entry.date}</td>
+              <td style={{color: '#e55d17'}}>{entry.netTime}</td>
+              <td style={{color: '#e55d17'}}>{entry.overTime}</td>
+              <div style={{display: 'flex', justifyContent: 'space-around'}}>
+                <button onClick={() => editEntry(index)}>Edit</button>
+                <button onClick={() => deleteEntry(index)}>Delete</button>
+              </div>
             </tr>
           ))}
         </tbody>
