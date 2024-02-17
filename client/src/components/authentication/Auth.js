@@ -238,7 +238,7 @@ const Auth = () => {
                 <OutlinedInput
                   type={showPassword ? "text" : "password"}
                   endAdornment={
-                    <InputAdornment position="end">
+                    <InputAdornment position="end" autocomplete="current-password">
                       <IconButton
                         aria-label="toggle password visibility"
                         onClick={handleClickShowPassword}
@@ -274,7 +274,7 @@ const Auth = () => {
                   <OutlinedInput
                     type={showPassword ? "text" : "password"}
                     endAdornment={
-                      <InputAdornment position="end">
+                      <InputAdornment position="end" autocomplete="current-password">
                         <IconButton
                           aria-label="toggle password visibility"
                           onClick={handleClickShowPassword}

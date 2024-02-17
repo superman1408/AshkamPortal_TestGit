@@ -20,7 +20,6 @@ const Birthday = () => {
     height: window.innerHeight,
   });
 
-
   const currentDay = new Date().getDate();
   const currentMonth = new Date().getMonth() + 1;
 
@@ -64,21 +63,16 @@ const Birthday = () => {
         const currentDay = new Date().getDate();
         const currentMonth = new Date().getMonth() + 1;
         if (currentDay === day && currentMonth === month) {
-          status =  false;
+          status = false;
           // return false
           // return false
         }
-      })
+      });
     }
-    return status
+    return status;
   };
 
-
-  
-
   // console.log(condition)
-
-  
 
   return (
     <div>
@@ -152,15 +146,21 @@ const Birthday = () => {
                           </Typography>
                         </div>
                     </React.Fragment>
-                    
-                    )
-                  }
-                })}
-                <div  style={{ marginRight: "0px", bgcolor: "#ecd0f5", fontSize: "13px", marginLeft: "20vh"}} >
-                  <AlertDialogSlide />
-                </div>
+                  );
+                }
+              })}
+              <div
+                style={{
+                  marginRight: "0px",
+                  bgcolor: "#ecd0f5",
+                  fontSize: "13px",
+                  marginLeft: "20vh",
+                }}
+              >
+                <AlertDialogSlide />
               </div>
-                )}
+            </div>
+          )}
         </Grid>
       </Box>
     </div>

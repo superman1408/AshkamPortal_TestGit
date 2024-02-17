@@ -56,9 +56,14 @@ const Communication = () => {
                 posts.map(
                   (post) =>
                     post.name === user.result.name && (
-                      <div key={post.name}>
+                      <div key={post._id}>
+                        {" "}
+                        {/* Use post._id as the key */}
                         <Inbox post={post} setCurrentId={setCurrentId} />
-                        <Divider variant="inset" sx={{ borderWidth: "1px",fontWeight:"15px" }} />
+                        <Divider
+                          variant="inset"
+                          sx={{ borderWidth: "1px", fontWeight: "15px" }}
+                        />
                       </div>
                     )
                 )}
@@ -85,6 +90,8 @@ const Communication = () => {
                     (post) =>
                       post._id === currentId && (
                         <div key={post._id}>
+                          {" "}
+                          {/* Use post._id as the key */}
                           <MessageBody post={post} currentId={currentId} />
                         </div>
                       )
