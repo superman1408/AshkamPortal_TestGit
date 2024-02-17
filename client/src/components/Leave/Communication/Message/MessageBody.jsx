@@ -101,8 +101,9 @@ const Message = ({ post, currentId }) => {
       <div>
         {" "}
         <div style={{ width: "500", height: "600" }}>
-          {array.map((item) => (
+          {array.map((item, index) => (
             <Card
+              key={index}
               elevation={10}
               sx={{
                 padding: "5px",
@@ -135,7 +136,7 @@ const Message = ({ post, currentId }) => {
                       alt="avatar"
                       src={post.selectedFile}
                       size="xs"
-                      withborder={true}
+                      withborder="true"
                       className="p-0.5"
                     />
                     <Typography sx={{ margin: "5px 5px" }}>
