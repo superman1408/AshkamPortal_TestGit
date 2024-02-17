@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getPosts } from "../../action/posts";
 
-import image from "../../assets/final.jpg";
+import image from "../../assets/Balloon.png";
 
 import CurrentbirthdayPosts from "../Birthday/CurrentbirthdayPosts";
 
@@ -100,7 +100,7 @@ export default function AlertDialogSlide() {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Send</Button>
+          <Button variant="contained" style={{color: 'black', backgroundColor: 'pink'}} onClick={handleClose}>Send</Button>
           {/* <Button onClick={handleClose}>Agree</Button> */}
         </DialogActions>
       </Dialog>

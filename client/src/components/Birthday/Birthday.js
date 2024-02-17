@@ -4,7 +4,7 @@ import { Box, Grid, Typography, Avatar } from "@mui/material";
 // import { useNavigate } from "react-router-dom";
 
 // import avatar1 from "../../assets/Profile.jpg";
-import Image from "../../assets/Balloon.png";
+import Image from "../../assets/final.jpg";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -13,7 +13,8 @@ import { getPosts } from "../../action/posts";
 import AlertDialogSlide from "../Birthday/BirthdayMail";
 
 const Birthday = () => {
-  const [condition, setCondition] = useState(true);
+  // eslint-disable-next-line no-unused-vars
+  // const [condition, setCondition] = useState(true);
   const [dimension, setDimension] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -45,9 +46,13 @@ const Birthday = () => {
   useEffect(() => {
     dispatch(getPosts());
     isBirthdayToday();
-  }, [dispatch, currentId,  condition]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, currentId]);
+
+  
 
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const isBirthdayToday = () => {
     let status = true;
     for (let index = 0; index < posts.length; index++) {
@@ -107,9 +112,9 @@ const Birthday = () => {
                     return (<React.Fragment key={post.dob}>
                         <Typography
                           variant="h6"
-                          sx={{ fontWeight: "bold", textAlign: "center" }}
+                          sx={{ fontWeight: "bold", fontFamily: 'Bradley Hand ITC', textAlign: "left", color: "#16355d" }}
                         >
-                          Today's Event
+                        Happy Birthday To
                         </Typography>
                         <div style={{ display: "flex", marginTop: "5px" }}>
                           {/* <Card
@@ -137,8 +142,10 @@ const Birthday = () => {
                             variant="h6"
                             sx={{
                               marginLeft: "20px",
+                              fontFamily: "Bradley Hand ITC",
                               fontSize: "18px",
                               fontWeight: "bold",
+                              color: "#e55d17"
                             }}
                           >
                             {post.firstName + " " + post.lastName}
