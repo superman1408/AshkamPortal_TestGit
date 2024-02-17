@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { useDispatch } from "react-redux";
 
-import "./Style.css"; // Import CSS file for styling
+import "./Style1.css"; // Import CSS file for styling
 import { todoList } from "../../../api";
 import ProjectCode from "./ProjectCodePopUp";
 
