@@ -44,7 +44,7 @@ const Panel = ({ prop }) => {
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
 
-  console.log("id in home page", prop);
+  // console.log("id in home page", prop);
 
   useEffect(() => {
     const token = user?.token;

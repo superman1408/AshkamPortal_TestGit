@@ -20,7 +20,7 @@ const Admin = ({ currentId }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
 
   const id = useParams();
-  console.log("id in home page", id);
+  // console.log("id in home page", id);
 
   return (
     <div style={{ minheight: "100%" }}>
@@ -101,7 +101,18 @@ const Admin = ({ currentId }) => {
                     {` ${user.result.role.toUpperCase()} !`}
                   </Typography>
                 </div>
-                <Grid sx={{ display: "flex" }}>
+                <Grid
+                  sx={{
+                    display: "flex",
+                    "@media (max-width: 600px)": {
+                      flexDirection: "column",
+                    },
+
+                    "@media (min-width: 600px)": {
+                      flexDirection: "row",
+                    },
+                  }}
+                >
                   <Grid>
                     <TotalEmployee />
                   </Grid>
