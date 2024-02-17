@@ -66,7 +66,7 @@ const RegistrationForm = () => {
       relationship: user.result.relationship,
       selectedFile: user.result.selectedFile,
     }));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentId]);
 
   const [postData, setPostData] = useState({
@@ -280,7 +280,7 @@ const RegistrationForm = () => {
                       }}
                       value={dob}
                       required
-                      halfWidth
+                      halfwidth
                       onChange={handleDOB}
                     />
                   </DemoContainer>
@@ -301,7 +301,7 @@ const RegistrationForm = () => {
                 </Typography>
 
                 {user.result.gender ? (
-                  <TextField halfWidth value={user.result.gender} />
+                  <TextField halfwidth value={user.result.gender} />
                 ) : (
                   <>
                     <RadioGroup

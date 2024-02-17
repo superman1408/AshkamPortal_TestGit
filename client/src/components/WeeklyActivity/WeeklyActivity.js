@@ -49,12 +49,12 @@ const WeeklyActivity = () => {
               <CChart
                 style={{
                   display: "flex",
-                  "@media (max-width: 600px)": {
+                  "@media (maxWidth: 600px)": {
                     flexDirection: "column",
                     display: "flex",
                   },
 
-                  "@media (min-width: 600px)": {
+                  "@media (minWidth: 600px)": {
                     flexDirection: "row",
                     width: "600px",
                     height: "400px",
