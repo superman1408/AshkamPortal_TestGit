@@ -79,19 +79,19 @@ export const updateStatus = (id, activeStatus) => async (dispatch) => {
 
 export const todoList = (id, post) => async (dispatch) => {
   console.log("Hello I am working..!!");
-  // console.log(id);
-  // console.log(state);
+  console.log(id);
+  console.log(post);
 
-  try {
-    const { data } = await API.todoList(id, post);
-    //console.log(data);
-    dispatch({ type: TODOLIST, payload: data });
+  // try {
+  //   const { data } = await API.todoList(id, post);
+  //   //console.log(data);
+  //   dispatch({ type: TODOLIST, payload: data });
 
-    return data.todoList;
-    // console.log("Hello");
-  } catch (error) {
-    console.log(error);
-  }
+  //   return data.todoList;
+  //   // console.log("Hello");
+  // } catch (error) {
+  //   console.log(error);
+  // }
 };
 
 export const skillData = (post) => async (dispatch) => {

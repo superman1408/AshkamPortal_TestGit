@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 const SkillDisplay = () => {
   const [currentId, setCurrentId] = useState(null);
   const { id } = useParams();
-  console.log("id in skill page", id);
+  // console.log("id in skill page", id);
 
   useEffect(() => {
     setCurrentId(id);

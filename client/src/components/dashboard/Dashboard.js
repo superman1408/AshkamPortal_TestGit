@@ -20,7 +20,7 @@ const Admin = ({ currentId }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
 
   const id = useParams();
-  console.log("id in home page", id);
+  // console.log("id in home page", id);
 
   return (
     <div style={{ minheight: "100%" }}>

@@ -30,15 +30,15 @@ const Evolve = ({ currentId }) => {
         const updatedEntries = [...entries];
         updatedEntries[editIndex] = newEntry;
         setEntries(updatedEntries);
-        // await dispatch(
-        //   todoList(entries, currentId)
-        // )
+        await dispatch(
+          todoList(entries, currentId)
+        )
         setEditIndex(-1); // Reset edit index
       } else {
         setEntries([...entries, newEntry]);
-        // await dispatch(
-        //   todoList(entries, currentId)
-        // )
+        await dispatch(
+          todoList(entries, currentId)
+        )
       }
       clearForm();
     } else {

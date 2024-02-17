@@ -13,10 +13,15 @@ import { getPosts } from "../../action/posts";
 import AlertDialogSlide from "../Birthday/BirthdayMail";
 
 const Birthday = () => {
+  const [condition, setCondition] = useState(true);
   const [dimension, setDimension] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
+
+
+  const currentDay = new Date().getDate();
+  const currentMonth = new Date().getMonth() + 1;
 
   const detectSize = () => {
     setDimension({ width: window.innerWidth, height: window.innerHeight });
@@ -39,10 +44,36 @@ const Birthday = () => {
 
   useEffect(() => {
     dispatch(getPosts());
-  }, [dispatch, currentId]);
+    isBirthdayToday();
+  }, [dispatch, currentId,  condition]);
 
-  const currentDay = new Date().getDate();
-  const currentMonth = new Date().getMonth() + 1;
+
+  const isBirthdayToday = () => {
+    let status = true;
+    for (let index = 0; index < posts.length; index++) {
+      // eslint-disable-next-line no-loop-func, array-callback-return
+      posts.map((post) => {
+        // console.log(post.firstName)
+        let day = new Date(post.dob).getDate();
+        let month = new Date(post.dob).getMonth() + 1;
+        const currentDay = new Date().getDate();
+        const currentMonth = new Date().getMonth() + 1;
+        if (currentDay === day && currentMonth === month) {
+          status =  false;
+          // return false
+          // return false
+        }
+      })
+    }
+    return status
+  };
+
+
+  
+
+  // console.log(condition)
+
+  
 
   return (
     <div>
@@ -61,78 +92,68 @@ const Birthday = () => {
         {/* <ButtonBase> */}
 
         <Grid>
-          {// eslint-disable-next-line
-          posts.map((post) => {
-            let day = new Date(post.dob).getDate();
-            let month = new Date(post.dob).getMonth() + 1;
-
-            if (currentDay === day && currentMonth === month) {
-              return (
-                <React.Fragment key={post.dob}>
-                  <Typography
-                    variant="h6"
-                    sx={{ fontWeight: "bold", textAlign: "center" }}
-                  >
-                    Today's Event
-                  </Typography>
-                  <div style={{ display: "flex", marginTop: "5px" }}>
-                    {/* <Card
-                    elevation={15}
-                    sx={{
-                      display: "flex",
-                      marginTop: "15px",
-                      alignItems: "center",
-                      width: "70%",
-                    }}
-                  > */}
-                    <Typography>{`\u2022`}</Typography>
-                    <Avatar
-                      post={post}
-                      sx={{
-                        width: 30,
-                        height: 30,
-                        marginLeft: "20px",
-                      }}
-                      alt="user"
-                      src={post.selectedFile}
-                    />
-                    <Typography
-                      post={post}
-                      variant="h6"
-                      sx={{
-                        marginLeft: "20px",
-                        fontSize: "18px",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      {post.firstName + " " + post.lastName}
-                    </Typography>
-                  </div>
-                  {/* </Card> */}
-                </React.Fragment>
-              );
-            }
-          })}
-
-          {/* <Typography
-            variant="h6"
-            sx={{ fontWeight: "bold", textAlign: "center" }}
-          >
-            No Event Today
-          </Typography> */}
-
-          <div
-            style={{
-              // marginLeft: "50px",
-              // marginRight: "0px",
-              // bgcolor: "#ecd0f5",
-              fontSize: "13px",
-              marginLeft: "20vh",
-            }}
-          >
-            {" "}
-            <AlertDialogSlide />
-          </div>
+          {
+            isBirthdayToday() ? (
+              <div>
+                <strong>No  Birthdays Today!</strong><br /><br />
+                There are no birthdays today. Please check back tomorrow or try again later.
+              </div>
+            ) : (
+              <div>
+                {posts.map((post) => {
+                  let day = new Date(post.dob).getDate();
+                  let month = new Date(post.dob).getMonth() + 1;
+                  if (currentDay === day && currentMonth === month) {
+                    return (<React.Fragment key={post.dob}>
+                        <Typography
+                          variant="h6"
+                          sx={{ fontWeight: "bold", textAlign: "center" }}
+                        >
+                          Today's Event
+                        </Typography>
+                        <div style={{ display: "flex", marginTop: "5px" }}>
+                          {/* <Card
+                          elevation={15}
+                          sx={{
+                            display: "flex",
+                            marginTop: "15px",
+                            alignItems: "center",
+                            width: "70%",
+                          }}
+                        > */}
+                          <Typography>{`\u2022`}</Typography>
+                          <Avatar
+                            post={post}
+                            sx={{
+                              width: 30,
+                              height: 30,
+                              marginLeft: "20px",
+                            }}
+                            alt="user"
+                            src={post.selectedFile}
+                          />
+                          <Typography
+                            post={post}
+                            variant="h6"
+                            sx={{
+                              marginLeft: "20px",
+                              fontSize: "18px",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            {post.firstName + " " + post.lastName}
+                          </Typography>
+                        </div>
+                    </React.Fragment>
+                    
+                    )
+                  }
+                })}
+                <div  style={{ marginRight: "0px", bgcolor: "#ecd0f5", fontSize: "13px", marginLeft: "20vh"}} >
+                  <AlertDialogSlide />
+                </div>
+              </div>
+                )}
         </Grid>
       </Box>
     </div>
@@ -140,3 +161,77 @@ const Birthday = () => {
 };
 
 export default Birthday;
+
+
+
+// (posts.map((post) => {
+//   let day = new Date(post.dob).getDate();
+//   let month = new Date(post.dob).getMonth() + 1;
+
+//   if (currentDay === day && currentMonth === month) {
+//     return (
+//       <React.Fragment key={post.dob}>
+//         <Typography
+//           variant="h6"
+//           sx={{ fontWeight: "bold", textAlign: "center" }}
+//         >
+//           Today's Event
+//         </Typography>
+//         <div style={{ display: "flex", marginTop: "5px" }}>
+//           {/* <Card
+//           elevation={15}
+//           sx={{
+//             display: "flex",
+//             marginTop: "15px",
+//             alignItems: "center",
+//             width: "70%",
+//           }}
+//         > */}
+//           <Typography>{`\u2022`}</Typography>
+//           <Avatar
+//             post={post}
+//             sx={{
+//               width: 30,
+//               height: 30,
+//               marginLeft: "20px",
+//             }}
+//             alt="user"
+//             src={post.selectedFile}
+//           />
+//           <Typography
+//             post={post}
+//             variant="h6"
+//             sx={{
+//               marginLeft: "20px",
+//               fontSize: "18px",
+//               fontWeight: "bold",
+//             }}
+//           >
+//             {post.firstName + " " + post.lastName}
+//           </Typography>
+//         </div>
+//         {/* </Card> */}
+//       </React.Fragment>
+//     );
+//   }
+// })}
+
+// {/* <Typography
+//   variant="h6"
+//   sx={{ fontWeight: "bold", textAlign: "center" }}
+// >
+//   No Event Today
+// </Typography> */}
+
+// <div
+//   style={{
+//     // marginLeft: "50px",
+//     // marginRight: "0px",
+//     // bgcolor: "#ecd0f5",
+//     fontSize: "13px",
+//     marginLeft: "20vh",
+//   }}
+// >
+//   {" "}
+//   <AlertDialogSlide />
+// </div>
