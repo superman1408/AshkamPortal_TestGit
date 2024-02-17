@@ -30,15 +30,11 @@ const Evolve = ({ currentId }) => {
         const updatedEntries = [...entries];
         updatedEntries[editIndex] = newEntry;
         setEntries(updatedEntries);
-        await dispatch(
-          todoList(entries, currentId)
-        )
+        await dispatch(todoList(entries, currentId));
         setEditIndex(-1); // Reset edit index
       } else {
         setEntries([...entries, newEntry]);
-        await dispatch(
-          todoList(entries, currentId)
-        )
+        await dispatch(todoList(entries, currentId));
       }
       clearForm();
     } else {
@@ -131,6 +127,14 @@ const Evolve = ({ currentId }) => {
           </label>
 
           <input
+            style={{
+              width: "100%",
+              padding: "8px",
+              fontSize: "16px",
+              border: "1px solid #ccc",
+              borderRadius: "4px",
+              color: "#e55d17",
+            }}
             type="text"
             id="projectCode"
             defaultValue={projectCode}
@@ -149,6 +153,14 @@ const Evolve = ({ currentId }) => {
             Activity Code:
           </label>
           <input
+            style={{
+              width: "100%",
+              padding: "8px",
+              fontSize: "16px",
+              border: "1px solid #ccc",
+              borderRadius: "4px",
+              color: "#e55d17",
+            }}
             type="text"
             id="activityCode"
             defaultValue={activityCode}
