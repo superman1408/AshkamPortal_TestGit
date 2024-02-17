@@ -280,7 +280,7 @@ const RegistrationForm = () => {
                       }}
                       value={dob}
                       required
-                      halfwidth
+                      halfwidth="true"
                       onChange={handleDOB}
                     />
                   </DemoContainer>
@@ -301,7 +301,7 @@ const RegistrationForm = () => {
                 </Typography>
 
                 {user.result.gender ? (
-                  <TextField halfwidth value={user.result.gender} />
+                  <TextField halfwidth="true" value={user.result.gender} />
                 ) : (
                   <>
                     <RadioGroup
