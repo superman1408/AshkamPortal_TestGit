@@ -101,7 +101,18 @@ const Admin = ({ currentId }) => {
                     {` ${user.result.role.toUpperCase()} !`}
                   </Typography>
                 </div>
-                <Grid sx={{ display: "flex" }}>
+                <Grid
+                  sx={{
+                    display: "flex",
+                    "@media (max-width: 600px)": {
+                      flexDirection: "column",
+                    },
+
+                    "@media (min-width: 600px)": {
+                      flexDirection: "row",
+                    },
+                  }}
+                >
                   <Grid>
                     <TotalEmployee />
                   </Grid>

@@ -45,19 +45,21 @@ const WeeklyActivity = () => {
             </Grid>
 
             {/*----------------------------------------------------Line Chart------------------------------------------------------*/}
-            <Grid>
+            <Grid sx={{ display: "flex" }}>
               <CChart
-                style={{
-                  "@media (max-width: 600px)": {
-                    flexDirection: "column",
-                    display: "flex",
-                  },
+                // style={{
+                //   "@media (max-width: 600px)": {
+                //     // flexDirection: "column",
+                //     display: "flex",
+                //   },
 
-                  "@media (min-width: 600px)": {
-                    display: "flex",
-                    flexDirection: "row",
-                  },
-                }}
+                //   "@media (min-width: 600px)": {
+                //     display: "flex",
+                //     // flexDirection: "row",
+                //     // width: "600",
+                //     // height: "400",
+                //   },
+                // }}
                 width={600}
                 height={400}
                 type="line"
