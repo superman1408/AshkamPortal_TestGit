@@ -95,7 +95,7 @@ const TotalEmployee = () => {
                     width="40px"
                     color="primary"
                     sx={{
-                      display: "flex",
+                      // display: "flex",
                       mt: "20px",
                       // display: {
                       //   xs: "flex",
@@ -110,12 +110,12 @@ const TotalEmployee = () => {
                 <Grid>
                   <Typography
                     sx={{
-                      marginLeft: "0px",
+                      // marginLeft: "0px",
                       marginTop: "30px",
                       // display: "flex",
                     }}
                   >
-                    : 27
+                    :27
                   </Typography>
                 </Grid>
               </Grid>
@@ -134,10 +134,10 @@ const TotalEmployee = () => {
                     color="primary"
                     sx={{
                       mt: "0px",
-                      display: {
-                        xs: "flex",
-                        sm: "flex",
-                      },
+                      // display: {
+                      //   xs: "flex",
+                      //   sm: "flex",
+                      // },
                     }}
                   >
                     <WomanIcon />
@@ -146,7 +146,7 @@ const TotalEmployee = () => {
 
                 <Grid>
                   <Typography sx={{ marginLeft: "0px", marginTop: "8px" }}>
-                    : 05
+                    :05
                   </Typography>
                 </Grid>
               </Grid>
