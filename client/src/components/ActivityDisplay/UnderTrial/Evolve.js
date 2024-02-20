@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 
 import "./Style1.css"; // Import CSS file for styling
-import { todoList } from "../../../api";
+// import { todoList } from "../../../api";
 import ProjectCode from "./ProjectCodePopUp";
 
 const Evolve = ({ currentId }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [entries, setEntries] = useState([]);
   const [projectCode, setProjectCode] = useState("");
   const [activityCode, setActivityCode] = useState("");
@@ -30,11 +30,11 @@ const Evolve = ({ currentId }) => {
         const updatedEntries = [...entries];
         updatedEntries[editIndex] = newEntry;
         setEntries(updatedEntries);
-        await dispatch(todoList(entries, currentId));
-        setEditIndex(-1); // Reset edit index
+        // await dispatch(todoList(entries, currentId));
+        // setEditIndex(-1); // Reset edit index
       } else {
         setEntries([...entries, newEntry]);
-        await dispatch(todoList(entries, currentId));
+        // await dispatch(todoList(entries, currentId));
       }
       clearForm();
     } else {
