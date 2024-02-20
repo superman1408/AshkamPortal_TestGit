@@ -72,7 +72,7 @@ const Skill = () => {
       >
         <Grid
           sx={{
-            marginBottom: "20px",
+            marginBottom: "28px",
             marginTop: "5px",
             marginLeft: "5px",
             alignItems: "center",

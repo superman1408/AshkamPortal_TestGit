@@ -74,7 +74,7 @@ const WeeklyActivity = () => {
                 //   },
                 // }}
                 width={600}
-                height={400}
+                height={425}
                 type="line"
                 data={{
                   datasets: [
