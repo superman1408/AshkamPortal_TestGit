@@ -34,6 +34,7 @@ const ProjectCodePopUp = ({ setProjectCode, setProjectOpen }) => {
     console.log(updatedList);
     setProjectOpen(false);
   };
+  
 
   const closetoggle = () => {
     setProjectOpen(false);

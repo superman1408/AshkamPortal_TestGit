@@ -3,9 +3,11 @@ import React, { useState, useEffect } from "react";
 const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
   const [disciplineCode, setDisciplineCode] = useState();
   const [discipline, setDiscipline] = useState();
+  const [activities, setActivities] = useState();
+  const [activitiesCode, setActivitiesCode] = useState();
 
   const appendData = () => {
-    const updatedList = disciplineCode; // Combine disciplineCode and year
+    const updatedList = disciplineCode + activitiesCode; // Combine disciplineCode and year
     setActivityCode(updatedList);
     console.log(updatedList);
     setActivityOpen(false);
@@ -21,6 +23,14 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
     setDiscipline(selectedDiscipline);
     setDisciplineCode(selectedDisciplineCode); // Update month state with the month number
     console.log("selectedDisciplineCoden", selectedDisciplineCode);
+  };
+
+  const handleActivitiesChange = (event) => {
+    const selectedActivities = event.target.value;
+    const selectedActivitiesCode = getActivitiesCode(selectedActivities); // Convert month name to month number
+    setActivities(selectedActivities);
+    setActivitiesCode(selectedActivitiesCode); // Update month state with the month number
+    console.log("selectedActivitiesCode", selectedActivitiesCode);
   };
 
   // Function to convert month name to its number
@@ -49,6 +59,22 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
     };
 
     return Disciplines[DisciplineName];
+  };
+
+  const getActivitiesCode = (ActivitiesCode) => {
+    const Activities = {
+      Select: "--",
+      Calculations: "CL",
+      DocumentationControl: "DC",
+      Documents: "DO",
+      Drawings: "DR",
+      General: "GN",
+      Lists: "LI",
+      Projectcontrol: "PC",
+      ProjectManagement: "PM",
+    };
+
+    return Activities[ActivitiesCode];
   };
 
   useEffect(() => {
@@ -108,6 +134,35 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
                 <option value="Procurement">Procurement</option>
                 <option value="Projects">Projects</option>
                 <option value="Telecom">Telecom</option>
+              </select>
+            </div>
+
+            <div>
+              {/*_______________Activity Code____________________  */}
+
+              <label>Activities</label>
+              <select
+                style={{
+                  width: "200px",
+                  height: "30px",
+                  fontSize: "16px",
+                  marginTop: "10px",
+                }}
+                name="Activities"
+                value={activities}
+                onChange={handleActivitiesChange}
+              >
+                <option value="select">Select</option>
+                <option value="Calculations">Calculations</option>
+                <option value="DocumentationControl">
+                  Documentation Control
+                </option>
+                <option value="Documents">Documents</option>
+                <option value="Drawings">Drawings</option>
+                <option value="General">General</option>
+                <option value="Lists">Lists</option>
+                <option value="Projectcontrol">Project Control</option>
+                <option value="ProjectManagement">Project Management</option>
               </select>
             </div>
           </div>
