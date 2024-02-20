@@ -1,179 +1,130 @@
-// import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-// const ActivityCodepopUp = ({ setProjectCode, setOpen }) => {
-//   const maxOffset = 10;
-//   const thisYear = new Date().getFullYear();
-//   const allYears = [];
-//   for (let x = 0; x <= maxOffset; x++) {
-//     allYears.push(thisYear - x);
-//   }
+const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
+  const [disciplineCode, setDisciplineCode] = useState();
+  const [discipline, setDiscipline] = useState();
 
-//   const yearList = allYears.map((x) => {
-//     return <option key={x}>{x}</option>;
-//   });
+  const appendData = () => {
+    const updatedList = disciplineCode; // Combine disciplineCode and year
+    setActivityCode(updatedList);
+    console.log(updatedList);
+    setActivityOpen(false);
+  };
 
-//   const maxset = 12;
-//   const thismonth = new Date().getMonth();
-//   const allMonth = [];
-//   for (let x = 0; x < maxset; x++) {
-//     allMonth.push(thismonth + x);
-//   }
+  const closetoggle = () => {
+    setActivityOpen(false);
+  };
 
-//   const monthList = allMonth.map((x) => {
-//     return <option key={x}>{x}</option>;
-//   });
+  const handleDisciplineChange = (event) => {
+    const selectedDiscipline = event.target.value;
+    const selectedDisciplineCode = getDisciplineCode(selectedDiscipline); // Convert month name to month number
+    setDiscipline(selectedDiscipline);
+    setDisciplineCode(selectedDisciplineCode); // Update month state with the month number
+    console.log("selectedDisciplineCoden", selectedDisciplineCode);
+  };
 
-//   const SerialNo = [];
-//   for (let i = 1; i <= 200; i++) {
-//     SerialNo.push(
-//       <option key={i} value={i}>
-//         {i}
-//       </option>
-//     );
-//   }
+  // Function to convert month name to its number
+  const getDisciplineCode = (DisciplineName) => {
+    const Disciplines = {
+      Select: "--",
+      Account: "AC",
+      Administration: "AD",
+      Architectural: "AR",
+      BusinessDevelopment: "BD",
+      CivilORstructural: "CS",
+      Construction: "CO",
+      Electrical: "EL",
+      HSE: "HS",
+      HumanResource: "HR",
+      HVAC: "HV",
+      Instrumentation: "IN",
+      Management: "MG",
+      Mechanical: "ME",
+      Naval: "NA",
+      Piping: "PI",
+      Process: "PR",
+      Procurement: "PC",
+      Projects: "PJ",
+      Telecom: "TE",
+    };
 
-//   const [officeCode, setOfficeCode] = useState();
-//   const [year, setYear] = useState();
-//   const [month, setMonth] = useState();
-//   const [serialNo, setserialNo] = useState();
+    return Disciplines[DisciplineName];
+  };
 
-//   const appendData = () => {
-//     const updatedList = officeCode + "-" + year + "-" + month + "-" + serialNo; // Combine officeCode and year
-//     setProjectCode(updatedList);
-//     console.log(updatedList);
-//     // console.log(officeCode);
-//     // console.log(year);
-//     setOpen(false);
-//   };
+  useEffect(() => {
+    console.log(discipline);
+  }, [discipline]);
 
-//   return (
-//     <div
-//       className="modal fade show"
-//       tabIndex="-1"
-//       role="dialog"
-//       style={{ display: "block" }}
-//     >
-//       <div className="modal-dialog" role="document">
-//         <div className="modal-content">
-//           <div className="modal-header">
-//             <h5 className="modal-title">Project Code</h5>
-//             {/* <button type="button" className="close"  onClick={setOpen(false)}>
-//               <span aria-hidden="true">&times;</span>
-//             </button> */}
-//           </div>
-//           <div className="modal-body">
-//             <div>
-//               {/*_______________Office Code____________________  */}
+  return (
+    <div
+      className="modal fade show"
+      tabIndex="-1"
+      role="dialog"
+      style={{ display: "block" }}
+    >
+      <div className="modal-dialog" role="document">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title">Project Code</h5>
+            <button type="button" className="close" onClick={closetoggle}>
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div className="modal-body">
+            <div>
+              {/*_______________Discipline Code____________________  */}
 
-//               <label>Office Code</label>
-//               <select
-//                 style={{
-//                   width: "200px",
-//                   height: "30px",
-//                   fontSize: "16px",
-//                   marginTop: "10px",
-//                 }}
-//                 name="Office Code"
-//                 value={officeCode}
-//                 onChange={(e) => setOfficeCode(e.target.value)}
-//                 defaultValue="1"
-//               >
-//                 <option value="select">select</option>
-//                 <option value="01">01</option>
-//                 <option value="02">02</option>
-//               </select>
-//             </div>
-//             {/*_______________Year____________________  */}
-//             <div>
-//               <label
-//                 style={{
-//                   marginTop: "20px",
-//                 }}
-//               >
-//                 Year
-//               </label>
-//               <div>
-//                 <select
-//                   style={{
-//                     width: "200px",
-//                     height: "30px",
-//                     fontSize: "16px",
-//                     marginTop: "10px",
-//                   }}
-//                   name="Year"
-//                   value={year}
-//                   onChange={(e) => setYear(e.target.value)}
-//                 >
-//                   {yearList}
-//                 </select>
-//               </div>
-//             </div>
-//             {/*_______________Month____________________  */}
-//             <div>
-//               <label
-//                 style={{
-//                   marginTop: "20px",
-//                 }}
-//               >
-//                 Month
-//               </label>
-//               <div>
-//                 {/* <MonthSelector onChange={(e) => setMonth(e.target.value)} /> */}
-//                 <select
-//                   style={{
-//                     width: "200px",
-//                     height: "30px",
-//                     fontSize: "16px",
-//                     marginTop: "10px",
-//                   }}
-//                   name="Month"
-//                   value={month}
-//                   onChange={(e) => setMonth(e.target.value)}
-//                 >
-//                   {monthList}
-//                 </select>
-//               </div>
-//             </div>
-//             {/*_______________Serial Number____________________  */}
-//             <div>
-//               <label
-//                 style={{
-//                   marginTop: "20px",
-//                 }}
-//               >
-//                 Serial Number
-//               </label>
-//               <div>
-//                 <select
-//                   style={{
-//                     width: "200px",
-//                     height: "30px",
-//                     fontSize: "16px",
-//                     marginTop: "10px",
-//                   }}
-//                   name="Month"
-//                   value={serialNo}
-//                   onChange={(e) => setserialNo(e.target.value)}
-//                 >
-//                   {SerialNo}
-//                 </select>
-//               </div>
-//             </div>{" "}
-//           </div>
-//           <div className="modal-footer">
-//             <button
-//               type="button"
-//               className="btn btn-secondary"
-//               onClick={appendData}
-//             >
-//               Save
-//             </button>
-//             {/* Add additional buttons or actions if needed */}
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
+              <label>Discipline</label>
+              <select
+                style={{
+                  width: "200px",
+                  height: "30px",
+                  fontSize: "16px",
+                  marginTop: "10px",
+                }}
+                name="Discipline"
+                value={discipline}
+                onChange={handleDisciplineChange}
+              >
+                <option value="select">Select</option>
+                <option value="Account">Account</option>
+                <option value="Administration">Administration</option>
+                <option value="Architectural">Architectural</option>
+                <option value="BusinessDevelopment">
+                  Business Development
+                </option>
+                <option value="Civil/structural">Civil/ structural</option>
+                <option value="Construction">Construction</option>
+                <option value="Electrical">Electrical</option>
+                <option value="HSE">HSE</option>
+                <option value="HumanResource">Human Resource</option>
+                <option value="HVAC">HVAC</option>
+                <option value="Instrumentation">Instrumentation</option>
+                <option value="Management">Management</option>
+                <option value="Mechanical">Mechanical</option>
+                <option value="Naval">Naval</option>
+                <option value="Piping">Piping</option>
+                <option value="Process">Process</option>
+                <option value="Procurement">Procurement</option>
+                <option value="Projects">Projects</option>
+                <option value="Telecom">Telecom</option>
+              </select>
+            </div>
+          </div>
+          <div className="modal-footer">
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={appendData}
+            >
+              Save
+            </button>
+            {/* Add additional buttons or actions if needed */}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-// export default ActivityCodepopUp;
+export default ActivityCodePopUp;

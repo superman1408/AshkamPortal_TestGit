@@ -4,7 +4,9 @@ import React, { useState } from "react";
 
 import "./Style1.css"; // Import CSS file for styling
 // import { todoList } from "../../../api";
-import ProjectCode from "./ProjectCodePopUp";
+// import ProjectCode from "./ProjectCodePopUp";
+import ProjectCodePopUp from "./ProjectCodePopUp";
+import ActivityCodePopUp from "./ActivityCodePopUp";
 
 const Evolve = ({ currentId }) => {
   // const dispatch = useDispatch();
@@ -106,11 +108,17 @@ const Evolve = ({ currentId }) => {
     setEntries(updatedEntries);
   };
 
-  const [open, setOpen] = useState(false);
+  const [projectopen, setProjectOpen] = useState(false);
+
+  const [activityopen, setActivityOpen] = useState(false);
   // const [projectCode, setProjectCode] = useState('');
 
-  const togglePopup = () => {
-    setOpen(!open);
+  const togglePopup1 = () => {
+    setProjectOpen(!projectopen);
+  };
+
+  const togglePopup2 = () => {
+    setActivityOpen(!activityopen);
   };
 
   // const handleInputChange = (event) => {
@@ -138,13 +146,16 @@ const Evolve = ({ currentId }) => {
             type="text"
             id="projectCode"
             defaultValue={projectCode}
-            onFocus={togglePopup} // Using onFocus event to trigger the popup
+            onFocus={togglePopup1} // Using onFocus event to trigger the popup
             // onChange={handleInputChange} // Handle input change
           />
           {/* ______________________________________pop window contents_____________________________________________ */}
 
-          {open && (
-            <ProjectCode setProjectCode={setProjectCode} setOpen={setOpen} />
+          {projectopen && (
+            <ProjectCodePopUp
+              setProjectCode={setProjectCode}
+              setProjectOpen={setProjectOpen}
+            />
           )}
         </div>
 
@@ -164,12 +175,15 @@ const Evolve = ({ currentId }) => {
             type="text"
             id="activityCode"
             defaultValue={activityCode}
-            onChange={(e) => setActivityCode(e.target.value)}
-            // onFocus={togglePopup}
+            // onChange={(e) => setActivityCode(e.target.value)}
+            onFocus={togglePopup2}
           />
-          {/* {open && (
-            <ProjectCode setProjectCode={setProjectCode} setOpen={setOpen} />
-          )} */}
+          {activityopen && (
+            <ActivityCodePopUp
+              setActivityCode={setActivityCode}
+              setActivityOpen={setActivityOpen}
+            />
+          )}
         </div>
 
         <div className="form-group">
