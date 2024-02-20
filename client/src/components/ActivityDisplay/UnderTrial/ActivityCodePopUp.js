@@ -352,7 +352,12 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
                 </select>
               </div>
             </div>
-            <div className="modal-footer">
+            <div
+              className="modal-footer"
+              style={{
+                marginTop: "20px",
+              }}
+            >
               <button
                 type="button"
                 className="btn btn-secondary"
