@@ -114,3 +114,5 @@ const WeeklyActivity = () => {
 };
 
 export default WeeklyActivity;
+
+// transform this code make the chart

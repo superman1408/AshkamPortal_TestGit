@@ -100,7 +100,7 @@ const Auth = () => {
           </h2>
           {/* <Typography color="#0B7882">Welcome to Ashkam 👋 </Typography> */}
 
-          <form autoComplete="true" onSubmit={handleSubmit}>
+          <form autoComplete="on" onSubmit={handleSubmit}>
             {isSignUp && (
               <div style={{ display: "flex", justifyContent: "space-evenly" }}>
                 <div style={{ display: "flex", flexDirection: "column" }}>
@@ -227,7 +227,7 @@ const Auth = () => {
                 variant="outlined"
                 name="password"
                 type="password"
-                autoComplete="on"
+                autoComplete="current-password"
                 onChange={(e) =>
                   setFormData({ ...formData, password: e.target.value })
                 }
@@ -238,7 +238,7 @@ const Auth = () => {
                 <OutlinedInput
                   type={showPassword ? "text" : "password"}
                   endAdornment={
-                    <InputAdornment position="end" autocomplete="current-password">
+                    <InputAdornment position="end">
                       <IconButton
                         aria-label="toggle password visibility"
                         onClick={handleClickShowPassword}
@@ -259,8 +259,9 @@ const Auth = () => {
                   variant="outlined"
                   required
                   fullWidth
+                  type="password"
                   label="Confirm Password"
-                  autoComplete="off"
+                  autoComplete="current-password"
                   onChange={(e) =>
                     setFormData({
                       ...formData,
@@ -274,7 +275,7 @@ const Auth = () => {
                   <OutlinedInput
                     type={showPassword ? "text" : "password"}
                     endAdornment={
-                      <InputAdornment position="end" autocomplete="current-password">
+                      <InputAdornment position="end">
                         <IconButton
                           aria-label="toggle password visibility"
                           onClick={handleClickShowPassword}
