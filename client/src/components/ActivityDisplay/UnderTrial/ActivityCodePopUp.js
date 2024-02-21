@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 
 const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
-  const [disciplineCode, setDisciplineCode] = useState();
-  const [discipline, setDiscipline] = useState();
-  const [activities, setActivities] = useState();
-  const [activitiesCode, setActivitiesCode] = useState();
+  const [disciplineCode, setDisciplineCode] = useState("");
+  const [discipline, setDiscipline] = useState("");
+  const [activities, setActivities] = useState("");
+  const [activitiesCode, setActivitiesCode] = useState("");
 
-  const [subActivityCode, setSubActivityCode] = useState();
-  const [subActivity, setSubActivity] = useState();
+  const [subActivityCode, setSubActivityCode] = useState("");
+  const [subActivity, setSubActivity] = useState("");
 
   const appendData = () => {
     const updatedList = disciplineCode + activitiesCode + subActivityCode; // Combine disciplineCode and year

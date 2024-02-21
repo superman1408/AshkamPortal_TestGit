@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 
 const ProjectCodePopUp = ({ setProjectCode, setProjectOpen }) => {
-  const [officeCode, setOfficeCode] = useState();
-  const [year, setYear] = useState();
-  const [serialNo, setserialNo] = useState();
-  
-  const [monthNumber, setMonthNumber] = useState();
-  const [month, setMonth] = useState();
+  const [officeCode, setOfficeCode] = useState("");
+  const [year, setYear] = useState("");
+  const [serialNo, setserialNo] = useState("");
+
+  const [monthNumber, setMonthNumber] = useState("");
+  const [month, setMonth] = useState("");
 
   const maxOffset = 10;
   const thisYear = new Date().getFullYear();
@@ -34,7 +34,6 @@ const ProjectCodePopUp = ({ setProjectCode, setProjectOpen }) => {
     console.log(updatedList);
     setProjectOpen(false);
   };
-  
 
   const closetoggle = () => {
     setProjectOpen(false);
