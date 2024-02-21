@@ -36,7 +36,7 @@ const WeeklyActivity = () => {
               sx={{
                 marginLeft: "20px",
                 marginTop: "10px",
-                marginBottom: "10px",
+                marginBottom: "30px",
               }}
             >
               <Typography sx={{ fontWeight: "bolder" }}>
@@ -74,7 +74,7 @@ const WeeklyActivity = () => {
                 //   },
                 // }}
                 width={600}
-                height={425}
+                height={400}
                 type="line"
                 data={{
                   datasets: [

@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const TimeTrial = () => {
   const [entries, setEntries] = useState([]);
-  const [projectCode, setProjectCode] = useState('');
-  const [activityCode, setActivityCode] = useState('');
-  const [date, setDate] = useState('');
-  const [netTime, setNetTime] = useState('');
-  const [overTime, setOverTime] = useState('');
+  const [projectCode, setProjectCode] = useState("");
+  const [activityCode, setActivityCode] = useState("");
+  const [date, setDate] = useState("");
+  const [netTime, setNetTime] = useState("");
+  const [overTime, setOverTime] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +21,7 @@ const TimeTrial = () => {
       setEntries([...entries, newEntry]);
       clearForm();
     } else {
-      alert('Net time cannot exceed 48 hours in a week!');
+      alert("Net time cannot exceed 48 hours in a week!");
     }
   };
 
@@ -30,87 +30,86 @@ const TimeTrial = () => {
   //   return totalNetTime + newEntry.netTime <= 48;
   // };
 
-
   // const validateEntry = (newEntry) => {
   //   const today = new Date(date);
   //   const currentDay = today.getDay(); // 0 for Sunday, 1 for Monday, ..., 6 for Saturday
   //   const daysUntilNextMonday = 1 - currentDay; // Positive if today is Monday, negative otherwise
   //   const mondayOfCurrentWeek = new Date(today);
   //   mondayOfCurrentWeek.setDate(today.getDate() + daysUntilNextMonday);
-  
+
   //   // Calculate start and end dates for the current week (Monday to Saturday)
   //   const startOfWeek = new Date(mondayOfCurrentWeek);
   //   const endOfWeek = new Date(startOfWeek);
   //   endOfWeek.setDate(startOfWeek.getDate() + 5); // Saturday
-  
+
   //   // Filter entries for the current week
   //   const entriesForCurrentWeek = entries.filter(entry => {
   //     const entryDate = new Date(entry.date);
   //     return entryDate >= startOfWeek && entryDate <= endOfWeek;
   //   });
-  
+
   //   // Calculate total net time for the current week
   //   const totalNetTime = entriesForCurrentWeek.reduce((total, entry) => total + entry.netTime, 0);
-  
+
   //   return totalNetTime + newEntry.netTime <= 48;
   // };
-
 
   const validateEntry = (newEntry) => {
     const today = new Date(date);
     const currentDay = today.getDay(); // 0 for Sunday, 1 for Monday, ..., 6 for Saturday
-  
+
     // Check if entry is on Sunday
     if (currentDay === 0) {
-      alert('Entry on Sunday is invalid.');
+      alert("Entry on Sunday is invalid.");
       return false;
     }
-  
+
     // Check if entry is on second or fourth Saturday
     if (currentDay === 6) {
       const dayOfMonth = today.getDate();
       const weekOfMonth = Math.floor((dayOfMonth - 1) / 7) + 1;
       if (weekOfMonth === 2 || weekOfMonth === 4) {
-        alert('Entry on second or fourth Saturday is invalid.');
+        alert("Entry on second or fourth Saturday is invalid.");
         return false;
       }
     }
-  
+
     const daysUntilNextMonday = 1 - currentDay; // Positive if today is Monday, negative otherwise
     const mondayOfCurrentWeek = new Date(today);
     mondayOfCurrentWeek.setDate(today.getDate() + daysUntilNextMonday);
-  
+
     // Calculate start and end dates for the current week (Monday to Saturday)
     const startOfWeek = new Date(mondayOfCurrentWeek);
     const endOfWeek = new Date(startOfWeek);
     endOfWeek.setDate(startOfWeek.getDate() + 5); // Saturday
-  
+
     // Filter entries for the current week
-    const entriesForCurrentWeek = entries.filter(entry => {
+    const entriesForCurrentWeek = entries.filter((entry) => {
       const entryDate = new Date(entry.date);
       return entryDate >= startOfWeek && entryDate <= endOfWeek;
     });
-  
+
     // Calculate total net time for the current week
-    const totalNetTime = entriesForCurrentWeek.reduce((total, entry) => total + entry.netTime, 0);
-  
+    const totalNetTime = entriesForCurrentWeek.reduce(
+      (total, entry) => total + entry.netTime,
+      0
+    );
+
     // Validate total net time for the week
     if (totalNetTime + newEntry.netTime > 48) {
-      alert('Net time cannot exceed 48 hours in a week!');
+      alert("Net time cannot exceed 48 hours in a week!");
       return false;
     }
-  
+
     return true;
   };
-  
-  
 
   const clearForm = () => {
-    setProjectCode('');
-    setActivityCode('');
-    setDate('');
-    setNetTime('');
-    setOverTime('');
+    setProjectCode("");
+    setActivityCode("");
+    setDate("");
+    setNetTime("");
+    setOverTime("");
   };
 
   return (
@@ -119,27 +118,47 @@ const TimeTrial = () => {
       <form onSubmit={handleSubmit}>
         <label>
           Project Code:
-          <input type="text" value={projectCode} onChange={(e) => setProjectCode(e.target.value)} />
+          <input
+            type="text"
+            value={projectCode}
+            onChange={(e) => setProjectCode(e.target.value)}
+          />
         </label>
         <br />
         <label>
           Activity Code:
-          <input type="text" value={activityCode} onChange={(e) => setActivityCode(e.target.value)} />
+          <input
+            type="text"
+            value={activityCode}
+            onChange={(e) => setActivityCode(e.target.value)}
+          />
         </label>
         <br />
         <label>
           Date:
-          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+          <input
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
         </label>
         <br />
         <label>
           Net Time (hrs):
-          <input type="number" value={netTime} onChange={(e) => setNetTime(e.target.value)} />
+          <input
+            type="number"
+            value={netTime}
+            onChange={(e) => setNetTime(e.target.value)}
+          />
         </label>
         <br />
         <label>
           Over Time (hrs):
-          <input type="number" value={overTime} onChange={(e) => setOverTime(e.target.value)} />
+          <input
+            type="number"
+            value={overTime}
+            onChange={(e) => setOverTime(e.target.value)}
+          />
         </label>
         <br />
         <button type="submit">Submit</button>
