@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Button, Divider, Grid } from "@mui/material";
+import React, { useState } from "react";
+import { Divider, Grid } from "@mui/material";
 
 // import { useDispatch } from "react-redux";
 
@@ -8,8 +8,6 @@ import "./Style1.css"; // Import CSS file for styling
 // import ProjectCode from "./ProjectCodePopUp";
 import ProjectCodePopUp from "./ProjectCodePopUp";
 import ActivityCodePopUp from "./ActivityCodePopUp";
-import Analysis from "./Analysis";
-
 const Evolve = ({ currentId }) => {
   // const dispatch = useDispatch();
   const [entries, setEntries] = useState([]);
@@ -182,6 +180,7 @@ const Evolve = ({ currentId }) => {
                 defaultValue={projectCode}
                 onFocus={togglePopup1} // Using onFocus event to trigger the popup
                 // onChange={handleInputChange} // Handle input change
+                autoComplete="off"
               />
               {/* ______________________________________pop window contents_____________________________________________ */}
 
@@ -213,6 +212,7 @@ const Evolve = ({ currentId }) => {
                 defaultValue={activityCode}
                 // onChange={(e) => setActivityCode(e.target.value)}
                 onFocus={togglePopup2}
+                autoComplete="off"
               />
               {activityopen && (
                 <ActivityCodePopUp
@@ -307,14 +307,6 @@ const Evolve = ({ currentId }) => {
             </table>
           </div>
         </Grid>
-        <div>
-          <div>
-            <Button onClick={handleAnalysis}>Analytic</Button>
-          </div>
-          {showAnalysis && ( // Render Analysis component conditionally based on showAnalysis state
-            <Analysis entries={entries} projectCode={projectCode} />
-          )}
-        </div>
       </div>
     </>
   );
