@@ -1,24 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
 
 import { Grid, CircularProgress, Box } from "@mui/material";
 
 
+import { fetchPost } from '../../../api';
 import { getPost } from '../../../action/posts';
 
 const TimeSheetTable = ({ currentId, posts }) => {
   const dispatch = useDispatch();
+  const { post } = useSelector((state) => state.posts);
   const [entries, setEntries] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { id } = useParams();
 
   // Fetch the entries for this timesheet when the component mounts.
   useEffect(() => {
-    dispatch(getPost(currentId))
-      .then((post) => {
-        setEntries([...entries, post]);
+    dispatch(getPost(id))
+    .then((res) => {
+        console.log("TimeSheetTable: got data");
+        
+        // setEntries((prevEntries) => ([...prevEntries, res]));
+        setEntries(() => {
+          posts.map((post) => {
+            if (post._id === currentId) {
+              // console.log(post)
+              return setEntries([...entries, post]);
+            }
+          })
+        });
+        
         setIsLoading(false);
-      });
-  }, [currentId, isLoading]);
+    })
+  }, [dispatch, currentId, isLoading]);
 
 
 
@@ -28,7 +43,7 @@ const TimeSheetTable = ({ currentId, posts }) => {
   const deleteEntry = (index) => {};
 
 
-  console.log(entries);
+  console.log(entries)
 
 
 
@@ -52,7 +67,7 @@ const TimeSheetTable = ({ currentId, posts }) => {
             </tr>
           </thead>
           <tbody>
-            {/* {entries.map((entry, index) => (
+            {entries.map((entry, index) => (
               <tr key={index}>
                 <td style={{ color: "#e55d17" }}>{entry.projectCode}</td>
                 <td style={{ color: "#e55d17" }}>{entry.activityCode}</td>
@@ -69,7 +84,7 @@ const TimeSheetTable = ({ currentId, posts }) => {
                   <button onClick={() => deleteEntry(index)}>Delete</button>
                 </div>
               </tr>
-            ))} */}
+            ))}
           </tbody>
         </table>
           )
