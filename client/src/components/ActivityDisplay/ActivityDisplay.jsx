@@ -6,8 +6,13 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // import TimeSheetForm from "./TimeSheetForm/TimeSheetForm";
 // import TimeTrial from "./UnderTrial/TimeTrial";
+import TimeSheetTable from "./TimeSheet/TimeSheetTable";
+import Form from "./TimeSheetForm/Form";
 import Evolve from "./UnderTrial/Evolve";
 import { getPosts } from "../../action/posts";
+
+import './Style.css';
+
 
 const ActivityDisplay = () => {
   const [currentId, setCurrentId] = useState(null);
@@ -27,7 +32,13 @@ const ActivityDisplay = () => {
   return (
     // <div>ActivityDisplay</div>
     <>
-      <div><Evolve currentId={currentId}/></div>
+      <h2 style={{ color: "#16355d", marginLeft: "50px", fontWeight: "bold" }}>Time Sheet Activity Display</h2>
+      <div className="time-sheet-container" style={{ display: "flex",  flexDirection: 'row',  justifyContent:'space-evenly' }} >
+        <div><Form currentId={currentId}/></div>
+        <div><TimeSheetTable currentId={currentId} posts={posts} /></div>
+      </div>
+    
+      {/* <div><Evolve currentId={currentId}/></div> */}
       {/* <div>
         <TimeSheetForm currentId={currentId} />
       </div> */}

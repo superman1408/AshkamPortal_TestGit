@@ -155,6 +155,10 @@ const Evolve = ({ currentId }) => {
     // }
   };
 
+
+
+  
+
   return (
     <>
       <h2 style={{ color: "#16355d", marginLeft: "50px" }}>
