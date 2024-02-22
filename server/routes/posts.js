@@ -5,7 +5,8 @@ import {
   updatePost,
   deletePost,
   getPost,
-  todoList,
+  // todoList,
+  weeklyActivityData,
   skillData,
 } from "../controllers/posts.js";
 
@@ -23,8 +24,9 @@ router.patch("/:id/registration", auth, updatePost);
 
 router.delete("/:id", auth, deletePost);
 
-router.post("/:id/todo", auth, todoList);
+router.post("/:id/todo", auth, weeklyActivityData);
 
 router.post("/skill", skillData);
+
 
 export default router;

@@ -19,6 +19,8 @@ const Evolve = ({ currentId }) => {
   const [editIndex, setEditIndex] = useState(-1);
   const [showAnalysis, setShowAnalysis] = useState(false);
 
+  const [formData, setFormData] = useState({});
+
   // useEffect(() => {
   //   calculateAnalytics(); // Call calculateAnalytics whenever entries are updated
   // }, [entries]);
@@ -129,18 +131,6 @@ const Evolve = ({ currentId }) => {
   // const handleInputChange = (event) => {
   //   setProjectCode(event.target.value);
   // };
-
-  const handleAnalysis = () => {
-    if (showAnalysis === false) {
-      setShowAnalysis(true);
-    } else {
-      setShowAnalysis(false);
-    }
-
-    // if (entries === 0) {
-    //   setShowAnalysis(false);
-    // }
-  };
 
   return (
     <>
