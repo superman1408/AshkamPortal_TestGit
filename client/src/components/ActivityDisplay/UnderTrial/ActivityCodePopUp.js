@@ -47,7 +47,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       Administration: "AD",
       Architectural: "AR",
       BusinessDevelopment: "BD",
-      CivilORstructural: "CS",
+      CivilORStructural: "CS",
       Construction: "CO",
       Electrical: "EL",
       HSE: "HS",
@@ -205,7 +205,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
                 <option value="BusinessDevelopment">
                   Business Development
                 </option>
-                <option value="Civil/structural">Civil/ structural</option>
+                <option value="CivilORStructural">Civil/ Structural</option>
                 <option value="Construction">Construction</option>
                 <option value="Electrical">Electrical</option>
                 <option value="HSE">HSE</option>
@@ -375,3 +375,4 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
 };
 
 export default ActivityCodePopUp;
+
