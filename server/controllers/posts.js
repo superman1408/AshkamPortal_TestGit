@@ -115,11 +115,14 @@ export const todoList = async (req, res) => {
 
   const user = await AuthenticateUser.findById(id);
 
+  console.log(value.projectCode)
+
   try {
-    user.jobCode.push(value.formData.jobCode);
-    user.startTime.push(value.formData.startTime);
-    user.endTime.push(value.formData.endTime);
-    user.hoursWorked.push(value.formData.hoursWorked);
+    user.projectCode.push(value.projectCode);
+    user.activityCode.push(value.activityCode);
+    user.date.push(value.date);
+    user.netTime.push(value.netTime);
+    user.overTime.push(value.overTime);
 
     const updatedPost = await AuthenticateUser.findByIdAndUpdate(id, user, {
       new: true,
@@ -130,6 +133,8 @@ export const todoList = async (req, res) => {
     res.status(409).json({ message: error.message });
   }
 };
+
+
 
 // _________________________Skill Data Status_____________________________
 export const skillData = async (req, res) => {
