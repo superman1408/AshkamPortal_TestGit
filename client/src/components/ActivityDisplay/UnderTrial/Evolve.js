@@ -64,7 +64,6 @@ const Evolve = ({ currentId }) => {
   };
 
 
-
   const validateEntry = (newEntry) => {
     const today = new Date(date);
     const currentDay = today.getDay();
