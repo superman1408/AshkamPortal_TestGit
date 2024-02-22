@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Divider, Grid } from "@mui/material";
 
 // import { useDispatch } from "react-redux";
 
@@ -7,7 +8,6 @@ import "./Style1.css"; // Import CSS file for styling
 // import ProjectCode from "./ProjectCodePopUp";
 import ProjectCodePopUp from "./ProjectCodePopUp";
 import ActivityCodePopUp from "./ActivityCodePopUp";
-
 const Evolve = ({ currentId }) => {
   // const dispatch = useDispatch();
   const [entries, setEntries] = useState([]);
@@ -17,6 +17,11 @@ const Evolve = ({ currentId }) => {
   const [netTime, setNetTime] = useState("");
   const [overTime, setOverTime] = useState("");
   const [editIndex, setEditIndex] = useState(-1);
+  const [showAnalysis, setShowAnalysis] = useState(false);
+
+  // useEffect(() => {
+  //   calculateAnalytics(); // Call calculateAnalytics whenever entries are updated
+  // }, [entries]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,12 +43,12 @@ const Evolve = ({ currentId }) => {
         setEntries([...entries, newEntry]);
         // await dispatch(todoList(entries, currentId));
       }
-      clearForm();
     } else {
       alert(
         'Invalid entry! Please check your input values and try again. Selected Date must not fall under "SUNDAY" & 2nd-4th "SATURDAY".'
       );
     }
+    clearForm();
   };
 
   const validateEntry = (newEntry) => {
@@ -94,6 +99,7 @@ const Evolve = ({ currentId }) => {
   };
 
   const clearForm = () => {
+    console.log("Clear....!!!");
     setProjectCode("");
     setActivityCode("");
     setDate("");
@@ -111,7 +117,6 @@ const Evolve = ({ currentId }) => {
   const [projectopen, setProjectOpen] = useState(false);
 
   const [activityopen, setActivityOpen] = useState(false);
-  // const [projectCode, setProjectCode] = useState('');
 
   const togglePopup1 = () => {
     setProjectOpen(!projectopen);
@@ -125,138 +130,185 @@ const Evolve = ({ currentId }) => {
   //   setProjectCode(event.target.value);
   // };
 
+  const handleAnalysis = () => {
+    if (showAnalysis === false) {
+      setShowAnalysis(true);
+    } else {
+      setShowAnalysis(false);
+    }
+
+    // if (entries === 0) {
+    //   setShowAnalysis(false);
+    // }
+  };
+
   return (
-    <div className="time-sheet-container">
-      <h1 style={{ color: "#16355d" }}>Time Sheet</h1>
-      <form onSubmit={handleSubmit} className="time-sheet-form">
-        <div className="form-group">
-          <label style={{ color: "#16355d" }} htmlFor="projectCode">
-            Project Code:
-          </label>
+    <>
+      <h2 style={{ color: "#16355d", marginLeft: "50px" }}>
+        Project Time Sheet
+      </h2>
+      <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} />
 
-          <input
-            style={{
-              width: "100%",
-              padding: "8px",
-              fontSize: "16px",
-              border: "1px solid #ccc",
-              borderRadius: "4px",
-              color: "#e55d17",
-            }}
-            type="text"
-            id="projectCode"
-            defaultValue={projectCode}
-            onFocus={togglePopup1} // Using onFocus event to trigger the popup
-            // onChange={handleInputChange} // Handle input change
-          />
-          {/* ______________________________________pop window contents_____________________________________________ */}
+      <div className="time-sheet-container" style={{ display: "flex" }}>
+        <Grid
+          sx={{
+            padding: "10px",
+            width: "30%",
+            backgroundColor: "whitesmoke",
+            margin: "0px 20px 0px 20px",
+          }}
+        >
+          <form onSubmit={handleSubmit} className="time-sheet-form">
+            {/* <div style={{ display: "flex", justifyContent: "space-between" }}> */}
+            <div className="form-group">
+              <label style={{ color: "#16355d" }} htmlFor="projectCode">
+                Project Code:
+              </label>
 
-          {projectopen && (
-            <ProjectCodePopUp
-              setProjectCode={setProjectCode}
-              setProjectOpen={setProjectOpen}
-            />
-          )}
-        </div>
+              <input
+                style={{
+                  width: "100%",
+                  height: "30px",
+                  padding: "8px",
+                  fontSize: "16px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  color: "#e55d17",
+                }}
+                type="text"
+                id="projectCode"
+                defaultValue={projectCode}
+                onFocus={togglePopup1} // Using onFocus event to trigger the popup
+                // onChange={handleInputChange} // Handle input change
+                autoComplete="off"
+              />
+              {/* ______________________________________pop window contents_____________________________________________ */}
 
-        <div className="form-group">
-          <label style={{ color: "#16355d" }} htmlFor="activityCode">
-            Activity Code:
-          </label>
-          <input
-            style={{
-              width: "100%",
-              padding: "8px",
-              fontSize: "16px",
-              border: "1px solid #ccc",
-              borderRadius: "4px",
-              color: "#e55d17",
-            }}
-            type="text"
-            id="activityCode"
-            defaultValue={activityCode}
-            // onChange={(e) => setActivityCode(e.target.value)}
-            onFocus={togglePopup2}
-          />
-          {activityopen && (
-            <ActivityCodePopUp
-              setActivityCode={setActivityCode}
-              setActivityOpen={setActivityOpen}
-            />
-          )}
-        </div>
+              {projectopen && (
+                <ProjectCodePopUp
+                  setProjectCode={setProjectCode}
+                  setProjectOpen={setProjectOpen}
+                />
+              )}
+            </div>
 
-        <div className="form-group">
-          <label style={{ color: "#16355d" }} htmlFor="date">
-            Date:
-          </label>
-          <input
-            type="date"
-            id="date"
-            defaultValue={date}
-            onChange={(e) => setDate(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label style={{ color: "#16355d" }} htmlFor="netTime">
-            Net Time (hrs):
-          </label>
-          <input
-            type="number"
-            id="netTime"
-            defaultValue={netTime}
-            onChange={(e) => setNetTime(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label style={{ color: "#16355d" }} htmlFor="overTime">
-            Over Time (hrs):
-          </label>
-          <input
-            type="number"
-            id="overTime"
-            defaultValue={overTime}
-            onChange={(e) => setOverTime(e.target.value)}
-          />
-        </div>
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
-          <button type="submit">
-            {editIndex !== -1 ? "Update" : "Submit"}
-          </button>
-          <button type="button" onClick={clearForm}>
-            Clear
-          </button>
-        </div>
-      </form>
-      <hr />
-      <h2 style={{ color: "#16355d" }}>Time Sheet Entries</h2>
-      <table className="time-sheet-table">
-        <thead>
-          <tr>
-            <th style={{ color: "#16355d" }}>Project Code</th>
-            <th style={{ color: "#16355d" }}>Activity Code</th>
-            <th style={{ color: "#16355d" }}>Date</th>
-            <th style={{ color: "#16355d" }}>Net Time (hrs)</th>
-            <th style={{ color: "#16355d" }}>Over Time (hrs)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {entries.map((entry, index) => (
-            <tr key={index}>
-              <td style={{ color: "#e55d17" }}>{entry.projectCode}</td>
-              <td style={{ color: "#e55d17" }}>{entry.activityCode}</td>
-              <td style={{ color: "#e55d17" }}>{entry.date}</td>
-              <td style={{ color: "#e55d17" }}>{entry.netTime}</td>
-              <td style={{ color: "#e55d17" }}>{entry.overTime}</td>
-              <div style={{ display: "flex", justifyContent: "space-around" }}>
-                <button onClick={() => editEntry(index)}>Edit</button>
-                <button onClick={() => deleteEntry(index)}>Delete</button>
-              </div>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+            <div className="form-group">
+              {/* <div style={{ marginLeft: "10px" }}> */}
+              <label style={{ color: "#16355d" }} htmlFor="activityCode">
+                Activity Code:
+              </label>
+              <input
+                style={{
+                  width: "100%",
+                  height: "30px",
+                  padding: "8px",
+                  fontSize: "16px",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  color: "#e55d17",
+                }}
+                type="text"
+                id="activityCode"
+                defaultValue={activityCode}
+                // onChange={(e) => setActivityCode(e.target.value)}
+                onFocus={togglePopup2}
+                autoComplete="off"
+              />
+              {activityopen && (
+                <ActivityCodePopUp
+                  setActivityCode={setActivityCode}
+                  setActivityOpen={setActivityOpen}
+                />
+              )}
+            </div>
+            {/* </div> */}
+            {/* </div> */}
+
+            <div className="form-group">
+              <label style={{ color: "#16355d" }} htmlFor="date">
+                Date:
+              </label>
+              <input
+                type="date"
+                id="date"
+                defaultValue={date}
+                onChange={(e) => setDate(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              <label style={{ color: "#16355d" }} htmlFor="netTime">
+                Net Time (hrs):
+              </label>
+              <input
+                type="number"
+                id="netTime"
+                defaultValue={netTime}
+                onChange={(e) => setNetTime(e.target.value)}
+              />
+            </div>
+            <div className="form-group">
+              {/* <div style={{ marginLeft: "10px" }}> */}
+              <label style={{ color: "#16355d" }} htmlFor="overTime">
+                Over Time (hrs):
+              </label>
+              <input
+                type="number"
+                id="overTime"
+                defaultValue={overTime}
+                onChange={(e) => setOverTime(e.target.value)}
+              />
+            </div>
+            {/* </div> */}
+            <div style={{ display: "flex", justifyContent: "space-around" }}>
+              <button type="submit">
+                {editIndex !== -1 ? "Update" : "Submit"}
+              </button>
+              <button type="button" onClick={clearForm}>
+                Clear
+              </button>
+            </div>
+          </form>
+        </Grid>
+
+        <hr />
+        <Grid sx={{ width: "70%" }}>
+          <div>
+            {/* <h2 style={{ color: "#16355d" }}>Time Sheet Entries</h2> */}
+            <table className="time-sheet-table">
+              <thead>
+                <tr>
+                  <th style={{ color: "#16355d" }}>Project Code</th>
+                  <th style={{ color: "#16355d" }}>Activity Code</th>
+                  <th style={{ color: "#16355d" }}>Date</th>
+                  <th style={{ color: "#16355d" }}>Net Time (hrs)</th>
+                  <th style={{ color: "#16355d" }}>Over Time (hrs)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {entries.map((entry, index) => (
+                  <tr key={index}>
+                    <td style={{ color: "#e55d17" }}>{entry.projectCode}</td>
+                    <td style={{ color: "#e55d17" }}>{entry.activityCode}</td>
+                    <td style={{ color: "#e55d17" }}>{entry.date}</td>
+                    <td style={{ color: "#e55d17" }}>{entry.netTime}</td>
+                    <td style={{ color: "#e55d17" }}>{entry.overTime}</td>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-around",
+                      }}
+                    >
+                      <button onClick={() => editEntry(index)}>Edit</button>
+                      <button onClick={() => deleteEntry(index)}>Delete</button>
+                    </div>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Grid>
+      </div>
+    </>
   );
 };
 
