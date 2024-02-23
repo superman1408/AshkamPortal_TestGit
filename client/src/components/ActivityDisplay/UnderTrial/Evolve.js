@@ -4,7 +4,7 @@ import { Divider, Grid } from "@mui/material";
 import { useDispatch } from "react-redux";
 
 import "./Style1.css"; // Import CSS file for styling
-import { todoList } from "../../../api";
+import { todoList } from '../../../action/posts';
 // import ProjectCode from "./ProjectCodePopUp";
 import ProjectCodePopUp from "./ProjectCodePopUp";
 import ActivityCodePopUp from "./ActivityCodePopUp";
@@ -48,12 +48,19 @@ const Evolve = ({ currentId, posts }) => {
         updatedEntries[editIndex] = newEntry;
         setEntries(updatedEntries);
         console.log(updatedEntries);
-        // await dispatch(todoList(newEntry, currentId));
-        setEditIndex(-1); // Reset edit index
+        await dispatch(todoList(newEntry, currentId))
+        .then((res) => {
+          console.log("Data is recieved in the Data Base");
+          setEditIndex(-1); // Reset edit index
+        });
       } else {
         setEntries([...entries, newEntry]);
         // console.log(entries)
-        await dispatch(todoList(newEntry, currentId));
+        await dispatch(todoList(newEntry, currentId))
+        .then((res) => {
+          console.log("Data is recieved in the Data Base");
+          clearForm();
+        });
       }
     } else {
       alert(
@@ -309,7 +316,7 @@ const Evolve = ({ currentId, posts }) => {
                     <td style={{ color: "#e55d17" }}>{entry.date}</td>
                     <td style={{ color: "#e55d17" }}>{entry.netTime}</td>
                     <td style={{ color: "#e55d17" }}>{entry.overTime}</td>
-                    <div
+                    <td
                       style={{
                         display: "flex",
                         justifyContent: "space-around",
@@ -317,7 +324,7 @@ const Evolve = ({ currentId, posts }) => {
                     >
                       <button onClick={() => editEntry(index)}>Edit</button>
                       <button onClick={() => deleteEntry(index)}>Delete</button>
-                    </div>
+                    </td>
                   </tr>
                 ))}
               </tbody>
