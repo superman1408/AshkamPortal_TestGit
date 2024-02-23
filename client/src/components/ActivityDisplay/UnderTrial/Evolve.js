@@ -8,7 +8,7 @@ import { todoList } from "../../../api";
 // import ProjectCode from "./ProjectCodePopUp";
 import ProjectCodePopUp from "./ProjectCodePopUp";
 import ActivityCodePopUp from "./ActivityCodePopUp";
-const Evolve = ({ currentId }) => {
+const Evolve = ({ currentId, posts }) => {
   const dispatch = useDispatch();
   const [entries, setEntries] = useState([]);
   const [projectCode, setProjectCode] = useState("");
