@@ -141,11 +141,11 @@ const authSchema = mongoose.Schema({
     default: []
   }, // reference to Projects code for Time Sheet
   netTime: {
-    type: [String],
+    type: [Number],
     default: []
   }, // reference to Projects code for Time Sheet
   overTime: {
-    type: [String],
+    type: [Number],
     default: []
   }, // reference to Projects code for Time Sheet
   editIndex: {

@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Divider, Grid } from "@mui/material";
 
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import "./Style1.css"; // Import CSS file for styling
-// import { todoList } from "../../../api";
+import { todoList } from "../../../api";
 // import ProjectCode from "./ProjectCodePopUp";
 import ProjectCodePopUp from "./ProjectCodePopUp";
 import ActivityCodePopUp from "./ActivityCodePopUp";
 const Evolve = ({ currentId }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [entries, setEntries] = useState([]);
   const [projectCode, setProjectCode] = useState("");
   const [activityCode, setActivityCode] = useState("");
@@ -32,16 +32,28 @@ const Evolve = ({ currentId }) => {
       netTime: parseFloat(netTime),
       overTime: parseFloat(overTime),
     };
+    // const formData = {
+    //   projectcode: [...newEntry, projectCode],
+    //   activitycode: [...newEntry, activityCode],
+    //   date1: [...newEntry, date],
+    //   nettime: [...newEntry, netTime],
+    //   overtime: [...newEntry, overTime],
+    // }
+
+    // console.log(newEntry)
+
     if (validateEntry(newEntry)) {
       if (editIndex !== -1) {
         const updatedEntries = [...entries];
         updatedEntries[editIndex] = newEntry;
         setEntries(updatedEntries);
-        // await dispatch(todoList(entries, currentId));
-        // setEditIndex(-1); // Reset edit index
+        console.log(updatedEntries);
+        // await dispatch(todoList(newEntry, currentId));
+        setEditIndex(-1); // Reset edit index
       } else {
         setEntries([...entries, newEntry]);
-        // await dispatch(todoList(entries, currentId));
+        // console.log(entries)
+        await dispatch(todoList(newEntry, currentId));
       }
     } else {
       alert(
@@ -50,6 +62,7 @@ const Evolve = ({ currentId }) => {
     }
     clearForm();
   };
+
 
   const validateEntry = (newEntry) => {
     const today = new Date(date);
@@ -141,6 +154,10 @@ const Evolve = ({ currentId }) => {
     //   setShowAnalysis(false);
     // }
   };
+
+
+
+  
 
   return (
     <>
