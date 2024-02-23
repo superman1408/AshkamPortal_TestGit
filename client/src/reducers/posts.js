@@ -17,7 +17,7 @@ export default (posts = [], action) => {
       return action.payload;
 
     case FETCH_POST:
-      return action.payload;
+      return [...posts, action.payload];
 
     case CREATE:
       return [...posts, action.payload];

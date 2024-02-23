@@ -7,8 +7,7 @@ import "./Style1.css"; // Import CSS file for styling
 import { todoList } from "../../../api";
 import ProjectCodePopUp from "./ProjectCodePopUp";
 import ActivityCodePopUp from "./ActivityCodePopUp";
-
-const Evolve = ({ currentId }) => {
+const Evolve = ({ currentId, posts }) => {
   const dispatch = useDispatch();
   const [entries, setEntries] = useState([]);
   const [projectCode, setProjectCode] = useState("");
@@ -64,6 +63,7 @@ const Evolve = ({ currentId }) => {
     clearForm();
     handlePunch();
   };
+
 
   const validateEntry = (newEntry) => {
     const today = new Date(date);
@@ -146,6 +146,10 @@ const Evolve = ({ currentId }) => {
 
     setPunchedDateTime(formattedDate);
   };
+
+
+
+  
 
   return (
     <>
