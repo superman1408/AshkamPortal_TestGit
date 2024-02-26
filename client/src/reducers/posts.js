@@ -17,7 +17,7 @@ export default (posts = [], action) => {
       return action.payload;
 
     case FETCH_POST:
-      return action.payload;
+      return [...posts, action.payload];
 
     case CREATE:
       return [...posts, action.payload];
@@ -60,12 +60,12 @@ export default (posts = [], action) => {
     //   }),
     // }
 
-    case TODOLIST:
-      return posts.map((post) =>
-        post._id === action.payload._id ? action.payload : post
-      );
     // case TODOLIST:
-      // return [...posts, action.payload];
+    //   return posts.map((post) =>
+    //     post._id === action.payload._id ? action.payload : post
+    //   );
+    case TODOLIST:
+      return [...posts, action.payload];
 
     default:
       return posts;
