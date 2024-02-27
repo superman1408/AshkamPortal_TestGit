@@ -111,11 +111,8 @@ export const updatedStatus = async (req, res) => {
 export const todoList = async (req, res) => {
   const { id } = req.params;
   const value = req.body;
-  console.log(value)
 
   const user = await AuthenticateUser.findById(id);
-
-  console.log(value.projectCode)
 
   try {
     user.projectCode.push(value.projectCode);
@@ -133,8 +130,6 @@ export const todoList = async (req, res) => {
     res.status(409).json({ message: error.message });
   }
 };
-
-
 
 // _________________________Skill Data Status_____________________________
 export const skillData = async (req, res) => {
@@ -155,8 +150,6 @@ export const skillData = async (req, res) => {
     });
 
     res.json(updatedPost);
-
-    console.log("value", value);
   } catch (error) {
     res.status(409).json({ message: error.message });
   }

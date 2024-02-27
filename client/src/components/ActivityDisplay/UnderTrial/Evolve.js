@@ -23,13 +23,11 @@ const Evolve = ({ currentId }) => {
 
   const posts = useSelector((state) => state.posts);
 
-  console.log(posts);
-
   useEffect(() => {
     array.length = 0;
     dispatch(getPosts()).then(() => {
       console.log("Data recieved in Evolve page...!!!@@$$");
-    })
+    });
   }, [dispatch, currentId]);
 
   const handleSubmit = async (e) => {
