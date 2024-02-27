@@ -4,7 +4,7 @@ import { Divider, Grid, CircularProgress, Box } from "@mui/material";
 import { useDispatch } from "react-redux";
 
 import "./Style1.css"; // Import CSS file for styling
-import { todoList } from "../../../action/posts";
+import { tableDelete, tableEdit, todoList } from "../../../action/posts";
 import ProjectCodePopUp from "./ProjectCodePopUp";
 import ActivityCodePopUp from "./ActivityCodePopUp";
 import { getPosts } from "../../../action/posts";
@@ -196,6 +196,7 @@ const Evolve = ({ currentId }) => {
   const deleteEntry = (index) => {
     // console.log(index);
     // console.log(posts);
+    dispatch(tableDelete(currentId, index));
     let updatedArray = updateArray();
     console.log(updatedArray[index]);
   };
@@ -206,6 +207,7 @@ const Evolve = ({ currentId }) => {
   const editEntry = (index) => {
     // console.log(index);
     // console.log(posts);
+    dispatch(tableEdit(currentId, index));
     let updatedArray = updateArray();
     console.log(updatedArray[index]);
   };

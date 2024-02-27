@@ -7,7 +7,8 @@ import {
   SENDMAILDATA,
   FETCH_POST,
   UPDATE_STATUS,
-  TODOLIST
+  TODOLIST,
+  UPDATE_TABLE
 } from "../constants/actionTypes";
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -65,6 +66,9 @@ export default (posts = [], action) => {
     //     post._id === action.payload._id ? action.payload : post
     //   );
     case TODOLIST:
+      return [...posts, action.payload];
+    
+    case UPDATE_TABLE:
       return [...posts, action.payload];
 
     default:
