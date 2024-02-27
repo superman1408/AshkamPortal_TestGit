@@ -149,25 +149,7 @@ const Evolve = ({ currentId }) => {
   };
 
 
-//Logic for deleting the entry......!!!
-  const deleteEntry = (index) => {
-    const updatedEntries = [...entries];
-    updatedEntries.splice(index, 1);
-    setEntries(updatedEntries);
-  };
 
-
-
-  //To Edit the entry....!!!!
-  const editEntry = (index) => {
-    const entryToEdit = entries[index];
-    setProjectCode(entryToEdit.projectCode);
-    setActivityCode(entryToEdit.activityCode);
-    setDate(entryToEdit.date);
-    setNetTime(entryToEdit.netTime.toString());
-    setOverTime(entryToEdit.overTime.toString());
-    setEditIndex(index);
-  };
 
 
 
@@ -208,6 +190,24 @@ const Evolve = ({ currentId }) => {
       }, 3000);
     }
   }, [isLoading]);
+
+
+  //Logic for deleting the entry......!!!
+  const deleteEntry = (index) => {
+    console.log(index);
+    console.log(posts);
+  };
+
+
+
+  //To Edit the entry....!!!!
+  const editEntry = (index) => {
+    console.log(index);
+    console.log(posts);
+  };
+
+
+  // console.log(array[0]);
 
 
 
