@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Divider, Grid } from "@mui/material";
 
 import { useDispatch } from "react-redux";
 
 import "./Style1.css"; // Import CSS file for styling
-import { todoList } from '../../../action/posts';
-// import ProjectCode from "./ProjectCodePopUp";
+import { todoList } from "../../../action/posts";
 import ProjectCodePopUp from "./ProjectCodePopUp";
 import ActivityCodePopUp from "./ActivityCodePopUp";
+import { getPosts } from "../../../action/posts";
+import { useSelector } from "react-redux";
+
 const Evolve = ({ currentId }) => {
   const dispatch = useDispatch();
   const [entries, setEntries] = useState([]);
@@ -17,11 +19,14 @@ const Evolve = ({ currentId }) => {
   const [netTime, setNetTime] = useState("");
   const [overTime, setOverTime] = useState("");
   const [editIndex, setEditIndex] = useState(-1);
-  const [showAnalysis, setShowAnalysis] = useState(false);
 
-  // useEffect(() => {
-  //   calculateAnalytics(); // Call calculateAnalytics whenever entries are updated
-  // }, [entries]);
+  const posts = useSelector((state) => state.posts);
+
+  console.log(posts);
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch, currentId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,15 +37,6 @@ const Evolve = ({ currentId }) => {
       netTime: parseFloat(netTime),
       overTime: parseFloat(overTime),
     };
-    // const formData = {
-    //   projectcode: [...newEntry, projectCode],
-    //   activitycode: [...newEntry, activityCode],
-    //   date1: [...newEntry, date],
-    //   nettime: [...newEntry, netTime],
-    //   overtime: [...newEntry, overTime],
-    // }
-
-    // console.log(newEntry)
 
     if (validateEntry(newEntry)) {
       if (editIndex !== -1) {
@@ -48,16 +44,14 @@ const Evolve = ({ currentId }) => {
         updatedEntries[editIndex] = newEntry;
         setEntries(updatedEntries);
         console.log(updatedEntries);
-        await dispatch(todoList(newEntry, currentId))
-        .then((res) => {
+        await dispatch(todoList(newEntry, currentId)).then((res) => {
           console.log("Data is recieved in the Data Base");
           setEditIndex(-1); // Reset edit index
         });
       } else {
         setEntries([...entries, newEntry]);
         // console.log(entries)
-        await dispatch(todoList(newEntry, currentId))
-        .then((res) => {
+        await dispatch(todoList(newEntry, currentId)).then((res) => {
           console.log("Data is recieved in the Data Base");
           clearForm();
         });
@@ -69,7 +63,6 @@ const Evolve = ({ currentId }) => {
     }
     clearForm();
   };
-
 
   const validateEntry = (newEntry) => {
     const today = new Date(date);
@@ -146,25 +139,21 @@ const Evolve = ({ currentId }) => {
     setActivityOpen(!activityopen);
   };
 
-  // const handleInputChange = (event) => {
-  //   setProjectCode(event.target.value);
-  // };
-
-  const handleAnalysis = () => {
-    if (showAnalysis === false) {
-      setShowAnalysis(true);
-    } else {
-      setShowAnalysis(false);
+  const array = [];
+  // eslint-disable-next-line array-callback-return
+  posts.map((post) => {
+    for (let i = 0; i < post.projectCode.length; i++) {
+      if (post._id === currentId) {
+        array.push({
+          projectCode: post.projectCode[i],
+          activityCode: post.activityCode[i],
+          date: post.date[i],
+          netTime: post.netTime[i],
+          overTime: post.overTime[i],
+        });
+      }
     }
-
-    // if (entries === 0) {
-    //   setShowAnalysis(false);
-    // }
-  };
-
-
-
-  
+  });
 
   return (
     <>
@@ -309,13 +298,13 @@ const Evolve = ({ currentId }) => {
                 </tr>
               </thead>
               <tbody>
-                {entries.map((entry, index) => (
+                {array.map((post, index) => (
                   <tr key={index}>
-                    <td style={{ color: "#e55d17" }}>{entry.projectCode}</td>
-                    <td style={{ color: "#e55d17" }}>{entry.activityCode}</td>
-                    <td style={{ color: "#e55d17" }}>{entry.date}</td>
-                    <td style={{ color: "#e55d17" }}>{entry.netTime}</td>
-                    <td style={{ color: "#e55d17" }}>{entry.overTime}</td>
+                    <td style={{ color: "#e55d17" }}>{post.projectCode}</td>
+                    <td style={{ color: "#e55d17" }}>{post.activityCode}</td>
+                    <td style={{ color: "#e55d17" }}>{post.date}</td>
+                    <td style={{ color: "#e55d17" }}>{post.netTime}</td>
+                    <td style={{ color: "#e55d17" }}>{post.overTime}</td>
                     <td
                       style={{
                         display: "flex",
