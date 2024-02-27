@@ -26,11 +26,14 @@ const Evolve = ({ currentId }) => {
   console.log(posts);
 
   useEffect(() => {
-    dispatch(getPosts());
+    array.length = 0;
+    dispatch(getPosts()).then(() => {
+      console.log("Data recieved in Evolve page...!!!@@$$");
+    })
   }, [dispatch, currentId]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const newEntry = {
       projectCode,
       activityCode,
