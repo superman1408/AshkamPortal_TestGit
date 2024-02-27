@@ -49,7 +49,7 @@ const Evolve = ({ currentId }) => {
         }
       });
     });
-  }, [dispatch, currentId, array]);
+  }, [isLoading]);
 
 
 
@@ -194,16 +194,38 @@ const Evolve = ({ currentId }) => {
 
   //Logic for deleting the entry......!!!
   const deleteEntry = (index) => {
-    console.log(index);
-    console.log(posts);
+    // console.log(index);
+    // console.log(posts);
+    let updatedArray = updateArray();
+    console.log(updatedArray[index]);
   };
 
 
 
   //To Edit the entry....!!!!
   const editEntry = (index) => {
-    console.log(index);
-    console.log(posts);
+    // console.log(index);
+    // console.log(posts);
+    let updatedArray = updateArray();
+    console.log(updatedArray[index]);
+  };
+
+
+  const updateArray = () => {
+    posts.map((post) => {
+      for (let i = 0; i < post.projectCode.length; i++) {
+        if (post._id === currentId) {
+          array.push({
+            projectCode: post.projectCode[i],
+            activityCode: post.activityCode[i],
+            date: post.date[i],
+            netTime: post.netTime[i],
+            overTime: post.overTime[i],
+          });
+        }
+      }
+    });
+    return array;
   };
 
 
