@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Divider, Grid } from "@mui/material";
+import { Divider, Grid, CircularProgress, Box } from "@mui/material";
 
 import { useDispatch } from "react-redux";
 
@@ -19,6 +19,7 @@ const Evolve = ({ currentId }) => {
   const [netTime, setNetTime] = useState("");
   const [overTime, setOverTime] = useState("");
   const [editIndex, setEditIndex] = useState(-1);
+  const [isLoading, setIsLoading] = useState(true);
 
   const posts = useSelector((state) => state.posts);
 
@@ -155,6 +156,14 @@ const Evolve = ({ currentId }) => {
     }
   });
 
+  useEffect(() => {
+    if (isLoading === true) {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 3000);
+    }
+  }, [isLoading]);
+
   return (
     <>
       <h2 style={{ color: "#16355d", marginLeft: "50px" }}>
@@ -286,43 +295,54 @@ const Evolve = ({ currentId }) => {
         <hr />
         <Grid sx={{ width: "70%" }}>
           <div>
-            {/* <h2 style={{ color: "#16355d" }}>Time Sheet Entries</h2> */}
-            <table className="time-sheet-table">
-              <thead>
-                <tr>
-                  <th style={{ color: "#16355d" }}>Project Code</th>
-                  <th style={{ color: "#16355d" }}>Activity Code</th>
-                  <th style={{ color: "#16355d" }}>Date</th>
-                  <th style={{ color: "#16355d" }}>Net Time (hrs)</th>
-                  <th style={{ color: "#16355d" }}>Over Time (hrs)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {array.map((post, index) => (
-                  <tr key={index}>
-                    <td style={{ color: "#e55d17" }}>{post.projectCode}</td>
-                    <td style={{ color: "#e55d17" }}>{post.activityCode}</td>
-                    <td style={{ color: "#e55d17" }}>{post.date}</td>
-                    <td style={{ color: "#e55d17" }}>{post.netTime}</td>
-                    <td style={{ color: "#e55d17" }}>{post.overTime}</td>
-                    <td
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-around",
-                      }}
-                    >
-                      <button onClick={() => editEntry(index)}>Edit</button>
-                      <button onClick={() => deleteEntry(index)}>Delete</button>
-                    </td>
+            {isLoading ? (
+              <Box sx={{ marginLeft: "400px", marginTop: "100px" }}>
+                <CircularProgress />
+              </Box>
+            ) : (
+              <table className="time-sheet-table">
+                <thead>
+                  <tr>
+                    <th style={{ color: "#16355d" }}>Project Code</th>
+                    <th style={{ color: "#16355d" }}>Activity Code</th>
+                    <th style={{ color: "#16355d" }}>Date</th>
+                    <th style={{ color: "#16355d" }}>Net Time (hrs)</th>
+                    <th style={{ color: "#16355d" }}>Over Time (hrs)</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {array.map((post, index) => (
+                    <tr key={index}>
+                      <td style={{ color: "#e55d17" }}>{post.projectCode}</td>
+                      <td style={{ color: "#e55d17" }}>{post.activityCode}</td>
+                      <td style={{ color: "#e55d17" }}>{post.date}</td>
+                      <td style={{ color: "#e55d17" }}>{post.netTime}</td>
+                      <td style={{ color: "#e55d17" }}>{post.overTime}</td>
+                      <td
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-around",
+                        }}
+                      >
+                        <button onClick={() => editEntry(index)}>Edit</button>
+                        <button onClick={() => deleteEntry(index)}>
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
         </Grid>
       </div>
     </>
   );
 };
+
+// {
+//   /* <h2 style={{ color: "#16355d" }}>Time Sheet Entries</h2> */
+// }
 
 export default Evolve;
