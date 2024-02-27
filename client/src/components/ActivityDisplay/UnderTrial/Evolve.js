@@ -21,9 +21,12 @@ const Evolve = ({ currentId }) => {
   const [editIndex, setEditIndex] = useState(-1);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [projectopen, setProjectOpen] = useState(false);
+
+  const [activityopen, setActivityOpen] = useState(false);
+
   const posts = useSelector((state) => state.posts);
 
-  // console.log(posts);
 
   const array = [];
 
@@ -48,8 +51,9 @@ const Evolve = ({ currentId }) => {
     });
   }, [dispatch, currentId, array]);
 
+
+
   const handleSubmit = async (e) => {
-    // e.preventDefault();
     const newEntry = {
       projectCode,
       activityCode,
@@ -84,6 +88,9 @@ const Evolve = ({ currentId }) => {
     clearForm();
   };
 
+
+
+//checking for the valid entry in the form and return result in "True" or "False".....!!!
   const validateEntry = (newEntry) => {
     const today = new Date(date);
     const currentDay = today.getDay();
@@ -115,22 +122,22 @@ const Evolve = ({ currentId }) => {
     return totalNetTime + newEntry.netTime <= 48;
   };
 
+
+
+//Logic for Second and Fourth Saturday....!!!!!
   const isSecondOrFourthSaturday = (date) => {
     const dayOfMonth = date.getDate();
     const weekOfMonth = Math.floor((dayOfMonth - 1) / 7) + 1;
     return weekOfMonth === 2 || weekOfMonth === 4;
   };
 
-  const editEntry = (index) => {
-    const entryToEdit = entries[index];
-    setProjectCode(entryToEdit.projectCode);
-    setActivityCode(entryToEdit.activityCode);
-    setDate(entryToEdit.date);
-    setNetTime(entryToEdit.netTime.toString());
-    setOverTime(entryToEdit.overTime.toString());
-    setEditIndex(index);
-  };
 
+
+
+
+
+
+//Logic for clearing the form.........
   const clearForm = () => {
     console.log("Clear....!!!");
     setProjectCode("");
@@ -141,25 +148,42 @@ const Evolve = ({ currentId }) => {
     setEditIndex(-1);
   };
 
+
+//Logic for deleting the entry......!!!
   const deleteEntry = (index) => {
     const updatedEntries = [...entries];
     updatedEntries.splice(index, 1);
     setEntries(updatedEntries);
   };
 
-  const [projectopen, setProjectOpen] = useState(false);
 
-  const [activityopen, setActivityOpen] = useState(false);
+
+  //To Edit the entry....!!!!
+  const editEntry = (index) => {
+    const entryToEdit = entries[index];
+    setProjectCode(entryToEdit.projectCode);
+    setActivityCode(entryToEdit.activityCode);
+    setDate(entryToEdit.date);
+    setNetTime(entryToEdit.netTime.toString());
+    setOverTime(entryToEdit.overTime.toString());
+    setEditIndex(index);
+  };
+
+
 
   const togglePopup1 = () => {
     setProjectOpen(!projectopen);
   };
 
+
+
   const togglePopup2 = () => {
     setActivityOpen(!activityopen);
   };
 
-  
+
+
+// Here the array is being loaded....!!!
   // eslint-disable-next-line array-callback-return
   posts.map((post) => {
     for (let i = 0; i < post.projectCode.length; i++) {
@@ -175,6 +199,8 @@ const Evolve = ({ currentId }) => {
     }
   });
 
+
+//This logic is creating a delay time for loading the array....!!
   useEffect(() => {
     if (isLoading === true) {
       setTimeout(() => {
@@ -183,12 +209,17 @@ const Evolve = ({ currentId }) => {
     }
   }, [isLoading]);
 
+
+
+
   return (
     <>
       <h2 style={{ color: "#16355d", marginLeft: "50px" }}>
         Project Time Sheet
       </h2>
       <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} />
+
+      {/* form Body start from here....!! */}
 
       <div className="time-sheet-container" style={{ display: "flex" }}>
         <Grid
@@ -200,7 +231,6 @@ const Evolve = ({ currentId }) => {
           }}
         >
           <form onSubmit={handleSubmit} className="time-sheet-form">
-            {/* <div style={{ display: "flex", justifyContent: "space-between" }}> */}
             <div className="form-group">
               <label style={{ color: "#16355d" }} htmlFor="projectCode">
                 Project Code:
@@ -220,7 +250,6 @@ const Evolve = ({ currentId }) => {
                 id="projectCode"
                 value={projectCode}
                 onFocus={togglePopup1} // Using onFocus event to trigger the popup
-                // onChange={handleInputChange} // Handle input change
                 autoComplete="off"
               />
               {/* ______________________________________pop window contents_____________________________________________ */}
@@ -234,7 +263,6 @@ const Evolve = ({ currentId }) => {
             </div>
 
             <div className="form-group">
-              {/* <div style={{ marginLeft: "10px" }}> */}
               <label style={{ color: "#16355d" }} htmlFor="activityCode">
                 Activity Code:
               </label>
@@ -251,7 +279,6 @@ const Evolve = ({ currentId }) => {
                 type="text"
                 id="activityCode"
                 value={activityCode}
-                // onChange={(e) => setActivityCode(e.target.value)}
                 onFocus={togglePopup2}
                 autoComplete="off"
               />
@@ -262,8 +289,6 @@ const Evolve = ({ currentId }) => {
                 />
               )}
             </div>
-            {/* </div> */}
-            {/* </div> */}
 
             <div className="form-group">
               <label style={{ color: "#16355d" }} htmlFor="date">
@@ -288,7 +313,6 @@ const Evolve = ({ currentId }) => {
               />
             </div>
             <div className="form-group">
-              {/* <div style={{ marginLeft: "10px" }}> */}
               <label style={{ color: "#16355d" }} htmlFor="overTime">
                 Over Time (hrs):
               </label>
@@ -302,7 +326,7 @@ const Evolve = ({ currentId }) => {
             {/* </div> */}
             <div style={{ display: "flex", justifyContent: "space-around" }}>
               <button type="submit">
-                {editIndex !== -1 ? "Update" : "Submit"}
+                {editIndex !== -1 ? "Update The Entry" : "Submit The Entry"}
               </button>
               <button type="button" onClick={clearForm}>
                 Clear
@@ -311,6 +335,7 @@ const Evolve = ({ currentId }) => {
           </form>
         </Grid>
 
+{/* Body for displaing the table star from here.....!!! */}
         <hr />
         <Grid sx={{ width: "70%" }}>
           <div>
@@ -344,9 +369,7 @@ const Evolve = ({ currentId }) => {
                         }}
                       >
                         <button onClick={() => editEntry(index)}>Edit</button>
-                        <button onClick={() => deleteEntry(index)}>
-                          Delete
-                        </button>
+                        <button onClick={() => deleteEntry(index)}>Delete The Entry</button>
                       </td>
                     </tr>
                   ))}
@@ -359,9 +382,4 @@ const Evolve = ({ currentId }) => {
     </>
   );
 };
-
-// {
-//   /* <h2 style={{ color: "#16355d" }}>Time Sheet Entries</h2> */
-// }
-
 export default Evolve;
