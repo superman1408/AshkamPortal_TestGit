@@ -190,7 +190,7 @@ const Evolve = ({ currentId }) => {
                 }}
                 type="text"
                 id="projectCode"
-                defaultValue={projectCode}
+                value={projectCode}
                 onFocus={togglePopup1} // Using onFocus event to trigger the popup
                 // onChange={handleInputChange} // Handle input change
                 autoComplete="off"
@@ -222,7 +222,7 @@ const Evolve = ({ currentId }) => {
                 }}
                 type="text"
                 id="activityCode"
-                defaultValue={activityCode}
+                value={activityCode}
                 // onChange={(e) => setActivityCode(e.target.value)}
                 onFocus={togglePopup2}
                 autoComplete="off"
@@ -244,7 +244,7 @@ const Evolve = ({ currentId }) => {
               <input
                 type="date"
                 id="date"
-                defaultValue={date}
+                value={date}
                 onChange={(e) => setDate(e.target.value)}
               />
             </div>
@@ -255,7 +255,7 @@ const Evolve = ({ currentId }) => {
               <input
                 type="number"
                 id="netTime"
-                defaultValue={netTime}
+                value={netTime}
                 onChange={(e) => setNetTime(e.target.value)}
               />
             </div>
@@ -267,7 +267,7 @@ const Evolve = ({ currentId }) => {
               <input
                 type="number"
                 id="overTime"
-                defaultValue={overTime}
+                value={overTime}
                 onChange={(e) => setOverTime(e.target.value)}
               />
             </div>
