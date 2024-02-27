@@ -23,12 +23,30 @@ const Evolve = ({ currentId }) => {
 
   const posts = useSelector((state) => state.posts);
 
+  // console.log(posts);
+
+  const array = [];
+
   useEffect(() => {
     array.length = 0;
     dispatch(getPosts()).then(() => {
       console.log("Data recieved in Evolve page...!!!@@$$");
+      // eslint-disable-next-line array-callback-return
+      posts.map((post) => {
+        for (let i = 0; i < post.projectCode.length; i++) {
+          if (post._id === currentId) {
+            array.push({
+              projectCode: post.projectCode[i],
+              activityCode: post.activityCode[i],
+              date: post.date[i],
+              netTime: post.netTime[i],
+              overTime: post.overTime[i],
+            });
+          }
+        }
+      });
     });
-  }, [dispatch, currentId]);
+  }, [dispatch, currentId, array]);
 
   const handleSubmit = async (e) => {
     // e.preventDefault();
@@ -141,7 +159,7 @@ const Evolve = ({ currentId }) => {
     setActivityOpen(!activityopen);
   };
 
-  const array = [];
+  
   // eslint-disable-next-line array-callback-return
   posts.map((post) => {
     for (let i = 0; i < post.projectCode.length; i++) {
