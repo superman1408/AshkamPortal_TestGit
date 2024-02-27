@@ -10,6 +10,9 @@ import ActivityCodePopUp from "./ActivityCodePopUp";
 import { getPosts } from "../../../action/posts";
 import { useSelector } from "react-redux";
 
+
+
+
 const Evolve = ({ currentId }) => {
   const dispatch = useDispatch();
   const [entries, setEntries] = useState([]);
@@ -231,7 +234,6 @@ const Evolve = ({ currentId }) => {
   };
 
 
-  // console.log(array[0]);
 
 
 
