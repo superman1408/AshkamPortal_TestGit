@@ -7,6 +7,7 @@ import {
   UPDATE_STATUS,
   TODOLIST,
   SKILLDATA,
+  UPDATE_TABLE,
 } from "../constants/actionTypes";
 
 import * as API from "../api";
@@ -120,3 +121,28 @@ export const skillData = (post) => async (dispatch) => {
 // console.log(error);
 // }
 // };
+
+
+
+export const tableEdit = (id, toEdit) => async (dispatch) => {
+  console.log(`we have our current id : ${id}`);
+  console.log(`We have index for finding the required content to edit : ${toEdit}`);
+  try {
+    const { data } = await API.editTable(id, toEdit);
+
+    dispatch({ type: UPDATE_TABLE, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+export const tableDelete = (id, indexed) => async (dispatch) => {
+  try {
+    await API.deleteTable(id, indexed);
+
+    dispatch({ type: DELETE, payload: id });
+  } catch (error) {
+    console.log(error);
+  }
+};

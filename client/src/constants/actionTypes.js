@@ -10,3 +10,4 @@ export const FETCH_POST = "FETCH_POST";
 export const UPDATE_STATUS = "UPDATE_STATUS";
 export const TODOLIST = "TODOLIST";
 export const SKILLDATA = "SKILLDATA";
+export const UPDATE_TABLE = "UPDATE_TABLE";
