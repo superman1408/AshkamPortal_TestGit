@@ -167,7 +167,7 @@ const Message = ({ post, currentId }) => {
                     marginTop: "10px",
                   }}
                 >
-                  <Typography sx={{ padding: "10px", bgcolor: "white", fontFamily: "Roboto", fontWeight: "bold",color: "#16355c" }}>
+                  <Typography sx={{ padding: "10px", bgcolor: "white", fontFamily: "Roboto", color: "#16355c" }}>
                     {item.message}
                   </Typography>
                 </div>
