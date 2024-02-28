@@ -90,6 +90,8 @@ export const sendData = async (req, res) => {
   res.status(200).json(updatePost);
 };
 
+
+
 export const updatedStatus = async (req, res) => {
   console.log("Yes i can change the status");
   const { id } = req.params;
@@ -113,6 +115,7 @@ export const todoList = async (req, res) => {
   const value = req.body;
 
   const user = await AuthenticateUser.findById(id);
+
 
   try {
     user.projectCode.push(value.projectCode);
@@ -165,4 +168,19 @@ export const skillData = async (req, res) => {
   } catch (error) {
     res.status(409).json({ message: error.message });
   }
+};
+
+
+export const editTable = async (req, res) => {
+  console.log("Hello I am editing Your Table Please WAIT...!!!@@");
+  const id = req.params;
+  console.log(id);
+  const valueToEdit = req.body;
+  console.log(valueToEdit);
+};
+
+
+
+export const deleteTable = async (req, res) => {
+  console.log("Hello I am trying to DELETE your item Please WAIT...!!!@@");
 };

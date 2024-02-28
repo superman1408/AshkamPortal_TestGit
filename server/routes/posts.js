@@ -7,7 +7,8 @@ import {
   getPost,
   todoList,
   skillData,
-  deleteActivity,
+  editTable,
+  deleteTable,
 } from "../controllers/posts.js";
 
 import auth from "../middleware/auth.js";
@@ -26,7 +27,11 @@ router.delete("/:id", auth, deletePost);
 
 router.post("/:id/todo", auth, todoList);
 
-router.delete("/:id/todo", auth, deleteActivity);
+router.patch("/:id/edit", auth, editTable);
+
+router.delete("/:id/deleteTable", auth, deleteTable);
+
+// @desc    Get all skills data for autocomplete
 
 router.post("/skill", skillData);
 
