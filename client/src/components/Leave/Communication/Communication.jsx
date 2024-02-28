@@ -33,14 +33,12 @@ const Communication = () => {
         </Card>
         <Grid
           sx={{
-            // bgcolor: "#f0f2f1",
+            bgcolor: "#e1e3e2",
             display: "flex",
           }}
         >
           <div
             style={{
-              // border: "0.5px dotted gray",
-              // background: "#f0f2f1",
               height: "600px",
               overflow: "auto",
               // position: "fixed",
@@ -49,6 +47,7 @@ const Communication = () => {
               width: "300px",
               pointerEvents: "auto",
               marginLeft: "10px",
+              marginRight: "10px",
             }}
           >
             <div>
@@ -56,7 +55,7 @@ const Communication = () => {
                 posts.map(
                   (post) =>
                     post.name === user.result.name && (
-                      <div key={post._id}>
+                      <div key={post._id} style={{ marginTop: "10px" }}>
                         {" "}
                         {/* Use post._id as the key */}
                         <Inbox post={post} setCurrentId={setCurrentId} />
@@ -74,8 +73,6 @@ const Communication = () => {
             <div style={{ width: "500", height: "600" }}>
               <div
                 style={{
-                  // border: "0.5px dotted gray",
-                  background: "white",
                   height: "600px",
                   overflow: "auto",
                   // position: "fixed",

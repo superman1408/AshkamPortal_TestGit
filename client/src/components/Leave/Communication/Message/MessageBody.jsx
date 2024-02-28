@@ -112,16 +112,16 @@ const Message = ({ post, currentId }) => {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-                bgcolor: "#dee3e1",
+                bgcolor: "white",
               }}
             >
               <div key={post.login} className="translate-x-[42%]">
                 <Typography
-                  variant="h6"
                   sx={{
                     textAlign: "center",
                     padding: "5px",
                     fontWeight: "bold",
+                    fontSize:"18px"
                   }}
                 >
                   {item.subject}
@@ -184,7 +184,9 @@ const Message = ({ post, currentId }) => {
                     marginTop: "10px",
                   }}
                 >
-                  <Typography sx={{ padding: "10px", bgcolor: "white" }}>
+                  <Typography
+                    sx={{ padding: "10px", bgcolor: "#535adf", color: "white" }}
+                  >
                     {item.message}
                   </Typography>
                 </div>
