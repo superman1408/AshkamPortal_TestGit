@@ -90,7 +90,7 @@ const Navibar = () => {
                   <Nav.Link
                     onClick={() => openPage(user.result._id, "registration")}
                     id="registration"
-                    style={{ marginTop: "8px" }}
+                    style={{ marginTop: "8px", fontFamily: "Roboto", fontWeight: "bold", color: "#16355d" }}
                   >
                     Registration
                   </Nav.Link>
@@ -98,10 +98,11 @@ const Navibar = () => {
                   <NavDropdown
                     title="Message"
                     id="navbarScrollingDropdown"
-                    style={{ marginTop: "8px" }}
+                    style={{ marginTop: "8px", fontFamily: "Roboto", fontWeight: "bold", color: "#16355d" }}
                   >
                     <NavDropdown.Item
                       onClick={() => openPage(user.result._id, "leave")}
+                      style={{ fontFamily: "Roboto", color: "#16355d" }}
                       id="leave"
                     >
                       Leave Section
@@ -109,6 +110,7 @@ const Navibar = () => {
                     {/* <NavDropdown.Divider /> */}
                     <NavDropdown.Item
                       onClick={() => openPage(user.result._id, "inbox")}
+                      style={{ fontFamily: "Roboto", color: "#16355d" }}
                       id="inbox"
                     >
                       Inbox
@@ -116,12 +118,13 @@ const Navibar = () => {
                     {/* <NavDropdown.Divider /> */}
                     <NavDropdown.Item
                       onClick={() => openPage(user.result._id, "payslip")}
+                      style={{ fontFamily: "Roboto", color: "#16355d" }}
                       id="payslip"
                     >
                       Pay Slips
                     </NavDropdown.Item>
                   </NavDropdown>
-                  <Nav.Link href="/aboutUs" style={{ marginTop: "8px" }}>
+                  <Nav.Link href="/aboutUs" style={{ marginTop: "8px", fontFamily: "Roboto", fontWeight: "bold", color: "#16355d" }}>
                     About Us
                   </Nav.Link>
                 </Nav>
@@ -151,7 +154,7 @@ const Navibar = () => {
             </div>
           ) : (
             <div>
-              <Marquee style={{ color: "black" }}>
+              <Marquee style={{ color: "#16355d", fontFamily: "Roboto", fontWeight: "bold" }}>
                 Please Login to your account
               </Marquee>
             </div>

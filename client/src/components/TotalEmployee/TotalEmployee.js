@@ -61,6 +61,7 @@ const TotalEmployee = () => {
                   marginRight: "0px",
                   marginLeft: "20px",
                   fontWeight: "bolder",
+                  fontFamily: "Roboto",
                 }}
               >
                 Total Employees
@@ -73,6 +74,7 @@ const TotalEmployee = () => {
                   marginLeft: "20px",
                   marginTop: "5px",
                   marginRight: "50px",
+                  fontFamily: "Roboto",
                 }}
               >
                 32
@@ -112,6 +114,7 @@ const TotalEmployee = () => {
                     sx={{
                       // marginLeft: "0px",
                       marginTop: "30px",
+                      fontFamily: "Roboto",
                       // display: "flex",
                     }}
                   >
@@ -145,7 +148,7 @@ const TotalEmployee = () => {
                 </Grid>
 
                 <Grid>
-                  <Typography sx={{ marginLeft: "0px", marginTop: "8px" }}>
+                  <Typography sx={{ marginLeft: "0px", marginTop: "8px", fontFamily: "Roboto" }}>
                     :05
                   </Typography>
                 </Grid>

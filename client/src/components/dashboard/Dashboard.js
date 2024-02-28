@@ -86,10 +86,12 @@ const Admin = ({ currentId }) => {
                     variant="h5"
                     sx={{
                       display: "flex",
+                      fontFamily: "Roboto",
                       marginLeft: "80px",
-                      fontWeight: "bold",
+                      // fontWeight: "bold",
                       "@media (max-width: 600px)": {
                         flexDirection: "column",
+                        color: "#16355d"
                       },
 
                       "@media (min-width: 600px)": {
