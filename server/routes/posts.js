@@ -7,6 +7,7 @@ import {
   getPost,
   todoList,
   skillData,
+  deleteActivity,
 } from "../controllers/posts.js";
 
 import auth from "../middleware/auth.js";
@@ -24,6 +25,8 @@ router.patch("/:id/registration", auth, updatePost);
 router.delete("/:id", auth, deletePost);
 
 router.post("/:id/todo", auth, todoList);
+
+router.delete("/:id/todo", auth, deleteActivity);
 
 router.post("/skill", skillData);
 

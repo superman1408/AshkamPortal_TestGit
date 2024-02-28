@@ -7,6 +7,7 @@ import {
   UPDATE_STATUS,
   TODOLIST,
   SKILLDATA,
+  DELETEACTIVITY,
 } from "../constants/actionTypes";
 
 import * as API from "../api";
@@ -89,6 +90,16 @@ export const todoList = (id, post) => async (dispatch) => {
 
     return data.todoList;
     // console.log("Hello");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteActivity = (id, updatedEntries) => async (dispatch) => {
+  try {
+    await API.deleteActivity(id, updatedEntries);
+
+    dispatch({ type: DELETEACTIVITY, payload: id });
   } catch (error) {
     console.log(error);
   }

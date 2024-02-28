@@ -4,7 +4,7 @@ import { Divider, Grid, CircularProgress, Box } from "@mui/material";
 import { useDispatch } from "react-redux";
 
 import "./Style1.css"; // Import CSS file for styling
-import { todoList } from "../../../action/posts";
+import { deleteActivity, todoList } from "../../../action/posts";
 import ProjectCodePopUp from "./ProjectCodePopUp";
 import ActivityCodePopUp from "./ActivityCodePopUp";
 import { getPosts } from "../../../action/posts";
@@ -41,6 +41,7 @@ const Evolve = ({ currentId }) => {
               date: post.date[i],
               netTime: post.netTime[i],
               overTime: post.overTime[i],
+              editIndex: post.editIndex[i],
             });
           }
         }
@@ -56,6 +57,7 @@ const Evolve = ({ currentId }) => {
       date,
       netTime: parseFloat(netTime),
       overTime: parseFloat(overTime),
+      editIndex: parseFloat(editIndex),
     };
 
     if (validateEntry(newEntry)) {
@@ -141,11 +143,14 @@ const Evolve = ({ currentId }) => {
     setEditIndex(-1);
   };
 
-  const deleteEntry = (index) => {
+  const deleteEntry = async (index) => {
     const updatedEntries = [...entries];
     updatedEntries.splice(index, 1);
     setEntries(updatedEntries);
+    await dispatch(deleteActivity(updatedEntries, currentId));
   };
+
+  //  {/* onClick={() => dispatch(deleteActivity(post._id))} */}
 
   const [projectopen, setProjectOpen] = useState(false);
 
@@ -159,7 +164,6 @@ const Evolve = ({ currentId }) => {
     setActivityOpen(!activityopen);
   };
 
-  
   // eslint-disable-next-line array-callback-return
   posts.map((post) => {
     for (let i = 0; i < post.projectCode.length; i++) {
@@ -170,6 +174,7 @@ const Evolve = ({ currentId }) => {
           date: post.date[i],
           netTime: post.netTime[i],
           overTime: post.overTime[i],
+          editIndex: post.editIndex[i],
         });
       }
     }
@@ -347,6 +352,7 @@ const Evolve = ({ currentId }) => {
                         <button onClick={() => deleteEntry(index)}>
                           Delete
                         </button>
+                        {/* onClick={() => dispatch(deleteActivity(post._id))} */}
                       </td>
                     </tr>
                   ))}

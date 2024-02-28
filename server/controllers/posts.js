@@ -131,6 +131,18 @@ export const todoList = async (req, res) => {
   }
 };
 
+// ____________________________delete activity______________________________
+
+export const deleteActivity = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send("no post with that id found");
+
+  await AuthenticateUser.findByIdAndRemove(id);
+  res.json({ message: "Post deleted successfully" });
+};
+
 // _________________________Skill Data Status_____________________________
 export const skillData = async (req, res) => {
   const { id } = req.params;
