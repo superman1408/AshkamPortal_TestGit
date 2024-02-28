@@ -95,15 +95,6 @@ export const todoList = (id, post) => async (dispatch) => {
   }
 };
 
-export const deleteActivity = (id, updatedEntries) => async (dispatch) => {
-  try {
-    await API.deleteActivity(id, updatedEntries);
-
-    dispatch({ type: DELETEACTIVITY, payload: id });
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 export const skillData = (post) => async (dispatch) => {
   // console.log("Hello I am working..!!");
