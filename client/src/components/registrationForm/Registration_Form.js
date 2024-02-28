@@ -187,6 +187,7 @@ const RegistrationForm = () => {
                   fontWeight: "bold",
                   marginTop: "20px",
                   marginBottom: "20px",
+                  fontFamily: "Roboto",
                 }}
               >
                 Employee Registration Form
@@ -204,7 +205,8 @@ const RegistrationForm = () => {
                 sx={{
                   margin: "30px 0px 0px 0px",
                   fontSize: "18px",
-                  fontWeight: "200px",
+                  fontWeight: "bold",
+                  fontFamily: "Roboto"
                 }}
               >
                 Full Name
@@ -265,7 +267,7 @@ const RegistrationForm = () => {
               {user.result.dob ? (
                 <div>
                   {" "}
-                  <Typography>Date of Birth</Typography>
+                  <Typography sx={{fontFamily: "Roboto", fontWeight: "bold"}}>Date of Birth :</Typography>
                   <TextField value={user.result.dob} />
                 </div>
               ) : (
@@ -294,14 +296,15 @@ const RegistrationForm = () => {
                   sx={{
                     margin: "30px 0px 0px 0px",
                     fontSize: "18px",
-                    fontWeight: "200px",
+                    fontWeight: "bold",
+                    fontFamily: "Roboto",
                   }}
                 >
-                  Gender
+                  Gender :
                 </Typography>
 
                 {user.result.gender ? (
-                  <TextField halfwidth="true" value={user.result.gender} />
+                  <TextField width="50%" value={user.result.gender} />
                 ) : (
                   <>
                     <RadioGroup
@@ -318,7 +321,7 @@ const RegistrationForm = () => {
                       <Radio value="male" label="Male" color="primary" />
                       <Radio value="other" label="Other" color="primary" />
                     </RadioGroup>
-                    <span style={{ fontSize: "12px" }}>
+                    <span style={{ fontSize: "12px", fontFamily: "Roboto" }}>
                       ** Please select the desired value
                     </span>
                   </>
@@ -344,7 +347,7 @@ const RegistrationForm = () => {
             <div>
               {user.result.maritalStatus ? (
                 <div style={{ marginTop: "10px" }}>
-                  <Typography>Marital Status</Typography>
+                  <Typography sx={{fontFamily:"Roboto", fontWeight:"bold"}}>Marital Status :</Typography>
                   <TextField value={user.result.maritalStatus} />
                 </div>
               ) : (
@@ -389,10 +392,11 @@ const RegistrationForm = () => {
                 sx={{
                   margin: "30px 0px 0px 0px",
                   fontSize: "18px",
-                  fontWeight: "200px",
+                  fontWeight: "bold",
+                  fontFamily: "Roboto",
                 }}
               >
-                Address
+                Address :
               </Typography>
               <TextField
                 sx={{ marginTop: "10px" }}
@@ -455,7 +459,7 @@ const RegistrationForm = () => {
             </Grid>
 
             <Divider sx={{ margin: "20px 0px 20px 0px", borderWidth: "7px" }} />
-            <h4>Job Informations</h4>
+            <h4 style={{fontFamily: "Roboto", fontWeight: "bold"}}>Job Informations :</h4>
             <div sx={{ display: "flex", flexDirection: "row" }}>
               <TextField
                 variant="outlined"
@@ -527,7 +531,7 @@ const RegistrationForm = () => {
             </div>
 
             <Divider sx={{ margin: "20px 0px 20px 0px", borderWidth: "7px" }} />
-            <h4>Emergency Contact Informations</h4>
+            <h4 style={{fontFamily: "Roboto", fontWeight: "bold"}}>Emergency Contact Informations :</h4>
             <div sx={{ display: "flex", flexDirection: "row" }}>
               <TextField
                 variant="outlined"
@@ -595,7 +599,7 @@ const RegistrationForm = () => {
               }}
             >
               <Grid>
-                <Button type="submit" variant="contained" required fullWidth>
+                <Button sx={{fontFamily: "Roboto"}} type="submit" variant="contained" required fullWidth>
                   Register
                 </Button>
               </Grid>
@@ -606,13 +610,14 @@ const RegistrationForm = () => {
                   onClick={handleReset}
                   required
                   fullWidth
+                  sx={{fontFamily: "Roboto"}}
                 >
                   Clear
                 </Button>
               </Grid>
 
               <Grid>
-                <Button onClick={handlePrint}> Print</Button>
+                <Button sx={{fontFamily: "Roboto"}} onClick={handlePrint}> Print</Button>
               </Grid>
             </Grid>
           </form>

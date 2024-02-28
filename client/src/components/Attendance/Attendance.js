@@ -13,13 +13,13 @@ const Attendance = () => {
           flexDirection: "column",
           marginTop: "52px",
           marginLeft: "20px",
-          padding: "10px",
+          padding: "5px",
           bgcolor: "background.paper",
           boxShadow: 1,
           borderRadius: "10px",
         }}
       >
-        <Typography sx={{fontFamily: "Roboto", fontWeight: "bold", marginLeft: "140px", color: "#16355d"}}>ATTENDANCE</Typography>
+        <Typography sx={{fontFamily: "Roboto", fontWeight: "bold", marginLeft: "130px", color: "#16355d"}}>ATTENDANCE</Typography>
         <ButtonBase
           onClick={() => {
             navigate("/employeeAttendance"); // Employee Attendance Route
@@ -30,9 +30,10 @@ const Attendance = () => {
             sx={{
               display: "flex",
               flexDirection: "row",
+              justifyContent: "space-evenly"
             }}
           >
-            <Grid sx={{ marginLeft: "40px" }}>
+            <Grid >
               <Typography sx={{fontFamily: "Roboto",}}>Total</Typography>
               <Typography>30</Typography>
             </Grid>
