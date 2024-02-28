@@ -115,12 +115,8 @@ const Message = ({ post, currentId }) => {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-<<<<<<< HEAD
-                bgcolor: "white",
-=======
                 bgcolor: "smokewhite",
                 borderRadius:"15px",
->>>>>>> super
               }}
             >
               <div key={post.login} className="translate-x-[42%]">
@@ -128,15 +124,10 @@ const Message = ({ post, currentId }) => {
                   sx={{
                     textAlign: "center",
                     padding: "5px",
-<<<<<<< HEAD
-                    fontWeight: "bold",
-                    fontSize:"18px"
-=======
                     // fontWeight: "bold",
                     fontFamily: "Roboto",
                     // fontWeight: "bold",
                     color: "#16355c",
->>>>>>> super
                   }}
                 >
                   {item.subject}
@@ -176,13 +167,7 @@ const Message = ({ post, currentId }) => {
                     marginTop: "10px",
                   }}
                 >
-<<<<<<< HEAD
-                  <Typography
-                    sx={{ padding: "10px", bgcolor: "#535adf", color: "white" }}
-                  >
-=======
                   <Typography sx={{ padding: "10px", bgcolor: "white", fontFamily: "Roboto", fontWeight: "bold",color: "#16355c" }}>
->>>>>>> super
                     {item.message}
                   </Typography>
                 </div>

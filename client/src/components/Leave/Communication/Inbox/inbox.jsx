@@ -26,14 +26,9 @@ const Inbox = ({ post, setCurrentId }) => {
         required
         fullwidth="true"
         sx={{
-<<<<<<< HEAD
-          bgcolor: isClicked ? "#f0f2f1" : "white",
-          width: "50vh",
-=======
           bgcolor: "smokewhite",
           boxShadow: 5,
           width: "47vh",
->>>>>>> super
           padding: "5px",
           height: "80px",
           margin: "2px",
@@ -41,19 +36,7 @@ const Inbox = ({ post, setCurrentId }) => {
         onClick={openMessage}
         // onMouseEnter={handleMouseEnter}
       >
-<<<<<<< HEAD
-        {isClicked && (
-          <Divider
-            orientation="vertical"
-            textAlign="left"
-            sx={{ borderWidth: "3px", bgcolor: "#535adf" }}
-            flexItem
-          />
-        )}
-        <Grid sx={{ display: "flex", width: "calc(100%)", marginLeft: "20px" }}>
-=======
         <Grid sx={{ display: "flex", flexDirection: "row",  alignContent: "space-between", marginRight: "80px" }}>
->>>>>>> super
           <Avatar
             alt="avatar"
             src={post?.selectedFile}
@@ -61,14 +44,7 @@ const Inbox = ({ post, setCurrentId }) => {
             color="green"
           />
 
-<<<<<<< HEAD
-          <Typography
-            color="black"
-            sx={{ marginLeft: "20px", fontSize: "18px", fontWeight: "bold" }}
-          >
-=======
           <Typography variant="h6" color="#16355c" sx={{ marginLeft: "20px", fontFamily: "Roboto" }}>
->>>>>>> super
             {post?.firstName + " " + post?.lastName}
           </Typography>
         </Grid>
