@@ -4,6 +4,9 @@ import { getPost, updateStatus } from "../../../../action/posts";
 import { useNavigate } from "react-router-dom";
 import { Button, Card, Typography, Avatar } from "@mui/material";
 
+import CheckSharpIcon from '@mui/icons-material/CheckSharp';
+import ClearSharpIcon from '@mui/icons-material/ClearSharp';
+
 const Message = ({ post, currentId }) => {
   const [activeStatus, setActiveStatus] = useState({ status: "pending" });
   const [isLoading, setLoading] = useState(false);
@@ -106,13 +109,14 @@ const Message = ({ post, currentId }) => {
               key={index}
               elevation={10}
               sx={{
-                padding: "5px",
+                padding: "15px",
                 width: "auto",
                 margin: "10px",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-                bgcolor: "#aee3e8",
+                bgcolor: "smokewhite",
+                borderRadius:"15px",
               }}
             >
               <div key={post.login} className="translate-x-[42%]">
@@ -121,7 +125,10 @@ const Message = ({ post, currentId }) => {
                   sx={{
                     textAlign: "center",
                     padding: "5px",
-                    fontWeight: "bold",
+                    // fontWeight: "bold",
+                    fontFamily: "Roboto",
+                    // fontWeight: "bold",
+                    color: "#16355c",
                   }}
                 >
                   {item.subject}
@@ -131,7 +138,7 @@ const Message = ({ post, currentId }) => {
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
-                  <div key={post.selectedFile} style={{ display: "flex" }}>
+                  <div key={post.selectedFile} style={{ display: "flex", flexDirection: "row", alignContent:"center" }}>
                     <Avatar
                       alt="avatar"
                       src={post.selectedFile}
@@ -139,39 +146,16 @@ const Message = ({ post, currentId }) => {
                       withborder="true"
                       className="p-0.5"
                     />
-                    <Typography sx={{ margin: "5px 5px" }}>
-                      {post.employeeName}
+                    <Typography sx={{marginLeft: "15px", marginTop: "5px", fontFamily: "Roboto", fontWeight: "bold",color: "#16355c"}}>
+                      {post.firstName + " " + post.lastName}
                     </Typography>
                   </div>
-
-                  {/*  Need to understand later */}
-
-                  {/* <div>
-                  {(() => {
-                    if (post.status) {
-                      return (
-                        <Typography sx={{ marginTop: "10px" }}>
-                          Status: {item.status}
-                        </Typography>
-                      );
-                    } else {
-                      return (
-                        // <Typography sx={{ marginTop: "10px" }}>
-                        //   Status: Pending
-                        // </Typography>
-
-                        <TextField />
-                      );
-                    }
-                  })()}
-                </div> */}
-
                   {item.status ? (
-                    <Typography sx={{ marginTop: "20px", float: "right" }}>
+                    <Typography sx={{ marginTop: "5px", float: "right", fontFamily: "Roboto", fontWeight: "bold",color: "#16355c" }}>
                       Status :{item.status}
                     </Typography>
                   ) : (
-                    <Typography sx={{ marginTop: "10px" }}>
+                    <Typography sx={{ marginTop: "5px", fontFamily: "Roboto", fontWeight: "bold",color: "#16355c" }}>
                       Status : Pending
                     </Typography>
                   )}
@@ -179,12 +163,12 @@ const Message = ({ post, currentId }) => {
                 <div
                   key={post.punching}
                   style={{
-                    border: "2px solid black",
+                    border: "2px solid #e55d17",
                     padding: "2px",
                     marginTop: "10px",
                   }}
                 >
-                  <Typography sx={{ padding: "10px", bgcolor: "white" }}>
+                  <Typography sx={{ padding: "10px", bgcolor: "white", fontFamily: "Roboto", fontWeight: "bold",color: "#16355c" }}>
                     {item.message}
                   </Typography>
                 </div>
@@ -196,10 +180,12 @@ const Message = ({ post, currentId }) => {
                     marginTop: "10px",
                   }}
                 >
-                  <Button variant="contained" onClick={handleAccept}>
+                  <Button sx={{fontFamily: "Roboto"}} variant="contained" onClick={handleAccept}>
+                    <CheckSharpIcon />
                     Accept
                   </Button>
-                  <Button variant="contained" onClick={handleReject}>
+                  <Button sx={{fontFamily: "Roboto"}} variant="contained" onClick={handleReject}>
+                    <ClearSharpIcon />
                     Reject
                   </Button>
                 </div>

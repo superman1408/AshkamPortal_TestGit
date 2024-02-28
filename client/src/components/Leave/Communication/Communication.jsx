@@ -27,20 +27,22 @@ const Communication = () => {
 
   return (
     <>
-      <div style={{ padding: "5px", display: "flex" }}>
-        <Card elevation={10}>
+      <div style={{ padding: "5px", display: "flex", backgroundColor: "lightgray" }}>
+        {/* <Card elevation={10}> */}
           <Panel />
-        </Card>
+        {/* </Card> */}
         <Grid
           sx={{
-            bgcolor: "#f0f2f1",
+            bgcolor: "white",
             display: "flex",
+            boxShadow: 2,
+            margin: "15px",
           }}
         >
           <div
             style={{
-              border: "0.5px dotted gray",
-              background: "#f0f2f1",
+              // border: "0.5px dotted gray",
+              background: "floralwhite",
               height: "600px",
               overflow: "auto",
               // position: "fixed",
@@ -49,6 +51,7 @@ const Communication = () => {
               width: "300px",
               pointerEvents: "auto",
               marginLeft: "10px",
+              margin: "10px",
             }}
           >
             <div>
@@ -74,8 +77,8 @@ const Communication = () => {
             <div style={{ width: "500", height: "600" }}>
               <div
                 style={{
-                  border: "0.5px dotted gray",
-                  background: "white",
+                  // border: "0.5px dotted gray",
+                  background: "lightgray",
                   height: "600px",
                   overflow: "auto",
                   // position: "fixed",

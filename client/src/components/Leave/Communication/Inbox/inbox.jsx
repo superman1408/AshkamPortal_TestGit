@@ -17,14 +17,16 @@ const Inbox = ({ post, setCurrentId }) => {
         required
         fullwidth="true"
         sx={{
-          bgcolor: "#aee3e8",
-          width: "50vh",
+          bgcolor: "smokewhite",
+          boxShadow: 5,
+          width: "47vh",
           padding: "5px",
           height: "80px",
+          margin: "2px",
         }}
         onClick={openMessage}
       >
-        <Grid sx={{ display: "flex", width: "calc(100%)", marginLeft: "20px" }}>
+        <Grid sx={{ display: "flex", flexDirection: "row",  alignContent: "space-between", marginRight: "80px" }}>
           <Avatar
             alt="avatar"
             src={post?.selectedFile}
@@ -32,7 +34,7 @@ const Inbox = ({ post, setCurrentId }) => {
             color="green"
           />
 
-          <Typography variant="h6" color="black" sx={{ marginLeft: "20px" }}>
+          <Typography variant="h6" color="#16355c" sx={{ marginLeft: "20px", fontFamily: "Roboto" }}>
             {post?.firstName + " " + post?.lastName}
           </Typography>
         </Grid>

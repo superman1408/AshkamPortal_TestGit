@@ -240,7 +240,7 @@ const Evolve = ({ currentId }) => {
 
   return (
     <>
-      <h2 style={{ color: "#16355d", marginLeft: "50px" }}>
+      <h2 style={{ color: "#16355d", marginLeft: "50px", fontFamily: "Roboto" }}>
         Project Time Sheet
       </h2>
       <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} />
@@ -258,7 +258,7 @@ const Evolve = ({ currentId }) => {
         >
           <form onSubmit={handleSubmit} className="time-sheet-form">
             <div className="form-group">
-              <label style={{ color: "#16355d" }} htmlFor="projectCode">
+              <label style={{ color: "#16355d", fontFamily: "Roboto" }} htmlFor="projectCode">
                 Project Code:
               </label>
 
@@ -289,7 +289,7 @@ const Evolve = ({ currentId }) => {
             </div>
 
             <div className="form-group">
-              <label style={{ color: "#16355d" }} htmlFor="activityCode">
+              <label style={{ color: "#16355d", fontFamily: "Roboto" }} htmlFor="activityCode">
                 Activity Code:
               </label>
               <input
@@ -317,7 +317,7 @@ const Evolve = ({ currentId }) => {
             </div>
 
             <div className="form-group">
-              <label style={{ color: "#16355d" }} htmlFor="date">
+              <label style={{ color: "#16355d", fontFamily: "Roboto" }} htmlFor="date">
                 Date:
               </label>
               <input
@@ -328,7 +328,7 @@ const Evolve = ({ currentId }) => {
               />
             </div>
             <div className="form-group">
-              <label style={{ color: "#16355d" }} htmlFor="netTime">
+              <label style={{ color: "#16355d", fontFamily: "Roboto" }} htmlFor="netTime">
                 Net Time (hrs):
               </label>
               <input
@@ -339,7 +339,7 @@ const Evolve = ({ currentId }) => {
               />
             </div>
             <div className="form-group">
-              <label style={{ color: "#16355d" }} htmlFor="overTime">
+              <label style={{ color: "#16355d", fontFamily: "Roboto" }} htmlFor="overTime">
                 Over Time (hrs):
               </label>
               <input
@@ -351,10 +351,10 @@ const Evolve = ({ currentId }) => {
             </div>
             {/* </div> */}
             <div style={{ display: "flex", justifyContent: "space-around" }}>
-              <button type="submit">
+              <button style={{fontFamily: "Roboto"}} type="submit">
                 {editIndex !== -1 ? "Update The Entry" : "Submit The Entry"}
               </button>
-              <button type="button" onClick={clearForm}>
+              <button style={{fontFamily: "Roboto"}} type="button" onClick={clearForm}>
                 Clear
               </button>
             </div>
@@ -373,29 +373,31 @@ const Evolve = ({ currentId }) => {
               <table className="time-sheet-table">
                 <thead>
                   <tr>
-                    <th style={{ color: "#16355d" }}>Project Code</th>
-                    <th style={{ color: "#16355d" }}>Activity Code</th>
-                    <th style={{ color: "#16355d" }}>Date</th>
-                    <th style={{ color: "#16355d" }}>Net Time (hrs)</th>
-                    <th style={{ color: "#16355d" }}>Over Time (hrs)</th>
+                    <th style={{ color: "#16355d", fontFamily: "Roboto" }}>Project Code</th>
+                    <th style={{ color: "#16355d", fontFamily: "Roboto" }}>Activity Code</th>
+                    <th style={{ color: "#16355d", fontFamily: "Roboto" }}>Date</th>
+                    <th style={{ color: "#16355d", fontFamily: "Roboto" }}>Net Time (hrs)</th>
+                    <th style={{ color: "#16355d", fontFamily: "Roboto" }}>Over Time (hrs)</th>
                   </tr>
                 </thead>
                 <tbody>
                   {array.map((post, index) => (
                     <tr key={index}>
-                      <td style={{ color: "#e55d17" }}>{post.projectCode}</td>
-                      <td style={{ color: "#e55d17" }}>{post.activityCode}</td>
-                      <td style={{ color: "#e55d17" }}>{post.date}</td>
-                      <td style={{ color: "#e55d17" }}>{post.netTime}</td>
-                      <td style={{ color: "#e55d17" }}>{post.overTime}</td>
+                      <td style={{ color: "#e55d17", fontFamily: "Roboto", padding: "10px", alignContent: "center" }}>{post.projectCode}</td>
+                      <td style={{ color: "#e55d17", fontFamily: "Roboto", padding: "10px", alignContent: "center" }}>{post.activityCode}</td>
+                      <td style={{ color: "#e55d17", fontFamily: "Roboto", padding: "10px", alignContent: "center" }}>{post.date}</td>
+                      <td style={{ color: "#e55d17", fontFamily: "Roboto", padding: "10px", alignContent: "center" }}>{post.netTime}</td>
+                      <td style={{ color: "#e55d17", fontFamily: "Roboto", padding: "10px", alignContent: "center" }}>{post.overTime}</td>
                       <td
                         style={{
                           display: "flex",
                           justifyContent: "space-around",
+                          padding: "10px",
+                          alignContent: "center"
                         }}
                       >
-                        <button onClick={() => editEntry(index)}>Edit</button>
-                        <button onClick={() => deleteEntry(index)}>Delete The Entry</button>
+                        <button style={{fontFamily: "Roboto"}} onClick={() => editEntry(index)}>Edit</button>
+                        <button style={{fontFamily: "Roboto"}} onClick={() => deleteEntry(index)}>Delete The Entry</button>
                       </td>
                     </tr>
                   ))}
