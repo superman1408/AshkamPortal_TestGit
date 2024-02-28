@@ -1,10 +1,12 @@
 import React, { useRef } from "react";
 import { useState } from "react";
 import { useReactToPrint } from "react-to-print";
+import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import printLayout from "../printLayout/printLayout";
 
 // import useStyle from "./Style";
 
@@ -35,6 +37,8 @@ const PaySlip = () => {
   const [employeeContribution_esic, setEmployeeContribution_esic] = useState(0);
   const [totalDeduction, setTotalDeduction] = useState(0);
   const [netSalary, setNetSalary] = useState(0);
+
+  const navigate = useNavigate();
 
   const GS =
     basic +
@@ -842,6 +846,23 @@ const PaySlip = () => {
                     Generate
                   </Button>
                 </Grid>
+
+                <Grid>
+                  <Button
+                    type="submit"
+                    sx={{
+                      bgcolor: "skyblue",
+                      color: "black",
+                      alignItems: "right",
+                    }}
+                    onClick={() => {
+                      navigate(`/printLayout/printLayout`); // Full Weekly Activity route
+                    }}
+                  >
+                    Print
+                  </Button>
+                </Grid>
+
                 <Grid>
                   <Button
                     type="submit"
