@@ -1,28 +1,32 @@
-import { ButtonBase, Typography, Button, Avatar, Grid } from "@mui/material";
-import React from "react";
-
-// import Message from "../Message/message";
+import { ButtonBase, Typography, Avatar, Grid } from "@mui/material";
+import React, { useState } from "react";
 
 const Inbox = ({ post, setCurrentId }) => {
+  const [clickedButton, setClickedButton] = useState(false);
+
   const openMessage = (e) => {
-    console.log("button is workin");
     e.stopPropagation();
     setCurrentId(post._id);
+    setClickedButton(true); // Set the clicked state to true when the button is clicked
   };
+
+  // const handleMouseLeave = () => {
+  //   setClickedButton(false); // Reset the clicked state when the mouse leaves the button
+  // };
 
   return (
     <div>
-      {/* <Button required fullWidth> */}
       <ButtonBase
         required
         fullwidth="true"
         sx={{
-          bgcolor: "#aee3e8",
+          bgcolor: clickedButton ? "#f0f2f1" : "transparent",
           width: "50vh",
           padding: "5px",
           height: "80px",
         }}
         onClick={openMessage}
+        // onMouseLeave={handleMouseLeave}
       >
         <Grid sx={{ display: "flex", width: "calc(100%)", marginLeft: "20px" }}>
           <Avatar
@@ -36,14 +40,7 @@ const Inbox = ({ post, setCurrentId }) => {
             {post?.firstName + " " + post?.lastName}
           </Typography>
         </Grid>
-
-        {/* <div width="calc(50%)">
-            <Typography variant="h5" color="black">
-              {post?.name}
-            </Typography>
-          </div> */}
       </ButtonBase>
-      {/* </Button> */}
     </div>
   );
 };

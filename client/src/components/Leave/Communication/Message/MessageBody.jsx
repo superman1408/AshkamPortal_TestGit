@@ -112,7 +112,7 @@ const Message = ({ post, currentId }) => {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-                bgcolor: "#aee3e8",
+                bgcolor: "#dee3e1",
               }}
             >
               <div key={post.login} className="translate-x-[42%]">
