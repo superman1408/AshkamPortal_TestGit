@@ -23,7 +23,7 @@ const EmployeeOnHoliday = () => {
       >
         <Grid sx={{ display: "flex", flexDirection: "column" }}>
           <Grid>
-            <Typography sx={{ fontWeight: "bolder", mb: "1px", ml: "10px" }}>
+            <Typography sx={{ fontFamily: "Roboto", fontWeight: "bolder", mb: "1px", ml: "10px" }}>
               Employees on Holiday
             </Typography>
           </Grid>
@@ -48,9 +48,10 @@ const EmployeeOnHoliday = () => {
                   marginLeft: "30px",
                   marginRight: "30px",
                   marginTop: "10px",
+                  fontFamily: "Roboto",
                 }}
               >
-                unhealthy
+                Unhealthy Today
               </Typography>
             </Grid>
             <Grid>
@@ -59,9 +60,10 @@ const EmployeeOnHoliday = () => {
                   color: "#f7100c",
                   marginLeft: "30px",
                   marginTop: "10px",
+                  fontFamily: "Roboto",
                 }}
               >
-                only today
+                Only Today
               </Typography>
             </Grid>
           </Grid>
@@ -91,9 +93,10 @@ const EmployeeOnHoliday = () => {
                   marginLeft: "30px",
                   marginRight: "30px",
                   marginTop: "10px",
+                  fontFamily: "Roboto",
                 }}
               >
-                On holiday
+                On Holiday      
               </Typography>
             </Grid>
 
@@ -101,11 +104,12 @@ const EmployeeOnHoliday = () => {
               <Typography
                 sx={{
                   color: "#f7100c",
-                  marginLeft: "20px",
+                  marginLeft: "55px",
                   marginTop: "10px",
+                  fontFamily: "Roboto",
                 }}
               >
-                21st to 22nd
+                21st To 22nd
               </Typography>
             </Grid>
           </Grid>
