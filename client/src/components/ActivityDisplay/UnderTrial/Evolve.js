@@ -216,6 +216,7 @@ const Evolve = ({ currentId }) => {
     dispatch(tableEdit(currentId, index));
     let updatedArray = updateArray();
     console.log(updatedArray[index]);
+    setEditIndex(index);
   };
 
 
