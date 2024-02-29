@@ -200,8 +200,6 @@ const Evolve = ({ currentId }) => {
 
   //Logic for deleting the entry......!!!
   const deleteEntry = (index) => {
-    console.log(index);
-    // console.log(posts);
     dispatch(tableDelete(currentId, index)).then(() => {
       setIsLoading(true);
       window.location.reload();
