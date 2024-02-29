@@ -47,4 +47,4 @@ export const updateStatus = (id, formData) =>
 
 export const editTable = (id, toEdit) => API.patch(`/posts/${id}/edit`, toEdit);
 
-export const deleteTable = (id, indexed) => API.delete(`/posts/${id}/deleteTable`, indexed);
+export const deleteTable = (id, indexed) => API.delete(`/posts/${id}/deleteTable/${indexed}`);
