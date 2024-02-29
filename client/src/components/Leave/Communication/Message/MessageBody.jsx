@@ -4,8 +4,8 @@ import { getPost, updateStatus } from "../../../../action/posts";
 import { useNavigate } from "react-router-dom";
 import { Button, Card, Typography, Avatar } from "@mui/material";
 
-import CheckSharpIcon from '@mui/icons-material/CheckSharp';
-import ClearSharpIcon from '@mui/icons-material/ClearSharp';
+import CheckSharpIcon from "@mui/icons-material/CheckSharp";
+import ClearSharpIcon from "@mui/icons-material/ClearSharp";
 
 const Message = ({ post, currentId }) => {
   const [activeStatus, setActiveStatus] = useState({ status: "pending" });
@@ -63,7 +63,7 @@ const Message = ({ post, currentId }) => {
     }
     setActiveStatus({ ...activeStatus, status: "Accepted" });
     console.log("4");
-    navigate("/");
+    navigate("/home");
   };
 
   // ---------------handle reject ---------------------------
@@ -82,7 +82,7 @@ const Message = ({ post, currentId }) => {
     }
     setActiveStatus({ ...activeStatus, status: "Rejected" });
     console.log("5");
-    navigate("/");
+    navigate("/home");
   };
 
   for (let index = 0; index < post.recipient.length; index++) {
@@ -116,7 +116,7 @@ const Message = ({ post, currentId }) => {
                 flexDirection: "column",
                 justifyContent: "space-between",
                 bgcolor: "smokewhite",
-                borderRadius:"15px",
+                borderRadius: "15px",
               }}
             >
               <div key={post.login} className="translate-x-[42%]">
@@ -137,7 +137,14 @@ const Message = ({ post, currentId }) => {
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >
-                  <div key={post.selectedFile} style={{ display: "flex", flexDirection: "row", alignContent:"center" }}>
+                  <div
+                    key={post.selectedFile}
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignContent: "center",
+                    }}
+                  >
                     <Avatar
                       alt="avatar"
                       src={post.selectedFile}
@@ -145,16 +152,39 @@ const Message = ({ post, currentId }) => {
                       withborder="true"
                       className="p-0.5"
                     />
-                    <Typography sx={{marginLeft: "15px", marginTop: "5px", fontFamily: "Roboto", fontWeight: "bold",color: "#16355c"}}>
+                    <Typography
+                      sx={{
+                        marginLeft: "15px",
+                        marginTop: "5px",
+                        fontFamily: "Roboto",
+                        fontWeight: "bold",
+                        color: "#16355c",
+                      }}
+                    >
                       {post.firstName + " " + post.lastName}
                     </Typography>
                   </div>
                   {item.status ? (
-                    <Typography sx={{ marginTop: "5px", float: "right", fontFamily: "Roboto", fontWeight: "bold",color: "#16355c" }}>
+                    <Typography
+                      sx={{
+                        marginTop: "5px",
+                        float: "right",
+                        fontFamily: "Roboto",
+                        fontWeight: "bold",
+                        color: "#16355c",
+                      }}
+                    >
                       Status :{item.status}
                     </Typography>
                   ) : (
-                    <Typography sx={{ marginTop: "5px", fontFamily: "Roboto", fontWeight: "bold",color: "#16355c" }}>
+                    <Typography
+                      sx={{
+                        marginTop: "5px",
+                        fontFamily: "Roboto",
+                        fontWeight: "bold",
+                        color: "#16355c",
+                      }}
+                    >
                       Status : Pending
                     </Typography>
                   )}
@@ -162,14 +192,31 @@ const Message = ({ post, currentId }) => {
                 <div
                   key={post.punching}
                   style={{
-                    border: "2px solid #e55d17",
+                    // border: "2px solid #e55d17",
                     padding: "2px",
                     marginTop: "10px",
                   }}
                 >
-                  <Typography sx={{ padding: "10px", bgcolor: "white", fontFamily: "Roboto", color: "#16355c" }}>
+                  <textarea
+                    style={{
+                      resize: "none",
+                      height: "120px",
+                      width: "400px",
+                      backgroundColor: "floralwhite",
+                    }}
+                  >
                     {item.message}
-                  </Typography>
+                  </textarea>
+                  {/* <Typography
+                    sx={{
+                      padding: "10px",
+                      bgcolor: "white",
+                      fontFamily: "Roboto",
+                      color: "#16355c",
+                    }}
+                  >
+                    {item.message}
+                  </Typography> */}
                 </div>
                 <div
                   key={post._id}
@@ -179,11 +226,19 @@ const Message = ({ post, currentId }) => {
                     marginTop: "10px",
                   }}
                 >
-                  <Button sx={{fontFamily: "Roboto"}} variant="contained" onClick={handleAccept}>
+                  <Button
+                    sx={{ fontFamily: "Roboto" }}
+                    variant="contained"
+                    onClick={handleAccept}
+                  >
                     <CheckSharpIcon />
                     Accept
                   </Button>
-                  <Button sx={{fontFamily: "Roboto"}} variant="contained" onClick={handleReject}>
+                  <Button
+                    sx={{ fontFamily: "Roboto" }}
+                    variant="contained"
+                    onClick={handleReject}
+                  >
                     <ClearSharpIcon />
                     Reject
                   </Button>
