@@ -856,7 +856,7 @@ const PaySlip = () => {
                       alignItems: "right",
                     }}
                     onClick={() => {
-                      navigate(`/printLayout/printLayout`); // Full Weekly Activity route
+                      navigate(`/printLayout${user.result._id}/printLayout`); // Full Weekly Activity route
                     }}
                   >
                     Print
