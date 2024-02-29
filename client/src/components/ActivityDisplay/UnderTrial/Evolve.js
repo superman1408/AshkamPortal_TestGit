@@ -200,9 +200,12 @@ const Evolve = ({ currentId }) => {
 
   //Logic for deleting the entry......!!!
   const deleteEntry = (index) => {
-    // console.log(index);
+    console.log(index);
     // console.log(posts);
-    dispatch(tableDelete(currentId, index));
+    dispatch(tableDelete(currentId, index)).then(() => {
+      setIsLoading(true);
+      window.location.reload();
+    }).catch((err) => {return console.log("Error in deleting the file..!!")});
     let updatedArray = updateArray();
     console.log(updatedArray[index]);
   };

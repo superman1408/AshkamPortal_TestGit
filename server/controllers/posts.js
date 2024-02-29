@@ -163,6 +163,59 @@ export const editTable = async (req, res) => {
   console.log(valueToEdit);
 };
 
+
+
 export const deleteTable = async (req, res) => {
   console.log("Hello I am trying to DELETE your item Please WAIT...!!!@@");
+  const indexNumber = parseInt(req.params.indexed);
+  const id = req.params.id;
+  try {
+    if (!mongoose.Types.ObjectId.isValid(id))
+      return res.status(404).send("no post with that id found");
+
+    const post = await  AuthenticateUser.findById(id);
+
+    if (!post) return res.status(404).send("No User Found");
+
+    post.projectCode.splice(indexNumber, 1);
+    post.activityCode.splice(indexNumber, 1);
+    post.date.splice(indexNumber, 1);
+    post.netTime.splice(indexNumber, 1);
+    post.overTime.splice(indexNumber, 1);
+
+
+    await post.save();
+
+    res.status(200).json({ message: 'Item deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // const updatedPost = await AuthenticateUser.findByIdAndUpdate(id, {
+  //   projectCode: array,
+  // });
+
+  
+  // const authId = req.userId;
+  // const userProfile = await AuthenticateUser.findById(authId);
+  // if (!userProfile) return res.status(404).json({ msg: "No User Found" });
+  // const skillsArray = userProfile.skills;
+  // skillsArray.splice(indexNumber, 1);
+  // userProfile.skills = skillsArray;
+  // userProfile.save();
+  // res.send("Deleted Successfully!");
+// };

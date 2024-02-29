@@ -139,6 +139,7 @@ export const tableEdit = (id, toEdit) => async (dispatch) => {
 
 
 export const tableDelete = (id, indexed) => async (dispatch) => {
+  console.log(indexed);
   try {
     await API.deleteTable(id, indexed);
 
