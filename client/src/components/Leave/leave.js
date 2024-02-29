@@ -6,12 +6,17 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+
 import MailIcon from "@mui/icons-material/Mail";
+import SendSharpIcon from '@mui/icons-material/SendSharp';
+import PublicSharpIcon from '@mui/icons-material/PublicSharp';
+
 import useStyles from "./style";
 import Panel from "../Panel/Panel";
 import { sendMail, sendMailData } from "../../action/mail";
 import Calender from "../Calender/Calender";
 import ChartComponent from "./pieGraph";
+
 
 const Leave = () => {
   const classes = useStyles();
@@ -147,9 +152,10 @@ const Leave = () => {
                   sx={{
                     padding: "5px",
                     textAlign: "center",
+                    fontFamily: "Roboto"
                   }}
                 >
-                  <MailIcon />
+                  <PublicSharpIcon sx={{marginRight: "10px"}} />
                   {`${user.result.email}`}
                 </Typography>
               </Grid>
@@ -244,7 +250,7 @@ const Leave = () => {
                     }
                   />
                 )}
-                <Grid>
+                <Grid sx={{display: "flex", flexDirection: "column"}}>
                   <TextField
                     variant="outlined"
                     required
@@ -264,8 +270,9 @@ const Leave = () => {
                     variant="contained"
                     color="primary"
                     type="submit"
-                    sx={{ float: "right", marginTop: "10px" }}
+                    sx={{ display: "flex",flexDirection:"column", marginTop: "10px", fontFamily: "Roboto", padding: "12px" }}
                   >
+                    <SendSharpIcon sx={{marginRight: "10px"}} />
                     Send
                   </Button>
                 </Grid>
@@ -275,6 +282,7 @@ const Leave = () => {
               <Card
                 elevation={10}
                 sx={{
+                  margin: "10px",
                   marginTop: "40px",
                   height: "320px",
                   "@media (max-width: 600px)": {
@@ -284,7 +292,7 @@ const Leave = () => {
               >
                 <Calender />
               </Card>
-              <Card elevation={10} sx={{ marginTop: "10px", padding: "5px" }}>
+              <Card elevation={10} sx={{ margin: "10px", padding: "5px" }}>
                 <ChartComponent style={{ willchange: "transform" }} />
               </Card>
             </div>

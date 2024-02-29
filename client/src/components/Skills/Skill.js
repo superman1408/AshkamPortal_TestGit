@@ -79,7 +79,7 @@ const Skill = () => {
             justifyContent: "center",
           }}
         >
-          <Typography sx={{ fontWeight: "bolder" }}>Top skills</Typography>
+          <Typography sx={{ fontWeight: "bolder", fontFamily: "Roboto" }}>Top Skills</Typography>
           {Object.keys(formData).map((field) => (
             <div key={field} style={{ marginTop: "5px" }}>
               {isEditing ? (
@@ -100,7 +100,7 @@ const Skill = () => {
                     {" "}
                     {formData[field].charAt(0)}
                   </Avatar>
-                  <Typography sx={{ fontWeight: "bolder", marginLeft: "10px" }}>
+                  <Typography sx={{ fontWeight: "bolder", marginLeft: "10px", fontFamily: "Roboto" }}>
                     {formData[field]}
                   </Typography>
                 </div>

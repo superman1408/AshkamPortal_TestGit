@@ -106,7 +106,7 @@ const Birthday = () => {
                     return (<React.Fragment key={post.dob}>
                         <Typography
                           variant="h6"
-                          sx={{ fontWeight: "bold", fontFamily: 'Bradley Hand ITC', textAlign: "left", color: "#16355d" }}
+                          sx={{ fontFamily: 'Roboto', textAlign: "left", color: "#16355d" }}
                         >
                         Happy Birthday To
                         </Typography>
@@ -136,9 +136,8 @@ const Birthday = () => {
                             variant="h6"
                             sx={{
                               marginLeft: "20px",
-                              fontFamily: "Bradley Hand ITC",
+                              fontFamily: "Roboto",
                               fontSize: "18px",
-                              fontWeight: "bold",
                               color: "#e55d17"
                             }}
                           >

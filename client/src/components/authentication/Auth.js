@@ -95,9 +95,9 @@ const Auth = () => {
             <AccountCircleIcon fontSize="large" color="primary" />
           </div>
 
-          <h2 style={{ fontFamily: "Abril Fatface", fontWeight: "bold" }}>
-            {isSignUp ? "Register" : "Login"}
-          </h2>
+          <h4 style={{ fontFamily: "Roboto ", color: "#16355d" }}>
+            {isSignUp ? "Sign Up" : "Sign In"}
+          </h4>
           {/* <Typography color="#0B7882">Welcome to Ashkam 👋 </Typography> */}
 
           <form autoComplete="on" onSubmit={handleSubmit}>
@@ -108,14 +108,14 @@ const Auth = () => {
                     {selectedOption === "admin" ? (
                       <AdminPanelSettingsIcon
                         fontSize="small"
-                        style={{ color: "#17325C" }}
+                        style={{ color: "#e55d17" }}
                       />
                     ) : (
                       <AdminPanelSettingsOutlinedIcon fontSize="10px" />
                     )}
                   </div>
 
-                  <label>
+                  <label style={{ fontFamily: "Roboto ", color: "#16355d" }}>
                     <input
                       style={{ marginRight: "5px", padding: "2px" }}
                       name="role"
@@ -132,14 +132,14 @@ const Auth = () => {
                     {selectedOption === "manager" ? (
                       <ManageAccountsIcon
                         fontSize="small"
-                        style={{ color: "#17325C" }}
+                        style={{ color: "#047681" }}
                       />
                     ) : (
                       <ManageAccountsOutlinedIcon fontSize="10px" />
                     )}
                   </div>
 
-                  <label>
+                  <label style={{ fontFamily: "Roboto ", color: "#16355d" }}>
                     <input
                       style={{ marginRight: "5px", padding: "2px" }}
                       name="role"
@@ -156,14 +156,14 @@ const Auth = () => {
                     {selectedOption === "employee" ? (
                       <BadgeIcon
                         fontSize="small"
-                        style={{ color: "#17325C" }}
+                        style={{ color: "#16355c" }}
                       />
                     ) : (
                       <BadgeOutlinedIcon fontSize="10px" />
                     )}
                   </div>
 
-                  <label>
+                  <label style={{ fontFamily: "Roboto ", color: "#16355d" }}>
                     <input
                       style={{ marginRight: "5px", padding: "2px" }}
                       name="role"
@@ -314,7 +314,7 @@ const Auth = () => {
                 required
                 fullWidth
                 type="submit"
-                sx={{ marginTop: "10px" }}
+                sx={{ marginTop: "10px", fontFamily: "Roboto" }}
               >
                 {isSignUp ? "Sign Up" : "Sign In"}
               </Button>
@@ -322,7 +322,7 @@ const Auth = () => {
               {/* this is required for rendering taost it works as a container*/}
             </div>
             <div>
-              <Button onClick={switchMode}>
+              <Button style={{ fontFamily: "Roboto ", color: "#16355d" }} onClick={switchMode}>
                 {isSignUp
                   ? "  Already have an account? Login here!  "
                   : "Don't have an account ? Register here!"}

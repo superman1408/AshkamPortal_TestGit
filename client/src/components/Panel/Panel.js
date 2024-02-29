@@ -133,8 +133,10 @@ const Panel = ({ prop }) => {
             sx={{
               // justifyContent: "center",
               // textAlign: "center",
+              fontFamily: "Roboto",
               marginLeft: "70px",
               marginTop: "10px",
+              color: "#16355d"
             }}
           >
             {user.result.firstName + " " + user.result.lastName}
@@ -149,7 +151,7 @@ const Panel = ({ prop }) => {
               <ListItemIcon>
                 <DashboardIcon sx={{ color: "#038f7c" }} />
               </ListItemIcon>
-              <ListItemText primary="Dashboard" />
+              <ListItemText sx={{color: "#16355d"}} primary="Dashboard" />
             </ListItemButton>
 
             {/* inbox added here */}
@@ -160,7 +162,7 @@ const Panel = ({ prop }) => {
               <ListItemIcon>
                 <ForwardToInboxTwoToneIcon sx={{ color: "#038f7c" }} />
               </ListItemIcon>
-              <ListItemText primary="Inbox" />
+              <ListItemText sx={{color: "#16355d"}} primary="Inbox" />
             </ListItemButton>
 
             <ListItemButton
@@ -170,35 +172,35 @@ const Panel = ({ prop }) => {
               <ListItemIcon>
                 <PeopleAltIcon sx={{ color: "#038f7c" }} />
               </ListItemIcon>
-              <ListItemText primary="Employee" />
+              <ListItemText sx={{color: "#16355d"}} primary="Employee" />
             </ListItemButton>
 
             <ListItemButton sx={{ mb: "10px" }}>
               <ListItemIcon>
                 <AnalyticsIcon sx={{ color: "#038f7c" }} />
               </ListItemIcon>
-              <ListItemText primary="Analytics" />
+              <ListItemText sx={{color: "#16355d"}} primary="Analytics" />
             </ListItemButton>
 
             <ListItemButton sx={{ mb: "10px" }}>
               <ListItemIcon>
                 <BadgeIcon sx={{ color: "#038f7c" }} />
               </ListItemIcon>
-              <ListItemText primary="Report Attendance" />
+              <ListItemText sx={{color: "#16355d"}} primary="Report Attendance" />
             </ListItemButton>
 
             {/* <ListItemButton sx={{ mb: "10px" }}>
               <ListItemIcon>
                 <SettingsIcon sx={{ color: "#038f7c" }} />
               </ListItemIcon>
-              <ListItemText primary="settings" />
+              <ListItemText sx={{color: "#16355d"}} primary="settings" />
             </ListItemButton> */}
 
             <ListItemButton sx={{ mb: "10px" }}>
               <ListItemIcon>
                 <LogoutIcon sx={{ color: "#038f7c" }} />
               </ListItemIcon>
-              <ListItemText onClick={switchMode} primary="logout" />
+              <ListItemText sx={{color: "#16355d"}} onClick={switchMode} primary="logout" />
             </ListItemButton>
           </Box>
         </Grid>
@@ -208,55 +210,3 @@ const Panel = ({ prop }) => {
 };
 
 export default Panel;
-
-// import { ButtonBase, Typography, Button, Avatar, Grid } from "@mui/material";
-// import React from "react";
-
-// // import Message from "../Message/message";
-
-// const Inbox = ({ post, setCurrentId }) => {
-//   const openMessage = (e) => {
-//     console.log("button is workin");
-//     e.stopPropagation();
-//     setCurrentId(post._id);
-//   };
-
-//   return (
-//     <div>
-//       <Button required fullWidth>
-//         <ButtonBase
-//           sx={{
-//             bgcolor: "#aee3e8",
-//             width: "50vh",
-//             padding: "5px",
-//             height: "80px",
-//           }}
-//           onClick={openMessage}
-//         >
-//           <Grid
-//             sx={{ display: "flex", width: "calc(100%)", marginLeft: "20px" }}
-//           >
-//             <Avatar
-//               alt="avatar"
-//               src={post?.selectedFile}
-//               withborder="true"
-//               color="green"
-//             />
-
-//             <Typography variant="h6" color="black" sx={{ marginLeft: "20px" }}>
-//               {post?.firstName + " " + post?.lastName}
-//             </Typography>
-//           </Grid>
-
-//           {/* <div width="calc(50%)">
-//             <Typography variant="h5" color="black">
-//               {post?.name}
-//             </Typography>
-//           </div> */}
-//         </ButtonBase>
-//       </Button>
-//     </div>
-//   );
-// };
-
-// export default Inbox;
