@@ -69,17 +69,12 @@ const Evolve = ({ currentId }) => {
 
     if (validateEntry(newEntry)) {
       if (editIndex !== -1) {
-        // const updatedEntries = [...entries];
-        // updatedEntries[editIndex] = newEntry;
-        // setEntries(updatedEntries);
-        // console.log(updatedEntries);
         await dispatch(tableEdit(currentId, editIndex)).then((res) => {
           console.log("Data is recieved in the Data Base for Editing....");
           setEditIndex(-1); // Reset edit index
         });
       } else {
         setEntries([...entries, newEntry]);
-        // console.log(entries)
         await dispatch(todoList(newEntry, currentId)).then((res) => {
           console.log("Data is recieved in the Data Base");
           clearForm();
@@ -219,7 +214,6 @@ const Evolve = ({ currentId }) => {
     setDate(updatedArray[index].date);
     setNetTime(updatedArray[index].netTime);
     setOverTime(updatedArray[index].overTime);
-    // handleSubmit();
   };
 
 
@@ -424,3 +418,13 @@ const Evolve = ({ currentId }) => {
   );
 };
 export default Evolve;
+
+
+
+
+
+
+        // const updatedEntries = [...entries];
+        // updatedEntries[editIndex] = newEntry;
+        // setEntries(updatedEntries);
+        // console.log(updatedEntries);
