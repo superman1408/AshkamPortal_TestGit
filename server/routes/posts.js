@@ -27,7 +27,7 @@ router.delete("/:id", auth, deletePost);
 
 router.post("/:id/todo", auth, todoList);
 
-router.patch("/:id/edit", auth, editTable);
+router.patch("/:id/:indexed/edit", auth, editTable);
 
 router.delete("/:id/deleteTable/:indexed", auth, deleteTable);
 

@@ -125,11 +125,10 @@ export const skillData = (post) => async (dispatch) => {
 
 
 
-export const tableEdit = (id, toEdit) => async (dispatch) => {
-  console.log(`we have our current id : ${id}`);
-  console.log(`We have index for finding the required content to edit : ${toEdit}`);
+export const tableEdit = (id, indexed, toEdit) => async (dispatch) => {
+
   try {
-    const { data } = await API.editTable(id, toEdit);
+    const { data } = await API.editTable(id, indexed, toEdit);
 
     dispatch({ type: UPDATE_TABLE, payload: data });
   } catch (error) {

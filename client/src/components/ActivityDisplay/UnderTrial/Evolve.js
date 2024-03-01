@@ -69,17 +69,16 @@ const Evolve = ({ currentId }) => {
 
     if (validateEntry(newEntry)) {
       if (editIndex !== -1) {
+        const indexed = [editIndex];
         const updatedEntries = [...entries];
         updatedEntries[editIndex] = newEntry;
         setEntries(updatedEntries);
-        console.log(updatedEntries);
-        await dispatch(todoList(newEntry, currentId)).then((res) => {
-          console.log("Data is recieved in the Data Base");
+        await dispatch(tableEdit(currentId, indexed, newEntry)).then((res) => {
+          console.log("Data is recieved in the Data Base for Editing....");
           setEditIndex(-1); // Reset edit index
         });
       } else {
         setEntries([...entries, newEntry]);
-        // console.log(entries)
         await dispatch(todoList(newEntry, currentId)).then((res) => {
           console.log("Data is recieved in the Data Base");
           clearForm();
@@ -212,16 +211,18 @@ const Evolve = ({ currentId }) => {
 
   //To Edit the entry....!!!!
   const editEntry = (index) => {
-    // console.log(index);
-    // console.log(posts);
-    dispatch(tableEdit(currentId, index));
     let updatedArray = updateArray();
-    console.log(updatedArray[index]);
     setEditIndex(index);
+    setProjectCode(updatedArray[index].projectCode);
+    setActivityCode(updatedArray[index].activityCode);
+    setDate(updatedArray[index].date);
+    setNetTime(updatedArray[index].netTime);
+    setOverTime(updatedArray[index].overTime);
   };
 
 
   const updateArray = () => {
+    // eslint-disable-next-line array-callback-return
     posts.map((post) => {
       for (let i = 0; i < post.projectCode.length; i++) {
         if (post._id === currentId) {
@@ -279,7 +280,8 @@ const Evolve = ({ currentId }) => {
                 }}
                 type="text"
                 id="projectCode"
-                value={projectCode}
+                // value={projectCode}
+                defaultValue={projectCode}
                 onFocus={togglePopup1} // Using onFocus event to trigger the popup
                 autoComplete="off"
               />
@@ -309,7 +311,8 @@ const Evolve = ({ currentId }) => {
                 }}
                 type="text"
                 id="activityCode"
-                value={activityCode}
+                // value={activityCode}
+                defaultValue={activityCode}
                 onFocus={togglePopup2}
                 autoComplete="off"
               />
@@ -328,7 +331,8 @@ const Evolve = ({ currentId }) => {
               <input
                 type="date"
                 id="date"
-                value={date}
+                // value={date}
+                defaultValue={date}
                 onChange={(e) => setDate(e.target.value)}
               />
             </div>
@@ -339,7 +343,8 @@ const Evolve = ({ currentId }) => {
               <input
                 type="number"
                 id="netTime"
-                value={netTime}
+                // value={netTime}
+                defaultValue={netTime}
                 onChange={(e) => setNetTime(e.target.value)}
               />
             </div>
@@ -350,7 +355,8 @@ const Evolve = ({ currentId }) => {
               <input
                 type="number"
                 id="overTime"
-                value={overTime}
+                // value={overTime}
+                defaultValue={overTime}
                 onChange={(e) => setOverTime(e.target.value)}
               />
             </div>
