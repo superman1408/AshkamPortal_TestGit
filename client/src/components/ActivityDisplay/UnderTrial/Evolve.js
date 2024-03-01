@@ -69,7 +69,9 @@ const Evolve = ({ currentId }) => {
 
     if (validateEntry(newEntry)) {
       if (editIndex !== -1) {
-        await dispatch(tableEdit(currentId, editIndex)).then((res) => {
+        const indexed = [editIndex];
+        console.log(indexed);
+        await dispatch(tableEdit(currentId, indexed)).then((res) => {
           console.log("Data is recieved in the Data Base for Editing....");
           setEditIndex(-1); // Reset edit index
         });

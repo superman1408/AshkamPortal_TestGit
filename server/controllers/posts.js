@@ -159,7 +159,7 @@ export const editTable = async (req, res) => {
   console.log("Hello I am editing Your Table Please WAIT...!!!@@");
   const id = req.params;
   console.log(id);
-  const valueToEdit = req.body;
+  const valueToEdit = parseInt(req.body);
   console.log(valueToEdit);
 };
 
