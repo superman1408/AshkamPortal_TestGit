@@ -73,7 +73,6 @@ const Evolve = ({ currentId }) => {
         const updatedEntries = [...entries];
         updatedEntries[editIndex] = newEntry;
         setEntries(updatedEntries);
-        console.log(updatedEntries);
         await dispatch(tableEdit(currentId, indexed, newEntry)).then((res) => {
           console.log("Data is recieved in the Data Base for Editing....");
           setEditIndex(-1); // Reset edit index
