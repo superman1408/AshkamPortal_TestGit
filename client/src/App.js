@@ -13,7 +13,7 @@ import Communication from "./components/Leave/Communication/Communication";
 import LOGO from "./assets/AshKamLogo.png";
 // import FullWeekly from "./components/Activity/FullWeekly";
 import BirthdayMail from "./components/Birthday/BirthdayMail";
-import PaySlip from "./components/Payslip/PaySlip";
+import PaySlip from "./components/Payslip/payslipRough";
 import EmployeeAttendance from "./components/Attendance/EmployeeAttendance";
 // import Rough from "./components/Rough/rough";
 // import RoughPayslip from "./components/Payslip/RoughPayslip";
@@ -91,7 +91,7 @@ const App = () => {
             width: "100%",
             marginTop: "5px",
             textAlign: "center",
-            fontFamily: "Roboto"
+            fontFamily: "Roboto",
           }}
         >
           ASHKAM ENERGY PRIVATE LIMITED ©️ me 2023
