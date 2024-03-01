@@ -70,8 +70,11 @@ const Evolve = ({ currentId }) => {
     if (validateEntry(newEntry)) {
       if (editIndex !== -1) {
         const indexed = [editIndex];
-        console.log(indexed);
-        await dispatch(tableEdit(currentId, indexed)).then((res) => {
+        const updatedEntries = [...entries];
+        updatedEntries[editIndex] = newEntry;
+        setEntries(updatedEntries);
+        console.log(updatedEntries);
+        await dispatch(tableEdit(currentId, indexed, newEntry)).then((res) => {
           console.log("Data is recieved in the Data Base for Editing....");
           setEditIndex(-1); // Reset edit index
         });
@@ -420,13 +423,3 @@ const Evolve = ({ currentId }) => {
   );
 };
 export default Evolve;
-
-
-
-
-
-
-        // const updatedEntries = [...entries];
-        // updatedEntries[editIndex] = newEntry;
-        // setEntries(updatedEntries);
-        // console.log(updatedEntries);

@@ -45,6 +45,6 @@ export const sendMailData = (id, formData) =>
 export const updateStatus = (id, formData) =>
   API.post(`/mail/${id}/status`, formData);
 
-export const editTable = (id, toEdit) => API.patch(`/posts/${id}/edit`, toEdit);
+export const editTable = (id, indexed, toEdit) => API.patch(`/posts/${id}/${indexed}/edit`, toEdit);
 
 export const deleteTable = (id, indexed) => API.delete(`/posts/${id}/deleteTable/${indexed}`);
