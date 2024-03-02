@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
-import printLayout from "../printLayout/printLayout";
+// import printLayout from "../printLayout/printLayout";
 
 // import useStyle from "./Style";
 
@@ -856,7 +856,8 @@ const PaySlip = () => {
                       alignItems: "right",
                     }}
                     onClick={() => {
-                      navigate(`/printLayout${user.result._id}/printLayout`); // Full Weekly Activity route
+                      navigate("/printingLayout");
+                      // Full Weekly Activity route
                     }}
                   >
                     Print

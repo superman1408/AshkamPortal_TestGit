@@ -13,12 +13,13 @@ import Communication from "./components/Leave/Communication/Communication";
 import LOGO from "./assets/AshKamLogo.png";
 // import FullWeekly from "./components/Activity/FullWeekly";
 import BirthdayMail from "./components/Birthday/BirthdayMail";
-import PaySlip from "./components/Payslip/payslipRough";
+import PaySlip from "./components/Payslip/PaySlip";
 import EmployeeAttendance from "./components/Attendance/EmployeeAttendance";
 // import Rough from "./components/Rough/rough";
 // import RoughPayslip from "./components/Payslip/RoughPayslip";
 import ActivityDisplay from "./components/ActivityDisplay/ActivityDisplay";
 import SkillDisplay from "./components/Skills/SkillDisplay";
+import PrintingLayout from "./components/PrinttingLayout/PrintingLayout";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -78,8 +79,9 @@ const App = () => {
           <Route path="posts/skill" exact element={<SkillDisplay />} />
           <Route path="/birthdaymail" exact element={<BirthdayMail />} />
           <Route path="/:id/payslip" exact element={<PaySlip />} />
+          <Route path="/printingLayout" exact element={<PrintingLayout />} />
 
-          {/* <Route path="/rough" exact element={<Rough />} /> */}
+          {/* <Route path="/" exact element={<Rough />} /> */}
           {/* <Route path="/roughpayslip" exact element={<RoughPayslip />} /> */}
         </Routes>
       </Container>
