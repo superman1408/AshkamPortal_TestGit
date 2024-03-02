@@ -93,7 +93,7 @@ const Birthday = () => {
         <Grid>
           {
             isBirthdayToday() ? (
-              <marquee style={{color: '#047681', fontFamily: 'Roboto'}}>
+              <marquee direction="down" style={{color: '#047681', fontFamily: 'Roboto'}}>
                 <strong style={{color: '#e55d17', fontFamily: 'Roboto'}}>No  Event Today!</strong><br /><br />
                 There are no event today.
                 Please check back tomorrow or try again later.
