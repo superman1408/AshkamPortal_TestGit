@@ -4,6 +4,7 @@ import { useReactToPrint } from "react-to-print";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
+import html2pdf from "html2pdf.js";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 // import printLayout from "../printLayout/printLayout";
@@ -22,6 +23,7 @@ import {
 // import { useDispatch } from "react-redux";
 
 const PaySlip = () => {
+  const contentRef = useRef();
   // const [currentId, setCurrentId] = useState();
   const [total, setTotal] = useState(0);
   const [basic, setBasic] = useState();
@@ -39,6 +41,25 @@ const PaySlip = () => {
   const [netSalary, setNetSalary] = useState(0);
 
   const navigate = useNavigate();
+
+  const [isPrinting, setIsPrinting] = useState(false);
+
+  const handleGeneratePdf = () => {
+    const content = contentRef.current;
+
+    if (content) {
+      setIsPrinting(true); // Set the flag to true when generating PDF
+      html2pdf(content, {
+        margin: 10,
+        filename: "generated-document.pdf",
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+      });
+    }
+
+    // handlePrint();
+  };
 
   const GS =
     basic +
@@ -872,7 +893,7 @@ const PaySlip = () => {
                       color: "black",
                       alignItems: "right",
                     }}
-                    onClick={downloadPdf}
+                    onClick={handleGeneratePdf}
                   >
                     Download as Pdf
                   </Button>
