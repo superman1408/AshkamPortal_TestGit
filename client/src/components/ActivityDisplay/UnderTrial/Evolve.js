@@ -8,12 +8,11 @@ import { tableDelete, tableEdit, todoList } from "../../../action/posts";
 import ProjectCodePopUp from "./ProjectCodePopUp";
 import ActivityCodePopUp from "./ActivityCodePopUp";
 import { getPosts } from "../../../action/posts";
-import { useSelector } from "react-redux";
 
 
 
 
-const Evolve = ({ currentId }) => {
+const Evolve = ({ currentId, posts }) => {
   const dispatch = useDispatch();
   const [entries, setEntries] = useState([]);
   const [projectCode, setProjectCode] = useState("");
@@ -23,12 +22,16 @@ const Evolve = ({ currentId }) => {
   const [overTime, setOverTime] = useState("");
   const [editIndex, setEditIndex] = useState(-1);
   const [isLoading, setIsLoading] = useState(true);
+  
 
   const [projectopen, setProjectOpen] = useState(false);
 
   const [activityopen, setActivityOpen] = useState(false);
 
-  const posts = useSelector((state) => state.posts);
+
+
+  const user = JSON.parse(localStorage.getItem("profile"));
+  const [role, setRole]  = useState(user?.result?.role);
 
 
   const array = [];
@@ -49,11 +52,12 @@ const Evolve = ({ currentId }) => {
               overTime: post.overTime[i],
               editIndex: post.editIndex[i],
             });
+            setRole(post?.role);
           }
         }
       });
     });
-  }, [isLoading]);
+  }, [isLoading, currentId]);
 
 
 
@@ -239,7 +243,8 @@ const Evolve = ({ currentId }) => {
     return array;
   };
 
-
+  // console.log(isLoading);
+  // console.log(role);
 
 
 
@@ -407,8 +412,21 @@ const Evolve = ({ currentId }) => {
                           alignContent: "center"
                         }}
                       >
-                        <button style={{fontFamily: "Roboto"}} onClick={() => editEntry(index)}>Edit</button>
-                        <button style={{fontFamily: "Roboto"}} onClick={() => deleteEntry(index)}>Delete The Entry</button>
+                        {
+                          role === "admin" && (
+                            <>
+                              <button id="editButton" style={{fontFamily: "Roboto"}} onClick={() => editEntry(index)}>Edit</button>
+                              <button id="deleteButton" style={{fontFamily: "Roboto"}} onClick={() => deleteEntry(index)}>Delete The Entry</button>
+                            </>
+                          )
+                        }
+                        {
+                          role === "manager" && (
+                            <>
+                              <button id="editButton" style={{fontFamily: "Roboto"}} onClick={() => editEntry(index)}>Edit</button>
+                            </>
+                          )
+                        }
                       </td>
                     </tr>
                   ))}
