@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useReactToPrint } from "react-to-print";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import html2pdf from "html2pdf.js";
+import html2pdf from "html2pdf";
 
 // import useStyle from "./Style";
 
