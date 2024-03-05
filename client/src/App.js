@@ -19,6 +19,7 @@ import EmployeeAttendance from "./components/Attendance/EmployeeAttendance";
 // import RoughPayslip from "./components/Payslip/RoughPayslip";
 import ActivityDisplay from "./components/ActivityDisplay/ActivityDisplay";
 import SkillDisplay from "./components/Skills/SkillDisplay";
+import PrintingLayout from "./components/PrinttingLayout/PrintingLayout";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -77,8 +78,9 @@ const App = () => {
           <Route path="posts/skill" exact element={<SkillDisplay />} />
           <Route path="/birthdaymail" exact element={<BirthdayMail />} />
           <Route path="/:id/payslip" exact element={<PaySlip />} />
+          <Route path="/printingLayout" exact element={<PrintingLayout />} />
 
-          {/* <Route path="/rough" exact element={<Rough />} /> */}
+          {/* <Route path="/" exact element={<Rough />} /> */}
           {/* <Route path="/roughpayslip" exact element={<RoughPayslip />} /> */}
         </Routes>
       </Container>
@@ -90,7 +92,7 @@ const App = () => {
             width: "100%",
             marginTop: "5px",
             textAlign: "center",
-            fontFamily: "Roboto"
+            fontFamily: "Roboto",
           }}
         >
           ASHKAM ENERGY PRIVATE LIMITED ©️ me 2023

@@ -36,7 +36,7 @@ const WeeklyActivity = () => {
               sx={{
                 marginLeft: "20px",
                 marginTop: "10px",
-                marginBottom: "10px",
+                marginBottom: "30px",
               }}
             >
               <Typography sx={{ fontWeight: "bolder", fontFamily: "Roboto" }}>
@@ -60,21 +60,21 @@ const WeeklyActivity = () => {
               }}
             >
               <CChart
-                // style={{
-                //   display: "flex",
-                //   "@media (maxWidth: 600px)": {
-                //     flexDirection: "column",
-                //     display: "flex",
-                //   },
+                style={{
+                  // display: "flex",
+                  "@media (maxWidth: 600px)": {
+                    flexDirection: "column",
+                    // display: "flex",
+                  },
 
-                //   "@media (minWidth: 600px)": {
-                //     flexDirection: "row",
-                //     // width: "600px",
-                //     // height: "400px",
-                //   },
-                // }}
+                  "@media (minWidth: 600px)": {
+                    flexDirection: "row",
+                    // width: "600px",
+                    // height: "400px",
+                  },
+                }}
                 width={600}
-                height={425}
+                height={400}
                 type="line"
                 data={{
                   datasets: [
