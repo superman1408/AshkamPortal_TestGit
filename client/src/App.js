@@ -23,7 +23,6 @@ import SkillDisplay from "./components/Skills/SkillDisplay";
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
 
-  return (
     <BrowserRouter>
       <Container maxWidth={false}>
         <header>
