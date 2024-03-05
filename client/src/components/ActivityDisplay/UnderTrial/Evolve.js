@@ -32,6 +32,7 @@ const Evolve = ({ currentId, posts }) => {
 
   const user = JSON.parse(localStorage.getItem("profile"));
   const [role, setRole]  = useState(user?.result?.role);
+  
 
 
   const array = [];
@@ -52,7 +53,7 @@ const Evolve = ({ currentId, posts }) => {
               overTime: post.overTime[i],
               editIndex: post.editIndex[i],
             });
-            setRole(post?.role);
+            // setRole(post?.role);
           }
         }
       });
