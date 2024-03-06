@@ -1326,7 +1326,6 @@ const PaySlip = () => {
                   </Grid>
                 </Grid>
               </Grid>
-              
                       <Grid
                         sx={{
                           display: "flex",
@@ -1604,7 +1603,6 @@ const PaySlip = () => {
       </div>
     </>
   );
-  
 };
 
 export default PaySlip;
