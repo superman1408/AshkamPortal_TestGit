@@ -20,7 +20,6 @@ import {
   Container,
   Button,
 } from "@mui/material";
-import PrintingLayout from "../PrinttingLayout/PrintingLayout";
 // import { useDispatch } from "react-redux";
 
 const PaySlip = () => {
@@ -28,13 +27,17 @@ const PaySlip = () => {
   // const [currentId, setCurrentId] = useState();
   const [total, setTotal] = useState(0);
   const [basic, setBasic] = useState();
+  const [uanNo, setUanNo] = useState();
+  const [datevalue, setDatevalue] = useState();
+  // const [daysInThisPrevMonth, setDaysInThisPrevMonth] = useState();
+  const [prevMonthValue, setPrevMonthValue] = useState();
   const [houseRent, setHouserent] = useState();
   const [conveyance, setConveyance] = useState();
   const [communication, setCommunication] = useState();
   const [uniform, setUniform] = useState();
   const [medical, setMedical] = useState();
   const [cityFactor, setCityFactor] = useState();
-  const [showPrintingLayout, setShowPrintingLayout] = useState(false);
+  // const [showPrintingLayout, setShowPrintingLayout] = useState(false);
 
   const [employeeContribution_pf, setEmployeeContribution_pf] = useState(0);
   const [employeerContribution_pf, setEmployeerContribution_pf] = useState(0);
@@ -132,26 +135,26 @@ const PaySlip = () => {
   const { id } = useParams();
   console.log("Id in Payslip Page", id);
 
-  const [postData, setPostData] = useState({
-    employeeId: user.result.employeeId,
-    firstName: user.result.firstName,
-    lastName: user.result.lastName,
-    uanNo: "",
-    payDays: daysInThisPrevMonth(),
-    payPeriod: prevMonth,
-    payDate: date,
+  // const [postData, setPostData] = useState({
+  //   employeeId: user.result.employeeId,
+  //   firstName: user.result.firstName,
+  //   lastName: user.result.lastName,
+  //   uanNo: uanNo,
+  //   payDays: daysInThisPrevMonth(),
+  //   payPeriod: prevMonth,
+  //   payDate: date,
 
-    netSalary: "",
-    // employeeContribution_pf: employeeContribution_pf || "",
-    // employeerContribution_pf: employeeContribution_pf || "",
-    // employeeContribution_esic: employeeContribution_esic || "",
-    employeerContribution_esic: "",
-    tds: "",
-    totalDeduction: "",
-  });
+  //   netSalary: "",
+  //   // employeeContribution_pf: employeeContribution_pf || "",
+  //   // employeerContribution_pf: employeeContribution_pf || "",
+  //   // employeeContribution_esic: employeeContribution_esic || "",
+  //   employeerContribution_esic: "",
+  //   tds: "",
+  //   totalDeduction: "",
+  // });
 
-  console.log("total", total);
-  console.log("grossEarnings", postData.grossEarnings);
+  // console.log("total", total);
+  // console.log("grossEarnings", postData.grossEarnings);
 
   // const post = useSelector((state) =>
   //   currentId ? state.posts.find((p) => p._id === currentId) : null
@@ -182,42 +185,60 @@ const PaySlip = () => {
   //   window.print();
   // };
 
-  const handlePrint = () => {
-    setShowPrintingLayout(true);
-    // navigate("/printingLayout");
-  };
-
-  const pdfRef = useRef();
-  const downloadPdf = () => {
-    const input = pdfRef.current;
-    html2canvas(input).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF("p", "mm", "a4", true);
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
-      const imgWidth = canvas.width;
-      const imgHeight = canvas.height;
-      const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
-      const imgX = (pdfWidth - imgWidth * ratio) / 2;
-      const imgY = 30;
-      pdf.addImage(
-        imgData,
-        "PNG",
-        imgX,
-        imgY,
-        imgWidth * ratio,
-        imgHeight * ratio
-      );
-      pdf.save("invoice.pdf");
+  const handlePrint = (postData) => {
+    // setShowPrintingLayout(true);
+    navigate("/printingLayout", {
+      state: {
+        total,
+        basic,
+        uanNo,
+        datevalue,
+        prevMonthValue,
+        houseRent,
+        conveyance,
+        communication,
+        uniform,
+        medical,
+        cityFactor,
+        employeeContribution_pf,
+        employeerContribution_pf,
+        employeeContribution_esic,
+        totalDeduction,
+        netSalary,
+      },
     });
   };
+
+  // const pdfRef = useRef();
+  // const downloadPdf = () => {
+  //   const input = pdfRef.current;
+  //   html2canvas(input).then((canvas) => {
+  //     const imgData = canvas.toDataURL("image/png");
+  //     const pdf = new jsPDF("p", "mm", "a4", true);
+  //     const pdfWidth = pdf.internal.pageSize.getWidth();
+  //     const pdfHeight = pdf.internal.pageSize.getHeight();
+  //     const imgWidth = canvas.width;
+  //     const imgHeight = canvas.height;
+  //     const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+  //     const imgX = (pdfWidth - imgWidth * ratio) / 2;
+  //     const imgY = 30;
+  //     pdf.addImage(
+  //       imgData,
+  //       "PNG",
+  //       imgX,
+  //       imgY,
+  //       imgWidth * ratio,
+  //       imgHeight * ratio
+  //     );
+  //     pdf.save("invoice.pdf");
+  //   });
+  // };
 
   return (
     <>
       <div>
         <Container
           fluid="true"
-          ref={pdfRef}
           sx={{
             display: "flex",
             justifyContent: "center",
@@ -305,7 +326,7 @@ const PaySlip = () => {
                     name="employeeId"
                     label="Employee Id"
                     variant="outlined"
-                    value={postData.employeeId}
+                    value={user.result.employeeId}
                     // onChange={(e) =>
                     //   setPostData({ ...postData, employeeId: e.target.value })
                     // }
@@ -335,10 +356,8 @@ const PaySlip = () => {
                         label="UAN No."
                         variant="outlined"
                         required
-                        value={postData.uanNo}
-                        onChange={(e) =>
-                          setPostData({ ...postData, uanNo: e.target.value })
-                        }
+                        value={uanNo}
+                        onChange={(e) => setUanNo(+e.target.value)}
                       />
                     </Grid>
 
@@ -353,7 +372,7 @@ const PaySlip = () => {
                         variant="outlined"
                         required
                         fullWidth={true}
-                        value={postData.firstName}
+                        value={user.result.firstName}
                         // onChange={(e) =>
                         //   setPostData({ ...postData, firstName: e.target.value })
                         // }
@@ -371,7 +390,7 @@ const PaySlip = () => {
                         variant="outlined"
                         required
                         fullwidth="true"
-                        value={postData.lastName}
+                        value={user.result.lastName}
                         // onChange={(e) =>
                         //   setPostData({ ...postData, lastName: e.target.value })
                         // }
@@ -392,10 +411,8 @@ const PaySlip = () => {
                         label="payDate"
                         variant="outlined"
                         required
-                        value={postData.payDate}
-                        onChange={(e) =>
-                          setPostData({ ...postData, payDate: e.target.value })
-                        }
+                        value={datevalue}
+                        // onChange={(e) => setDatevalue(+e.target.value)}
                       />
                     </Grid>
 
@@ -410,10 +427,10 @@ const PaySlip = () => {
                         label="Pay Days"
                         variant="outlined"
                         required
-                        value={postData.payDays}
-                        onChange={(e) =>
-                          setPostData({ ...postData, payDays: e.target.value })
-                        }
+                        value={daysInThisPrevMonth()}
+                        // onChange={(e) =>
+                        //   setDaysInThisPrevMonth(+e.target.value)
+                        // }
                       />
                     </Grid>
 
@@ -428,13 +445,8 @@ const PaySlip = () => {
                         label="payPeriod"
                         variant="outlined"
                         required
-                        value={postData.payPeriod}
-                        onChange={(e) =>
-                          setPostData({
-                            ...postData,
-                            payPeriod: e.target.value,
-                          })
-                        }
+                        value={prevMonthValue}
+                        // onChange={(e) => setPrevMonthValue(+e.target.value)}
                       />
                     </Grid>
                   </Grid>
@@ -647,12 +659,12 @@ const PaySlip = () => {
                           label="amount"
                           variant="outlined"
                           value={total || ""}
-                          onChange={(e) =>
-                            setPostData({
-                              ...postData,
-                              grossEarnings: e.target.value,
-                            })
-                          }
+                          // onChange={(e) =>
+                          //   setPostData({
+                          //     ...postData,
+                          //     grossEarnings: e.target.value,
+                          //   })
+                          // }
                         />
                       </Grid>
 
@@ -674,12 +686,12 @@ const PaySlip = () => {
                           label="amount"
                           variant="outlined"
                           value={netSalary || ""}
-                          onChange={(e) =>
-                            setPostData({
-                              ...postData,
-                              netSalary: e.target.value,
-                            })
-                          }
+                          // onChange={(e) =>
+                          //   setPostData({
+                          //     ...postData,
+                          //     netSalary: e.target.value,
+                          //   })
+                          // }
                         />
                       </Grid>
                     </Grid>
@@ -724,12 +736,12 @@ const PaySlip = () => {
                           label="amount"
                           variant="outlined"
                           value={employeeContribution_pf || ""}
-                          onChange={(e) =>
-                            setPostData({
-                              ...postData,
-                              employeeContribution_pf: e.target.value,
-                            })
-                          }
+                          // onChange={(e) =>
+                          //   setPostData({
+                          //     ...postData,
+                          //     employeeContribution_pf: e.target.value,
+                          //   })
+                          // }
                         />
                       </Grid>
 
@@ -751,12 +763,12 @@ const PaySlip = () => {
                           label="amount"
                           variant="outlined"
                           value={employeerContribution_pf || ""}
-                          onChange={(e) =>
-                            setPostData({
-                              ...postData,
-                              employeerContribution_pf: e.target.value,
-                            })
-                          }
+                          // onChange={(e) =>
+                          //   setPostData({
+                          //     ...postData,
+                          //     employeerContribution_pf: e.target.value,
+                          //   })
+                          // }
                         />
                       </Grid>
                       <Grid
@@ -776,10 +788,10 @@ const PaySlip = () => {
                           // id="standard-basic"
                           label="amount"
                           variant="outlined"
-                          value={postData.pf}
-                          onChange={(e) =>
-                            setPostData({ ...postData, pf: e.target.value })
-                          }
+                          value={pf}
+                          // onChange={(e) =>
+                          //   setPostData({ ...postData, pf: e.target.value })
+                          // }
                         />
                       </Grid>
 
@@ -812,12 +824,12 @@ const PaySlip = () => {
                           label="amount"
                           variant="outlined"
                           value={employeeContribution_esic || ""}
-                          onChange={(e) =>
-                            setPostData({
-                              ...postData,
-                              employeeContribution_esic: e.target.value,
-                            })
-                          }
+                          // onChange={(e) =>
+                          //   setPostData({
+                          //     ...postData,
+                          //     employeeContribution_esic: e.target.value,
+                          //   })
+                          // }
                         />
                       </Grid>
 
@@ -842,13 +854,13 @@ const PaySlip = () => {
                           // id="standard-basic"
                           label="amount"
                           variant="outlined"
-                          value={postData.employeerContribution_esic}
-                          onChange={(e) =>
-                            setPostData({
-                              ...postData,
-                              employeerContribution_esic: e.target.value,
-                            })
-                          }
+                          value=""
+                          // onChange={(e) =>
+                          //   setPostData({
+                          //     ...postData,
+                          //     employeerContribution_esic: e.target.value,
+                          //   })
+                          // }
                         />
                       </Grid>
 
@@ -874,13 +886,13 @@ const PaySlip = () => {
                           // id="standard-basic"
                           label="amount"
                           variant="outlined"
-                          value={postData.tds}
-                          onChange={(e) =>
-                            setPostData({
-                              ...postData,
-                              tds: e.target.value,
-                            })
-                          }
+                          value=""
+                          // onChange={(e) =>
+                          //   setPostData({
+                          //     ...postData,
+                          //     tds: e.target.value,
+                          //   })
+                          // }
                         />
                       </Grid>
 
@@ -906,12 +918,12 @@ const PaySlip = () => {
                           label="amount"
                           variant="outlined"
                           value={totalDeduction || ""}
-                          onChange={(e) =>
-                            setPostData({
-                              ...postData,
-                              totalDeduction: e.target.value,
-                            })
-                          }
+                          // onChange={(e) =>
+                          //   setPostData({
+                          //     ...postData,
+                          //     totalDeduction: e.target.value,
+                          //   })
+                          // }
                         />
                       </Grid>
                     </Grid>
@@ -982,11 +994,6 @@ const PaySlip = () => {
           </Card>
         </Container>
         {/* ---------------------------------------------------- pdf layout------------------------------------------------------- */}
-        {showPrintingLayout && (
-          <div ref={pdfRef}>
-            <PrintingLayout basic={basic} conveyance={conveyance} />
-          </div>
-        )}
       </div>
     </>
   );

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "@mui/material";
 import Authentication from "./components/authentication/Auth";
@@ -20,24 +20,33 @@ import PrintingLayout from "./components/PrinttingLayout/PrintingLayout";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
+  const [printingLayout, setPrintingLayout] = useState(true);
+  // const location = useLocation();
+
+  // useEffect(() => {
+  //   setPrintingLayout(true); // Reset showNavibar to true on every route change
+  // }, []);
 
   return (
     <BrowserRouter>
       <Container maxWidth={false}>
         <header>
-          <div
-            style={{
-              display: {
-                xs: "0",
-                sm: "600",
-              },
-              justifyContent: "space-evenly",
-            }}
-          >
-            <img src={LOGO} alt="logo" style={{ width: "185px" }} />
-          </div>
+          {printingLayout && (
+            <div
+              style={{
+                display: {
+                  xs: "0",
+                  sm: "600",
+                },
+                justifyContent: "space-evenly",
+              }}
+            >
+              <img src={LOGO} alt="logo" style={{ width: "185px" }} />
+            </div>
+          )}
         </header>
-        <Navibar />
+        {printingLayout && <Navibar />}
+
         <Routes>
           <Route
             exact
@@ -74,7 +83,11 @@ const App = () => {
           <Route path="posts/skill" exact element={<SkillDisplay />} />
           <Route path="/birthdaymail" exact element={<BirthdayMail />} />
           <Route path="/:id/payslip" exact element={<PaySlip />} />
-          <Route path="/printingLayout" exact element={<PrintingLayout />} />
+          <Route
+            path="/printingLayout"
+            exact
+            element={<PrintingLayout setPrintingLayout={setPrintingLayout} />}
+          />
         </Routes>
       </Container>
       <div>

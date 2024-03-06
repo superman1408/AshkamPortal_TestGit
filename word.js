@@ -20,8 +20,6 @@ const PaySlip = () => {
   
     const navigate = useNavigate();
   
-    const [isPrinting, setIsPrinting] = useState(false);
-  
     const handleGeneratePdf = () => {
       const content = contentRef.current;
   
@@ -57,8 +55,12 @@ const PaySlip = () => {
     const calculateTotal = () => {
       setTotal(GS);
       calculatePf();
-      setShowPrintingLayout(true)
     };
+
+   const handlePrint = () =>{navigate("/printingLayout", {
+    state: {
+      total,
+      basic,}})}
   
     const calculatePf = () => {
       setEmployeeContribution_pf(pf);
@@ -456,10 +458,7 @@ const PaySlip = () => {
                               color: "black",
                               alignItems: "right",
                             }}
-                            onClick={() => {
-                              navigate("/printingLayout");
-                              // Full Weekly Activity route
-                            }}
+                            onClick={handlePrint}
 
                             // onClick={handlePrint}
                           >
@@ -491,12 +490,9 @@ const PaySlip = () => {
         </Container>
 
         {/* ---------------------------------------------------- pdf layout------------------------------------------------------- */}
-        {showPrintingLayout && <div ref={pdfRef}>
-          <PrintingLayout basic={basic} conveyance={conveyance} />
-        </div>}
-
-Here I am passing the useState values to PrintingLayout element but its rendering on the same page,
-is there no way that I will pass values without rendering it
+    
+I want when print button navigate the printing layout file the printing layout file will open like print preview page
+eveything is working fine but when I navigate the Printing layout element the useSate values are not passing
 
 
 this is print layout File
