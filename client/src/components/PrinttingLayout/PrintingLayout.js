@@ -106,8 +106,8 @@ const PrintingLayout = ({ setPrintingLayout }) => {
                 >
                   <img src={LOGO} alt="logo" />
                 </div>
-                <td colSpan="4" style={{ marginLeft: "10px" }}>
-                  Pay Slip Summary
+                <td colSpan="4" style={{ marginLeft: "100px" }}>
+                  SALARY SLIP
                 </td>
                 <span
                   style={{
@@ -129,15 +129,13 @@ const PrintingLayout = ({ setPrintingLayout }) => {
               </tr>
               <tr>
                 <th>Bank</th>
-                <td>x0x0x0</td>
+                <td></td>
                 <th>Bank A/c No.</th>
-                <td>0x2x6x25x6</td>
+                <td></td>
               </tr>
               <tr>
                 <th>DOB</th>
-                <td>23/02/xxxx</td>
-                <th>Lop Days</th>
-                <td>0</td>
+                <td>{user.result.dob}</td>
               </tr>
               <tr>
                 <th>UAN No.</th>
@@ -153,7 +151,7 @@ const PrintingLayout = ({ setPrintingLayout }) => {
               </tr>
               <tr>
                 <th>Department</th>
-                <td>IT</td>
+                <td>{user.result.department}</td>
                 <th>Pay Period</th>
                 <td>{prevMonth}</td>
               </tr>
@@ -250,7 +248,7 @@ const PrintingLayout = ({ setPrintingLayout }) => {
             }}
             onClick={downloadPdf}
           >
-            Generate
+            Download
           </Button>
         )}
       </Grid>
