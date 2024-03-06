@@ -8,12 +8,8 @@ import { tableDelete, tableEdit, todoList } from "../../../action/posts";
 import ProjectCodePopUp from "./ProjectCodePopUp";
 import ActivityCodePopUp from "./ActivityCodePopUp";
 import { getPosts } from "../../../action/posts";
-import { useSelector } from "react-redux";
 
-
-
-
-const Evolve = ({ currentId }) => {
+const Evolve = ({ currentId, posts }) => {
   const dispatch = useDispatch();
   const [entries, setEntries] = useState([]);
   const [projectCode, setProjectCode] = useState("");
@@ -28,8 +24,8 @@ const Evolve = ({ currentId }) => {
 
   const [activityopen, setActivityOpen] = useState(false);
 
-  const posts = useSelector((state) => state.posts);
-
+  const user = JSON.parse(localStorage.getItem("profile"));
+  const [role, setRole] = useState(user?.result?.role);
 
   const array = [];
 
@@ -49,13 +45,12 @@ const Evolve = ({ currentId }) => {
               overTime: post.overTime[i],
               editIndex: post.editIndex[i],
             });
+            // setRole(post?.role);
           }
         }
       });
     });
-  }, [isLoading]);
-
-
+  }, [isLoading, currentId]);
 
   const handleSubmit = async (e) => {
     const newEntry = {
@@ -92,9 +87,7 @@ const Evolve = ({ currentId }) => {
     clearForm();
   };
 
-
-
-//checking for the valid entry in the form and return result in "True" or "False".....!!!
+  //checking for the valid entry in the form and return result in "True" or "False".....!!!
   const validateEntry = (newEntry) => {
     const today = new Date(date);
     const currentDay = today.getDay();
@@ -126,22 +119,14 @@ const Evolve = ({ currentId }) => {
     return totalNetTime + newEntry.netTime <= 48;
   };
 
-
-
-//Logic for Second and Fourth Saturday....!!!!!
+  //Logic for Second and Fourth Saturday....!!!!!
   const isSecondOrFourthSaturday = (date) => {
     const dayOfMonth = date.getDate();
     const weekOfMonth = Math.floor((dayOfMonth - 1) / 7) + 1;
     return weekOfMonth === 2 || weekOfMonth === 4;
   };
 
-
-
-
-
-
-
-//Logic for clearing the form.........
+  //Logic for clearing the form.........
   const clearForm = () => {
     console.log("Clear....!!!");
     setProjectCode("");
@@ -152,24 +137,15 @@ const Evolve = ({ currentId }) => {
     setEditIndex(-1);
   };
 
-
-
-
-
-
   const togglePopup1 = () => {
     setProjectOpen(!projectopen);
   };
-
-
 
   const togglePopup2 = () => {
     setActivityOpen(!activityopen);
   };
 
-
-
-// Here the array is being loaded....!!!
+  // Here the array is being loaded....!!!
   // eslint-disable-next-line array-callback-return
   posts.map((post) => {
     for (let i = 0; i < post.projectCode.length; i++) {
@@ -186,8 +162,7 @@ const Evolve = ({ currentId }) => {
     }
   });
 
-
-//This logic is creating a delay time for loading the array....!!
+  //This logic is creating a delay time for loading the array....!!
   useEffect(() => {
     if (isLoading === true) {
       setTimeout(() => {
@@ -196,18 +171,19 @@ const Evolve = ({ currentId }) => {
     }
   }, [isLoading]);
 
-
   //Logic for deleting the entry......!!!
   const deleteEntry = (index) => {
-    dispatch(tableDelete(currentId, index)).then(() => {
-      setIsLoading(true);
-      window.location.reload();
-    }).catch((err) => {return console.log("Error in deleting the file..!!")});
+    dispatch(tableDelete(currentId, index))
+      .then(() => {
+        setIsLoading(true);
+        window.location.reload();
+      })
+      .catch((err) => {
+        return console.log("Error in deleting the file..!!");
+      });
     let updatedArray = updateArray();
     console.log(updatedArray[index]);
   };
-
-
 
   //To Edit the entry....!!!!
   const editEntry = (index) => {
@@ -219,7 +195,6 @@ const Evolve = ({ currentId }) => {
     setNetTime(updatedArray[index].netTime);
     setOverTime(updatedArray[index].overTime);
   };
-
 
   const updateArray = () => {
     // eslint-disable-next-line array-callback-return
@@ -239,14 +214,14 @@ const Evolve = ({ currentId }) => {
     return array;
   };
 
-
- 
-
-
+  // console.log(isLoading);
+  // console.log(role);
 
   return (
     <>
-      <h2 style={{ color: "#16355d", marginLeft: "50px", fontFamily: "Roboto" }}>
+      <h2
+        style={{ color: "#16355d", marginLeft: "50px", fontFamily: "Roboto" }}
+      >
         Project Time Sheet
       </h2>
       <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} />
@@ -264,7 +239,10 @@ const Evolve = ({ currentId }) => {
         >
           <form onSubmit={handleSubmit} className="time-sheet-form">
             <div className="form-group">
-              <label style={{ color: "#16355d", fontFamily: "Roboto" }} htmlFor="projectCode">
+              <label
+                style={{ color: "#16355d", fontFamily: "Roboto" }}
+                htmlFor="projectCode"
+              >
                 Project Code:
               </label>
 
@@ -296,7 +274,10 @@ const Evolve = ({ currentId }) => {
             </div>
 
             <div className="form-group">
-              <label style={{ color: "#16355d", fontFamily: "Roboto" }} htmlFor="activityCode">
+              <label
+                style={{ color: "#16355d", fontFamily: "Roboto" }}
+                htmlFor="activityCode"
+              >
                 Activity Code:
               </label>
               <input
@@ -325,7 +306,10 @@ const Evolve = ({ currentId }) => {
             </div>
 
             <div className="form-group">
-              <label style={{ color: "#16355d", fontFamily: "Roboto" }} htmlFor="date">
+              <label
+                style={{ color: "#16355d", fontFamily: "Roboto" }}
+                htmlFor="date"
+              >
                 Date:
               </label>
               <input
@@ -337,7 +321,10 @@ const Evolve = ({ currentId }) => {
               />
             </div>
             <div className="form-group">
-              <label style={{ color: "#16355d", fontFamily: "Roboto" }} htmlFor="netTime">
+              <label
+                style={{ color: "#16355d", fontFamily: "Roboto" }}
+                htmlFor="netTime"
+              >
                 Net Time (hrs):
               </label>
               <input
@@ -349,7 +336,10 @@ const Evolve = ({ currentId }) => {
               />
             </div>
             <div className="form-group">
-              <label style={{ color: "#16355d", fontFamily: "Roboto" }} htmlFor="overTime">
+              <label
+                style={{ color: "#16355d", fontFamily: "Roboto" }}
+                htmlFor="overTime"
+              >
                 Over Time (hrs):
               </label>
               <input
@@ -362,17 +352,21 @@ const Evolve = ({ currentId }) => {
             </div>
             {/* </div> */}
             <div style={{ display: "flex", justifyContent: "space-around" }}>
-              <button style={{fontFamily: "Roboto"}} type="submit">
+              <button style={{ fontFamily: "Roboto" }} type="submit">
                 {editIndex !== -1 ? "Update The Entry" : "Submit The Entry"}
               </button>
-              <button style={{fontFamily: "Roboto"}} type="button" onClick={clearForm}>
+              <button
+                style={{ fontFamily: "Roboto" }}
+                type="button"
+                onClick={clearForm}
+              >
                 Clear
               </button>
             </div>
           </form>
         </Grid>
 
-{/* Body for displaing the table star from here.....!!! */}
+        {/* Body for displaing the table star from here.....!!! */}
         <hr />
         <Grid sx={{ width: "70%" }}>
           <div>
@@ -384,31 +378,113 @@ const Evolve = ({ currentId }) => {
               <table className="time-sheet-table">
                 <thead>
                   <tr>
-                    <th style={{ color: "#16355d", fontFamily: "Roboto" }}>Project Code</th>
-                    <th style={{ color: "#16355d", fontFamily: "Roboto" }}>Activity Code</th>
-                    <th style={{ color: "#16355d", fontFamily: "Roboto" }}>Date</th>
-                    <th style={{ color: "#16355d", fontFamily: "Roboto" }}>Net Time (hrs)</th>
-                    <th style={{ color: "#16355d", fontFamily: "Roboto" }}>Over Time (hrs)</th>
+                    <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                      Project Code
+                    </th>
+                    <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                      Activity Code
+                    </th>
+                    <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                      Date
+                    </th>
+                    <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                      Net Time (hrs)
+                    </th>
+                    <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                      Over Time (hrs)
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {array.map((post, index) => (
                     <tr key={index}>
-                      <td style={{ color: "#e55d17", fontFamily: "Roboto", padding: "10px", alignContent: "center" }}>{post.projectCode}</td>
-                      <td style={{ color: "#e55d17", fontFamily: "Roboto", padding: "10px", alignContent: "center" }}>{post.activityCode}</td>
-                      <td style={{ color: "#e55d17", fontFamily: "Roboto", padding: "10px", alignContent: "center" }}>{post.date}</td>
-                      <td style={{ color: "#e55d17", fontFamily: "Roboto", padding: "10px", alignContent: "center" }}>{post.netTime}</td>
-                      <td style={{ color: "#e55d17", fontFamily: "Roboto", padding: "10px", alignContent: "center" }}>{post.overTime}</td>
+                      <td
+                        style={{
+                          color: "#e55d17",
+                          fontFamily: "Roboto",
+                          padding: "10px",
+                          alignContent: "center",
+                        }}
+                      >
+                        {post.projectCode}
+                      </td>
+                      <td
+                        style={{
+                          color: "#e55d17",
+                          fontFamily: "Roboto",
+                          padding: "10px",
+                          alignContent: "center",
+                        }}
+                      >
+                        {post.activityCode}
+                      </td>
+                      <td
+                        style={{
+                          color: "#e55d17",
+                          fontFamily: "Roboto",
+                          padding: "10px",
+                          alignContent: "center",
+                        }}
+                      >
+                        {post.date}
+                      </td>
+                      <td
+                        style={{
+                          color: "#e55d17",
+                          fontFamily: "Roboto",
+                          padding: "10px",
+                          alignContent: "center",
+                        }}
+                      >
+                        {post.netTime}
+                      </td>
+                      <td
+                        style={{
+                          color: "#e55d17",
+                          fontFamily: "Roboto",
+                          padding: "10px",
+                          alignContent: "center",
+                        }}
+                      >
+                        {post.overTime}
+                      </td>
                       <td
                         style={{
                           display: "flex",
                           justifyContent: "space-around",
                           padding: "10px",
-                          alignContent: "center"
+                          alignContent: "center",
                         }}
                       >
-                        <button style={{fontFamily: "Roboto"}} onClick={() => editEntry(index)}>Edit</button>
-                        <button style={{fontFamily: "Roboto"}} onClick={() => deleteEntry(index)}>Delete The Entry</button>
+                        {role === "admin" && (
+                          <>
+                            <button
+                              id="editButton"
+                              style={{ fontFamily: "Roboto" }}
+                              onClick={() => editEntry(index)}
+                            >
+                              Edit
+                            </button>
+                            <button
+                              id="deleteButton"
+                              style={{ fontFamily: "Roboto" }}
+                              onClick={() => deleteEntry(index)}
+                            >
+                              Delete The Entry
+                            </button>
+                          </>
+                        )}
+                        {role === "manager" && (
+                          <>
+                            <button
+                              id="editButton"
+                              style={{ fontFamily: "Roboto" }}
+                              onClick={() => editEntry(index)}
+                            >
+                              Edit
+                            </button>
+                          </>
+                        )}
                       </td>
                     </tr>
                   ))}

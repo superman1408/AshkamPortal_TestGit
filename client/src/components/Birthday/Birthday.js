@@ -93,10 +93,12 @@ const Birthday = () => {
         <Grid>
           {
             isBirthdayToday() ? (
-              <div>
-                <strong>No  Birthdays Today!</strong><br /><br />
-                There are no birthdays today. Please check back tomorrow or try again later.
-              </div>
+              // eslint-disable-next-line jsx-a11y/no-distracting-elements
+              <marquee direction="down" style={{color: '#047681', fontFamily: 'Roboto'}}>
+                <strong style={{color: '#e55d17', fontFamily: 'Roboto'}}>No  Event Today!</strong><br /><br />
+                There are no event today.
+                Please check back tomorrow or try again later.
+              </marquee>
             ) : (
               <div>
                 {posts.map((post) => {
