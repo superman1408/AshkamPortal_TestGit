@@ -19,8 +19,9 @@ const PrintingLayout = ({ setPrintingLayout }) => {
     basic,
     houseRent,
     uanNo,
-    datevalue,
-    prevMonthValue,
+    date,
+    prevMonth,
+    daysInThisPrevMonth,
     conveyance,
     communication,
     uniform,
@@ -142,19 +143,19 @@ const PrintingLayout = ({ setPrintingLayout }) => {
                 <th>UAN No.</th>
                 <td>{uanNo}</td>
                 <th>Pay days</th>
-                <td>{}</td>
+                <td>{daysInThisPrevMonth}</td>
               </tr>
               <tr>
                 <th>Location</th>
                 <td>India</td>
                 <th>Pay Date</th>
-                <td>{datevalue}</td>
+                <td>{date}</td>
               </tr>
               <tr>
                 <th>Department</th>
                 <td>IT</td>
                 <th>Pay Period</th>
-                <td>{prevMonthValue}</td>
+                <td>{prevMonth}</td>
               </tr>
             </tbody>
           </table>
