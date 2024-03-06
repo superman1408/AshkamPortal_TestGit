@@ -11,12 +11,9 @@ import Dashboard from "./components/dashboard/Dashboard";
 import Navibar from "./components/Navbar/Navibar";
 import Communication from "./components/Leave/Communication/Communication";
 import LOGO from "./assets/AshKamLogo.png";
-// import FullWeekly from "./components/Activity/FullWeekly";
 import BirthdayMail from "./components/Birthday/BirthdayMail";
 import PaySlip from "./components/Payslip/PaySlip";
 import EmployeeAttendance from "./components/Attendance/EmployeeAttendance";
-// import Rough from "./components/Rough/rough";
-// import RoughPayslip from "./components/Payslip/RoughPayslip";
 import ActivityDisplay from "./components/ActivityDisplay/ActivityDisplay";
 import SkillDisplay from "./components/Skills/SkillDisplay";
 import PrintingLayout from "./components/PrinttingLayout/PrintingLayout";
@@ -24,10 +21,10 @@ import PrintingLayout from "./components/PrinttingLayout/PrintingLayout";
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
 
+  return (
     <BrowserRouter>
       <Container maxWidth={false}>
         <header>
-          {/* <h1>My Cool application is here</h1> */}
           <div
             style={{
               display: {
@@ -63,7 +60,6 @@ const App = () => {
 
           <Route path="/aboutUs" exact element={<AboutUS />} />
           <Route path="/home" exact element={<Dashboard />} />
-          {/* <Route path="posts/:id/fullweeklyactivity" exact element={<FullWeekly />} /> */}
           <Route
             path="posts/:id/fullweeklyactivity"
             exact
@@ -79,9 +75,6 @@ const App = () => {
           <Route path="/birthdaymail" exact element={<BirthdayMail />} />
           <Route path="/:id/payslip" exact element={<PaySlip />} />
           <Route path="/printingLayout" exact element={<PrintingLayout />} />
-
-          {/* <Route path="/" exact element={<Rough />} /> */}
-          {/* <Route path="/roughpayslip" exact element={<RoughPayslip />} /> */}
         </Routes>
       </Container>
       <div>
