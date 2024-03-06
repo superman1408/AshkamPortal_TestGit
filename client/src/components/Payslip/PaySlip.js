@@ -1,12 +1,9 @@
 import React, { useRef } from "react";
 import { useState } from "react";
-import { useReactToPrint } from "react-to-print";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 import html2pdf from "html2pdf.js";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
 // import printLayout from "../printLayout/printLayout";
 
 // import useStyle from "./Style";
@@ -28,9 +25,7 @@ const PaySlip = () => {
   const [total, setTotal] = useState(0);
   const [basic, setBasic] = useState();
   const [uanNo, setUanNo] = useState();
-  const [datevalue, setDatevalue] = useState();
-  // const [daysInThisPrevMonth, setDaysInThisPrevMonth] = useState();
-  const [prevMonthValue, setPrevMonthValue] = useState();
+
   const [houseRent, setHouserent] = useState();
   const [conveyance, setConveyance] = useState();
   const [communication, setCommunication] = useState();
@@ -98,8 +93,9 @@ const PaySlip = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
 
   const today = new Date();
-  const date =
-    today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
+  const [date, setDate] = useState(
+    today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear()
+  );
 
   //to print current month
   // const month = new Date().toLocaleString("en-US", {
@@ -119,18 +115,20 @@ const PaySlip = () => {
   const date1 = new Date();
 
   const number = 1;
-  const prevMonth = formatter.format(
-    new Date(date1.getFullYear(), date1.getMonth() - `${number}`)
+  const [prevMonth, setPrevMon] = useState(
+    formatter.format(
+      new Date(date1.getFullYear(), date1.getMonth() - `${number}`)
+    )
   );
 
   //To print total days in previous month
-  const daysInThisPrevMonth = () => {
+  const [daysInThisPrevMonth, setDaysInThisPrevMonth] = useState(() => {
     var now = new Date();
     const prevMonth1 = now.getMonth();
     console.log("prevMonth", prevMonth1);
     console.log("now", now);
     return new Date(now.getFullYear(), prevMonth1, 0).getDate();
-  };
+  });
 
   const { id } = useParams();
   console.log("Id in Payslip Page", id);
@@ -192,8 +190,9 @@ const PaySlip = () => {
         total,
         basic,
         uanNo,
-        datevalue,
-        prevMonthValue,
+        date,
+        prevMonth,
+        daysInThisPrevMonth,
         houseRent,
         conveyance,
         communication,
@@ -411,8 +410,8 @@ const PaySlip = () => {
                         label="payDate"
                         variant="outlined"
                         required
-                        value={datevalue}
-                        // onChange={(e) => setDatevalue(+e.target.value)}
+                        value={date}
+                        onChange={(e) => setDate(e.target.value)}
                       />
                     </Grid>
 
@@ -427,10 +426,10 @@ const PaySlip = () => {
                         label="Pay Days"
                         variant="outlined"
                         required
-                        value={daysInThisPrevMonth()}
-                        // onChange={(e) =>
-                        //   setDaysInThisPrevMonth(+e.target.value)
-                        // }
+                        value={daysInThisPrevMonth}
+                        onChange={(e) =>
+                          setDaysInThisPrevMonth(+e.target.value)
+                        }
                       />
                     </Grid>
 
@@ -445,8 +444,8 @@ const PaySlip = () => {
                         label="payPeriod"
                         variant="outlined"
                         required
-                        value={prevMonthValue}
-                        // onChange={(e) => setPrevMonthValue(+e.target.value)}
+                        value={prevMonth}
+                        onChange={(e) => setPrevMon(+e.target.value)}
                       />
                     </Grid>
                   </Grid>
