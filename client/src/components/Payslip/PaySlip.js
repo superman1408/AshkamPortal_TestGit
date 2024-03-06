@@ -39,6 +39,7 @@ const PaySlip = () => {
   const [employeeContribution_esic, setEmployeeContribution_esic] = useState(0);
   const [totalDeduction, setTotalDeduction] = useState(0);
   const [netSalary, setNetSalary] = useState(0);
+  const [dataGenerated, setDataGenerated] = useState(false);
 
   const navigate = useNavigate();
 
@@ -79,6 +80,7 @@ const PaySlip = () => {
   const calculateTotal = () => {
     setTotal(GS);
     calculatePf();
+    setDataGenerated(true);
   };
 
   const calculatePf = () => {
@@ -183,29 +185,33 @@ const PaySlip = () => {
   //   window.print();
   // };
 
-  const handlePrint = (postData) => {
+  const handlePrint = () => {
     // setShowPrintingLayout(true);
-    navigate("/printingLayout", {
-      state: {
-        total,
-        basic,
-        uanNo,
-        date,
-        prevMonth,
-        daysInThisPrevMonth,
-        houseRent,
-        conveyance,
-        communication,
-        uniform,
-        medical,
-        cityFactor,
-        employeeContribution_pf,
-        employeerContribution_pf,
-        employeeContribution_esic,
-        totalDeduction,
-        netSalary,
-      },
-    });
+    if (dataGenerated === false) {
+      alert("Please generate the pay slip");
+    } else {
+      navigate("/printingLayout", {
+        state: {
+          total,
+          basic,
+          uanNo,
+          date,
+          prevMonth,
+          daysInThisPrevMonth,
+          houseRent,
+          conveyance,
+          communication,
+          uniform,
+          medical,
+          cityFactor,
+          employeeContribution_pf,
+          employeerContribution_pf,
+          employeeContribution_esic,
+          totalDeduction,
+          netSalary,
+        },
+      });
+    }
   };
 
   // const pdfRef = useRef();
