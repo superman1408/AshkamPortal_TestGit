@@ -27,12 +27,17 @@ const PaySlip = () => {
   // const [currentId, setCurrentId] = useState();
   const [total, setTotal] = useState(0);
   const [basic, setBasic] = useState();
+  const [uanNo, setUanNo] = useState();
+  const [datevalue, setDatevalue] = useState();
+  // const [daysInThisPrevMonth, setDaysInThisPrevMonth] = useState();
+  const [prevMonthValue, setPrevMonthValue] = useState();
   const [houseRent, setHouserent] = useState();
   const [conveyance, setConveyance] = useState();
   const [communication, setCommunication] = useState();
   const [uniform, setUniform] = useState();
   const [medical, setMedical] = useState();
   const [cityFactor, setCityFactor] = useState();
+  // const [showPrintingLayout, setShowPrintingLayout] = useState(false);
 
   const [employeeContribution_pf, setEmployeeContribution_pf] = useState(0);
   const [employeerContribution_pf, setEmployeerContribution_pf] = useState(0);
@@ -130,26 +135,26 @@ const PaySlip = () => {
   const { id } = useParams();
   console.log("Id in Payslip Page", id);
 
-  const [postData, setPostData] = useState({
-    employeeId: user.result.employeeId,
-    firstName: user.result.firstName,
-    lastName: user.result.lastName,
-    uanNo: "",
-    payDays: daysInThisPrevMonth(),
-    payPeriod: prevMonth,
-    payDate: date,
+  // const [postData, setPostData] = useState({
+  //   employeeId: user.result.employeeId,
+  //   firstName: user.result.firstName,
+  //   lastName: user.result.lastName,
+  //   uanNo: uanNo,
+  //   payDays: daysInThisPrevMonth(),
+  //   payPeriod: prevMonth,
+  //   payDate: date,
 
-    netSalary: "",
-    // employeeContribution_pf: employeeContribution_pf || "",
-    // employeerContribution_pf: employeeContribution_pf || "",
-    // employeeContribution_esic: employeeContribution_esic || "",
-    employeerContribution_esic: "",
-    tds: "",
-    totalDeduction: "",
-  });
+  //   netSalary: "",
+  //   // employeeContribution_pf: employeeContribution_pf || "",
+  //   // employeerContribution_pf: employeeContribution_pf || "",
+  //   // employeeContribution_esic: employeeContribution_esic || "",
+  //   employeerContribution_esic: "",
+  //   tds: "",
+  //   totalDeduction: "",
+  // });
 
-  console.log("total", total);
-  console.log("grossEarnings", postData.grossEarnings);
+  // console.log("total", total);
+  // console.log("grossEarnings", postData.grossEarnings);
 
   // const post = useSelector((state) =>
   //   currentId ? state.posts.find((p) => p._id === currentId) : null
@@ -202,8 +207,54 @@ const PaySlip = () => {
         imgHeight * ratio
       );
       pdf.save("invoice.pdf");
+  const handlePrint = (postData) => {
+    // setShowPrintingLayout(true);
+    navigate("/printingLayout", {
+      state: {
+        total,
+        basic,
+        uanNo,
+        datevalue,
+        prevMonthValue,
+        houseRent,
+        conveyance,
+        communication,
+        uniform,
+        medical,
+        cityFactor,
+        employeeContribution_pf,
+        employeerContribution_pf,
+        employeeContribution_esic,
+        totalDeduction,
+        netSalary,
+      },
     });
   };
+
+  // const pdfRef = useRef();
+  // const downloadPdf = () => {
+  //   const input = pdfRef.current;
+  //   html2canvas(input).then((canvas) => {
+  //     const imgData = canvas.toDataURL("image/png");
+  //     const pdf = new jsPDF("p", "mm", "a4", true);
+  //     const pdfWidth = pdf.internal.pageSize.getWidth();
+  //     const pdfHeight = pdf.internal.pageSize.getHeight();
+  //     const imgWidth = canvas.width;
+  //     const imgHeight = canvas.height;
+  //     const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+  //     const imgX = (pdfWidth - imgWidth * ratio) / 2;
+  //     const imgY = 30;
+  //     pdf.addImage(
+  //       imgData,
+  //       "PNG",
+  //       imgX,
+  //       imgY,
+  //       imgWidth * ratio,
+  //       imgHeight * ratio
+  //     );
+  //     pdf.save("invoice.pdf");
+  //   });
+  // };
 
   return (
     <>
@@ -266,6 +317,65 @@ const PaySlip = () => {
                 >
                   Salary Slip
                 </Typography>
+      <div>
+        <Container
+          fluid="true"
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "20px",
+          }}
+        >
+          <Card
+            elevation={20}
+            sx={{
+              // display: "flex",
+              display: {
+                xs: "0",
+                sm: "600",
+              },
+              bgcolor: "background.Card",
+              boxShadow: "5px",
+              width: "auto",
+              justifyContent: "center",
+            }}
+          >
+            <form onSubmit={handleSubmit}>
+              <Grid
+                sx={{
+                  display: "flex",
+                  flexDirection: {
+                    sm: "column",
+                    xs: "column",
+                    md: "column",
+                    lg: "column",
+                    xl: "column",
+                  },
+                  padding: "20px",
+                  justifyContent: "center",
+                  alignContent: "center",
+                  textAlign: "center",
+                  marginLeft: "30px",
+                  marginRight: "30px",
+                  marginBottom: "30px",
+                }}
+              >
+                <Grid>
+                  <Typography
+                    variant="h4"
+                    // marginLeft={60}
+                    alignContent="center"
+                    sx={{
+                      display: "flex",
+                      // flexGrow: 1,
+                      fontSize: "30px",
+                      fontWeight: "bold",
+                      marginTop: "20px",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    Salary Slip
+                  </Typography>
 
                 <Divider
                   sx={{
@@ -302,6 +412,19 @@ const PaySlip = () => {
                   //   setPostData({ ...postData, employeeId: e.target.value })
                   // }
                 />
+                  <TextField
+                    sx={{ display: "flex", mt: "10px", width: "auto" }}
+                    margin="normal"
+                    size="small"
+                    type="text"
+                    name="employeeId"
+                    label="Employee Id"
+                    variant="outlined"
+                    value={user.result.employeeId}
+                    // onChange={(e) =>
+                    //   setPostData({ ...postData, employeeId: e.target.value })
+                    // }
+                  />
 
                 <Grid
                   sx={{
@@ -333,6 +456,34 @@ const PaySlip = () => {
                       }
                     />
                   </Grid>
+                  <Grid
+                    sx={{
+                      display: "flex",
+                      // flexDirection: {
+                      //   sm: "column",
+                      //   xs: "column",
+                      //   md: "row",
+                      //   lg: "row",
+                      //   xl: "row",
+                      // },
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Grid>
+                      <TextField
+                        sx={{ display: "flex" }}
+                        type="text"
+                        size="small"
+                        margin="normal"
+                        name="uanNo"
+                        // id="standard-basic"
+                        label="UAN No."
+                        variant="outlined"
+                        required
+                        value={uanNo}
+                        onChange={(e) => setUanNo(+e.target.value)}
+                      />
+                    </Grid>
 
                   <Grid>
                     <TextField
@@ -351,6 +502,23 @@ const PaySlip = () => {
                       // }
                     />
                   </Grid>
+                    <Grid>
+                      <TextField
+                        type="text"
+                        margin="normal"
+                        size="small"
+                        name="firstName"
+                        // id="standard-basic"
+                        label="First Name"
+                        variant="outlined"
+                        required
+                        fullWidth={true}
+                        value={user.result.firstName}
+                        // onChange={(e) =>
+                        //   setPostData({ ...postData, firstName: e.target.value })
+                        // }
+                      />
+                    </Grid>
 
                   <Grid>
                     <TextField
@@ -370,6 +538,24 @@ const PaySlip = () => {
                     />
                   </Grid>
                 </Grid>
+                    <Grid>
+                      <TextField
+                        type="text"
+                        margin="normal"
+                        size="small"
+                        name="lastName"
+                        // id="standard-basic"
+                        label="Last Name"
+                        variant="outlined"
+                        required
+                        fullwidth="true"
+                        value={user.result.lastName}
+                        // onChange={(e) =>
+                        //   setPostData({ ...postData, lastName: e.target.value })
+                        // }
+                      />
+                    </Grid>
+                  </Grid>
 
                 <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
                   <Grid>
@@ -388,6 +574,23 @@ const PaySlip = () => {
                       }
                     />
                   </Grid>
+                  <Grid
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Grid>
+                      <TextField
+                        sx={{ display: "flex" }}
+                        type="text"
+                        size="small"
+                        margin="normal"
+                        name="payDate"
+                        label="payDate"
+                        variant="outlined"
+                        required
+                        value={datevalue}
+                        // onChange={(e) => setDatevalue(+e.target.value)}
+                      />
+                    </Grid>
 
                   <Grid>
                     <TextField
@@ -406,6 +609,23 @@ const PaySlip = () => {
                       }
                     />
                   </Grid>
+                    <Grid>
+                      <TextField
+                        sx={{ display: "flex" }}
+                        type="text"
+                        size="small"
+                        margin="normal"
+                        name="payDays"
+                        // id="standard-basic"
+                        label="Pay Days"
+                        variant="outlined"
+                        required
+                        value={daysInThisPrevMonth()}
+                        // onChange={(e) =>
+                        //   setDaysInThisPrevMonth(+e.target.value)
+                        // }
+                      />
+                    </Grid>
 
                   <Grid>
                     <TextField
@@ -429,6 +649,26 @@ const PaySlip = () => {
                   sx={{ display: "flex", justifyContent: "space-between" }}
                 ></Grid>
               </Grid>
+                    <Grid>
+                      <TextField
+                        sx={{ display: "flex" }}
+                        type="text"
+                        size="small"
+                        margin="normal"
+                        name="payPeriod"
+                        // id="standard-basic"
+                        label="payPeriod"
+                        variant="outlined"
+                        required
+                        value={prevMonthValue}
+                        // onChange={(e) => setPrevMonthValue(+e.target.value)}
+                      />
+                    </Grid>
+                  </Grid>
+                  <Grid
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  ></Grid>
+                </Grid>
 
               <Grid>
                 <Typography
@@ -616,6 +856,32 @@ const PaySlip = () => {
                         }
                       />
                     </Grid>
+                      <Grid
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <Typography marginTop={3}>
+                          Gross Earnings (Rs)
+                        </Typography>
+                        <TextField
+                          size="small"
+                          type="text"
+                          margin="normal"
+                          name="grossEarnings"
+                          // id="standard-basic"
+                          label="amount"
+                          variant="outlined"
+                          value={total || ""}
+                          // onChange={(e) =>
+                          //   setPostData({
+                          //     ...postData,
+                          //     grossEarnings: e.target.value,
+                          //   })
+                          // }
+                        />
+                      </Grid>
 
                     <Grid
                       sx={{ display: "flex", justifyContent: "space-between" }}
@@ -641,6 +907,33 @@ const PaySlip = () => {
                       />
                     </Grid>
                   </Grid>
+                      <Grid
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <Typography marginTop={3} sx={{ fontWeight: "bold" }}>
+                          Net Salary (Rs)
+                        </Typography>
+                        <TextField
+                          size="small"
+                          type="text"
+                          margin="normal"
+                          name="netSalary"
+                          // id="standard-basic"
+                          label="amount"
+                          variant="outlined"
+                          value={netSalary || ""}
+                          // onChange={(e) =>
+                          //   setPostData({
+                          //     ...postData,
+                          //     netSalary: e.target.value,
+                          //   })
+                          // }
+                        />
+                      </Grid>
+                    </Grid>
 
                   <Grid
                     sx={{
@@ -687,6 +980,35 @@ const PaySlip = () => {
                         }
                       />
                     </Grid>
+                      <Typography marginTop={3} sx={{ fontWeight: "bold" }}>
+                        Provident fund
+                      </Typography>
+                      <Grid
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <Typography marginTop={3}>
+                          Employee's Contribution
+                        </Typography>
+                        <TextField
+                          type="text"
+                          size="small"
+                          margin="normal"
+                          name="employeeContribution_pf"
+                          // id="standard-basic"
+                          label="amount"
+                          variant="outlined"
+                          value={employeeContribution_pf || ""}
+                          // onChange={(e) =>
+                          //   setPostData({
+                          //     ...postData,
+                          //     employeeContribution_pf: e.target.value,
+                          //   })
+                          // }
+                        />
+                      </Grid>
 
                     <Grid
                       sx={{ display: "flex", justifyContent: "space-between" }}
@@ -731,6 +1053,55 @@ const PaySlip = () => {
                         }
                       />
                     </Grid>
+                      <Grid
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <Typography marginTop={3} alignItems={"center"}>
+                          Employeer's Contribution
+                        </Typography>
+                        <TextField
+                          type="text"
+                          size="small"
+                          margin="normal"
+                          name="employeerContribution_pf"
+                          // id="standard-basic"
+                          label="amount"
+                          variant="outlined"
+                          value={employeerContribution_pf || ""}
+                          // onChange={(e) =>
+                          //   setPostData({
+                          //     ...postData,
+                          //     employeerContribution_pf: e.target.value,
+                          //   })
+                          // }
+                        />
+                      </Grid>
+                      <Grid
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <Typography marginTop={3} alignItems={"center"}>
+                          Professinal Tax
+                        </Typography>
+                        <TextField
+                          type="text"
+                          size="small"
+                          margin="normal"
+                          name="pf"
+                          // id="standard-basic"
+                          label="amount"
+                          variant="outlined"
+                          value={pf}
+                          // onChange={(e) =>
+                          //   setPostData({ ...postData, pf: e.target.value })
+                          // }
+                        />
+                      </Grid>
 
                     <Typography
                       marginTop={4}
@@ -766,6 +1137,43 @@ const PaySlip = () => {
                         }
                       />
                     </Grid>
+                      <Typography
+                        marginTop={4}
+                        // marginRight={18}
+                        sx={{ fontWeight: "bold" }}
+                      >
+                        ESIC
+                      </Typography>
+                      <Grid
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <Typography
+                          marginTop={3}
+                          // marginRight={15}
+                          alignItems={"center"}
+                        >
+                          Employee's Contribution
+                        </Typography>
+                        <TextField
+                          type="text"
+                          size="small"
+                          margin="normal"
+                          name="employeeContribution_esic"
+                          // id="standard-basic"
+                          label="amount"
+                          variant="outlined"
+                          value={employeeContribution_esic || ""}
+                          // onChange={(e) =>
+                          //   setPostData({
+                          //     ...postData,
+                          //     employeeContribution_esic: e.target.value,
+                          //   })
+                          // }
+                        />
+                      </Grid>
 
                     <Grid
                       sx={{ display: "flex", justifyContent: "space-between" }}
@@ -794,6 +1202,36 @@ const PaySlip = () => {
                         }
                       />
                     </Grid>
+                      <Grid
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <Typography
+                          marginTop={3}
+                          // marginRight={14}
+                          alignItems={"center"}
+                        >
+                          Employeer's Contribution
+                        </Typography>
+                        <TextField
+                          type="text"
+                          size="small"
+                          margin="normal"
+                          name="employeerContribution_esic"
+                          // id="standard-basic"
+                          label="amount"
+                          variant="outlined"
+                          value=""
+                          // onChange={(e) =>
+                          //   setPostData({
+                          //     ...postData,
+                          //     employeerContribution_esic: e.target.value,
+                          //   })
+                          // }
+                        />
+                      </Grid>
 
                     <Grid
                       sx={{
@@ -826,6 +1264,37 @@ const PaySlip = () => {
                         }
                       />
                     </Grid>
+                      <Grid
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          marginTop: "25px",
+                        }}
+                      >
+                        <Typography
+                          marginTop={3}
+                          // marginRight={14}
+                          fontWeight="bold"
+                        >
+                          TDS
+                        </Typography>
+                        <TextField
+                          type="text"
+                          size="small"
+                          margin="normal"
+                          name="tds"
+                          // id="standard-basic"
+                          label="amount"
+                          variant="outlined"
+                          value=""
+                          // onChange={(e) =>
+                          //   setPostData({
+                          //     ...postData,
+                          //     tds: e.target.value,
+                          //   })
+                          // }
+                        />
+                      </Grid>
 
                     <Grid
                       sx={{ display: "flex", justifyContent: "space-between" }}
@@ -857,6 +1326,39 @@ const PaySlip = () => {
                   </Grid>
                 </Grid>
               </Grid>
+                      <Grid
+                        sx={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <Typography
+                          marginTop={3}
+                          // marginRight={14}
+                          sx={{ fontWeight: "bold" }}
+                        >
+                          Total Deductions
+                        </Typography>
+                        <TextField
+                          type="text"
+                          size="small"
+                          margin="normal"
+                          name="totalDeduction"
+                          // id="standard-basic"
+                          label="amount"
+                          variant="outlined"
+                          value={totalDeduction || ""}
+                          // onChange={(e) =>
+                          //   setPostData({
+                          //     ...postData,
+                          //     totalDeduction: e.target.value,
+                          //   })
+                          // }
+                        />
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </Grid>
 
               <Grid>
                 {/* ---------------Button---------------- */}
@@ -1075,6 +1577,29 @@ const PaySlip = () => {
             </Button>
           )}
         </Grid>
+                        <Grid>
+                          <Button
+                            type="submit"
+                            sx={{
+                              bgcolor: "skyblue",
+                              color: "black",
+                              alignItems: "right",
+                            }}
+                            onClick={handleGeneratePdf}
+                          >
+                            Download as Pdf
+                          </Button>
+                        </Grid>
+                      </>
+                    )}
+                    ;
+                  </Grid>
+                </Grid>
+              </Grid>
+            </form>
+          </Card>
+        </Container>
+        {/* ---------------------------------------------------- pdf layout------------------------------------------------------- */}
       </div>
     </>
   );

@@ -1,17 +1,42 @@
 import { Grid, Button } from "@mui/material";
 import React, { useRef } from "react";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
+
+import { Navigate, useNavigate } from "react-router-dom";
+import LOGO from "../../assets/AshkamLogoTransparentbc.png";
+
 // import html2pdf from "html2pdf";
 
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
-const PrintingLayout = ({ basic, conveyance }) => {
+const PrintingLayout = ({ setPrintingLayout }) => {
+  setPrintingLayout(false);
+  const location = useLocation();
+  const {
+    total,
+    basic,
+    houseRent,
+    uanNo,
+    datevalue,
+    prevMonthValue,
+    conveyance,
+    communication,
+    uniform,
+    medical,
+    cityFactor,
+    employeeContribution_pf,
+    employeerContribution_pf,
+    employeeContribution_esic,
+    totalDeduction,
+    netSalary,
+  } = location.state;
   const user = JSON.parse(localStorage.getItem("profile"));
   const [isPrinting, setIsPrinting] = useState(false);
 
   const pdfRef = useRef();
-  const downloadPdf = () => {
+  const downloadPdf = (e) => {
     const input = pdfRef.current;
     html2canvas(input).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
@@ -32,11 +57,21 @@ const PrintingLayout = ({ basic, conveyance }) => {
         imgHeight * ratio
       );
       pdf.save("invoice.pdf");
+      // window.location.reload(true);
     });
+  };
+  const navigate = useNavigate();
+  const handleStateChange = () => {
+    setPrintingLayout(true); // Change the state to true
+    navigate("/:id/payslip");
   };
 
   return (
     <>
+      <div style={{ float: "right" }}>
+        {" "}
+        <button onClick={handleStateChange}>Go Back</button>
+      </div>
       <div ref={pdfRef}>
         <div>
           <table
@@ -52,22 +87,44 @@ const PrintingLayout = ({ basic, conveyance }) => {
               <tr
                 height="100px"
                 style={{
-                  backgroundColor: "#363636",
-                  color: "#ffffff",
-                  textAlign: "center",
+                  // backgroundColor: "lightgray",
+                  color: "black",
+                  // textAlign: "center",
                   fontSize: "30px",
                   fontWeight: "600",
+                  border: "1px solid black",
                 }}
               >
-                <td colSpan="4">Pay Slip Summary</td>
+                <div
+                  style={{
+                    marginLeft: "20px",
+                    marginTop: "30px",
+                    width: "150px",
+                    height: "30px",
+                  }}
+                >
+                  <img src={LOGO} alt="logo" />
+                </div>
+                <td colSpan="4" style={{ marginLeft: "10px" }}>
+                  Pay Slip Summary
+                </td>
+                <span
+                  style={{
+                    fontSize: "15px",
+                    marginRight: "-20px",
+                    marginTop: "20px",
+                  }}
+                >
+                  {new Date().toLocaleDateString()}
+                </span>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th>Personel NO:</th>
-                <td>0123456</td>
+                <th>Employee Id:</th>
+                <td>{user.result.employeeId}</td>
                 <th>Name</th>
-                <td>{user.result.firstName}</td>
+                <td>{user.result.firstName + " " + user.result.lastName}</td>
               </tr>
               <tr>
                 <th>Bank</th>
@@ -82,22 +139,22 @@ const PrintingLayout = ({ basic, conveyance }) => {
                 <td>0</td>
               </tr>
               <tr>
-                <th>PF No.</th>
-                <td>26123456</td>
-                <th>STD days</th>
-                <td>30</td>
+                <th>UAN No.</th>
+                <td>{uanNo}</td>
+                <th>Pay days</th>
+                <td>{}</td>
               </tr>
               <tr>
                 <th>Location</th>
                 <td>India</td>
-                <th>Working Days</th>
-                <td>30</td>
+                <th>Pay Date</th>
+                <td>{datevalue}</td>
               </tr>
               <tr>
                 <th>Department</th>
                 <td>IT</td>
-                <th>Designation</th>
-                <td>Designer</td>
+                <th>Pay Period</th>
+                <td>{prevMonthValue}</td>
               </tr>
             </tbody>
           </table>
@@ -122,68 +179,73 @@ const PrintingLayout = ({ basic, conveyance }) => {
               <tr>
                 <td>Basic</td>
                 <td>{basic}</td>
-                <td>provident fund</td>
-                <td>1900</td>
+                <td>Employee's Contribution (PF)</td>
+                <td>{employeeContribution_pf}</td>
               </tr>
               <tr>
                 <td>House Rent Allowance</td>
-                <td>2000</td>
-                <td>professional tax</td>
-                <td>600</td>
+                <td>{houseRent}</td>
+                <td>Employeer's Contribution (PF) </td>
+                <td>{employeerContribution_pf}</td>
               </tr>
               <tr>
-                <td>special Allowance</td>
-                <td>400</td>
-                <td>Income tax</td>
-                <td>500</td>
+                <td>Medical Allowance</td>
+                <td>{medical}</td>
+                <td>Professional Tax</td>
+                <td>{}</td>
               </tr>
               <tr>
-                <td>conveyance</td>
+                <td>Conveyance</td>
                 <td>{conveyance}</td>
+                <td>Employee's Contribution (ESIC)</td>
+                <td>{employeeContribution_esic}</td>
               </tr>
               <tr>
-                <td>ADD Special allowance</td>
-                <td>2000</td>
+                <td>Communication allowance</td>
+                <td>{communication}</td>
+                <td>Employeer's Contribution (ESIC)</td>
+                <td>{}</td>
               </tr>
               <tr>
-                <td>shift Allowance</td>
-                <td>1000</td>
+                <td> Uniform Allowance</td>
+                <td>{uniform}</td>
+                <td>TDS</td>
+                <td>{}</td>
               </tr>
               <tr>
-                <td>bonus</td>
-                <td>500</td>
-              </tr>
-              <tr>
-                <td>medical Allowance</td>
-                <td>600</td>
+                <td>City Factor</td>
+                <td>{cityFactor}</td>
               </tr>
               <tr>
                 <th>Gross Earnings</th>
-                <td>Rs.38500</td>
-                <th>Gross Deductions</th>
-                <td>Rs.3000</td>
+                <td>Rs.{total}</td>
+                <th> Total Deductions</th>
+                <td>{totalDeduction}</td>
               </tr>
               <tr>
+                <td></td>
                 <td></td>
                 <td>
                   <strong>NET PAY</strong>
                 </td>
-                <td>Rs.35500</td>
-                <td></td>
+                <td>Rs.{netSalary}</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <Grid>
+      <Grid sx={{ paddingBottom: "50px" }}>
         {!isPrinting && (
           <Button
             required
-            fullWidth={true}
+            variant="outlined"
             sx={{
               bgcolor: "skyblue",
               color: "black",
+              float: "right", // Add this line to float the button to the right
+              marginRight: "160px", // Optional: Add some right margin to the butto
+              marginTop: "10px",
             }}
             onClick={downloadPdf}
           >
