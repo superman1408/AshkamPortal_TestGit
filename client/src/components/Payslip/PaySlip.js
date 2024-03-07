@@ -22,7 +22,7 @@ import {
 const PaySlip = () => {
   const contentRef = useRef();
   // const [currentId, setCurrentId] = useState();
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState();
   const [basic, setBasic] = useState();
   const [uanNo, setUanNo] = useState();
 
@@ -34,11 +34,11 @@ const PaySlip = () => {
   const [cityFactor, setCityFactor] = useState();
   // const [showPrintingLayout, setShowPrintingLayout] = useState(false);
 
-  const [employeeContribution_pf, setEmployeeContribution_pf] = useState(0);
-  const [employeerContribution_pf, setEmployeerContribution_pf] = useState(0);
-  const [employeeContribution_esic, setEmployeeContribution_esic] = useState(0);
-  const [totalDeduction, setTotalDeduction] = useState(0);
-  const [netSalary, setNetSalary] = useState(0);
+  const [employeeContribution_pf, setEmployeeContribution_pf] = useState();
+  const [employeerContribution_pf, setEmployeerContribution_pf] = useState();
+  const [employeeContribution_esic, setEmployeeContribution_esic] = useState();
+  const [totalDeduction, setTotalDeduction] = useState();
+  const [netSalary, setNetSalary] = useState();
   const [dataGenerated, setDataGenerated] = useState(false);
 
   const navigate = useNavigate();
@@ -793,7 +793,7 @@ const PaySlip = () => {
                           // id="standard-basic"
                           label="amount"
                           variant="outlined"
-                          value={pf}
+                          value=""
                           // onChange={(e) =>
                           //   setPostData({ ...postData, pf: e.target.value })
                           // }

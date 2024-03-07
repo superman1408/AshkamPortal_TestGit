@@ -31,19 +31,19 @@ const App = () => {
     <BrowserRouter>
       <Container maxWidth={false}>
         <header>
-          {printingLayout && (
-            <div
-              style={{
-                display: {
-                  xs: "0",
-                  sm: "600",
-                },
-                justifyContent: "space-evenly",
-              }}
-            >
-              <img src={LOGO} alt="logo" style={{ width: "185px" }} />
-            </div>
-          )}
+          {/* {printingLayout && ( */}
+          <div
+            style={{
+              display: {
+                xs: "0",
+                sm: "600",
+              },
+              justifyContent: "space-evenly",
+            }}
+          >
+            <img src={LOGO} alt="logo" style={{ width: "185px" }} />
+          </div>
+          {/* )} */}
         </header>
         {printingLayout && <Navibar />}
 
