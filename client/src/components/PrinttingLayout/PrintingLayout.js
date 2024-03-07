@@ -49,6 +49,10 @@ const PrintingLayout = ({ setPrintingLayout }) => {
       const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
       const imgX = (pdfWidth - imgWidth * ratio) / 2;
       const imgY = 30;
+
+      // Set font size here
+      pdf.setFontSize(20); // Adjust 16 to your desired font size
+
       pdf.addImage(
         imgData,
         "PNG",
@@ -58,9 +62,9 @@ const PrintingLayout = ({ setPrintingLayout }) => {
         imgHeight * ratio
       );
       pdf.save("invoice.pdf");
-      // window.location.reload(true);
     });
   };
+
   const navigate = useNavigate();
   const handleStateChange = () => {
     setPrintingLayout(true); // Change the state to true
@@ -76,7 +80,7 @@ const PrintingLayout = ({ setPrintingLayout }) => {
       <div ref={pdfRef}>
         <div>
           <table
-            border="1"
+            table
             style={{
               marginLeft: "100px",
               width: "80%",
@@ -106,54 +110,61 @@ const PrintingLayout = ({ setPrintingLayout }) => {
                 >
                   <img src={LOGO} alt="logo" />
                 </div>
-                <td colSpan="4" style={{ marginLeft: "100px" }}>
-                  SALARY SLIP
-                </td>
-                <span
+                <td style={{ textAlign: "center" }}>SALARY SLIP</td>
+                {/* <span
                   style={{
                     fontSize: "15px",
-                    marginRight: "-20px",
-                    marginTop: "20px",
+                    // marginRight: "-20px",
+                    // marginTop: "20px",
+                    textAlign: "right",
                   }}
                 >
                   {new Date().toLocaleDateString()}
-                </span>
+                </span> */}
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th>Employee Id:</th>
-                <td>{user.result.employeeId}</td>
-                <th>Name</th>
-                <td>{user.result.firstName + " " + user.result.lastName}</td>
+                <th style={{ border: "1px solid black" }}>Employee Id</th>
+                <td style={{ border: "1px solid black" }}>
+                  {user.result.employeeId}
+                </td>
+                <th style={{ border: "1px solid black" }}>Name</th>
+                <td style={{ border: "1px solid black" }}>
+                  {user.result.firstName + " " + user.result.lastName}
+                </td>
               </tr>
               <tr>
-                <th>Bank</th>
-                <td></td>
-                <th>Bank A/c No.</th>
-                <td></td>
+                <th style={{ border: "1px solid black" }}>Bank</th>
+                <td style={{ border: "1px solid black" }}></td>
+                <th style={{ border: "1px solid black" }}>Bank A/c No.</th>
+                <td style={{ border: "1px solid black" }}></td>
               </tr>
               <tr>
-                <th>DOB</th>
-                <td>{user.result.dob}</td>
+                <th style={{ border: "1px solid black" }}>DOB</th>
+                <td style={{ border: "1px solid black" }}>{user.result.dob}</td>
               </tr>
               <tr>
-                <th>UAN No.</th>
-                <td>{uanNo}</td>
-                <th>Pay days</th>
-                <td>{daysInThisPrevMonth}</td>
+                <th style={{ border: "1px solid black" }}>UAN No.</th>
+                <td style={{ border: "1px solid black" }}>{uanNo}</td>
+                <th style={{ border: "1px solid black" }}>Pay days</th>
+                <td style={{ border: "1px solid black" }}>
+                  {daysInThisPrevMonth}
+                </td>
               </tr>
               <tr>
-                <th>Location</th>
-                <td>India</td>
-                <th>Pay Date</th>
-                <td>{date}</td>
+                <th style={{ border: "1px solid black" }}>Location</th>
+                <td style={{ border: "1px solid black" }}>India</td>
+                <th style={{ border: "1px solid black" }}>Pay Date</th>
+                <td style={{ border: "1px solid black" }}>{date}</td>
               </tr>
               <tr>
-                <th>Department</th>
-                <td>{user.result.department}</td>
-                <th>Pay Period</th>
-                <td>{prevMonth}</td>
+                <th style={{ border: "1px solid black" }}>Department</th>
+                <td style={{ border: "1px solid black" }}>
+                  {user.result.department}
+                </td>
+                <th style={{ border: "1px solid black" }}>Pay Period</th>
+                <td style={{ border: "1px solid black" }}>{prevMonth}</td>
               </tr>
             </tbody>
           </table>
@@ -168,66 +179,245 @@ const PrintingLayout = ({ setPrintingLayout }) => {
           >
             <thead>
               <tr>
-                <th>Earnings</th>
-                <th>Amount</th>
-                <th>Deductions</th>
-                <th>Amount</th>
+                <th
+                  style={{
+                    border: "1px solid black",
+                    backgroundColor: "#027580",
+                  }}
+                >
+                  Earnings
+                </th>
+                <th
+                  style={{
+                    border: "1px solid black",
+                    backgroundColor: "#018191",
+                  }}
+                >
+                  Amount
+                </th>
+                <th
+                  style={{
+                    border: "1px solid black",
+                    backgroundColor: "#018191",
+                  }}
+                >
+                  Deductions
+                </th>
+                <th
+                  style={{
+                    border: "1px solid black",
+                    backgroundColor: "#018191",
+                  }}
+                >
+                  Amount
+                </th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Basic</td>
-                <td>{basic}</td>
-                <td>Employee's Contribution (PF)</td>
-                <td>{employeeContribution_pf}</td>
+                <td style={{ border: "1px solid black" }}></td>
+                <td style={{ border: "1px solid black" }}></td>
+                <td
+                  style={{
+                    border: "1px solid black",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Provident Fund
+                </td>
               </tr>
               <tr>
-                <td>House Rent Allowance</td>
-                <td>{houseRent}</td>
-                <td>Employeer's Contribution (PF) </td>
-                <td>{employeerContribution_pf}</td>
+                <td style={{ border: "1px solid black" }}>Basic</td>
+                <td style={{ border: "1px solid black" }}>{basic}</td>
+                <td style={{ border: "1px solid black" }}>
+                  Employee's Contribution
+                </td>
+                <td style={{ border: "1px solid black" }}>
+                  {employeeContribution_pf || ""}
+                </td>
               </tr>
               <tr>
-                <td>Medical Allowance</td>
-                <td>{medical}</td>
-                <td>Professional Tax</td>
-                <td>{}</td>
+                <td style={{ border: "1px solid black" }}>
+                  House Rent Allowance
+                </td>
+                <td style={{ border: "1px solid black" }}>{houseRent}</td>
+                <td style={{ border: "1px solid black" }}>
+                  Employeer's Contribution
+                </td>
+                <td style={{ border: "1px solid black" }}>
+                  {employeerContribution_pf || ""}
+                </td>
               </tr>
               <tr>
-                <td>Conveyance</td>
-                <td>{conveyance}</td>
-                <td>Employee's Contribution (ESIC)</td>
-                <td>{employeeContribution_esic}</td>
+                <td style={{ border: "1px solid black" }}>Medical Allowance</td>
+                <td style={{ border: "1px solid black" }}>{medical}</td>
+                <td style={{ border: "1px solid black" }}>Professional Tax</td>
+                <td style={{ border: "1px solid black" }}>{}</td>
               </tr>
               <tr>
-                <td>Communication allowance</td>
-                <td>{communication}</td>
-                <td>Employeer's Contribution (ESIC)</td>
-                <td>{}</td>
+                <td style={{ border: "1px solid black" }}>Conveyance</td>
+                <td style={{ border: "1px solid black" }}>{conveyance}</td>
+
+                <td
+                  style={{
+                    border: "1px solid black",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                  }}
+                >
+                  ESIC
+                </td>
               </tr>
               <tr>
-                <td> Uniform Allowance</td>
-                <td>{uniform}</td>
-                <td>TDS</td>
-                <td>{}</td>
+                <td style={{ border: "1px solid black" }}>
+                  Communication allowance
+                </td>
+                <td style={{ border: "1px solid black" }}>{communication}</td>
+                <td style={{ border: "1px solid black" }}>
+                  Employee's Contribution
+                </td>
+                <td style={{ border: "1px solid black" }}>
+                  {employeeContribution_esic || ""}
+                </td>
               </tr>
               <tr>
-                <td>City Factor</td>
-                <td>{cityFactor}</td>
+                <td style={{ border: "1px solid black" }}>
+                  {" "}
+                  Uniform Allowance
+                </td>
+                <td style={{ border: "1px solid black" }}>{uniform}</td>
+                <td style={{ border: "1px solid black" }}>
+                  Employeer's Contribution
+                </td>
+                <td style={{ border: "1px solid black" }}>{}</td>
               </tr>
               <tr>
-                <th>Gross Earnings</th>
-                <td>Rs.{total}</td>
-                <th> Total Deductions</th>
-                <td>{totalDeduction}</td>
+                <td style={{ border: "1px solid black" }}>City Factor</td>
+                <td style={{ border: "1px solid black" }}>{cityFactor}</td>
+                <td style={{ border: "1px solid black" }}>TDS</td>
+                <td style={{ border: "1px solid black" }}>{}</td>
               </tr>
               <tr>
-                <td></td>
-                <td></td>
-                <td>
+                <th
+                  style={{
+                    border: "1px solid black",
+                    backgroundColor: "lightgray",
+                  }}
+                >
+                  Gross Earnings
+                </th>
+                <td
+                  style={{
+                    border: "1px solid black",
+                    backgroundColor: "lightgray",
+                  }}
+                >
+                  Rs.{total || ""}
+                </td>
+                <th style={{ border: "1px solid black" }}> Total Deductions</th>
+                <td style={{ border: "1px solid black" }}>
+                  Rs. {totalDeduction || ""}
+                </td>
+              </tr>
+              <tr>
+                <td style={{ border: "1px solid black" }}></td>
+                <td style={{ border: "1px solid black" }}></td>
+                <td
+                  style={{
+                    border: "1px solid black",
+                    backgroundColor: "lightgray",
+                  }}
+                >
                   <strong>NET PAY</strong>
                 </td>
-                <td>Rs.{netSalary}</td>
+                <td
+                  style={{
+                    border: "1px solid black",
+                    backgroundColor: "lightgray",
+                  }}
+                >
+                  Rs.{netSalary || ""}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <br />
+          <table
+            style={{
+              marginLeft: "100px",
+              width: "80%",
+              borderCollapse: "collapse",
+              border: "1px solid black",
+            }}
+          >
+            <tbody>
+              <tr>
+                <td style={{ border: "1px solid black" }}>*</td>
+                <td style={{ border: "1px solid black" }}></td>
+                <td style={{ border: "1px solid black" }}></td>
+              </tr>
+              <tr>
+                <td
+                  style={{
+                    border: "1px solid black",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                  }}
+                >
+                  HUMAN RESOURCE
+                </td>
+                <td
+                  style={{
+                    border: "1px solid black",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                  }}
+                >
+                  ACCOUNT MANAGER
+                </td>
+                <td
+                  style={{
+                    border: "1px solid black",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                  }}
+                >
+                  DIR-F&A
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  style={{
+                    border: "1px solid black",
+                    textAlign: "center",
+                    fontSize: "12px",
+                    backgroundColor: "#027580",
+                  }}
+                >
+                  Prepared by
+                </td>
+                <td
+                  style={{
+                    border: "1px solid black",
+                    textAlign: "center",
+                    fontSize: "12px",
+                    backgroundColor: "#027580",
+                  }}
+                >
+                  Checked by
+                </td>
+                <td
+                  style={{
+                    border: "1px solid black",
+                    textAlign: "center",
+                    fontSize: "12px",
+                    backgroundColor: "#027580",
+                  }}
+                >
+                  Approved by
+                </td>
               </tr>
             </tbody>
           </table>
