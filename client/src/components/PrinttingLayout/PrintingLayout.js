@@ -51,7 +51,7 @@ const PrintingLayout = ({ setPrintingLayout }) => {
       const imgY = 30;
 
       // Set font size here
-      pdf.setFontSize(20); // Adjust 16 to your desired font size
+      // pdf.setFontSize(20); // Adjust 16 to your desired font size
 
       pdf.addImage(
         imgData,
@@ -61,6 +61,12 @@ const PrintingLayout = ({ setPrintingLayout }) => {
         imgWidth * ratio,
         imgHeight * ratio
       );
+
+      const currentDate = new Date().toLocaleDateString();
+      const currentTime = new Date().toLocaleTimeString();
+      const dateTime = `${currentDate} ${currentTime}`;
+      pdf.setFontSize(10);
+      pdf.text(dateTime, 10, pdfHeight - 10, { align: "left" }); // Adjust the position as needed
       pdf.save("invoice.pdf");
     });
   };
@@ -73,45 +79,48 @@ const PrintingLayout = ({ setPrintingLayout }) => {
 
   return (
     <>
-      <div style={{ float: "right" }}>
-        {" "}
-        <button onClick={handleStateChange}>Go Back</button>
+      <div style={{ display: "flex", float: "right" }}>
+        <button onClick={handleStateChange}>⬅️ Go Back</button>
       </div>
       <div ref={pdfRef}>
-        <div>
+        <div style={{ overflowX: "auto" }}>
           <table
             table
             style={{
-              marginLeft: "100px",
-              width: "80%",
+              padding: "10px",
+              // marginLeft: "100px",
               borderCollapse: "collapse",
               border: "1px solid black",
+              marginLeft: "auto",
+              marginRight: "auto",
+              width: "100%",
+              maxWidth: "800px", // Set a max-width to prevent tables from expanding too much
             }}
           >
-            <thead>
-              <tr
-                height="100px"
+            {/* <thead> */}
+            <tr
+              height="100px"
+              style={{
+                // backgroundColor: "lightgray",
+                color: "black",
+                // textAlign: "center",
+                fontSize: "30px",
+                fontWeight: "600",
+                border: "1px solid black",
+              }}
+            >
+              <div
                 style={{
-                  // backgroundColor: "lightgray",
-                  color: "black",
-                  // textAlign: "center",
-                  fontSize: "30px",
-                  fontWeight: "600",
-                  border: "1px solid black",
+                  // marginLeft: "20px",
+                  marginTop: "30px",
+                  width: "150px",
+                  height: "30px",
                 }}
               >
-                <div
-                  style={{
-                    marginLeft: "20px",
-                    marginTop: "30px",
-                    width: "150px",
-                    height: "30px",
-                  }}
-                >
-                  <img src={LOGO} alt="logo" />
-                </div>
-                <td style={{ textAlign: "center" }}>SALARY SLIP</td>
-                {/* <span
+                <img src={LOGO} alt="logo" />
+              </div>
+              <td style={{ textAlign: "left" }}>SALARY SLIP</td>
+              {/* <span
                   style={{
                     fontSize: "15px",
                     // marginRight: "-20px",
@@ -121,8 +130,23 @@ const PrintingLayout = ({ setPrintingLayout }) => {
                 >
                   {new Date().toLocaleDateString()}
                 </span> */}
-              </tr>
-            </thead>
+            </tr>
+            {/* </thead> */}
+          </table>
+          <br />
+          <table
+            style={{
+              // marginLeft: "100px",
+              padding: "10px",
+              // marginLeft: "100px",
+              borderCollapse: "collapse",
+              border: "1px solid black",
+              marginLeft: "auto",
+              marginRight: "auto",
+              width: "100%",
+              maxWidth: "800px", // Set a max-width to prevent tables from expanding too much
+            }}
+          >
             <tbody>
               <tr>
                 <th style={{ border: "1px solid black" }}>Employee Id</th>
@@ -171,10 +195,15 @@ const PrintingLayout = ({ setPrintingLayout }) => {
           <br />
           <table
             style={{
-              marginLeft: "100px",
-              width: "80%",
+              // marginLeft: "100px",
+              padding: "10px",
+              // marginLeft: "100px",
               borderCollapse: "collapse",
               border: "1px solid black",
+              marginLeft: "auto",
+              marginRight: "auto",
+              width: "100%",
+              maxWidth: "800px", // Set a max-width to prevent tables from expanding too much
             }}
           >
             <thead>
@@ -313,7 +342,7 @@ const PrintingLayout = ({ setPrintingLayout }) => {
                     backgroundColor: "lightgray",
                   }}
                 >
-                  Rs.{total || ""}
+                  Rs. {total || ""}
                 </td>
                 <th style={{ border: "1px solid black" }}> Total Deductions</th>
                 <td style={{ border: "1px solid black" }}>
@@ -337,7 +366,7 @@ const PrintingLayout = ({ setPrintingLayout }) => {
                     backgroundColor: "lightgray",
                   }}
                 >
-                  Rs.{netSalary || ""}
+                  Rs. {netSalary || ""}
                 </td>
               </tr>
             </tbody>
@@ -345,17 +374,40 @@ const PrintingLayout = ({ setPrintingLayout }) => {
           <br />
           <table
             style={{
-              marginLeft: "100px",
-              width: "80%",
+              // marginLeft: "100px",
+              padding: "10px",
+              // marginLeft: "100px",
               borderCollapse: "collapse",
               border: "1px solid black",
+              marginLeft: "auto",
+              marginRight: "auto",
+              width: "100%",
+              maxWidth: "800px", // Set a max-width to prevent tables from expanding too much
             }}
           >
             <tbody>
               <tr>
-                <td style={{ border: "1px solid black" }}>*</td>
-                <td style={{ border: "1px solid black" }}></td>
-                <td style={{ border: "1px solid black" }}></td>
+                <td
+                  style={{
+                    border: "1px solid black",
+                    padding: "30px",
+                    width: "33.33%",
+                  }}
+                ></td>
+                <td
+                  style={{
+                    border: "1px solid black",
+                    padding: "30px",
+                    width: "33.33%",
+                  }}
+                ></td>
+                <td
+                  style={{
+                    border: "1px solid black",
+                    padding: "30px",
+                    width: "33.33%",
+                  }}
+                ></td>
               </tr>
               <tr>
                 <td
@@ -432,8 +484,8 @@ const PrintingLayout = ({ setPrintingLayout }) => {
             sx={{
               bgcolor: "skyblue",
               color: "black",
-              float: "right", // Add this line to float the button to the right
-              marginRight: "160px", // Optional: Add some right margin to the butto
+              float: "right",
+              marginRight: "160px",
               marginTop: "10px",
             }}
             onClick={downloadPdf}

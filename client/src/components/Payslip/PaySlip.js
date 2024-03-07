@@ -3,11 +3,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-import html2pdf from "html2pdf.js";
-// import printLayout from "../printLayout/printLayout";
-
-// import useStyle from "./Style";
-
 import {
   Grid,
   Typography,
@@ -20,9 +15,7 @@ import {
 // import { useDispatch } from "react-redux";
 
 const PaySlip = () => {
-  const contentRef = useRef();
-  // const [currentId, setCurrentId] = useState();
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState();
   const [basic, setBasic] = useState();
   const [uanNo, setUanNo] = useState();
 
@@ -43,25 +36,6 @@ const PaySlip = () => {
 
   const navigate = useNavigate();
 
-  const [isPrinting, setIsPrinting] = useState(false);
-
-  const handleGeneratePdf = () => {
-    const content = contentRef.current;
-
-    if (content) {
-      setIsPrinting(true); // Set the flag to true when generating PDF
-      html2pdf(content, {
-        margin: 10,
-        filename: "generated-document.pdf",
-        image: { type: "jpeg", quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-      });
-    }
-
-    // handlePrint();
-  };
-
   const GS =
     basic +
     houseRent +
@@ -76,11 +50,18 @@ const PaySlip = () => {
 
   const totaldeduction = pf + pf + esic;
   const net = GS - totaldeduction;
+  console.log("net", net);
 
   const calculateTotal = () => {
     setTotal(GS);
     calculatePf();
-    setDataGenerated(true);
+    if (isNaN(net) || net <= 0) {
+      setDataGenerated(false);
+      console.log(net);
+    } else {
+      setDataGenerated(true);
+    }
+    console.log(net);
   };
 
   const calculatePf = () => {
@@ -213,31 +194,6 @@ const PaySlip = () => {
       });
     }
   };
-
-  // const pdfRef = useRef();
-  // const downloadPdf = () => {
-  //   const input = pdfRef.current;
-  //   html2canvas(input).then((canvas) => {
-  //     const imgData = canvas.toDataURL("image/png");
-  //     const pdf = new jsPDF("p", "mm", "a4", true);
-  //     const pdfWidth = pdf.internal.pageSize.getWidth();
-  //     const pdfHeight = pdf.internal.pageSize.getHeight();
-  //     const imgWidth = canvas.width;
-  //     const imgHeight = canvas.height;
-  //     const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
-  //     const imgX = (pdfWidth - imgWidth * ratio) / 2;
-  //     const imgY = 30;
-  //     pdf.addImage(
-  //       imgData,
-  //       "PNG",
-  //       imgX,
-  //       imgY,
-  //       imgWidth * ratio,
-  //       imgHeight * ratio
-  //     );
-  //     pdf.save("invoice.pdf");
-  //   });
-  // };
 
   return (
     <>
@@ -937,61 +893,43 @@ const PaySlip = () => {
 
                 <Grid>
                   {/* ---------------Button---------------- */}
+
                   <Grid
                     sx={{
+                      marginTop: "10px",
                       display: "flex",
                       justifyContent: "space-between",
-                      // margin: "60px 80px 0px 100px",
                     }}
                   >
-                    {!isPrinting && (
-                      <>
-                        <Grid>
-                          <Button
-                            required
-                            fullWidth={true}
-                            sx={{
-                              bgcolor: "skyblue",
-                              color: "black",
-                            }}
-                            onClick={calculateTotal}
-                          >
-                            Generate
-                          </Button>
-                        </Grid>
+                    <Grid>
+                      <Button
+                        required
+                        fullWidth={true}
+                        sx={{
+                          bgcolor: "skyblue",
+                          color: "black",
+                        }}
+                        onClick={calculateTotal}
+                      >
+                        Generate
+                      </Button>
+                    </Grid>
 
-                        <Grid>
-                          <Button
-                            type="submit"
-                            sx={{
-                              bgcolor: "skyblue",
-                              color: "black",
-                              alignItems: "right",
-                            }}
-                            onClick={handlePrint}
+                    <Grid>
+                      <Button
+                        type="submit"
+                        sx={{
+                          bgcolor: "skyblue",
+                          color: "black",
+                          // alignItems: "right",
+                        }}
+                        onClick={handlePrint}
 
-                            // onClick={handlePrint}
-                          >
-                            Print
-                          </Button>
-                        </Grid>
-
-                        <Grid>
-                          <Button
-                            type="submit"
-                            sx={{
-                              bgcolor: "skyblue",
-                              color: "black",
-                              alignItems: "right",
-                            }}
-                            onClick={handleGeneratePdf}
-                          >
-                            Download as Pdf
-                          </Button>
-                        </Grid>
-                      </>
-                    )}
-                    ;
+                        // onClick={handlePrint}
+                      >
+                        Preview
+                      </Button>
+                    </Grid>
                   </Grid>
                 </Grid>
               </Grid>
