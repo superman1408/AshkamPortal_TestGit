@@ -67,7 +67,7 @@ const PrintingLayout = ({ setPrintingLayout }) => {
       const dateTime = `${currentDate} ${currentTime}`;
       pdf.setFontSize(10);
       pdf.text(dateTime, 10, pdfHeight - 10, { align: "left" }); // Adjust the position as needed
-      pdf.save("invoice.pdf");
+      pdf.save("SalarySlip.pdf");
     });
   };
 
