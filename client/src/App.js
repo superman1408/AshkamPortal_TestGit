@@ -17,6 +17,7 @@ import EmployeeAttendance from "./components/Attendance/EmployeeAttendance";
 import ActivityDisplay from "./components/ActivityDisplay/ActivityDisplay";
 import SkillDisplay from "./components/Skills/SkillDisplay";
 import PrintingLayout from "./components/PrinttingLayout/PrintingLayout";
+import EvolvePrintLayout from "./components/ActivityDisplay/UnderTrial/EvolvePrintLayout";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -82,6 +83,11 @@ const App = () => {
             path="/printingLayout"
             exact
             element={<PrintingLayout setPrintingLayout={setPrintingLayout} />}
+          />
+          <Route
+            path="/evolvePrintLayout"
+            exact
+            element={<EvolvePrintLayout />}
           />
         </Routes>
       </Container>
