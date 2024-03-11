@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Divider, Grid, CircularProgress, Box } from "@mui/material";
+import { Divider, Grid, CircularProgress, Box, Button } from "@mui/material";
 
 import { useDispatch } from "react-redux";
 
@@ -8,11 +8,14 @@ import { tableDelete, tableEdit, todoList } from "../../../action/posts";
 import ProjectCodePopUp from "./ProjectCodePopUp";
 import ActivityCodePopUp from "./ActivityCodePopUp";
 import { getPosts } from "../../../action/posts";
+import { useNavigate } from "react-router-dom";
 
 const Evolve = ({ currentId, posts }) => {
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
   const [entries, setEntries] = useState([]);
-  const [projectCode, setProjectCode] = useState("");
+  const [projectCode, setProjectCode] = useState();
   const [activityCode, setActivityCode] = useState("");
   const [date, setDate] = useState("");
   const [netTime, setNetTime] = useState("");
@@ -217,6 +220,17 @@ const Evolve = ({ currentId, posts }) => {
   // console.log(isLoading);
   // console.log(role);
 
+  const handleTSPrint = () => {
+    // navigate("/evolveprintlayout", {
+    //   state: {
+    //     projectCode,
+    //     activityCode,
+    //     date,
+    //     netTime,
+    //     overTime,
+    //   },
+    // });
+  };
   return (
     <>
       <h2
@@ -493,6 +507,9 @@ const Evolve = ({ currentId, posts }) => {
             )}
           </div>
         </Grid>
+        <div>
+          <Button onClick={handleTSPrint}>Download</Button>
+        </div>
       </div>
     </>
   );

@@ -85,7 +85,7 @@ const App = () => {
             element={<PrintingLayout setPrintingLayout={setPrintingLayout} />}
           />
           <Route
-            path="/evolvePrintLayout"
+            path="/evolveprintlayout"
             exact
             element={<EvolvePrintLayout />}
           />

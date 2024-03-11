@@ -1,9 +1,8 @@
 import { Grid, Button } from "@mui/material";
 import React, { useRef } from "react";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
 
-import { Navigate, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import LOGO from "../../../assets/AshkamLogoTransparentbc.png";
 
 // import html2pdf from "html2pdf";
@@ -11,28 +10,14 @@ import LOGO from "../../../assets/AshkamLogoTransparentbc.png";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
-const PrintingLayout = ({ setPrintingLayout }) => {
+import { getPosts } from "../../../action/posts";
+
+const EvolvePrintingLayout = () => {
   // setPrintingLayout(false);
-  // const location = useLocation();
-  // const {
-  //   total,
-  //   basic,
-  //   houseRent,
-  //   uanNo,
-  //   date,
-  //   prevMonth,
-  //   daysInThisPrevMonth,
-  //   conveyance,
-  //   communication,
-  //   uniform,
-  //   medical,
-  //   cityFactor,
-  //   employeeContribution_pf,
-  //   employeerContribution_pf,
-  //   employeeContribution_esic,
-  //   totalDeduction,
-  //   netSalary,
-  // } = location.state;
+  const location = useLocation();
+  const { projectCode, activityCode, date, netTime, overTime } = location.state;
+
+  console.log("project", projectCode);
   const user = JSON.parse(localStorage.getItem("profile"));
   const [isPrinting, setIsPrinting] = useState(false);
 
@@ -72,10 +57,10 @@ const PrintingLayout = ({ setPrintingLayout }) => {
   };
 
   const navigate = useNavigate();
-  // const handleStateChange = () => {
-  //   setPrintingLayout(true); // Change the state to true
-  //   navigate("");
-  // };
+  const handleStateChange = () => {
+    // setPrintingLayout(true); // Change the state to true
+    navigate("/evolvePrintingLayout");
+  };
 
   return (
     <>
@@ -113,13 +98,13 @@ const PrintingLayout = ({ setPrintingLayout }) => {
                 style={{
                   // marginLeft: "20px",
                   marginTop: "30px",
-                  width: "150px",
+                  width: "100px",
                   height: "30px",
                 }}
               >
                 <img src={LOGO} alt="logo" />
               </div>
-              <td style={{ textAlign: "left" }}>SALARY SLIP</td>
+              <td style={{ textAlign: "left" }}>TimeSheet </td>
               {/* <span
                   style={{
                     fontSize: "15px",
@@ -206,157 +191,72 @@ const PrintingLayout = ({ setPrintingLayout }) => {
           >
             <thead>
               <tr>
-                <th
-                  style={{
-                    border: "1px solid black",
-                    backgroundColor: "#027580",
-                  }}
-                >
-                  Earnings
+                <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                  Project Code
                 </th>
-                <th
-                  style={{
-                    border: "1px solid black",
-                    backgroundColor: "#018191",
-                  }}
-                >
-                  Amount
+                <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                  Activity Code
                 </th>
-                <th
-                  style={{
-                    border: "1px solid black",
-                    backgroundColor: "#018191",
-                  }}
-                >
-                  Deductions
+                <th style={{ color: "#16355d", fontFamily: "Roboto" }}>Date</th>
+                <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                  Net Time (hrs)
                 </th>
-                <th
-                  style={{
-                    border: "1px solid black",
-                    backgroundColor: "#018191",
-                  }}
-                >
-                  Amount
+                <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                  Over Time (hrs)
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td style={{ border: "1px solid black" }}></td>
-                <td style={{ border: "1px solid black" }}></td>
                 <td
                   style={{
-                    border: "1px solid black",
-                    textAlign: "center",
-                    fontWeight: "bold",
+                    color: "#e55d17",
+                    fontFamily: "Roboto",
+                    padding: "10px",
+                    alignContent: "center",
                   }}
                 >
-                  Provident Fund
-                </td>
-              </tr>
-              <tr>
-                <td style={{ border: "1px solid black" }}>Basic</td>
-                <td style={{ border: "1px solid black" }}>{}</td>
-                <td style={{ border: "1px solid black" }}>
-                  Employee's Contribution
-                </td>
-                <td style={{ border: "1px solid black" }}>{}</td>
-              </tr>
-              <tr>
-                <td style={{ border: "1px solid black" }}>
-                  House Rent Allowance
-                </td>
-                <td style={{ border: "1px solid black" }}>{}</td>
-                <td style={{ border: "1px solid black" }}>
-                  Employeer's Contribution
-                </td>
-                <td style={{ border: "1px solid black" }}>{}</td>
-              </tr>
-              <tr>
-                <td style={{ border: "1px solid black" }}>Medical Allowance</td>
-                <td style={{ border: "1px solid black" }}>{}</td>
-                <td style={{ border: "1px solid black" }}>Professional Tax</td>
-                <td style={{ border: "1px solid black" }}>{}</td>
-              </tr>
-              <tr>
-                <td style={{ border: "1px solid black" }}>Conveyance</td>
-                <td style={{ border: "1px solid black" }}>{}</td>
-
-                <td
-                  style={{
-                    border: "1px solid black",
-                    textAlign: "center",
-                    fontWeight: "bold",
-                  }}
-                >
-                  ESIC
-                </td>
-              </tr>
-              <tr>
-                <td style={{ border: "1px solid black" }}>
-                  Communication allowance
-                </td>
-                <td style={{ border: "1px solid black" }}>{}</td>
-                <td style={{ border: "1px solid black" }}>
-                  Employee's Contribution
-                </td>
-                <td style={{ border: "1px solid black" }}>{}</td>
-              </tr>
-              <tr>
-                <td style={{ border: "1px solid black" }}>
-                  {" "}
-                  Uniform Allowance
-                </td>
-                <td style={{ border: "1px solid black" }}>{}</td>
-                <td style={{ border: "1px solid black" }}>
-                  Employeer's Contribution
-                </td>
-                <td style={{ border: "1px solid black" }}>{}</td>
-              </tr>
-              <tr>
-                <td style={{ border: "1px solid black" }}>City Factor</td>
-                <td style={{ border: "1px solid black" }}>{}</td>
-                <td style={{ border: "1px solid black" }}>TDS</td>
-                <td style={{ border: "1px solid black" }}>{}</td>
-              </tr>
-              <tr>
-                <th
-                  style={{
-                    border: "1px solid black",
-                    backgroundColor: "lightgray",
-                  }}
-                >
-                  Gross Earnings
-                </th>
-                <td
-                  style={{
-                    border: "1px solid black",
-                    backgroundColor: "lightgray",
-                  }}
-                >
-                  Rs. {}
-                </td>
-                <th style={{ border: "1px solid black" }}> Total Deductions</th>
-                <td style={{ border: "1px solid black" }}>Rs. {}</td>
-              </tr>
-              <tr>
-                <td style={{ border: "1px solid black" }}></td>
-                <td style={{ border: "1px solid black" }}></td>
-                <td
-                  style={{
-                    border: "1px solid black",
-                    backgroundColor: "lightgray",
-                  }}
-                >
-                  <strong>NET PAY</strong>
+                  {projectCode}
                 </td>
                 <td
                   style={{
-                    border: "1px solid black",
-                    backgroundColor: "lightgray",
+                    color: "#e55d17",
+                    fontFamily: "Roboto",
+                    padding: "10px",
+                    alignContent: "center",
                   }}
                 >
-                  Rs. {}
+                  {activityCode}
+                </td>
+                <td
+                  style={{
+                    color: "#e55d17",
+                    fontFamily: "Roboto",
+                    padding: "10px",
+                    alignContent: "center",
+                  }}
+                >
+                  {date}
+                </td>
+                <td
+                  style={{
+                    color: "#e55d17",
+                    fontFamily: "Roboto",
+                    padding: "10px",
+                    alignContent: "center",
+                  }}
+                >
+                  {netTime}
+                </td>
+                <td
+                  style={{
+                    color: "#e55d17",
+                    fontFamily: "Roboto",
+                    padding: "10px",
+                    alignContent: "center",
+                  }}
+                >
+                  {overTime}
                 </td>
               </tr>
             </tbody>
@@ -488,4 +388,4 @@ const PrintingLayout = ({ setPrintingLayout }) => {
   );
 };
 
-export default PrintingLayout;
+export default EvolvePrintingLayout;
