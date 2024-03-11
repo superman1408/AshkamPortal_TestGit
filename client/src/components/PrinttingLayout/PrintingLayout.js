@@ -2,6 +2,7 @@ import { Grid, Button } from "@mui/material";
 import React, { useRef } from "react";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useReactToPrint } from "react-to-print";
 
 import { Navigate, useNavigate } from "react-router-dom";
 import LOGO from "../../assets/AshkamLogoTransparentbc.png";
@@ -37,39 +38,48 @@ const PrintingLayout = ({ setPrintingLayout }) => {
   const [isPrinting, setIsPrinting] = useState(false);
 
   const pdfRef = useRef();
-  const downloadPdf = (e) => {
-    const input = pdfRef.current;
-    html2canvas(input).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF("p", "mm", "a4", true);
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
-      const imgWidth = canvas.width;
-      const imgHeight = canvas.height;
-      const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
-      const imgX = (pdfWidth - imgWidth * ratio) / 2;
-      const imgY = 30;
+  // const downloadPdf = (e) => {
+  //   const input = pdfRef.current;
+  //   html2canvas(input).then((canvas) => {
+  //     const imgData = canvas.toDataURL("image/png");
+  //     const pdf = new jsPDF("p", "mm", "a4", true);
+  //     const pdfWidth = pdf.internal.pageSize.getWidth();
+  //     const pdfHeight = pdf.internal.pageSize.getHeight();
+  //     const imgWidth = canvas.width;
+  //     const imgHeight = canvas.height;
+  //     const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+  //     const imgX = (pdfWidth - imgWidth * ratio) / 2;
+  //     const imgY = 30;
 
-      // Set font size here
-      // pdf.setFontSize(20); // Adjust 16 to your desired font size
+  //     // Set font size here
+  //     // pdf.setFontSize(20); // Adjust 16 to your desired font size
 
-      pdf.addImage(
-        imgData,
-        "PNG",
-        imgX,
-        imgY,
-        imgWidth * ratio,
-        imgHeight * ratio
-      );
+  //     pdf.addImage(
+  //       imgData,
+  //       "PNG",
+  //       imgX,
+  //       imgY,
+  //       imgWidth * ratio,
+  //       imgHeight * ratio
+  //     );
 
-      const currentDate = new Date().toLocaleDateString();
-      const currentTime = new Date().toLocaleTimeString();
-      const dateTime = `${currentDate} ${currentTime}`;
-      pdf.setFontSize(10);
-      pdf.text(dateTime, 10, pdfHeight - 10, { align: "left" }); // Adjust the position as needed
-      pdf.save("SalarySlip.pdf");
-    });
-  };
+  //     const currentDate = new Date().toLocaleDateString();
+  //     const currentTime = new Date().toLocaleTimeString();
+  //     const dateTime = `${currentDate} ${currentTime}`;
+  //     pdf.setFontSize(10);
+  //     pdf.text(dateTime, 10, pdfHeight - 10, { align: "left" }); // Adjust the position as needed
+  //     pdf.save("SalarySlip.pdf");
+  //   });
+  // };
+
+  const componentRef = useRef();
+
+  const handlePpd = useReactToPrint({
+    content: () => componentRef.current,
+    documentTitle: "Visitor Pass",
+    onAfterPrint: () => console.log("Printed PDF successfully!"),
+    fontSize: "15px",
+  });
 
   const navigate = useNavigate();
   const handleStateChange = () => {
@@ -82,8 +92,8 @@ const PrintingLayout = ({ setPrintingLayout }) => {
       <div style={{ display: "flex", float: "right" }}>
         <button onClick={handleStateChange}>⬅️ Go Back</button>
       </div>
-      <div ref={pdfRef}>
-        <div style={{ overflowX: "auto" }}>
+      <div ref={componentRef}>
+        <div style={{ overflowX: "auto", padding: "40px" }}>
           <table
             table
             style={{
@@ -488,7 +498,7 @@ const PrintingLayout = ({ setPrintingLayout }) => {
               marginRight: "160px",
               marginTop: "10px",
             }}
-            onClick={downloadPdf}
+            onClick={handlePpd}
           >
             Download
           </Button>
