@@ -17,6 +17,7 @@ import EmployeeAttendance from "./components/Attendance/EmployeeAttendance";
 import ActivityDisplay from "./components/ActivityDisplay/ActivityDisplay";
 import SkillDisplay from "./components/Skills/SkillDisplay";
 import PrintingLayout from "./components/PrinttingLayout/PrintingLayout";
+import ExcelReader from "./components/ExcelReader/ExcelReader";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -72,7 +73,7 @@ const App = () => {
           <Route
             path="/employeeAttendance"
             exact
-            element={<EmployeeAttendance />}
+            element={<ExcelReader />}
           />
 
           <Route path="posts/skill" exact element={<SkillDisplay />} />
