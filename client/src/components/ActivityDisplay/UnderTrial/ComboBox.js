@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { Card } from "@mui/material";
 
 const ComboBox = ({ posts, setCurrentId }) => {
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState("");
 
   const handleChange = (event) => {
     const value = event.target.value;
@@ -10,12 +11,33 @@ const ComboBox = ({ posts, setCurrentId }) => {
   };
 
   return (
-    <select value={selectedOption} onChange={handleChange}>
-      <option value="">Select Employee ...</option>
+    // <Card elevation={5} sx={{ backgroundColor: "blue" }}>
+    <select
+      value={selectedOption}
+      onChange={handleChange}
+      style={{
+        color: "#16355d",
+        float: "right",
+        marginTop: "10px",
+        width: "200px",
+        backgroundColor: "#f2f2f2",
+        fontFamily: "Roboto",
+        fontSize: "15px",
+      }}
+    >
+      <option
+        style={{ fontWeight: "bold", textAlign: "center", fontStyle: "italic" }}
+        value=""
+      >
+        Select Employee{" "}
+      </option>
       {posts.map((option, index) => (
-        <option key={index} value={option._id}>{option.firstName}</option>
+        <option key={index} value={option._id}>
+          {option.firstName + " " + option.lastName}
+        </option>
       ))}
     </select>
+    // </Card>
   );
 };
 
