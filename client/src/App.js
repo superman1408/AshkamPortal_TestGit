@@ -17,11 +17,8 @@ import EmployeeAttendance from "./components/Attendance/EmployeeAttendance";
 import ActivityDisplay from "./components/ActivityDisplay/ActivityDisplay";
 import SkillDisplay from "./components/Skills/SkillDisplay";
 import PrintingLayout from "./components/PrinttingLayout/PrintingLayout";
-<<<<<<< HEAD
 import ExcelReader from "./components/ExcelReader/ExcelReader";
-=======
 import EvolvePrintLayout from "./components/ActivityDisplay/UnderTrial/EvolvePrintLayout";
->>>>>>> payslipLayout-fix
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
