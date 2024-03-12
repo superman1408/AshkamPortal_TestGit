@@ -262,18 +262,16 @@ function Evolve({ currentId, posts }) {
       <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} />
 
       {/* form Body start from here....!! */}
-      {role === ("admin" || "manager") && (
-        <div style={{ float: "right", width: "5px", height: "5px" }}>
-          <ButtonBase sx={{ float: "right" }} onClick={handletrue}>
-            <img
-              style={{ float: "right", width: "30px", height: "30px" }}
-              src={print}
-              alt="print"
-            />
-          </ButtonBase>
-        </div>
-      )}
 
+      <div style={{ float: "right", width: "5px", height: "5px" }}>
+        <ButtonBase sx={{ float: "right" }} onClick={handletrue}>
+          <img
+            style={{ float: "right", width: "30px", height: "30px" }}
+            src={print}
+            alt="print"
+          />
+        </ButtonBase>
+      </div>
       <div className="time-sheet-container" style={{ display: "flex" }}>
         <Grid
           sx={{
@@ -700,14 +698,13 @@ function Evolve({ currentId, posts }) {
                 </table>
               </div>
             )}
-            {role === ("admin" || "manager") && (
-              <Button
-                sx={{ backgroundColor: "#047681", color: "white" }}
-                onClick={handletrue}
-              >
-                Download
-              </Button>
-            )}
+
+            <Button
+              sx={{ backgroundColor: "#047681", color: "white" }}
+              onClick={handletrue}
+            >
+              Download
+            </Button>
           </div>
         </Grid>
       </div>
