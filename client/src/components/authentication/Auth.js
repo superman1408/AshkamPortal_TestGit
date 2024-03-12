@@ -30,11 +30,14 @@ const initialData = {
   role: "",
 };
 
+
+
 const Auth = () => {
   const [isSignUp, setisSignUp] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = React.useState(false);
+  const [code, setCode] = useState(null);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -47,7 +50,8 @@ const Auth = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isSignUp) {
-      dispatch(signup(formData, navigate));
+      dispatch(signup(formData, code, navigate));
+      // console.log(code);
     } else {
       dispatch(signin(formData, navigate));
     }
@@ -127,7 +131,23 @@ const Auth = () => {
                   </label>
                 </div>
 
-                <div style={{ display: "flex", flexDirection: "column" }}>
+                <div>
+                  {
+                    formData.role === "admin" && (
+                      // eslint-disable-next-line
+                    <TextField
+                        label="Secret Code"
+                        name="secretCode"
+                        variant="outlined"
+                        onChange={(event) =>
+                          setCode(event.target.value )
+                        }
+                    />
+                    )
+                  }
+                </div>
+
+                {/* <div style={{ display: "flex", flexDirection: "column" }}>
                   <div style={{ alignItems: "center" }}>
                     {selectedOption === "manager" ? (
                       <ManageAccountsIcon
@@ -149,9 +169,9 @@ const Auth = () => {
                     />
                     Manager
                   </label>
-                </div>
+                </div> */}
 
-                <div style={{ display: "flex", flexDirection: "column" }}>
+                {/* <div style={{ display: "flex", flexDirection: "column" }}>
                   <div style={{ alignItems: "center" }}>
                     {selectedOption === "employee" ? (
                       <BadgeIcon
@@ -173,7 +193,7 @@ const Auth = () => {
                     />
                     Employee
                   </label>
-                </div>
+                </div> */}
               </div>
             )}
 
