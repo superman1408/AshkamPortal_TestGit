@@ -20,8 +20,6 @@ const ExcelReader = () => {
     reader.readAsBinaryString(file);
   };
 
-  console.log(excelData);
-
   return (
     <div className='card'>
       <input type="file" onChange={handleFileUpload} />
