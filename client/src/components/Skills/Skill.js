@@ -20,9 +20,10 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const Skill = () => {
   const [formData, setFormData] = useState({
-    skill1: "Java",
-    skill2: "Python",
-    skill3: "JavaScript",
+    skill1: "Marine",
+    skill2: "Structure",
+    skill3: "Civil",
+    skill4: "Pipeline",
   });
 
   const dispatch = useDispatch();
@@ -79,7 +80,9 @@ const Skill = () => {
             justifyContent: "center",
           }}
         >
-          <Typography sx={{ fontWeight: "bolder", fontFamily: "Roboto" }}>Top Skills</Typography>
+          <Typography sx={{ fontWeight: "bolder", fontFamily: "Roboto" }}>
+            Our Services
+          </Typography>
           {Object.keys(formData).map((field) => (
             <div key={field} style={{ marginTop: "5px" }}>
               {isEditing ? (
@@ -100,7 +103,13 @@ const Skill = () => {
                     {" "}
                     {formData[field].charAt(0)}
                   </Avatar>
-                  <Typography sx={{ fontWeight: "bolder", marginLeft: "10px", fontFamily: "Roboto" }}>
+                  <Typography
+                    sx={{
+                      fontWeight: "bolder",
+                      marginLeft: "10px",
+                      fontFamily: "Roboto",
+                    }}
+                  >
                     {formData[field]}
                   </Typography>
                 </div>
