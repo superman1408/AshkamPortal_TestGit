@@ -1,20 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, IconButton, Typography, Grid } from "@mui/material";
+
+import { useDispatch } from "react-redux";
+import { skillData } from "../../action/posts";
 
 import WcIcon from "@mui/icons-material/Wc";
 import WomanIcon from "@mui/icons-material/Woman";
 import ManIcon from "@mui/icons-material/Man";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 // import { CChart } from "@coreui/react-chartjs";
 // import DonutChart from "react-donut-chart";
 import { Chart } from "react-google-charts";
 
 const TotalEmployee = () => {
-  const data = [
-    ["Task", "Hours per Day"],
-    ["Men", 27],
-    ["Women", 6],
-  ];
+  const [isEditing, setIsEditing] = useState();
+
+  const [data, setData] = useState({
+    Task: "Hours per Day",
+    Men: 27,
+    Women: 6,
+  });
+
+  // const data = [
+  //   ["Task", "Hours per Day"],
+  //   ["Men", 27],
+  //   ["Women", 6],
+  // ];
 
   const options = {
     is3D: true,
@@ -22,6 +34,32 @@ const TotalEmployee = () => {
       fill: "#cae8e5",
     },
   };
+
+  const handleEditToggle = () => {
+    setIsEditing(!isEditing);
+  };
+
+  const handleFieldChange = (field, value) => {
+    setData((prevData) => ({
+      ...prevData,
+      [field]: value,
+    }));
+  };
+
+  const handleSave = () => {
+    // Perform save operation with editedData
+    console.log("Saving:", data);
+    // After saving, toggle back to view mode
+    setIsEditing(false);
+
+    // console.log(data);
+    // // if (currentId) {
+    // dispatch(skillData(data));
+    // // } else {
+    // //   console.log(Error);
+    // // }
+  };
+
   return (
     <div>
       <Box
@@ -148,7 +186,13 @@ const TotalEmployee = () => {
                 </Grid>
 
                 <Grid>
-                  <Typography sx={{ marginLeft: "0px", marginTop: "8px", fontFamily: "Roboto" }}>
+                  <Typography
+                    sx={{
+                      marginLeft: "0px",
+                      marginTop: "8px",
+                      fontFamily: "Roboto",
+                    }}
+                  >
                     :05
                   </Typography>
                 </Grid>
@@ -177,6 +221,32 @@ const TotalEmployee = () => {
             </Grid>
           </Grid>
         </Grid>
+
+        {/* <Grid>
+          <IconButton
+            size="50px"
+            color="black"
+            onClick={isEditing ? handleSave : handleEditToggle}
+            sx={{
+              position: "absolute", // Set position to absolute
+              right: "5px", // Adjust the left position
+              top: "0px",
+            }}
+          >
+            <MoreVertIcon />
+          </IconButton>
+          {isEditing && (
+            <Button
+              sx={{ float: "right", marginTop: "110px" }}
+              type="submit"
+              variant="contained"
+              size="small"
+              onClick={isEditing ? handleSave : handleEditToggle}
+            >
+              Save
+            </Button>
+          )}
+        </Grid> */}
       </Box>
     </div>
   );
