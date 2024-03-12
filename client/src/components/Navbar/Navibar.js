@@ -54,9 +54,9 @@ const Navibar = () => {
       case "inbox":
         navigate(`/mail/${id}/communication`);
         break;
-      case "payslip":
-        navigate(`/${id}/payslip`);
-        break;
+      // case "payslip":
+      //   navigate(`/${id}/payslip`);
+      //   break;
       case "registration":
         navigate(`/${id}/profile`);
         break;
@@ -116,13 +116,13 @@ const Navibar = () => {
                       Inbox
                     </NavDropdown.Item>
                     {/* <NavDropdown.Divider /> */}
-                    <NavDropdown.Item
+                    {/* <NavDropdown.Item
                       onClick={() => openPage(user.result._id, "payslip")}
                       style={{ fontFamily: "Roboto", color: "#16355d" }}
                       id="payslip"
                     >
                       Pay Slips
-                    </NavDropdown.Item>
+                    </NavDropdown.Item> */}
                   </NavDropdown>
                   <Nav.Link href="/aboutUs" style={{ marginTop: "8px", fontFamily: "Roboto", fontWeight: "bold", color: "#16355d" }}>
                     About Us

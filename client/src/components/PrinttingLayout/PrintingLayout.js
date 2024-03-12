@@ -37,41 +37,6 @@ const PrintingLayout = ({ setPrintingLayout }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
   const [isPrinting, setIsPrinting] = useState(false);
 
-  const pdfRef = useRef();
-  // const downloadPdf = (e) => {
-  //   const input = pdfRef.current;
-  //   html2canvas(input).then((canvas) => {
-  //     const imgData = canvas.toDataURL("image/png");
-  //     const pdf = new jsPDF("p", "mm", "a4", true);
-  //     const pdfWidth = pdf.internal.pageSize.getWidth();
-  //     const pdfHeight = pdf.internal.pageSize.getHeight();
-  //     const imgWidth = canvas.width;
-  //     const imgHeight = canvas.height;
-  //     const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
-  //     const imgX = (pdfWidth - imgWidth * ratio) / 2;
-  //     const imgY = 30;
-
-  //     // Set font size here
-  //     // pdf.setFontSize(20); // Adjust 16 to your desired font size
-
-  //     pdf.addImage(
-  //       imgData,
-  //       "PNG",
-  //       imgX,
-  //       imgY,
-  //       imgWidth * ratio,
-  //       imgHeight * ratio
-  //     );
-
-  //     const currentDate = new Date().toLocaleDateString();
-  //     const currentTime = new Date().toLocaleTimeString();
-  //     const dateTime = `${currentDate} ${currentTime}`;
-  //     pdf.setFontSize(10);
-  //     pdf.text(dateTime, 10, pdfHeight - 10, { align: "left" }); // Adjust the position as needed
-  //     pdf.save("SalarySlip.pdf");
-  //   });
-  // };
-
   const componentRef = useRef();
 
   const handlePpd = useReactToPrint({

@@ -58,10 +58,10 @@ const PaySlip = () => {
   const calculateTotal = () => {
     setTotal(GS);
     calculatePf();
+    // setPrintingShow(true);
     if (isNaN(net) || net <= 0) {
       setDataGenerated(false);
       console.log(net);
-      
     } else {
       setDataGenerated(true);
     }
@@ -199,15 +199,27 @@ const PaySlip = () => {
   //   }
   // };
 
+  // const componentRef = useRef();
+
+  // // else {
+  // const handlePdf = useReactToPrint({
+  //   content: () => componentRef.current,
+  //   documentTitle: "Visitor Pass",
+  //   onBeforePrint: () => setPrintingShow(true),
+  //   onAfterPrint: () => setPrintingShow(!printingshow),
+  // });
+  // // }
+
   const componentRef = useRef();
 
-  // else {
+  // Assuming you have an if statement that ends somewhere before this point.
+
   const handlePdf = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: "Visitor Pass",
-    onAfterPrint: () => console.log("Printed PDF successfully!"),
+    onBeforePrint: () => setPrintingShow(true),
+    onAfterPrint: () => setPrintingShow(false), // Corrected state variable name
   });
-  // }
 
   return (
     <>
@@ -951,7 +963,7 @@ const PaySlip = () => {
           </Card>
         </Container>
         {/* ---------------------------------------------------- pdf layout------------------------------------------------------- */}
-        {/* {printingshow && ( */}
+        {printingshow && (
           <div ref={componentRef}>
             <div style={{ overflowX: "auto", padding: "40px" }}>
               <table
@@ -1356,7 +1368,7 @@ const PaySlip = () => {
               </table>
             </div>
           </div>
-        // )}
+        )}
       </div>
     </>
   );
