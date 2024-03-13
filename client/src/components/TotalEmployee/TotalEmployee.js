@@ -29,7 +29,9 @@ const TotalEmployee = () => {
   const handleSave = () => {
     // Perform save operation with edited data
     console.log("Saving - Men:", menCount, "Women:", womenCount);
-    setIsEditing(false);
+    setMenCount(menCount);
+    setWomenCount(womenCount);
+    setIsEditing(menCount);
   };
 
   return (
