@@ -206,7 +206,7 @@ const RegistrationForm = () => {
                   margin: "30px 0px 0px 0px",
                   fontSize: "18px",
                   fontWeight: "bold",
-                  fontFamily: "Roboto",
+                  fontFamily: "Roboto"
                 }}
               >
                 Full Name
@@ -267,9 +267,7 @@ const RegistrationForm = () => {
               {user.result.dob ? (
                 <div>
                   {" "}
-                  <Typography sx={{ fontFamily: "Roboto", fontWeight: "bold" }}>
-                    Date of Birth :
-                  </Typography>
+                  <Typography sx={{fontFamily: "Roboto", fontWeight: "bold"}}>Date of Birth :</Typography>
                   <TextField value={user.result.dob} />
                 </div>
               ) : (
@@ -349,9 +347,7 @@ const RegistrationForm = () => {
             <div>
               {user.result.maritalStatus ? (
                 <div style={{ marginTop: "10px" }}>
-                  <Typography sx={{ fontFamily: "Roboto", fontWeight: "bold" }}>
-                    Marital Status :
-                  </Typography>
+                  <Typography sx={{fontFamily:"Roboto", fontWeight:"bold"}}>Marital Status :</Typography>
                   <TextField value={user.result.maritalStatus} />
                 </div>
               ) : (
@@ -463,9 +459,7 @@ const RegistrationForm = () => {
             </Grid>
 
             <Divider sx={{ margin: "20px 0px 20px 0px", borderWidth: "7px" }} />
-            <h4 style={{ fontFamily: "Roboto", fontWeight: "bold" }}>
-              Job Informations :
-            </h4>
+            <h4 style={{fontFamily: "Roboto", fontWeight: "bold"}}>Job Informations :</h4>
             <div sx={{ display: "flex", flexDirection: "row" }}>
               <TextField
                 variant="outlined"
@@ -537,9 +531,7 @@ const RegistrationForm = () => {
             </div>
 
             <Divider sx={{ margin: "20px 0px 20px 0px", borderWidth: "7px" }} />
-            <h4 style={{ fontFamily: "Roboto", fontWeight: "bold" }}>
-              Emergency Contact Informations :
-            </h4>
+            <h4 style={{fontFamily: "Roboto", fontWeight: "bold"}}>Emergency Contact Informations :</h4>
             <div sx={{ display: "flex", flexDirection: "row" }}>
               <TextField
                 variant="outlined"
@@ -607,13 +599,7 @@ const RegistrationForm = () => {
               }}
             >
               <Grid>
-                <Button
-                  sx={{ fontFamily: "Roboto" }}
-                  type="submit"
-                  variant="contained"
-                  required
-                  fullWidth
-                >
+                <Button sx={{fontFamily: "Roboto"}} type="submit" variant="contained" required fullWidth>
                   Register
                 </Button>
               </Grid>
@@ -624,17 +610,14 @@ const RegistrationForm = () => {
                   onClick={handleReset}
                   required
                   fullWidth
-                  sx={{ fontFamily: "Roboto" }}
+                  sx={{fontFamily: "Roboto"}}
                 >
                   Clear
                 </Button>
               </Grid>
 
               <Grid>
-                <Button sx={{ fontFamily: "Roboto" }} onClick={handlePrint}>
-                  {" "}
-                  Print
-                </Button>
+                <Button sx={{fontFamily: "Roboto"}} onClick={handlePrint}> Print</Button>
               </Grid>
             </Grid>
           </form>
