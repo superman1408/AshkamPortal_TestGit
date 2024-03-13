@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, IconButton, Typography, Grid } from "@mui/material";
 
 import WcIcon from "@mui/icons-material/Wc";
 import WomanIcon from "@mui/icons-material/Woman";
 import ManIcon from "@mui/icons-material/Man";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 // import { CChart } from "@coreui/react-chartjs";
 // import DonutChart from "react-donut-chart";
 import { Chart } from "react-google-charts";
 
 const TotalEmployee = () => {
+  const [isEditing, setIsEditing] = useState(false);
+
   const data = [
     ["Task", "Hours per Day"],
     ["Men", 27],
@@ -22,6 +25,25 @@ const TotalEmployee = () => {
       fill: "#cae8e5",
     },
   };
+
+  const handleEditToggle = () => {
+    setIsEditing(!isEditing);
+  };
+
+  const handleSave = () => {
+    // Perform save operation with editedData
+    console.log("Saving:", data);
+    // After saving, toggle back to view mode
+    setIsEditing(false);
+
+    console.log(data);
+    // if (currentId) {
+    // dispatch(skillData(data));
+    // } else {
+    //   console.log(Error);
+    // }
+  };
+
   return (
     <div>
       <Box
@@ -77,8 +99,22 @@ const TotalEmployee = () => {
                   fontFamily: "Roboto",
                 }}
               >
-                32
+                {data[1][1] + data[2][1]}
               </Typography>
+            </Grid>
+            <Grid>
+              <IconButton
+                size="50px"
+                color="black"
+                onClick={isEditing ? handleSave : handleEditToggle}
+                sx={{
+                  position: "absolute", // Set position to absolute
+                  // right: "5px", // Adjust the left position
+                  // top: "0px",
+                }}
+              >
+                <MoreVertIcon />
+              </IconButton>
             </Grid>
           </Grid>
 
@@ -118,7 +154,7 @@ const TotalEmployee = () => {
                       // display: "flex",
                     }}
                   >
-                    :27
+                    :{data[1][1]}
                   </Typography>
                 </Grid>
               </Grid>
@@ -148,8 +184,14 @@ const TotalEmployee = () => {
                 </Grid>
 
                 <Grid>
-                  <Typography sx={{ marginLeft: "0px", marginTop: "8px", fontFamily: "Roboto" }}>
-                    :05
+                  <Typography
+                    sx={{
+                      marginLeft: "0px",
+                      marginTop: "8px",
+                      fontFamily: "Roboto",
+                    }}
+                  >
+                    :{data[2][1]}
                   </Typography>
                 </Grid>
               </Grid>
