@@ -22,8 +22,7 @@ const Skill = () => {
   const [formData, setFormData] = useState({
     skill1: "Marine",
     skill2: "Structure",
-    skill3: "Civil",
-    skill4: "Pipeline",
+    skill3: "Pipeline",
   });
 
   const dispatch = useDispatch();
