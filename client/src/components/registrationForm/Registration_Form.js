@@ -8,6 +8,7 @@ import {
   Typography,
   Button,
   Container,
+  CircularProgress,
 } from "@mui/material";
 
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -30,6 +31,7 @@ const RegistrationForm = () => {
   const [dob, setdob] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
   const posts = useSelector((state) => state.posts);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [postData, setPostData] = useState({
     firstName: "",
@@ -92,12 +94,12 @@ const RegistrationForm = () => {
               relationship: items.relationship,
               selectedFile: items.selectedFile,
             }));
+            setIsLoading(false);
           }
         }
       })
-      
     }).catch ((err) => {console.log('Error', err)});
-  }, [currentId]);
+  }, [currentId, isLoading]);
 
 
 
@@ -139,8 +141,15 @@ const RegistrationForm = () => {
         marginTop: "20px",
       }}
     >
-      <Card elevation={24} sx={{ width: "800px", justifyContent: "center" }}>
-        <Grid
+      <Card elevation={24} sx={{ width: "800px", justifyContent: "center", height:  "100%" }}>
+        {
+          isLoading  ? (
+            <>
+            <CircularProgress/>
+            Loading...
+            </>
+          ) : (
+            <Grid
           sx={{ marginLeft: "30px", marginRight: "30px", marginBottom: "30px" }}
         >
           <form onSubmit={handleSubmit}>
@@ -572,6 +581,9 @@ const RegistrationForm = () => {
             </Grid>
           </form>
         </Grid>
+          )
+        }
+        
       </Card>
     </Container>
   );
