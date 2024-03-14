@@ -7,7 +7,7 @@ import avatar2 from "../../assets/avatar2.jpg";
 import avatar3 from "../../assets/avatar3.jpg";
 import avatar4 from "../../assets/sush.jpg";
 
-const EmployeeOnHoliday = () => {
+const ManagingTeam = () => {
   return (
     <div>
       <Box
@@ -193,4 +193,4 @@ const EmployeeOnHoliday = () => {
   );
 };
 
-export default EmployeeOnHoliday;
+export default ManagingTeam;
