@@ -18,56 +18,18 @@ import FormControl from "@mui/joy/FormControl";
 import Radio from "@mui/joy/Radio";
 import RadioGroup from "@mui/joy/RadioGroup";
 import FileBase from "react-file-base64";
-import { useDispatch } from "react-redux";
-import { updatePost } from "../../action/posts";
-
-// import { useReactToPrint } from "react-to-print";
+import { useDispatch, useSelector } from "react-redux";
+import { getPosts, updatePost } from "../../action/posts";
 import { useNavigate, useParams } from "react-router-dom";
-// import { LOGOUT } from "../../constants/actionTypes";
 
 const RegistrationForm = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
-  const [currentId, setCurrentId] = useState(0);
+  const [currentId, setCurrentId] = useState(null);
   const dispatch = useDispatch();
   const componentRef = useRef();
   const [dob, setdob] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
-
-  const navigate = useNavigate();
-
-  const id = useParams();
-  console.log("id in registration page", id);
-
-  useEffect(() => {
-    if (!currentId) return setCurrentId(user.result._id);
-
-    setPostData(() => ({
-      ...postData,
-
-      firstName: user.result.firstName,
-      lastName: user.result.lastName,
-      dob: user.result.dob,
-      gender: user.result.gender,
-      email: user.result.email,
-      maritalStatus: user.result.maritalStatus,
-      contactNumber: user.result.contactNumber,
-      streetAddress: user.result.streetAddress,
-      city: user.result.city,
-      state: user.result.state,
-      pincode: user.result.pincode,
-      jobSkills: user.result.jobSkills,
-      jobTitle: user.result.jobTitle,
-      employeeId: user.result.employeeId,
-      department: user.result.department,
-      reportingManager: user.result.reportingManager,
-      emergencyName: user.result.emergencyName,
-      emergencyAddress: user.result.emergencyAddress,
-      emergencyContact: user.result.emergencyContact,
-      relationship: user.result.relationship,
-      selectedFile: user.result.selectedFile,
-    }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentId]);
+  const posts = useSelector((state) => state.posts);
 
   const [postData, setPostData] = useState({
     firstName: "",
@@ -93,17 +55,59 @@ const RegistrationForm = () => {
     selectedFile: "",
   });
 
+  const navigate = useNavigate();
+
+  const {id} = useParams();
+  // console.log("id in registration page", id);
+
+  useEffect(() => {
+    if (!currentId) return setCurrentId(id);
+    dispatch(getPosts()).then(() => {
+      console.log("Data is recieved in the Registration Module..!!!");
+      // eslint-disable-next-line array-callback-return
+      posts.map((items) => {
+        for (let index = 0; index <=  posts.length; index++) {
+          if (items._id === currentId) {
+            setPostData(() => ({
+              ...postData,
+              firstName: items.firstName,
+              lastName: items.lastName,
+              dob: items.dob,
+              gender: items.gender,
+              email: items.email,
+              maritalStatus: items.maritalStatus,
+              contactNumber: items.contactNumber,
+              streetAddress: items.streetAddress,
+              city: items.city,
+              state: items.state,
+              pincode: items.pincode,
+              jobSkills: items.jobSkills,
+              jobTitle: items.jobTitle,
+              employeeId: items.employeeId,
+              department: items.department,
+              reportingManager: items.reportingManager,
+              emergencyName: items.emergencyName,
+              emergencyAddress: items.emergencyAddress,
+              emergencyContact: items.emergencyContact,
+              relationship: items.relationship,
+              selectedFile: items.selectedFile,
+            }));
+          }
+        }
+      })
+      
+    }).catch ((err) => {console.log('Error', err)});
+  }, [currentId]);
+
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (currentId) {
       dispatch(updatePost(currentId, postData));
       setUser(null);
-      // dispatch({ type: LOGOUT });
-      // console.log(currentId);
-
       navigate("/home");
     } else {
-      // dispatch(createPost(postData));
       console.log("Not set current ID");
     }
 
@@ -111,39 +115,9 @@ const RegistrationForm = () => {
     console.log("Form submitted:", formSubmitted);
   };
 
-  // useEffect(() => {
-  //   console.log("Before Form submitted:", formSubmitted);
-  //   setFormSubmitted(true);
-  //   console.log("After Form submitted:", formSubmitted);
 
-  //   // Additional logic related to form submission
-  // }, [formSubmitted]);
 
-  const handleReset = () => {
-    setPostData({
-      firstName: "",
-      lastName: "",
-      dob: "",
-      gender: "",
-      email: "",
-      maritalStatus: "",
-      contactNumber: "",
-      streetAddress: "",
-      city: "",
-      state: "",
-      pincode: "",
-      jobSkills: "",
-      jobTitle: "",
-      employeeId: "",
-      department: "",
-      reportingManager: "",
-      emergencyName: "",
-      emergencyAddress: "",
-      emergencyContact: "",
-      relationship: "",
-      selectedFile: "",
-    });
-  };
+
 
   const handleDOB = (dob) => {
     setdob(dob);
@@ -152,14 +126,7 @@ const RegistrationForm = () => {
     setPostData({ ...postData, dob: date });
   };
 
-  // ________________test code _________________________________
 
-  const handlePrint = () => {};
-  // useReactToPrint({
-  //   content: () => componentRef.current,
-  //   documentTitle: "Visitor Pass",
-  //   onAfterPrint: () => console.log("Printed PDF successfully!"),
-  // });
 
   return (
     <Container
@@ -593,7 +560,6 @@ const RegistrationForm = () => {
               sx={{
                 display: "flex",
                 justifyContent: "space-between",
-
                 marginTop: "20px",
                 marginBottom: "20px",
               }}
@@ -602,22 +568,6 @@ const RegistrationForm = () => {
                 <Button sx={{fontFamily: "Roboto"}} type="submit" variant="contained" required fullWidth>
                   Register
                 </Button>
-              </Grid>
-
-              <Grid>
-                <Button
-                  variant="contained"
-                  onClick={handleReset}
-                  required
-                  fullWidth
-                  sx={{fontFamily: "Roboto"}}
-                >
-                  Clear
-                </Button>
-              </Grid>
-
-              <Grid>
-                <Button sx={{fontFamily: "Roboto"}} onClick={handlePrint}> Print</Button>
               </Grid>
             </Grid>
           </form>
