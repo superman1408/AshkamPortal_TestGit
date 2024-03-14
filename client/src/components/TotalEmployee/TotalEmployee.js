@@ -31,7 +31,7 @@ const TotalEmployee = () => {
     console.log("Saving - Men:", menCount, "Women:", womenCount);
     setMenCount(menCount);
     setWomenCount(womenCount);
-    setIsEditing(menCount);
+    setIsEditing(false);
   };
 
   return (
@@ -125,7 +125,9 @@ const TotalEmployee = () => {
                   marginRight: "10px",
                 }}
               >
-                <Grid sx={{ display: "flex", flexDirection: "row" }}>
+                <Grid
+                  sx={{ display: "flex", flexDirection: "row", marginTop: "" }}
+                >
                   <Grid>
                     <IconButton height="40px" width="40px" color="primary">
                       <ManIcon />
@@ -133,7 +135,9 @@ const TotalEmployee = () => {
                   </Grid>
 
                   <Grid>
-                    <Typography>:{menCount}</Typography>
+                    <Typography sx={{ marginTop: "10px" }}>
+                      :{menCount}
+                    </Typography>
                   </Grid>
                 </Grid>
 
@@ -151,7 +155,9 @@ const TotalEmployee = () => {
                   </Grid>
 
                   <Grid>
-                    <Typography>:{womenCount}</Typography>
+                    <Typography sx={{ marginTop: "10px" }}>
+                      :{womenCount}
+                    </Typography>
                   </Grid>
                 </Grid>
               </Grid>
