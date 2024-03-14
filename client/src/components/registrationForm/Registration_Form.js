@@ -94,10 +94,11 @@ const RegistrationForm = () => {
               relationship: items.relationship,
               selectedFile: items.selectedFile,
             }));
-            setIsLoading(false);
           }
         }
       })
+      setIsLoading(false);
+      
     }).catch ((err) => {console.log('Error', err)});
   }, [currentId, isLoading]);
 
