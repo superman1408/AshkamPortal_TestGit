@@ -101,7 +101,6 @@ const App = () => {
             width: "100%",
             marginTop: "5px",
             textAlign: "center",
-            fontFamily: "Roboto",
           }}
         >
           ©️ 2023 ASHKAM ENERGY PRIVATE LIMITED. All rights reserved.
