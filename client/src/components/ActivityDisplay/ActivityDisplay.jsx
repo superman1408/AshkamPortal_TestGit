@@ -16,6 +16,7 @@ const ActivityDisplay = () => {
   const dispatch = useDispatch();
   const [post, setPost] = useState();
   const [role, setRole] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // setCurrentId(id);
@@ -31,18 +32,25 @@ const ActivityDisplay = () => {
         });
       });
     }
-  }, [currentId, id, dispatch, posts, post]);
+    setIsLoading(false);
+  }, [isLoading]);
 
   return (
-    <>
-      {role === "manager" && (
-        <ComboBox posts={posts} setCurrentId={setCurrentId} />
-      )}
-      {role === "admin" && (
-        <ComboBox posts={posts} setCurrentId={setCurrentId} />
-      )}
-      <Evolve currentId={currentId} posts={posts} />
-    </>
+    <div>
+      {
+        !isLoading && (
+        <>
+          {role === "manager" && (
+            <ComboBox posts={posts} setCurrentId={setCurrentId} />
+          )}
+          {role === "admin" && (
+            <ComboBox posts={posts} setCurrentId={setCurrentId} />
+          )}
+          <Evolve currentId={currentId} posts={posts} />
+        </> 
+        )
+      }
+    </div>
   );
 };
 
