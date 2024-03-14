@@ -15,25 +15,30 @@ const ActivityDisplay = () => {
   const posts = useSelector((state) => state.posts);
   const dispatch = useDispatch();
   const [post, setPost] = useState();
-  const [role, setRole] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const user = JSON.parse(localStorage.getItem("profile"));
+  const role = user.result.role;
 
   useEffect(() => {
     // setCurrentId(id);
-    if (!post) {
+    // setIsLoading(true);
+    if (posts) {
       dispatch(getPosts()).then(() => {
         console.log("Activity Display is recieving the posts..!!!@@@@@@");
         // eslint-disable-next-line array-callback-return
         posts.map((post) => {
           if (post._id === currentId) {
             setPost(post);
-            setRole(post.role);
           }
         });
       });
     }
     setIsLoading(false);
   }, [isLoading]);
+
+
+
+  
 
   return (
     <div>

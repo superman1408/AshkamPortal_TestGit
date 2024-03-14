@@ -96,6 +96,7 @@ const App = () => {
         <footer
           style={{
             backgroundColor: "#17325C",
+            fontFamily: "Roboto",
             color: "white",
             width: "100%",
             marginTop: "5px",
@@ -103,7 +104,7 @@ const App = () => {
             fontFamily: "Roboto",
           }}
         >
-          ASHKAM ENERGY PRIVATE LIMITED ©️ me 2023
+          ©️ 2023 ASHKAM ENERGY PRIVATE LIMITED. All rights reserved.
         </footer>
       </div>
     </BrowserRouter>
