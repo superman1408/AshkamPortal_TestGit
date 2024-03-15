@@ -22,6 +22,7 @@ import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts, updatePost } from "../../action/posts";
 import { useNavigate, useParams } from "react-router-dom";
+import ComboBox from "./ComboBox/ComboBox";
 
 const RegistrationForm = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
@@ -56,6 +57,8 @@ const RegistrationForm = () => {
     relationship: "",
     selectedFile: "",
   });
+
+  const role = user.result.role;
 
   const navigate = useNavigate();
 
@@ -175,9 +178,16 @@ const RegistrationForm = () => {
             <Divider
               sx={{
                 borderWidth: "7px",
+                bgcolor: "#e55d17",
               }}
             />
-
+            <div>
+              {
+                role === "admin" && (
+                  <ComboBox posts={posts} setCurrentId={setCurrentId} />
+                )
+              }
+            </div>
             <div sx={{ display: "flex", flexDirection: "row" }}>
               <Typography
                 sx={{
@@ -436,7 +446,7 @@ const RegistrationForm = () => {
               </div>
             </Grid>
 
-            <Divider sx={{ margin: "20px 0px 20px 0px", borderWidth: "7px" }} />
+            <Divider sx={{ margin: "20px 0px 20px 0px", borderWidth: "7px", bgcolor: "#e55d17", }} />
             <h4 style={{fontFamily: "Roboto", fontWeight: "bold"}}>Job Informations :</h4>
             <div sx={{ display: "flex", flexDirection: "row" }}>
               <TextField
@@ -508,7 +518,7 @@ const RegistrationForm = () => {
               />
             </div>
 
-            <Divider sx={{ margin: "20px 0px 20px 0px", borderWidth: "7px" }} />
+            <Divider sx={{ margin: "20px 0px 20px 0px", borderWidth: "7px", bgcolor: "#e55d17", }} />
             <h4 style={{fontFamily: "Roboto", fontWeight: "bold"}}>Emergency Contact Informations :</h4>
             <div sx={{ display: "flex", flexDirection: "row" }}>
               <TextField
@@ -576,9 +586,9 @@ const RegistrationForm = () => {
               }}
             >
               <Grid>
-                <Button sx={{fontFamily: "Roboto"}} type="submit" variant="contained" required fullWidth>
+                <button sx={{fontFamily: "Roboto"}} type="submit" variant="contained" required fullWidth>
                   Register
-                </Button>
+                </button>
               </Grid>
             </Grid>
           </form>
