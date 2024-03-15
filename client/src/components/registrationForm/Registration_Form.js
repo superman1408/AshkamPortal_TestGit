@@ -722,79 +722,7 @@ const RegistrationForm = () => {
                       }
                     />
                   </div>
-
-                  <Grid
-                    container
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      marginTop: "20px",
-                      marginBottom: "20px",
-                    }}
-                  >
-                  <Typography>
-                    Address :
-                  </Typography>
-                  <TextField
-                    sx={{ marginTop: "10px" }}
-                    variant="outlined"
-                    required
-                    fullWidth
-                    label="Street Address"
-                    name="streetAddress"
-                    value={postData.streetAddress}
-                    onChange={(e) =>
-                      setPostData({ ...postData, streetAddress: e.target.value })
-                    }
-                  />
-                  </Grid>
                 </div>
-
-                <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
-                  <div>
-                    <TextField
-                      sx={{ marginTop: "10px" }}
-                      variant="outlined"
-                      required
-                      fullWidth
-                      label="City"
-                      name="city"
-                      value={postData.city}
-                      onChange={(e) =>
-                        setPostData({ ...postData, city: e.target.value })
-                      }
-                    />
-                  </div>
-                  <div>
-                    <TextField
-                      sx={{ marginTop: "10px" }}
-                      variant="outlined"
-                      required
-                      fullWidth
-                      label="State"
-                      name="state"
-                      value={postData.state}
-                      onChange={(e) =>
-                        setPostData({ ...postData, state: e.target.value })
-                      }
-                    />
-                  </div>
-
-                  <div>
-                    <TextField
-                      sx={{ marginTop: "10px" }}
-                      variant="outlined"
-                      required
-                      fullWidth
-                      label="Pincode"
-                      name="pincode"
-                      value={postData.pincode}
-                      onChange={(e) =>
-                        setPostData({ ...postData, pincode: e.target.value })
-                      }
-                    />
-                  </div>
-                </Grid>
                 <Grid
                   container
                   sx={{
