@@ -23,6 +23,8 @@ const Skill = () => {
     skill1: "Marine",
     skill2: "Structure",
     skill3: "Pipeline",
+    skill4: "Civil",
+    skill5: "",
   });
 
   const dispatch = useDispatch();

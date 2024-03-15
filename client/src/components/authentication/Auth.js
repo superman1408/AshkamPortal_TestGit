@@ -30,8 +30,6 @@ const initialData = {
   role: "",
 };
 
-
-
 const Auth = () => {
   const [isSignUp, setisSignUp] = useState(false);
   const dispatch = useDispatch();
@@ -132,19 +130,15 @@ const Auth = () => {
                 </div>
 
                 <div>
-                  {
-                    formData.role === "admin" && (
-                      // eslint-disable-next-line
+                  {formData.role === "admin" && (
+                    // eslint-disable-next-line
                     <TextField
-                        label="Secret Code"
-                        name="secretCode"
-                        variant="outlined"
-                        onChange={(event) =>
-                          setCode(event.target.value )
-                        }
+                      label="Secret Code"
+                      name="secretCode"
+                      variant="outlined"
+                      onChange={(event) => setCode(event.target.value)}
                     />
-                    )
-                  }
+                  )}
                 </div>
 
                 {/* <div style={{ display: "flex", flexDirection: "column" }}>
@@ -342,7 +336,10 @@ const Auth = () => {
               {/* this is required for rendering taost it works as a container*/}
             </div>
             <div>
-              <Button style={{ fontFamily: "Roboto ", color: "#16355d" }} onClick={switchMode}>
+              <Button
+                style={{ fontFamily: "Roboto ", color: "#16355d" }}
+                onClick={switchMode}
+              >
                 {isSignUp
                   ? "  Already have an account? Login here!  "
                   : "Don't have an account ? Register here!"}

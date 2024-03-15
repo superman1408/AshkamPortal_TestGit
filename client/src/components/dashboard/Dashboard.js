@@ -116,7 +116,7 @@ const Admin = ({ currentId }) => {
                   }}
                 >
                   <Grid>
-                    <TotalEmployee />
+                    <ManagingTeam />
                   </Grid>
 
                   <Grid sx={{ margin: "20px 0px 0px 20px" }}>
@@ -139,7 +139,7 @@ const Admin = ({ currentId }) => {
                 </Grid>
 
                 <Grid>
-                  <ManagingTeam />
+                  <TotalEmployee />
                 </Grid>
 
                 <Grid
