@@ -5,7 +5,6 @@ import { Box, Grid, Typography, Divider, Stack, Avatar } from "@mui/material";
 import avatar1 from "../../assets/MD.jpg";
 import avatar2 from "../../assets/avatar2.jpg";
 import avatar3 from "../../assets/avatar3.jpg";
-import avatar4 from "../../assets/sush.jpg";
 
 const ManagingTeam = () => {
   return (
@@ -23,7 +22,13 @@ const ManagingTeam = () => {
           borderRadius: "10px",
         }}
       >
-        <Grid sx={{ display: "flex", flexDirection: "column" }}>
+        <Grid
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            marginBottom: "10px",
+          }}
+        >
           <Grid>
             <Typography
               sx={{
@@ -31,6 +36,7 @@ const ManagingTeam = () => {
                 fontWeight: "bolder",
                 mb: "1px",
                 ml: "10px",
+                alignItems: "center",
               }}
             >
               Managing Team
@@ -168,7 +174,7 @@ const ManagingTeam = () => {
                       marginTop: "10px",
                     }}
                     alt="Femy sharp"
-                    src={avatar4}
+                    src={avatar3}
                   />
                 </Stack>
               </div>
@@ -183,7 +189,7 @@ const ManagingTeam = () => {
                   fontFamily: "Roboto",
                 }}
               >
-                Ms. Sushila Ramamoorthi (Advisor)
+                Mr.Manilal Gupta
               </Typography>
             </Grid>
           </Grid>

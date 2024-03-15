@@ -1,7 +1,7 @@
 import { Button, Card, Container, Typography, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import ReactConfetti from "react-confetti";
-import Mission from "../../assets/mission.png";
+import Mission from "../../assets/Moto1.png";
 
 const AboutUs = () => {
   const [dimension, setDimension] = useState({
@@ -56,10 +56,11 @@ const AboutUs = () => {
                 fontSize: "30px",
                 float: "center",
                 color: "#0b7882",
+                fontFamily: "Roboto",
               }}
             >
               {" "}
-              The Company
+              About Ashkam
             </Typography>
             <Grid
               sx={{
@@ -71,7 +72,7 @@ const AboutUs = () => {
                 backgroundSize: "contain",
               }}
             >
-              <p>
+              <p style={{ fontFamily: "Roboto" }}>
                 ASHKAM ENERGY was incorporated in 2015 by a group of passionate
                 engineers and professionals accomplishing Make in India Global
                 Energy Consulting services. Their Mission, Vision, and Values
@@ -84,8 +85,14 @@ const AboutUs = () => {
                 LNG & Re-gasification Terminal Design, Marine Port & Harbor
                 development, and Renewable Energy.
               </p>
-              <p>
-                <Typography sx={{ color: "#e46025", fontWeight: "bold" }}>
+              <p style={{ fontFamily: "Roboto" }}>
+                <Typography
+                  sx={{
+                    color: "#e46025",
+                    fontWeight: "bold",
+                    fontFamily: "Roboto",
+                  }}
+                >
                   MISSION
                 </Typography>
                 We are committed to providing Best-in-Class engineering and
@@ -93,8 +100,14 @@ const AboutUs = () => {
                 out-of-the-box thinking approaches. Our motto for "Thriving on
                 Excellence" is achieved by empowering our workforce.
               </p>
-              <p>
-                <Typography sx={{ color: "#0b7882", fontWeight: "bold" }}>
+              <p style={{ fontFamily: "Roboto" }}>
+                <Typography
+                  sx={{
+                    color: "#0b7882",
+                    fontWeight: "bold",
+                    fontFamily: "Roboto",
+                  }}
+                >
                   VISSION
                 </Typography>
                 A vision of being a Global Leading engineering & and consulting
@@ -102,8 +115,14 @@ const AboutUs = () => {
                 technology, and execution excellence combined with our
                 out-of-the-box approach and innovative ideas.
               </p>
-              <p>
-                <Typography sx={{ color: "#0d325c", fontWeight: "bold" }}>
+              <p style={{ fontFamily: "Roboto" }}>
+                <Typography
+                  sx={{
+                    color: "#0d325c",
+                    fontWeight: "bold",
+                    fontFamily: "Roboto",
+                  }}
+                >
                   VALUE
                 </Typography>
                 Our business ethics and high professional integrity drive us to
@@ -119,7 +138,7 @@ const AboutUs = () => {
                 high business ethics.
               </p>
               <br />
-              <p style={{ fontStyle: "oblique" }}>
+              <p style={{ fontStyle: "oblique", fontFamily: "Roboto" }}>
                 “We conceptualized Ashkam Energy to become a key Global
                 Engineering Consulting Firm operating from tier- II city of
                 India. We started off our journey rather slowly. However, with
