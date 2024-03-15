@@ -12,6 +12,7 @@ const Message = ({ post, currentId }) => {
   const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("profile"));
 
   let array = [];
 
@@ -83,6 +84,16 @@ const Message = ({ post, currentId }) => {
     setActiveStatus({ ...activeStatus, status: "Rejected" });
     console.log("5");
     navigate("/home");
+  };
+
+
+  const verifyTheRole = () => {
+    if (user.result.role === "admin" || user.result.role === "manager") {
+      return true;
+    }
+    else{
+      return false;
+    }
   };
 
   for (let index = 0; index < post.recipient.length; index++) {
@@ -226,22 +237,32 @@ const Message = ({ post, currentId }) => {
                     marginTop: "10px",
                   }}
                 >
-                  <Button
-                    sx={{ fontFamily: "Roboto" }}
-                    variant="contained"
-                    onClick={handleAccept}
-                  >
-                    <CheckSharpIcon />
-                    Accept
-                  </Button>
-                  <Button
-                    sx={{ fontFamily: "Roboto" }}
-                    variant="contained"
-                    onClick={handleReject}
-                  >
-                    <ClearSharpIcon />
-                    Reject
-                  </Button>
+                  {
+                    verifyTheRole() ? (
+                      <>
+                        <Button
+                          sx={{ fontFamily: "Roboto" }}
+                          variant="contained"
+                          onClick={handleAccept}
+                        >
+                          <CheckSharpIcon />
+                            Accept
+                        </Button>
+                        <Button
+                          sx={{ fontFamily: "Roboto" }}
+                          variant="contained"
+                          onClick={handleReject}
+                        >
+                          <ClearSharpIcon />
+                          Reject
+                        </Button>
+                      </>
+                    ) : (
+                      <div>
+                        Please check your status above..!!
+                      </div>
+                    )
+                  }
                 </div>
               </div>
             </Card>
