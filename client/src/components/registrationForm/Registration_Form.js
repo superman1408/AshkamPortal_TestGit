@@ -94,6 +94,7 @@ const RegistrationForm = () => {
               relationship: items.relationship,
               selectedFile: items.selectedFile,
             }));
+            break;
           }
         }
       })
