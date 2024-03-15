@@ -189,7 +189,7 @@ const ManagingTeam = () => {
                   fontFamily: "Roboto",
                 }}
               >
-                Mr.Manilal Gupta
+                Mr. Manilal Gupta (AGM)
               </Typography>
             </Grid>
           </Grid>
