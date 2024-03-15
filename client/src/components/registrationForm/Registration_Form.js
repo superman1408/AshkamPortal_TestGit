@@ -44,6 +44,7 @@ const RegistrationForm = () => {
   const [postData, setPostData] = useState({
     firstName: "",
     lastName: "",
+    role: "",
     dob: "",
     gender: "",
     email: "",
@@ -96,6 +97,7 @@ const RegistrationForm = () => {
                 ...postData,
                 firstName: items.firstName,
                 lastName: items.lastName,
+                role: items.role,
                 dob: items.dob,
                 gender: items.gender,
                 email: items.email,
@@ -202,109 +204,113 @@ const RegistrationForm = () => {
                 <div>
                   {
                     role === "admin" && (
+                      <>
                       <ComboBox posts={posts} setCurrentId={setCurrentId} />
+                          <Grid style={{ display: "flex", justifyContent: "space-evenly" }}>
+                        <div style={{ display: "flex", flexDirection: "column" }}>
+                          <div style={{ alignItems: "center" }}>
+                            {selectedOption === "admin" ? (
+                              <AdminPanelSettingsIcon
+                                fontSize="small"
+                                style={{ color: "#e55d17" }}
+                              />
+                            ) : (
+                              <AdminPanelSettingsOutlinedIcon fontSize="10px" />
+                            )}
+                          </div>
+
+                          <label style={{ fontFamily: "Roboto ", color: "#16355d" }}>
+                            <input
+                              style={{ marginRight: "5px", padding: "2px" }}
+                              name="role"
+                              type="checkbox"
+                              checked={selectedOption === "admin"}
+                              onChange={() => handleCheckboxChange("admin")}
+                            />
+                            Admin
+                          </label>
+                        </div>
+
+                        <div style={{ display: "flex", flexDirection: "column" }}>
+                          <div style={{ alignItems: "center" }}>
+                            {selectedOption === "manager" ? (
+                              <ManageAccountsIcon
+                                fontSize="small"
+                                style={{ color: "#047681" }}
+                              />
+                            ) : (
+                              <ManageAccountsOutlinedIcon fontSize="10px" />
+                            )}
+                          </div>
+
+                          <label style={{ fontFamily: "Roboto ", color: "#16355d" }}>
+                            <input
+                              style={{ marginRight: "5px", padding: "2px" }}
+                              name="role"
+                              type="checkbox"
+                              checked={selectedOption === "manager"}
+                              onChange={() => handleCheckboxChange("manager")}
+                            />
+                            Manager
+                          </label>
+                        </div>
+
+                        <div style={{ display: "flex", flexDirection: "column" }}>
+                          <div style={{ alignItems: "center" }}>
+                            {selectedOption === "employee" ? (
+                              <BadgeIcon
+                                fontSize="small"
+                                style={{ color: "#16355c" }}
+                              />
+                            ) : (
+                              <BadgeOutlinedIcon fontSize="10px" />
+                            )}
+                          </div>
+
+                          <label style={{ fontFamily: "Roboto ", color: "#16355d" }}>
+                            <input
+                              style={{ marginRight: "5px", padding: "2px" }}
+                              name="role"
+                              type="checkbox"
+                              checked={selectedOption === "employee"}
+                              onChange={() => handleCheckboxChange("employee")}
+                            />
+                            Employee
+                          </label>
+                        </div>
+                      </Grid>
+                       <Typography
+                          sx={{
+                            margin: "30px 0px 0px 0px",
+                            fontSize: "18px",
+                            fontWeight: "bold",
+                            fontFamily: "Roboto"
+                          }}
+                        >
+                          Role
+                        </Typography>
+
+                        <TextField
+                          type="text"
+                          name="role"
+                          variant="outlined"
+                          required
+                          fullWidth
+                          label="Role"
+                          sx={{ marginTop: "10px" }}
+                          value={postData.role}
+                          onChange={(e) =>
+                            setPostData({ ...postData, role: e.target.value })
+                          }
+                        />
+                      </>
                     )
                   }
                 </div>
-                <div sx={{ display: "flex", flexDirection: "row" }}>
-                  <Typography
-                    sx={{
-                      margin: "30px 0px 0px 0px",
-                      fontSize: "18px",
-                      fontWeight: "bold",
-                      fontFamily: "Roboto"
-                    }}
-                  >
-                    Full Name
-                  </Typography>
+                {/* <div sx={{ display: "flex", flexDirection: "row" }}> */}
+                 
 
-                  <TextField
-                    type="text"
-                    name="firstName"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    label="First Name"
-                    sx={{ marginTop: "10px" }}
-                    value={postData.firstName}
-                    onChange={(e) =>
-                      setPostData({ ...postData, firstName: e.target.value })
-                    }
-                  />
-
-                  <Grid style={{ display: "flex", justifyContent: "space-evenly" }}>
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                      <div style={{ alignItems: "center" }}>
-                        {selectedOption === "admin" ? (
-                          <AdminPanelSettingsIcon
-                            fontSize="small"
-                            style={{ color: "#e55d17" }}
-                          />
-                        ) : (
-                          <AdminPanelSettingsOutlinedIcon fontSize="10px" />
-                        )}
-                      </div>
-
-                      <label style={{ fontFamily: "Roboto ", color: "#16355d" }}>
-                        <input
-                          style={{ marginRight: "5px", padding: "2px" }}
-                          name="role"
-                          type="checkbox"
-                          checked={selectedOption === "admin"}
-                          onChange={() => handleCheckboxChange("admin")}
-                        />
-                        Admin
-                      </label>
-                    </div>
-
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                      <div style={{ alignItems: "center" }}>
-                        {selectedOption === "manager" ? (
-                          <ManageAccountsIcon
-                            fontSize="small"
-                            style={{ color: "#047681" }}
-                          />
-                        ) : (
-                          <ManageAccountsOutlinedIcon fontSize="10px" />
-                        )}
-                      </div>
-
-                      <label style={{ fontFamily: "Roboto ", color: "#16355d" }}>
-                        <input
-                          style={{ marginRight: "5px", padding: "2px" }}
-                          name="role"
-                          type="checkbox"
-                          checked={selectedOption === "manager"}
-                          onChange={() => handleCheckboxChange("manager")}
-                        />
-                        Manager
-                      </label>
-                    </div>
-
-                    <div style={{ display: "flex", flexDirection: "column" }}>
-                      <div style={{ alignItems: "center" }}>
-                        {selectedOption === "employee" ? (
-                          <BadgeIcon
-                            fontSize="small"
-                            style={{ color: "#16355c" }}
-                          />
-                        ) : (
-                          <BadgeOutlinedIcon fontSize="10px" />
-                        )}
-                      </div>
-
-                      <label style={{ fontFamily: "Roboto ", color: "#16355d" }}>
-                        <input
-                          style={{ marginRight: "5px", padding: "2px" }}
-                          name="role"
-                          type="checkbox"
-                          checked={selectedOption === "employee"}
-                          onChange={() => handleCheckboxChange("employee")}
-                        />
-                        Employee
-                      </label>
-                    </div>
-                  </Grid>
+                 
 
                   <div sx={{ display: "flex", flexDirection: "row" }}>
                     <Typography
@@ -345,7 +351,7 @@ const RegistrationForm = () => {
                         setPostData({ ...postData, lastName: e.target.value })
                       }
                     />
-                  </div>
+                  {/* </div> */}
 
                   <div style={{ display: "flex", justifyContent: "space-between" }}>
                     <Grid sx={{ marginTop: "40px" }}>
