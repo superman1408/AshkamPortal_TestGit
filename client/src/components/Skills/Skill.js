@@ -21,10 +21,10 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 const Skill = () => {
   const [formData, setFormData] = useState({
     skill1: "Marine",
-    skill2: "Structure",
+    skill2: "Oil & Gas",
     skill3: "Pipeline",
-    skill4: "Civil",
-    skill5: "",
+    skill4: "Civil & Infrastructure",
+    skill5: "Architectural & Interior Design",
   });
 
   const dispatch = useDispatch();
@@ -134,7 +134,7 @@ const Skill = () => {
           </IconButton>
           {isEditing && (
             <Button
-              sx={{ float: "right", marginTop: "110px" }}
+              sx={{ float: "right", marginTop: "200px" }}
               type="submit"
               variant="contained"
               size="small"

@@ -108,10 +108,12 @@ const TotalEmployee = () => {
           {isEditing ? (
             <>
               <Input
+                sx={{ marginLeft: "20px" }}
                 value={menCount}
                 onChange={(e) => setMenCount(parseInt(e.target.value) || 0)}
               />
               <Input
+                sx={{ marginLeft: "20px" }}
                 value={womenCount}
                 onChange={(e) => setWomenCount(parseInt(e.target.value) || 0)}
               />
@@ -190,7 +192,12 @@ const TotalEmployee = () => {
           )}
           {isEditing && (
             <Button
-              sx={{ float: "right", marginTop: "20px", alignContent: "right" }}
+              sx={{
+                float: "right",
+                marginTop: "20px",
+                alignContent: "right",
+                marginLeft: "20px",
+              }}
               type="submit"
               variant="contained"
               size="small"
