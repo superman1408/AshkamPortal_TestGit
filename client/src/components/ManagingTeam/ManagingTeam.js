@@ -15,7 +15,7 @@ const ManagingTeam = () => {
           // width: "340px",
           // height: "150px",
           display: "flex",
-          marginTop: "10px",
+          marginTop: "20px",
           marginLeft: "20px",
           padding: "2px",
           bgcolor: "#e9edf7",

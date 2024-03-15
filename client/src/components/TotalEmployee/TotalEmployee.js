@@ -39,9 +39,9 @@ const TotalEmployee = () => {
       <Box
         sx={{
           display: "flex",
-          marginTop: "20px",
+          marginTop: "10px",
           marginLeft: "20px",
-          padding: "10px",
+          padding: "5px",
           bgcolor: "#cae8e5",
           boxShadow: 1,
           borderRadius: "10px",
