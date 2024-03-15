@@ -306,10 +306,6 @@ const RegistrationForm = () => {
                     )
                   }
                 </div>
-                {/* <div sx={{ display: "flex", flexDirection: "row" }}> */}
-                 
-
-                 
 
                   <div sx={{ display: "flex", flexDirection: "row" }}>
                     <Typography
@@ -581,7 +577,7 @@ const RegistrationForm = () => {
                   </Grid>
 
                   <Divider
-                    sx={{ margin: "20px 0px 20px 0px", borderWidth: "7px" }}
+                    sx={{ margin: "20px 0px 20px 0px", borderWidth: "7px", bgcolor: "#e55d17", }}
                   />
                   <h4 style={{ fontFamily: "Roboto", fontWeight: "bold" }}>
                     Job Informations :
@@ -660,7 +656,7 @@ const RegistrationForm = () => {
                   </div>
 
                   <Divider
-                    sx={{ margin: "20px 0px 20px 0px", borderWidth: "7px" }}
+                    sx={{ margin: "20px 0px 20px 0px", borderWidth: "7px", bgcolor: "#e55d17", }}
                   />
                   <h4 style={{ fontFamily: "Roboto", fontWeight: "bold" }}>
                     Emergency Contact Informations :
@@ -799,137 +795,6 @@ const RegistrationForm = () => {
                     />
                   </div>
                 </Grid>
-
-                <Divider sx={{ margin: "20px 0px 20px 0px", borderWidth: "7px", bgcolor: "#e55d17", }} />
-                <h4 style={{fontFamily: "Roboto", fontWeight: "bold"}}>Job Informations :</h4>
-                <div sx={{ display: "flex", flexDirection: "row" }}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    label="Skills"
-                    name="jobSkills"
-                    value={postData.jobSkills}
-                    onChange={(e) =>
-                      setPostData({ ...postData, jobSkills: e.target.value })
-                    }
-                  />
-                </div>
-                <div>
-                  <TextField
-                    sx={{ marginTop: "10px" }}
-                    variant="outlined"
-                    required
-                    fullWidth
-                    label="Job Role"
-                    name="jobTitle"
-                    value={postData.jobTitle}
-                    onChange={(e) =>
-                      setPostData({ ...postData, jobTitle: e.target.value })
-                    }
-                  />
-                </div>
-                <div>
-                  <TextField
-                    sx={{ marginTop: "10px" }}
-                    variant="outlined"
-                    required
-                    fullWidth
-                    label="Employee Id"
-                    name="employeeId"
-                    value={postData.employeeId}
-                    onChange={(e) =>
-                      setPostData({ ...postData, employeeId: e.target.value })
-                    }
-                  />
-                </div>
-                <div>
-                  <TextField
-                    sx={{ marginTop: "10px" }}
-                    variant="outlined"
-                    required
-                    fullWidth
-                    label="Department"
-                    name="department"
-                    value={postData.department}
-                    onChange={(e) =>
-                      setPostData({ ...postData, department: e.target.value })
-                    }
-                  />
-                </div>
-                <div>
-                  <TextField
-                    sx={{ marginTop: "10px" }}
-                    variant="outlined"
-                    required
-                    fullWidth
-                    label="Reporting Manager"
-                    name="ReportingManager"
-                    value={postData.reportingManager}
-                    onChange={(e) =>
-                      setPostData({ ...postData, reportingManager: e.target.value })
-                    }
-                  />
-                </div>
-
-                <Divider sx={{ margin: "20px 0px 20px 0px", borderWidth: "7px", bgcolor: "#e55d17", }} />
-                <h4 style={{fontFamily: "Roboto", fontWeight: "bold"}}>Emergency Contact Informations :</h4>
-                <div sx={{ display: "flex", flexDirection: "row" }}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    label="Name"
-                    name="emergencyName"
-                    value={postData.emergencyName}
-                    onChange={(e) =>
-                      setPostData({ ...postData, emergencyName: e.target.value })
-                    }
-                  />
-                </div>
-                <div>
-                  <TextField
-                    sx={{ marginTop: "10px" }}
-                    variant="outlined"
-                    required
-                    fullWidth
-                    label="Address"
-                    name="emergencyAddress"
-                    value={postData.emergencyAddress}
-                    onChange={(e) =>
-                      setPostData({ ...postData, emergencyAddress: e.target.value })
-                    }
-                  />
-                </div>
-                <div>
-                  <TextField
-                    sx={{ marginTop: "10px" }}
-                    variant="outlined"
-                    required
-                    fullWidth
-                    label="Contact Number"
-                    name="emergencyContact"
-                    value={postData.emergencyContact}
-                    onChange={(e) =>
-                      setPostData({ ...postData, emergencyContact: e.target.value })
-                    }
-                  />
-                </div>
-                <div>
-                  <TextField
-                    sx={{ marginTop: "10px" }}
-                    variant="outlined"
-                    required
-                    fullWidth
-                    label="Relationship"
-                    name="relationship"
-                    value={postData.relationship}
-                    onChange={(e) =>
-                      setPostData({ ...postData, relationship: e.target.value })
-                    }
-                  />
-                </div>
-
                 <Grid
                   container
                   sx={{
