@@ -25,6 +25,19 @@ const Communication = () => {
     dispatch(getPosts());
   }, [dispatch, currentId]);
 
+
+  const verifyTheRole = () => {
+    if (user.result.role === "admin" || user.result.role === "manager") {
+      return true;
+    }
+    else{
+      return false;
+    }
+  };
+
+
+
+
   return (
     <>
       <div style={{ padding: "5px", display: "flex", backgroundColor: "lightgray" }}>
@@ -55,7 +68,7 @@ const Communication = () => {
             }}
           >
             <div>
-              {user &&
+              {verifyTheRole() ? (
                 posts.map(
                   (post) =>
                     post.name === user.result.name && (
@@ -69,7 +82,23 @@ const Communication = () => {
                         />
                       </div>
                     )
-                )}
+                  )
+                ) : (
+                  posts.map(
+                    (post) => 
+                      post._id === user.result._id && (
+                        <div key={post._id} style={{ marginTop: "10px" }}>
+                          {" "}
+                          {/* Use post._id as the key */}
+                          <Inbox post={post} setCurrentId={setCurrentId} />
+                          <Divider
+                            variant="inset"
+                            sx={{ borderWidth: "1px", fontWeight: "15px" }}
+                          />
+                        </div>
+                      ))
+                )
+                }
             </div>
           </div>
 
