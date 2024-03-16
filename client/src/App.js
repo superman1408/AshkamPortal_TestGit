@@ -19,6 +19,7 @@ import SkillDisplay from "./components/Skills/SkillDisplay";
 import PrintingLayout from "./components/PrinttingLayout/PrintingLayout";
 import ExcelReader from "./components/ExcelReader/ExcelReader";
 import EvolvePrintLayout from "./components/ActivityDisplay/UnderTrial/EvolvePrintLayout";
+import PasswordResetForm from "./components/PasswordReset/PasswordResetForm";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -53,6 +54,7 @@ const App = () => {
           {/* this part need to be examined after ward */}
 
           <Route path="/auth" exact element={!user && <Authentication />} />
+          <Route path="/auth/reset" exact element={!user && <PasswordResetForm />} />
           {/* <Route path="/profile" exact element={<Form />} /> */}
           <Route path="/:id/profile" exact element={<RegistrationForm />} />
           <Route path="/mail/:id/leave" exact element={<Leave />} />

@@ -40,3 +40,20 @@ export const signup = (formData, code, navigate) => async (dispatch) => {
     });
   }
 };
+
+
+
+export const resetPassword = (passwordForm, navigate) => async (dispatch) => {
+  console.log("I will try to reset your password..!!");
+  console.log(passwordForm);
+
+  try {
+    const { data } = await API.passwordReset(passwordForm).then(() =>{
+      dispatch({type : AUTH, data}).then(() => {
+        navigate("/auth", { replace: true });
+      })
+    });
+  } catch (error) {
+    console.log("Error occure in action section in frontend : ", error);
+  }
+};
