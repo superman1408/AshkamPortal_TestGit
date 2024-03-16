@@ -7,7 +7,6 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
-import MailIcon from "@mui/icons-material/Mail";
 import SendSharpIcon from '@mui/icons-material/SendSharp';
 import PublicSharpIcon from '@mui/icons-material/PublicSharp';
 
@@ -32,7 +31,6 @@ const Leave = () => {
 
   const user = JSON.parse(localStorage.getItem("profile"));
 
-  // console.log(id);
 
   const [select, setSelect] = useState("");
   const [mailData, setMailData] = useState({
@@ -41,20 +39,7 @@ const Leave = () => {
     subject: "",
   });
 
-  // useEffect(
-  //   (mailData) => {
-  //     if (mailData) {
-  //       setMailData({
-  //         recipient: "",
-  //         requiredMessage: "",
-  //         subject: "",
-  //       });
-  //     }
-  //   },
-  //   [mailData]
-  // );
 
-  // const date = new Date();
 
   const [valueTo, setValueTo] = useState();
 
@@ -103,12 +88,16 @@ const Leave = () => {
 
     if (mailData) {
       dispatch(sendMail(mailData, navigate));
-      dispatch(sendMailData(id, mailData));
-      if (posts) {
-        posts.map((post) =>
-          navigate(`/mail/${post._id}/communication`, { replace: true })
-        );
-      }
+      dispatch(sendMailData(id, mailData)).then(() => {
+        navigate(`/home`, { replace : true });
+      }).catch ((err) => {
+        console.log("Error : ", err);
+      });
+      // if (posts) {
+      //   posts.map((post) =>
+      //     navigate(`/mail/${post._id}/communication`, { replace: true })
+      //   );
+      // }
     }
     clear();
   };

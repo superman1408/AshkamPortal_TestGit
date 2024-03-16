@@ -17,6 +17,8 @@ import EmployeeAttendance from "./components/Attendance/EmployeeAttendance";
 import ActivityDisplay from "./components/ActivityDisplay/ActivityDisplay";
 import SkillDisplay from "./components/Skills/SkillDisplay";
 import PrintingLayout from "./components/PrinttingLayout/PrintingLayout";
+import ExcelReader from "./components/ExcelReader/ExcelReader";
+import EvolvePrintLayout from "./components/ActivityDisplay/UnderTrial/EvolvePrintLayout";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -72,7 +74,7 @@ const App = () => {
           <Route
             path="/employeeAttendance"
             exact
-            element={<EmployeeAttendance />}
+            element={<ExcelReader />}
           />
 
           <Route path="posts/skill" exact element={<SkillDisplay />} />
@@ -83,20 +85,25 @@ const App = () => {
             exact
             element={<PrintingLayout setPrintingLayout={setPrintingLayout} />}
           />
+          <Route
+            path="/evolveprintlayout"
+            exact
+            element={<EvolvePrintLayout />}
+          />
         </Routes>
       </Container>
       <div>
         <footer
           style={{
             backgroundColor: "#17325C",
+            fontFamily: "Roboto",
             color: "white",
             width: "100%",
             marginTop: "5px",
             textAlign: "center",
-            fontFamily: "Roboto",
           }}
         >
-          ASHKAM ENERGY PRIVATE LIMITED ©️ me 2023
+          ©️ 2023 ASHKAM ENERGY PRIVATE LIMITED. All rights reserved.
         </footer>
       </div>
     </BrowserRouter>

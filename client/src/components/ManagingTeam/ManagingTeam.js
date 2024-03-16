@@ -2,10 +2,11 @@ import React from "react";
 
 import { Box, Grid, Typography, Divider, Stack, Avatar } from "@mui/material";
 
-import avatar1 from "../../assets/Profile.jpg";
-import avatar2 from "../../assets/profile1.jpg";
+import avatar1 from "../../assets/MD.jpg";
+import avatar2 from "../../assets/avatar2.jpg";
+import avatar3 from "../../assets/avatar3.jpg";
 
-const EmployeeOnHoliday = () => {
+const ManagingTeam = () => {
   return (
     <div>
       <Box
@@ -13,7 +14,7 @@ const EmployeeOnHoliday = () => {
           // width: "340px",
           // height: "150px",
           display: "flex",
-          marginTop: "10px",
+          marginTop: "20px",
           marginLeft: "20px",
           padding: "2px",
           bgcolor: "#e9edf7",
@@ -21,10 +22,24 @@ const EmployeeOnHoliday = () => {
           borderRadius: "10px",
         }}
       >
-        <Grid sx={{ display: "flex", flexDirection: "column" }}>
+        <Grid
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            marginBottom: "10px",
+          }}
+        >
           <Grid>
-            <Typography sx={{ fontFamily: "Roboto", fontWeight: "bolder", mb: "1px", ml: "10px" }}>
-              Employees on Holiday
+            <Typography
+              sx={{
+                fontFamily: "Roboto",
+                fontWeight: "bolder",
+                mb: "1px",
+                ml: "10px",
+                alignItems: "center",
+              }}
+            >
+              Managing Team
             </Typography>
           </Grid>
           <Grid sx={{ display: "flex", flexDirection: "row" }}>
@@ -51,10 +66,10 @@ const EmployeeOnHoliday = () => {
                   fontFamily: "Roboto",
                 }}
               >
-                Unhealthy Today
+                Mr.Abhishek kumar (Managing director)
               </Typography>
             </Grid>
-            <Grid>
+            {/* <Grid>
               <Typography
                 sx={{
                   color: "#f7100c",
@@ -65,7 +80,7 @@ const EmployeeOnHoliday = () => {
               >
                 Only Today
               </Typography>
-            </Grid>
+            </Grid> */}
           </Grid>
           <Divider orientation="horizontal" />
 
@@ -96,11 +111,11 @@ const EmployeeOnHoliday = () => {
                   fontFamily: "Roboto",
                 }}
               >
-                On Holiday      
+                Mr.Santosh kumar jha (CEO)
               </Typography>
             </Grid>
 
-            <Grid>
+            {/* <Grid>
               <Typography
                 sx={{
                   color: "#f7100c",
@@ -111,6 +126,71 @@ const EmployeeOnHoliday = () => {
               >
                 21st To 22nd
               </Typography>
+            </Grid> */}
+          </Grid>
+          <Divider orientation="horizontal" />
+          <Grid sx={{ display: "flex", flexDirection: "row" }}>
+            <Grid>
+              <div>
+                <Stack flexDirection="row">
+                  <Avatar
+                    sx={{
+                      width: 40,
+                      height: 40,
+                      marginLeft: "10px",
+                      marginTop: "10px",
+                    }}
+                    alt="Femy sharp"
+                    src={avatar3}
+                  />
+                </Stack>
+              </div>
+            </Grid>
+
+            <Grid>
+              <Typography
+                sx={{
+                  marginLeft: "30px",
+                  marginRight: "30px",
+                  marginTop: "10px",
+                  fontFamily: "Roboto",
+                }}
+              >
+                Mr. Srinivas Prasanna (CTO)
+              </Typography>
+            </Grid>
+          </Grid>
+
+          <Divider orientation="horizontal" />
+          <Grid sx={{ display: "flex", flexDirection: "row" }}>
+            <Grid>
+              <div>
+                <Stack flexDirection="row">
+                  <Avatar
+                    sx={{
+                      width: 40,
+                      height: 40,
+                      marginLeft: "10px",
+                      marginTop: "10px",
+                    }}
+                    alt="Femy sharp"
+                    src={avatar3}
+                  />
+                </Stack>
+              </div>
+            </Grid>
+
+            <Grid>
+              <Typography
+                sx={{
+                  marginLeft: "30px",
+                  marginRight: "30px",
+                  marginTop: "10px",
+                  fontFamily: "Roboto",
+                }}
+              >
+                Mr. Manilal Gupta (AGM)
+              </Typography>
             </Grid>
           </Grid>
         </Grid>
@@ -119,4 +199,4 @@ const EmployeeOnHoliday = () => {
   );
 };
 
-export default EmployeeOnHoliday;
+export default ManagingTeam;

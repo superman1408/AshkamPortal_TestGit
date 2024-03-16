@@ -4,7 +4,7 @@ import React from "react";
 import WeeklyActivity from "../WeeklyActivity/WeeklyActivity";
 // import Skill from "../Skills/Skill";
 import TotalEmployee from "../TotalEmployee/TotalEmployee";
-import EmployeeOnHoliday from "../EmployeeOnHoliday/EmployeeOnHoliday";
+import ManagingTeam from "../ManagingTeam/ManagingTeam";
 import Calender from "../Calender/Calender";
 import Birthday from "../Birthday/Birthday";
 
@@ -91,7 +91,7 @@ const Admin = ({ currentId }) => {
                       // fontWeight: "bold",
                       "@media (max-width: 600px)": {
                         flexDirection: "column",
-                        color: "#16355d"
+                        color: "#16355d",
                       },
 
                       "@media (min-width: 600px)": {
@@ -116,7 +116,7 @@ const Admin = ({ currentId }) => {
                   }}
                 >
                   <Grid>
-                    <TotalEmployee />
+                    <ManagingTeam />
                   </Grid>
 
                   <Grid sx={{ margin: "20px 0px 0px 20px" }}>
@@ -139,7 +139,7 @@ const Admin = ({ currentId }) => {
                 </Grid>
 
                 <Grid>
-                  <EmployeeOnHoliday />
+                  <TotalEmployee />
                 </Grid>
 
                 <Grid

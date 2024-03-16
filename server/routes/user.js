@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post('/signin', signin);
 
-router.post('/signup', signup);
+router.post('/signup/:code', signup);
 
 
 export default router;

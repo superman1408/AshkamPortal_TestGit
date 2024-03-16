@@ -13,26 +13,29 @@ export const signin = (formData, navigate) => async (dispatch) => {
 
     dispatch({ type: AUTH, data });
     navigate("/home", { replace: true });
-    console.log("data", formData);
+
   } catch (error) {
     console.log(error);
 
     // toast coding for error message
-    toast.error("Username or password incorrect", {
+    toast.error("Invalid Credentials, Please try Again Later...!!", {
       position: toast.POSITION.TOP_CENTER,
     });
   }
 };
 
-export const signup = (formData, navigate) => async (dispatch) => {
+
+
+
+export const signup = (formData, code, navigate) => async (dispatch) => {
   try {
     // signUp block
-    const { data } = await API.signUp(formData);
+    const { data } = await API.signUp(formData, code);
     dispatch({ type: AUTH, data });
     navigate("/home", { replace: true });
   } catch (error) {
     console.log(error);
-    toast.error("Password and Confirm Password does not match ", {
+    toast.error("Invalid Credentials, Please try Again Later...!!", {
       position: toast.POSITION.TOP_CENTER,
     });
   }
