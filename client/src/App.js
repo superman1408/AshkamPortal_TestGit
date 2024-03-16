@@ -19,6 +19,7 @@ import SkillDisplay from "./components/Skills/SkillDisplay";
 import PrintingLayout from "./components/PrinttingLayout/PrintingLayout";
 import ExcelReader from "./components/ExcelReader/ExcelReader";
 import EvolvePrintLayout from "./components/ActivityDisplay/UnderTrial/EvolvePrintLayout";
+import AttendanceDetail from "./components/Attendance/AttendanceDetail";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -71,15 +72,16 @@ const App = () => {
             exact
             element={<ActivityDisplay />}
           />
-          <Route
-            path="/employeeAttendance"
-            exact
-            element={<ExcelReader />}
-          />
+          <Route path="/employeeAttendance" exact element={<ExcelReader />} />
 
           <Route path="posts/skill" exact element={<SkillDisplay />} />
           <Route path="/birthdaymail" exact element={<BirthdayMail />} />
           <Route path="/:id/payslip" exact element={<PaySlip />} />
+          <Route
+            path="/attendanceDetail"
+            exact
+            element={<AttendanceDetail />}
+          />
           <Route
             path="/printingLayout"
             exact
