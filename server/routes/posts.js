@@ -10,6 +10,7 @@ import {
   editTable,
   deleteTable,
   dailyAttendance,
+  getAttendancePosts,
 } from "../controllers/posts.js";
 
 import auth from "../middleware/auth.js";
@@ -37,5 +38,7 @@ router.delete("/:id/deleteTable/:indexed", auth, deleteTable);
 router.post("/skill", skillData);
 
 router.post("/dailyAttendance", dailyAttendance);
+
+router.get("/", getAttendancePosts);
 
 export default router;

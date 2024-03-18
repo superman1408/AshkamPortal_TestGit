@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { getAttendancePosts } from "../../action/posts";
 
 import { Box, Grid, Typography, ButtonBase } from "@mui/material";
 
 const Attendance = () => {
+  const posts = useSelector((state) => state.posts);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAttendancePosts());
+  }, [dispatch]);
+
+  console.log(posts);
   const navigate = useNavigate();
   return (
     <div>
@@ -48,12 +60,12 @@ const Attendance = () => {
 
             <Grid sx={{ marginLeft: "40px" }}>
               <Typography sx={{ fontFamily: "Roboto" }}>Present</Typography>
-              <Typography>28</Typography>
+              <Typography>{posts.presentEmployee}</Typography>
             </Grid>
 
             <Grid sx={{ marginLeft: "40px" }}>
               <Typography sx={{ fontFamily: "Roboto" }}>Absent</Typography>
-              <Typography>2</Typography>
+              <Typography>{posts.absentEmployee}</Typography>
             </Grid>
           </Grid>
         </ButtonBase>

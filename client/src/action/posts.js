@@ -8,7 +8,6 @@ import {
   TODOLIST,
   SKILLDATA,
   UPDATE_TABLE,
-  DAILYATTENDANCE,
 } from "../constants/actionTypes";
 
 import * as API from "../api";
@@ -152,6 +151,17 @@ export const dailyAttendance = (formdata) => async (dispatch) => {
     const { data } = await API.dailyAttendance(formdata);
 
     dispatch({ type: CREATE, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getAttendancePosts = () => async (dispatch) => {
+  try {
+    const { data } = await API.fetchAttendancePosts();
+
+    dispatch({ type: FETCH_ALL, payload: data });
+    // console.log(data);
   } catch (error) {
     console.log(error);
   }
