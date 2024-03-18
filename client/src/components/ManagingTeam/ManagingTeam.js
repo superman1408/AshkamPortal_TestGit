@@ -75,6 +75,7 @@ const ManagingTeam = () => {
                   marginRight: "30px",
                   fontFamily: "Roboto",
                   fontSize: "10px",
+                  fontWeight: "bold",
                 }}
               >
                 Managing director
@@ -130,6 +131,7 @@ const ManagingTeam = () => {
                   marginRight: "30px",
                   fontFamily: "Roboto",
                   fontSize: "10px",
+                  fontWeight: "bold",
                 }}
               >
                 CEO
@@ -185,6 +187,8 @@ const ManagingTeam = () => {
                   marginRight: "30px",
                   fontFamily: "Roboto",
                   fontSize: "10px",
+
+                  fontWeight: "bold",
                 }}
               >
                 CTO
@@ -220,7 +224,18 @@ const ManagingTeam = () => {
                   fontFamily: "Roboto",
                 }}
               >
-                Ms. Sushila Ramamoorthi (Advisor)
+                Ms. Sushila Ramamoorthi
+              </Typography>
+              <Typography
+                sx={{
+                  marginLeft: "30px",
+                  marginRight: "30px",
+                  fontFamily: "Roboto",
+                  fontSize: "10px",
+                  fontWeight: "bold",
+                }}
+              >
+                Advisor
               </Typography>
             </Grid>
           </Grid>
