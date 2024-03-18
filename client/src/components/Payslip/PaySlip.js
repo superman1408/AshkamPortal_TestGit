@@ -84,16 +84,6 @@ const PaySlip = () => {
     today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear()
   );
 
-  //to print current month
-  // const month = new Date().toLocaleString("en-US", {
-  //   month: "long",
-  //   year: "numeric",
-  // });
-
-  // const makeDate = new Date();
-  // const prev = new Date(makeDate.setMonth(makeDate.getMonth() - 1));
-  // console.log(prev);
-
   // to print Previous Month
   const formatter = new Intl.DateTimeFormat("default", {
     month: "long",
@@ -120,95 +110,9 @@ const PaySlip = () => {
   const { id } = useParams();
   console.log("Id in Payslip Page", id);
 
-  // const [postData, setPostData] = useState({
-  //   employeeId: user.result.employeeId,
-  //   firstName: user.result.firstName,
-  //   lastName: user.result.lastName,
-  //   uanNo: uanNo,
-  //   payDays: daysInThisPrevMonth(),
-  //   payPeriod: prevMonth,
-  //   payDate: date,
-
-  //   netSalary: "",
-  //   // employeeContribution_pf: employeeContribution_pf || "",
-  //   // employeerContribution_pf: employeeContribution_pf || "",
-  //   // employeeContribution_esic: employeeContribution_esic || "",
-  //   employeerContribution_esic: "",
-  //   tds: "",
-  //   totalDeduction: "",
-  // });
-
-  // console.log("total", total);
-  // console.log("grossEarnings", postData.grossEarnings);
-
-  // const post = useSelector((state) =>
-  //   currentId ? state.posts.find((p) => p._id === currentId) : null
-  // );
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // if (currentId) {
-    //   dispatch(updatePost(currentId, postData));
-    // } else {
-    //   dispatch(createPost(postData));
-    // }
   };
-
-  // to view postdata
-  // useEffect(() => {
-  //   if (post) return setPostData(post);
-  // }, [post]);
-
-  // to print data
-  // const componentRef = useRef();
-  // const handlePrint = useReactToPrint({
-  //   content: () => componentRef.current,
-  // });
-
-  // const handlePrint = () => {
-  //   window.print();
-  // };
-
-  // const handlePrint = () => {
-  //   // setShowPrintingLayout(true);
-  //   if (dataGenerated === false) {
-  //     alert("Please generate the pay slip");
-  //   } else {
-  //     navigate("/printingLayout", {
-  //       state: {
-  //         total,
-  //         basic,
-  //         uanNo,
-  //         date,
-  //         prevMonth,
-  //         daysInThisPrevMonth,
-  //         houseRent,
-  //         conveyance,
-  //         communication,
-  //         uniform,
-  //         medical,
-  //         cityFactor,
-  //         employeeContribution_pf,
-  //         employeerContribution_pf,
-  //         employeeContribution_esic,
-  //         totalDeduction,
-  //         netSalary,
-  //       },
-  //     });
-  //   }
-  // };
-
-  // const componentRef = useRef();
-
-  // // else {
-  // const handlePdf = useReactToPrint({
-  //   content: () => componentRef.current,
-  //   documentTitle: "Visitor Pass",
-  //   onBeforePrint: () => setPrintingShow(true),
-  //   onAfterPrint: () => setPrintingShow(!printingshow),
-  // });
-  // // }
 
   const componentRef = useRef();
 
@@ -216,10 +120,17 @@ const PaySlip = () => {
 
   const handlePdf = useReactToPrint({
     content: () => componentRef.current,
-    documentTitle: "Visitor Pass",
+    documentTitle: "Salary Slip",
     onBeforePrint: () => setPrintingShow(true),
     onAfterPrint: () => setPrintingShow(false), // Corrected state variable name
   });
+
+  const handletrue = () => {
+    setPrintingShow(true);
+    setTimeout(() => {
+      handlePdf();
+    }, 10);
+  };
 
   return (
     <>
@@ -949,7 +860,7 @@ const PaySlip = () => {
                           color: "black",
                           // alignItems: "right",
                         }}
-                        onClick={handlePdf}
+                        onClick={handletrue}
 
                         // onClick={handlePrint}
                       >
@@ -965,7 +876,7 @@ const PaySlip = () => {
         {/* ---------------------------------------------------- pdf layout------------------------------------------------------- */}
         {printingshow && (
           <div ref={componentRef}>
-            <div style={{ overflowX: "auto", padding: "40px" }}>
+            <div style={{ overflowX: "auto", padding: "60px" }}>
               <table
                 table
                 style={{
@@ -1002,16 +913,6 @@ const PaySlip = () => {
                     <img src={LOGO} alt="logo" />
                   </div>
                   <td style={{ textAlign: "left" }}>SALARY SLIP</td>
-                  {/* <span
-                  style={{
-                    fontSize: "15px",
-                    // marginRight: "-20px",
-                    // marginTop: "20px",
-                    textAlign: "right",
-                  }}
-                >
-                  {new Date().toLocaleDateString()}
-                </span> */}
                 </tr>
                 {/* </thead> */}
               </table>

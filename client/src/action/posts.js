@@ -8,6 +8,7 @@ import {
   TODOLIST,
   SKILLDATA,
   UPDATE_TABLE,
+  DAILYATTENDANCE,
 } from "../constants/actionTypes";
 
 import * as API from "../api";
@@ -95,7 +96,6 @@ export const todoList = (id, post) => async (dispatch) => {
   }
 };
 
-
 export const skillData = (post) => async (dispatch) => {
   // console.log("Hello I am working..!!");
   // console.log(id);
@@ -123,10 +123,7 @@ export const skillData = (post) => async (dispatch) => {
 // }
 // };
 
-
-
 export const tableEdit = (id, indexed, toEdit) => async (dispatch) => {
-
   try {
     const { data } = await API.editTable(id, indexed, toEdit);
 
@@ -136,12 +133,25 @@ export const tableEdit = (id, indexed, toEdit) => async (dispatch) => {
   }
 };
 
-
 export const tableDelete = (id, indexed) => async (dispatch) => {
   try {
     await API.deleteTable(id, indexed);
 
     dispatch({ type: DELETE, payload: id });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const dailyAttendance = (formdata) => async (dispatch) => {
+  console.log("Hello I am working..!!");
+  // console.log(id);
+  // console.log(state);
+
+  try {
+    const { data } = await API.dailyAttendance(formdata);
+
+    dispatch({ type: CREATE, payload: data });
   } catch (error) {
     console.log(error);
   }

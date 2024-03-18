@@ -130,27 +130,27 @@ const authSchema = mongoose.Schema({
   },
   projectCode: {
     type: [String],
-    default: []
+    default: [],
   }, // reference to Projects code for Time Sheet
   activityCode: {
     type: [String],
-    default: []
+    default: [],
   }, // reference to Projects code for Time Sheet
   date: {
     type: [String],
-    default: []
+    default: [],
   }, // reference to Projects code for Time Sheet
   netTime: {
     type: [Number],
-    default: []
+    default: [],
   }, // reference to Projects code for Time Sheet
   overTime: {
     type: [Number],
-    default: []
+    default: [],
   }, // reference to Projects code for Time Sheet
   editIndex: {
     type: [String],
-    default: []
+    default: [],
   }, // reference to Projects code for Time Sheet
 });
 

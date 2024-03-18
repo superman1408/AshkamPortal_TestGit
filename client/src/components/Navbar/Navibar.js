@@ -54,9 +54,9 @@ const Navibar = () => {
       case "inbox":
         navigate(`/mail/${id}/communication`);
         break;
-      // case "payslip":
-      //   navigate(`/${id}/payslip`);
-      //   break;
+      case "payslip":
+        navigate(`/${id}/payslip`);
+        break;
       case "registration":
         navigate(`/${id}/profile`);
         break;

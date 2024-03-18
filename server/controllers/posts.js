@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 
 import AuthenticateUser from "../model/authDetails.js";
 
+import UserAttendance from "../model/attendanceDetail.js";
+
 // ________________________get operation___________________________
 
 export const getPosts = async (req, res) => {
@@ -15,9 +17,6 @@ export const getPosts = async (req, res) => {
   }
 };
 
-
-
-
 export const getPost = async (req, res) => {
   const { id } = req.params;
   try {
@@ -27,8 +26,6 @@ export const getPost = async (req, res) => {
     console.log(error);
   }
 };
-
-
 
 // ________________________create operation___________________________
 
@@ -42,9 +39,6 @@ export const createPost = async (req, res) => {
     res.status(409).json({ message: error.message });
   }
 };
-
-
-
 
 // ________________________update operation___________________________
 
@@ -65,9 +59,6 @@ export const updatePost = async (req, res) => {
   res.json(updatedPost);
 };
 
-
-
-
 // ________________________delete operation___________________________
 
 export const deletePost = async (req, res) => {
@@ -79,9 +70,6 @@ export const deletePost = async (req, res) => {
   await AuthenticateUser.findByIdAndRemove(id);
   res.json({ message: "Post deleted successfully" });
 };
-
-
-
 
 // __________________________________________________________________________________
 
@@ -104,10 +92,6 @@ export const sendData = async (req, res) => {
   res.status(200).json(updatePost);
 };
 
-
-
-
-
 export const updatedStatus = async (req, res) => {
   console.log("Yes i can change the status");
   const { id } = req.params;
@@ -124,8 +108,6 @@ export const updatedStatus = async (req, res) => {
   });
   res.status(200).json(statusUpdate);
 };
-
-
 
 // _________________________To Do List Status_____________________________
 export const todoList = async (req, res) => {
@@ -151,9 +133,6 @@ export const todoList = async (req, res) => {
   }
 };
 
-
-
-
 // _________________________Skill Data Status_____________________________
 export const skillData = async (req, res) => {
   const { id } = req.params;
@@ -178,16 +157,13 @@ export const skillData = async (req, res) => {
   }
 };
 
-
-
-
 export const editTable = async (req, res) => {
   console.log("Hello I am editing Your Table Please WAIT...!!!@@");
   const id = req.params.id;
-  const indexNumber =  parseInt(req.params.indexed);
+  const indexNumber = parseInt(req.params.indexed);
   const valueToEdit = req.body;
   try {
-    if (!mongoose.Types.ObjectId.isValid(id)) 
+    if (!mongoose.Types.ObjectId.isValid(id))
       return res.status(404).send("Invalid User ID!");
 
     const post = await AuthenticateUser.findById(id);
@@ -195,21 +171,17 @@ export const editTable = async (req, res) => {
 
     post.projectCode.splice(indexNumber, 1, valueToEdit.projectCode);
     post.activityCode.splice(indexNumber, 1, valueToEdit.activityCode);
-    post.date.splice(indexNumber, 1,  valueToEdit.date);
+    post.date.splice(indexNumber, 1, valueToEdit.date);
     post.netTime.splice(indexNumber, 1, valueToEdit.netTime);
     post.overTime.splice(indexNumber, 1, valueToEdit.overTime);
 
-
     await post.save();
 
-    res.status(200).json({ message: 'Item Edited successfully' });
-
+    res.status(200).json({ message: "Item Edited successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
-
-
 
 export const deleteTable = async (req, res) => {
   console.log("Hello I am trying to DELETE your item Please WAIT...!!!@@");
@@ -219,7 +191,7 @@ export const deleteTable = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id))
       return res.status(404).send("no post with that id found");
 
-    const post = await  AuthenticateUser.findById(id);
+    const post = await AuthenticateUser.findById(id);
 
     if (!post) return res.status(404).send("No User Found");
 
@@ -229,39 +201,36 @@ export const deleteTable = async (req, res) => {
     post.netTime.splice(indexNumber, 1);
     post.overTime.splice(indexNumber, 1);
 
-
     await post.save();
 
-    res.status(200).json({ message: 'Item deleted successfully' });
+    res.status(200).json({ message: "Item deleted successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
+// const updatedPost = await AuthenticateUser.findByIdAndUpdate(id, {
+//   projectCode: array,
+// });
 
-
-
-
-
-
-
-
-
-
-
-
-
-  // const updatedPost = await AuthenticateUser.findByIdAndUpdate(id, {
-  //   projectCode: array,
-  // });
-
-  
-  // const authId = req.userId;
-  // const userProfile = await AuthenticateUser.findById(authId);
-  // if (!userProfile) return res.status(404).json({ msg: "No User Found" });
-  // const skillsArray = userProfile.skills;
-  // skillsArray.splice(indexNumber, 1);
-  // userProfile.skills = skillsArray;
-  // userProfile.save();
-  // res.send("Deleted Successfully!");
+// const authId = req.userId;
+// const userProfile = await AuthenticateUser.findById(authId);
+// if (!userProfile) return res.status(404).json({ msg: "No User Found" });
+// const skillsArray = userProfile.skills;
+// skillsArray.splice(indexNumber, 1);
+// userProfile.skills = skillsArray;
+// userProfile.save();
+// res.send("Deleted Successfully!");
 // };
+
+// _________________________Attendancev Data Status_____________________________
+export const dailyAttendance = async (req, res) => {
+  const Post = req.body;
+  const newPost = new UserAttendance(Post);
+  try {
+    await newPost.save();
+    res.status(201).json(newPost);
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+};
