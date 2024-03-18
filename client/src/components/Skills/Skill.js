@@ -21,10 +21,10 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 const Skill = () => {
   const [formData, setFormData] = useState({
     skill1: "Marine",
-    skill2: "Oil & Gas",
-    skill3: "Pipeline",
-    skill4: "Civil & Infrastructure",
-    skill5: "Architectural & Interior Design",
+    skill2: "Pipeline",
+    skill3: "Civil & Infrastructure",
+    skill4: "Architectural & Interior Design",
+    skill5: "Information Technology",
   });
 
   const dispatch = useDispatch();
@@ -74,7 +74,7 @@ const Skill = () => {
       >
         <Grid
           sx={{
-            marginBottom: "28px",
+            marginBottom: "22px",
             marginTop: "5px",
             marginLeft: "5px",
             alignItems: "center",
