@@ -13,7 +13,7 @@ import Communication from "./components/Leave/Communication/Communication";
 import LOGO from "./assets/AshKamLogo.png";
 import BirthdayMail from "./components/Birthday/BirthdayMail";
 import PaySlip from "./components/Payslip/PaySlip";
-import EmployeeAttendance from "./components/Attendance/EmployeeAttendance";
+// import EmployeeAttendance from "./components/Attendance/EmployeeAttendance";
 import ActivityDisplay from "./components/ActivityDisplay/ActivityDisplay";
 import SkillDisplay from "./components/Skills/SkillDisplay";
 import PrintingLayout from "./components/PrinttingLayout/PrintingLayout";
