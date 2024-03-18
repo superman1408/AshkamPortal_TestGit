@@ -9,6 +9,7 @@ import {
   skillData,
   editTable,
   deleteTable,
+  dailyAttendance,
 } from "../controllers/posts.js";
 
 import auth from "../middleware/auth.js";
@@ -34,5 +35,7 @@ router.delete("/:id/deleteTable/:indexed", auth, deleteTable);
 // @desc    Get all skills data for autocomplete
 
 router.post("/skill", skillData);
+
+router.post("/dailyAttendance", dailyAttendance);
 
 export default router;

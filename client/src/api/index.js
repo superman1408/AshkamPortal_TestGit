@@ -28,7 +28,8 @@ export const deletePost = (id) => API.delete(`/posts/${id}`);
 
 export const signIn = (formData) => API.post("/user/signin", formData);
 
-export const signUp = (formData, code) => API.post(`/user/signup/${code}`, formData);
+export const signUp = (formData, code) =>
+  API.post(`/user/signup/${code}`, formData);
 
 export const sendMail = (formData) => API.post("/mail/sendmail", formData);
 
@@ -45,6 +46,11 @@ export const sendMailData = (id, formData) =>
 export const updateStatus = (id, formData) =>
   API.post(`/mail/${id}/status`, formData);
 
-export const editTable = (id, indexed, toEdit) => API.patch(`/posts/${id}/${indexed}/edit`, toEdit);
+export const editTable = (id, indexed, toEdit) =>
+  API.patch(`/posts/${id}/${indexed}/edit`, toEdit);
 
-export const deleteTable = (id, indexed) => API.delete(`/posts/${id}/deleteTable/${indexed}`);
+export const deleteTable = (id, indexed) =>
+  API.delete(`/posts/${id}/deleteTable/${indexed}`);
+
+export const dailyAttendance = (formData) =>
+  API.post(`/posts/dailyAttendance`, formData);
