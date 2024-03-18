@@ -415,7 +415,12 @@ const RegistrationForm = () => {
                     </DemoContainer>
                   </LocalizationProvider>
                   <div style={{ marginTop: "30px", marginLeft: "30px" }}>
-                    <Typography variant="standard">{postData.dob}</Typography>
+                    <Typography
+                      variant="standard"
+                      sx={{ fontFamily: "Robota", fontSize: "18px" }}
+                    >
+                      {postData.dob}
+                    </Typography>
                   </div>
                 </div>
 
@@ -445,7 +450,7 @@ const RegistrationForm = () => {
                     >
                       <Radio value="female" label="Female" color="primary" />
                       <Radio value="male" label="Male" color="primary" />
-                      <Radio value="other" label="Other" color="primary" />
+                      {/* <Radio value="other" label="Other" color="primary" /> */}
                     </RadioGroup>
                     <span style={{ fontSize: "12px", fontFamily: "Roboto" }}>
                       ** Please select the desired value

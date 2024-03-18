@@ -66,7 +66,17 @@ const ManagingTeam = () => {
                   fontFamily: "Roboto",
                 }}
               >
-                Mr.Abhishek kumar (Managing director)
+                Mr.Abhishek kumar
+              </Typography>
+              <Typography
+                sx={{
+                  marginLeft: "30px",
+                  marginRight: "30px",
+                  fontFamily: "Roboto",
+                  fontSize: "10px",
+                }}
+              >
+                Managing director
               </Typography>
             </Grid>
             {/* <Grid>
@@ -111,7 +121,17 @@ const ManagingTeam = () => {
                   fontFamily: "Roboto",
                 }}
               >
-                Mr.Santosh kumar jha (CEO)
+                Mr.Santosh kumar jha
+              </Typography>
+              <Typography
+                sx={{
+                  marginLeft: "30px",
+                  marginRight: "30px",
+                  fontFamily: "Roboto",
+                  fontSize: "10px",
+                }}
+              >
+                CEO
               </Typography>
             </Grid>
 
@@ -156,7 +176,17 @@ const ManagingTeam = () => {
                   fontFamily: "Roboto",
                 }}
               >
-                Mr. Srinivas Prasanna (CTO)
+                Mr. Srinivas Prasanna
+              </Typography>
+              <Typography
+                sx={{
+                  marginLeft: "30px",
+                  marginRight: "30px",
+                  fontFamily: "Roboto",
+                  fontSize: "10px",
+                }}
+              >
+                CTO
               </Typography>
             </Grid>
           </Grid>
