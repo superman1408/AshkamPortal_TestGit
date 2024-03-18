@@ -10,7 +10,7 @@ router.post('/signin', signin);
 
 router.post('/signup/:code', signup);
 
-router.patch('/reset', reset);
+router.patch('/reset/:code', reset);
 
 
 export default router;

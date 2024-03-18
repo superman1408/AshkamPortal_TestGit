@@ -43,12 +43,11 @@ export const signup = (formData, code, navigate) => async (dispatch) => {
 
 
 
-export const resetPassword = (passwordForm, navigate) => async (dispatch) => {
+export const resetPassword = (passwordForm, code, navigate) => async (dispatch) => {
   console.log("I will try to reset your password..!!");
-  console.log(passwordForm);
 
   try {
-    const { data } = await API.passwordReset(passwordForm).then(() =>{
+    const { data } = await API.passwordReset(passwordForm, code).then(() =>{
       dispatch({type : AUTH, data}).then(() => {
         navigate("/auth", { replace: true });
       })

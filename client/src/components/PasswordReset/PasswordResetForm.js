@@ -9,16 +9,20 @@ const PasswordResetForm = () => {
   const navigate = useNavigate();
   const [message, setMessage] = useState('');
   const dispatch = useDispatch();
+  const [code, setCode] = useState(null);
   const [passwordForm, setPasswordForm] = useState({
     emailToChange: '',
     passwordtoChange: '',
     confirmPasswordToCompare: '',
   });
 
+
+
+
   const handleReset = async (e) => {
     e.preventDefault();
     try {
-      dispatch(resetPassword(passwordForm, navigate)).then(() => {
+      dispatch(resetPassword(passwordForm, code, navigate)).then(() => {
         setMessage("Password Changed, Please Login with new password...!!!");
       }).catch ((err) => {console.log("Error : ", err)});
     } catch (error) {
@@ -27,11 +31,21 @@ const PasswordResetForm = () => {
     }
   };
 
+
+
+
   return (
     <div>
       <h2>Password Reset</h2>
       <form onSubmit={handleReset}>
         <div>
+          <input
+            label="Secret Code"
+            placeholder="Code"
+            name="secretCode"
+            variant="outlined"
+            onChange={(event) => setCode(event.target.value)}
+          />
           <input
             type="email"
             placeholder="Email"

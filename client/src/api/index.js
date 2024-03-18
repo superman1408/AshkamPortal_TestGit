@@ -30,7 +30,7 @@ export const signIn = (formData) => API.post("/user/signin", formData);
 
 export const signUp = (formData, code) => API.post(`/user/signup/${code}`, formData);
 
-export const passwordReset = (passwordForm) => API.patch("/user/reset", passwordForm);
+export const passwordReset = (passwordForm, code) => API.patch(`/user/reset/${code}`, passwordForm);
 
 export const sendMail = (formData) => API.post("/mail/sendmail", formData);
 

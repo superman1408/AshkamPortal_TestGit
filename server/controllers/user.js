@@ -84,37 +84,35 @@ export const signup = async (req, res) => {
 
 
 export const reset = async (req, res) => {
-  console.log("You are about to change the PASSWORD..!!!");
-  const data  = req.body;
-  // const { emailToChange, passwordToChange, confirmPasswordToCompare } = req.body;
-  // console.log(emailToChange);
-  // console.log(passwordToChange);
-  // console.log(confirmPasswordToCompare);
-  // console.log(data);
-  const hashedPassword = await bcrypt.hash(data.passwordtoChange, 12);
-  console.log(hashedPassword);
-  console.log(data.emailToChange);
+  const { emailToChange, passwordtoChange, confirmPasswordToCompare } = req.body;
+
+  const admin_code = req.params;
+  const secretCode = process.env.ADMIN_SECRET_CODE;
+  
 
 
-  post = await AuthenticateUser.findOne(data.emailToChange);
+  try {
+    const existingUser = await AuthenticateUser.findOne({email : emailToChange});
 
-  console.log(post);
+    if (!existingUser)
+      return res.status(400).json({ message: "User not available in data base" });
 
-  // try {
-  //   const existingUser = await AuthenticateUser.findOne({email : data.emailToChange});
-  //   if (existingUser)
-  //     return res.status(400).json({ message: "User already exist bro" });
+    
+    if (passwordtoChange !== confirmPasswordToCompare)
+        return res.status(400).json({ message: "Passwords do not match" });
+    
+    if (admin_code.code !== secretCode) 
+      return res.status(400).json({ message: "Secret Code do not match" });
+    
+    
+    const hashedPassword = await bcrypt.hash(passwordtoChange, 12);
+    existingUser.password = hashedPassword;
 
-  //   if (data.passwordtoChange !== data.confirmPasswordToCompare)
-  //     return res.status(400).json({ message: "Passwords do not match" });
+    await existingUser.save();
 
-  //   // existingUser.password.push(hashedPassword);
-  //   console.log(existingUser);
-  //   // const passwordUpdate = await AuthenticateUser.findOneAndUpdate(data.emailToChange, existingUser, {
-  //   //   new: true,
-  //   // });
-  //   // res.status(200).json(passwordUpdate);
-  // } catch (error) {
-  //   res.status(500).json({ message: "Something went wrong in reset..!!"});
-  // }
+    res.status(200).json({ message: "Password updated successfully" });
+
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong in reset..!!"});
+  }
 };
