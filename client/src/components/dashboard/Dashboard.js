@@ -8,16 +8,23 @@ import ManagingTeam from "../ManagingTeam/ManagingTeam";
 import Calender from "../Calender/Calender";
 import Birthday from "../Birthday/Birthday";
 
-import { Box, Grid, Typography } from "@mui/material";
+import { Avatar, Box, Grid, Typography } from "@mui/material";
 import Panel from "../Panel/Panel";
 import Attendance from "../Attendance/Attendance";
 import { useParams } from "react-router-dom";
 import SkillDisplay from "../Skills/SkillDisplay";
 // import { useLocation } from "react-router-dom";
 // import { useDispatch } from "react-redux";
+import employee from "../../assets/employeeimg.png";
+
+import manager from "../../assets/managerimg.png";
+
+import admin from "../../assets/IT.png";
 
 const Admin = ({ currentId }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
+
+  const role = user.result.role;
 
   const id = useParams();
   // console.log("id in home page", id);
@@ -81,27 +88,47 @@ const Admin = ({ currentId }) => {
               }}
             >
               <Grid>
-                <div>
-                  <Typography
-                    variant="h5"
-                    sx={{
-                      display: "flex",
-                      fontFamily: "Roboto",
-                      marginLeft: "80px",
-                      // fontWeight: "bold",
-                      "@media (max-width: 600px)": {
-                        flexDirection: "column",
-                        color: "#16355d",
-                      },
+                <div style={{ display: "flex" }}>
+                  <div style={{ width: "20px", height: "30px" }}>
+                    <Avatar
+                      sx={{
+                        width: 40,
+                        height: 40,
+                        marginLeft: "30px",
+                        // bgcolor: "orange",
+                      }}
+                      src={
+                        role === "employee"
+                          ? employee
+                          : role === "manager"
+                          ? manager
+                          : role === "admin" && admin
+                      }
+                    />
+                  </div>
+                  <div>
+                    <Typography
+                      variant="h5"
+                      sx={{
+                        display: "flex",
+                        fontFamily: "Roboto",
+                        marginLeft: "60px",
+                        marginBottom: "20px",
+                        // fontWeight: "bold",
+                        "@media (max-width: 600px)": {
+                          flexDirection: "column",
+                          color: "#16355d",
+                        },
 
-                      "@media (min-width: 600px)": {
-                        flexDirection: "row",
-                      },
-                    }}
-                  >
-                    Welcome
-                    {` ${user.result.role.toUpperCase()} !`}
-                  </Typography>
+                        "@media (min-width: 600px)": {
+                          flexDirection: "row",
+                        },
+                      }}
+                    >
+                      Welcome
+                      {` ${user.result.firstName.toUpperCase()} !`}
+                    </Typography>
+                  </div>
                 </div>
                 <Grid
                   sx={{
