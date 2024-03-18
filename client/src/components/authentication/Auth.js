@@ -70,6 +70,15 @@ const Auth = () => {
     });
   };
 
+
+
+  const resetPassword = () => {
+    console.log("Authenticating to reset password..!!");
+    navigate('/auth/reset', {replace: true});
+  };
+
+
+
   return (
     <Grid
       container
@@ -334,6 +343,14 @@ const Auth = () => {
               </Button>
               {isSignUp ? <ToastContainer /> : <ToastContainer />}
               {/* this is required for rendering taost it works as a container*/}
+            </div>
+            <div>
+              <Button
+                style={{ fontFamily: "Roboto ", color: "#16355d" }}
+                onClick={resetPassword}
+              >
+                Reset The Password
+              </Button>
             </div>
             <div>
               <Button

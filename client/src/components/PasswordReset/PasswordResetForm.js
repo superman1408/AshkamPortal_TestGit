@@ -67,6 +67,7 @@ const PasswordResetForm = () => {
         </div>
         
         <button type="submit">Reset Password</button>
+        <button onClick={() => {navigate("/auth", {replace: true})}}>Back To Login Page</button>
       </form>
       <p>{message}</p>
     </div>
