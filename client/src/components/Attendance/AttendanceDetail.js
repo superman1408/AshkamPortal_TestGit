@@ -1,11 +1,51 @@
 import { TextField, Typography, Grid, Divider, Card } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { getPosts } from "../../action/posts";
+
+import AttendanceCombo from "./AttendanceCombo";
+import { dailyAttendance } from "../../action/posts";
 
 const AttendanceDetail = () => {
+  const { id } = useParams();
+  const [currentId, setCurrentId] = useState(id);
+  const posts = useSelector((state) => state.posts);
+  const dispatch = useDispatch();
+  const [post, setPost] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const user = JSON.parse(localStorage.getItem("profile"));
+  const role = user.result.role;
+  const navigate = useNavigate();
+
   const [present, setPresent] = useState("");
   const [absent, setAbsent] = useState("");
   const [logIn, setLogIn] = useState("");
   const [logout, setLogout] = useState("");
+
+  const [formData, setFormData] = useState({
+    presentEmployee: "",
+    absentEmployee: "",
+  });
+
+  useEffect(() => {
+    // setCurrentId(id);
+    // setIsLoading(true);
+    if (posts) {
+      dispatch(getPosts()).then(() => {
+        console.log("Activity Display is recieving the posts..!!!@@@@@@");
+        // eslint-disable-next-line array-callback-return
+        posts.map((post) => {
+          if (post._id === currentId) {
+            setPost(post);
+          }
+        });
+      });
+    }
+    setIsLoading(false);
+  }, [isLoading]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,20 +54,28 @@ const AttendanceDetail = () => {
     console.log(logIn);
     console.log(logout);
   };
+
+  const handleAttendanceSubmit = (e) => {
+    e.preventDefault();
+    console.log(present, absent);
+    dispatch(dailyAttendance(formData));
+    navigate("/home");
+  };
   return (
     <div>
+      <AttendanceCombo posts={posts} setCurrentId={setCurrentId} />
       <h2>Employee Attendance</h2>
       <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} />
       <Grid sx={{ display: "flex", flexDirection: "row" }}>
         <Grid
           sx={{
             padding: "10px",
-            width: "30%",
+            width: "20%",
             backgroundColor: "whitesmoke",
             margin: "0px 20px 0px 20px",
           }}
         >
-          <form className="time-sheet-form" onSubmit={handleSubmit}>
+          <form className="time-sheet-form" onSubmit={handleAttendanceSubmit}>
             <div className="form-group">
               <label
                 style={{ color: "#16355d", fontFamily: "Roboto" }}
@@ -48,10 +96,11 @@ const AttendanceDetail = () => {
                 }}
                 type="text"
                 id="projectCode"
-                value={present}
-                onChange={(e) => setPresent(e.target.value)}
+                value={formData.presentEmployee}
+                onChange={(e) =>
+                  setFormData({ ...formData, presentEmployee: e.target.value })
+                }
               />
-              {/* ______________________________________pop window contents_____________________________________________ */}
             </div>
 
             <div className="form-group">
@@ -73,12 +122,32 @@ const AttendanceDetail = () => {
                 }}
                 type="text"
                 id="activityCode"
-                value={absent}
-                onChange={(e) => setAbsent(e.target.value)}
+                value={formData.absentEmployee}
+                onChange={(e) =>
+                  setFormData({ ...formData, absentEmployee: e.target.value })
+                }
               />
             </div>
-
-            <div className="form-group" style={{ display: "flex" }}>
+            <div style={{ display: "flex", float: "right" }}>
+              <button style={{ fontFamily: "Roboto" }} type="submit">
+                Submit
+              </button>
+            </div>
+          </form>
+        </Grid>
+        <Grid
+          sx={{
+            padding: "10px",
+            width: "30%",
+            backgroundColor: "whitesmoke",
+            margin: "0px 20px 0px 20px",
+          }}
+        >
+          <form className="time-sheet-form" onSubmit={handleSubmit}>
+            <div
+              className="form-group"
+              style={{ display: "flex", justifyContent: "space-between" }}
+            >
               <label
                 style={{ color: "#16355d", fontFamily: "Roboto" }}
                 htmlFor="login"
@@ -86,14 +155,17 @@ const AttendanceDetail = () => {
                 Log In Time :
               </label>
               <input
-                style={{ justifyContent: "space-between" }}
+                style={{}}
                 type="time"
                 id="netTime"
                 value={logIn}
                 onChange={(e) => setLogIn(e.target.value)}
               />
             </div>
-            <div className="form-group" style={{ display: "flex" }}>
+            <div
+              className="form-group"
+              style={{ display: "flex", justifyContent: "space-between" }}
+            >
               <label
                 style={{ color: "#16355d", fontFamily: "Roboto" }}
                 htmlFor="logout"
@@ -121,17 +193,17 @@ const AttendanceDetail = () => {
 
         <Grid>
           <Card>
-            <div style={{ backgroundColor: "pink" }}>
+            <div>
               <table
                 className="time-sheet-table"
                 style={{
                   padding: "10px",
                   borderCollapse: "collapse",
-                  // border: "1px solid black",
                   marginLeft: "auto",
                   marginRight: "auto",
                   width: "100%",
-                  maxWidth: "800px",
+                  // width: "100%",
+                  minWidth: "100vh",
                 }}
               >
                 <thead>
