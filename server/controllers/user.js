@@ -36,6 +36,9 @@ export const signin = async (req, res) => {
   }
 };
 
+
+
+
 export const signup = async (req, res) => {
   const { email, password, confirmPassword, role, firstName, lastName } = req.body;
 
@@ -76,5 +79,40 @@ export const signup = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Something went wrong" });
     // console.log(error);
+  }
+};
+
+
+export const reset = async (req, res) => {
+  const { emailToChange, passwordtoChange, confirmPasswordToCompare } = req.body;
+
+  const admin_code = req.params;
+  const secretCode = process.env.ADMIN_SECRET_CODE;
+  
+
+
+  try {
+    const existingUser = await AuthenticateUser.findOne({email : emailToChange});
+
+    if (!existingUser)
+      return res.status(400).json({ message: "User not available in data base" });
+
+    
+    if (passwordtoChange !== confirmPasswordToCompare)
+        return res.status(400).json({ message: "Passwords do not match" });
+    
+    if (admin_code.code !== secretCode) 
+      return res.status(400).json({ message: "Secret Code do not match" });
+    
+    
+    const hashedPassword = await bcrypt.hash(passwordtoChange, 12);
+    existingUser.password = hashedPassword;
+
+    await existingUser.save();
+
+    res.status(200).json({ message: "Password updated successfully" });
+
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong in reset..!!"});
   }
 };
