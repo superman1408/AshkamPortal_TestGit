@@ -10,6 +10,7 @@ import {
   editTable,
   deleteTable,
   dailyAttendance,
+  getAttendancePosts,
 } from "../controllers/posts.js";
 
 import auth from "../middleware/auth.js";
@@ -17,6 +18,8 @@ import auth from "../middleware/auth.js";
 const router = express.Router();
 
 router.get("/", getPosts);
+
+router.get("/attendanceposts", getAttendancePosts);
 
 router.get("/:id", getPost);
 
@@ -37,5 +40,7 @@ router.delete("/:id/deleteTable/:indexed", auth, deleteTable);
 router.post("/skill", skillData);
 
 router.post("/dailyAttendance", dailyAttendance);
+
+
 
 export default router;

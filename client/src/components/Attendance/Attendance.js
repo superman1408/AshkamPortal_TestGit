@@ -1,9 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getAttendancePosts } from "../../action/posts";
 
 import { Box, Grid, Typography, ButtonBase } from "@mui/material";
 
 const Attendance = () => {
+  const dispatch = useDispatch();
+
+  const attend = useSelector((state) => state.attend);
+
+  useEffect(() => {
+    dispatch(getAttendancePosts());
+  }, [dispatch]);
+
+  console.log(attend);
+  console.log(attend.presentEmployee);
+
+  // const { presentEmployee = 0, absentEmployee = 0 } = attend || {};
+
+  const handlePresentEmployee = () => {
+    if (attend && attend.presentEmployee !== undefined) {
+      return attend.presentEmployee;
+    }
+    return 0; // Default value if presentEmployee is not available
+  };
+
+  const handleAbsentEmployee = () => {
+    if (attend && attend.absentEmployee !== undefined) {
+      return attend.absentEmployee;
+    }
+    return 0; // Default value if absentEmployee is not available
+  };
+
   const navigate = useNavigate();
   return (
     <div>
@@ -48,12 +77,13 @@ const Attendance = () => {
 
             <Grid sx={{ marginLeft: "40px" }}>
               <Typography sx={{ fontFamily: "Roboto" }}>Present</Typography>
-              <Typography>28</Typography>
+
+              <Typography>{handlePresentEmployee}</Typography>
             </Grid>
 
             <Grid sx={{ marginLeft: "40px" }}>
               <Typography sx={{ fontFamily: "Roboto" }}>Absent</Typography>
-              <Typography>2</Typography>
+              <Typography>{handleAbsentEmployee}</Typography>
             </Grid>
           </Grid>
         </ButtonBase>
@@ -63,3 +93,5 @@ const Attendance = () => {
 };
 
 export default Attendance;
+
+// log showing undefined

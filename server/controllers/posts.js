@@ -234,3 +234,12 @@ export const dailyAttendance = async (req, res) => {
     res.status(409).json({ message: error.message });
   }
 };
+
+export const getAttendancePosts = async (req, res) => {
+  try {
+    const postMessage = await UserAttendance.find({});
+    res.status(200).json(postMessage);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
