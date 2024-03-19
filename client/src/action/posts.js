@@ -8,6 +8,7 @@ import {
   TODOLIST,
   SKILLDATA,
   UPDATE_TABLE,
+  ATTEND_ALL,
 } from "../constants/actionTypes";
 
 import * as API from "../api";
@@ -160,8 +161,7 @@ export const getAttendancePosts = () => async (dispatch) => {
   try {
     const { data } = await API.fetchAttendancePosts();
 
-    dispatch({ type: FETCH_ALL, payload: data });
-    // console.log(data);
+    dispatch({ type: ATTEND_ALL, payload: data });
   } catch (error) {
     console.log(error);
   }

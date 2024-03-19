@@ -12,3 +12,4 @@ export const TODOLIST = "TODOLIST";
 export const SKILLDATA = "SKILLDATA";
 export const UPDATE_TABLE = "UPDATE_TABLE";
 export const DAILYATTENDANCE = "DAILYATTENDANCE";
+export const ATTEND_ALL = "ATTEND_ALL";

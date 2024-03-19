@@ -10,14 +10,8 @@ import AttendanceCombo from "./AttendanceCombo";
 import { dailyAttendance } from "../../action/posts";
 
 const AttendanceDetail = () => {
-  const { id } = useParams();
-  const [currentId, setCurrentId] = useState(id);
-  const posts = useSelector((state) => state.posts);
   const dispatch = useDispatch();
-  const [post, setPost] = useState();
-  const [isLoading, setIsLoading] = useState(true);
-  const user = JSON.parse(localStorage.getItem("profile"));
-  const role = user.result.role;
+
   const navigate = useNavigate();
 
   const [present, setPresent] = useState("");
@@ -29,23 +23,6 @@ const AttendanceDetail = () => {
     presentEmployee: "",
     absentEmployee: "",
   });
-
-  useEffect(() => {
-    // setCurrentId(id);
-    // setIsLoading(true);
-    if (posts) {
-      dispatch(getPosts()).then(() => {
-        console.log("Activity Display is recieving the posts..!!!@@@@@@");
-        // eslint-disable-next-line array-callback-return
-        posts.map((post) => {
-          if (post._id === currentId) {
-            setPost(post);
-          }
-        });
-      });
-    }
-    setIsLoading(false);
-  }, [isLoading]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -63,7 +40,6 @@ const AttendanceDetail = () => {
   };
   return (
     <div>
-      <AttendanceCombo posts={posts} setCurrentId={setCurrentId} />
       <h2>Employee Attendance</h2>
       <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} />
       <Grid sx={{ display: "flex", flexDirection: "row" }}>

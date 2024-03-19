@@ -19,6 +19,8 @@ const router = express.Router();
 
 router.get("/", getPosts);
 
+router.get("/attendanceposts", getAttendancePosts);
+
 router.get("/:id", getPost);
 
 router.post("/", auth, createPost);
@@ -39,6 +41,6 @@ router.post("/skill", skillData);
 
 router.post("/dailyAttendance", dailyAttendance);
 
-router.get("/", getAttendancePosts);
+
 
 export default router;
