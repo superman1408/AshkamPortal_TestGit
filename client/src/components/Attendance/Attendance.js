@@ -2,10 +2,15 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAttendancePosts } from "../../action/posts";
+import { useParams } from "react-router-dom";
 
 import { Box, Grid, Typography, ButtonBase } from "@mui/material";
+import attendance from "../../reducers/attendance";
 
 const Attendance = () => {
+  const id = useParams();
+  console.log(id);
+
   const dispatch = useDispatch();
 
   const attend = useSelector((state) => state.attend);
@@ -15,23 +20,9 @@ const Attendance = () => {
   }, [dispatch]);
 
   console.log(attend);
-  console.log(attend.presentEmployee);
+  console.log(attend?.presentEmployee);
 
   // const { presentEmployee = 0, absentEmployee = 0 } = attend || {};
-
-  const handlePresentEmployee = () => {
-    if (attend && attend.presentEmployee !== undefined) {
-      return attend.presentEmployee;
-    }
-    return 0; // Default value if presentEmployee is not available
-  };
-
-  const handleAbsentEmployee = () => {
-    if (attend && attend.absentEmployee !== undefined) {
-      return attend.absentEmployee;
-    }
-    return 0; // Default value if absentEmployee is not available
-  };
 
   const navigate = useNavigate();
   return (
@@ -78,12 +69,12 @@ const Attendance = () => {
             <Grid sx={{ marginLeft: "40px" }}>
               <Typography sx={{ fontFamily: "Roboto" }}>Present</Typography>
 
-              <Typography>{handlePresentEmployee}</Typography>
+              <Typography>{attend?.presentEmployee}</Typography>
             </Grid>
 
             <Grid sx={{ marginLeft: "40px" }}>
               <Typography sx={{ fontFamily: "Roboto" }}>Absent</Typography>
-              <Typography>{handleAbsentEmployee}</Typography>
+              <Typography>{attend?.absentEmployee}</Typography>
             </Grid>
           </Grid>
         </ButtonBase>

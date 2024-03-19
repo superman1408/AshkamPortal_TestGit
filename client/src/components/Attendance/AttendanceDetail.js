@@ -1,4 +1,11 @@
-import { TextField, Typography, Grid, Divider, Card } from "@mui/material";
+import {
+  TextField,
+  Typography,
+  Grid,
+  Divider,
+  Card,
+  CircularProgress,
+} from "@mui/material";
 import React, { useState, useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -10,8 +17,13 @@ import AttendanceCombo from "./AttendanceCombo";
 import { dailyAttendance } from "../../action/posts";
 
 const AttendanceDetail = () => {
+  const { id } = useParams();
+  const [currentId, setCurrentId] = useState(id);
+  const posts = useSelector((state) => state.posts);
   const dispatch = useDispatch();
-
+  const [post, setPost] = useState();
+  const user = JSON.parse(localStorage.getItem("profile"));
+  const role = user.result.role;
   const navigate = useNavigate();
 
   const [present, setPresent] = useState("");
@@ -23,6 +35,28 @@ const AttendanceDetail = () => {
     presentEmployee: "",
     absentEmployee: "",
   });
+
+  const [logData, setLogData] = useState({
+    logIn: "",
+    logout: "",
+  });
+
+  // console.log(logData);
+  useEffect(() => {
+    setCurrentId(id);
+    if (posts) {
+      dispatch(getPosts()).then(() => {
+        // console.log(posts);
+        // eslint-disable-next-line array-callback-return
+        posts.map((post) => {
+          if (post._id === currentId) {
+            console.log(post);
+            setPost(post);
+          }
+        });
+      });
+    }
+  }, [currentId, id, posts, dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,8 +73,13 @@ const AttendanceDetail = () => {
     navigate("/home");
   };
   return (
-    <div>
-      <h2>Employee Attendance</h2>
+    <div style={{ marginBottom: "180px" }}>
+      <AttendanceCombo posts={posts} setCurrentId={setCurrentId} />
+      <h2
+        style={{ color: "#16355d", marginLeft: "20px", fontFamily: "Roboto" }}
+      >
+        Employee Attendance
+      </h2>
       <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} />
       <Grid sx={{ display: "flex", flexDirection: "row" }}>
         <Grid
@@ -159,7 +198,7 @@ const AttendanceDetail = () => {
             </div>
 
             {/* </div> */}
-            <div style={{ display: "flex", justifyContent: "space-around" }}>
+            <div style={{ display: "flex", float: "right", marginTop: "50px" }}>
               <button style={{ fontFamily: "Roboto" }} type="submit">
                 Submit
               </button>
@@ -185,10 +224,10 @@ const AttendanceDetail = () => {
                 <thead>
                   <tr>
                     <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                      Present Employee
+                      Employee Id
                     </th>
                     <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                      Absent Employee
+                      Employee Name
                     </th>
                     <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
                       Log In
@@ -198,6 +237,7 @@ const AttendanceDetail = () => {
                     </th>
                   </tr>
                 </thead>
+
                 <tbody>
                   <tr>
                     <td
@@ -208,7 +248,7 @@ const AttendanceDetail = () => {
                         alignContent: "center",
                       }}
                     >
-                      {present}
+                      {post?.employeeId}
                     </td>
                     <td
                       style={{
@@ -218,7 +258,7 @@ const AttendanceDetail = () => {
                         alignContent: "center",
                       }}
                     >
-                      {absent}
+                      {post?.firstName}
                     </td>
                     <td
                       style={{
@@ -227,9 +267,14 @@ const AttendanceDetail = () => {
                         padding: "10px",
                         alignContent: "center",
                       }}
-                    >
-                      {logIn}
-                    </td>
+                      value={logData.logIn}
+                      onChange={(e) =>
+                        setLogData({
+                          ...logData,
+                          logIn: e.target.value,
+                        })
+                      }
+                    />
                     <td
                       style={{
                         color: "#e55d17",
@@ -237,9 +282,11 @@ const AttendanceDetail = () => {
                         padding: "10px",
                         alignContent: "center",
                       }}
-                    >
-                      {logout}
-                    </td>
+                      value={logData.logout}
+                      onChange={(e) =>
+                        setLogData({ ...logData, logout: e.target.value })
+                      }
+                    >{logData.logout}</td>
                   </tr>
                 </tbody>
               </table>
