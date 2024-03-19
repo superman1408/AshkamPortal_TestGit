@@ -110,8 +110,9 @@ const Admin = ({ currentId }) => {
                     <Typography
                       variant="h5"
                       sx={{
-                        display: "flex",
+                        color: "#16355d",
                         fontFamily: "Roboto",
+                        display: "flex",
                         marginLeft: "60px",
                         marginBottom: "20px",
                         // fontWeight: "bold",

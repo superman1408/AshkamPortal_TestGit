@@ -136,7 +136,7 @@ const Panel = ({ prop }) => {
               fontFamily: "Roboto",
               marginLeft: "70px",
               marginTop: "10px",
-              color: "#16355d"
+              color: "#16355d",
             }}
           >
             {user.result.firstName + " " + user.result.lastName}
@@ -144,14 +144,35 @@ const Panel = ({ prop }) => {
         </Grid>
 
         <Divider sx={{ mb: 6, ml: 0, mr: 0 }} />
-
+        <Card
+          elevation={5}
+          sx={{
+            backgroundColor: "#16355d",
+            marginLeft: "50px",
+            marginRight: "50px",
+            marginTop: "-30px",
+            marginBottom: "30px",
+          }}
+        >
+          <Typography
+            sx={{
+              color: "white",
+              textAlign: "center",
+              fontFamily: "Robota",
+              fontWeight: "bold",
+              fontSize: "12px",
+            }}
+          >
+            {user.result.role.toUpperCase()}
+          </Typography>
+        </Card>
         <Grid>
           <Box sx={{ mb: "10px" }}>
             <ListItemButton sx={{ mb: "10px" }} onClick={dashboardMode}>
               <ListItemIcon>
                 <DashboardIcon sx={{ color: "#038f7c" }} />
               </ListItemIcon>
-              <ListItemText sx={{color: "#16355d"}} primary="Dashboard" />
+              <ListItemText sx={{ color: "#16355d" }} primary="Dashboard" />
             </ListItemButton>
 
             {/* inbox added here */}
@@ -162,7 +183,7 @@ const Panel = ({ prop }) => {
               <ListItemIcon>
                 <ForwardToInboxTwoToneIcon sx={{ color: "#038f7c" }} />
               </ListItemIcon>
-              <ListItemText sx={{color: "#16355d"}} primary="Inbox" />
+              <ListItemText sx={{ color: "#16355d" }} primary="Inbox" />
             </ListItemButton>
 
             <ListItemButton
@@ -172,21 +193,24 @@ const Panel = ({ prop }) => {
               <ListItemIcon>
                 <PeopleAltIcon sx={{ color: "#038f7c" }} />
               </ListItemIcon>
-              <ListItemText sx={{color: "#16355d"}} primary="Employee" />
+              <ListItemText sx={{ color: "#16355d" }} primary="Employee" />
             </ListItemButton>
 
             <ListItemButton sx={{ mb: "10px" }}>
               <ListItemIcon>
                 <AnalyticsIcon sx={{ color: "#038f7c" }} />
               </ListItemIcon>
-              <ListItemText sx={{color: "#16355d"}} primary="Analytics" />
+              <ListItemText sx={{ color: "#16355d" }} primary="Analytics" />
             </ListItemButton>
 
             <ListItemButton sx={{ mb: "10px" }}>
               <ListItemIcon>
                 <BadgeIcon sx={{ color: "#038f7c" }} />
               </ListItemIcon>
-              <ListItemText sx={{color: "#16355d"}} primary="Report Attendance" />
+              <ListItemText
+                sx={{ color: "#16355d" }}
+                primary="Report Attendance"
+              />
             </ListItemButton>
 
             {/* <ListItemButton sx={{ mb: "10px" }}>
@@ -200,7 +224,11 @@ const Panel = ({ prop }) => {
               <ListItemIcon>
                 <LogoutIcon sx={{ color: "#038f7c" }} />
               </ListItemIcon>
-              <ListItemText sx={{color: "#16355d"}} onClick={switchMode} primary="logout" />
+              <ListItemText
+                sx={{ color: "#16355d" }}
+                onClick={switchMode}
+                primary="logout"
+              />
             </ListItemButton>
           </Box>
         </Grid>
