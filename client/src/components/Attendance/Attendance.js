@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAttendancePosts } from "../../action/posts";
@@ -6,32 +6,24 @@ import { getAttendancePosts } from "../../action/posts";
 import { Box, Grid, Typography, ButtonBase } from "@mui/material";
 
 const Attendance = () => {
+  const [attendanceData, setAttendanceData] = useState({
+    presentEmp: "",
+    absentEmp: "",
+  });
+
   const dispatch = useDispatch();
 
   const attend = useSelector((state) => state.attend);
 
   useEffect(() => {
     dispatch(getAttendancePosts());
+    attend.map((items) => {
+      setAttendanceData(() => ({
+        presentEmp: items.presentEmployee,
+        absentEmp: items.absentEmployee,
+      }));
+    });
   }, [dispatch]);
-
-  console.log(attend);
-  console.log(attend.presentEmployee);
-
-  // const { presentEmployee = 0, absentEmployee = 0 } = attend || {};
-
-  const handlePresentEmployee = () => {
-    if (attend && attend.presentEmployee !== undefined) {
-      return attend.presentEmployee;
-    }
-    return 0; // Default value if presentEmployee is not available
-  };
-
-  const handleAbsentEmployee = () => {
-    if (attend && attend.absentEmployee !== undefined) {
-      return attend.absentEmployee;
-    }
-    return 0; // Default value if absentEmployee is not available
-  };
 
   const navigate = useNavigate();
   return (
@@ -78,12 +70,12 @@ const Attendance = () => {
             <Grid sx={{ marginLeft: "40px" }}>
               <Typography sx={{ fontFamily: "Roboto" }}>Present</Typography>
 
-              <Typography>{handlePresentEmployee}</Typography>
+              <Typography>{attendanceData.presentEmp}</Typography>
             </Grid>
 
             <Grid sx={{ marginLeft: "40px" }}>
               <Typography sx={{ fontFamily: "Roboto" }}>Absent</Typography>
-              <Typography>{handleAbsentEmployee}</Typography>
+              <Typography>{attendanceData.absentEmp}</Typography>
             </Grid>
           </Grid>
         </ButtonBase>
