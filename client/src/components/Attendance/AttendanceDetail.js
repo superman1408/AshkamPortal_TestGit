@@ -55,9 +55,9 @@ const AttendanceDetail = () => {
     setIsLoading(false);
   }, [isLoading, currentId]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(logList(logData, currentId));
+    await dispatch(logList(logData, currentId));
   };
 
   const handleAttendanceSubmit = (e) => {
@@ -66,15 +66,17 @@ const AttendanceDetail = () => {
     navigate("/home");
   };
 
-  const today = new Date();
-  const month = today.getMonth() + 1;
-  const year = today.getFullYear();
-  const date = today.getDate();
-  const currentDate = month + "/" + date + "/" + year;
-  console.log(currentDate);
+  useEffect(() => {
+    const today = new Date();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+    const date = today.getDate();
+    const currentDate = `${month}/${date}/${year}`;
+    setLogData({ ...logData, currentDate });
+  }, []);
 
   return (
-    <div>
+    <div style={{ marginBottom: "180px" }}>
       <div>
         <AttendanceCombo posts={posts} setCurrentId={setCurrentId} />
       </div>
@@ -226,7 +228,7 @@ const AttendanceDetail = () => {
                 margin: "10px 10px 10px 10px",
               }}
             >
-              Employee Name : {post?.firstName}
+              Employee Name : {post?.firstName + " " + post?.lastName}
             </Typography>
             <div>
               <table
@@ -256,42 +258,45 @@ const AttendanceDetail = () => {
                 </thead>
 
                 <tbody>
-                  <tr>
-                    <td
-                      style={{
-                        color: "#e55d17",
-                        fontFamily: "Roboto",
-                        padding: "10px",
-                        alignContent: "center",
-                      }}
-                    >
-                      {currentDate}
-                    </td>
-                    <td
-                      style={{
-                        color: "#e55d17",
-                        fontFamily: "Roboto",
-                        padding: "10px",
-                        alignContent: "center",
-                      }}
-                    >
-                      {post?.logIn}
-                    </td>
-                    <td
-                      style={{
-                        color: "#e55d17",
-                        fontFamily: "Roboto",
-                        padding: "10px",
-                        alignContent: "center",
-                      }}
-                      value={logData.logOut}
-                      onChange={(e) =>
-                        setLogData({ ...logData, logOut: e.target.value })
-                      }
-                    >
-                      {post?.logOut}
-                    </td>
-                  </tr>
+                  {posts
+                    .filter((post) => post._id === currentId)
+                    .map((post, index) => (
+                      <tr key={index}>
+                        <td
+                          style={{
+                            color: "#e55d17",
+                            fontFamily: "Roboto",
+                            padding: "10px",
+                            alignContent: "center",
+                            whiteSpace: "pre-wrap", // Add this CSS property
+                          }}
+                        >
+                          {post?.currentDate}
+                        </td>
+                        <td
+                          style={{
+                            color: "#e55d17",
+                            fontFamily: "Roboto",
+                            padding: "10px",
+                            alignContent: "center",
+                            whiteSpace: "pre-wrap", // Add this CSS property
+                          }}
+                        >
+                          {post?.logIn}
+                        </td>
+                        <td
+                          style={{
+                            color: "#e55d17",
+                            fontFamily: "Roboto",
+                            padding: "10px",
+                            alignContent: "center",
+                            whiteSpace: "pre-wrap", // Add this CSS property
+                          }}
+                        >
+                          {post?.logOut}
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
             </div>
