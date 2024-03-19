@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAttendancePosts } from "../../action/posts";
@@ -8,21 +8,30 @@ import { Box, Grid, Typography, ButtonBase } from "@mui/material";
 import attendance from "../../reducers/attendance";
 
 const Attendance = () => {
-  const id = useParams();
-  console.log(id);
+  const [attendanceData, setAttendanceData] = useState({
+    presentEmp: "",
+    absentEmp: "",
+  });
 
   const dispatch = useDispatch();
 
   const attend = useSelector((state) => state.attend);
 
   useEffect(() => {
-    dispatch(getAttendancePosts());
-  }, [dispatch]);
-
-  console.log(attend);
-  console.log(attend?.presentEmployee);
-
-  // const { presentEmployee = 0, absentEmployee = 0 } = attend || {};
+    if (attend) {
+      dispatch(getAttendancePosts()).then(() => {
+        // Assuming `attend` is an array of objects, you may need to loop through it
+        attend.forEach((items) => {
+          setAttendanceData((prevData) => ({
+            // Merge the new data with previous data using spread operator
+            ...prevData,
+            presentEmp: items.presentEmployee,
+            absentEmp: items.absentEmployee,
+          }));
+        });
+      });
+    }
+  }, [dispatch, attend]);
 
   const navigate = useNavigate();
   return (
@@ -63,18 +72,20 @@ const Attendance = () => {
           >
             <Grid>
               <Typography sx={{ fontFamily: "Roboto" }}>Total</Typography>
-              <Typography>30</Typography>
+              <Typography>
+                {+attendanceData.presentEmp + +attendanceData.absentEmp}
+              </Typography>
             </Grid>
 
             <Grid sx={{ marginLeft: "40px" }}>
               <Typography sx={{ fontFamily: "Roboto" }}>Present</Typography>
 
-              <Typography>{attend?.presentEmployee}</Typography>
+              <Typography>{attendanceData.presentEmp}</Typography>
             </Grid>
 
             <Grid sx={{ marginLeft: "40px" }}>
               <Typography sx={{ fontFamily: "Roboto" }}>Absent</Typography>
-              <Typography>{attend?.absentEmployee}</Typography>
+              <Typography>{attendanceData.absentEmp}</Typography>
             </Grid>
           </Grid>
         </ButtonBase>
