@@ -30,14 +30,14 @@ const Admin = ({ currentId }) => {
   // console.log("id in home page", id);
 
   return (
-    <div style={{ minheight: "100%" }}>
+    <div style={{ minheight: "100%", padding: "10px" }}>
       <Box
         sx={{
           display: "flex",
           flexDirection: "row",
           marginTop: "2px",
-          padding: "0px",
-          bgcolor: "background.paper",
+          padding: "2px",
+          // bgcolor: "background.paper",
           boxShadow: 1,
         }}
       >
@@ -63,7 +63,7 @@ const Admin = ({ currentId }) => {
               display: "flex",
               marginBottom: "5px",
               flexDirection: "column",
-              bgcolor: "#f0f2f1",
+              // bgcolor: "#f0f2f1",
             }}
           >
             <Grid
