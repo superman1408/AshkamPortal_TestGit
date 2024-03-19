@@ -9,6 +9,7 @@ import {
   SKILLDATA,
   UPDATE_TABLE,
   ATTEND_ALL,
+  LOGLIST,
 } from "../constants/actionTypes";
 
 import * as API from "../api";
@@ -162,6 +163,16 @@ export const getAttendancePosts = () => async (dispatch) => {
     const { data } = await API.fetchAttendancePosts();
 
     dispatch({ type: ATTEND_ALL, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const logList = (post, id) => async (dispatch) => {
+  try {
+    const { data } = await API.logList(post, id);
+    //console.log(data);
+    dispatch({ type: LOGLIST, payload: data });
   } catch (error) {
     console.log(error);
   }

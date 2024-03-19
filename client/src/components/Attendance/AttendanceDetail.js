@@ -14,22 +14,18 @@ import { useParams } from "react-router-dom";
 import { getPosts } from "../../action/posts";
 
 import AttendanceCombo from "./AttendanceCombo";
-import { dailyAttendance } from "../../action/posts";
+import { dailyAttendance, logList } from "../../action/posts";
 
 const AttendanceDetail = () => {
-  const { id } = useParams();
-  const [currentId, setCurrentId] = useState(id);
+  // const  id  = useParams();
+  const [currentId, setCurrentId] = useState(null);
   const posts = useSelector((state) => state.posts);
   const dispatch = useDispatch();
   const [post, setPost] = useState();
+  const [isLoading, setIsLoading] = useState(true);
   const user = JSON.parse(localStorage.getItem("profile"));
   const role = user.result.role;
   const navigate = useNavigate();
-
-  const [present, setPresent] = useState("");
-  const [absent, setAbsent] = useState("");
-  const [logIn, setLogIn] = useState("");
-  const [logout, setLogout] = useState("");
 
   const [formData, setFormData] = useState({
     presentEmployee: "",
@@ -37,44 +33,51 @@ const AttendanceDetail = () => {
   });
 
   const [logData, setLogData] = useState({
+    currentDate: "",
     logIn: "",
-    logout: "",
+    logOut: "",
   });
 
-  // console.log(logData);
   useEffect(() => {
-    setCurrentId(id);
+    // setCurrentId(id);
+    // setIsLoading(true);
     if (posts) {
       dispatch(getPosts()).then(() => {
-        // console.log(posts);
+        console.log("Activity Display is recieving the posts..!!!@@@@@@");
         // eslint-disable-next-line array-callback-return
         posts.map((post) => {
           if (post._id === currentId) {
-            console.log(post);
             setPost(post);
           }
         });
       });
     }
-  }, [currentId, id, posts, dispatch]);
+    setIsLoading(false);
+  }, [isLoading, currentId]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(present);
-    console.log(absent);
-    console.log(logIn);
-    console.log(logout);
+    dispatch(logList(logData, currentId));
   };
 
   const handleAttendanceSubmit = (e) => {
     e.preventDefault();
-    console.log(present, absent);
     dispatch(dailyAttendance(formData));
     navigate("/home");
   };
+
+  const today = new Date();
+  const month = today.getMonth() + 1;
+  const year = today.getFullYear();
+  const date = today.getDate();
+  const currentDate = month + "/" + date + "/" + year;
+  console.log(currentDate);
+
   return (
-    <div style={{ marginBottom: "180px" }}>
-      <AttendanceCombo posts={posts} setCurrentId={setCurrentId} />
+    <div>
+      <div>
+        <AttendanceCombo posts={posts} setCurrentId={setCurrentId} />
+      </div>
       <h2
         style={{ color: "#16355d", marginLeft: "20px", fontFamily: "Roboto" }}
       >
@@ -173,8 +176,12 @@ const AttendanceDetail = () => {
                 style={{}}
                 type="time"
                 id="netTime"
-                value={logIn}
-                onChange={(e) => setLogIn(e.target.value)}
+                // value={logIn}
+                // onChange={(e) => setLogIn(e.target.value)}
+                value={logData.logIn}
+                onChange={(e) =>
+                  setLogData({ ...logData, logIn: e.target.value })
+                }
               />
             </div>
             <div
@@ -192,8 +199,12 @@ const AttendanceDetail = () => {
                 width="100"
                 type="time"
                 id="netTime"
-                value={logout}
-                onChange={(e) => setLogout(e.target.value)}
+                // value={logout}
+                // onChange={(e) => setLogout(e.target.value)}
+                value={logData.logOut}
+                onChange={(e) =>
+                  setLogData({ ...logData, logOut: e.target.value })
+                }
               />
             </div>
 
@@ -208,6 +219,15 @@ const AttendanceDetail = () => {
 
         <Grid>
           <Card>
+            <Typography
+              style={{
+                fontFamily: "robota",
+                fontWeight: "bold",
+                margin: "10px 10px 10px 10px",
+              }}
+            >
+              Employee Name : {post?.firstName}
+            </Typography>
             <div>
               <table
                 className="time-sheet-table"
@@ -224,10 +244,7 @@ const AttendanceDetail = () => {
                 <thead>
                   <tr>
                     <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                      Employee Id
-                    </th>
-                    <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                      Employee Name
+                      Date
                     </th>
                     <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
                       Log In
@@ -248,7 +265,7 @@ const AttendanceDetail = () => {
                         alignContent: "center",
                       }}
                     >
-                      {post?.employeeId}
+                      {currentDate}
                     </td>
                     <td
                       style={{
@@ -258,7 +275,7 @@ const AttendanceDetail = () => {
                         alignContent: "center",
                       }}
                     >
-                      {post?.firstName}
+                      {post?.logIn}
                     </td>
                     <td
                       style={{
@@ -267,26 +284,13 @@ const AttendanceDetail = () => {
                         padding: "10px",
                         alignContent: "center",
                       }}
-                      value={logData.logIn}
+                      value={logData.logOut}
                       onChange={(e) =>
-                        setLogData({
-                          ...logData,
-                          logIn: e.target.value,
-                        })
+                        setLogData({ ...logData, logOut: e.target.value })
                       }
-                    />
-                    <td
-                      style={{
-                        color: "#e55d17",
-                        fontFamily: "Roboto",
-                        padding: "10px",
-                        alignContent: "center",
-                      }}
-                      value={logData.logout}
-                      onChange={(e) =>
-                        setLogData({ ...logData, logout: e.target.value })
-                      }
-                    >{logData.logout}</td>
+                    >
+                      {post?.logOut}
+                    </td>
                   </tr>
                 </tbody>
               </table>
