@@ -152,6 +152,20 @@ const authSchema = mongoose.Schema({
     type: [String],
     default: [],
   }, // reference to Projects code for Time Sheet
+
+  currentDate: {
+    type: [String],
+    default: [],
+  },
+  logIn: {
+    type: [String],
+    default: [],
+  },
+
+  logOut: {
+    type: [String],
+    default: [],
+  },
 });
 
 const AuthDetails = mongoose.model("AuthDetails", authSchema);

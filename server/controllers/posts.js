@@ -243,3 +243,26 @@ export const getAttendancePosts = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+// _________________________log List Status_____________________________
+export const logList = async (req, res) => {
+  console.log("Here is controller working");
+  const { id } = req.params;
+  const value = req.body;
+
+  try {
+    const user = await AuthenticateUser.findById(id);
+
+    user.currentDate.push(value.currentDate);
+    user.logIn.push(value.logIn);
+    user.logOut.push(value.logOut);
+
+    const updatedPost = await AuthenticateUser.findByIdAndUpdate(id, user, {
+      new: true,
+    });
+
+    res.json(updatedPost);
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+};

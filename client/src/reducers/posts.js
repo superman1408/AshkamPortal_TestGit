@@ -8,7 +8,8 @@ import {
   FETCH_POST,
   UPDATE_STATUS,
   TODOLIST,
-  UPDATE_TABLE
+  UPDATE_TABLE,
+  LOGLIST
 } from "../constants/actionTypes";
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -69,6 +70,9 @@ export default (posts = [], action) => {
       return [...posts, action.payload];
     
     case UPDATE_TABLE:
+      return [...posts, action.payload];
+
+    case LOGLIST:
       return [...posts, action.payload];
 
     default:

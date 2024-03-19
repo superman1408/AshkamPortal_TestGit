@@ -93,5 +93,3 @@ const Attendance = () => {
 };
 
 export default Attendance;
-
-// log showing undefined
