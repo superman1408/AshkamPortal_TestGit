@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   IconButton,
@@ -7,6 +7,9 @@ import {
   Input,
   Button,
 } from "@mui/material";
+
+import { getPosts } from "../../action/posts";
+import { useDispatch, useSelector } from "react-redux";
 
 import WcIcon from "@mui/icons-material/Wc";
 import WomanIcon from "@mui/icons-material/Woman";
@@ -19,20 +22,36 @@ const TotalEmployee = () => {
   const [isEditing, setIsEditing] = useState(false);
 
   // Editable data state
-  const [menCount, setMenCount] = useState(27);
-  const [womenCount, setWomenCount] = useState(6);
+  const [menCount, setMenCount] = useState(0);
+  const [womenCount, setWomenCount] = useState(0);
 
   const handleEditToggle = () => {
     setIsEditing(!isEditing);
   };
 
-  const handleSave = () => {
-    // Perform save operation with edited data
-    console.log("Saving - Men:", menCount, "Women:", womenCount);
-    setMenCount(menCount);
-    setWomenCount(womenCount);
-    setIsEditing(false);
-  };
+  const dispatch = useDispatch();
+
+  const posts = useSelector((state) => state.posts);
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, []);
+
+  useEffect(() => {
+    if (posts.length > 0) {
+      let men = 0;
+      let women = 0;
+      posts.forEach((post) => {
+        if (post.gender === "male") {
+          men++;
+        } else if (post.gender === "female") {
+          women++;
+        }
+      });
+      setMenCount(men);
+      setWomenCount(women);
+    }
+  }, [posts]);
 
   return (
     <div>
@@ -91,124 +110,79 @@ const TotalEmployee = () => {
                 {menCount + womenCount}
               </Typography>
             </Grid>
-            <Grid>
-              <IconButton
-                size="50px"
-                color="black"
-                onClick={isEditing ? handleSave : handleEditToggle}
-                sx={{
-                  position: "relative",
-                }}
-              >
-                <MoreVertIcon />
-              </IconButton>
-            </Grid>
           </Grid>
-          {/* Render editable fields if in edit mode */}
-          {isEditing ? (
-            <>
-              <Input
-                sx={{ marginLeft: "20px" }}
-                value={menCount}
-                onChange={(e) => setMenCount(parseInt(e.target.value) || 0)}
-              />
-              <Input
-                sx={{ marginLeft: "20px" }}
-                value={womenCount}
-                onChange={(e) => setWomenCount(parseInt(e.target.value) || 0)}
-              />
-            </>
-          ) : (
-            <Grid sx={{ display: "flex", flexDirection: "row" }}>
+          <Grid sx={{ display: "flex", flexDirection: "row" }}>
+            <Grid
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                marginRight: "10px",
+              }}
+            >
+              <Grid
+                sx={{ display: "flex", flexDirection: "row", marginTop: "" }}
+              >
+                <Grid>
+                  <IconButton height="40px" width="40px" color="primary">
+                    <ManIcon />
+                  </IconButton>
+                </Grid>
+
+                <Grid>
+                  <Typography sx={{ marginTop: "10px" }}>
+                    :{menCount}
+                  </Typography>
+                </Grid>
+              </Grid>
+
               <Grid
                 sx={{
                   display: "flex",
-                  flexDirection: "column",
-                  marginRight: "10px",
+                  flexDirection: "row",
+                  marginBottom: "0px",
                 }}
               >
-                <Grid
-                  sx={{ display: "flex", flexDirection: "row", marginTop: "" }}
-                >
-                  <Grid>
-                    <IconButton height="40px" width="40px" color="primary">
-                      <ManIcon />
-                    </IconButton>
-                  </Grid>
-
-                  <Grid>
-                    <Typography sx={{ marginTop: "10px" }}>
-                      :{menCount}
-                    </Typography>
-                  </Grid>
+                <Grid>
+                  <IconButton height="40px" width="40px" color="primary">
+                    <WomanIcon />
+                  </IconButton>
                 </Grid>
 
-                <Grid
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    marginBottom: "0px",
-                  }}
-                >
-                  <Grid>
-                    <IconButton height="40px" width="40px" color="primary">
-                      <WomanIcon />
-                    </IconButton>
-                  </Grid>
-
-                  <Grid>
-                    <Typography sx={{ marginTop: "10px" }}>
-                      :{womenCount}
-                    </Typography>
-                  </Grid>
+                <Grid>
+                  <Typography sx={{ marginTop: "10px" }}>
+                    :{womenCount}
+                  </Typography>
                 </Grid>
-              </Grid>
-
-              <Grid
-                sx={{
-                  width: "250px",
-                  height: "120px",
-                  marginLeft: "0px",
-                }}
-              >
-                <Chart
-                  chartType="PieChart"
-                  data={[
-                    ["Task", "Hours per Day"],
-                    ["Men", menCount],
-                    ["Women", womenCount],
-                  ]}
-                  options={{
-                    is3D: true,
-                    backgroundColor: {
-                      fill: "#cae8e5",
-                    },
-                  }}
-                  width={"250px"}
-                  height={"100px"}
-                />
               </Grid>
             </Grid>
-          )}
-          {isEditing && (
-            <Button
+
+            <Grid
               sx={{
-                float: "right",
-                marginTop: "20px",
-                alignContent: "right",
-                marginLeft: "20px",
+                width: "250px",
+                height: "120px",
+                marginLeft: "0px",
               }}
-              type="submit"
-              variant="contained"
-              size="small"
-              onClick={isEditing ? handleSave : handleEditToggle}
             >
-              Save
-            </Button>
-          )}
+              <Chart
+                chartType="PieChart"
+                data={[
+                  ["Task", "Hours per Day"],
+                  ["Men", menCount],
+                  ["Women", womenCount],
+                ]}
+                options={{
+                  is3D: true,
+                  backgroundColor: {
+                    fill: "#cae8e5",
+                  },
+                }}
+                width={"250px"}
+                height={"100px"}
+              />
+            </Grid>
+          </Grid>
         </Grid>
       </Box>
-      
     </div>
   );
 };
