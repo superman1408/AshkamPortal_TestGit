@@ -16,14 +16,20 @@ const Attendance = () => {
   const attend = useSelector((state) => state.attend);
 
   useEffect(() => {
-    dispatch(getAttendancePosts());
-    attend.map((items) => {
-      setAttendanceData(() => ({
-        presentEmp: items.presentEmployee,
-        absentEmp: items.absentEmployee,
-      }));
-    });
-  }, [dispatch]);
+    if (attend) {
+      dispatch(getAttendancePosts()).then(() => {
+        // Assuming `attend` is an array of objects, you may need to loop through it
+        attend.forEach((items) => {
+          setAttendanceData((prevData) => ({
+            // Merge the new data with previous data using spread operator
+            ...prevData,
+            presentEmp: items.presentEmployee,
+            absentEmp: items.absentEmployee,
+          }));
+        });
+      });
+    }
+  }, [dispatch, attend]);
 
   const navigate = useNavigate();
   return (
@@ -64,7 +70,9 @@ const Attendance = () => {
           >
             <Grid>
               <Typography sx={{ fontFamily: "Roboto" }}>Total</Typography>
-              <Typography>30</Typography>
+              <Typography>
+                {+attendanceData.presentEmp + +attendanceData.absentEmp}
+              </Typography>
             </Grid>
 
             <Grid sx={{ marginLeft: "40px" }}>
