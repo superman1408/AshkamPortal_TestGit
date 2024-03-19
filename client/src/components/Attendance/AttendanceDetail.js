@@ -221,15 +221,17 @@ const AttendanceDetail = () => {
 
         <Grid>
           <Card>
-            <Typography
-              style={{
-                fontFamily: "robota",
-                fontWeight: "bold",
-                margin: "10px 10px 10px 10px",
-              }}
-            >
-              Employee Name : {post?.firstName + " " + post?.lastName}
-            </Typography>
+            {post && (
+              <Typography
+                style={{
+                  fontFamily: "robota",
+                  fontWeight: "bold",
+                  margin: "10px 10px 10px 10px",
+                }}
+              >
+                Employee Name : {post?.firstName + " " + post?.lastName}
+              </Typography>
+            )}
             <div>
               <table
                 className="time-sheet-table"
