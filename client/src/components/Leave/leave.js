@@ -258,24 +258,26 @@ const Leave = () => {
                       })
                     }
                   />
-
-                  <button
-                    variant="contained"
-                    color="primary"
-                    type="submit"
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      marginTop: "10px",
-                      fontFamily: "Roboto",
-                      padding: "12px",
-                    }}
-                  >
-                    <SendSharpIcon sx={{ marginRight: "10px" }} />
-                    Send
-                  </button>
+                  <div style={{display: "flex",justifyContent: "right" }}>
+                    <button
+                      variant="contained"
+                      type="submit"
+                      style={{
+                        height: "50px",
+                        width: "20%",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        margin: "10px",
+                        padding: "2px",
+                        fontFamily: "Roboto",
+                      }}
+                    >
+                      <SendSharpIcon />
+                      Send
+                    </button>
+                  </div>
                 </Grid>
               </Card>
             </div>
