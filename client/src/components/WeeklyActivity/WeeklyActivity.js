@@ -6,9 +6,6 @@ import { Box, Typography, Grid, ButtonBase } from "@mui/material";
 
 const WeeklyActivity = () => {
   const navigate = useNavigate();
-  // const location = useLocation();
-
-  // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
 
   return (
@@ -21,7 +18,7 @@ const WeeklyActivity = () => {
           marginTop: "20px",
           marginLeft: "20px",
           padding: "10px",
-          bgcolor: "#e2e6cf",
+          bgcolor: "background.paper",
           boxShadow: 1,
           borderRadius: "10px",
         }}

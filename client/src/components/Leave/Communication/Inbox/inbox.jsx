@@ -21,7 +21,13 @@ const Inbox = ({ post, setCurrentId }) => {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        "@media (max-width: 600px)": {
+          width: "50px",
+        },
+      }}
+    >
       <ButtonBase
         required
         fullwidth="true"
@@ -36,7 +42,14 @@ const Inbox = ({ post, setCurrentId }) => {
         onClick={openMessage}
         // onMouseEnter={handleMouseEnter}
       >
-        <Grid sx={{ display: "flex", flexDirection: "row",  alignContent: "space-between", marginRight: "80px" }}>
+        <Grid
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignContent: "space-between",
+            marginRight: "80px",
+          }}
+        >
           <Avatar
             alt="avatar"
             src={post?.selectedFile}
@@ -44,7 +57,11 @@ const Inbox = ({ post, setCurrentId }) => {
             color="green"
           />
 
-          <Typography variant="h6" color="#16355c" sx={{ marginLeft: "20px", fontFamily: "Roboto" }}>
+          <Typography
+            variant="h6"
+            color="#16355c"
+            sx={{ marginLeft: "20px", fontFamily: "Roboto" }}
+          >
             {post?.firstName + " " + post?.lastName}
           </Typography>
         </Grid>
