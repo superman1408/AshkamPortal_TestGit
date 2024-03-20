@@ -2,7 +2,9 @@ import React, { useState } from "react";
 // import { useNavigate } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { CChart } from "@coreui/react-chartjs";
-import { Box, Typography, Grid, ButtonBase, IconButton } from "@mui/material";
+
+import { Box, Typography, Grid, IconButton } from "@mui/material";
+
 import DescriptionIcon from "@mui/icons-material/Description";
 
 const WeeklyActivity = () => {
@@ -16,8 +18,6 @@ const WeeklyActivity = () => {
     <div>
       <Box
         sx={{
-          // width: "640px",
-          // height: "417px",
           display: "flex",
           marginTop: "20px",
           marginLeft: "20px",
@@ -27,7 +27,11 @@ const WeeklyActivity = () => {
           borderRadius: "10px",
         }}
       >
-        <div>
+        <div
+          onClick={() => {
+            navigate(`/posts/${user.result._id}/fullweeklyactivity`); // Full Weekly Activity route
+          }}
+        >
           <Grid sx={{ display: "flex", flexDirection: "column" }}>
             <Grid
               sx={{
