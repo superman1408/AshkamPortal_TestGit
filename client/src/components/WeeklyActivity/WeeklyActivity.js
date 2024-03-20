@@ -21,7 +21,7 @@ const WeeklyActivity = () => {
           marginTop: "20px",
           marginLeft: "20px",
           padding: "10px",
-          bgcolor: "background.paper",
+          bgcolor: "#e2e6cf",
           boxShadow: 1,
           borderRadius: "10px",
         }}

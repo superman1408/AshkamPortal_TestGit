@@ -88,12 +88,12 @@ const Panel = ({ prop }) => {
   // };
 
   return (
-    <Card elevation={10}>
+    <Card sx={{ bgcolor: "#ede4e5", borderRadius: "12px" }} elevation={10}>
       <Grid
         sx={{
           display: "flex",
           flexDirection: "column",
-          bgcolor: "background.paper",
+          bgcolor: "#ede4e5",
           width: "100%",
           height: "100vh",
           "@media (max-width: 600px)": {

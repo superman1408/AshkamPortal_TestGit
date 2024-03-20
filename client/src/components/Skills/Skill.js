@@ -64,7 +64,7 @@ const Skill = () => {
         sx={{
           display: "flex",
           padding: "8px",
-          bgcolor: "background.paper",
+          bgcolor: "#f2d5d6",
           boxShadow: 1,
           borderRadius: "10px",
           width: "300px",
