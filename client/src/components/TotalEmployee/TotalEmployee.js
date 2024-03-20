@@ -61,7 +61,7 @@ const TotalEmployee = () => {
           marginTop: "10px",
           marginLeft: "20px",
           padding: "5px",
-          bgcolor: "#cae8e5",
+          bgcolor: "#e9edf7",
           boxShadow: 1,
           borderRadius: "10px",
         }}
@@ -173,7 +173,7 @@ const TotalEmployee = () => {
                 options={{
                   is3D: true,
                   backgroundColor: {
-                    fill: "#cae8e5",
+                    fill: "#e9edf7",
                   },
                 }}
                 width={"250px"}

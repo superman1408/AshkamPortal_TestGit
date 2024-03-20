@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { getAttendancePosts } from "../../action/posts";
 import { useParams } from "react-router-dom";
 
-import { Box, Grid, Typography, ButtonBase } from "@mui/material";
+import { Box, Grid, Typography, ButtonBase, IconButton } from "@mui/material";
 import attendance from "../../reducers/attendance";
+import NewspaperIcon from "@mui/icons-material/Newspaper";
 
 const Attendance = () => {
   const [attendanceData, setAttendanceData] = useState({
@@ -45,21 +46,31 @@ const Attendance = () => {
           marginTop: "52px",
           marginLeft: "20px",
           padding: "5px",
-          bgcolor: "background.paper",
+          bgcolor: "#e2e6cf",
           boxShadow: 1,
           borderRadius: "10px",
         }}
       >
-        <Typography
-          sx={{
-            fontFamily: "Roboto",
-            fontWeight: "bold",
-            marginLeft: "130px",
-            color: "#16355d",
-          }}
-        >
-          ATTENDANCE
-        </Typography>
+        <Grid sx={{ display: "flex", flexDirection: "row" }}>
+          <Grid sx={{ marginLeft: "10px" }}>
+            <IconButton>
+              <NewspaperIcon />
+            </IconButton>
+          </Grid>
+          <Grid sx={{ marginLeft: "70px" }}>
+            <Typography
+              sx={{
+                fontFamily: "Roboto",
+                fontWeight: "bold",
+                // marginLeft: "100px",
+                marginTop: "10px",
+                color: "#16355d",
+              }}
+            >
+              ATTENDANCE
+            </Typography>
+          </Grid>
+        </Grid>
         <ButtonBase
           onClick={() => {
             navigate(`/${id}/attendanceDisplay`); // Employee Attendance Route
