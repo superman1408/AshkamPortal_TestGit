@@ -29,13 +29,6 @@ const Message = ({ post, currentId }) => {
     setLoading(false);
   };
 
-  // useEffect(() => {
-  //   if (post) {
-  //     dispatch(getPost(currentId));
-  //     // updateArray(post);
-  //   }
-  // }, []);
-
   useEffect(() => {
     if (isLoading === true) {
       dispatch(getPost(currentId));
@@ -56,9 +49,6 @@ const Message = ({ post, currentId }) => {
     if (activeStatus.status === "pending") {
       setActiveStatus({ ...activeStatus, status: "Accepted" });
       dispatch(updateStatus(post._id, { status: "Accepted" }));
-      // navigate('/');
-      // updateArray();
-      // setLoading(true);
     } else {
       console.log("Status already set");
     }
@@ -75,9 +65,6 @@ const Message = ({ post, currentId }) => {
     if (activeStatus.status === "pending") {
       setActiveStatus({ ...activeStatus, status: "Rejected" });
       dispatch(updateStatus(post._id, { status: "Rejected" }));
-      // navigate('/');
-      // updateArray();
-      // setLoading(true);
     } else {
       console.log("Status already set");
     }
@@ -103,9 +90,6 @@ const Message = ({ post, currentId }) => {
     });
   }
 
-  // const color = () =>  {item.status === "Accepted" ? (return('green') : return('red')) }
-  // // console.log(array);
-
   console.log(currentId);
 
   return (
@@ -123,6 +107,7 @@ const Message = ({ post, currentId }) => {
               justifyContent: "space-between",
               bgcolor: "white",
               width: "110vh",
+              borderRadius: "12px",
 
               "@media (max-width: 600px)": {
                 width: "300px",
@@ -210,7 +195,7 @@ const Message = ({ post, currentId }) => {
                     resize: "none",
                     height: "120px",
                     width: "600px",
-                    backgroundColor: "floralwhite",
+                    backgroundColor: "white",
                   }}
                 >
                   {item.message}
@@ -226,22 +211,22 @@ const Message = ({ post, currentId }) => {
               >
                 {verifyTheRole() ? (
                   <>
-                    <Button
-                      sx={{ fontFamily: "Roboto" }}
+                    <button
+                      style={{ fontFamily: "Roboto" }}
                       variant="contained"
                       onClick={handleAccept}
                     >
                       <CheckSharpIcon />
                       Accept
-                    </Button>
-                    <Button
-                      sx={{ fontFamily: "Roboto" }}
+                    </button>
+                    <button
+                      style={{ fontFamily: "Roboto" }}
                       variant="contained"
                       onClick={handleReject}
                     >
                       <ClearSharpIcon />
                       Reject
-                    </Button>
+                    </button>
                   </>
                 ) : (
                   <div>Please check your status above..!!</div>

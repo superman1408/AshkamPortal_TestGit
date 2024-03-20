@@ -39,7 +39,7 @@ const Communication = () => {
         style={{
           padding: "5px",
           display: "flex",
-          backgroundColor: "lightgray",
+          backgroundColor: "white",
           "@media (max-width: 600px)": {
             flexDirection: "column",
           },
@@ -112,7 +112,7 @@ const Communication = () => {
               <div
                 style={{
                   // border: "0.5px dotted gray",
-                  background: "lightgray",
+                  background: "white",
                   height: "600px",
                   overflow: "auto",
                   // position: "fixed",

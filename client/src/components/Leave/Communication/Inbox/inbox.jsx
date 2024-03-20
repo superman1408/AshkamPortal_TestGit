@@ -38,6 +38,8 @@ const Inbox = ({ post, setCurrentId }) => {
           padding: "5px",
           height: "80px",
           margin: "2px",
+
+          borderRadius: "12px",
         }}
         onClick={openMessage}
         // onMouseEnter={handleMouseEnter}
