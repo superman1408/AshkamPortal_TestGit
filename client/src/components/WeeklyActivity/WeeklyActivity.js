@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CChart } from "@coreui/react-chartjs";
 import { Box, Typography, Grid, ButtonBase, IconButton } from "@mui/material";
-import TaskIcon from "@mui/icons-material/Task";
 import DescriptionIcon from "@mui/icons-material/Description";
 
 const WeeklyActivity = () => {
