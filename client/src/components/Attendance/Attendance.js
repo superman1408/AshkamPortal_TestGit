@@ -53,7 +53,10 @@ const Attendance = () => {
       >
         <Grid sx={{ display: "flex", flexDirection: "row" }}>
           <Grid sx={{ marginLeft: "10px" }}>
-            <IconButton>
+            <IconButton onClick={() => {
+              navigate(`/${id}/attendanceDisplay`); // Employee Attendance Route
+            }}
+          >
               <NewspaperIcon />
             </IconButton>
           </Grid>

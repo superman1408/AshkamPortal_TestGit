@@ -1,10 +1,11 @@
-import { TextField, Typography, Grid, Divider, Card } from "@mui/material";
 import React, { useState, useEffect } from "react";
-
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { Typography, Grid, Divider, Card } from "@mui/material";
+
 import { getPosts } from "../../action/posts";
 import { dailyAttendance, logList } from "../../action/posts";
+
 
 const AttendanceDetail = ({ currentId, posts }) => {
   const dispatch = useDispatch();
@@ -24,7 +25,6 @@ const AttendanceDetail = ({ currentId, posts }) => {
     logOut: "",
   });
 
-  console.log(logData);
 
   const array = [];
 
@@ -32,7 +32,6 @@ const AttendanceDetail = ({ currentId, posts }) => {
     array.length = 0;
     dispatch(getPosts()).then(() => {
       console.log("Activity Display is recieving the posts..!!!@@@@@@");
-
       // eslint-disable-next-line array-callback-return
       posts.forEach((post) => {
         if (post._id === currentId) {
@@ -46,31 +45,27 @@ const AttendanceDetail = ({ currentId, posts }) => {
         }
       });
     });
-    // }
   }, [currentId]);
 
-  console.log(array);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    await dispatch(logList(logData, currentId));
+    await dispatch(logList(logData, currentId)).then(() => {
+      alert("Successfully Logged!");
+      window.location.reload();
+    }).catch ((err) => {console.log(err)});
   };
+
+
+
 
   const handleAttendanceSubmit = (e) => {
     e.preventDefault();
     dispatch(dailyAttendance(formData));
     navigate("/home");
   };
-  // _______________________Code for current Date ________________________________
+  
 
-  // useEffect(() => {
-  //   const today = new Date();
-  //   const month = today.getMonth() + 1;
-  //   const year = today.getFullYear();
-  //   const date = today.getDate();
-  //   const currentDate = `${month}/${date}/${year}`;
-  //   setLogData({ ...logData, currentDate });
-  // }, []);
+
 
   // eslint-disable-next-line array-callback-return
   posts.forEach((post) => {
@@ -85,6 +80,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
     }
   });
 
+
   const verifyTheRole = () => {
     if (user.result.role === "admin") {
       return true;
@@ -92,6 +88,8 @@ const AttendanceDetail = ({ currentId, posts }) => {
       return false;
     }
   };
+
+
 
   return (
     <div style={{ marginBottom: "180px" }}>
@@ -254,8 +252,6 @@ const AttendanceDetail = ({ currentId, posts }) => {
                     }
                   />
                 </div>
-
-                {/* </div> */}
                 <div
                   style={{ display: "flex", float: "right", marginTop: "50px" }}
                 >
@@ -269,7 +265,6 @@ const AttendanceDetail = ({ currentId, posts }) => {
         )}
         <Grid>
           <Card>
-            {/* {post && ( */}
             <Typography
               style={{
                 fontFamily: "robota",
@@ -285,8 +280,6 @@ const AttendanceDetail = ({ currentId, posts }) => {
                 return null;
               })}
             </Typography>
-
-            {/* )} */}
             <div>
               <table
                 className="time-sheet-table"
@@ -315,9 +308,6 @@ const AttendanceDetail = ({ currentId, posts }) => {
                 </thead>
 
                 <tbody>
-                  {/* {posts
-                    .filter((post) => post._id === currentId)
-                    .map((post, index) => ( */}
                   {array.map((item, index) => (
                     <tr key={index}>
                       <td
