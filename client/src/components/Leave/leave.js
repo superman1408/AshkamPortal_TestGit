@@ -304,5 +304,3 @@ const Leave = () => {
 
 export default Leave;
 
-
-// Count total days from selected date picker from from date
