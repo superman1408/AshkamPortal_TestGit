@@ -1,17 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import { useNavigate } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { CChart } from "@coreui/react-chartjs";
 import { Box, Typography, Grid, IconButton } from "@mui/material";
-
+import { getPosts } from "../../action/posts";
 import DescriptionIcon from "@mui/icons-material/Description";
+import { useDispatch, useSelector } from "react-redux";
 
 const WeeklyActivity = () => {
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  console.log("user", user);
+  const [currentId, setCurrentId] = useState(user.result._id);
+  console.log("currentId", currentId);
+
+  const posts = useSelector((state) => state.posts);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPosts()).then(() => {
+      console.log("Activity");
+    });
+  }, []);
+
+  console.log(posts);
+
   const navigate = useNavigate();
   // const location = useLocation();
 
   // eslint-disable-next-line no-unused-vars
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
 
   return (
     <div>
@@ -58,6 +75,87 @@ const WeeklyActivity = () => {
             </Grid>
 
             {/*----------------------------------------------------Line Chart------------------------------------------------------*/}
+
+            <div>
+              {posts.map((post) => {
+                if (post._id === currentId) {
+                  const projectCodes =
+                    post?.projectCode instanceof Array
+                      ? post.projectCode
+                      : [post.projectCode];
+                  return (
+                    <React.Fragment key={post._id}>
+                      {projectCodes.map((code, index) => (
+                        <Typography
+                          key={index}
+                          style={{
+                            fontFamily: "robota",
+                            fontWeight: "bold",
+                            margin: "10px",
+                          }}
+                        >
+                          Project Code: {code}
+                        </Typography>
+                      ))}
+                    </React.Fragment>
+                  );
+                }
+                return null;
+              })}
+
+              {posts.map((post) => {
+                if (post._id === currentId) {
+                  const overTimes =
+                    post?.overTime instanceof Array
+                      ? post.overTime
+                      : [post.overTime];
+                  return (
+                    <React.Fragment key={post._id}>
+                      {overTimes.map((code, index) => (
+                        <Typography
+                          key={index}
+                          style={{
+                            fontFamily: "robota",
+                            fontWeight: "bold",
+                            margin: "10px",
+                          }}
+                        >
+                          Over Time: {code}
+                        </Typography>
+                      ))}
+                    </React.Fragment>
+                  );
+                }
+                return null;
+              })}
+
+              {posts.map((post) => {
+                if (post._id === currentId) {
+                  const netTimes =
+                    post?.netTime instanceof Array
+                      ? post.netTime
+                      : [post.netTime];
+                  return (
+                    <React.Fragment key={post._id}>
+                      {netTimes.map((code, index) => (
+                        <Typography
+                          key={index}
+                          style={{
+                            fontFamily: "robota",
+                            fontWeight: "bold",
+                            margin: "10px",
+                          }}
+                        >
+                          Net Time: {code}
+                        </Typography>
+                      ))}
+                    </React.Fragment>
+                  );
+                }
+                return null;
+              })}
+            </div>
+
             <Grid
               sx={{
                 display: "flex",
