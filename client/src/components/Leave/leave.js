@@ -291,13 +291,15 @@ const Leave = () => {
                     }
                   />
 
-                  <Button
+                  <button
                     variant="contained"
                     color="primary"
                     type="submit"
-                    sx={{
+                    style={{
                       display: "flex",
                       flexDirection: "column",
+                      justifyContent: "center",
+                      alignItems: "center",
                       marginTop: "10px",
                       fontFamily: "Roboto",
                       padding: "12px",
@@ -305,7 +307,7 @@ const Leave = () => {
                   >
                     <SendSharpIcon sx={{ marginRight: "10px" }} />
                     Send
-                  </Button>
+                  </button>
                 </Grid>
               </Card>
             </div>
@@ -339,4 +341,3 @@ const Leave = () => {
 
 export default Leave;
 
-// Count total days from selected date picker from from date
