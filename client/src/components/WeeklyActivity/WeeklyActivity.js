@@ -2,12 +2,13 @@ import React, { useState } from "react";
 // import { useNavigate } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { CChart } from "@coreui/react-chartjs";
-import { Box, Typography, Grid, ButtonBase, IconButton } from "@mui/material";
-import TaskIcon from "@mui/icons-material/Task";
-import DescriptionIcon from "@mui/icons-material/Description";
+import { Box, Typography, Grid, ButtonBase } from "@mui/material";
 
 const WeeklyActivity = () => {
   const navigate = useNavigate();
+  // const location = useLocation();
+
+  // eslint-disable-next-line no-unused-vars
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
 
   return (
@@ -25,31 +26,22 @@ const WeeklyActivity = () => {
           borderRadius: "10px",
         }}
       >
-        <div>
+        <ButtonBase
+          onClick={() => {
+            navigate(`/posts/${user.result._id}/fullweeklyactivity`); // Full Weekly Activity route
+          }}
+        >
           <Grid sx={{ display: "flex", flexDirection: "column" }}>
             <Grid
               sx={{
-                display: "flex",
-                flexDirection: "row",
                 marginLeft: "20px",
-                // marginTop: "10px",
+                marginTop: "10px",
                 marginBottom: "30px",
               }}
             >
-              <Grid>
-                <IconButton>
-                  <DescriptionIcon
-                    onClick={() => {
-                      navigate(`/posts/${user.result._id}/fullweeklyactivity`); // Full Weekly Activity route
-                    }}
-                  />
-                </IconButton>
-              </Grid>
-              <Grid sx={{ marginTop: "10px" }}>
-                <Typography sx={{ fontWeight: "bolder", fontFamily: "Roboto" }}>
-                  Weekly Activity
-                </Typography>
-              </Grid>
+              <Typography sx={{ fontWeight: "bolder", fontFamily: "Roboto" }}>
+                Weekly Activity
+              </Typography>
             </Grid>
 
             {/*----------------------------------------------------Line Chart------------------------------------------------------*/}
@@ -115,7 +107,7 @@ const WeeklyActivity = () => {
               />
             </Grid>
           </Grid>
-        </div>
+        </ButtonBase>
       </Box>
     </div>
   );
