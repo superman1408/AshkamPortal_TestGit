@@ -28,11 +28,6 @@
 }
 .combo {
   margin-top: 10px;
-  /*   height: 10px;
-  width: 100px;
-  padding: 10px;*/
   background-color: grey;
   display: flex;
-
-  /* background-color: white; */
 }
