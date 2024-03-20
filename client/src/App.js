@@ -19,7 +19,7 @@ import SkillDisplay from "./components/Skills/SkillDisplay";
 import PrintingLayout from "./components/PrinttingLayout/PrintingLayout";
 import ExcelReader from "./components/ExcelReader/ExcelReader";
 import EvolvePrintLayout from "./components/ActivityDisplay/UnderTrial/EvolvePrintLayout";
-import AttendanceDetail from "./components/Attendance/AttendanceDetail";
+import AttendanceDisplay from "./components/Attendance/AttendanceDisplay";
 import PasswordResetForm from "./components/PasswordReset/PasswordResetForm";
 
 const App = () => {
@@ -84,9 +84,9 @@ const App = () => {
           <Route path="/birthdaymail" exact element={<BirthdayMail />} />
           <Route path="/:id/payslip" exact element={<PaySlip />} />
           <Route
-            path="/attendanceDetail"
+            path="/:id/attendanceDisplay"
             exact
-            element={<AttendanceDetail />}
+            element={<AttendanceDisplay />}
           />
           <Route
             path="/printingLayout"

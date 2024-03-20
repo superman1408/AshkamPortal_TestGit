@@ -153,7 +153,7 @@ const authSchema = mongoose.Schema({
     default: [],
   }, // reference to Projects code for Time Sheet
 
-  currentDate: {
+  logDate: {
     type: [String],
     default: [],
   },

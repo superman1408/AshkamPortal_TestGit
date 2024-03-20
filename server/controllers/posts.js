@@ -246,14 +246,13 @@ export const getAttendancePosts = async (req, res) => {
 
 // _________________________log List Status_____________________________
 export const logList = async (req, res) => {
-  console.log("Here is controller working");
   const { id } = req.params;
   const value = req.body;
 
   try {
     const user = await AuthenticateUser.findById(id);
 
-    user.currentDate.push(value.currentDate);
+    user.logDate.push(value.logDate);
     user.logIn.push(value.logIn);
     user.logOut.push(value.logOut);
 

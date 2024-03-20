@@ -16,6 +16,8 @@ const Attendance = () => {
   const dispatch = useDispatch();
 
   const attend = useSelector((state) => state.attend);
+  const user = JSON.parse(localStorage.getItem("profile"));
+  const id = user.result._id;
 
   useEffect(() => {
     if (attend) {
@@ -60,7 +62,7 @@ const Attendance = () => {
         </Typography>
         <ButtonBase
           onClick={() => {
-            navigate("/attendanceDetail"); // Employee Attendance Route
+            navigate(`/${id}/attendanceDisplay`); // Employee Attendance Route
           }}
         >
           <Grid
