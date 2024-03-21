@@ -93,6 +93,7 @@ const TotalEmployee = () => {
                   fontWeight: "bolder",
                   color: "#16355d",
                   fontFamily: "Roboto",
+                  fontSize: "18px",
                 }}
               >
                 Total Employees

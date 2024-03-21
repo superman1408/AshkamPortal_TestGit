@@ -64,14 +64,15 @@ const Attendance = () => {
           <Grid sx={{ marginLeft: "70px" }}>
             <Typography
               sx={{
+                color: "#16355d",
                 fontFamily: "Roboto",
                 fontWeight: "bold",
                 // marginLeft: "100px",
-                marginTop: "10px",
-                color: "#16355d",
+                marginTop: "5px",
+                fontSize: "18px",
               }}
             >
-              ATTENDANCE
+              Attendance
             </Typography>
           </Grid>
         </Grid>

@@ -40,6 +40,7 @@ const ManagingTeam = () => {
                 mb: "1px",
                 ml: "10px",
                 alignItems: "center",
+                fontSize: "18px",
               }}
             >
               Leadership
