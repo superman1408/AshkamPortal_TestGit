@@ -41,7 +41,6 @@ const WeeklyActivity = () => {
 
   useEffect(() => {
     dispatch(getPosts()).then(() => {
-      console.log("Activity");
       setIsLoading(true);
     });
   }, []);
@@ -123,12 +122,12 @@ const WeeklyActivity = () => {
               }}
             >
               <Grid>
-                <IconButton>
-                  <DescriptionIcon
-                    onClick={() => {
-                      navigate(`/posts/${user.result._id}/fullweeklyactivity`); // Full Weekly Activity route
-                    }}
-                  />
+                <IconButton 
+                  onClick={() => {
+                    navigate(`/posts/${user.result._id}/fullweeklyactivity`); // Full Weekly Activity route
+                  }}
+                >
+                  <DescriptionIcon/>
                 </IconButton>
               </Grid>
               <Grid sx={{ marginTop: "10px" }}>

@@ -18,16 +18,11 @@ import ChartComponent from "./pieGraph";
 
 const Leave = () => {
   const classes = useStyles();
-
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
-
   const posts = useSelector((state) => state.posts);
 
   const { id } = useParams();
-  console.log("id in leave page", id);
-
   const user = JSON.parse(localStorage.getItem("profile"));
 
   const [select, setSelect] = useState("");
@@ -41,8 +36,6 @@ const Leave = () => {
 
   const [valueFrom, setValueFrom] = useState();
 
-  console.log(valueTo);
-  console.log(valueFrom);
 
   const options = [
     { label: "SELECT LEAVE", value: "" },
@@ -82,38 +75,15 @@ const Leave = () => {
   };
 
   const leaveTaken = calculateTotalDays();
-  console.log(leaveTaken);
 
   const [totalLeave, setTotalLeave] = useState(24);
 
   const availabelLeave = totalLeave - leaveTaken;
-  console.log(availabelLeave);
 
   // ---------------------------------------------------------------------------------------------------------------
 
   const handleSelect = (event) => setSelect(event.target.value);
 
-  switch (select) {
-    case "Casual Leave":
-      break;
-
-    case "Sick Leave":
-      break;
-
-    case "P Leave":
-      // console.log("You have selected P Leave");
-
-      break;
-
-    case "Floating Leave":
-      // console.log("You have selected Floating Leave");
-
-      break;
-
-    default:
-      console.log(Error);
-      break;
-  }
 
   const leaveType = select;
 
@@ -129,14 +99,11 @@ const Leave = () => {
         .catch((err) => {
           console.log("Error : ", err);
         });
-      // if (posts) {
-      //   posts.map((post) =>
-      //     navigate(`/mail/${post._id}/communication`, { replace: true })
-      //   );
-      // }
     }
     clear();
   };
+
+
 
   const clear = () => {
     setMailData({
@@ -144,8 +111,10 @@ const Leave = () => {
       requiredMessage: "",
       subject: "",
     });
-    console.log("clicked me to clear");
   };
+
+
+
 
   return (
     <div

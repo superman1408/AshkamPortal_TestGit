@@ -20,8 +20,6 @@ const AttendanceDisplay = () => {
   const role = user.result.role;
 
   useEffect(() => {
-    // setCurrentId(id);
-    // setIsLoading(true);
     if (posts) {
       dispatch(getPosts()).then(() => {
         console.log("Activity Display is recieving the posts..!!!@@@@@@");
