@@ -28,7 +28,6 @@ import ManageAccountsOutlinedIcon from "@mui/icons-material/ManageAccountsOutlin
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import dayjs from "dayjs";
 
 const RegistrationForm = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
@@ -130,6 +129,7 @@ const RegistrationForm = () => {
       .catch((err) => {
         console.log("Error", err);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentId, isLoading]);
 
   const handleSubmit = (e) => {
@@ -309,7 +309,6 @@ const RegistrationForm = () => {
                       type="text"
                       name="role"
                       variant="outlined"
-                      required
                       label="Role"
                       sx={{ marginTop: "10px" }}
                       value={postData.role}
@@ -338,7 +337,6 @@ const RegistrationForm = () => {
                   type="text"
                   name="firstName"
                   variant="outlined"
-                  required
                   disabled={true}
                   label="First Name"
                   sx={{ margin: "20px" }}
@@ -352,7 +350,6 @@ const RegistrationForm = () => {
                   type="text"
                   name="lastName"
                   variant="outlined"
-                  required
                   disabled={true}
                   label="Last Name"
                   sx={{ margin: "20px" }}
@@ -403,7 +400,6 @@ const RegistrationForm = () => {
                         }}
                         value={dob}
                         selected={dob}
-                        required
                         halfwidth="true"
                         dateFormat="dd.MM.yyyy"
                         onChange={handleDOB}
@@ -457,7 +453,6 @@ const RegistrationForm = () => {
                   <TextField
                     sx={{ marginTop: "30px" }}
                     variant="outlined"
-                    required
                     fullWidth
                     type="email"
                     name="email"
@@ -498,8 +493,7 @@ const RegistrationForm = () => {
                   <TextField
                     sx={{ marginTop: "30px" }}
                     variant="outlined"
-                    required
-                    fullwidth="true"
+                    fullWidth
                     label="Contact Number"
                     name="contactNumber"
                     value={postData.contactNumber}
@@ -525,7 +519,6 @@ const RegistrationForm = () => {
                   <TextField
                     sx={{ marginTop: "10px" }}
                     variant="outlined"
-                    required
                     fullWidth
                     label="Street Address"
                     name="streetAddress"
@@ -539,12 +532,17 @@ const RegistrationForm = () => {
                   />
                 </div>
 
-                <Grid sx={{ display: "flex", justifyContent: "space-between", padding: '2px' }}>
-                  <div style={{padding: '2px' }}>
+                <Grid
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    padding: "2px",
+                  }}
+                >
+                  <div style={{ padding: "2px" }}>
                     <TextField
                       sx={{ marginTop: "10px" }}
                       variant="outlined"
-                      required
                       label="City"
                       name="city"
                       value={postData.city}
@@ -553,11 +551,10 @@ const RegistrationForm = () => {
                       }
                     />
                   </div>
-                  <div style={{padding: '2px' }}>
+                  <div style={{ padding: "2px" }}>
                     <TextField
                       sx={{ marginTop: "10px" }}
                       variant="outlined"
-                      required
                       label="State"
                       name="state"
                       value={postData.state}
@@ -567,11 +564,10 @@ const RegistrationForm = () => {
                     />
                   </div>
 
-                  <div style={{padding: '2px' }}>
+                  <div style={{ padding: "2px" }}>
                     <TextField
                       sx={{ marginTop: "10px" }}
                       variant="outlined"
-                      required
                       label="Pincode"
                       name="pincode"
                       value={postData.pincode}
@@ -595,7 +591,6 @@ const RegistrationForm = () => {
                 <div sx={{ display: "flex", flexDirection: "row" }}>
                   <TextField
                     variant="outlined"
-                    required
                     fullWidth
                     label="Skills"
                     name="jobSkills"
@@ -609,7 +604,6 @@ const RegistrationForm = () => {
                   <TextField
                     sx={{ marginTop: "10px" }}
                     variant="outlined"
-                    required
                     fullWidth
                     label="Job Role"
                     name="jobTitle"
@@ -623,7 +617,6 @@ const RegistrationForm = () => {
                   <TextField
                     sx={{ marginTop: "10px" }}
                     variant="outlined"
-                    required
                     fullWidth
                     label="Employee Id"
                     name="employeeId"
@@ -637,7 +630,6 @@ const RegistrationForm = () => {
                   <TextField
                     sx={{ marginTop: "10px" }}
                     variant="outlined"
-                    required
                     fullWidth
                     label="Department"
                     name="department"
@@ -651,7 +643,6 @@ const RegistrationForm = () => {
                   <TextField
                     sx={{ marginTop: "10px" }}
                     variant="outlined"
-                    required
                     fullWidth
                     label="Reporting Manager"
                     name="ReportingManager"
@@ -678,7 +669,6 @@ const RegistrationForm = () => {
                 <div sx={{ display: "flex", flexDirection: "row" }}>
                   <TextField
                     variant="outlined"
-                    required
                     fullWidth
                     label="Name"
                     name="emergencyName"
@@ -695,7 +685,6 @@ const RegistrationForm = () => {
                   <TextField
                     sx={{ marginTop: "10px" }}
                     variant="outlined"
-                    required
                     fullWidth
                     label="Address"
                     name="emergencyAddress"
@@ -712,7 +701,6 @@ const RegistrationForm = () => {
                   <TextField
                     sx={{ marginTop: "10px" }}
                     variant="outlined"
-                    required
                     fullWidth
                     label="Contact Number"
                     name="emergencyContact"
@@ -729,7 +717,6 @@ const RegistrationForm = () => {
                   <TextField
                     sx={{ marginTop: "10px" }}
                     variant="outlined"
-                    required
                     fullWidth
                     label="Relationship"
                     name="relationship"
@@ -754,8 +741,6 @@ const RegistrationForm = () => {
                     sx={{ fontFamily: "Roboto" }}
                     type="submit"
                     variant="contained"
-                    required
-                    fullWidth
                   >
                     Register
                   </button>
