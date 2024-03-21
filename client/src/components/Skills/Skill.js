@@ -81,7 +81,13 @@ const Skill = () => {
             justifyContent: "center",
           }}
         >
-          <Typography sx={{ fontWeight: "bolder", fontFamily: "Roboto" }}>
+          <Typography
+            sx={{
+              fontWeight: "bolder",
+              color: "#16355d",
+              fontFamily: "Roboto",
+            }}
+          >
             Our Services
           </Typography>
           {Object.keys(formData).map((field) => (

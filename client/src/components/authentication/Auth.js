@@ -17,7 +17,7 @@ import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import image from "../../assets/ProfileShipImage.png";
+import image from "../../assets/LoginImage.png";
 import "./style.css";
 import { ToastContainer } from "react-toastify";
 
@@ -70,14 +70,10 @@ const Auth = () => {
     });
   };
 
-
-
   const resetPassword = () => {
     console.log("Authenticating to reset password..!!");
-    navigate('/auth/reset', {replace: true});
+    navigate("/auth/reset", { replace: true });
   };
-
-
 
   return (
     <Grid

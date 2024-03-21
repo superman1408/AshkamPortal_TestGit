@@ -95,48 +95,54 @@ const WeeklyActivity = () => {
   };
 
   return (
-    <Box
-      sx={{
-        // display: "flex",
-        marginTop: "20px",
-        marginLeft: "20px",
-        padding: "5px",
-        bgcolor: "#e2e6cf",
-        boxShadow: 1,
-        borderRadius: "10px",
-        height: "480px",
-      }}
-    >
-      <div>
-        <Grid sx={{ display: "flex", flexDirection: "column" }}>
-          <Grid
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              marginLeft: "20px",
-              marginBottom: "30px",
-            }}
-          >
-            <Grid>
-              <IconButton>
-                <DescriptionIcon
-                  onClick={() => {
-                    navigate(`/posts/${user.result._id}/fullweeklyactivity`);
-                  }}
-                />
-              </IconButton>
+    <div>
+      <Box
+        sx={{
+          display: "flex",
+          marginTop: "20px",
+          marginLeft: "20px",
+          padding: "10px",
+          bgcolor: "#e2e6cf",
+          boxShadow: 1,
+          borderRadius: "10px",
+        }}
+      >
+        <div
+          onClick={() => {
+            navigate(`/posts/${user.result._id}/fullweeklyactivity`); // Full Weekly Activity route
+          }}
+        >
+          <Grid sx={{ display: "flex", flexDirection: "column" }}>
+            <Grid
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                marginLeft: "20px",
+                // marginTop: "10px",
+                marginBottom: "30px",
+              }}
+            >
+              <Grid>
+                <IconButton>
+                  <DescriptionIcon
+                    onClick={() => {
+                      navigate(`/posts/${user.result._id}/fullweeklyactivity`); // Full Weekly Activity route
+                    }}
+                  />
+                </IconButton>
+              </Grid>
+              <Grid sx={{ marginTop: "10px" }}>
+                <Typography sx={{ fontWeight: "bolder", fontFamily: "Roboto" }}>
+                  Weekly Activity
+                </Typography>
+              </Grid>
             </Grid>
-            <Grid sx={{ marginTop: "10px" }}>
-              <Typography sx={{ fontWeight: "bolder", fontFamily: "Roboto" }}>
-                Weekly Activity
-              </Typography>
-            </Grid>
-          </Grid>
 
-          <Bar options={options} data={data} />
-        </Grid>
-      </div>
-    </Box>
+            <Bar options={options} data={data} />
+          </Grid>
+        </div>
+      </Box>
+    </div>
   );
 };
 export default WeeklyActivity;
