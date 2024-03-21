@@ -5,13 +5,13 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
 am4core.useTheme(am4themes_animated);
 
-const ChartComponent = () => {
+const ChartComponent = ({ availabelLeave }) => {
   useEffect(() => {
     const chart = am4core.create("chartdiv", am4charts.PieChart3D);
     chart.data = [
       {
         name: "Available",
-        status: 13,
+        status: availabelLeave,
       },
       {
         name: "Total",
@@ -37,7 +37,7 @@ const ChartComponent = () => {
     return () => {
       chart.dispose(); // Cleanup when the component unmounts
     };
-  }, []);
+  }, [availabelLeave]);
 
   return (
     <>

@@ -56,8 +56,40 @@ const Leave = () => {
   const fromDate = UsFormatter.format(valueTo);
   const toDate = UsFormatter.format(valueFrom);
 
-  const total = toDate + fromDate;
-  console.log(total);
+  // ----------------------------- Calculate Total Number of Leave Days ---------------------------------------------------------
+
+  const calculateTotalDays = () => {
+    if (valueTo && valueFrom) {
+      const fromDate = new Date(valueTo);
+      const toDate = new Date(valueFrom);
+      let totalDays = 0;
+
+      // Iterate through each day between fromDate and toDate
+      for (
+        let currentDate = fromDate;
+        currentDate <= toDate;
+        currentDate.setDate(currentDate.getDate() + 1)
+      ) {
+        // Check if the current day is not Saturday (6) or Sunday (0)
+        if (currentDate.getDay() !== 6 && currentDate.getDay() !== 0) {
+          totalDays++;
+        }
+      }
+
+      return totalDays;
+    }
+    return 0;
+  };
+
+  const leaveTaken = calculateTotalDays();
+  console.log(leaveTaken);
+
+  const [totalLeave, setTotalLeave] = useState(24);
+
+  const availabelLeave = totalLeave - leaveTaken;
+  console.log(availabelLeave);
+
+  // ---------------------------------------------------------------------------------------------------------------
 
   const handleSelect = (event) => setSelect(event.target.value);
 
@@ -296,7 +328,10 @@ const Leave = () => {
                 <Calender />
               </Card>
               <Card elevation={10} sx={{ margin: "10px", padding: "5px" }}>
-                <ChartComponent style={{ willchange: "transform" }} />
+                <ChartComponent
+                  availabelLeave={availabelLeave}
+                  style={{ willchange: "transform" }}
+                />
               </Card>
             </div>
           </div>
