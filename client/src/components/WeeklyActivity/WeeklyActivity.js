@@ -94,44 +94,62 @@ const WeeklyActivity = () => {
   };
 
   return (
-    <div>
+    <div style={{ flex: 1 }}>
       <Box
         sx={{
-          display: "flex",
+          // display: "flex",
           marginTop: "20px",
           marginLeft: "20px",
-          padding: "10px",
+          padding: "5px",
           bgcolor: "#e2e6cf",
           boxShadow: 1,
           borderRadius: "10px",
+          height: "480px",
+          "@media (max-width: 600px)": {
+            overflow: "hidden",
+            position: "relative",
+          },
+
+          "@media (min-width: 600px)": {},
         }}
       >
-        <div
-          onClick={() => {
-            navigate(`/posts/${user.result._id}/fullweeklyactivity`); // Full Weekly Activity route
-          }}
-        >
+        <div>
           <Grid sx={{ display: "flex", flexDirection: "column" }}>
             <Grid
               sx={{
                 display: "flex",
                 flexDirection: "row",
                 marginLeft: "20px",
-                // marginTop: "10px",
                 marginBottom: "30px",
               }}
             >
               <Grid>
+<<<<<<< HEAD
                 <IconButton 
                   onClick={() => {
                     navigate(`/posts/${user.result._id}/fullweeklyactivity`); // Full Weekly Activity route
                   }}
                 >
                   <DescriptionIcon/>
+=======
+                <IconButton>
+                  <DescriptionIcon
+                    onClick={() => {
+                      navigate(`/posts/${user.result._id}/fullweeklyactivity`);
+                    }}
+                  />
+>>>>>>> 08fd0e1963b1818ac381b27732462e942ac1d108
                 </IconButton>
               </Grid>
               <Grid sx={{ marginTop: "10px" }}>
-                <Typography sx={{ fontWeight: "bolder", fontFamily: "Roboto" }}>
+                <Typography
+                  sx={{
+                    fontWeight: "bolder",
+                    fontFamily: "Roboto",
+                    color: "#16355d",
+                    fontSize: "18px",
+                  }}
+                >
                   Weekly Activity
                 </Typography>
               </Grid>

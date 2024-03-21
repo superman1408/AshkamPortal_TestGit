@@ -5,7 +5,7 @@ import { Typography, Grid, Divider, Card } from "@mui/material";
 
 import { getPosts } from "../../action/posts";
 import { dailyAttendance, logList } from "../../action/posts";
-
+import HalfDoughnutWithPointer from "../Attendance/AttendanceChart";
 
 const AttendanceDetail = ({ currentId, posts }) => {
   const dispatch = useDispatch();
@@ -25,13 +25,11 @@ const AttendanceDetail = ({ currentId, posts }) => {
     logOut: "",
   });
 
-
   const array = [];
 
   useEffect(() => {
     array.length = 0;
     dispatch(getPosts()).then(() => {
-      console.log("Activity Display is recieving the posts..!!!@@@@@@");
       // eslint-disable-next-line array-callback-return
       posts.forEach((post) => {
         if (post._id === currentId) {
@@ -47,25 +45,22 @@ const AttendanceDetail = ({ currentId, posts }) => {
     });
   }, [currentId]);
 
-
   const handleSubmit = async (e) => {
-    await dispatch(logList(logData, currentId)).then(() => {
-      alert("Successfully Logged!");
-      window.location.reload();
-    }).catch ((err) => {console.log(err)});
+    await dispatch(logList(logData, currentId))
+      .then(() => {
+        alert("Successfully Logged!");
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
-
-
-
 
   const handleAttendanceSubmit = (e) => {
     e.preventDefault();
     dispatch(dailyAttendance(formData));
     navigate("/home");
   };
-  
-
-
 
   // eslint-disable-next-line array-callback-return
   posts.forEach((post) => {
@@ -76,10 +71,13 @@ const AttendanceDetail = ({ currentId, posts }) => {
           logIn: post.logIn[i],
           logOut: post.logOut[i],
         });
+        console.log(post?.logIn[post.logIn.length - 1]);
+        console.log(post?.logOut[post.logOut.length - 1]);
       }
     }
   });
 
+  const role = user.result.role;
 
   const verifyTheRole = () => {
     if (user.result.role === "admin") {
@@ -89,7 +87,14 @@ const AttendanceDetail = ({ currentId, posts }) => {
     }
   };
 
+  const calculateTotalHours = (logIn, logOut) => {
+    const loginTime = new Date(`01/01/2022 ${logIn}`);
+    const logoutTime = new Date(`01/01/2022 ${logOut}`);
 
+    const diffInMilliseconds = logoutTime - loginTime;
+    const diffInHours = diffInMilliseconds / (1000 * 60 * 60);
+    return diffInHours.toFixed(2);
+  };
 
   return (
     <div style={{ marginBottom: "180px" }}>
@@ -99,7 +104,6 @@ const AttendanceDetail = ({ currentId, posts }) => {
         Employee Attendance
       </h2>
       <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} />
-
       <Grid sx={{ display: "flex", flexDirection: "row" }}>
         {verifyTheRole() && (
           <>
@@ -173,7 +177,9 @@ const AttendanceDetail = ({ currentId, posts }) => {
                     }
                   />
                 </div>
-                <div style={{ display: "flex", float: "right" }}>
+                <div
+                  style={{ display: "flex", float: "right", marginTop: "50px" }}
+                >
                   <button style={{ fontFamily: "Roboto" }} type="submit">
                     Submit
                   </button>
@@ -280,73 +286,93 @@ const AttendanceDetail = ({ currentId, posts }) => {
                 return null;
               })}
             </Typography>
-            <div>
-              <table
-                className="time-sheet-table"
-                style={{
-                  padding: "10px",
-                  borderCollapse: "collapse",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  width: "100%",
-                  // width: "100%",
-                  minWidth: "100vh",
-                }}
-              >
-                <thead>
-                  <tr>
-                    <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                      Date
-                    </th>
-                    <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                      Log In
-                    </th>
-                    <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                      Log Out
-                    </th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  {array.map((item, index) => (
-                    <tr key={index}>
-                      <td
-                        style={{
-                          color: "#e55d17",
-                          fontFamily: "Roboto",
-                          padding: "10px",
-                          alignContent: "center",
-                          whiteSpace: "pre-wrap", // Add this CSS property
-                        }}
-                      >
-                        {item?.logDate}
-                      </td>
-                      <td
-                        style={{
-                          color: "#e55d17",
-                          fontFamily: "Roboto",
-                          padding: "10px",
-                          alignContent: "center",
-                          whiteSpace: "pre-wrap", // Add this CSS property
-                        }}
-                      >
-                        {item?.logIn}
-                      </td>
-                      <td
-                        style={{
-                          color: "#e55d17",
-                          fontFamily: "Roboto",
-                          padding: "10px",
-                          alignContent: "center",
-                          whiteSpace: "pre-wrap", // Add this CSS property
-                        }}
-                      >
-                        {item?.logOut}
-                      </td>
+            <div style={{ display: "flex" }}>
+              <div>
+                <table
+                  className="time-sheet-table"
+                  style={{
+                    padding: "10px",
+                    borderCollapse: "collapse",
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    width: "100%",
+                    // width: "100%",
+                    minWidth: "100vh",
+                  }}
+                >
+                  <thead>
+                    <tr>
+                      <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                        Date
+                      </th>
+                      <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                        Log In
+                      </th>
+                      <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                        Log Out
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+
+                  <tbody>
+                    {array.map((item, index) => (
+                      <tr key={index}>
+                        <td
+                          style={{
+                            color: "#e55d17",
+                            fontFamily: "Roboto",
+                            padding: "10px",
+                            alignContent: "center",
+                            whiteSpace: "pre-wrap", // Add this CSS property
+                          }}
+                        >
+                          {item?.logDate}
+                        </td>
+                        <td
+                          style={{
+                            color: "#e55d17",
+                            fontFamily: "Roboto",
+                            padding: "10px",
+                            alignContent: "center",
+                            whiteSpace: "pre-wrap", // Add this CSS property
+                          }}
+                        >
+                          {item?.logIn}
+                        </td>
+                        <td
+                          style={{
+                            color: "#e55d17",
+                            fontFamily: "Roboto",
+                            padding: "10px",
+                            alignContent: "center",
+                            whiteSpace: "pre-wrap", // Add this CSS property
+                          }}
+                        >
+                          {item?.logOut}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {role === "employee" && (
+                <div style={{ margin: "20px 20px 20px 20px" }}>
+                  {posts.map((post, index) => {
+                    if (post._id === currentId) {
+                      const totalHours = calculateTotalHours(
+                        post.logIn[post.logIn.length - 1],
+                        post.logOut[post.logOut.length - 1]
+                      );
+                      return (
+                        <div key={index}>
+                          <HalfDoughnutWithPointer totalHours={totalHours} />
+                        </div>
+                      );
+                    }
+                    return null;
+                  })}
+                </div>
+              )}
             </div>
           </Card>
         </Grid>

@@ -63,6 +63,7 @@ const Admin = ({ currentId }) => {
               display: "flex",
               marginBottom: "5px",
               flexDirection: "column",
+              flex: 1,
               // bgcolor: "#f0f2f1",
             }}
           >

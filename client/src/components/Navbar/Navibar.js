@@ -57,8 +57,8 @@ const Navibar = () => {
       case "payslip":
         navigate(`/${id}/payslip`);
         break;
-      case "registration":
-        navigate(`/${id}/profile`);
+      case "timeSheet":
+        navigate(`posts/${id}/fullweeklyactivity`);
         break;
       default:
         console.log("Click something dude..!!");
@@ -88,8 +88,8 @@ const Navibar = () => {
                     </IconButton>
                   </Nav.Link>
                   <Nav.Link
-                    onClick={() => openPage(user.result._id, "registration")}
-                    id="registration"
+                    onClick={() => openPage(user.result._id, "timeSheet")}
+                    id="timeSheet"
                     style={{
                       marginTop: "8px",
                       fontFamily: "Roboto",
@@ -97,7 +97,7 @@ const Navibar = () => {
                       color: "#16355d",
                     }}
                   >
-                    Registration
+                    Time Sheet
                   </Nav.Link>
 
                   <NavDropdown

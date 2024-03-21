@@ -98,7 +98,21 @@ const Panel = ({ prop }) => {
   // };
 
   return (
-    <Card sx={{ bgcolor: "#ede4e5", borderRadius: "12px" }} elevation={10}>
+    <Card
+      sx={{
+        bgcolor: "#ede4e5",
+        borderRadius: "12px",
+        "@media (max-width: 600px)": {
+          flexDirection: "column",
+          width: "50vh",
+        },
+
+        "@media (min-width: 600px)": {
+          flexDirection: "column",
+        },
+      }}
+      elevation={10}
+    >
       <Grid
         sx={{
           display: "flex",
@@ -106,13 +120,6 @@ const Panel = ({ prop }) => {
           bgcolor: "#ede4e5",
           width: "100%",
           height: "100vh",
-          "@media (max-width: 600px)": {
-            flexDirection: "column",
-          },
-
-          "@media (min-width: 600px)": {
-            flexDirection: "column",
-          },
         }}
       >
         <Grid>

@@ -86,6 +86,7 @@ const Skill = () => {
               fontWeight: "bolder",
               color: "#16355d",
               fontFamily: "Roboto",
+              fontSize: "18px",
             }}
           >
             Our Services
