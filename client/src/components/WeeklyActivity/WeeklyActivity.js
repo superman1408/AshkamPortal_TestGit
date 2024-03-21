@@ -27,11 +27,7 @@ const WeeklyActivity = () => {
           borderRadius: "10px",
         }}
       >
-        <div
-          onClick={() => {
-            navigate(`/posts/${user.result._id}/fullweeklyactivity`); // Full Weekly Activity route
-          }}
-        >
+        <div>
           <Grid sx={{ display: "flex", flexDirection: "column" }}>
             <Grid
               sx={{
