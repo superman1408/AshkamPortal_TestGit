@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getPost, updateStatus } from "../../../../action/posts";
 import { useNavigate } from "react-router-dom";
-import { Button, Card, Typography, Avatar } from "@mui/material";
+import { Card, Typography, Avatar } from "@mui/material";
 
 import CheckSharpIcon from "@mui/icons-material/CheckSharp";
 import ClearSharpIcon from "@mui/icons-material/ClearSharp";
@@ -33,19 +33,15 @@ const Message = ({ post, currentId }) => {
     if (isLoading === true) {
       dispatch(getPost(currentId));
       updateArray();
-      console.log("useEffect is running...!!!");
-      console.log("currentId", currentId);
       setLoading(false);
     } else {
-      console.log("3 is there");
+      console.log("there is  no change in the data");
       // updateArray();
     }
   }, [currentId, dispatch, isLoading]);
 
   //  ----------------- handle accept----------------------
   const handleAccept = () => {
-    console.log(activeStatus.status);
-    // e.preventDefault();
     if (activeStatus.status === "pending") {
       setActiveStatus({ ...activeStatus, status: "Accepted" });
       dispatch(updateStatus(post._id, { status: "Accepted" }));
@@ -53,15 +49,12 @@ const Message = ({ post, currentId }) => {
       console.log("Status already set");
     }
     setActiveStatus({ ...activeStatus, status: "Accepted" });
-    console.log("4");
     navigate("/home");
   };
 
   // ---------------handle reject ---------------------------
 
   const handleReject = () => {
-    console.log(activeStatus.status);
-    // e.preventDefault();
     if (activeStatus.status === "pending") {
       setActiveStatus({ ...activeStatus, status: "Rejected" });
       dispatch(updateStatus(post._id, { status: "Rejected" }));
@@ -69,7 +62,6 @@ const Message = ({ post, currentId }) => {
       console.log("Status already set");
     }
     setActiveStatus({ ...activeStatus, status: "Rejected" });
-    console.log("5");
     navigate("/home");
   };
 
@@ -90,7 +82,6 @@ const Message = ({ post, currentId }) => {
     });
   }
 
-  console.log(currentId);
 
   return (
     currentId && (
@@ -109,7 +100,7 @@ const Message = ({ post, currentId }) => {
               width: "110vh",
               borderRadius: "12px",
 
-              "@media (max-width: 600px)": {
+              "@media (maxWidth: 600px)": {
                 width: "300px",
               },
             }}
@@ -197,8 +188,8 @@ const Message = ({ post, currentId }) => {
                     width: "600px",
                     backgroundColor: "white",
                   }}
+                  defaultValue={item.message}
                 >
-                  {item.message}
                 </textarea>
               </div>
               <div

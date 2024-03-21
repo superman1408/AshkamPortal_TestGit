@@ -16,10 +16,6 @@ const Communication = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
 
-  console.log(posts);
-
-  const id = useParams();
-  console.log("id in communication page", id);
 
   useEffect(() => {
     dispatch(getPosts());
@@ -33,6 +29,9 @@ const Communication = () => {
     }
   };
 
+
+
+
   return (
     <>
       <div
@@ -40,7 +39,7 @@ const Communication = () => {
           padding: "5px",
           display: "flex",
           backgroundColor: "white",
-          "@media (max-width: 600px)": {
+          "@media (maxWidth: 600px)": {
             flexDirection: "column",
           },
         }}
