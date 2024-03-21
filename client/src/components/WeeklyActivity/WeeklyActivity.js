@@ -98,7 +98,7 @@ const WeeklyActivity = () => {
     <div>
       <Box
         sx={{
-          display: "flex",
+          // display: "flex",
           marginTop: "20px",
           marginLeft: "20px",
           padding: "10px",
