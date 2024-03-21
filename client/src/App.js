@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "@mui/material";
+
 import Authentication from "./components/authentication/Auth";
 import Leave from "./components/Leave/leave";
 import AboutUS from "./components/AboutUs/aboutUs";
@@ -13,11 +14,9 @@ import Communication from "./components/Leave/Communication/Communication";
 import LOGO from "./assets/AshKamLogo.png";
 import BirthdayMail from "./components/Birthday/BirthdayMail";
 import PaySlip from "./components/Payslip/PaySlip";
-// import EmployeeAttendance from "./components/Attendance/EmployeeAttendance";
 import ActivityDisplay from "./components/ActivityDisplay/ActivityDisplay";
 import SkillDisplay from "./components/Skills/SkillDisplay";
 import PrintingLayout from "./components/PrinttingLayout/PrintingLayout";
-import ExcelReader from "./components/ExcelReader/ExcelReader";
 import EvolvePrintLayout from "./components/ActivityDisplay/UnderTrial/EvolvePrintLayout";
 import AttendanceDisplay from "./components/Attendance/AttendanceDisplay";
 import PasswordResetForm from "./components/PasswordReset/PasswordResetForm";
@@ -30,7 +29,6 @@ const App = () => {
     <BrowserRouter>
       <Container maxWidth={false}>
         <header>
-          {/* {printingLayout && ( */}
           <div
             style={{
               display: {
@@ -78,7 +76,6 @@ const App = () => {
             exact
             element={<ActivityDisplay />}
           />
-          <Route path="/employeeAttendance" exact element={<ExcelReader />} />
 
           <Route path="posts/skill" exact element={<SkillDisplay />} />
           <Route path="/birthdaymail" exact element={<BirthdayMail />} />
