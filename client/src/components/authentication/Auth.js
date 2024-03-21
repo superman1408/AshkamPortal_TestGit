@@ -71,7 +71,6 @@ const Auth = () => {
   };
 
   const resetPassword = () => {
-    console.log("Authenticating to reset password..!!");
     navigate("/auth/reset", { replace: true });
   };
 
@@ -87,6 +86,7 @@ const Auth = () => {
         backgroundImage: `url(${image})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
+        padding: "40px",
       }}
     >
       <Card className="card" elevation={10} sx={{ width: "60vh" }}>
@@ -96,7 +96,7 @@ const Auth = () => {
               display: "flex",
               justifyContent: "center",
               color: "primary",
-              marginTop: "10px",
+              marginTop: "2px",
             }}
           >
             <AccountCircleIcon fontSize="large" color="primary" />
