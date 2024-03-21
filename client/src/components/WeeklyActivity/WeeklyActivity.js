@@ -124,21 +124,12 @@ const WeeklyActivity = () => {
               }}
             >
               <Grid>
-<<<<<<< HEAD
-                <IconButton 
-                  onClick={() => {
-                    navigate(`/posts/${user.result._id}/fullweeklyactivity`); // Full Weekly Activity route
-                  }}
-                >
-                  <DescriptionIcon/>
-=======
                 <IconButton>
                   <DescriptionIcon
                     onClick={() => {
                       navigate(`/posts/${user.result._id}/fullweeklyactivity`);
                     }}
                   />
->>>>>>> 08fd0e1963b1818ac381b27732462e942ac1d108
                 </IconButton>
               </Grid>
               <Grid sx={{ marginTop: "10px" }}>
