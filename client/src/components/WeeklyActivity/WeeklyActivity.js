@@ -48,7 +48,13 @@ const WeeklyActivity = () => {
                 </IconButton>
               </Grid>
               <Grid sx={{ marginTop: "10px" }}>
-                <Typography sx={{ fontWeight: "bolder", fontFamily: "Roboto" }}>
+                <Typography
+                  sx={{
+                    fontWeight: "bolder",
+                    color: "#16355d",
+                    fontFamily: "Roboto",
+                  }}
+                >
                   Weekly Activity
                 </Typography>
               </Grid>

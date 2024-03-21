@@ -91,6 +91,7 @@ const TotalEmployee = () => {
                   marginRight: "0px",
                   marginLeft: "20px",
                   fontWeight: "bolder",
+                  color: "#16355d",
                   fontFamily: "Roboto",
                 }}
               >

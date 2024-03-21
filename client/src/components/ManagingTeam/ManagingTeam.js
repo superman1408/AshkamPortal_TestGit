@@ -33,8 +33,10 @@ const ManagingTeam = () => {
           <Grid>
             <Typography
               sx={{
+                color: "#16355d",
                 fontFamily: "Roboto",
                 fontWeight: "bolder",
+                mt: "5px",
                 mb: "1px",
                 ml: "10px",
                 alignItems: "center",

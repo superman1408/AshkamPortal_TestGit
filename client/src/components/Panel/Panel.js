@@ -44,6 +44,8 @@ const Panel = ({ prop }) => {
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
 
+  const id = user.result._id;
+
   // console.log("id in home page", prop);
 
   useEffect(() => {
@@ -66,12 +68,20 @@ const Panel = ({ prop }) => {
     navigate("/home");
   };
 
-  const inboxMode = (id) => {
+  const inboxMode = () => {
     navigate(`/mail/${id}/communication`);
   };
 
-  const employeeMode = (id) => {
+  const employeeMode = () => {
     navigate(`/${id}/profile`);
+  };
+
+  const analytics = () => {
+    navigate(`/posts/${id}/fullweeklyactivity`);
+  };
+
+  const attendance = () => {
+    navigate(`/${id}/attendanceDisplay`);
   };
 
   // const toggleDrawer = (state) => (event) => {
@@ -175,17 +185,6 @@ const Panel = ({ prop }) => {
               <ListItemText sx={{ color: "#16355d" }} primary="Dashboard" />
             </ListItemButton>
 
-            {/* inbox added here */}
-            <ListItemButton
-              sx={{ mb: "10px" }}
-              onClick={() => inboxMode(user.result._id, "inbox")}
-            >
-              <ListItemIcon>
-                <ForwardToInboxTwoToneIcon sx={{ color: "#038f7c" }} />
-              </ListItemIcon>
-              <ListItemText sx={{ color: "#16355d" }} primary="Inbox" />
-            </ListItemButton>
-
             <ListItemButton
               sx={{ mb: "10px" }}
               onClick={() => employeeMode(user.result._id, "registration")}
@@ -193,23 +192,34 @@ const Panel = ({ prop }) => {
               <ListItemIcon>
                 <PeopleAltIcon sx={{ color: "#038f7c" }} />
               </ListItemIcon>
-              <ListItemText sx={{ color: "#16355d" }} primary="Employee" />
+              <ListItemText sx={{ color: "#16355d" }} primary="Profile" />
             </ListItemButton>
 
-            <ListItemButton sx={{ mb: "10px" }}>
+            {/* inbox added here */}
+            <ListItemButton
+              sx={{ mb: "10px" }}
+              onClick={() => inboxMode(user.result._id, "inbox")}
+            >
+              <ListItemIcon sx={{ mb: "10px" }} onClick={dashboardMode}>
+                <ForwardToInboxTwoToneIcon sx={{ color: "#038f7c" }} />
+              </ListItemIcon>
+              <ListItemText sx={{ color: "#16355d" }} primary="Inbox" />
+            </ListItemButton>
+
+            <ListItemButton sx={{ mb: "10px" }} onClick={analytics}>
               <ListItemIcon>
                 <AnalyticsIcon sx={{ color: "#038f7c" }} />
               </ListItemIcon>
               <ListItemText sx={{ color: "#16355d" }} primary="Analytics" />
             </ListItemButton>
 
-            <ListItemButton sx={{ mb: "10px" }}>
+            <ListItemButton sx={{ mb: "10px" }} onClick={attendance}>
               <ListItemIcon>
                 <BadgeIcon sx={{ color: "#038f7c" }} />
               </ListItemIcon>
               <ListItemText
                 sx={{ color: "#16355d" }}
-                primary="Report Attendance"
+                primary="Attendance Report"
               />
             </ListItemButton>
 

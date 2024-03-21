@@ -36,7 +36,12 @@ const Calender = () => {
         >
           <LocalizationProvider
             dateAdapter={AdapterDayjs}
-            sx={{ display: "flex", marginLeft: "0px" }}
+            sx={{
+              display: "flex",
+              marginLeft: "0px",
+              color: "#16355d",
+              fontFamily: "Roboto",
+            }}
           >
             <DateCalendar
               showDaysOutsideCurrentMonth
