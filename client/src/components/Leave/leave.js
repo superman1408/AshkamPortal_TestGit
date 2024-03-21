@@ -7,15 +7,14 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
-import SendSharpIcon from '@mui/icons-material/SendSharp';
-import PublicSharpIcon from '@mui/icons-material/PublicSharp';
+import SendSharpIcon from "@mui/icons-material/SendSharp";
+import PublicSharpIcon from "@mui/icons-material/PublicSharp";
 
 import useStyles from "./style";
 import Panel from "../Panel/Panel";
 import { sendMail, sendMailData } from "../../action/mail";
 import Calender from "../Calender/Calender";
 import ChartComponent from "./pieGraph";
-
 
 const Leave = () => {
   const classes = useStyles();
@@ -31,7 +30,6 @@ const Leave = () => {
 
   const user = JSON.parse(localStorage.getItem("profile"));
 
-
   const [select, setSelect] = useState("");
   const [mailData, setMailData] = useState({
     recipient: "",
@@ -39,11 +37,12 @@ const Leave = () => {
     subject: "",
   });
 
-
-
   const [valueTo, setValueTo] = useState();
 
   const [valueFrom, setValueFrom] = useState();
+
+  console.log(valueTo);
+  console.log(valueFrom);
 
   const options = [
     { label: "SELECT LEAVE", value: "" },
@@ -56,6 +55,9 @@ const Leave = () => {
   const UsFormatter = new Intl.DateTimeFormat("en-US");
   const fromDate = UsFormatter.format(valueTo);
   const toDate = UsFormatter.format(valueFrom);
+
+  const total = toDate + fromDate;
+  console.log(total);
 
   const handleSelect = (event) => setSelect(event.target.value);
 
@@ -88,11 +90,13 @@ const Leave = () => {
 
     if (mailData) {
       dispatch(sendMail(mailData, navigate));
-      dispatch(sendMailData(id, mailData)).then(() => {
-        navigate(`/home`, { replace : true });
-      }).catch ((err) => {
-        console.log("Error : ", err);
-      });
+      dispatch(sendMailData(id, mailData))
+        .then(() => {
+          navigate(`/home`, { replace: true });
+        })
+        .catch((err) => {
+          console.log("Error : ", err);
+        });
       // if (posts) {
       //   posts.map((post) =>
       //     navigate(`/mail/${post._id}/communication`, { replace: true })
@@ -141,10 +145,10 @@ const Leave = () => {
                   sx={{
                     padding: "5px",
                     textAlign: "center",
-                    fontFamily: "Roboto"
+                    fontFamily: "Roboto",
                   }}
                 >
-                  <PublicSharpIcon sx={{marginRight: "10px"}} />
+                  <PublicSharpIcon sx={{ marginRight: "10px" }} />
                   {`${user.result.email}`}
                 </Typography>
               </Grid>
@@ -239,7 +243,7 @@ const Leave = () => {
                     }
                   />
                 )}
-                <Grid sx={{display: "flex", flexDirection: "column"}}>
+                <Grid sx={{ display: "flex", flexDirection: "column" }}>
                   <TextField
                     variant="outlined"
                     required
@@ -255,15 +259,23 @@ const Leave = () => {
                     }
                   />
 
-                  <Button
+                  <button
                     variant="contained"
                     color="primary"
                     type="submit"
-                    sx={{ display: "flex",flexDirection:"column", marginTop: "10px", fontFamily: "Roboto", padding: "12px" }}
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      marginTop: "10px",
+                      fontFamily: "Roboto",
+                      padding: "12px",
+                    }}
                   >
-                    <SendSharpIcon sx={{marginRight: "10px"}} />
+                    <SendSharpIcon sx={{ marginRight: "10px" }} />
                     Send
-                  </Button>
+                  </button>
                 </Grid>
               </Card>
             </div>
@@ -293,3 +305,4 @@ const Leave = () => {
 };
 
 export default Leave;
+

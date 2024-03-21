@@ -29,13 +29,6 @@ const Message = ({ post, currentId }) => {
     setLoading(false);
   };
 
-  // useEffect(() => {
-  //   if (post) {
-  //     dispatch(getPost(currentId));
-  //     // updateArray(post);
-  //   }
-  // }, []);
-
   useEffect(() => {
     if (isLoading === true) {
       dispatch(getPost(currentId));
@@ -56,9 +49,6 @@ const Message = ({ post, currentId }) => {
     if (activeStatus.status === "pending") {
       setActiveStatus({ ...activeStatus, status: "Accepted" });
       dispatch(updateStatus(post._id, { status: "Accepted" }));
-      // navigate('/');
-      // updateArray();
-      // setLoading(true);
     } else {
       console.log("Status already set");
     }
@@ -75,9 +65,6 @@ const Message = ({ post, currentId }) => {
     if (activeStatus.status === "pending") {
       setActiveStatus({ ...activeStatus, status: "Rejected" });
       dispatch(updateStatus(post._id, { status: "Rejected" }));
-      // navigate('/');
-      // updateArray();
-      // setLoading(true);
     } else {
       console.log("Status already set");
     }
@@ -86,12 +73,10 @@ const Message = ({ post, currentId }) => {
     navigate("/home");
   };
 
-
   const verifyTheRole = () => {
     if (user.result.role === "admin" || user.result.role === "manager") {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   };
@@ -105,169 +90,151 @@ const Message = ({ post, currentId }) => {
     });
   }
 
-  // const color = () =>  {item.status === "Accepted" ? (return('green') : return('red')) }
-  // // console.log(array);
-
   console.log(currentId);
 
   return (
     currentId && (
       <div>
-        {" "}
-        <div style={{ width: "500", height: "600" }}>
-          {array.map((item, index) => (
-            <Card
-              key={index}
-              elevation={10}
-              sx={{
-                padding: "15px",
-                width: "auto",
-                margin: "10px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                bgcolor: "smokewhite",
-                borderRadius: "15px",
-              }}
-            >
-              <div key={post.login} className="translate-x-[42%]">
-                <Typography
-                  sx={{
-                    textAlign: "center",
-                    padding: "5px",
-                    // fontWeight: "bold",
-                    fontFamily: "Roboto",
-                    // fontWeight: "bold",
-                    color: "#16355c",
-                  }}
-                >
-                  {item.subject}
-                </Typography>
-              </div>
-              <div className="grid grid-rows-2 justify-between items-center">
+        {array.map((item, index) => (
+          <Card
+            key={index}
+            elevation={10}
+            sx={{
+              padding: "15px",
+              margin: "10px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              bgcolor: "white",
+              width: "110vh",
+              borderRadius: "12px",
+
+              "@media (max-width: 600px)": {
+                width: "300px",
+              },
+            }}
+          >
+            <div key={post.login} className="translate-x-[42%]">
+              <Typography
+                sx={{
+                  textAlign: "center",
+                  padding: "5px",
+                  // fontWeight: "bold",
+                  fontFamily: "Roboto",
+                  // fontWeight: "bold",
+                  color: "#16355c",
+                }}
+              >
+                {item.subject}
+              </Typography>
+            </div>
+            <div className="grid grid-rows-2 justify-between items-center">
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <div
-                  style={{ display: "flex", justifyContent: "space-between" }}
-                >
-                  <div
-                    key={post.selectedFile}
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      alignContent: "center",
-                    }}
-                  >
-                    <Avatar
-                      alt="avatar"
-                      src={post.selectedFile}
-                      size="xs"
-                      withborder="true"
-                      className="p-0.5"
-                    />
-                    <Typography
-                      sx={{
-                        marginLeft: "15px",
-                        marginTop: "5px",
-                        fontFamily: "Roboto",
-                        fontWeight: "bold",
-                        color: "#16355c",
-                      }}
-                    >
-                      {post.firstName + " " + post.lastName}
-                    </Typography>
-                  </div>
-                  {item.status ? (
-                    <Typography
-                      sx={{
-                        marginTop: "5px",
-                        float: "right",
-                        fontFamily: "Roboto",
-                        fontWeight: "bold",
-                        color: "#16355c",
-                      }}
-                    >
-                      Status :{item.status}
-                    </Typography>
-                  ) : (
-                    <Typography
-                      sx={{
-                        marginTop: "5px",
-                        fontFamily: "Roboto",
-                        fontWeight: "bold",
-                        color: "#16355c",
-                      }}
-                    >
-                      Status : Pending
-                    </Typography>
-                  )}
-                </div>
-                <div
-                  key={post.punching}
+                  key={post.selectedFile}
                   style={{
-                    // border: "2px solid #e55d17",
-                    padding: "2px",
-                    marginTop: "10px",
+                    display: "flex",
+                    flexDirection: "row",
+                    alignContent: "center",
                   }}
                 >
-                  <textarea
-                    style={{
-                      resize: "none",
-                      height: "120px",
-                      width: "400px",
-                      backgroundColor: "floralwhite",
-                    }}
-                  >
-                    {item.message}
-                  </textarea>
-                  {/* <Typography
+                  <Avatar
+                    alt="avatar"
+                    src={post.selectedFile}
+                    size="xs"
+                    withborder="true"
+                    className="p-0.5"
+                  />
+                  <Typography
                     sx={{
-                      padding: "10px",
-                      bgcolor: "white",
+                      marginLeft: "15px",
+                      marginTop: "5px",
                       fontFamily: "Roboto",
+                      fontWeight: "bold",
                       color: "#16355c",
                     }}
                   >
-                    {item.message}
-                  </Typography> */}
+                    {post.firstName + " " + post.lastName}
+                  </Typography>
                 </div>
-                <div
-                  key={post._id}
+                {item.status ? (
+                  <Typography
+                    sx={{
+                      marginTop: "5px",
+                      float: "right",
+                      fontFamily: "Roboto",
+                      fontWeight: "bold",
+                      color: "#16355c",
+                    }}
+                  >
+                    Status :{item.status}
+                  </Typography>
+                ) : (
+                  <Typography
+                    sx={{
+                      marginTop: "5px",
+                      fontFamily: "Roboto",
+                      fontWeight: "bold",
+                      color: "#16355c",
+                    }}
+                  >
+                    Status : Pending
+                  </Typography>
+                )}
+              </div>
+              <div
+                key={post.punching}
+                style={{
+                  // border: "2px solid #e55d17",
+                  padding: "2px",
+                  marginTop: "10px",
+                }}
+              >
+                <textarea
                   style={{
-                    display: "flex",
-                    justifyContent: "space-evenly",
-                    marginTop: "10px",
+                    resize: "none",
+                    height: "120px",
+                    width: "600px",
+                    backgroundColor: "white",
                   }}
                 >
-                  {
-                    verifyTheRole() ? (
-                      <>
-                        <Button
-                          sx={{ fontFamily: "Roboto" }}
-                          variant="contained"
-                          onClick={handleAccept}
-                        >
-                          <CheckSharpIcon />
-                            Accept
-                        </Button>
-                        <Button
-                          sx={{ fontFamily: "Roboto" }}
-                          variant="contained"
-                          onClick={handleReject}
-                        >
-                          <ClearSharpIcon />
-                          Reject
-                        </Button>
-                      </>
-                    ) : (
-                      <div>
-                        Please check your status above..!!
-                      </div>
-                    )
-                  }
-                </div>
+                  {item.message}
+                </textarea>
               </div>
-            </Card>
-          ))}
-        </div>
+              <div
+                key={post._id}
+                style={{
+                  display: "flex",
+                  justifyContent: "space-evenly",
+                  marginTop: "10px",
+                }}
+              >
+                {verifyTheRole() ? (
+                  <>
+                    <button
+                      style={{ fontFamily: "Roboto" }}
+                      variant="contained"
+                      onClick={handleAccept}
+                    >
+                      <CheckSharpIcon />
+                      Accept
+                    </button>
+                    <button
+                      style={{ fontFamily: "Roboto" }}
+                      variant="contained"
+                      onClick={handleReject}
+                    >
+                      <ClearSharpIcon />
+                      Reject
+                    </button>
+                  </>
+                ) : (
+                  <div>Please check your status above..!!</div>
+                )}
+              </div>
+            </div>
+          </Card>
+        ))}
       </div>
     )
   );

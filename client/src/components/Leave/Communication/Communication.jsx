@@ -25,24 +25,28 @@ const Communication = () => {
     dispatch(getPosts());
   }, [dispatch, currentId]);
 
-
   const verifyTheRole = () => {
     if (user.result.role === "admin" || user.result.role === "manager") {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   };
 
-
-
-
   return (
     <>
-      <div style={{ padding: "5px", display: "flex", backgroundColor: "lightgray" }}>
+      <div
+        style={{
+          padding: "5px",
+          display: "flex",
+          backgroundColor: "white",
+          "@media (max-width: 600px)": {
+            flexDirection: "column",
+          },
+        }}
+      >
         {/* <Card elevation={10}> */}
-          <Panel />
+        <Panel />
         {/* </Card> */}
         <Grid
           sx={{
@@ -50,12 +54,15 @@ const Communication = () => {
             display: "flex",
             boxShadow: 2,
             margin: "15px",
+            "@media (max-width: 600px)": {
+              flexDirection: "column",
+            },
           }}
         >
           <div
             style={{
               // border: "0.5px dotted gray",
-              background: "floralwhite",
+              background: "white",
               height: "600px",
               overflow: "auto",
               // position: "fixed",
@@ -68,24 +75,23 @@ const Communication = () => {
             }}
           >
             <div>
-              {verifyTheRole() ? (
-                posts.map(
-                  (post) =>
-                    post.name === user.result.name && (
-                      <div key={post._id} style={{ marginTop: "10px" }}>
-                        {" "}
-                        {/* Use post._id as the key */}
-                        <Inbox post={post} setCurrentId={setCurrentId} />
-                        <Divider
-                          variant="inset"
-                          sx={{ borderWidth: "1px", fontWeight: "15px" }}
-                        />
-                      </div>
-                    )
+              {verifyTheRole()
+                ? posts.map(
+                    (post) =>
+                      post.name === user.result.name && (
+                        <div key={post._id} style={{ marginTop: "10px" }}>
+                          {" "}
+                          {/* Use post._id as the key */}
+                          <Inbox post={post} setCurrentId={setCurrentId} />
+                          <Divider
+                            variant="inset"
+                            sx={{ borderWidth: "1px", fontWeight: "15px" }}
+                          />
+                        </div>
+                      )
                   )
-                ) : (
-                  posts.map(
-                    (post) => 
+                : posts.map(
+                    (post) =>
                       post._id === user.result._id && (
                         <div key={post._id} style={{ marginTop: "10px" }}>
                           {" "}
@@ -96,18 +102,17 @@ const Communication = () => {
                             sx={{ borderWidth: "1px", fontWeight: "15px" }}
                           />
                         </div>
-                      ))
-                )
-                }
+                      )
+                  )}
             </div>
           </div>
 
           <div>
-            <div style={{ width: "500", height: "600" }}>
+            <div style={{ height: "600" }}>
               <div
                 style={{
                   // border: "0.5px dotted gray",
-                  background: "lightgray",
+                  background: "white",
                   height: "600px",
                   overflow: "auto",
                   // position: "fixed",
