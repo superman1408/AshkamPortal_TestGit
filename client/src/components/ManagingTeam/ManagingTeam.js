@@ -9,18 +9,19 @@ import avatar4 from "../../assets/sush.jpg";
 
 const ManagingTeam = () => {
   return (
-    <div>
+    <div style={{ display: "flex", flex: 1 }}>
       <Box
         sx={{
-          // width: "340px",
-          // height: "150px",
           display: "flex",
-          marginTop: "20px",
-          marginLeft: "20px",
-          padding: "2px",
+          padding: "3px",
           bgcolor: "#e9edf7",
           boxShadow: 1,
           borderRadius: "10px",
+          width: "300px",
+          overflow: "hidden",
+          position: "relative", // Set position to relative
+          marginTop: "20px",
+          marginLeft: "20px",
         }}
       >
         <Grid

@@ -38,7 +38,7 @@ const Attendance = () => {
 
   const navigate = useNavigate();
   return (
-    <div>
+    <div style={{ display: "flex", flex: 1 }}>
       <Box
         sx={{
           display: "flex",
@@ -49,59 +49,76 @@ const Attendance = () => {
           bgcolor: "#e2e6cf",
           boxShadow: 1,
           borderRadius: "10px",
+          overflow: "hidden",
+          position: "relative", // Set position to relative
+          flex: 1,
         }}
+        // sx={{
+        //   display: "flex",
+        //   marginTop: "52px",
+        //   marginLeft: "20px",
+        //   padding: "8px",
+        //   bgcolor: "#e2e6cf",
+        //   boxShadow: 1,
+        //   borderRadius: "10px",
+        //   // width: "300px",
+        //   overflow: "hidden",
+        //   position: "relative", // Set position to relative
+        // }}
       >
-        <Grid sx={{ display: "flex", flexDirection: "row" }}>
-          <Grid sx={{ marginLeft: "10px" }}>
-            <IconButton
-              onClick={() => {
-                navigate(`/${id}/attendanceDisplay`); // Employee Attendance Route
-              }}
-            >
-              <NewspaperIcon />
-            </IconButton>
-          </Grid>
-          <Grid sx={{ marginLeft: "70px" }}>
-            <Typography
-              sx={{
-                fontFamily: "Roboto",
-                fontWeight: "bold",
-                // marginLeft: "100px",
-                marginTop: "10px",
-                color: "#16355d",
-              }}
-            >
-              ATTENDANCE
-            </Typography>
-          </Grid>
-        </Grid>
-        <div>
-          <Grid
-            sx={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-evenly",
-            }}
-          >
-            <Grid>
-              <Typography sx={{ fontFamily: "Roboto" }}>Total</Typography>
-              <Typography>
-                {+attendanceData.presentEmp + +attendanceData.absentEmp}
+        <Grid sx={{ display: "flex", flexDirection: "column" }}>
+          <Grid sx={{ display: "flex", flexDirection: "row" }}>
+            <Grid sx={{ marginLeft: "10px" }}>
+              <IconButton
+                onClick={() => {
+                  navigate(`/${id}/attendanceDisplay`); // Employee Attendance Route
+                }}
+              >
+                <NewspaperIcon />
+              </IconButton>
+            </Grid>
+            <Grid sx={{ marginLeft: "70px" }}>
+              <Typography
+                sx={{
+                  fontFamily: "Roboto",
+                  fontWeight: "bold",
+                  // marginLeft: "100px",
+                  marginTop: "10px",
+                  color: "#16355d",
+                }}
+              >
+                ATTENDANCE
               </Typography>
             </Grid>
-
-            <Grid sx={{ marginLeft: "40px" }}>
-              <Typography sx={{ fontFamily: "Roboto" }}>Present</Typography>
-
-              <Typography>{attendanceData.presentEmp}</Typography>
-            </Grid>
-
-            <Grid sx={{ marginLeft: "40px" }}>
-              <Typography sx={{ fontFamily: "Roboto" }}>Absent</Typography>
-              <Typography>{attendanceData.absentEmp}</Typography>
-            </Grid>
           </Grid>
-        </div>
+          <div>
+            <Grid
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-evenly",
+              }}
+            >
+              <Grid>
+                <Typography sx={{ fontFamily: "Roboto" }}>Total</Typography>
+                <Typography>
+                  {+attendanceData.presentEmp + +attendanceData.absentEmp}
+                </Typography>
+              </Grid>
+
+              <Grid sx={{ marginLeft: "40px" }}>
+                <Typography sx={{ fontFamily: "Roboto" }}>Present</Typography>
+
+                <Typography>{attendanceData.presentEmp}</Typography>
+              </Grid>
+
+              <Grid sx={{ marginLeft: "40px" }}>
+                <Typography sx={{ fontFamily: "Roboto" }}>Absent</Typography>
+                <Typography>{attendanceData.absentEmp}</Typography>
+              </Grid>
+            </Grid>
+          </div>
+        </Grid>
       </Box>
     </div>
   );
