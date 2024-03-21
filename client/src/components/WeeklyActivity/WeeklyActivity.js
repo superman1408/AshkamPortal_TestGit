@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Box,
-  Typography,
-  Grid,
-  IconButton,
-  CircularProgress,
-} from "@mui/material";
+import { Box, Typography, Grid, IconButton } from "@mui/material";
 import { getPosts } from "../../action/posts";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { useDispatch, useSelector } from "react-redux";
@@ -41,7 +35,6 @@ const WeeklyActivity = () => {
 
   useEffect(() => {
     dispatch(getPosts()).then(() => {
-      console.log("Activity");
       setIsLoading(true);
     });
   }, []);
@@ -125,12 +118,12 @@ const WeeklyActivity = () => {
               }}
             >
               <Grid>
-                <IconButton>
-                  <DescriptionIcon
-                    onClick={() => {
-                      navigate(`/posts/${user.result._id}/fullweeklyactivity`);
-                    }}
-                  />
+                <IconButton
+                  onClick={() => {
+                    navigate(`/posts/${user.result._id}/fullweeklyactivity`);
+                  }}
+                >
+                  <DescriptionIcon />
                 </IconButton>
               </Grid>
               <Grid sx={{ marginTop: "10px" }}>

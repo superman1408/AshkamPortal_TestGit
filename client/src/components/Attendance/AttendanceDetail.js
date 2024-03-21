@@ -71,8 +71,6 @@ const AttendanceDetail = ({ currentId, posts }) => {
           logIn: post.logIn[i],
           logOut: post.logOut[i],
         });
-        console.log(post?.logIn[post.logIn.length - 1]);
-        console.log(post?.logOut[post.logOut.length - 1]);
       }
     }
   });

@@ -145,54 +145,6 @@ const Auth = () => {
                     />
                   )}
                 </div>
-
-                {/* <div style={{ display: "flex", flexDirection: "column" }}>
-                  <div style={{ alignItems: "center" }}>
-                    {selectedOption === "manager" ? (
-                      <ManageAccountsIcon
-                        fontSize="small"
-                        style={{ color: "#047681" }}
-                      />
-                    ) : (
-                      <ManageAccountsOutlinedIcon fontSize="10px" />
-                    )}
-                  </div>
-
-                  <label style={{ fontFamily: "Roboto ", color: "#16355d" }}>
-                    <input
-                      style={{ marginRight: "5px", padding: "2px" }}
-                      name="role"
-                      type="checkbox"
-                      checked={selectedOption === "manager"}
-                      onChange={() => handleCheckboxChange("manager")}
-                    />
-                    Manager
-                  </label>
-                </div> */}
-
-                {/* <div style={{ display: "flex", flexDirection: "column" }}>
-                  <div style={{ alignItems: "center" }}>
-                    {selectedOption === "employee" ? (
-                      <BadgeIcon
-                        fontSize="small"
-                        style={{ color: "#16355c" }}
-                      />
-                    ) : (
-                      <BadgeOutlinedIcon fontSize="10px" />
-                    )}
-                  </div>
-
-                  <label style={{ fontFamily: "Roboto ", color: "#16355d" }}>
-                    <input
-                      style={{ marginRight: "5px", padding: "2px" }}
-                      name="role"
-                      type="checkbox"
-                      checked={selectedOption === "employee"}
-                      onChange={() => handleCheckboxChange("employee")}
-                    />
-                    Employee
-                  </label>
-                </div> */}
               </div>
             )}
 
@@ -308,23 +260,6 @@ const Auth = () => {
                     label="Confirm Password"
                   />
                 </FormControl>
-
-                // <TextField
-                //   sx={{ marginTop: "10px" }}
-                //   name="confirmPassword"
-                //   type="password"
-                //   variant="outlined"
-                //   required
-                //   fullWidth
-                //   label="Confirm Password"
-                //   autoComplete="on"
-                //   onChange={(e) =>
-                //     setFormData({
-                //       ...formData,
-                //       confirmPassword: e.target.value,
-                //     })
-                //   }
-                // />
               )}
             </div>
             <div>

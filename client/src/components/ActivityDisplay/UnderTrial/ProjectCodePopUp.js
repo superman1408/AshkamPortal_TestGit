@@ -31,7 +31,6 @@ const ProjectCodePopUp = ({ setProjectCode, setProjectOpen }) => {
   const appendData = () => {
     const updatedList = officeCode + year + monthNumber + serialNo; // Combine officeCode and year
     setProjectCode(updatedList);
-    console.log(updatedList);
     setProjectOpen(false);
   };
 
@@ -44,7 +43,6 @@ const ProjectCodePopUp = ({ setProjectCode, setProjectOpen }) => {
     const selectedMonthNumber = getMonthNumber(selectedMonthName); // Convert month name to month number
     setMonth(selectedMonthName); // Update month state with the month number
     setMonthNumber(selectedMonthNumber);
-    console.log(selectedMonthNumber);
   };
 
   // Function to convert month name to its number
@@ -68,7 +66,6 @@ const ProjectCodePopUp = ({ setProjectCode, setProjectOpen }) => {
   };
 
   useEffect(() => {
-    console.log(month);
   }, [month]);
 
   return (

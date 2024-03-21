@@ -19,7 +19,7 @@ const HalfDoughnutWithPointer = ({ totalHours }) => {
   };
 
   return (
-    <Card elevation="5" sx={{ width: "200px", height: "200px" }}>
+    <Card sx={{ width: "200px", height: "200px" }}>
       <Doughnut data={data} />
     </Card>
   );

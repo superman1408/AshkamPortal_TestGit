@@ -46,7 +46,6 @@ function Evolve({ currentId, posts }) {
   useEffect(() => {
     array.length = 0;
     dispatch(getPosts()).then(() => {
-      console.log("Data recieved in Evolve page...!!!@@$$");
       // eslint-disable-next-line array-callback-return
       posts.map((post) => {
         for (let i = 0; i < post.projectCode.length; i++) {
@@ -142,7 +141,6 @@ function Evolve({ currentId, posts }) {
 
   //Logic for clearing the form.........
   const clearForm = () => {
-    console.log("Clear....!!!");
     setProjectCode("");
     setActivityCode("");
     setDate("");
@@ -196,7 +194,6 @@ function Evolve({ currentId, posts }) {
         return console.log("Error in deleting the file..!!");
       });
     let updatedArray = updateArray();
-    console.log(updatedArray[index]);
   };
 
   //To Edit the entry....!!!!
@@ -474,10 +471,7 @@ function Evolve({ currentId, posts }) {
                     >
                       <tbody>
                         {posts.map((post, index) => {
-                          console.log(post._id);
                           if (post._id === currentId) {
-                            console.log("current", post._id);
-                            console.log("currentId", currentId);
                             return (
                               <>
                                 <tr key={index}>
