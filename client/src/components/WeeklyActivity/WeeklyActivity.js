@@ -95,30 +95,32 @@ const WeeklyActivity = () => {
   };
 
   return (
-    <div>
+    <div style={{ flex: 1 }}>
       <Box
         sx={{
           // display: "flex",
           marginTop: "20px",
           marginLeft: "20px",
-          padding: "10px",
+          padding: "5px",
           bgcolor: "#e2e6cf",
           boxShadow: 1,
           borderRadius: "10px",
+          height: "480px",
+          "@media (max-width: 600px)": {
+            overflow: "hidden",
+            position: "relative",
+          },
+
+          "@media (min-width: 600px)": {},
         }}
       >
-        <div
-          onClick={() => {
-            navigate(`/posts/${user.result._id}/fullweeklyactivity`); // Full Weekly Activity route
-          }}
-        >
+        <div>
           <Grid sx={{ display: "flex", flexDirection: "column" }}>
             <Grid
               sx={{
                 display: "flex",
                 flexDirection: "row",
                 marginLeft: "20px",
-                // marginTop: "10px",
                 marginBottom: "30px",
               }}
             >
@@ -126,20 +128,13 @@ const WeeklyActivity = () => {
                 <IconButton>
                   <DescriptionIcon
                     onClick={() => {
-                      navigate(`/posts/${user.result._id}/fullweeklyactivity`); // Full Weekly Activity route
+                      navigate(`/posts/${user.result._id}/fullweeklyactivity`);
                     }}
                   />
                 </IconButton>
               </Grid>
               <Grid sx={{ marginTop: "10px" }}>
-                <Typography
-                  sx={{
-                    fontWeight: "bolder",
-                    color: "#16355d",
-                    fontFamily: "Roboto",
-                    fontSize: "18px",
-                  }}
-                >
+                <Typography sx={{ fontWeight: "bolder", fontFamily: "Roboto" }}>
                   Weekly Activity
                 </Typography>
               </Grid>
