@@ -13,7 +13,6 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
     const updatedList = disciplineCode + activitiesCode + subActivityCode; // Combine disciplineCode and year
     // const updatedList = disciplineCode + ; // Combine disciplineCode and year
     setActivityCode(updatedList);
-    console.log(updatedList);
     setActivityOpen(false);
   };
 
@@ -28,7 +27,6 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
     const selectedDisciplineCode = getDisciplineCode(selectedDiscipline); // Convert month name to month number
     setDiscipline(selectedDiscipline);
     setDisciplineCode(selectedDisciplineCode); // Update month state with the month number
-    console.log("selectedDisciplineCoden", selectedDisciplineCode);
   };
 
   const handleActivitiesChange = (event) => {
@@ -36,7 +34,6 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
     const selectedActivitiesCode = getActivitiesCode(selectedActivities); // Convert month name to month number
     setActivities(selectedActivities);
     setActivitiesCode(selectedActivitiesCode); // Update month state with the month number
-    console.log("selectedActivitiesCode", selectedActivitiesCode);
   };
 
   // Function to convert month name to its number
@@ -84,7 +81,6 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
   };
 
   useEffect(() => {
-    console.log(discipline);
   }, [discipline]);
 
   //  ---------------Sub  Activity Code Function -------------------------------
@@ -94,7 +90,6 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
     const selectedSubActivityCode = getSubActivityCode(selectedSubActivity); // Convert month name to month number
     setSubActivity(selectedSubActivity);
     setSubActivityCode(selectedSubActivityCode); // Update month state with the month number
-    console.log("selectedDisciplineCoden", selectedSubActivity);
   };
 
   // Function to convert month name to its number
@@ -164,7 +159,6 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
   };
 
   useEffect(() => {
-    console.log(discipline);
   }, [discipline]);
 
   return (
