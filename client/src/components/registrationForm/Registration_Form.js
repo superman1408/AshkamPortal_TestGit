@@ -310,7 +310,6 @@ const RegistrationForm = () => {
                       name="role"
                       variant="outlined"
                       required
-                      fullwidth="true"
                       label="Role"
                       sx={{ marginTop: "10px" }}
                       value={postData.role}
@@ -340,10 +339,9 @@ const RegistrationForm = () => {
                   name="firstName"
                   variant="outlined"
                   required
-                  fullwidth="true"
                   disabled={true}
                   label="First Name"
-                  sx={{ marginTop: "10px" }}
+                  sx={{ margin: "20px" }}
                   value={postData.firstName}
                   onChange={(e) =>
                     setPostData({ ...postData, firstName: e.target.value })
@@ -355,16 +353,14 @@ const RegistrationForm = () => {
                   name="lastName"
                   variant="outlined"
                   required
-                  fullwidth="true"
                   disabled={true}
                   label="Last Name"
-                  sx={{ marginTop: "10px" }}
+                  sx={{ margin: "20px" }}
                   value={postData.lastName}
                   onChange={(e) =>
                     setPostData({ ...postData, lastName: e.target.value })
                   }
                 />
-                {/* </div> */}
 
                 <div
                   style={{ display: "flex", justifyContent: "space-between" }}
@@ -462,7 +458,7 @@ const RegistrationForm = () => {
                     sx={{ marginTop: "30px" }}
                     variant="outlined"
                     required
-                    fullwidth="true"
+                    fullWidth
                     type="email"
                     name="email"
                     label="Email"
@@ -530,7 +526,7 @@ const RegistrationForm = () => {
                     sx={{ marginTop: "10px" }}
                     variant="outlined"
                     required
-                    fullwidth="true"
+                    fullWidth
                     label="Street Address"
                     name="streetAddress"
                     value={postData.streetAddress}
@@ -543,13 +539,12 @@ const RegistrationForm = () => {
                   />
                 </div>
 
-                <Grid sx={{ display: "flex", justifyContent: "space-between" }}>
-                  <div>
+                <Grid sx={{ display: "flex", justifyContent: "space-between", padding: '2px' }}>
+                  <div style={{padding: '2px' }}>
                     <TextField
                       sx={{ marginTop: "10px" }}
                       variant="outlined"
                       required
-                      fullwidth="true"
                       label="City"
                       name="city"
                       value={postData.city}
@@ -558,12 +553,11 @@ const RegistrationForm = () => {
                       }
                     />
                   </div>
-                  <div>
+                  <div style={{padding: '2px' }}>
                     <TextField
                       sx={{ marginTop: "10px" }}
                       variant="outlined"
                       required
-                      fullwidth="true"
                       label="State"
                       name="state"
                       value={postData.state}
@@ -573,12 +567,11 @@ const RegistrationForm = () => {
                     />
                   </div>
 
-                  <div>
+                  <div style={{padding: '2px' }}>
                     <TextField
                       sx={{ marginTop: "10px" }}
                       variant="outlined"
                       required
-                      fullwidth="true"
                       label="Pincode"
                       name="pincode"
                       value={postData.pincode}
@@ -603,7 +596,7 @@ const RegistrationForm = () => {
                   <TextField
                     variant="outlined"
                     required
-                    fullwidth="true"
+                    fullWidth
                     label="Skills"
                     name="jobSkills"
                     value={postData.jobSkills}
@@ -617,7 +610,7 @@ const RegistrationForm = () => {
                     sx={{ marginTop: "10px" }}
                     variant="outlined"
                     required
-                    fullwidth="true"
+                    fullWidth
                     label="Job Role"
                     name="jobTitle"
                     value={postData.jobTitle}
@@ -631,7 +624,7 @@ const RegistrationForm = () => {
                     sx={{ marginTop: "10px" }}
                     variant="outlined"
                     required
-                    fullwidth="true"
+                    fullWidth
                     label="Employee Id"
                     name="employeeId"
                     value={postData.employeeId}
@@ -645,7 +638,7 @@ const RegistrationForm = () => {
                     sx={{ marginTop: "10px" }}
                     variant="outlined"
                     required
-                    fullwidth="true"
+                    fullWidth
                     label="Department"
                     name="department"
                     value={postData.department}
@@ -659,7 +652,7 @@ const RegistrationForm = () => {
                     sx={{ marginTop: "10px" }}
                     variant="outlined"
                     required
-                    fullwidth="true"
+                    fullWidth
                     label="Reporting Manager"
                     name="ReportingManager"
                     value={postData.reportingManager}
@@ -686,7 +679,7 @@ const RegistrationForm = () => {
                   <TextField
                     variant="outlined"
                     required
-                    fullwidth="true"
+                    fullWidth
                     label="Name"
                     name="emergencyName"
                     value={postData.emergencyName}
@@ -703,7 +696,7 @@ const RegistrationForm = () => {
                     sx={{ marginTop: "10px" }}
                     variant="outlined"
                     required
-                    fullwidth="true"
+                    fullWidth
                     label="Address"
                     name="emergencyAddress"
                     value={postData.emergencyAddress}
@@ -720,7 +713,7 @@ const RegistrationForm = () => {
                     sx={{ marginTop: "10px" }}
                     variant="outlined"
                     required
-                    fullwidth="true"
+                    fullWidth
                     label="Contact Number"
                     name="emergencyContact"
                     value={postData.emergencyContact}
@@ -737,7 +730,7 @@ const RegistrationForm = () => {
                     sx={{ marginTop: "10px" }}
                     variant="outlined"
                     required
-                    fullwidth="true"
+                    fullWidth
                     label="Relationship"
                     name="relationship"
                     value={postData.relationship}
@@ -762,7 +755,7 @@ const RegistrationForm = () => {
                     type="submit"
                     variant="contained"
                     required
-                    fullwidth="true"
+                    fullWidth
                   >
                     Register
                   </button>
