@@ -83,9 +83,10 @@ const Attendance = () => {
                   // marginLeft: "100px",
                   marginTop: "10px",
                   color: "#16355d",
+                  fontSize: "18px",
                 }}
               >
-                ATTENDANCE
+                Attendance
               </Typography>
             </Grid>
           </Grid>
