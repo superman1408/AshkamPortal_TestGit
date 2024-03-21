@@ -97,7 +97,7 @@ const Auth = () => {
               marginTop: "2px",
             }}
           >
-            <AccountCircleIcon fontSize="large" color="primary" />
+            <AccountCircleIcon fontSize="large" color={isSignUp ? "primary" : "secondary"} />
           </div>
 
           <h4 style={{ fontFamily: "Roboto ", color: "#16355d" }}>
