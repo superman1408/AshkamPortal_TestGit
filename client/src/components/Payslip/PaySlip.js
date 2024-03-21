@@ -686,7 +686,7 @@ const PaySlip = () => {
                           // id="standard-basic"
                           label="amount"
                           variant="outlined"
-                          value={pf}
+                          // value={}
                           // onChange={(e) =>
                           //   setPostData({ ...postData, pf: e.target.value })
                           // }
@@ -784,7 +784,7 @@ const PaySlip = () => {
                           // id="standard-basic"
                           label="amount"
                           variant="outlined"
-                          value=""
+                          // value=""
                           // onChange={(e) =>
                           //   setPostData({
                           //     ...postData,
