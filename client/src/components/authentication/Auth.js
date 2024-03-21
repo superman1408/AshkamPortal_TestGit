@@ -3,12 +3,10 @@ import { Button, Grid, TextField, Card } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { signin, signup } from "../../action/auth";
 import { useDispatch } from "react-redux";
+
+
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import ManageAccountsOutlinedIcon from "@mui/icons-material/ManageAccountsOutlined";
-import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
-import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
-import BadgeIcon from "@mui/icons-material/Badge";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -266,6 +264,7 @@ const Auth = () => {
               <Button
                 variant="contained"
                 required
+                color={isSignUp ? "primary" : "secondary"}
                 fullWidth
                 type="submit"
                 sx={{ marginTop: "10px", fontFamily: "Roboto" }}
