@@ -148,10 +148,10 @@ const Panel = ({ prop }) => {
         <Grid>
           <Typography
             sx={{
-              // justifyContent: "center",
-              // textAlign: "center",
+              justifyContent: "center",
+              textAlign: "center",
               fontFamily: "Roboto",
-              marginLeft: "70px",
+              // marginLeft: "70px",
               marginTop: "10px",
               color: "#16355d",
             }}
