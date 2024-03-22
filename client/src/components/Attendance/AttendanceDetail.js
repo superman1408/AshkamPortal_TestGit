@@ -354,7 +354,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
                   </tbody>
                 </table>
               </div>
-              {role === ("employee" || "manager") && (
+              {(role === "employee" || role === "manager") && (
                 <div style={{ margin: "0px 20px 20px 50px" }}>
                   {posts.map((post, index) => {
                     if (post._id === currentId) {

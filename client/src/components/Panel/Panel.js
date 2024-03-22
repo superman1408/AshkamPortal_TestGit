@@ -237,15 +237,11 @@ const Panel = ({ prop }) => {
               <ListItemText sx={{color: "#16355d"}} primary="settings" />
             </ListItemButton> */}
 
-            <ListItemButton sx={{ mb: "10px" }}>
+            <ListItemButton sx={{ mb: "10px" }} onClick={switchMode}>
               <ListItemIcon>
                 <LogoutIcon sx={{ color: "#038f7c" }} />
               </ListItemIcon>
-              <ListItemText
-                sx={{ color: "#16355d" }}
-                onClick={switchMode}
-                primary="logout"
-              />
+              <ListItemText sx={{ color: "#16355d" }} primary="Logout" />
             </ListItemButton>
           </Box>
         </Grid>

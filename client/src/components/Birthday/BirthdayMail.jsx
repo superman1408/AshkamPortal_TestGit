@@ -38,7 +38,6 @@ export default function AlertDialogSlide() {
   const dispatch = useDispatch();
 
   const posts = useSelector((state) => state.posts);
-  console.log(posts);
 
   useEffect(() => {
     dispatch(getPosts());
@@ -100,7 +99,13 @@ export default function AlertDialogSlide() {
           />
         </DialogContent>
         <DialogActions>
-          <Button variant="contained" style={{color: 'black', backgroundColor: 'pink'}} onClick={handleClose}>Send</Button>
+          <Button
+            variant="contained"
+            style={{ color: "black", backgroundColor: "pink" }}
+            onClick={handleClose}
+          >
+            Send
+          </Button>
           {/* <Button onClick={handleClose}>Agree</Button> */}
         </DialogActions>
       </Dialog>

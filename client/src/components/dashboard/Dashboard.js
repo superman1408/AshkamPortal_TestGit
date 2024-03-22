@@ -26,9 +26,6 @@ const Admin = ({ currentId }) => {
 
   const role = user.result.role;
 
-  const id = useParams();
-  // console.log("id in home page", id);
-
   return (
     <div style={{ minheight: "100%", padding: "10px" }}>
       <Box
@@ -93,10 +90,10 @@ const Admin = ({ currentId }) => {
                   <div style={{ width: "20px", height: "30px" }}>
                     <Avatar
                       sx={{
-                        width: 40,
-                        height: 40,
+                        width: 30,
+                        height: 30,
                         marginLeft: "30px",
-                        // bgcolor: "orange",
+                        marginTop: "5px",
                       }}
                       src={
                         role === "employee"
