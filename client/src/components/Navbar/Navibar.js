@@ -45,8 +45,8 @@ const Navibar = () => {
     navigate("/auth");
   };
 
+
   const openPage = (id, action) => {
-    console.log(action);
     switch (action) {
       case "leave":
         navigate(`/mail/${id}/leave`);
@@ -64,6 +64,7 @@ const Navibar = () => {
         console.log("Click something dude..!!");
     }
   };
+
 
   return (
     <Navbar sticky="top" expand="lg" className="bg-body-tertiary">

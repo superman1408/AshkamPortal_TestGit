@@ -12,18 +12,15 @@ const Inbox = ({ post, setCurrentId }) => {
   const openMessage = (e) => {
     e.stopPropagation();
     setCurrentId(post._id);
-    console.log("clickedId", clickedId);
-    // setIsClicked(true); // Set the isClicked state to true when the button is clicked
     if (clickedId === post._id) {
       setIsClicked(true);
-      console.log("here");
     } else setIsClicked(!isClicked);
   };
 
   return (
     <div
       style={{
-        "@media (max-width: 600px)": {
+        "@media (maxWidth: 600px)": {
           width: "50px",
         },
       }}

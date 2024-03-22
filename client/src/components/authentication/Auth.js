@@ -3,12 +3,9 @@ import { Button, Grid, TextField, Card } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { signin, signup } from "../../action/auth";
 import { useDispatch } from "react-redux";
+
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import ManageAccountsOutlinedIcon from "@mui/icons-material/ManageAccountsOutlined";
-import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
-import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
-import BadgeIcon from "@mui/icons-material/Badge";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -17,7 +14,7 @@ import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import OutlinedInput from "@mui/material/OutlinedInput";
-import image from "../../assets/LoginImage.png";
+import image from "../../assets/LoginBackground.png";
 import "./style.css";
 import { ToastContainer } from "react-toastify";
 
@@ -71,7 +68,6 @@ const Auth = () => {
   };
 
   const resetPassword = () => {
-    console.log("Authenticating to reset password..!!");
     navigate("/auth/reset", { replace: true });
   };
 
@@ -87,6 +83,7 @@ const Auth = () => {
         backgroundImage: `url(${image})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
+        padding: "40px",
       }}
     >
       <Card className="card" elevation={10} sx={{ width: "60vh" }}>
@@ -96,10 +93,13 @@ const Auth = () => {
               display: "flex",
               justifyContent: "center",
               color: "primary",
-              marginTop: "10px",
+              marginTop: "2px",
             }}
           >
-            <AccountCircleIcon fontSize="large" color="primary" />
+            <AccountCircleIcon
+              fontSize="large"
+              color={isSignUp ? "primary" : "secondary"}
+            />
           </div>
 
           <h4 style={{ fontFamily: "Roboto ", color: "#16355d" }}>
@@ -266,6 +266,7 @@ const Auth = () => {
               <Button
                 variant="contained"
                 required
+                color={isSignUp ? "primary" : "secondary"}
                 fullWidth
                 type="submit"
                 sx={{ marginTop: "10px", fontFamily: "Roboto" }}
