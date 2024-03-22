@@ -267,13 +267,14 @@ const AttendanceDetail = ({ currentId, posts }) => {
             </Grid>
           </>
         )}
-        <Grid>
-          <Card>
+        <Grid sx={{ padding: "2px" }}>
+          <Card sx={{ padding: "5px" }}>
             <Typography
               style={{
-                fontFamily: "robota",
+                fontFamily: "Roboto",
                 fontWeight: "bold",
                 margin: "10px",
+                color: "#16355d",
               }}
             >
               Employee Name :{" "}
