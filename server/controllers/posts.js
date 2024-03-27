@@ -76,15 +76,14 @@ export const deletePost = async (req, res) => {
 export const sendData = async (req, res) => {
   const { id } = req.params;
   const value = req.body;
-  console.log("value", value);
-  console.log("value of this part is working");
-  console.log(id);
+  // console.log("value", value);
+  // console.log(id);
 
   const post = await AuthenticateUser.findById(id);
   post.recipient.push(value.recipient);
   post.requiredMessage.push(value.requiredMessage);
   post.subject.push(value.subject);
-  console.log(value.recipient);
+  // console.log(value.recipient);
 
   const updatePost = await AuthenticateUser.findByIdAndUpdate(id, post, {
     new: true,
@@ -92,8 +91,9 @@ export const sendData = async (req, res) => {
   res.status(200).json(updatePost);
 };
 
+
+
 export const updatedStatus = async (req, res) => {
-  console.log("Yes i can change the status");
   const { id } = req.params;
   // console.log(id);
   const value = req.body;
@@ -158,7 +158,6 @@ export const skillData = async (req, res) => {
 };
 
 export const editTable = async (req, res) => {
-  console.log("Hello I am editing Your Table Please WAIT...!!!@@");
   const id = req.params.id;
   const indexNumber = parseInt(req.params.indexed);
   const valueToEdit = req.body;
@@ -184,7 +183,6 @@ export const editTable = async (req, res) => {
 };
 
 export const deleteTable = async (req, res) => {
-  console.log("Hello I am trying to DELETE your item Please WAIT...!!!@@");
   const indexNumber = parseInt(req.params.indexed);
   const id = req.params.id;
   try {
@@ -209,19 +207,7 @@ export const deleteTable = async (req, res) => {
   }
 };
 
-// const updatedPost = await AuthenticateUser.findByIdAndUpdate(id, {
-//   projectCode: array,
-// });
 
-// const authId = req.userId;
-// const userProfile = await AuthenticateUser.findById(authId);
-// if (!userProfile) return res.status(404).json({ msg: "No User Found" });
-// const skillsArray = userProfile.skills;
-// skillsArray.splice(indexNumber, 1);
-// userProfile.skills = skillsArray;
-// userProfile.save();
-// res.send("Deleted Successfully!");
-// };
 
 // _________________________Attendancev Data Status_____________________________
 export const dailyAttendance = async (req, res) => {

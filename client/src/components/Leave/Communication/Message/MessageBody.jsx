@@ -82,7 +82,6 @@ const Message = ({ post, currentId }) => {
     });
   }
 
-
   return (
     currentId && (
       <div>
@@ -166,7 +165,7 @@ const Message = ({ post, currentId }) => {
                       marginTop: "5px",
                       fontFamily: "Roboto",
                       fontWeight: "bold",
-                      color: "#16355c",
+                      color: "#1aba7d",
                     }}
                   >
                     Status : Pending
@@ -189,8 +188,7 @@ const Message = ({ post, currentId }) => {
                     backgroundColor: "white",
                   }}
                   defaultValue={item.message}
-                >
-                </textarea>
+                ></textarea>
               </div>
               <div
                 key={post._id}

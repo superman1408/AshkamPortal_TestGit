@@ -36,13 +36,12 @@ const Leave = () => {
 
   const [valueFrom, setValueFrom] = useState();
 
-
   const options = [
     { label: "SELECT LEAVE", value: "" },
     { label: "Casual Leave", value: "Casual Leave" },
     { label: "Sick Leave", value: "Sick Leave" },
-    { label: "P Leave", value: "P Leave" },
-    { label: "Floating Leave", value: "Floating Leave" },
+    // { label: "P Leave", value: "P Leave" },
+    // { label: "Floating Leave", value: "Floating Leave" },
   ];
 
   const UsFormatter = new Intl.DateTimeFormat("en-US");
@@ -84,7 +83,6 @@ const Leave = () => {
 
   const handleSelect = (event) => setSelect(event.target.value);
 
-
   const leaveType = select;
 
   const handleSubmit = (e) => {
@@ -103,8 +101,6 @@ const Leave = () => {
     clear();
   };
 
-
-
   const clear = () => {
     setMailData({
       recipient: "",
@@ -112,9 +108,6 @@ const Leave = () => {
       subject: "",
     });
   };
-
-
-
 
   return (
     <div
@@ -259,7 +252,7 @@ const Leave = () => {
                       })
                     }
                   />
-                  <div style={{display: "flex",justifyContent: "right" }}>
+                  <div style={{ display: "flex", justifyContent: "right" }}>
                     <button
                       variant="contained"
                       type="submit"
@@ -311,4 +304,3 @@ const Leave = () => {
 };
 
 export default Leave;
-
