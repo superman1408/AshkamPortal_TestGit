@@ -166,6 +166,7 @@ const TotalEmployee = () => {
               }}
             >
               <Chart
+              
                 chartType="PieChart"
                 data={[
                   ["Task", "Hours per Day"],
