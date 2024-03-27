@@ -17,7 +17,6 @@ import ActivityCodePopUp from "./ActivityCodePopUp";
 import { getPosts } from "../../../action/posts";
 
 import LOGO from "../../../assets/AshkamLogoTransparentbc.png";
-import print from "../../../assets/print.png";
 
 import { useReactToPrint } from "react-to-print";
 
@@ -260,15 +259,6 @@ function Evolve({ currentId, posts }) {
 
       {/* form Body start from here....!! */}
 
-      <div style={{ float: "right", width: "5px", height: "5px" }}>
-        <ButtonBase sx={{ float: "right" }} onClick={handletrue}>
-          <img
-            style={{ float: "right", width: "30px", height: "30px" }}
-            src={print}
-            alt="print"
-          />
-        </ButtonBase>
-      </div>
       <div className="time-sheet-container" style={{ display: "flex" }}>
         <Grid
           sx={{
