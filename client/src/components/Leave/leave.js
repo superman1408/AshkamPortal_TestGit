@@ -20,6 +20,9 @@ const Leave = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // const posts = useSelector((state) => state.posts);
+  const totalLeave = 24;
+
   const { id } = useParams();
   const user = JSON.parse(localStorage.getItem("profile"));
 
@@ -73,19 +76,18 @@ const Leave = () => {
 
   const leaveTaken = calculateTotalDays();
 
-  const [totalLeave, setTotalLeave] = useState(24);
+  
 
   const availabelLeave = totalLeave - leaveTaken;
 
   // ---------------------------------------------------------------------------------------------------------------
 
   const handleSelect = (event) => setSelect(event.target.value);
-
   const leaveType = select;
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (mailData) {
       dispatch(sendMail(mailData, navigate));
       dispatch(sendMailData(id, mailData))
@@ -99,6 +101,8 @@ const Leave = () => {
     clear();
   };
 
+
+
   const clear = () => {
     setMailData({
       recipient: "",
@@ -106,6 +110,9 @@ const Leave = () => {
       subject: "",
     });
   };
+
+
+
 
   return (
     <div
