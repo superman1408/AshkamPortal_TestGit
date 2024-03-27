@@ -25,7 +25,7 @@ app.use("/posts", postsRouters);
 app.use("/mail", mailRouters);
 
 app.get("/", (req, res) => {
-  res.status(200).send("I am a SuperMan");
+  res.status(200).send("Hello to ASHKAM  API");
   console.log("Super is here..!!");
 });
 
