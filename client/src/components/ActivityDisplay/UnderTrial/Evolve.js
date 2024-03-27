@@ -5,7 +5,6 @@ import {
   CircularProgress,
   Box,
   Button,
-  ButtonBase,
 } from "@mui/material";
 
 import { useDispatch } from "react-redux";
@@ -36,6 +35,7 @@ function Evolve({ currentId, posts }) {
   const [activityopen, setActivityOpen] = useState(false);
 
   const user = JSON.parse(localStorage.getItem("profile"));
+  // eslint-disable-next-line no-unused-vars
   const [role, setRole] = useState(user?.result?.role);
 
   const [printingShow, setPrintingShow] = useState(false);
@@ -62,6 +62,7 @@ function Evolve({ currentId, posts }) {
         }
       });
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading, currentId]);
 
   const handleSubmit = async (e) => {
@@ -192,7 +193,7 @@ function Evolve({ currentId, posts }) {
       .catch((err) => {
         return console.log("Error in deleting the file..!!");
       });
-    let updatedArray = updateArray();
+    updateArray();
   };
 
   //To Edit the entry....!!!!
@@ -460,7 +461,9 @@ function Evolve({ currentId, posts }) {
                       }}
                     >
                       <tbody>
-                        {posts.map((post, index) => {
+                        {
+                        // eslint-disable-next-line array-callback-return
+                        posts.map((post, index) => {
                           if (post._id === currentId) {
                             return (
                               <>
