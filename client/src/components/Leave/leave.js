@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Button, Card, Grid, TextField, Typography } from "@mui/material";
+import { Card, Grid, TextField, Typography } from "@mui/material";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
 import SendSharpIcon from "@mui/icons-material/SendSharp";
@@ -20,8 +20,6 @@ const Leave = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const posts = useSelector((state) => state.posts);
-
   const { id } = useParams();
   const user = JSON.parse(localStorage.getItem("profile"));
 
