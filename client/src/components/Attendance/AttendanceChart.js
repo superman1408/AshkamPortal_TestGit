@@ -11,7 +11,8 @@ const HalfDoughnutWithPointer = ({ totalHours }) => {
       {
         label: "# of Votes",
         data: [totalHours, 8.3],
-        backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
+        // backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
+        backgroundColor: ["#e55d17", "#047682"],
         borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
         borderWidth: 1,
       },

@@ -77,12 +77,12 @@ const WeeklyActivity = () => {
       {
         label: "Net Time",
         data: netTimeData[0],
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
+        backgroundColor: "#eb9367",
       },
       {
         label: "Over Time",
         data: overTimeData[0],
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        backgroundColor: "#047682",
       },
     ],
   };
