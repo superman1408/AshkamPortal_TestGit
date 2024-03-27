@@ -246,9 +246,9 @@ const Leave = () => {
                       fontWeight: "bold",
                       fontSize: "20px",
                     }}
-                    value={`\n\n\n\n\n\nRegards\n${
+                    defaultValue={`\n\n\n\n\n\nThanks & Regards\n${
                       user.result.firstName + " " + user.result.lastName
-                    } `}
+                    } | ${user.result.department}`}
                     // Regards & username should be on two lines one by one
                     onChange={(e) =>
                       setMailData({
