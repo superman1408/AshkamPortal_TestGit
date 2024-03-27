@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Card, Divider } from "@mui/material";
+import { Grid, Divider } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import Panel from "../../Panel/Panel";
 
@@ -7,15 +7,11 @@ import Inbox from "./Inbox/inbox";
 import MessageBody from "./Message/MessageBody";
 import { getPosts } from "../../../action/posts";
 
-// import { Root, Overlay, Content } from "@radix-ui/react-dialog";
-import { useParams } from "react-router-dom";
-
 const Communication = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
   const [currentId, setCurrentId] = useState(user.result.id);
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
-
 
   useEffect(() => {
     dispatch(getPosts());
@@ -29,9 +25,6 @@ const Communication = () => {
     }
   };
 
-
-
-
   return (
     <>
       <div
@@ -44,9 +37,7 @@ const Communication = () => {
           },
         }}
       >
-        {/* <Card elevation={10}> */}
         <Panel />
-        {/* </Card> */}
         <Grid
           sx={{
             bgcolor: "white",
@@ -75,26 +66,19 @@ const Communication = () => {
           >
             <div>
               {verifyTheRole()
-                ? posts.map(
-                    (post) =>
-                      post.name === user.result.name && (
-                        <div key={post._id} style={{ marginTop: "10px" }}>
-                          {" "}
-                          {/* Use post._id as the key */}
-                          <Inbox post={post} setCurrentId={setCurrentId} />
-                          <Divider
-                            variant="inset"
-                            sx={{ borderWidth: "1px", fontWeight: "15px" }}
-                          />
-                        </div>
-                      )
-                  )
+                ? posts.map((post) => (
+                    <div key={post._id} style={{ marginTop: "10px" }}>
+                      <Inbox post={post} setCurrentId={setCurrentId} />
+                      <Divider
+                        variant="inset"
+                        sx={{ borderWidth: "1px", fontWeight: "15px" }}
+                      />
+                    </div>
+                  ))
                 : posts.map(
                     (post) =>
                       post._id === user.result._id && (
                         <div key={post._id} style={{ marginTop: "10px" }}>
-                          {" "}
-                          {/* Use post._id as the key */}
                           <Inbox post={post} setCurrentId={setCurrentId} />
                           <Divider
                             variant="inset"
