@@ -45,8 +45,8 @@ const Inbox = ({ post, setCurrentId }) => {
           sx={{
             display: "flex",
             flexDirection: "row",
-            alignContent: "space-between",
-            marginRight: "80px",
+            justifyContent: "space-between",
+            marginRight: "50px",
           }}
         >
           <Avatar
@@ -66,10 +66,10 @@ const Inbox = ({ post, setCurrentId }) => {
         </Grid>
 
         {/* <div width="calc(50%)">
-            <Typography variant="h5" color="black">
-              {post?.name}
-            </Typography>
-          </div> */}
+          <Typography variant="h5" color="black">
+            {post?.firstName}
+          </Typography>
+        </div> */}
       </ButtonBase>
       {/* </Button> */}
     </div>
@@ -77,3 +77,5 @@ const Inbox = ({ post, setCurrentId }) => {
 };
 
 export default Inbox;
+
+//  all avatar should align in same distance from right margin
