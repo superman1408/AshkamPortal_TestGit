@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAttendancePosts } from "../../action/posts";
 
-import { Box, Grid, Typography, ButtonBase, IconButton } from "@mui/material";
+import { Box, Grid, Typography, IconButton } from "@mui/material";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 
 const Attendance = () => {
@@ -13,6 +13,7 @@ const Attendance = () => {
   });
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const attend = useSelector((state) => state.attend);
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -34,7 +35,7 @@ const Attendance = () => {
     }
   }, [dispatch, attend]);
 
-  const navigate = useNavigate();
+
   return (
     <div style={{ display: "flex", flex: 1 }}>
       <Box
@@ -51,18 +52,6 @@ const Attendance = () => {
           position: "relative", // Set position to relative
           flex: 1,
         }}
-        // sx={{
-        //   display: "flex",
-        //   marginTop: "52px",
-        //   marginLeft: "20px",
-        //   padding: "8px",
-        //   bgcolor: "#e2e6cf",
-        //   boxShadow: 1,
-        //   borderRadius: "10px",
-        //   // width: "300px",
-        //   overflow: "hidden",
-        //   position: "relative", // Set position to relative
-        // }}
       >
         <Grid sx={{ display: "flex", flexDirection: "column" }}>
           <Grid sx={{ display: "flex", flexDirection: "row" }}>

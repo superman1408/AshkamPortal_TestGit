@@ -2,24 +2,22 @@ import { Grid, Button } from "@mui/material";
 import React, { useRef } from "react";
 import { useState } from "react";
 
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import LOGO from "../../../assets/AshkamLogoTransparentbc.png";
 
-// import html2pdf from "html2pdf";
 
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
-import { getPosts } from "../../../action/posts";
+
 
 const EvolvePrintingLayout = () => {
-  // setPrintingLayout(false);
   const location = useLocation();
   const { projectCode, activityCode, date, netTime, overTime } = location.state;
-
-  console.log("project", projectCode);
   const user = JSON.parse(localStorage.getItem("profile"));
   const [isPrinting, setIsPrinting] = useState(false);
+
+
 
   const pdfRef = useRef();
   const downloadPdf = (e) => {
@@ -56,11 +54,7 @@ const EvolvePrintingLayout = () => {
     });
   };
 
-  const navigate = useNavigate();
-  const handleStateChange = () => {
-    // setPrintingLayout(true); // Change the state to true
-    navigate("/evolvePrintingLayout");
-  };
+  
 
   return (
     <>

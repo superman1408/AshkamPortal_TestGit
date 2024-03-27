@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 // import Evolve from "./UnderTrial/Evolve";
 import { getPosts } from "../../action/posts";
 
-import Attendance from "./Attendance";
 import AttendanceCombo from "./AttendanceCombo";
 import AttendanceDetail from "./AttendanceDetail";
 
@@ -33,6 +32,8 @@ const AttendanceDisplay = () => {
     }
     setIsLoading(false);
   }, [isLoading]);
+
+  
 
   return (
     <div>

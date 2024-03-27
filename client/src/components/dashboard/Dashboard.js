@@ -1,8 +1,6 @@
 import React from "react";
-// import Navbar from "../Navbar/navbar";
 
 import WeeklyActivity from "../WeeklyActivity/WeeklyActivity";
-// import Skill from "../Skills/Skill";
 import TotalEmployee from "../TotalEmployee/TotalEmployee";
 import ManagingTeam from "../ManagingTeam/ManagingTeam";
 import Calender from "../Calender/Calender";
@@ -11,15 +9,15 @@ import Birthday from "../Birthday/Birthday";
 import { Avatar, Box, Grid, Typography } from "@mui/material";
 import Panel from "../Panel/Panel";
 import Attendance from "../Attendance/Attendance";
-import { useParams } from "react-router-dom";
 import SkillDisplay from "../Skills/SkillDisplay";
-// import { useLocation } from "react-router-dom";
-// import { useDispatch } from "react-redux";
+
 import employee from "../../assets/employeeimg.png";
 
 import manager from "../../assets/managerimg.png";
-
 import admin from "../../assets/IT.png";
+
+
+
 
 const Admin = ({ currentId }) => {
   const user = JSON.parse(localStorage.getItem("profile"));

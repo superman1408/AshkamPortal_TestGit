@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Card } from "@mui/material";
+
+
+
 
 const ComboBox = ({ posts, setCurrentId }) => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -11,7 +13,6 @@ const ComboBox = ({ posts, setCurrentId }) => {
   };
 
   return (
-    // <Card elevation={5} sx={{ backgroundColor: "blue" }}>
     <select
       value={selectedOption}
       onChange={handleChange}
@@ -37,7 +38,6 @@ const ComboBox = ({ posts, setCurrentId }) => {
         </option>
       ))}
     </select>
-    // </Card>
   );
 };
 

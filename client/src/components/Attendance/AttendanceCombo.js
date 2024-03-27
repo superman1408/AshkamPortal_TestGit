@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Card } from "@mui/material";
 
 const AttendanceCombo = ({ posts, setCurrentId }) => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -11,7 +10,6 @@ const AttendanceCombo = ({ posts, setCurrentId }) => {
   };
 
   return (
-    // <Card elevation={5} sx={{ backgroundColor: "blue" }}>
     <select
       value={selectedOption}
       onChange={handleChange}

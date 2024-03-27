@@ -4,8 +4,6 @@ import {
   IconButton,
   Typography,
   Grid,
-  Input,
-  Button,
 } from "@mui/material";
 
 import { getPosts } from "../../action/posts";
@@ -14,28 +12,24 @@ import { useDispatch, useSelector } from "react-redux";
 import WcIcon from "@mui/icons-material/Wc";
 import WomanIcon from "@mui/icons-material/Woman";
 import ManIcon from "@mui/icons-material/Man";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-
 import { Chart } from "react-google-charts";
+
 
 const TotalEmployee = () => {
   const [isEditing, setIsEditing] = useState(false);
-
+  const dispatch = useDispatch();
+  const posts = useSelector((state) => state.posts);
   // Editable data state
   const [menCount, setMenCount] = useState(0);
   const [womenCount, setWomenCount] = useState(0);
 
-  const handleEditToggle = () => {
-    setIsEditing(!isEditing);
-  };
-
-  const dispatch = useDispatch();
-
-  const posts = useSelector((state) => state.posts);
+  
 
   useEffect(() => {
     dispatch(getPosts());
-  }, []);
+  }, [posts]);
+
+
 
   useEffect(() => {
     if (posts.length > 0) {
@@ -52,6 +46,9 @@ const TotalEmployee = () => {
       setWomenCount(women);
     }
   }, [posts]);
+
+
+
 
   return (
     <div>
