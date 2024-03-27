@@ -5,7 +5,6 @@ import {
   CircularProgress,
   Box,
   Button,
-  ButtonBase,
 } from "@mui/material";
 
 import { useDispatch } from "react-redux";
@@ -62,6 +61,7 @@ function Evolve({ currentId, posts }) {
         }
       });
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading, currentId]);
 
   const handleSubmit = async (e) => {

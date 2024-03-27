@@ -20,7 +20,7 @@ const Leave = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const posts = useSelector((state) => state.posts);
+
   const totalLeave = 24;
 
   const { id } = useParams();
@@ -76,15 +76,12 @@ const Leave = () => {
 
   const leaveTaken = calculateTotalDays();
 
-  
-
   const availabelLeave = totalLeave - leaveTaken;
 
   // ---------------------------------------------------------------------------------------------------------------
 
   const handleSelect = (event) => setSelect(event.target.value);
   const leaveType = select;
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -101,8 +98,6 @@ const Leave = () => {
     clear();
   };
 
-
-
   const clear = () => {
     setMailData({
       recipient: "",
@@ -110,9 +105,6 @@ const Leave = () => {
       subject: "",
     });
   };
-
-
-
 
   return (
     <div
@@ -249,7 +241,15 @@ const Leave = () => {
                     fullWidth
                     multiline
                     minRows={8}
-                    sx={{ marginTop: "10px", fontWeight: "200px" }}
+                    sx={{
+                      marginTop: "10px",
+                      fontWeight: "bold",
+                      fontSize: "20px",
+                    }}
+                    value={`\n\n\n\n\n\nRegards\n${
+                      user.result.firstName + " " + user.result.lastName
+                    } `}
+                    // Regards & username should be on two lines one by one
                     onChange={(e) =>
                       setMailData({
                         ...mailData,
