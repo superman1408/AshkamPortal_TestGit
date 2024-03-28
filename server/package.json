@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node index.js"
   },
-  "author": "Farheen",
+  "author": "Ashkam IT",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
