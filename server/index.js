@@ -25,8 +25,7 @@ app.use("/posts", postsRouters);
 app.use("/mail", mailRouters);
 
 app.get("/", (req, res) => {
-  res.status(200).send("Hello to ASHKAM  API");
-  console.log("Super is here..!!");
+  res.send("Hello to ASHKAM  API");
 });
 
 mongoose.set("strictQuery", true);
