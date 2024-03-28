@@ -134,7 +134,7 @@ const Birthday = () => {
                         <Avatar
                           post={post}
                           sx={{
-                            width: 30,
+                            width: 31,
                             height: 30,
                             marginLeft: "20px",
                           }}
