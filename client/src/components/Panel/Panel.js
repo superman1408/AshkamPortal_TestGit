@@ -138,7 +138,8 @@ const Panel = ({ prop }) => {
               sx={{
                 width: 40,
                 height: 40,
-                marginLeft: "10px",
+                // marginLeft: "10px",
+                justifyContent: "center",
                 bgcolor: "orange",
               }}
               src={user.result.selectedFile}

@@ -47,7 +47,7 @@ export default function AlertDialogSlide() {
 
   return (
     <div>
-      {hasEvents && (
+      {/* {hasEvents && (
         <Button
           variant="contained"
           sx={{ marginLeft: "150px" }}
@@ -55,7 +55,7 @@ export default function AlertDialogSlide() {
         >
           Wish
         </Button>
-      )}
+      )} */}
 
       <Dialog
         open={open}

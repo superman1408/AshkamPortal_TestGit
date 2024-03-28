@@ -103,7 +103,7 @@ const Birthday = () => {
               or try again later.
             </marquee>
           ) : (
-            <div>
+            <div style={{ padding: "10px", width: "100%" }}>
               {posts.map((post) => {
                 let day = new Date(post.dob).getDate();
                 let month = new Date(post.dob).getMonth() + 1;
