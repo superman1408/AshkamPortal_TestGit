@@ -16,9 +16,6 @@ import employee from "../../assets/employeeimg.png";
 import manager from "../../assets/managerimg.png";
 import admin from "../../assets/IT.png";
 
-
-
-
 const Admin = ({ currentId }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
 
@@ -74,11 +71,11 @@ const Admin = ({ currentId }) => {
                 display: "flex",
                 flexDirection: "row",
                 marginTop: "20px",
-                "@media (max-width: 600px)": {
+                "@media (max-width: 750px)": {
                   flexDirection: "column",
                 },
 
-                "@media (min-width: 600px)": {
+                "@media (min-width: 750px)": {
                   flexDirection: "row",
                 },
               }}
@@ -130,11 +127,11 @@ const Admin = ({ currentId }) => {
                 <Grid
                   sx={{
                     display: "flex",
-                    "@media (max-width: 600px)": {
+                    "@media (max-width: 720px)": {
                       flexDirection: "column",
                     },
 
-                    "@media (min-width: 600px)": {
+                    "@media (min-width: 720px)": {
                       flexDirection: "row",
                     },
                   }}

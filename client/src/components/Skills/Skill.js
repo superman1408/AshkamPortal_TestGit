@@ -63,11 +63,11 @@ const Skill = () => {
       <Box
         sx={{
           display: "flex",
-          padding: "8px",
+          padding: "10px",
           bgcolor: "#f2d5d6",
           boxShadow: 1,
           borderRadius: "10px",
-          width: "300px",
+          // width: "300px",
           overflow: "hidden",
           position: "relative", // Set position to relative
         }}
@@ -76,7 +76,8 @@ const Skill = () => {
           sx={{
             marginBottom: "22px",
             marginTop: "5px",
-            marginLeft: "5px",
+            marginLeft: "10px",
+            marginRight: "10px",
             alignItems: "center",
             justifyContent: "center",
           }}
