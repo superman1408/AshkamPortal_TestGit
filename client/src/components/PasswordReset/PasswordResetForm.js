@@ -35,16 +35,17 @@ const PasswordResetForm = () => {
 
   return (
     <Grid
-      padding="20px"
+      padding="10px"
       container
       spacing={0}
       direction="column"
       alignItems="center"
-      justify="center"
+      justifyContent="center"
     >
       <Card
         elevation={10}
         sx={{
+          justifyContent: "center",
           padding: "20px",
           backgroundColor: "#f2f2f2",
           borderCollapse: "collapse",
@@ -53,7 +54,7 @@ const PasswordResetForm = () => {
       >
         <h3
           style={{
-            marginLeft: "70px",
+            textAlign: "center",
             fontFamily: "Roboto ",
             color: "#0d325c",
           }}
@@ -64,14 +65,15 @@ const PasswordResetForm = () => {
           <Grid
             sx={{
               flexDirection: "column",
-              padding: "10px",
-              marginLeft: "50px",
+              paddingLeft: "50px",
+              justifyContent: "center",
             }}
           >
-            <Grid sx={{ padding: "10px" }}>
+            <Grid sx={{ padding: "10px", alignItems: "center" }}>
               <input
+                type="password"
                 label="Secret Code"
-                placeholder="Code"
+                placeholder="Secret Code"
                 name="secretCode"
                 variant="outlined"
                 onChange={(event) => setCode(event.target.value)}

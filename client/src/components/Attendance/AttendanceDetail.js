@@ -14,6 +14,8 @@ const AttendanceDetail = ({ currentId, posts }) => {
 
   const navigate = useNavigate();
 
+  const [totalHours, setTotalHours] = useState(null);
+
   const [formData, setFormData] = useState({
     presentEmployee: "",
     absentEmployee: "",
@@ -92,6 +94,23 @@ const AttendanceDetail = ({ currentId, posts }) => {
     const diffInMilliseconds = logoutTime - loginTime;
     const diffInHours = diffInMilliseconds / (1000 * 60 * 60);
     return diffInHours.toFixed(2);
+  };
+
+  const handleHoverDate = (logDate) => {
+    const hoveredLog = array.find((item) => item.logDate === logDate);
+    if (hoveredLog) {
+      // Calculate total hours for the hovered log date
+      const totalHours = calculateTotalHours(
+        hoveredLog.logIn,
+        hoveredLog.logOut
+      );
+
+      // Update state with the total hours
+      setTotalHours(totalHours);
+    } else {
+      // If no matching log is found, reset total hours to null
+      setTotalHours(null);
+    }
   };
 
   return (
@@ -315,7 +334,10 @@ const AttendanceDetail = ({ currentId, posts }) => {
 
                   <tbody>
                     {array.map((item, index) => (
-                      <tr key={index}>
+                      <tr
+                        key={index}
+                        onClick={() => handleHoverDate(item.logDate)}
+                      >
                         <td
                           style={{
                             color: "#e55d17",
@@ -356,20 +378,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
               </div>
               {(role === "employee" || role === "manager") && (
                 <div style={{ margin: "0px 20px 20px 50px" }}>
-                  {posts.map((post, index) => {
-                    if (post._id === currentId) {
-                      const totalHours = calculateTotalHours(
-                        post.logIn[post.logIn.length - 1],
-                        post.logOut[post.logOut.length - 1]
-                      );
-                      return (
-                        <div key={index}>
-                          <HalfDoughnutWithPointer totalHours={totalHours} />
-                        </div>
-                      );
-                    }
-                    return null;
-                  })}
+                  <HalfDoughnutWithPointer totalHours={totalHours} />
                 </div>
               )}
             </div>
