@@ -7,6 +7,8 @@ import decode from "jwt-decode";
 
 import { LOGOUT } from "../../constants/actionTypes";
 
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 import {
   Box,
   Grid,
@@ -18,6 +20,9 @@ import {
   Stack,
   Avatar,
   Card,
+  Button,
+  Drawer,
+  list,
 } from "@mui/material";
 
 import DashboardIcon from "@mui/icons-material/Dashboard";
@@ -31,10 +36,14 @@ import ForwardToInboxTwoToneIcon from "@mui/icons-material/ForwardToInboxTwoTone
 
 // import avatar1 from "../../assets/Profile.jpg";
 
-const Panel = ({ prop }) => {
+const Panel = () => {
   // eslint-disable-next-line no-unused-vars
-  const [state, setState] = React.useState();
+  const [state, setState] = useState({
+    left: false,
+  });
   // const [Btn, setBtn] = useState(false);
+
+  const matches = useMediaQuery("(min-width:1120px)");
 
   const dispatch = useDispatch();
 
@@ -97,6 +106,17 @@ const Panel = ({ prop }) => {
   //   setState(state);
   // };
 
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
+
   return (
     <Card
       sx={{
@@ -113,140 +133,159 @@ const Panel = ({ prop }) => {
       }}
       elevation={10}
     >
-      <Grid
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          bgcolor: "#ede4e5",
-          width: "100%",
-          height: "100vh",
-        }}
-      >
-        <Grid>
-          <Stack
-            flexDirection="row"
+      <div>
+        {matches && (
+          //   <div>
+          //     {["left"].map((anchor) => (
+          //       <React.Fragment key={anchor}>
+          //         <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+          //         <Drawer
+          //           anchor={anchor}
+          //           open={state[anchor]}
+          //           onClose={toggleDrawer(anchor, false)}
+          //         >
+          //           {/* {Panel(anchor)} */}
+          //         </Drawer>
+          //       </React.Fragment>
+          //     ))}
+          //   </div>
+          // ) : (
+          <Grid
             sx={{
-              mt: "10px",
-              ml: "85px",
-              display: {
-                xs: "block",
-                sm: "block",
-              },
+              display: "flex",
+              flexDirection: "column",
+              bgcolor: "#ede4e5",
+              width: "100%",
+              height: "100vh",
             }}
           >
-            <Avatar
+            <Grid>
+              <Stack
+                flexDirection="row"
+                sx={{
+                  mt: "10px",
+                  ml: "85px",
+                  display: {
+                    xs: "block",
+                    sm: "block",
+                  },
+                }}
+              >
+                <Avatar
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    // marginLeft: "10px",
+                    justifyContent: "center",
+                    bgcolor: "orange",
+                  }}
+                  src={user.result.selectedFile}
+                />
+              </Stack>
+            </Grid>
+            <Grid>
+              <Typography
+                sx={{
+                  justifyContent: "center",
+                  textAlign: "center",
+                  fontFamily: "Roboto",
+                  // marginLeft: "70px",
+                  marginTop: "10px",
+                  color: "#16355d",
+                }}
+              >
+                {user.result.firstName + " " + user.result.lastName}
+              </Typography>
+            </Grid>
+
+            <Divider sx={{ mb: 6, ml: 0, mr: 0 }} />
+            <Card
+              elevation={5}
               sx={{
-                width: 40,
-                height: 40,
-                // marginLeft: "10px",
-                justifyContent: "center",
-                bgcolor: "orange",
+                backgroundColor: "#16355d",
+                marginLeft: "50px",
+                marginRight: "50px",
+                marginTop: "-30px",
+                marginBottom: "30px",
               }}
-              src={user.result.selectedFile}
-            />
-          </Stack>
-        </Grid>
-        <Grid>
-          <Typography
-            sx={{
-              justifyContent: "center",
-              textAlign: "center",
-              fontFamily: "Roboto",
-              // marginLeft: "70px",
-              marginTop: "10px",
-              color: "#16355d",
-            }}
-          >
-            {user.result.firstName + " " + user.result.lastName}
-          </Typography>
-        </Grid>
-
-        <Divider sx={{ mb: 6, ml: 0, mr: 0 }} />
-        <Card
-          elevation={5}
-          sx={{
-            backgroundColor: "#16355d",
-            marginLeft: "50px",
-            marginRight: "50px",
-            marginTop: "-30px",
-            marginBottom: "30px",
-          }}
-        >
-          <Typography
-            sx={{
-              color: "white",
-              textAlign: "center",
-              fontFamily: "Robota",
-              fontWeight: "bold",
-              fontSize: "12px",
-            }}
-          >
-            {user.result.role.toUpperCase()}
-          </Typography>
-        </Card>
-        <Grid>
-          <Box sx={{ mb: "10px" }}>
-            <ListItemButton sx={{ mb: "10px" }} onClick={dashboardMode}>
-              <ListItemIcon>
-                <DashboardIcon sx={{ color: "#038f7c" }} />
-              </ListItemIcon>
-              <ListItemText sx={{ color: "#16355d" }} primary="Dashboard" />
-            </ListItemButton>
-
-            <ListItemButton
-              sx={{ mb: "10px" }}
-              onClick={() => employeeMode(user.result._id, "registration")}
             >
-              <ListItemIcon>
-                <PeopleAltIcon sx={{ color: "#038f7c" }} />
-              </ListItemIcon>
-              <ListItemText sx={{ color: "#16355d" }} primary="Profile" />
-            </ListItemButton>
+              <Typography
+                sx={{
+                  color: "white",
+                  textAlign: "center",
+                  fontFamily: "Robota",
+                  fontWeight: "bold",
+                  fontSize: "12px",
+                }}
+              >
+                {user.result.role.toUpperCase()}
+              </Typography>
+            </Card>
+            <Grid>
+              <Box sx={{ mb: "10px" }}>
+                <ListItemButton sx={{ mb: "10px" }} onClick={dashboardMode}>
+                  <ListItemIcon>
+                    <DashboardIcon sx={{ color: "#038f7c" }} />
+                  </ListItemIcon>
+                  <ListItemText sx={{ color: "#16355d" }} primary="Dashboard" />
+                </ListItemButton>
 
-            {/* inbox added here */}
-            <ListItemButton
-              sx={{ mb: "10px" }}
-              onClick={() => inboxMode(user.result._id, "inbox")}
-            >
-              <ListItemIcon sx={{ mb: "10px" }} onClick={dashboardMode}>
-                <ForwardToInboxTwoToneIcon sx={{ color: "#038f7c" }} />
-              </ListItemIcon>
-              <ListItemText sx={{ color: "#16355d" }} primary="Inbox" />
-            </ListItemButton>
+                <ListItemButton
+                  sx={{ mb: "10px" }}
+                  onClick={() => employeeMode(user.result._id, "registration")}
+                >
+                  <ListItemIcon>
+                    <PeopleAltIcon sx={{ color: "#038f7c" }} />
+                  </ListItemIcon>
+                  <ListItemText sx={{ color: "#16355d" }} primary="Profile" />
+                </ListItemButton>
 
-            <ListItemButton sx={{ mb: "10px" }} onClick={analytics}>
-              <ListItemIcon>
-                <AnalyticsIcon sx={{ color: "#038f7c" }} />
-              </ListItemIcon>
-              <ListItemText sx={{ color: "#16355d" }} primary="Analytics" />
-            </ListItemButton>
+                {/* inbox added here */}
+                <ListItemButton
+                  sx={{ mb: "10px" }}
+                  onClick={() => inboxMode(user.result._id, "inbox")}
+                >
+                  <ListItemIcon sx={{ mb: "10px" }} onClick={dashboardMode}>
+                    <ForwardToInboxTwoToneIcon sx={{ color: "#038f7c" }} />
+                  </ListItemIcon>
+                  <ListItemText sx={{ color: "#16355d" }} primary="Inbox" />
+                </ListItemButton>
 
-            <ListItemButton sx={{ mb: "10px" }} onClick={attendance}>
-              <ListItemIcon>
-                <BadgeIcon sx={{ color: "#038f7c" }} />
-              </ListItemIcon>
-              <ListItemText
-                sx={{ color: "#16355d" }}
-                primary="Attendance Report"
-              />
-            </ListItemButton>
+                <ListItemButton sx={{ mb: "10px" }} onClick={analytics}>
+                  <ListItemIcon>
+                    <AnalyticsIcon sx={{ color: "#038f7c" }} />
+                  </ListItemIcon>
+                  <ListItemText sx={{ color: "#16355d" }} primary="Analytics" />
+                </ListItemButton>
 
-            {/* <ListItemButton sx={{ mb: "10px" }}>
+                <ListItemButton sx={{ mb: "10px" }} onClick={attendance}>
+                  <ListItemIcon>
+                    <BadgeIcon sx={{ color: "#038f7c" }} />
+                  </ListItemIcon>
+                  <ListItemText
+                    sx={{ color: "#16355d" }}
+                    primary="Attendance Report"
+                  />
+                </ListItemButton>
+
+                {/* <ListItemButton sx={{ mb: "10px" }}>
               <ListItemIcon>
                 <SettingsIcon sx={{ color: "#038f7c" }} />
               </ListItemIcon>
               <ListItemText sx={{color: "#16355d"}} primary="settings" />
             </ListItemButton> */}
 
-            <ListItemButton sx={{ mb: "10px" }} onClick={switchMode}>
-              <ListItemIcon>
-                <LogoutIcon sx={{ color: "#038f7c" }} />
-              </ListItemIcon>
-              <ListItemText sx={{ color: "#16355d" }} primary="Logout" />
-            </ListItemButton>
-          </Box>
-        </Grid>
-      </Grid>
+                <ListItemButton sx={{ mb: "10px" }} onClick={switchMode}>
+                  <ListItemIcon>
+                    <LogoutIcon sx={{ color: "#038f7c" }} />
+                  </ListItemIcon>
+                  <ListItemText sx={{ color: "#16355d" }} primary="Logout" />
+                </ListItemButton>
+              </Box>
+            </Grid>
+          </Grid>
+        )}
+      </div>
     </Card>
   );
 };

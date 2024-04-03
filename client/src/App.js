@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -20,10 +20,10 @@ import PrintingLayout from "./components/PrinttingLayout/PrintingLayout";
 import EvolvePrintLayout from "./components/ActivityDisplay/UnderTrial/EvolvePrintLayout";
 import AttendanceDisplay from "./components/Attendance/AttendanceDisplay";
 import PasswordResetForm from "./components/PasswordReset/PasswordResetForm";
+import Panel from "./components/Panel/Panel";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
-  const [printingLayout, setPrintingLayout] = useState(true);
 
   return (
     <BrowserRouter>
@@ -42,60 +42,57 @@ const App = () => {
           </div>
           {/* )} */}
         </header>
-        {printingLayout && <Navibar />}
+        <Navibar />
+        <div style={{ display: "flex" }}>
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={!user ? <Authentication /> : <Dashboard />}
+            />
+            {/* this part need to be examined after ward */}
 
-        <Routes>
-          <Route
-            exact
-            path="/"
-            element={!user ? <Authentication /> : <Dashboard />}
-          />
-          {/* this part need to be examined after ward */}
+            <Route path="/auth" exact element={!user && <Authentication />} />
+            <Route
+              path="/auth/reset"
+              exact
+              element={!user && <PasswordResetForm />}
+            />
+            {/* <Route path="/profile" exact element={<Form />} /> */}
+            <Route path="/:id/profile" exact element={<RegistrationForm />} />
+            <Route path="/mail/:id/leave" exact element={<Leave />} />
+            <Route
+              path="/mail/:id/communication"
+              exact
+              element={<Communication />}
+            />
 
-          <Route path="/auth" exact element={!user && <Authentication />} />
-          <Route
-            path="/auth/reset"
-            exact
-            element={!user && <PasswordResetForm />}
-          />
-          {/* <Route path="/profile" exact element={<Form />} /> */}
-          <Route path="/:id/profile" exact element={<RegistrationForm />} />
-          <Route path="/mail/:id/leave" exact element={<Leave />} />
-          <Route
-            path="/mail/:id/communication"
-            exact
-            element={<Communication />}
-          />
+            {/* <Route path="/mail/:id/payslip" exact element={<Payslip />} /> */}
 
-          {/* <Route path="/mail/:id/payslip" exact element={<Payslip />} /> */}
+            <Route path="/aboutUs" exact element={<AboutUS />} />
+            <Route path="/home" exact element={<Dashboard />} />
+            <Route
+              path="posts/:id/fullweeklyactivity"
+              exact
+              element={<ActivityDisplay />}
+            />
 
-          <Route path="/aboutUs" exact element={<AboutUS />} />
-          <Route path="/home" exact element={<Dashboard />} />
-          <Route
-            path="posts/:id/fullweeklyactivity"
-            exact
-            element={<ActivityDisplay />}
-          />
-
-          <Route path="posts/skill" exact element={<SkillDisplay />} />
-          <Route path="/birthdaymail" exact element={<BirthdayMail />} />
-          <Route path="/:id/payslip" exact element={<PaySlip />} />
-          <Route
-            path="/:id/attendanceDisplay"
-            exact
-            element={<AttendanceDisplay />}
-          />
-          <Route
-            path="/printingLayout"
-            exact
-            element={<PrintingLayout setPrintingLayout={setPrintingLayout} />}
-          />
-          <Route
-            path="/evolveprintlayout"
-            exact
-            element={<EvolvePrintLayout />}
-          />
-        </Routes>
+            <Route path="posts/skill" exact element={<SkillDisplay />} />
+            <Route path="/birthdaymail" exact element={<BirthdayMail />} />
+            <Route path="/:id/payslip" exact element={<PaySlip />} />
+            <Route
+              path="/:id/attendanceDisplay"
+              exact
+              element={<AttendanceDisplay />}
+            />
+            <Route path="/printingLayout" exact element={<PrintingLayout />} />
+            <Route
+              path="/evolveprintlayout"
+              exact
+              element={<EvolvePrintLayout />}
+            />
+          </Routes>
+        </div>
       </Container>
       <div>
         <footer

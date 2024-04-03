@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import decode from "jwt-decode";
 
@@ -21,6 +22,8 @@ const Navibar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const matches = useMediaQuery("(max-width:995px)");
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
 
@@ -45,7 +48,6 @@ const Navibar = () => {
     navigate("/auth");
   };
 
-
   const openPage = (id, action) => {
     switch (action) {
       case "leave":
@@ -60,11 +62,16 @@ const Navibar = () => {
       case "timeSheet":
         navigate(`posts/${id}/fullweeklyactivity`);
         break;
+      case "profile":
+        navigate(`posts/${id}/profile`);
+        break;
+      case "logout":
+        navigate(`/auth`);
+        break;
       default:
         console.log("Click something dude..!!");
     }
   };
-
 
   return (
     <Navbar sticky="top" expand="lg" className="bg-body-tertiary">
@@ -132,7 +139,7 @@ const Navibar = () => {
                       style={{ fontFamily: "Roboto", color: "#16355d" }}
                       id="payslip"
                     >
-                      Pay Slips
+                      SalarySlip
                     </NavDropdown.Item>
                   </NavDropdown>
                   <Nav.Link
@@ -146,6 +153,32 @@ const Navibar = () => {
                   >
                     About Us
                   </Nav.Link>
+                  {matches && (
+                    <div>
+                      <Nav.Link
+                        href="/aboutUs"
+                        style={{
+                          marginTop: "8px",
+                          fontFamily: "Roboto",
+                          fontWeight: "bold",
+                          color: "#16355d",
+                        }}
+                      >
+                        Profile
+                      </Nav.Link>
+                      <Nav.Link
+                        href="/aboutUs"
+                        style={{
+                          marginTop: "8px",
+                          fontFamily: "Roboto",
+                          fontWeight: "bold",
+                          color: "#16355d",
+                        }}
+                      >
+                        logout
+                      </Nav.Link>
+                    </div>
+                  )}
                 </Nav>
                 <Grid
                   sx={{

@@ -17,7 +17,7 @@ const ManagingTeam = () => {
           bgcolor: "#e9edf7",
           boxShadow: 1,
           borderRadius: "10px",
-          width: "300px",
+          // width: "300px",
           overflow: "hidden",
           position: "relative", // Set position to relative
           marginTop: "20px",
