@@ -16,6 +16,8 @@ const AttendanceDetail = ({ currentId, posts }) => {
 
   const [totalHours, setTotalHours] = useState(null);
 
+  const [hoveredData, setHoveredData] = useState(false);
+
   const [formData, setFormData] = useState({
     presentEmployee: "",
     absentEmployee: "",
@@ -30,6 +32,10 @@ const AttendanceDetail = ({ currentId, posts }) => {
   const array = [];
 
   useEffect(() => {
+    currentId && setTotalHours(null);
+  }, [currentId]);
+
+  useEffect(() => {
     array.length = 0;
     dispatch(getPosts()).then(() => {
       // eslint-disable-next-line array-callback-return
@@ -42,6 +48,8 @@ const AttendanceDetail = ({ currentId, posts }) => {
               logOut: post.logOut[i],
             });
           }
+          setTotalHours(null);
+          console.log(totalHours, totalHours);
         }
       });
     });
@@ -97,7 +105,10 @@ const AttendanceDetail = ({ currentId, posts }) => {
   };
 
   const handleHoverDate = (logDate) => {
+    setHoveredData(true);
+    console.log("working");
     const hoveredLog = array.find((item) => item.logDate === logDate);
+    console.log(hoveredLog, hoveredLog);
     if (hoveredLog) {
       // Calculate total hours for the hovered log date
       const totalHours = calculateTotalHours(
@@ -378,7 +389,30 @@ const AttendanceDetail = ({ currentId, posts }) => {
               </div>
               {(role === "employee" || role === "manager") && (
                 <div style={{ margin: "0px 20px 20px 50px" }}>
-                  <HalfDoughnutWithPointer totalHours={totalHours} />
+                  {hoveredData === false ? (
+                    <>
+                      {posts.map((post, index) => {
+                        if (post._id === currentId) {
+                          const totalHours = calculateTotalHours(
+                            post.logIn[post.logIn.length - 1],
+                            post.logOut[post.logOut.length - 1]
+                          );
+                          return (
+                            <div key={index}>
+                              <HalfDoughnutWithPointer
+                                totalHours={totalHours}
+                              />
+                            </div>
+                          );
+                        }
+                        return null;
+                      })}
+                    </>
+                  ) : (
+                    <>
+                      <HalfDoughnutWithPointer totalHours={totalHours} />
+                    </>
+                  )}
                 </div>
               )}
             </div>
