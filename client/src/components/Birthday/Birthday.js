@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Grid, Typography, Avatar } from "@mui/material";
+import { Box, Grid, Typography, Avatar, Container } from "@mui/material";
 
 // import { useNavigate } from "react-router-dom";
 
@@ -72,10 +72,12 @@ const Birthday = () => {
   // console.log(condition)
 
   return (
-    <div>
-      <Box
+    <div style={{ display: "flex", flex: 1 }}>
+      <Container
         sx={{
+          display: "flex",
           marginTop: "10px",
+          maxWidth: "500px",
           marginLeft: "20px",
           padding: "10px",
           bgcolor: "background.paper",
@@ -87,7 +89,7 @@ const Birthday = () => {
       >
         {/* <ButtonBase> */}
 
-        <Grid>
+        <Grid sx={{}}>
           {isBirthdayToday() ? (
             // eslint-disable-next-line jsx-a11y/no-distracting-elements
             <marquee
@@ -171,7 +173,7 @@ const Birthday = () => {
             </div>
           )}
         </Grid>
-      </Box>
+      </Container>
     </div>
   );
 };

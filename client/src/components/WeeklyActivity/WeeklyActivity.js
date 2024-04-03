@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Typography, Grid, IconButton } from "@mui/material";
+import { Box, Typography, Grid, IconButton, Container } from "@mui/material";
 import { getPosts } from "../../action/posts";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { useDispatch, useSelector } from "react-redux";
@@ -88,23 +88,24 @@ const WeeklyActivity = () => {
   };
 
   return (
-    <div style={{ flex: 1 }}>
-      <Box
+    <div style={{ display: "flex", flex: 1 }}>
+      <Container
         sx={{
           // display: "flex",
           marginTop: "20px",
           marginLeft: "20px",
           padding: "5px",
+          maxWidth: "500px",
           bgcolor: "#e2e6cf",
           boxShadow: 1,
           borderRadius: "10px",
           height: "480px",
-          "@media (max-width: 600px)": {
-            overflow: "hidden",
-            position: "relative",
-          },
+          // "@media (max-width: 600px)": {
+          //   overflow: "hidden",
+          //   position: "relative",
+          // },
 
-          "@media (min-width: 600px)": {},
+          // "@media (min-width: 600px)": {},
         }}
       >
         <div>
@@ -142,7 +143,7 @@ const WeeklyActivity = () => {
             <Bar options={options} data={data} />
           </Grid>
         </div>
-      </Box>
+      </Container>
     </div>
   );
 };

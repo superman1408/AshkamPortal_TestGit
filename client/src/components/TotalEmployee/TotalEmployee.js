@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Box,
-  IconButton,
-  Typography,
-  Grid,
-} from "@mui/material";
+import { Box, IconButton, Typography, Grid, Container } from "@mui/material";
 
 import { getPosts } from "../../action/posts";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +9,6 @@ import WomanIcon from "@mui/icons-material/Woman";
 import ManIcon from "@mui/icons-material/Man";
 import { Chart } from "react-google-charts";
 
-
 const TotalEmployee = () => {
   // const [isEditing, setIsEditing] = useState(false);
   const dispatch = useDispatch();
@@ -23,13 +17,9 @@ const TotalEmployee = () => {
   const [menCount, setMenCount] = useState(0);
   const [womenCount, setWomenCount] = useState(0);
 
-  
-
   useEffect(() => {
     dispatch(getPosts());
   }, [posts]);
-
-
 
   useEffect(() => {
     if (posts.length > 0) {
@@ -47,16 +37,14 @@ const TotalEmployee = () => {
     }
   }, [posts]);
 
-
-
-
   return (
-    <div>
-      <Box
+    <div style={{ display: "flex", flex: 1 }}>
+      <Container
         sx={{
           display: "flex",
           marginTop: "10px",
           marginLeft: "20px",
+          maxWidth: "500px",
           padding: "5px",
           bgcolor: "#e9edf7",
           boxShadow: 1,
@@ -163,7 +151,6 @@ const TotalEmployee = () => {
               }}
             >
               <Chart
-              
                 chartType="PieChart"
                 data={[
                   ["Task", "Hours per Day"],
@@ -182,7 +169,7 @@ const TotalEmployee = () => {
             </Grid>
           </Grid>
         </Grid>
-      </Box>
+      </Container>
     </div>
   );
 };

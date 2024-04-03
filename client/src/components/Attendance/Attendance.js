@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAttendancePosts } from "../../action/posts";
 
-import { Box, Grid, Typography, IconButton } from "@mui/material";
+import { Box, Grid, Typography, IconButton, Container } from "@mui/material";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 
 const Attendance = () => {
@@ -37,7 +37,7 @@ const Attendance = () => {
 
   return (
     <div style={{ display: "flex", flex: 1 }}>
-      <Box
+      <Container
         sx={{
           display: "flex",
           // width: "100%",
@@ -108,7 +108,7 @@ const Attendance = () => {
             </Grid>
           </div>
         </Grid>
-      </Box>
+      </Container>
     </div>
   );
 };

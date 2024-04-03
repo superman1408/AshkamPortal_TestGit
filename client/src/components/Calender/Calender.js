@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Box, Grid } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -15,12 +15,13 @@ const Calender = () => {
   };
 
   return (
-    <div>
-      <Box
+    <div style={{ display: "flex", flex: 1 }}>
+      <Container
         sx={{
           display: "flex",
           bgcolor: " #f2e6e8",
           boxShadow: 1,
+          maxWidth: "500px",
           borderRadius: "10px",
           justifyContent: "space-between",
         }}
@@ -50,7 +51,7 @@ const Calender = () => {
             />
           </LocalizationProvider>
         </Grid>
-      </Box>
+      </Container>
     </div>
   );
 };

@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import LOGO from "../../assets/AshkamLogoTransparentbc.png";
 import { useReactToPrint } from "react-to-print";
 
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 import {
   Grid,
   Typography,
@@ -37,6 +39,8 @@ const PaySlip = () => {
   const [netSalary, setNetSalary] = useState(0);
   const [dataGenerated, setDataGenerated] = useState(false);
   const [printingshow, setPrintingShow] = useState(false);
+
+  const matches = useMediaQuery("(min-width:1120px)");
 
   const navigate = useNavigate();
 
@@ -135,9 +139,7 @@ const PaySlip = () => {
 
   return (
     <>
-      <div style={{ display: "flex" }}>
-        <Panel />
-      </div>
+      <div style={{ display: "flex" }}>{matches && <Panel />}</div>
       <div>
         <Container
           fluid="true"
