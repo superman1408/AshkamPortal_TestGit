@@ -16,17 +16,17 @@ import employee from "../../assets/employeeimg.png";
 import manager from "../../assets/managerimg.png";
 import admin from "../../assets/IT.png";
 
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 const Admin = ({ currentId }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
+
+  const matches = useMediaQuery("(min-width:1120px)");
 
   const role = user.result.role;
 
   return (
     <div style={{ minheight: "100%", padding: "10px", display: "flex" }}>
-      <div style={{ display: "flex" }}>
-        <Panel />
-      </div>
-
       <Box
         sx={{
           display: "flex",
@@ -51,7 +51,7 @@ const Admin = ({ currentId }) => {
           }}
         >
           {/*------------------Panel----------------------------- */}
-          {/* <Panel prop={user.result} /> */}
+          <Panel prop={user.result} />
 
           {/* ---------------Dashboard section-------------------------*/}
           <Grid
