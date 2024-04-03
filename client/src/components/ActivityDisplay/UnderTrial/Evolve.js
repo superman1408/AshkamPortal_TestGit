@@ -246,13 +246,14 @@ function Evolve({ currentId, posts }) {
 
   return (
     <>
-      <h2
-        style={{ color: "#16355d", marginLeft: "50px", fontFamily: "Roboto" }}
+      <strong
+        style={{ color: "#16355d", marginLeft: "50px", fontFamily: "Roboto", fontSize: "30px" }}
       >
         Project Time Sheet
-      </h2>
-      <div style={{ display: "flex" }}>
-        <div style={{ display: "flex" }}>
+      </strong>
+      <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} />
+      <div style={{ display: "flex",  justifyContent: "space-between" }}>
+        <div style={{ display: "flex", padding:"5px" }}>
           <Panel />
         </div>
 
@@ -260,13 +261,13 @@ function Evolve({ currentId, posts }) {
 
         {/* form Body start from here....!! */}
 
-        <div className="time-sheet-container" style={{ display: "flex" }}>
+        <div className="time-sheet-container" style={{ display: "flex", padding:"12px" }}>
           <Grid
             sx={{
-              padding: "10px",
+              padding: "15px",
               width: "30%",
               backgroundColor: "whitesmoke",
-              margin: "0px 20px 0px 20px",
+              margin: "8px",
             }}
           >
             <form onSubmit={handleSubmit} className="time-sheet-form">
@@ -385,7 +386,7 @@ function Evolve({ currentId, posts }) {
               {/* </div> */}
               <div style={{ display: "flex", justifyContent: "space-around" }}>
                 <button style={{ fontFamily: "Roboto" }} type="submit">
-                  {editIndex !== -1 ? "Update The Entry" : "Submit The Entry"}
+                  {editIndex !== -1 ? "Update" : "Submit"}
                 </button>
                 <button
                   style={{ fontFamily: "Roboto" }}
@@ -407,7 +408,7 @@ function Evolve({ currentId, posts }) {
                   <CircularProgress />
                 </Box>
               ) : (
-                <div style={{ padding: "30px" }} ref={componentRef}>
+                <div style={{ padding: "5px" }} ref={componentRef}>
                   {printingShow && (
                     <>
                       <table
@@ -577,7 +578,7 @@ function Evolve({ currentId, posts }) {
                           Activity Code
                         </th>
                         <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                          Date
+                          Date (yyyy-mm-dd)
                         </th>
                         <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
                           Net Time (hrs)
@@ -663,7 +664,7 @@ function Evolve({ currentId, posts }) {
                                     style={{ fontFamily: "Roboto" }}
                                     onClick={() => deleteEntry(index)}
                                   >
-                                    Delete The Entry
+                                    Delete
                                   </button>
                                 </>
                               )}
@@ -687,12 +688,13 @@ function Evolve({ currentId, posts }) {
                 </div>
               )}
 
-              <Button
-                sx={{ backgroundColor: "#047681", color: "white" }}
+              <button
+                id="download"
+                style={{ fontFamily: "Roboto" }}
                 onClick={handletrue}
               >
                 Download
-              </Button>
+              </button>
             </div>
           </Grid>
         </div>
