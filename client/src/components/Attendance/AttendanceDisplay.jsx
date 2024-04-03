@@ -33,10 +33,9 @@ const AttendanceDisplay = () => {
     setIsLoading(false);
   }, [isLoading]);
 
-  
-
   return (
     <div>
+      
       {!isLoading && (
         <>
           {role === "manager" && (
@@ -45,7 +44,7 @@ const AttendanceDisplay = () => {
           {role === "admin" && (
             <AttendanceCombo posts={posts} setCurrentId={setCurrentId} />
           )}
-          <AttendanceDetail currentId={currentId} posts={posts}  />
+          <AttendanceDetail currentId={currentId} posts={posts} />
         </>
       )}
     </div>

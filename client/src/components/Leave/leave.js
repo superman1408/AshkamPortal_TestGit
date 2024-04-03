@@ -129,7 +129,13 @@ const Leave = () => {
               bgcolor: "#f0f2f1",
             }}
           >
-            <div style={{ display: "flex", flexDirection: "column" }}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                marginLeft: "10px",
+              }}
+            >
               <Grid>
                 <Typography
                   variant="h6"

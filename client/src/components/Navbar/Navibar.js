@@ -139,7 +139,7 @@ const Navibar = () => {
                       style={{ fontFamily: "Roboto", color: "#16355d" }}
                       id="payslip"
                     >
-                      Pay Slips
+                      SalarySlip
                     </NavDropdown.Item>
                   </NavDropdown>
                   <Nav.Link

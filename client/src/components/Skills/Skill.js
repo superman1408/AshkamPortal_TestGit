@@ -67,7 +67,8 @@ const Skill = () => {
           bgcolor: "#f2d5d6",
           boxShadow: 1,
           borderRadius: "10px",
-          // width: "300px",
+          width: "100%",
+          maxWidth: "300px",
           overflow: "hidden",
           position: "relative", // Set position to relative
         }}

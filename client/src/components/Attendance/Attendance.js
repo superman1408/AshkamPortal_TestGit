@@ -35,14 +35,15 @@ const Attendance = () => {
     }
   }, [dispatch, attend]);
 
-
   return (
     <div style={{ display: "flex", flex: 1 }}>
       <Box
         sx={{
           display: "flex",
+          // width: "100%",
+          maxWidth: "300px",
           flexDirection: "column",
-          marginTop: "52px",
+          // marginTop: "52px",
           marginLeft: "20px",
           padding: "5px",
           bgcolor: "#e2e6cf",

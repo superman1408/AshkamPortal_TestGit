@@ -22,7 +22,11 @@ const Admin = ({ currentId }) => {
   const role = user.result.role;
 
   return (
-    <div style={{ minheight: "100%", padding: "10px" }}>
+    <div style={{ minheight: "100%", padding: "10px", display: "flex" }}>
+      <div style={{ display: "flex" }}>
+        <Panel />
+      </div>
+
       <Box
         sx={{
           display: "flex",
@@ -47,7 +51,7 @@ const Admin = ({ currentId }) => {
           }}
         >
           {/*------------------Panel----------------------------- */}
-          <Panel prop={user.result} />
+          {/* <Panel prop={user.result} /> */}
 
           {/* ---------------Dashboard section-------------------------*/}
           <Grid
