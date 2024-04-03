@@ -14,6 +14,7 @@ import {
   Container,
   Button,
 } from "@mui/material";
+import Panel from "../Panel/Panel";
 // import { useDispatch } from "react-redux";
 
 const PaySlip = () => {
@@ -134,6 +135,9 @@ const PaySlip = () => {
 
   return (
     <>
+      <div style={{ display: "flex" }}>
+        <Panel />
+      </div>
       <div>
         <Container
           fluid="true"

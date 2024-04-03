@@ -33,19 +33,27 @@ const AttendanceDisplay = () => {
     setIsLoading(false);
   }, [isLoading]);
 
-  
+  // const handleUserChange = () => {
+  //   // Reset totalHours to null when user changes
+  //   setTotalHours(null);
+  // };
 
   return (
     <div>
+      
       {!isLoading && (
         <>
           {role === "manager" && (
-            <AttendanceCombo posts={posts} setCurrentId={setCurrentId} />
+            <AttendanceCombo
+              posts={posts}
+              setCurrentId={setCurrentId}
+              // onUserChange={handleUserChange}
+            />
           )}
           {role === "admin" && (
             <AttendanceCombo posts={posts} setCurrentId={setCurrentId} />
           )}
-          <AttendanceDetail currentId={currentId} posts={posts}  />
+          <AttendanceDetail currentId={currentId} posts={posts} />
         </>
       )}
     </div>

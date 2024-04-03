@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
-import { Card } from "@mui/material";
+import { Card, withStyles } from "@mui/material";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
+
 const HalfDoughnutWithPointer = ({ totalHours }) => {
+  // useEffect(() => {}, [totalHours]);
   const data = {
     labels: ["Worked Hours", "Scheduled Hours"],
     datasets: [
       {
-        label: "# of Votes",
+        label: "Total working Hours",
         data: [totalHours, 8.3],
         // backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
         backgroundColor: ["#e55d17", "#047682"],
