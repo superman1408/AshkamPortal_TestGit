@@ -16,7 +16,7 @@ import { Chart } from "react-google-charts";
 
 
 const TotalEmployee = () => {
-  const [isEditing, setIsEditing] = useState(false);
+  // const [isEditing, setIsEditing] = useState(false);
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
   // Editable data state

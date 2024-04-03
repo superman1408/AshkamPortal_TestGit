@@ -86,7 +86,7 @@ const Auth = () => {
         padding: "40px",
       }}
     >
-      <Card className="card" elevation={10} sx={{ width: "60vh" }}>
+      <Card className="card" elevation={10} sx={{ display: "flex" }}>
         <Grid>
           <div
             style={{
@@ -138,6 +138,7 @@ const Auth = () => {
                   {formData.role === "admin" && (
                     // eslint-disable-next-line
                     <TextField
+                      type="password"
                       label="Secret Code"
                       name="secretCode"
                       variant="outlined"

@@ -7,6 +7,7 @@ const AttendanceCombo = ({ posts, setCurrentId }) => {
     const value = event.target.value;
     setSelectedOption(value);
     setCurrentId(value);
+    console.log(value, value);
   };
 
   return (
