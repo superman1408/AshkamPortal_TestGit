@@ -41,9 +41,9 @@ const Attendance = () => {
         sx={{
           display: "flex",
           // width: "100%",
-          maxWidth: "300px",
+          maxWidth: "500px",
           flexDirection: "column",
-          // marginTop: "52px",
+          marginTop: "52px",
           marginLeft: "20px",
           padding: "5px",
           bgcolor: "#e2e6cf",
