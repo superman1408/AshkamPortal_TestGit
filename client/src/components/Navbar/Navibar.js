@@ -63,10 +63,10 @@ const Navibar = () => {
         navigate(`posts/${id}/fullweeklyactivity`);
         break;
       case "profile":
-        navigate(`posts/${id}/profile`);
+        navigate(`/${id}/profile`);
         break;
-      case "logout":
-        navigate(`/auth`);
+      case "about":
+        navigate(`/aboutUs`);
         break;
       default:
         console.log("Click something dude..!!");
@@ -143,7 +143,7 @@ const Navibar = () => {
                     </NavDropdown.Item>
                   </NavDropdown>
                   <Nav.Link
-                    href="/aboutUs"
+                    onClick={() => openPage(user.result._id, "about")}
                     style={{
                       marginTop: "8px",
                       fontFamily: "Roboto",
@@ -156,7 +156,7 @@ const Navibar = () => {
                   {matches && (
                     <div>
                       <Nav.Link
-                        href="/aboutUs"
+                        onClick={() => openPage(user.result._id, "profile")}
                         style={{
                           marginTop: "8px",
                           fontFamily: "Roboto",
@@ -167,7 +167,7 @@ const Navibar = () => {
                         Profile
                       </Nav.Link>
                       <Nav.Link
-                        href="/aboutUs"
+                        onClick={handleLogout}
                         style={{
                           marginTop: "8px",
                           fontFamily: "Roboto",
