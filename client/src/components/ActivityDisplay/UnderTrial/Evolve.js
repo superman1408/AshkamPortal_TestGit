@@ -260,13 +260,6 @@ function Evolve({ currentId, posts }) {
       >
         Project Time Sheet
       </strong>
-<<<<<<< HEAD
-      <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} />
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <div style={{ display: "flex", padding: "5px" }}>
-          <Panel />
-        </div>
-=======
       {/* <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} /> */}
       <div style={{ display: "flex" }}>
         {matches && (
@@ -274,7 +267,6 @@ function Evolve({ currentId, posts }) {
             <Panel prop={user.result} />
           </div>
         )}
->>>>>>> ErrorFix
 
         <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} />
 
