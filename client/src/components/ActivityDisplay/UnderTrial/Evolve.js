@@ -247,13 +247,18 @@ function Evolve({ currentId, posts }) {
   return (
     <>
       <strong
-        style={{ color: "#16355d", marginLeft: "50px", fontFamily: "Roboto", fontSize: "30px" }}
+        style={{
+          color: "#16355d",
+          marginLeft: "50px",
+          fontFamily: "Roboto",
+          fontSize: "30px",
+        }}
       >
         Project Time Sheet
       </strong>
       <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} />
-      <div style={{ display: "flex",  justifyContent: "space-between" }}>
-        <div style={{ display: "flex", padding:"5px" }}>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div style={{ display: "flex", padding: "5px" }}>
           <Panel />
         </div>
 
@@ -261,7 +266,10 @@ function Evolve({ currentId, posts }) {
 
         {/* form Body start from here....!! */}
 
-        <div className="time-sheet-container" style={{ display: "flex", padding:"12px" }}>
+        <div
+          className="time-sheet-container"
+          style={{ display: "flex", padding: "12px" }}
+        >
           <Grid
             sx={{
               padding: "15px",

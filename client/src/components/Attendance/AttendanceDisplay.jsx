@@ -21,7 +21,7 @@ const AttendanceDisplay = () => {
   useEffect(() => {
     if (posts) {
       dispatch(getPosts()).then(() => {
-        console.log("Activity Display is recieving the posts..!!!@@@@@@");
+      
         // eslint-disable-next-line array-callback-return
         posts.map((post) => {
           if (post._id === currentId) {
@@ -40,7 +40,6 @@ const AttendanceDisplay = () => {
 
   return (
     <div>
-      
       {!isLoading && (
         <>
           {role === "manager" && (
