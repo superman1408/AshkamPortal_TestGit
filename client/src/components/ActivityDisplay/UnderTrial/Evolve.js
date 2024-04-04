@@ -9,6 +9,8 @@ import ProjectCodePopUp from "./ProjectCodePopUp";
 import ActivityCodePopUp from "./ActivityCodePopUp";
 import { getPosts } from "../../../action/posts";
 
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 import LOGO from "../../../assets/AshkamLogoTransparentbc.png";
 
 import { useReactToPrint } from "react-to-print";
@@ -36,6 +38,8 @@ function Evolve({ currentId, posts }) {
   const [printingShow, setPrintingShow] = useState(false);
 
   const array = [];
+
+  const matches = useMediaQuery("(min-width:1120px)");
 
   useEffect(() => {
     array.length = 0;
@@ -245,7 +249,7 @@ function Evolve({ currentId, posts }) {
   };
 
   return (
-    <>
+    <div>
       <strong
         style={{
           color: "#16355d",
@@ -256,11 +260,21 @@ function Evolve({ currentId, posts }) {
       >
         Project Time Sheet
       </strong>
+<<<<<<< HEAD
       <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} />
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div style={{ display: "flex", padding: "5px" }}>
           <Panel />
         </div>
+=======
+      {/* <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} /> */}
+      <div style={{ display: "flex" }}>
+        {matches && (
+          <div style={{ display: "flex" }}>
+            <Panel prop={user.result} />
+          </div>
+        )}
+>>>>>>> ErrorFix
 
         <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} />
 
@@ -707,7 +721,7 @@ function Evolve({ currentId, posts }) {
           </Grid>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 export default Evolve;
