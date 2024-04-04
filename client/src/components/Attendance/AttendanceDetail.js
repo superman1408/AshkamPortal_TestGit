@@ -342,7 +342,16 @@ const AttendanceDetail = ({ currentId, posts }) => {
             </Card>
           </>
         )}
-        <Grid sx={{ padding: "2px" }}>
+        <Grid
+          sx={{
+            display: "flex",
+            padding: "2px",
+            marginLeft: "10px",
+            "@media (max-width: 600px)": {
+              flexDirection: "column",
+            },
+          }}
+        >
           <Card
             elevation={10}
             sx={{
@@ -366,7 +375,11 @@ const AttendanceDetail = ({ currentId, posts }) => {
                 return null;
               })}
             </Typography>
-            <div style={{ display: "flex" }}>
+            <div
+              style={{
+                display: "flex",
+              }}
+            >
               <div>
                 <table
                   className="time-sheet-table"
@@ -432,37 +445,48 @@ const AttendanceDetail = ({ currentId, posts }) => {
                     ))}
                   </tbody>
                 </table>
-              </div>
-              {(role === "employee" || role === "manager") && (
-                <div style={{ margin: "0px 20px 20px 50px" }}>
-                  {hoveredData === false ? (
-                    <>
-                      {posts.map((post, index) => {
-                        if (post._id === currentId) {
-                          const totalHours = calculateTotalHours(
-                            post.logIn[post.logIn.length - 1],
-                            post.logOut[post.logOut.length - 1]
-                          );
-                          return (
-                            <div key={index}>
-                              <HalfDoughnutWithPointer
-                                totalHours={totalHours}
-                              />
-                            </div>
-                          );
-                        }
-                        return null;
-                      })}
-                    </>
-                  ) : (
-                    <>
-                      <HalfDoughnutWithPointer totalHours={totalHours} />
-                    </>
-                  )}
-                </div>
-              )}
+              </div>{" "}
             </div>
           </Card>
+          <Card
+            elevation={10}
+            sx={{
+              padding: "5px",
+              width: "auto",
+              marginLeft: "5px",
+              backgroundColor: "whitesmoke",
+            }}
+          >
+            {(role === "employee" || role === "manager") && (
+              <div style={{ margin: "10px 20px 10px 20px" }}>
+                {hoveredData === false ? (
+                  <>
+                    {posts.map((post, index) => {
+                      if (post._id === currentId) {
+                        const totalHours = calculateTotalHours(
+                          post.logIn[post.logIn.length - 1],
+                          post.logOut[post.logOut.length - 1]
+                        );
+                        return (
+                          <div key={index}>
+                            <HalfDoughnutWithPointer totalHours={totalHours} />
+                          </div>
+                        );
+                      }
+                      return null;
+                    })}
+                  </>
+                ) : (
+                  <>
+                    <HalfDoughnutWithPointer totalHours={totalHours} />
+                  </>
+                )}
+              </div>
+            )}
+          </Card>
+          {/* <div>
+                
+              </div> */}
         </Grid>
       </Grid>
     </div>
