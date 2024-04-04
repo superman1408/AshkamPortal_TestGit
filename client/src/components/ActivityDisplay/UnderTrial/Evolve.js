@@ -9,6 +9,8 @@ import ProjectCodePopUp from "./ProjectCodePopUp";
 import ActivityCodePopUp from "./ActivityCodePopUp";
 import { getPosts } from "../../../action/posts";
 
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 import LOGO from "../../../assets/AshkamLogoTransparentbc.png";
 
 import { useReactToPrint } from "react-to-print";
@@ -36,6 +38,8 @@ function Evolve({ currentId, posts }) {
   const [printingShow, setPrintingShow] = useState(false);
 
   const array = [];
+
+  const matches = useMediaQuery("(min-width:1120px)");
 
   useEffect(() => {
     array.length = 0;
@@ -245,23 +249,33 @@ function Evolve({ currentId, posts }) {
   };
 
   return (
-    <>
+    <div>
       <strong
-        style={{ color: "#16355d", marginLeft: "50px", fontFamily: "Roboto", fontSize: "30px" }}
+        style={{
+          color: "#16355d",
+          marginLeft: "50px",
+          fontFamily: "Roboto",
+          fontSize: "30px",
+        }}
       >
         Project Time Sheet
       </strong>
-      <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} />
-      <div style={{ display: "flex",  justifyContent: "space-between" }}>
-        <div style={{ display: "flex", padding:"5px" }}>
-          <Panel />
-        </div>
+      {/* <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} /> */}
+      <div style={{ display: "flex" }}>
+        {matches && (
+          <div style={{ display: "flex" }}>
+            <Panel prop={user.result} />
+          </div>
+        )}
 
         <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} />
 
         {/* form Body start from here....!! */}
 
-        <div className="time-sheet-container" style={{ display: "flex", padding:"12px" }}>
+        <div
+          className="time-sheet-container"
+          style={{ display: "flex", padding: "12px" }}
+        >
           <Grid
             sx={{
               padding: "15px",
@@ -699,7 +713,7 @@ function Evolve({ currentId, posts }) {
           </Grid>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 export default Evolve;
