@@ -14,6 +14,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import LOGO from "../../../assets/AshkamLogoTransparentbc.png";
 
 import { useReactToPrint } from "react-to-print";
+
 import Panel from "../../Panel/Panel";
 
 function Evolve({ currentId, posts }) {
@@ -248,6 +249,20 @@ function Evolve({ currentId, posts }) {
     }, 10);
   };
 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div>
       <strong
@@ -267,21 +282,21 @@ function Evolve({ currentId, posts }) {
             <Panel prop={user.result} />
           </div>
         )}
-
-        <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} />
-
-        {/* form Body start from here....!! */}
-
-        <div
-          className="time-sheet-container"
-          style={{ display: "flex", padding: "12px" }}
+        <Grid
+          sx={{
+            display: "flex",
+            padding: "12px",
+            flexDirection: "row", // Add this line
+            "@media (max-width: 600px)": {
+              flexDirection: "column",
+            },
+          }}
         >
           <Grid
             sx={{
               padding: "15px",
-              width: "30%",
               backgroundColor: "whitesmoke",
-              margin: "8px",
+              margin: "0px 8px 8px 8px",
             }}
           >
             <form onSubmit={handleSubmit} className="time-sheet-form">
@@ -413,305 +428,301 @@ function Evolve({ currentId, posts }) {
             </form>
           </Grid>
 
-          {/* Body for displaing the table star from here.....!!! */}
-          <hr />
-          <Grid sx={{ width: "70%" }}>
-            <div>
-              {isLoading ? (
-                <Box sx={{ marginLeft: "400px", marginTop: "100px" }}>
-                  <CircularProgress />
-                </Box>
-              ) : (
-                <div style={{ padding: "5px" }} ref={componentRef}>
-                  {printingShow && (
-                    <>
-                      <table
-                        table
+          <Grid>
+            {" "}
+            {isLoading ? (
+              <Box sx={{ marginLeft: "400px", marginTop: "100px" }}>
+                <CircularProgress />
+              </Box>
+            ) : (
+              <div style={{ padding: "5px" }} ref={componentRef}>
+                {printingShow && (
+                  <>
+                    <table
+                      table
+                      style={{
+                        padding: "5px",
+                        backgroundColor: "#f2f2f2",
+                        borderCollapse: "collapse",
+                        border: "1px solid black",
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                        width: "100%",
+                        marginBottom: "10px",
+                        maxWidth: "800px", // Set a max-width to prevent tables from expanding too much
+                      }}
+                    >
+                      {/* <thead> */}
+                      <tr
+                        height="50px"
                         style={{
-                          padding: "5px",
-                          backgroundColor: "#f2f2f2",
-                          borderCollapse: "collapse",
+                          // backgroundColor: "lightgray",
+                          color: "black",
+                          // textAlign: "center",
+                          fontSize: "20px",
+                          fontWeight: "600",
                           border: "1px solid black",
-                          marginLeft: "auto",
-                          marginRight: "auto",
-                          width: "100%",
-                          marginBottom: "10px",
-                          maxWidth: "800px", // Set a max-width to prevent tables from expanding too much
                         }}
                       >
-                        {/* <thead> */}
-                        <tr
-                          height="50px"
+                        <div
                           style={{
-                            // backgroundColor: "lightgray",
-                            color: "black",
-                            // textAlign: "center",
-                            fontSize: "20px",
-                            fontWeight: "600",
-                            border: "1px solid black",
+                            padding: "10px",
                           }}
                         >
-                          <div
-                            style={{
-                              padding: "10px",
-                            }}
-                          >
-                            <img src={LOGO} alt="logo" />
-                          </div>
-                          <td style={{ padding: "5px" }}>TIME SHEET SUMMARY</td>
-                        </tr>
-                      </table>
-                      <table
-                        style={{
-                          // marginLeft: "100px",
-                          padding: "5px",
-                          // marginLeft: "100px",
-                          borderCollapse: "collapse",
-                          border: "1px solid black",
-                          marginLeft: "auto",
-                          marginRight: "auto",
-                          width: "100%",
-                          marginBottom: "10px",
-                          maxWidth: "800px", // Set a max-width to prevent tables from expanding too much
-                        }}
-                      >
-                        <tbody>
-                          {
-                            // eslint-disable-next-line array-callback-return
-                            posts.map((post, index) => {
-                              if (post._id === currentId) {
-                                return (
-                                  <>
-                                    <tr key={index}>
-                                      <th
-                                        style={{
-                                          border: "1px solid black",
-                                          textAlign: "center",
-                                          fontFamily: "Roboto",
-                                        }}
-                                      >
-                                        Employee Id
-                                      </th>
-                                      <td
-                                        style={{
-                                          border: "1px solid black",
-                                          textAlign: "center",
-                                          fontFamily: "Roboto",
-                                        }}
-                                      >
-                                        {post?.employeeId}
-                                      </td>
-                                      <th
-                                        style={{
-                                          border: "1px solid black",
-                                          textAlign: "center",
-                                          fontFamily: "Roboto",
-                                        }}
-                                      >
-                                        Name
-                                      </th>
-                                      <td
-                                        style={{
-                                          border: "1px solid black",
-                                          textAlign: "center",
-                                          fontFamily: "Roboto",
-                                        }}
-                                      >
-                                        {post?.firstName + " " + post?.lastName}
-                                      </td>
-                                    </tr>
-                                    <tr key={index}>
-                                      <th
-                                        style={{
-                                          border: "1px solid black",
-                                          textAlign: "center",
-                                          fontFamily: "Roboto",
-                                        }}
-                                      >
-                                        Department
-                                      </th>
-                                      <td
-                                        style={{
-                                          border: "1px solid black",
-                                          textAlign: "center",
-                                          fontFamily: "Roboto",
-                                        }}
-                                      >
-                                        {post?.department}
-                                      </td>
-                                      <th
-                                        style={{
-                                          border: "1px solid black",
-                                          textAlign: "center",
-                                          fontFamily: "Roboto",
-                                        }}
-                                      >
-                                        Duration
-                                      </th>
-                                      <td
-                                        style={{
-                                          border: "1px solid black",
-                                          textAlign: "center",
-                                          fontFamily: "Roboto",
-                                        }}
-                                      >
-                                        {post?.date[0] +
-                                          " " +
-                                          "to" +
-                                          " " +
-                                          post?.date[post.date.length - 1]}
-                                      </td>
-                                    </tr>
-                                  </>
-                                );
-                              }
-                            })
-                          }
-                        </tbody>
-                      </table>
-                    </>
-                  )}
-                  <table
-                    className="time-sheet-table"
-                    style={{
-                      padding: "10px",
-                      borderCollapse: "collapse",
-                      // border: "1px solid black",
-                      marginLeft: "auto",
-                      marginRight: "auto",
-                      width: "100%",
-                      maxWidth: "800px",
-                    }}
-                  >
-                    <thead>
-                      <tr>
-                        <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                          Project Code
-                        </th>
-                        <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                          Activity Code
-                        </th>
-                        <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                          Date (yyyy-mm-dd)
-                        </th>
-                        <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                          Net Time (hrs)
-                        </th>
-                        <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                          Over Time (hrs)
-                        </th>
+                          <img src={LOGO} alt="logo" />
+                        </div>
+                        <td style={{ padding: "5px" }}>TIME SHEET SUMMARY</td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      {array.map((post, index) => (
-                        <tr key={index}>
-                          <td
-                            style={{
-                              color: "#e55d17",
-                              fontFamily: "Roboto",
-                              padding: "10px",
-                              alignContent: "center",
-                            }}
-                          >
-                            {post.projectCode}
-                          </td>
-                          <td
-                            style={{
-                              color: "#e55d17",
-                              fontFamily: "Roboto",
-                              padding: "10px",
-                              alignContent: "center",
-                            }}
-                          >
-                            {post.activityCode}
-                          </td>
-                          <td
-                            style={{
-                              color: "#e55d17",
-                              fontFamily: "Roboto",
-                              padding: "10px",
-                              alignContent: "center",
-                            }}
-                          >
-                            {post.date}
-                          </td>
-                          <td
-                            style={{
-                              color: "#e55d17",
-                              fontFamily: "Roboto",
-                              padding: "10px",
-                              alignContent: "center",
-                            }}
-                          >
-                            {post.netTime}
-                          </td>
-                          <td
-                            style={{
-                              color: "#e55d17",
-                              fontFamily: "Roboto",
-                              padding: "10px",
-                              alignContent: "center",
-                            }}
-                          >
-                            {post.overTime}
-                          </td>
-                          {printingShow === false && (
-                            <td
-                              style={{
-                                display: "flex",
-                                justifyContent: "space-around",
-                                padding: "10px",
-                                alignContent: "center",
-                              }}
-                            >
-                              {role === "admin" && (
+                    </table>
+                    <table
+                      style={{
+                        // marginLeft: "100px",
+                        padding: "5px",
+                        // marginLeft: "100px",
+                        borderCollapse: "collapse",
+                        border: "1px solid black",
+                        marginLeft: "auto",
+                        marginRight: "auto",
+                        width: "100%",
+                        marginBottom: "10px",
+                        maxWidth: "800px", // Set a max-width to prevent tables from expanding too much
+                      }}
+                    >
+                      <tbody>
+                        {
+                          // eslint-disable-next-line array-callback-return
+                          posts.map((post, index) => {
+                            if (post._id === currentId) {
+                              return (
                                 <>
-                                  <button
-                                    id="editButton"
-                                    style={{ fontFamily: "Roboto" }}
-                                    onClick={() => editEntry(index)}
-                                  >
-                                    Edit
-                                  </button>
-                                  <button
-                                    id="deleteButton"
-                                    style={{ fontFamily: "Roboto" }}
-                                    onClick={() => deleteEntry(index)}
-                                  >
-                                    Delete
-                                  </button>
+                                  <tr key={index}>
+                                    <th
+                                      style={{
+                                        border: "1px solid black",
+                                        textAlign: "center",
+                                        fontFamily: "Roboto",
+                                      }}
+                                    >
+                                      Employee Id
+                                    </th>
+                                    <td
+                                      style={{
+                                        border: "1px solid black",
+                                        textAlign: "center",
+                                        fontFamily: "Roboto",
+                                      }}
+                                    >
+                                      {post?.employeeId}
+                                    </td>
+                                    <th
+                                      style={{
+                                        border: "1px solid black",
+                                        textAlign: "center",
+                                        fontFamily: "Roboto",
+                                      }}
+                                    >
+                                      Name
+                                    </th>
+                                    <td
+                                      style={{
+                                        border: "1px solid black",
+                                        textAlign: "center",
+                                        fontFamily: "Roboto",
+                                      }}
+                                    >
+                                      {post?.firstName + " " + post?.lastName}
+                                    </td>
+                                  </tr>
+                                  <tr key={index}>
+                                    <th
+                                      style={{
+                                        border: "1px solid black",
+                                        textAlign: "center",
+                                        fontFamily: "Roboto",
+                                      }}
+                                    >
+                                      Department
+                                    </th>
+                                    <td
+                                      style={{
+                                        border: "1px solid black",
+                                        textAlign: "center",
+                                        fontFamily: "Roboto",
+                                      }}
+                                    >
+                                      {post?.department}
+                                    </td>
+                                    <th
+                                      style={{
+                                        border: "1px solid black",
+                                        textAlign: "center",
+                                        fontFamily: "Roboto",
+                                      }}
+                                    >
+                                      Duration
+                                    </th>
+                                    <td
+                                      style={{
+                                        border: "1px solid black",
+                                        textAlign: "center",
+                                        fontFamily: "Roboto",
+                                      }}
+                                    >
+                                      {post?.date[0] +
+                                        " " +
+                                        "to" +
+                                        " " +
+                                        post?.date[post.date.length - 1]}
+                                    </td>
+                                  </tr>
                                 </>
-                              )}
-                              {role === "manager" && (
-                                <>
-                                  <button
-                                    id="editButton"
-                                    style={{ fontFamily: "Roboto" }}
-                                    onClick={() => editEntry(index)}
-                                  >
-                                    Edit
-                                  </button>
-                                </>
-                              )}
-                            </td>
-                          )}
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              )}
+                              );
+                            }
+                          })
+                        }
+                      </tbody>
+                    </table>
+                  </>
+                )}
+                <table
+                  className="time-sheet-table"
+                  style={{
+                    padding: "10px",
+                    borderCollapse: "collapse",
+                    // border: "1px solid black",
+                    marginLeft: "auto",
+                    marginRight: "auto",
 
-              <button
-                id="download"
-                style={{ fontFamily: "Roboto" }}
-                onClick={handletrue}
-              >
-                Download
-              </button>
-            </div>
+                    width: windowWidth <= 600 ? "30%" : "100%",
+                  }}
+                >
+                  <thead>
+                    <tr>
+                      <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                        Project Code
+                      </th>
+                      <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                        Activity Code
+                      </th>
+                      <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                        Date (yyyy-mm-dd)
+                      </th>
+                      <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                        Net Time (hrs)
+                      </th>
+                      <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                        Over Time (hrs)
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {array.map((post, index) => (
+                      <tr key={index}>
+                        <td
+                          style={{
+                            color: "#e55d17",
+                            fontFamily: "Roboto",
+                            padding: "10px",
+                            alignContent: "center",
+                          }}
+                        >
+                          {post.projectCode}
+                        </td>
+                        <td
+                          style={{
+                            color: "#e55d17",
+                            fontFamily: "Roboto",
+                            padding: "10px",
+                            alignContent: "center",
+                          }}
+                        >
+                          {post.activityCode}
+                        </td>
+                        <td
+                          style={{
+                            color: "#e55d17",
+                            fontFamily: "Roboto",
+                            padding: "10px",
+                            alignContent: "center",
+                          }}
+                        >
+                          {post.date}
+                        </td>
+                        <td
+                          style={{
+                            color: "#e55d17",
+                            fontFamily: "Roboto",
+                            padding: "10px",
+                            alignContent: "center",
+                          }}
+                        >
+                          {post.netTime}
+                        </td>
+                        <td
+                          style={{
+                            color: "#e55d17",
+                            fontFamily: "Roboto",
+                            padding: "10px",
+                            alignContent: "center",
+                          }}
+                        >
+                          {post.overTime}
+                        </td>
+                        {printingShow === false && (
+                          <td
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-around",
+                              padding: "10px",
+                              alignContent: "center",
+                            }}
+                          >
+                            {role === "admin" && (
+                              <>
+                                <button
+                                  id="editButton"
+                                  style={{ fontFamily: "Roboto" }}
+                                  onClick={() => editEntry(index)}
+                                >
+                                  Edit
+                                </button>
+                                <button
+                                  id="deleteButton"
+                                  style={{ fontFamily: "Roboto" }}
+                                  onClick={() => deleteEntry(index)}
+                                >
+                                  Delete
+                                </button>
+                              </>
+                            )}
+                            {role === "manager" && (
+                              <>
+                                <button
+                                  id="editButton"
+                                  style={{ fontFamily: "Roboto" }}
+                                  onClick={() => editEntry(index)}
+                                >
+                                  Edit
+                                </button>
+                              </>
+                            )}
+                          </td>
+                        )}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+            <button
+              id="download"
+              style={{ fontFamily: "Roboto", marginTop: "10px" }}
+              onClick={handletrue}
+            >
+              Download
+            </button>
           </Grid>
-        </div>
+        </Grid>
       </div>
     </div>
   );
