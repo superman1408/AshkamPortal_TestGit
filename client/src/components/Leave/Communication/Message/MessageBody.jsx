@@ -82,6 +82,20 @@ const Message = ({ post, currentId }) => {
     });
   }
 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     currentId && (
       <div>
@@ -96,7 +110,7 @@ const Message = ({ post, currentId }) => {
               flexDirection: "column",
               justifyContent: "space-between",
               bgcolor: "white",
-              width: "110vh",
+              width: "auto",
               borderRadius: "12px",
 
               "@media (maxWidth: 600px)": {
@@ -184,7 +198,7 @@ const Message = ({ post, currentId }) => {
                   style={{
                     resize: "none",
                     height: "120px",
-                    width: "600px",
+                    width: windowWidth <= 600 ? "250px" : "600px",
                     backgroundColor: "white",
                   }}
                   defaultValue={item.message}
@@ -230,5 +244,3 @@ const Message = ({ post, currentId }) => {
 };
 
 export default Message;
-
-

@@ -18,13 +18,7 @@ const Inbox = ({ post, setCurrentId }) => {
   };
 
   return (
-    <div
-      style={{
-        "@media (maxWidth: 600px)": {
-          width: "50px",
-        },
-      }}
-    >
+    <>
       <ButtonBase
         required
         fullwidth="true"
@@ -72,7 +66,7 @@ const Inbox = ({ post, setCurrentId }) => {
         </div> */}
       </ButtonBase>
       {/* </Button> */}
-    </div>
+    </>
   );
 };
 
