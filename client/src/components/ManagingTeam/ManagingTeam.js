@@ -1,6 +1,14 @@
 import React from "react";
 
-import { Box, Grid, Typography, Divider, Stack, Avatar } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Typography,
+  Divider,
+  Stack,
+  Avatar,
+  Container,
+} from "@mui/material";
 
 import avatar1 from "../../assets/MD.jpg";
 import avatar2 from "../../assets/avatar2.jpg";
@@ -10,12 +18,13 @@ import avatar4 from "../../assets/sush.jpg";
 const ManagingTeam = () => {
   return (
     <div style={{ display: "flex", flex: 1 }}>
-      <Box
+      <Container
         sx={{
           display: "flex",
           padding: "3px",
           bgcolor: "#e9edf7",
           boxShadow: 1,
+          maxWidth: "500px",
           borderRadius: "10px",
           // width: "300px",
           overflow: "hidden",
@@ -244,7 +253,7 @@ const ManagingTeam = () => {
             </Grid>
           </Grid>
         </Grid>
-      </Box>
+      </Container>
     </div>
   );
 };
