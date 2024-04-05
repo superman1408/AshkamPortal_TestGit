@@ -175,7 +175,7 @@ const Navibar = () => {
                           color: "#16355d",
                         }}
                       >
-                        logout
+                        Logout
                       </Nav.Link>
                     </div>
                   )}

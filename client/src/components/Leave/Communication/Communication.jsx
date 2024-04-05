@@ -7,11 +7,15 @@ import Inbox from "./Inbox/inbox";
 import MessageBody from "./Message/MessageBody";
 import { getPosts } from "../../../action/posts";
 
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 const Communication = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
   const [currentId, setCurrentId] = useState(user.result.id);
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
+
+  const matches = useMediaQuery("(min-width:1120px)");
 
   useEffect(() => {
     dispatch(getPosts());
@@ -37,7 +41,7 @@ const Communication = () => {
           },
         }}
       >
-        <Panel />
+        {matches && <Panel />}
         <Grid
           sx={{
             bgcolor: "white",

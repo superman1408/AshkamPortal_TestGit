@@ -8,6 +8,7 @@ import {
   Avatar,
   Divider,
   Button,
+  Container,
 } from "@mui/material";
 
 // import {useNavigate } from "react-router-dom";
@@ -59,16 +60,16 @@ const Skill = () => {
   };
 
   return (
-    <div>
-      <Box
+    <div style={{ display: "flex", flex: 1 }}>
+      <Container
         sx={{
           display: "flex",
           padding: "10px",
           bgcolor: "#f2d5d6",
           boxShadow: 1,
+          maxWidth: "500px",
           borderRadius: "10px",
-          width: "100%",
-          maxWidth: "300px",
+          // width: "100%",
           overflow: "hidden",
           position: "relative", // Set position to relative
         }}
@@ -153,7 +154,7 @@ const Skill = () => {
             </Button>
           )}
         </Grid> */}
-      </Box>
+      </Container>
     </div>
   );
 };
