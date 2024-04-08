@@ -122,20 +122,6 @@ const AttendanceDetail = ({ currentId, posts }) => {
     }
   };
 
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   return (
     <div style={{ marginBottom: "180px" }}>
       <h2
@@ -159,14 +145,15 @@ const AttendanceDetail = ({ currentId, posts }) => {
         <Panel />
         {verifyTheRole() && (
           <>
-            <Card
-              elevation={10}
+            <Grid
               sx={{
                 display: "flex",
-                padding: "10px",
+                padding: "15px",
                 width: "auto",
-                backgroundColor: "whitesmoke",
-                margin: "0px 5px 2px 5px",
+                // backgroundColor: "whitesmoke",
+                margin: "0px 3px 2px 3px",
+                borderRadius: "15px",
+                border: "1px solid lightgray",
               }}
             >
               <form
@@ -243,15 +230,16 @@ const AttendanceDetail = ({ currentId, posts }) => {
                   </button>
                 </div>
               </form>
-            </Card>
+            </Grid>
 
-            <Card
-              elevation={10}
+            <Grid
               sx={{
                 // display: "flex",
                 padding: "10px",
                 width: "auto",
-                backgroundColor: "whitesmoke",
+                // backgroundColor: "whitesmoke",
+                borderRadius: "15px",
+                border: "1px solid lightgray",
                 margin: "0px 5px 2px 5px",
               }}
             >
@@ -339,31 +327,32 @@ const AttendanceDetail = ({ currentId, posts }) => {
                   </button>
                 </div>
               </form>
-            </Card>
+            </Grid>
           </>
         )}
         <Grid
           sx={{
             display: "flex",
             padding: "2px",
-            marginLeft: "10px",
+            marginLeft: "5px",
             "@media (max-width: 600px)": {
               flexDirection: "column",
             },
           }}
         >
-          <Card
-            elevation={10}
+          <Grid
             sx={{
-              padding: "5px",
-              width: "auto",
+              borderRadius: "15px",
+              // backgroundColor: "whitesmoke",
+              border: "1px solid lightgray",
+              padding: "10px",
             }}
           >
             <Typography
               style={{
                 fontFamily: "Roboto",
                 fontWeight: "bold",
-                margin: "10px",
+                margin: "5px",
                 color: "#16355d",
               }}
             >
@@ -375,89 +364,97 @@ const AttendanceDetail = ({ currentId, posts }) => {
                 return null;
               })}
             </Typography>
-            <div
-              style={{
-                display: "flex",
+            <div>
+              <table
+                className="time-sheet-table"
+                style={{
+                  padding: "15px",
+                  // backgroundColor: "#f2f2f2",
+                  borderCollapse: "collapse",
+                  border: "1px solid black",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                  borderSpacing: "0",
+                  width: "100%",
+                  marginBottom: "10px",
+                  maxWidth: "800px",
+                }}
+              >
+                <thead>
+                  <tr>
+                    <th
+                      style={{
+                        color: "#16355d",
+                        fontFamily: "Roboto",
+                      }}
+                    >
+                      Date
+                    </th>
+                    <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                      Log In
+                    </th>
+                    <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                      Log Out
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {array.map((item, index) => (
+                    <tr
+                      key={index}
+                      onClick={() => handleHoverDate(item.logDate)}
+                    >
+                      <td
+                        style={{
+                          color: "#e55d17",
+                          fontFamily: "Roboto",
+                          paddingLeft: "40px",
+                          paddingRight: "40px",
+                          alignContent: "center",
+                        }}
+                      >
+                        {item?.logDate}
+                      </td>
+                      <td
+                        style={{
+                          color: "#e55d17",
+                          fontFamily: "Roboto",
+                          paddingLeft: "40px",
+                          paddingRight: "40px",
+                          alignContent: "center",
+                        }}
+                      >
+                        {item?.logIn}
+                      </td>
+                      <td
+                        style={{
+                          color: "#e55d17",
+                          fontFamily: "Roboto",
+                          paddingLeft: "40px",
+                          paddingRight: "40px",
+                          alignContent: "center",
+                        }}
+                      >
+                        {item?.logOut}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Grid>
+          {(role === "employee" || role === "manager") && (
+            <Grid
+              elevation={10}
+              sx={{
+                padding: "5px",
+                width: "auto",
+                marginLeft: "5px",
+                borderRadius: "15px",
+                border: "1px solid lightgray",
               }}
             >
-              <div>
-                <table
-                  className="time-sheet-table"
-                  style={{
-                    padding: "10px",
-                    borderCollapse: "collapse",
-                    marginLeft: "auto",
-                    marginRight: "auto",
-                    width: windowWidth <= 600 ? "50vh" : "100vh",
-                  }}
-                >
-                  <thead>
-                    <tr>
-                      <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                        Date
-                      </th>
-                      <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                        Log In
-                      </th>
-                      <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                        Log Out
-                      </th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    {array.map((item, index) => (
-                      <tr
-                        key={index}
-                        onClick={() => handleHoverDate(item.logDate)}
-                      >
-                        <td
-                          style={{
-                            color: "#e55d17",
-                            fontFamily: "Roboto",
-                            padding: "10px",
-                            alignContent: "center",
-                          }}
-                        >
-                          {item?.logDate}
-                        </td>
-                        <td
-                          style={{
-                            color: "#e55d17",
-                            fontFamily: "Roboto",
-                            padding: "10px",
-                            alignContent: "center",
-                          }}
-                        >
-                          {item?.logIn}
-                        </td>
-                        <td
-                          style={{
-                            color: "#e55d17",
-                            fontFamily: "Roboto",
-                            padding: "10px",
-                            alignContent: "center",
-                          }}
-                        >
-                          {item?.logOut}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>{" "}
-            </div>
-          </Card>
-          <Card
-            elevation={10}
-            sx={{
-              padding: "5px",
-              width: "auto",
-              marginLeft: "5px",
-              backgroundColor: "whitesmoke",
-            }}
-          >
-            {(role === "employee" || role === "manager") && (
               <div style={{ margin: "10px 20px 10px 20px" }}>
                 {hoveredData === false ? (
                   <>
@@ -482,8 +479,8 @@ const AttendanceDetail = ({ currentId, posts }) => {
                   </>
                 )}
               </div>
-            )}
-          </Card>
+            </Grid>
+          )}
           {/* <div>
                 
               </div> */}
