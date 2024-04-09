@@ -359,8 +359,15 @@ const RegistrationForm = () => {
                   }
                 />
 
-                <div
-                  style={{ display: "flex", justifyContent: "space-between" }}
+                <Grid
+                  sx={{
+                    display: "flex",
+                    "@media (max-width: 600px)": {
+                      flexDirection: "column",
+                    },
+
+                    justifyContent: "space-between",
+                  }}
                 >
                   <Grid sx={{ marginTop: "40px" }}>
                     <FileBase
@@ -373,8 +380,8 @@ const RegistrationForm = () => {
                     />
                   </Grid>
 
-                  <div
-                    style={{
+                  <Grid
+                    sx={{
                       width: "150px",
                       height: "100px",
                       marginTop: "40px",
@@ -385,8 +392,8 @@ const RegistrationForm = () => {
                       src={postData.selectedFile}
                       alt="Profile_Picture"
                     />
-                  </div>
-                </div>
+                  </Grid>
+                </Grid>
 
                 <div style={{ marginTop: "30px", display: "flex" }}>
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -465,7 +472,7 @@ const RegistrationForm = () => {
                     }
                   />
                 </div>
-                <div>
+                <div style={{ display: "flex" }}>
                   <select
                     style={{
                       width: "300px",
