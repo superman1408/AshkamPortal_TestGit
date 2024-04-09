@@ -123,7 +123,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
   };
 
   return (
-    <div style={{ marginBottom: "180px" }}>
+    <div>
       <h2
         style={{ color: "#16355d", marginLeft: "20px", fontFamily: "Roboto" }}
       >
@@ -149,9 +149,10 @@ const AttendanceDetail = ({ currentId, posts }) => {
               sx={{
                 display: "flex",
                 padding: "15px",
-                width: "auto",
+                // width: "auto",
+                // marginLeft: "5px",
                 // backgroundColor: "whitesmoke",
-                margin: "0px 3px 2px 3px",
+                margin: "0px 3px 2px 10px",
                 borderRadius: "15px",
                 border: "1px solid lightgray",
               }}
@@ -170,9 +171,9 @@ const AttendanceDetail = ({ currentId, posts }) => {
 
                   <input
                     style={{
-                      width: "auto",
-                      height: "30px",
-                      padding: "8px",
+                      // width: "auto",
+                      // height: "30px",
+                      // padding: "8px",
                       fontSize: "16px",
                       border: "1px solid #ccc",
                       borderRadius: "4px",
@@ -199,9 +200,9 @@ const AttendanceDetail = ({ currentId, posts }) => {
                   </label>
                   <input
                     style={{
-                      width: "auto",
-                      height: "30px",
-                      padding: "8px",
+                      // width: "auto",
+                      // height: "30px",
+                      // padding: "8px",
                       fontSize: "16px",
                       border: "1px solid #ccc",
                       borderRadius: "4px",
@@ -319,7 +320,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
                   style={{
                     display: "flex",
                     float: "right",
-                    marginTop: "50px",
+                    marginTop: "65px",
                   }}
                 >
                   <button style={{ fontFamily: "Roboto" }} type="submit">
@@ -334,7 +335,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
           sx={{
             display: "flex",
             padding: "2px",
-            marginLeft: "5px",
+            // marginLeft: "5px",
             "@media (max-width: 600px)": {
               flexDirection: "column",
             },

@@ -21,7 +21,6 @@ const AttendanceDisplay = () => {
   useEffect(() => {
     if (posts) {
       dispatch(getPosts()).then(() => {
-      
         // eslint-disable-next-line array-callback-return
         posts.map((post) => {
           if (post._id === currentId) {
