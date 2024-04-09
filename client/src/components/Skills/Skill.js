@@ -96,40 +96,40 @@ const Skill = () => {
           </Typography>
           {Object.keys(formData).map((field) => (
             <div key={field} style={{ marginTop: "5px" }}>
-              {/* {isEditing ? (
+              {isEditing ? (
                 <Input
                   value={formData[field]}
                   onChange={(e) => handleFieldChange(field, e.target.value)}
                 />
-              ) : ( */}
-              <div style={{ display: "flex", marginTop: "10px" }}>
-                <Avatar
-                  sx={{
-                    width: "25px",
-                    height: "25px",
-                    bgcolor: "#505c2e",
-                  }}
-                  alt="avatar"
-                >
-                  {" "}
-                  {formData[field].charAt(0)}
-                </Avatar>
-                <Typography
-                  sx={{
-                    fontWeight: "bolder",
-                    marginLeft: "10px",
-                    fontFamily: "Roboto",
-                  }}
-                >
-                  {formData[field]}
-                </Typography>
-              </div>
-              {/* )} */}
+              ) : (
+                <div style={{ display: "flex", marginTop: "10px" }}>
+                  <Avatar
+                    sx={{
+                      width: "25px",
+                      height: "25px",
+                      bgcolor: "#505c2e",
+                    }}
+                    alt="avatar"
+                  >
+                    {" "}
+                    {formData[field].charAt(0)}
+                  </Avatar>
+                  <Typography
+                    sx={{
+                      fontWeight: "bolder",
+                      marginLeft: "10px",
+                      fontFamily: "Roboto",
+                    }}
+                  >
+                    {formData[field]}
+                  </Typography>
+                </div>
+              )}
             </div>
           ))}
           <Divider />
         </Grid>
-        {/* <Grid>
+        <Grid>
           <IconButton
             size="50px"
             color="black"
@@ -153,7 +153,7 @@ const Skill = () => {
               Save
             </Button>
           )}
-        </Grid> */}
+        </Grid>
       </Container>
     </div>
   );
