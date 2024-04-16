@@ -169,10 +169,10 @@ const RegistrationForm = () => {
         sx={{ width: "800px", justifyContent: "center", height: "100%" }}
       >
         {isLoading ? (
-          <>
+          <div style={{ marginLeft: "350px" }}>
             <CircularProgress />
             Loading...
-          </>
+          </div>
         ) : (
           <Grid
             sx={{

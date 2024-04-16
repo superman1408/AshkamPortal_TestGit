@@ -8,6 +8,7 @@ import MessageBody from "./Message/MessageBody";
 import { getPosts } from "../../../action/posts";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
+import inbox from "../../../../src/assets/inbox.png";
 
 const Communication = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -120,6 +121,16 @@ const Communication = () => {
                         </div>
                       )
                   )}
+
+                <div
+                  style={{
+                    ...(matches && {
+                      margin: "100px 130px 100px 130px", // Apply gray background if matches is true
+                    }),
+                  }}
+                >
+                  <img src={inbox} alt="logo" style={{ opacity: "70%" }} />
+                </div>
               </div>
             </div>
           </div>

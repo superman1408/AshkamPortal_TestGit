@@ -49,7 +49,6 @@ const ChartComponent = ({ availabelLeave }) => {
           width: "100%",
           height: "220px",
           marginTop: "10px",
-          marginLeft: "00px",
         }}
       />
     </>
