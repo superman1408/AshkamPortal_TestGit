@@ -162,9 +162,6 @@ const Leave = () => {
               <Card
                 elevation={10}
                 sx={{
-                  height: {
-                    md: 550,
-                  },
                   padding: "10px",
                   // width: "700px",
                   width: {
