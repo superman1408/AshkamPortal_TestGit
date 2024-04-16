@@ -119,23 +119,33 @@ const Leave = () => {
         <Panel />
       </div>
       <div>
-        <form autoComplete="off" onSubmit={handleSubmit}>
-          <div
-            className={classes.mainContainer}
-            style={{
-              padding: "2px",
-              display: "flex",
-              // marginLeft: "2px",
-              bgcolor: "#f0f2f1",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                marginLeft: "10px",
-              }}
-            >
+        <Grid
+          sx={{
+            display: "flex",
+            "@media (max-width: 600px)": {
+              flexDirection: "column",
+            },
+          }}
+        >
+          <Grid sx={{ marginLeft: "15px" }}>
+            <form autoComplete="off" onSubmit={handleSubmit}>
+              {/* <div
+                className={classes.mainContainer}
+                style={{
+                  padding: "2px",
+                  display: "flex",
+                  // marginLeft: "2px",
+                  // bgcolor: "#f0f2f1",
+                  bgcolor: "blue",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    // marginLeft: "10px",
+                  }}
+                > */}
               <Grid>
                 <Typography
                   variant="h6"
@@ -152,11 +162,15 @@ const Leave = () => {
               <Card
                 elevation={10}
                 sx={{
+                  height: {
+                    md: 550,
+                  },
                   padding: "10px",
+                  // width: "700px",
                   width: {
-                    sx: 1.0, // 100%
+                    sx: 1.0,
                     sm: 250,
-                    md: 700,
+                    md: 600,
                   },
                 }}
               >
@@ -285,30 +299,33 @@ const Leave = () => {
                   </div>
                 </Grid>
               </Card>
-            </div>
-            <div style={{ marginLeft: "5px" }}>
-              <Card
-                elevation={10}
-                sx={{
-                  margin: "10px",
-                  marginTop: "40px",
-                  height: "320px",
-                  "@media (max-width: 600px)": {
-                    // marginTop: "20px",
-                  },
-                }}
-              >
-                <Calender />
-              </Card>
-              <Card elevation={10} sx={{ margin: "10px", padding: "5px" }}>
-                <ChartComponent
-                  availabelLeave={availabelLeave}
-                  style={{ willchange: "transform" }}
-                />
-              </Card>
-            </div>
-          </div>
-        </form>
+              {/* </div>
+              </div> */}
+            </form>
+          </Grid>
+          <Grid style={{ marginLeft: "20px" }}>
+            <Card
+              elevation={10}
+              sx={{
+                // margin: "10px",
+                marginTop: "40px",
+                marginBottom: "10px",
+                height: "300px",
+                "@media (max-width: 600px)": {
+                  // marginTop: "20px",
+                },
+              }}
+            >
+              <Calender />
+            </Card>
+            <Card elevation={10} sx={{ padding: "5px" }}>
+              <ChartComponent
+                availabelLeave={availabelLeave}
+                style={{ willchange: "transform" }}
+              />
+            </Card>
+          </Grid>
+        </Grid>
       </div>
     </div>
   );
