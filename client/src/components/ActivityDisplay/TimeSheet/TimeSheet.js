@@ -17,7 +17,7 @@ import { useReactToPrint } from "react-to-print";
 
 import Panel from "../../Panel/Panel";
 
-function Evolve({ currentId, posts }) {
+function TimeSheet({ currentId, posts }) {
   const dispatch = useDispatch();
   const [entries, setEntries] = useState([]);
   const [projectCode, setProjectCode] = useState("");
@@ -727,4 +727,4 @@ function Evolve({ currentId, posts }) {
     </div>
   );
 }
-export default Evolve;
+export default TimeSheet;

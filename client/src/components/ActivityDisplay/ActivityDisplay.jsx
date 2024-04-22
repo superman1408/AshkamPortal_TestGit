@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import Evolve from "./UnderTrial/Evolve";
+import Evolve from "./TimeSheet/TimeSheet";
 import { getPosts } from "../../action/posts";
 
 import "./Style.css";
 
-import ComboBox from "./UnderTrial/ComboBox";
+import ComboBox from "./TimeSheet/ComboBox";
 
 const ActivityDisplay = () => {
   const { id } = useParams();
