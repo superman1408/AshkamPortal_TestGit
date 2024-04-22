@@ -49,6 +49,7 @@ const PasswordResetForm = () => {
           padding: "20px",
           backgroundColor: "#f2f2f2",
           borderCollapse: "collapse",
+          marginBottom:"130px",
           // border: "1px solid black",
         }}
       >
