@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "@mui/material";
-
 import Authentication from "./components/authentication/Auth";
 import Leave from "./components/Leave/leave";
 import AboutUS from "./components/AboutUs/aboutUs";
@@ -17,10 +17,9 @@ import PaySlip from "./components/Payslip/PaySlip";
 import ActivityDisplay from "./components/ActivityDisplay/ActivityDisplay";
 import SkillDisplay from "./components/Skills/SkillDisplay";
 import PrintingLayout from "./components/PrinttingLayout/PrintingLayout";
-import EvolvePrintLayout from "./components/ActivityDisplay/UnderTrial/EvolvePrintLayout";
+import EvolvePrintLayout from "./components/ActivityDisplay/TimeSheet/EvolvePrintLayout";
 import AttendanceDisplay from "./components/Attendance/AttendanceDisplay";
 import PasswordResetForm from "./components/PasswordReset/PasswordResetForm";
-import Panel from "./components/Panel/Panel";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
