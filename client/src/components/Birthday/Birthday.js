@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Box, Grid, Typography, Avatar, Container } from "@mui/material";
-
-// import { useNavigate } from "react-router-dom";
-
-// import avatar1 from "../../assets/Profile.jpg";
-import Image from "../../assets/final.jpg";
-
 import { useDispatch, useSelector } from "react-redux";
 
-import { getPosts } from "../../action/posts";
+import { Grid, Typography, Avatar, Container } from "@mui/material";
 
+
+import Image from "../../assets/final.jpg";
+import { getPosts } from "../../action/posts";
 import AlertDialogSlide from "../Birthday/BirthdayMail";
+
+
 
 const Birthday = () => {
   // eslint-disable-next-line no-unused-vars
