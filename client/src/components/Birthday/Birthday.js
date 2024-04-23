@@ -17,13 +17,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 // import { Grid, Typography, Avatar, Container } from "@mui/material";
 
-
 import Image from "../../assets/final.jpg";
 import { getPosts } from "../../action/posts";
 // import AlertDialogSlide from "../Birthday/BirthdayMail";
 import AlertDialogSlide from "../Birthday/Dialog";
-
-
 
 const Birthday = () => {
   // eslint-disable-next-line no-unused-vars
