@@ -1,33 +1,23 @@
+/* eslint-disable jsx-a11y/no-distracting-elements */
 import React, { useState, useEffect } from "react";
-import {
-  Box,
-  Grid,
-  Typography,
-  Avatar,
-  Container,
-  Button,
-} from "@mui/material";
-
-// import { useNavigate } from "react-router-dom";
-
-// import avatar1 from "../../assets/Profile.jpg";
-import Image from "../../assets/final.jpg";
-
 import { useDispatch, useSelector } from "react-redux";
 
 import { Grid, Typography, Avatar, Container } from "@mui/material";
 
 
-import Image from "../../assets/final.jpg";
+
 import { getPosts } from "../../action/posts";
-import AlertDialogSlide from "../Birthday/BirthdayMail";
+// import AlertDialogSlide from "../Birthday/BirthdayMail";
 import AlertDialogSlide from "../Birthday/Dialog";
+
+import Image from "../../assets/final.jpg";
 
 
 
 const Birthday = () => {
-  // eslint-disable-next-line no-unused-vars
-  // const [condition, setCondition] = useState(true);
+  const [currentId, setCurrentId] = useState(null);
+  const dispatch = useDispatch();
+  const posts = useSelector((state) => state.posts);
   const [dimension, setDimension] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -40,6 +30,8 @@ const Birthday = () => {
     setDimension({ width: window.innerWidth, height: window.innerHeight });
   };
 
+
+
   useEffect(() => {
     window.addEventListener("resize", detectSize);
     return () => {
@@ -47,13 +39,6 @@ const Birthday = () => {
     };
   }, [dimension]);
 
-  // eslint-disable-next-line no-unused-vars
-  const [currentId, setCurrentId] = useState(null);
-
-  const dispatch = useDispatch();
-
-  const posts = useSelector((state) => state.posts);
-  // console.log(posts);
 
   useEffect(() => {
     dispatch(getPosts());
@@ -61,7 +46,8 @@ const Birthday = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, currentId]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
+
   const isBirthdayToday = () => {
     let status = true;
     for (let index = 0; index < posts.length; index++) {
@@ -82,7 +68,9 @@ const Birthday = () => {
     return status;
   };
 
-  // console.log(condition)
+
+
+  
 
   return (
     <div style={{ display: "flex", flex: 1 }}>

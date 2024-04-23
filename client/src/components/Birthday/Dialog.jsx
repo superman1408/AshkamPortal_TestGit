@@ -13,57 +13,55 @@ import { dailyEvent } from "../../action/posts";
 import { useParams } from "react-router-dom";
 
 export default function FormDialog() {
-  const { id } = useParams();
-  const [currentId, setCurrentId] = useState(id);
-  console.log(id);
-
-  const [open, setOpen] = useState(false);
-
   const dispatch = useDispatch();
+  const { id } = useParams();
+  const [formData, setFormData] = useState({
+    dailyevent: "",
+  });
+  const [open, setOpen] = useState(false);
+  const [currentId, setCurrentId] = useState(id);
+
+  
+
+  
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
+  
+
   const handleClose = () => {
     setOpen(false);
   };
 
-  const [formData, setFormData] = useState({
-    dailyevent: "",
-  });
+  
+
+
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
-    // const formData = new FormData(e.target);
-    // const dailyevent = formData.get("dailyevent");
-    // console.log(dailyevent);
-
     e.preventDefault();
     dispatch(dailyEvent(formData));
     handleClose();
   };
 
-  // console.log(formData);
+
+
 
   return (
     <>
-      {/* <Button >
-        Open form dialog
-      </Button> */}
       <div>
         <IconButton
           variant="outlined"
           onClick={handleClickOpen}
-          sx={{ backgroundColor: "gray" }}
         >
-          <MoreVertIcon />
+          <MoreVertIcon sx={{color: "blue"}} />
         </IconButton>
       </div>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>Set the event</DialogTitle>
         <DialogContent>
-          <DialogContentText>Enter event</DialogContentText>
+          <DialogContentText>Banner to display</DialogContentText>
           <form onSubmit={handleSubmit}>
             <TextField
               autoFocus

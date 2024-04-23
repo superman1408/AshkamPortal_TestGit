@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  Box,
   Grid,
   IconButton,
   Typography,
@@ -10,6 +9,8 @@ import {
   Button,
   Container,
 } from "@mui/material";
+
+import MoreVert from "@mui/icons-material/MoreVert";
 
 // import {useNavigate } from "react-router-dom";
 
@@ -140,7 +141,7 @@ const Skill = () => {
               top: "0px",
             }}
           >
-            <MoreVertIcon />
+            <MoreVert />
           </IconButton>
           {isEditing && (
             <Button
