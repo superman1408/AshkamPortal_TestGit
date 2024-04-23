@@ -14,7 +14,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { dailyEvent } from "../../../action/posts";
 import { useParams } from "react-router-dom";
 
-import { getAttendancePosts, getPosts } from "../../../action/posts";
+import { getAttendancePosts } from "../../../action/posts";
 
 const FormDialog = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const FormDialog = () => {
     dailyevent: "",
   });
   const [open, setOpen] = useState(false);
-  const [currentId, setCurrentId] = useState(null);
+  const [currentId, setCurrentId] = useState("");
   const [unique, setUnique] = useState({
     id: "",
   });
@@ -31,14 +31,14 @@ const FormDialog = () => {
 
 
   useEffect(() => {
-    if (attend) {
+    if (!attend) {
       dispatch(getAttendancePosts()).then(() => {
         attend.map((item) => {
           setUnique({...unique, id: item._id})
         })
       })
     }
-  },[unique, attend])
+  },[attend]);
 
 
   
@@ -63,11 +63,19 @@ const FormDialog = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(formData);
     attend.map((item) => {
-      console.log(item._id)
+      setCurrentId(item._id)
+      console.log(currentId)
+      dispatch(dailyEvent(currentId, formData)).then(() => {
+        console.log(currentId);
+        handleClose();
+      });
     })
-    // dispatch(dailyEvent(formData));
-    handleClose();
+    // dispatch(dailyEvent(formData, currentId)).then(() => {
+    //   console.log(currentId);
+    //   handleClose();
+    // });
   };
 
 

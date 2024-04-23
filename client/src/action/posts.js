@@ -179,10 +179,10 @@ export const logList = (post, id) => async (dispatch) => {
   }
 };
 
-export const dailyEvent = (formData) => async (dispatch) => {
+export const dailyEvent = (id, formData) => async (dispatch) => {
   console.log("Hello I am working..!!");
   try {
-    const { data } = await API.dailyEvent(formData);
+    const { data } = await API.dailyEvent(id, formData);
     console.log("data", data);
     console.log("data", data);
 
