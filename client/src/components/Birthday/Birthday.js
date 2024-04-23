@@ -8,7 +8,7 @@ import { Grid, Typography, Avatar, Container } from "@mui/material";
 
 import { getPosts } from "../../action/posts";
 // import AlertDialogSlide from "../Birthday/BirthdayMail";
-import AlertDialogSlide from "../Birthday/Dialog";
+import AlertDialogSlide from "./DialogBox/Dialog";
 
 import Image from "../../assets/final.jpg";
 
@@ -22,6 +22,7 @@ const Birthday = () => {
     width: window.innerWidth,
     height: window.innerHeight,
   });
+
 
   const currentDay = new Date().getDate();
   const currentMonth = new Date().getMonth() + 1;
@@ -45,6 +46,9 @@ const Birthday = () => {
     isBirthdayToday();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, currentId]);
+
+
+
 
 
 
@@ -190,7 +194,7 @@ const Birthday = () => {
               // marginLeft: "20vh",
             }}
           >
-            <AlertDialogSlide />
+            <AlertDialogSlide  />
           </div>
         </Grid>
       </Container>
