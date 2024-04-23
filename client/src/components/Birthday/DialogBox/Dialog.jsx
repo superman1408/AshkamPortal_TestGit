@@ -11,10 +11,10 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
-import { dailyEvent } from "../../../action/posts";
-import { useParams } from "react-router-dom";
 
-import { getAttendancePosts } from "../../../action/posts";
+import { getAttendancePosts, dailyEvent } from "../../../action/posts";
+
+
 
 const FormDialog = () => {
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ const FormDialog = () => {
         })
       })
     }
-  },[attend]);
+  },[attend, dispatch]);
 
 
   
@@ -57,25 +57,18 @@ const FormDialog = () => {
     setOpen(false);
   };
 
-  // console.log(attend);
 
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
     attend.map((item) => {
       setCurrentId(item._id)
-      console.log(currentId)
       dispatch(dailyEvent(currentId, formData)).then(() => {
-        console.log(currentId);
-        handleClose();
+        console.log("Event Message is send..!!")
       });
+      handleClose();
     })
-    // dispatch(dailyEvent(formData, currentId)).then(() => {
-    //   console.log(currentId);
-    //   handleClose();
-    // });
   };
 
 
