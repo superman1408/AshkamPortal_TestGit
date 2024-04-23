@@ -91,8 +91,6 @@ export const sendData = async (req, res) => {
   res.status(200).json(updatePost);
 };
 
-
-
 export const updatedStatus = async (req, res) => {
   const { id } = req.params;
   // console.log(id);
@@ -207,8 +205,6 @@ export const deleteTable = async (req, res) => {
   }
 };
 
-
-
 // _________________________Attendancev Data Status_____________________________
 export const dailyAttendance = async (req, res) => {
   const Post = req.body;
@@ -220,6 +216,21 @@ export const dailyAttendance = async (req, res) => {
     res.status(409).json({ message: error.message });
   }
 };
+
+export const dailyEvent = async (req, res) => {
+  console.log("Mouse here came!!!!!!");
+  const event = req.body;
+  const newPost = new UserAttendance(event);
+  try {
+    await newPost.save();
+    res.status(201).json(newPost);
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+
+};
+
+
 
 export const getAttendancePosts = async (req, res) => {
   try {

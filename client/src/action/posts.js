@@ -10,6 +10,7 @@ import {
   UPDATE_TABLE,
   ATTEND_ALL,
   LOGLIST,
+  DAILY_EVENT,
 } from "../constants/actionTypes";
 
 import * as API from "../api";
@@ -173,6 +174,19 @@ export const logList = (post, id) => async (dispatch) => {
     const { data } = await API.logList(post, id);
     //console.log(data);
     dispatch({ type: LOGLIST, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const dailyEvent = (formData) => async (dispatch) => {
+  console.log("Hello I am working..!!");
+  try {
+    const { data } = await API.dailyEvent(formData);
+    console.log("data", data);
+    console.log("data", data);
+
+    dispatch({ type: DAILY_EVENT, payload: data });
   } catch (error) {
     console.log(error);
   }

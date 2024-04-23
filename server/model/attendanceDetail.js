@@ -7,6 +7,9 @@ const attendanceSchema = mongoose.Schema({
   absentEmployee: {
     type: String,
   },
+  dailyEvent: {
+    type: String,
+  },
 });
 
 const AttendanceDetail = mongoose.model("AttendanceDetail", attendanceSchema);
