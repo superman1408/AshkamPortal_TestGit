@@ -78,7 +78,6 @@ const App = () => {
             />
 
             <Route path="posts/skill" exact element={<SkillDisplay />} />
-            <Route path="/birthdaymail" exact element={<BirthdayMail />} />
             <Route path="/:id/payslip" exact element={<PaySlip />} />
             <Route
               path="/:id/attendanceDisplay"

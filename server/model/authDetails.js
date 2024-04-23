@@ -166,6 +166,7 @@ const authSchema = mongoose.Schema({
     type: [String],
     default: [],
   },
+  
 });
 
 const AuthDetails = mongoose.model("AuthDetails", authSchema);

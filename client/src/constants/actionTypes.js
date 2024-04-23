@@ -14,3 +14,4 @@ export const UPDATE_TABLE = "UPDATE_TABLE";
 export const DAILYATTENDANCE = "DAILYATTENDANCE";
 export const ATTEND_ALL = "ATTEND_ALL";
 export const LOGLIST = "LOGLIST";
+export const DAILY_EVENT = "DAILY_EVENT";

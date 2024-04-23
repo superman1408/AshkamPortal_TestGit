@@ -58,6 +58,9 @@ export const deleteTable = (id, indexed) =>
 export const dailyAttendance = (formData) =>
   API.post(`/posts/dailyAttendance`, formData);
 
+export const dailyEvent = (formData, id) =>
+  API.post(`/posts/dailyEvent`, formData);
+
 export const fetchAttendancePosts = () => API.get("/posts/attendanceposts");
 
 export const logList = (formData, id) =>

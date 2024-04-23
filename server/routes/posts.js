@@ -12,6 +12,7 @@ import {
   dailyAttendance,
   getAttendancePosts,
   logList,
+  dailyEvent,
 } from "../controllers/posts.js";
 
 import auth from "../middleware/auth.js";
@@ -41,6 +42,8 @@ router.delete("/:id/deleteTable/:indexed", auth, deleteTable);
 router.post("/skill", skillData);
 
 router.post("/dailyAttendance", dailyAttendance);
+
+router.post("/dailyEvent", dailyEvent);
 
 router.post("/:id/loglist", logList);
 

@@ -17,7 +17,6 @@ import { useDispatch } from "react-redux";
 
 import { skillData } from "../../action/posts";
 
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const Skill = () => {
   const [formData, setFormData] = useState({
@@ -79,6 +78,7 @@ const Skill = () => {
             marginBottom: "22px",
             marginTop: "5px",
             marginLeft: "10px",
+
             marginRight: "10px",
             alignItems: "center",
             justifyContent: "center",
