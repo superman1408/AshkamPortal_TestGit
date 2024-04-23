@@ -10,14 +10,13 @@ import {
   Container,
 } from "@mui/material";
 
-import MoreVert from "@mui/icons-material/MoreVert";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 // import {useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 
 import { skillData } from "../../action/posts";
-
 
 const Skill = () => {
   const [formData, setFormData] = useState({
@@ -141,7 +140,7 @@ const Skill = () => {
               top: "0px",
             }}
           >
-            <MoreVert />
+            <MoreVertIcon />
           </IconButton>
           {isEditing && (
             <Button

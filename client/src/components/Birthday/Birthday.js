@@ -5,14 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Grid, Typography, Avatar, Container } from "@mui/material";
 
 
-
 import { getPosts } from "../../action/posts";
 // import AlertDialogSlide from "../Birthday/BirthdayMail";
 import AlertDialogSlide from "./DialogBox/Dialog";
 
 import Image from "../../assets/final.jpg";
-
-
 
 const Birthday = () => {
   const [currentId, setCurrentId] = useState(null);
