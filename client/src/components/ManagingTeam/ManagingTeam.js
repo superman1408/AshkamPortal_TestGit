@@ -75,7 +75,7 @@ const ManagingTeam = () => {
               <Typography
                 sx={{
                   marginLeft: "30px",
-                  marginRight: "30px",
+                  marginRight: "0px",
                   marginTop: "10px",
                   fontFamily: "Roboto",
                 }}
@@ -131,7 +131,7 @@ const ManagingTeam = () => {
               <Typography
                 sx={{
                   marginLeft: "30px",
-                  marginRight: "30px",
+                  marginRight: "0px",
                   marginTop: "10px",
                   fontFamily: "Roboto",
                 }}
@@ -187,7 +187,7 @@ const ManagingTeam = () => {
               <Typography
                 sx={{
                   marginLeft: "30px",
-                  marginRight: "30px",
+                  marginRight: "0px",
                   marginTop: "10px",
                   fontFamily: "Roboto",
                 }}
@@ -232,7 +232,7 @@ const ManagingTeam = () => {
               <Typography
                 sx={{
                   marginLeft: "30px",
-                  marginRight: "30px",
+                  marginRight: "0px",
                   marginTop: "10px",
                   fontFamily: "Roboto",
                 }}
