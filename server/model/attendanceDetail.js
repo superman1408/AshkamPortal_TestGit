@@ -7,7 +7,7 @@ const attendanceSchema = mongoose.Schema({
   absentEmployee: {
     type: String,
   },
-  dailyEvent: {
+  dailyevent: {
     type: String,
   },
 });

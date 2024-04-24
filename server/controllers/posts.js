@@ -271,11 +271,16 @@ export const dailyEvent = async (req, res) => {
 
     if (!user) return res.status(404).send("No User Found");
 
-    user.dailyEvent.push(event.dailyevent);
+    console.log(user);
+    console.log(user.presentEmployee);
+    console.log(event.dailyevent);
 
-    await user.save();
+    user.push(event.dailyevent);
 
-    res.status(200).json({ message: "Item inserted successfully" });
+    const updatePost = await AuthenticateUser.findByIdAndUpdate(id, user, {
+      new: true,
+    });
+    res.status(200).json(updatePost);
 
   } catch (error) {
     res.status(409).json({ message: error.message });

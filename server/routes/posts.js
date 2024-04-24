@@ -43,7 +43,7 @@ router.post("/skill", skillData);
 
 router.post("/dailyAttendance", dailyAttendance);
 
-router.post("/:id/dailyEvent", dailyEvent);
+router.patch("/:id/dailyEvent", dailyEvent);
 
 router.post("/:id/loglist", logList);
 
