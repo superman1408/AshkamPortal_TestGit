@@ -80,7 +80,7 @@ const ManagingTeam = () => {
                   fontFamily: "Roboto",
                 }}
               >
-                Mr.Abhishek kumar
+                Mr.Abhishek Kumar
               </Typography>
               <Typography
                 sx={{
@@ -136,7 +136,7 @@ const ManagingTeam = () => {
                   fontFamily: "Roboto",
                 }}
               >
-                Mr.Santosh kumar jha
+                Mr.Santosh Kumar Jha
               </Typography>
               <Typography
                 sx={{
