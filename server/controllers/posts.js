@@ -223,13 +223,6 @@ export const dailyEvent = async (req, res) => {
   const id = req.params;
   console.log(event);
   console.log(id);
-  // const newPost = new UserAttendance(event);
-  // try {
-  //   await newPost.save();
-  //   res.status(201).json(newPost);
-  // } catch (error) {
-  //   res.status(409).json({ message: error.message });
-  // }
 
 };
 
