@@ -19,24 +19,16 @@ import { getAttendancePosts, dailyEvent } from "../../../action/posts";
 const FormDialog = () => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
-    dailyevent: "",
+    dailyevent: ""
   });
   const [open, setOpen] = useState(false);
-  const [currentId, setCurrentId] = useState("");
-  const [unique, setUnique] = useState({
-    id: "",
-  });
 
   const attend = useSelector((state) => state.attend);
 
 
   useEffect(() => {
     if (!attend) {
-      dispatch(getAttendancePosts()).then(() => {
-        attend.map((item) => {
-          setUnique({...unique, id: item._id})
-        })
-      })
+      dispatch(getAttendancePosts())
     }
   },[attend, dispatch]);
 
@@ -60,16 +52,23 @@ const FormDialog = () => {
 
 
 
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    attend.map((item) => {
-      setCurrentId(item._id)
-      dispatch(dailyEvent(currentId, formData)).then(() => {
-        console.log("Event Message is send..!!")
+    // Assuming you only want to dispatch if there are items in `attend`
+    if (attend.length > 0) {
+      // Dispatch only once with the first item's ID
+      dispatch(dailyEvent(attend[0]._id, formData)).then(() => {
+        console.log("Event Message is sent..!!");
+        handleClose();
       });
-      handleClose();
-    })
+    } else {
+      // Handle case where `attend` is empty
+      console.log("No items in attend array");
+    }
   };
+  
 
 
 
@@ -90,7 +89,7 @@ const FormDialog = () => {
           <DialogContentText>Banner to display</DialogContentText>
           <form onSubmit={handleSubmit}>
             <TextField
-              autoFocus
+              // autoFocus
               required
               margin="dense"
               id="dailyevent"
@@ -98,7 +97,7 @@ const FormDialog = () => {
               type="text"
               fullWidth
               variant="standard"
-              value={formData.dailyevent}
+              // value={formData.dailyevent}
               onChange={(e) =>
                 setFormData({ ...formData, dailyevent: e.target.value })
               }
