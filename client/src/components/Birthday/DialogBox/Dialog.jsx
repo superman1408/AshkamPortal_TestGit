@@ -60,7 +60,6 @@ const FormDialog = () => {
     if (attend.length > 0) {
       // Dispatch only once with the first item's ID
       dispatch(dailyEvent(attend[0]._id, formData)).then(() => {
-        console.log("Event Message is sent..!!");
         handleClose();
       });
     } else {

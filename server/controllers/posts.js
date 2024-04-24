@@ -258,34 +258,28 @@ export const dailyAttendance = async (req, res) => {
 
 
 export const dailyEvent = async (req, res) => {
-  console.log("Mouse here came!!!!!!");
-  const event = req.body;
-  const id = req.params;
-  console.log(event);
-  console.log(id);
+  let message = "I am talking to server";
+  console.log("I am server..!!");
+  const eventDisplay = req.body;
+  const { id:_id}  = req.params;
+  
+  console.log(_id)
+  console.log(eventDisplay);
 
 
   try {
-    if (!mongoose.Types.ObjectId.isValid(id))
-      return res.status(404).send("Invalid User ID!");
-
-    const user = await UserAttendance.findById(id);
-
-    if (!user) return res.status(404).send("No User Found");
+    // find the user by their ID from URL parameter.
+    const user = await UserAttendance.findById(_id);
+    if (!user) {
+      return res.status(404).json({ message: "No user with this Id!" });
+    }
 
     console.log(user);
-    console.log(user.presentEmployee);
-    console.log(event.dailyevent);
 
-    user.push(event.dailyevent);
-
-    const updatePost = await AuthenticateUser.findByIdAndUpdate(id, user, {
-      new: true,
-    });
-    res.status(200).json(updatePost);
-
+    
+    res.status(200);
   } catch (error) {
-    res.status(409).json({ message: error.message });
+    res.status(409).json({message: error.message});
   }
 };
 
