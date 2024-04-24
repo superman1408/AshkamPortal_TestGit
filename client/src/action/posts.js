@@ -213,8 +213,10 @@ export const dailyEvent = (id, formData) => async (dispatch) => {
   console.log("Hello I am working..!!");
   
   try {
-    const  {data}  = await API.dailyEvent(id, formData);
+    const { data } = await API.dailyEvent(id, formData);
+
     dispatch({ type: DAILY_EVENT, payload: data });
+    
   } catch (error) {
     console.log(error);
   }

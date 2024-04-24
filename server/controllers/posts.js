@@ -260,7 +260,9 @@ export const dailyAttendance = async (req, res) => {
 export const dailyEvent = async (req, res) => {
   console.log("Mouse here came!!!!!!");
   const event = req.body;
-  const {id} = req.params;
+  const id = req.params;
+  console.log(event);
+  console.log(id);
 
 
   try {
