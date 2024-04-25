@@ -20,13 +20,18 @@ import Panel from "../Panel/Panel";
 // import { useDispatch } from "react-redux";
 
 const PaySlip = () => {
-  const [total, setTotal] = useState();
+  // const [total, setTotal] = useState();
+  const [postData, setPostData] = useState({
+    total: "",
+    netSalary: "",
+  });
   const [basic, setBasic] = useState();
   const [uanNo, setUanNo] = useState();
 
   const [houseRent, setHouserent] = useState();
   const [conveyance, setConveyance] = useState();
   const [communication, setCommunication] = useState();
+
   const [uniform, setUniform] = useState();
   const [medical, setMedical] = useState();
   const [cityFactor, setCityFactor] = useState();
@@ -36,7 +41,7 @@ const PaySlip = () => {
   const [employeerContribution_pf, setEmployeerContribution_pf] = useState(0);
   const [employeeContribution_esic, setEmployeeContribution_esic] = useState(0);
   const [totalDeduction, setTotalDeduction] = useState(0);
-  const [netSalary, setNetSalary] = useState(0);
+  // const [netSalary, setNetSalary] = useState(0);
   const [dataGenerated, setDataGenerated] = useState(false);
   const [printingshow, setPrintingShow] = useState(false);
 
@@ -61,7 +66,10 @@ const PaySlip = () => {
   console.log("net", net);
 
   const calculateTotal = () => {
-    setTotal(GS);
+    // setTotal(GS);
+    setPostData((previousState) => {
+      return { ...previousState, total: GS };
+    });
     calculatePf();
     // setPrintingShow(true);
     if (isNaN(net) || net <= 0) {
@@ -78,7 +86,10 @@ const PaySlip = () => {
     setEmployeerContribution_pf(pf);
     setEmployeeContribution_esic(esic);
     setTotalDeduction(totaldeduction);
-    setNetSalary(net);
+    // setNetSalary(net);
+    setPostData((previousState) => {
+      return { ...previousState, netSalary: net };
+    });
   };
 
   // const dispatch = useDispatch();
@@ -639,7 +650,7 @@ const PaySlip = () => {
                           // id="standard-basic"
                           label="amount"
                           variant="outlined"
-                          value={total || ""}
+                          value={postData.total || ""}
                           // onChange={(e) =>
                           //   setPostData({
                           //     ...postData,
@@ -666,7 +677,7 @@ const PaySlip = () => {
                           // id="standard-basic"
                           label="amount"
                           variant="outlined"
-                          value={netSalary || ""}
+                          value={postData.netSalary || ""}
                           // onChange={(e) =>
                           //   setPostData({
                           //     ...postData,
@@ -1216,7 +1227,7 @@ const PaySlip = () => {
                         backgroundColor: "lightgray",
                       }}
                     >
-                      Rs. {total || ""}
+                      Rs. {postData.total || ""}
                     </td>
                     <th style={{ border: "1px solid black" }}>
                       {" "}
@@ -1243,7 +1254,7 @@ const PaySlip = () => {
                         backgroundColor: "lightgray",
                       }}
                     >
-                      Rs. {netSalary || ""}
+                      Rs. {postData.netSalary || ""}
                     </td>
                   </tr>
                 </tbody>
