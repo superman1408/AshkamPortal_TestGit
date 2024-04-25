@@ -271,6 +271,11 @@ export const dailyEvent = async (req, res) => {
 };
 
 
+export const getEvent = async (req, res) => {
+  pass;
+};
+
+
 
 export const getAttendancePosts = async (req, res) => {
   try {

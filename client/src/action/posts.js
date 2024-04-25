@@ -11,6 +11,7 @@ import {
   ATTEND_ALL,
   LOGLIST,
   DAILY_EVENT,
+  EVENT_ALL,
 } from "../constants/actionTypes";
 
 import * as API from "../api";
@@ -209,14 +210,29 @@ export const logList = (post, id) => async (dispatch) => {
   }
 };
 
+
+
 export const dailyEvent = (formData) => async (dispatch) => {
-  console.log("Hello I am working..!!");
+  // console.log("Hello I am working..!!");
   
   try {
     const { data } = await API.dailyEvent(formData);
 
     dispatch({ type: DAILY_EVENT, payload: data });
     
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+export const getEvents = () => async (dispatch) => {
+  // console.log("Event acton function working");
+  try {
+    const { data } = await API.fetchEvent();
+
+    dispatch({ type: EVENT_ALL, payload: data });
+    // console.log(data);
   } catch (error) {
     console.log(error);
   }

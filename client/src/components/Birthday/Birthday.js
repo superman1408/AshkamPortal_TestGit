@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Grid, Typography, Avatar, Container } from "@mui/material";
 
 
-import { getPosts } from "../../action/posts";
+import { getPosts, getEvents } from "../../action/posts";
 // import AlertDialogSlide from "../Birthday/BirthdayMail";
 import AlertDialogSlide from "./DialogBox/Dialog";
 
@@ -15,6 +15,7 @@ const Birthday = () => {
   const [currentId, setCurrentId] = useState(null);
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
+  // const event = useSelector((state) => state.event);
   const [dimension, setDimension] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -37,12 +38,20 @@ const Birthday = () => {
     };
   }, [dimension]);
 
+  const event = useSelector((state) => state.event);
 
-  useEffect(() => {
-    dispatch(getPosts());
-    isBirthdayToday();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, currentId]);
+
+  // useEffect(() => {
+  //   dispatch(getPosts());
+  //   isBirthdayToday();
+  //   dispatch(getEvents())
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [dispatch, currentId, event]);
+
+
+  // event.map((item) => {
+  //   console.log(item);
+  // })
 
 
 
@@ -94,7 +103,7 @@ const Birthday = () => {
             {isBirthdayToday() ? (
               // eslint-disable-next-line jsx-a11y/no-distracting-elements
               <marquee
-                direction="down"
+                direction="up"
                 style={{ color: "#047681", fontFamily: "Roboto" }}
               >
                 <strong style={{ color: "#e55d17", fontFamily: "Roboto" }}>
@@ -170,13 +179,14 @@ const Birthday = () => {
                 backgroundColor: "#16355d",
               }}
             >
+{/* ..................................Event is being displayed from here onwards........................................................................ */}
               {/* <Typography sx={{ marginLeft: "10px" }}>{`\u2022`}</Typography> */}
               <marquee
-                direction="right"
+                direction="left"
                 style={{ color: "", fontFamily: "Roboto" }}
               >
                 <strong style={{ color: "white", fontFamily: "Roboto" }}>
-                  Holi
+                  Events will be displayed here
                 </strong>
               </marquee>
 

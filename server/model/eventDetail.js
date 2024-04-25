@@ -1,9 +1,7 @@
 import mongoose from "mongoose";
 
 const eventSchema = mongoose.Schema({
-  dailyevent: {
-    type: String,
-  },
+  dailyevent: String,
 });
 
 const EventDetail = mongoose.model("EventDetail", eventSchema);

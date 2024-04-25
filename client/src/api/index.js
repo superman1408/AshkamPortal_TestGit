@@ -60,7 +60,10 @@ export const dailyAttendance = (formData) =>
 
 export const dailyEvent = (formData) =>
   API.post(`/posts/dailyEvent`, formData);
-  // console.log("Hello redux");
+
+
+
+export const fetchEvent = () => API.get("/posts/events");
 
 export const fetchAttendancePosts = () => API.get("/posts/attendanceposts");
 
