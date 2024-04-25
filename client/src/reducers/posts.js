@@ -76,8 +76,7 @@ export default (posts = [], action) => {
     case LOGLIST:
       return [...posts, action.payload];
 
-    case DAILY_EVENT:
-      return [...posts, action.payload];
+    
 
     default:
       return posts;

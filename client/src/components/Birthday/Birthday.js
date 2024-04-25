@@ -41,12 +41,22 @@ const Birthday = () => {
   const event = useSelector((state) => state.event);
 
 
+  useEffect(() => {
+    dispatch(getPosts());
+    isBirthdayToday();
+    dispatch(getEvents());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, currentId, event]);
+
+
   // useEffect(() => {
-  //   dispatch(getPosts());
-  //   isBirthdayToday();
-  //   dispatch(getEvents())
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [dispatch, currentId, event]);
+  //   dispatch(getEvents()).then(() => {
+  //     console.log("recieving..!!");
+  //   })
+  //     .catch((err) => {
+  //       alert(`Error! ${err}`);
+  //     });
+  // },[event]);
 
 
   // event.map((item) => {

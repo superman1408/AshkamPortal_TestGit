@@ -271,8 +271,8 @@ export const dailyEvent = async (req, res) => {
 };
 
 
-export const getEvent = async (req, res) => {
-  pass;
+export const getAllevents = async (req, res) => {
+  console.log("getting all");
 };
 
 

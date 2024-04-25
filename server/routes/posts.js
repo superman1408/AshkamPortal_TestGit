@@ -13,7 +13,7 @@ import {
   getAttendancePosts,
   logList,
   dailyEvent,
-  getEvent,
+  getAllevents,
 } from "../controllers/posts.js";
 
 import auth from "../middleware/auth.js";
@@ -46,7 +46,7 @@ router.post("/dailyAttendance", dailyAttendance);
 
 router.post("/dailyEvent", dailyEvent);
 
-router.get("/events", getEvent);
+router.get("/events/display", getAllevents);
 
 router.post("/:id/loglist", logList);
 

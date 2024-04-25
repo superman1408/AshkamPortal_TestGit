@@ -63,7 +63,7 @@ export const dailyEvent = (formData) =>
 
 
 
-export const fetchEvent = () => API.get("/posts/events");
+export const getAllEvents = () => API.get(`/posts/events/display`);
 
 export const fetchAttendancePosts = () => API.get("/posts/attendanceposts");
 
