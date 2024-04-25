@@ -30,7 +30,7 @@ const PayslipLayout = () => {
       <Container style={{ alignItems: "center" }}>
         <Grid sx={{ display: "flex" }}>
           <Grid>
-            <TextField
+            {/* <TextField
               sx={{ display: "flex", mt: "10px", width: "auto" }}
               // margin="none"
               size="small"
@@ -42,7 +42,11 @@ const PayslipLayout = () => {
               // onChange={(e) =>
               //   setPostData({ ...postData, employeeId: e.target.value })
               // }
-            />
+            /> */}
+
+            <select>
+              <option>Select Employee</option>
+            </select>
           </Grid>
           <Grid style={{ display: "flex", marginLeft: "50px" }}>
             <Typography sx={{ marginRight: "20px" }}>file Upload</Typography>
