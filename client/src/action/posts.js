@@ -227,10 +227,10 @@ export const dailyEvent = (formData) => async (dispatch) => {
 
 
 export const getEvents = () => async (dispatch) => {
-  console.log("Event acton function working");
+  // console.log("Event acton function working");
 
   try {
-    const data  = await API.getAllEvents();
+    const {data}  = await API.getAllEvents();
 
     dispatch({ type: EVENT_ALL, payload: data });
     // console.log(data);

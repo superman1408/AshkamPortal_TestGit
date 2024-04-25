@@ -42,8 +42,12 @@ const FormDialog = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // console.log(formData);
     dispatch(dailyEvent(formData)).then(() => {
+      // console.log("handleSubmit", formData);
+      alert("Successfully  Added!");
       handleClose();
+      window.location.reload();
     });
   };
   

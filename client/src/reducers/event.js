@@ -4,7 +4,7 @@ import { EVENT_ALL, DAILY_EVENT } from "../constants/actionTypes";
 export default (event = [], action) => {
   switch (action.type) {
     case EVENT_ALL:
-      return [...event, action.payload];
+      return action.payload;
     
     case DAILY_EVENT:
     return [...event, action.payload];

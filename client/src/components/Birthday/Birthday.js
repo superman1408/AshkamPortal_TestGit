@@ -12,8 +12,8 @@ import AlertDialogSlide from "./DialogBox/Dialog";
 import Image from "../../assets/final.jpg";
 
 const Birthday = () => {
-  const [currentId, setCurrentId] = useState(null);
   const dispatch = useDispatch();
+  const [evento, setEvento] = useState("");
   const posts = useSelector((state) => state.posts);
   // const event = useSelector((state) => state.event);
   const [dimension, setDimension] = useState({
@@ -26,17 +26,20 @@ const Birthday = () => {
   const currentMonth = new Date().getMonth() + 1;
 
   const detectSize = () => {
-    setDimension({ width: window.innerWidth, height: window.innerHeight });
+    setDimension((prevDimension) => ({
+      ...prevDimension,
+      width: window.innerWidth,
+      height: window.innerHeight
+    }));
   };
-
-
-
+  
   useEffect(() => {
     window.addEventListener("resize", detectSize);
     return () => {
       window.removeEventListener("resize", detectSize);
     };
-  }, [dimension]);
+  }, []); // Empty dependency array to run effect only once when component mounts
+  
 
   const event = useSelector((state) => state.event);
 
@@ -44,24 +47,21 @@ const Birthday = () => {
   useEffect(() => {
     dispatch(getPosts());
     isBirthdayToday();
-    dispatch(getEvents());
+    dispatch(getEvents()).then(() => {
+      if (event) {
+        event.map((item) => {
+          setEvento(item.dailyevent);
+        })
+      } else {
+          setEvento('No hay eventos programados para hoy');
+      }
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, currentId, event]);
+  }, [dispatch, evento, event]);
 
 
-  // useEffect(() => {
-  //   dispatch(getEvents()).then(() => {
-  //     console.log("recieving..!!");
-  //   })
-  //     .catch((err) => {
-  //       alert(`Error! ${err}`);
-  //     });
-  // },[event]);
 
 
-  // event.map((item) => {
-  //   console.log(item);
-  // })
 
 
 
@@ -191,15 +191,15 @@ const Birthday = () => {
             >
 {/* ..................................Event is being displayed from here onwards........................................................................ */}
               {/* <Typography sx={{ marginLeft: "10px" }}>{`\u2022`}</Typography> */}
-              <marquee
-                direction="left"
-                style={{ color: "", fontFamily: "Roboto" }}
-              >
-                <strong style={{ color: "white", fontFamily: "Roboto" }}>
-                  Events will be displayed here
-                </strong>
-              </marquee>
-
+              
+                  <marquee
+                    direction="left"
+                    style={{ color: "", fontFamily: "Roboto" }}
+                  >
+                    <strong style={{ color: "white", fontFamily: "Roboto" }}>
+                      {evento}
+                    </strong>
+                  </marquee>
               {/* <Typography sx={{ marginLeft: "30px" }}>Holi</Typography> */}
             </div>
           </div>

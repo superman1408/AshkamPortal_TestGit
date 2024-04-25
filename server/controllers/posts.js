@@ -272,7 +272,14 @@ export const dailyEvent = async (req, res) => {
 
 
 export const getAllevents = async (req, res) => {
-  console.log("getting all");
+  // console.log("getting all");
+  try {
+    const event = await  EventDetail.find({});
+    if (!event) return res.status(404).json({ message: 'No events found'});
+    res.status(200).json(event);
+  } catch (error) {
+    res.status(409).json({message: error.message});
+  }
 };
 
 
