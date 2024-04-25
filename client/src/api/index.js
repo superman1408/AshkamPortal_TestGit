@@ -58,8 +58,8 @@ export const deleteTable = (id, indexed) =>
 export const dailyAttendance = (formData) =>
   API.post(`/posts/dailyAttendance`, formData);
 
-export const dailyEvent = (id, formData) =>
-  API.patch(`/posts/${id}/dailyEvent`, formData);
+export const dailyEvent = (formData) =>
+  API.post(`/posts/dailyEvent`, formData);
   // console.log("Hello redux");
 
 export const fetchAttendancePosts = () => API.get("/posts/attendanceposts");

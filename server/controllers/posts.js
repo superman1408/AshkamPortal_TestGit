@@ -4,6 +4,8 @@ import AuthenticateUser from "../model/authDetails.js";
 
 import UserAttendance from "../model/attendanceDetail.js";
 
+import EventDetail from "../model/eventDetail.js";
+
 
 
 
@@ -258,28 +260,13 @@ export const dailyAttendance = async (req, res) => {
 
 
 export const dailyEvent = async (req, res) => {
-  let message = "I am talking to server";
-  console.log("I am server..!!");
-  const eventDisplay = req.body;
-  const { id:_id}  = req.params;
-  
-  console.log(_id)
-  console.log(eventDisplay);
-
-
+  const Post = req.body;
+  const newPost = new EventDetail(Post);
   try {
-    // find the user by their ID from URL parameter.
-    const user = await UserAttendance.findById(_id);
-    if (!user) {
-      return res.status(404).json({ message: "No user with this Id!" });
-    }
-
-    console.log(user);
-
-    
-    res.status(200);
+    await newPost.save();
+    res.status(201).json(newPost);
   } catch (error) {
-    res.status(409).json({message: error.message});
+    res.status(409).json({ message: error.message });
   }
 };
 

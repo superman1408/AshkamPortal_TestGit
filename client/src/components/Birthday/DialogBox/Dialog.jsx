@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -12,7 +12,7 @@ import { IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 
-import { getAttendancePosts, dailyEvent } from "../../../action/posts";
+import { dailyEvent } from "../../../action/posts";
 
 
 
@@ -22,20 +22,6 @@ const FormDialog = () => {
     dailyevent: ""
   });
   const [open, setOpen] = useState(false);
-
-  const attend = useSelector((state) => state.attend);
-
-
-  useEffect(() => {
-    if (!attend) {
-      dispatch(getAttendancePosts())
-    }
-  },[attend, dispatch]);
-
-
-  
-
-  
 
   
 
@@ -56,16 +42,9 @@ const FormDialog = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Assuming you only want to dispatch if there are items in `attend`
-    if (attend.length > 0) {
-      // Dispatch only once with the first item's ID
-      dispatch(dailyEvent(attend[0]._id, formData)).then(() => {
-        handleClose();
-      });
-    } else {
-      // Handle case where `attend` is empty
-      console.log("No items in attend array");
-    }
+    dispatch(dailyEvent(formData)).then(() => {
+      handleClose();
+    });
   };
   
 

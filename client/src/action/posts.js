@@ -209,11 +209,11 @@ export const logList = (post, id) => async (dispatch) => {
   }
 };
 
-export const dailyEvent = (id, formData) => async (dispatch) => {
+export const dailyEvent = (formData) => async (dispatch) => {
   console.log("Hello I am working..!!");
   
   try {
-    const { data } = await API.dailyEvent(id, formData);
+    const { data } = await API.dailyEvent(formData);
 
     dispatch({ type: DAILY_EVENT, payload: data });
     
