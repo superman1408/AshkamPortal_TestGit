@@ -1,4 +1,11 @@
-import { Button, Card, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  Container,
+  Grid,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React, { useState } from "react";
 
 const PayslipLayout = () => {
@@ -20,20 +27,30 @@ const PayslipLayout = () => {
   };
   return (
     <>
-      <div style={{ alignItems: "center" }}>
-        <Card>
-          <div style={{ display: "flex" }}>
-            <div>
-              <Card>Name of Employee</Card>
-            </div>
-            <div style={{ display: "flex" }}>
-              <Typography>file Upload</Typography>
-              <input type="file" onChange={handleFileChange} accept=".pdf" />
-              <Button onClick={handleUpload}>upload</Button>{" "}
-            </div>
-          </div>
-        </Card>
-      </div>
+      <Container style={{ alignItems: "center" }}>
+        <Grid sx={{ display: "flex" }}>
+          <Grid>
+            <TextField
+              sx={{ display: "flex", mt: "10px", width: "auto" }}
+              // margin="none"
+              size="small"
+              type="text"
+              name="Nameofemployee "
+              label="Name of Employee"
+              variant="outlined"
+              // value={}
+              // onChange={(e) =>
+              //   setPostData({ ...postData, employeeId: e.target.value })
+              // }
+            />
+          </Grid>
+          <Grid style={{ display: "flex", marginLeft: "50px" }}>
+            <Typography sx={{ marginRight: "20px" }}>file Upload</Typography>
+            <input type="file" onChange={handleFileChange} accept=".pdf" />
+            <Button onClick={handleUpload}>upload</Button>{" "}
+          </Grid>
+        </Grid>
+      </Container>
     </>
   );
 };
