@@ -24,17 +24,25 @@ const PaySlip = () => {
   const [postData, setPostData] = useState({
     total: "",
     netSalary: "",
+    basic: "",
+    uanNo: "",
+    houseRent: "",
+    conveyance: "",
+    communication: "",
+    uniform: "",
+    medical: "",
+    cityFactor: "",
   });
-  const [basic, setBasic] = useState();
-  const [uanNo, setUanNo] = useState();
+  // const [basic, setBasic] = useState();
+  // const [uanNo, setUanNo] = useState();
 
-  const [houseRent, setHouserent] = useState();
-  const [conveyance, setConveyance] = useState();
-  const [communication, setCommunication] = useState();
+  // const [houseRent, setHouserent] = useState();
+  // const [conveyance, setConveyance] = useState();
+  // const [communication, setCommunication] = useState();
 
-  const [uniform, setUniform] = useState();
-  const [medical, setMedical] = useState();
-  const [cityFactor, setCityFactor] = useState();
+  // const [uniform, setUniform] = useState();
+  // const [medical, setMedical] = useState();
+  // const [cityFactor, setCityFactor] = useState();
   // const [showPrintingLayout, setShowPrintingLayout] = useState(false);
 
   const [employeeContribution_pf, setEmployeeContribution_pf] = useState(0);
@@ -50,15 +58,15 @@ const PaySlip = () => {
   const navigate = useNavigate();
 
   const GS =
-    basic +
-    houseRent +
-    conveyance +
-    communication +
-    uniform +
-    medical +
-    cityFactor;
+    parseInt(postData.basic) +
+    parseInt(postData.houseRent) +
+    parseInt(postData.conveyance) +
+    parseInt(postData.communication) +
+    parseInt(postData.uniform) +
+    parseInt(postData.medical) +
+    parseInt(postData.cityFactor);
 
-  const pf = basic * 0.12;
+  const pf = postData.basic * 0.12;
   const esic = GS * 0.04;
 
   const totaldeduction = pf + pf + esic;
@@ -67,8 +75,8 @@ const PaySlip = () => {
 
   const calculateTotal = () => {
     // setTotal(GS);
-    setPostData((previousState) => {
-      return { ...previousState, total: GS };
+    setPostData((postData) => {
+      return { ...postData, total: GS };
     });
     calculatePf();
     // setPrintingShow(true);
@@ -87,8 +95,8 @@ const PaySlip = () => {
     setEmployeeContribution_esic(esic);
     setTotalDeduction(totaldeduction);
     // setNetSalary(net);
-    setPostData((previousState) => {
-      return { ...previousState, netSalary: net };
+    setPostData((postData) => {
+      return { ...postData, netSalary: net };
     });
   };
 
@@ -505,8 +513,13 @@ const PaySlip = () => {
                           // id="standard-basic"
                           label="amount"
                           variant="outlined"
-                          value={basic}
-                          onChange={(e) => setBasic(+e.target.value)}
+                          value={postData.basic}
+                          onChange={(e) =>
+                            setPostData({
+                              ...postData,
+                              basic: e.target.value,
+                            })
+                          }
                         />
                       </Grid>
 
@@ -527,8 +540,13 @@ const PaySlip = () => {
                           // id="standard-basic"
                           label="amount"
                           variant="outlined"
-                          value={houseRent}
-                          onChange={(e) => setHouserent(+e.target.value)}
+                          value={postData.houseRent}
+                          onChange={(e) =>
+                            setPostData({
+                              ...postData,
+                              houseRent: e.target.value,
+                            })
+                          }
                         />
                       </Grid>
                       <Grid
@@ -548,8 +566,13 @@ const PaySlip = () => {
                           // id="standard-basic"
                           label="amount"
                           variant="outlined"
-                          value={conveyance}
-                          onChange={(e) => setConveyance(+e.target.value)}
+                          value={postData.conveyance}
+                          onChange={(e) =>
+                            setPostData({
+                              ...postData,
+                              conveyance: e.target.value,
+                            })
+                          }
                         />
                       </Grid>
 
@@ -568,8 +591,13 @@ const PaySlip = () => {
                           // id="standard-basic"
                           label="amount"
                           variant="outlined"
-                          value={communication}
-                          onChange={(e) => setCommunication(+e.target.value)}
+                          value={postData.communication}
+                          onChange={(e) =>
+                            setPostData({
+                              ...postData,
+                              communication: e.target.value,
+                            })
+                          }
                         />
                       </Grid>
 
@@ -588,8 +616,13 @@ const PaySlip = () => {
                           // id="standard-basic"
                           label="amount"
                           variant="outlined"
-                          value={uniform}
-                          onChange={(e) => setUniform(+e.target.value)}
+                          value={postData.uniform}
+                          onChange={(e) =>
+                            setPostData({
+                              ...postData,
+                              uniform: e.target.value,
+                            })
+                          }
                         />
                       </Grid>
 
@@ -608,8 +641,13 @@ const PaySlip = () => {
                           // id="standard-basic"
                           label="amount"
                           variant="outlined"
-                          value={medical}
-                          onChange={(e) => setMedical(+e.target.value)}
+                          value={postData.medical}
+                          onChange={(e) =>
+                            setPostData({
+                              ...postData,
+                              medical: e.target.value,
+                            })
+                          }
                         />
                       </Grid>
 
@@ -628,8 +666,13 @@ const PaySlip = () => {
                           // id="standard-basic"
                           label="amount"
                           variant="outlined"
-                          value={cityFactor}
-                          onChange={(e) => setCityFactor(+e.target.value)}
+                          value={postData.cityFactor}
+                          onChange={(e) =>
+                            setPostData({
+                              ...postData,
+                              cityFactor: e.target.value,
+                            })
+                          }
                         />
                       </Grid>
 
@@ -1137,7 +1180,9 @@ const PaySlip = () => {
                   </tr>
                   <tr>
                     <td style={{ border: "1px solid black" }}>Basic</td>
-                    <td style={{ border: "1px solid black" }}>{basic}</td>
+                    <td style={{ border: "1px solid black" }}>
+                      {postData.basic}
+                    </td>
                     <td style={{ border: "1px solid black" }}>
                       Employee's Contribution
                     </td>
@@ -1149,7 +1194,9 @@ const PaySlip = () => {
                     <td style={{ border: "1px solid black" }}>
                       House Rent Allowance
                     </td>
-                    <td style={{ border: "1px solid black" }}>{houseRent}</td>
+                    <td style={{ border: "1px solid black" }}>
+                      {postData.houseRent}
+                    </td>
                     <td style={{ border: "1px solid black" }}>
                       Employeer's Contribution
                     </td>
@@ -1161,7 +1208,9 @@ const PaySlip = () => {
                     <td style={{ border: "1px solid black" }}>
                       Medical Allowance
                     </td>
-                    <td style={{ border: "1px solid black" }}>{medical}</td>
+                    <td style={{ border: "1px solid black" }}>
+                      {postData.medical}
+                    </td>
                     <td style={{ border: "1px solid black" }}>
                       Professional Tax
                     </td>
@@ -1169,7 +1218,9 @@ const PaySlip = () => {
                   </tr>
                   <tr>
                     <td style={{ border: "1px solid black" }}>Conveyance</td>
-                    <td style={{ border: "1px solid black" }}>{conveyance}</td>
+                    <td style={{ border: "1px solid black" }}>
+                      {postData.conveyance}
+                    </td>
 
                     <td
                       style={{
@@ -1186,7 +1237,7 @@ const PaySlip = () => {
                       Communication allowance
                     </td>
                     <td style={{ border: "1px solid black" }}>
-                      {communication}
+                      {postData.communication}
                     </td>
                     <td style={{ border: "1px solid black" }}>
                       Employee's Contribution
@@ -1200,7 +1251,9 @@ const PaySlip = () => {
                       {" "}
                       Uniform Allowance
                     </td>
-                    <td style={{ border: "1px solid black" }}>{uniform}</td>
+                    <td style={{ border: "1px solid black" }}>
+                      {postData.uniform}
+                    </td>
                     <td style={{ border: "1px solid black" }}>
                       Employeer's Contribution
                     </td>
@@ -1208,7 +1261,9 @@ const PaySlip = () => {
                   </tr>
                   <tr>
                     <td style={{ border: "1px solid black" }}>City Factor</td>
-                    <td style={{ border: "1px solid black" }}>{cityFactor}</td>
+                    <td style={{ border: "1px solid black" }}>
+                      {postData.cityFactor}
+                    </td>
                     <td style={{ border: "1px solid black" }}>TDS</td>
                     <td style={{ border: "1px solid black" }}>{}</td>
                   </tr>
