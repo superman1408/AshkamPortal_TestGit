@@ -32,6 +32,9 @@ const PaySlip = () => {
     uniform: "",
     medical: "",
     cityFactor: "",
+    baseBranch: "",
+    offsite: "",
+    panNo: "",
   });
   // const [basic, setBasic] = useState();
   // const [uanNo, setUanNo] = useState();
@@ -339,10 +342,13 @@ const PaySlip = () => {
                         name="baseBranch"
                         label="Base Branch"
                         variant="outlined"
-                        value=""
-                        // onChange={(e) =>
-                        //   setPostData({ ...postData, employeeId: e.target.value })
-                        // }
+                        value={postData.baseBranch}
+                        onChange={(e) =>
+                          setPostData({
+                            ...postData,
+                            baseBranch: e.target.value,
+                          })
+                        }
                       />
                     </Grid>
                   </Grid>
@@ -379,8 +385,10 @@ const PaySlip = () => {
                         label="UAN No."
                         variant="outlined"
                         required
-                        value={uanNo}
-                        onChange={(e) => setUanNo(+e.target.value)}
+                        value={postData.uanNo}
+                        onChange={(e) =>
+                          setPostData({ ...postData, uanNo: e.target.value })
+                        }
                       />
                     </Grid>
 
@@ -1015,7 +1023,6 @@ const PaySlip = () => {
           <div ref={componentRef}>
             <div style={{ overflowX: "auto", padding: "60px" }}>
               <table
-                table
                 style={{
                   padding: "10px",
                   // marginLeft: "100px",
@@ -1024,34 +1031,34 @@ const PaySlip = () => {
                   marginLeft: "auto",
                   marginRight: "auto",
                   width: "100%",
-                  maxWidth: "800px", // Set a max-width to prevent tables from expanding too much
+                  // maxWidth: "800px", // Set a max-width to prevent tables from expanding too much
                 }}
               >
-                {/* <thead> */}
                 <tr
                   height="100px"
                   style={{
-                    // backgroundColor: "lightgray",
+                    backgroundColor: "lightgray",
                     color: "black",
                     // textAlign: "center",
-                    fontSize: "30px",
+                    fontSize: "25px",
                     fontWeight: "600",
                     border: "1px solid black",
+                    justifyContent: "space-evenly",
                   }}
                 >
                   <div
                     style={{
                       // marginLeft: "20px",
                       marginTop: "30px",
-                      width: "150px",
-                      height: "30px",
+                      width: "130px",
+                      height: "20px",
                     }}
                   >
                     <img src={LOGO} alt="logo" />
                   </div>
-                  <td style={{ textAlign: "left" }}>SALARY SLIP</td>
+                  <td>SALARY SLIP</td>
+                  <td style={{}}>{prevMonth}</td>
                 </tr>
-                {/* </thead> */}
               </table>
               <br />
               <table
@@ -1069,49 +1076,115 @@ const PaySlip = () => {
               >
                 <tbody>
                   <tr>
-                    <th style={{ border: "1px solid black" }}>Employee Id</th>
-                    <td style={{ border: "1px solid black" }}>
+                    <th
+                      style={{
+                        border: "1px solid black",
+                        padding: "30px",
+                        width: "20%",
+                      }}
+                    ></th>
+                    <th
+                      style={{
+                        border: "1px solid black",
+                        padding: "30px",
+                        width: "20%",
+                      }}
+                    ></th>
+                    <th
+                      style={{
+                        border: "1px solid black",
+                        padding: "30px",
+                        width: "20%",
+                      }}
+                    ></th>
+                    <th
+                      style={{
+                        border: "1px solid black",
+                        padding: "30px",
+                        width: "20%",
+                      }}
+                    ></th>
+                    <th
+                      style={{
+                        border: "1px solid black",
+                        padding: "30px",
+                        width: "20%",
+                      }}
+                    ></th>
+                  </tr>
+                  <tr>
+                    <th style={{ border: "1px solid black", width: "20%" }}>
+                      Employee Id
+                    </th>
+                    <td style={{ border: "1px solid black", width: "20%" }}>
                       {user.result.employeeId}
                     </td>
+                    <th style={{ border: "1px solid black", width: "20%" }}>
+                      Bank Name
+                    </th>
+                    <td style={{ border: "1px solid black", width: "20%" }}>
+                      {}
+                    </td>
+
+                    <th style={{ border: "1px solid black", width: "20%" }}>
+                      Location
+                    </th>
+                    <td style={{ border: "1px solid black", width: "20%" }}>
+                      Ranchi
+                    </td>
+                  </tr>
+                  <tr>
                     <th style={{ border: "1px solid black" }}>Name</th>
                     <td style={{ border: "1px solid black" }}>
                       {user.result.firstName + " " + user.result.lastName}
                     </td>
-                  </tr>
-                  <tr>
-                    <th style={{ border: "1px solid black" }}>Bank</th>
+                    <th style={{ border: "1px solid black" }}>Account No</th>
                     <td style={{ border: "1px solid black" }}></td>
-                    <th style={{ border: "1px solid black" }}>Bank A/c No.</th>
-                    <td style={{ border: "1px solid black" }}></td>
-                  </tr>
-                  <tr>
-                    <th style={{ border: "1px solid black" }}>DOB</th>
+                    <th style={{ border: "1px solid black" }}>Base Branch</th>
                     <td style={{ border: "1px solid black" }}>
-                      {user.result.dob}
+                      {postData.baseBranch}
                     </td>
                   </tr>
                   <tr>
+                    <th style={{ border: "1px solid black" }}>Dsgn</th>
+                    <td style={{ border: "1px solid black" }}>
+                      {user.result.jobRole}
+                    </td>
                     <th style={{ border: "1px solid black" }}>UAN No.</th>
-                    <td style={{ border: "1px solid black" }}>{uanNo}</td>
+                    <td style={{ border: "1px solid black" }}>
+                      {postData.uanNo}
+                    </td>
+                    <th style={{ border: "1px solid black" }}>Offsite</th>
+                    <td style={{ border: "1px solid black" }}>
+                      {postData.offsite}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th style={{ border: "1px solid black" }}>Level (Gr)</th>
+                    <td style={{ border: "1px solid black" }}></td>
                     <th style={{ border: "1px solid black" }}>Pay days</th>
                     <td style={{ border: "1px solid black" }}>
                       {daysInThisPrevMonth}
                     </td>
                   </tr>
                   <tr>
-                    <th style={{ border: "1px solid black" }}>Location</th>
-                    <td style={{ border: "1px solid black" }}>India</td>
+                    <th style={{ border: "1px solid black" }}>PAN</th>
+                    <td style={{ border: "1px solid black" }}>
+                      {postData.panNo}
+                    </td>
+                    <th style={{ border: "1px solid black" }}>Leave Balance</th>
+                    <td style={{ border: "1px solid black" }}></td>
                     <th style={{ border: "1px solid black" }}>Pay Date</th>
                     <td style={{ border: "1px solid black" }}>{date}</td>
                   </tr>
-                  <tr>
+                  {/* <tr>
                     <th style={{ border: "1px solid black" }}>Department</th>
                     <td style={{ border: "1px solid black" }}>
                       {user.result.department}
                     </td>
                     <th style={{ border: "1px solid black" }}>Pay Period</th>
                     <td style={{ border: "1px solid black" }}>{prevMonth}</td>
-                  </tr>
+                  </tr> */}
                 </tbody>
               </table>
               <br />
