@@ -83,7 +83,11 @@ const App = () => {
               element={<AttendanceDisplay />}
             />
 
-            <Route path="/payslipLayout" exact element={<PayslipLayout />} />
+            <Route
+              path="/:id/payslipLayout"
+              exact
+              element={<PayslipLayout />}
+            />
 
             <Route path="/printingLayout" exact element={<PrintingLayout />} />
             <Route

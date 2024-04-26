@@ -11,13 +11,10 @@ import {
   ATTEND_ALL,
   LOGLIST,
   DAILY_EVENT,
+  SALARY_SLIP,
 } from "../constants/actionTypes";
 
 import * as API from "../api";
-
-
-
-
 
 export const getPosts = () => async (dispatch) => {
   try {
@@ -66,9 +63,6 @@ export const deletePost = (id) => async (dispatch) => {
   }
 };
 
-
-
-
 export const getPost = (id) => async (dispatch) => {
   try {
     const { data } = await API.fetchPost(id);
@@ -77,9 +71,6 @@ export const getPost = (id) => async (dispatch) => {
     console.log(error);
   }
 };
-
-
-
 
 export const updateStatus = (id, activeStatus) => async (dispatch) => {
   try {
@@ -90,9 +81,6 @@ export const updateStatus = (id, activeStatus) => async (dispatch) => {
     console.log(error);
   }
 };
-
-
-
 
 export const todoList = (id, post) => async (dispatch) => {
   console.log("Hello I am working..!!");
@@ -111,9 +99,6 @@ export const todoList = (id, post) => async (dispatch) => {
   }
 };
 
-
-
-
 export const skillData = (post) => async (dispatch) => {
   // console.log("Hello I am working..!!");
   // console.log(id);
@@ -131,9 +116,6 @@ export const skillData = (post) => async (dispatch) => {
   }
 };
 
-
-
-
 // export const updatePost = (id, post) => async (dispatch) => {
 // try {
 // const { data } = await API.updatePost(id, post);
@@ -143,9 +125,6 @@ export const skillData = (post) => async (dispatch) => {
 // console.log(error);
 // }
 // };
-
-
-
 
 export const tableEdit = (id, indexed, toEdit) => async (dispatch) => {
   try {
@@ -157,8 +136,6 @@ export const tableEdit = (id, indexed, toEdit) => async (dispatch) => {
   }
 };
 
-
-
 export const tableDelete = (id, indexed) => async (dispatch) => {
   try {
     await API.deleteTable(id, indexed);
@@ -168,8 +145,6 @@ export const tableDelete = (id, indexed) => async (dispatch) => {
     console.log(error);
   }
 };
-
-
 
 export const dailyAttendance = (formdata) => async (dispatch) => {
   console.log("Hello I am working..!!");
@@ -185,8 +160,6 @@ export const dailyAttendance = (formdata) => async (dispatch) => {
   }
 };
 
-
-
 export const getAttendancePosts = () => async (dispatch) => {
   try {
     const { data } = await API.fetchAttendancePosts();
@@ -196,8 +169,6 @@ export const getAttendancePosts = () => async (dispatch) => {
     console.log(error);
   }
 };
-
-
 
 export const logList = (post, id) => async (dispatch) => {
   try {
@@ -211,12 +182,23 @@ export const logList = (post, id) => async (dispatch) => {
 
 export const dailyEvent = (formData) => async (dispatch) => {
   console.log("Hello I am working..!!");
-  
+
   try {
     const { data } = await API.dailyEvent(formData);
 
     dispatch({ type: DAILY_EVENT, payload: data });
-    
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const salarySlipData = (id, formData) => async (dispatch) => {
+  console.log("Here Come Data");
+  console.log("id", id);
+  try {
+    const { data } = await API.salarySlipData(id, formData);
+    //console.log(data);
+    dispatch({ type: SALARY_SLIP, payload: data });
   } catch (error) {
     console.log(error);
   }

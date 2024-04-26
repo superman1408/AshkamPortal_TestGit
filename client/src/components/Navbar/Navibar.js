@@ -58,7 +58,7 @@ const Navibar = () => {
         break;
       case "payslip":
         // navigate(`/${id}/payslipLayout`);
-        navigate(`/payslipLayout`);
+        navigate(`/${id}/payslipLayout`);
         break;
       case "timeSheet":
         navigate(`posts/${id}/fullweeklyactivity`);

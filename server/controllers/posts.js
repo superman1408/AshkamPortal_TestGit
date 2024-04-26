@@ -6,10 +6,6 @@ import UserAttendance from "../model/attendanceDetail.js";
 
 import EventDetail from "../model/eventDetail.js";
 
-
-
-
-
 // ________________________get operation___________________________
 
 export const getPosts = async (req, res) => {
@@ -23,9 +19,6 @@ export const getPosts = async (req, res) => {
   }
 };
 
-
-
-
 export const getPost = async (req, res) => {
   const { id } = req.params;
   try {
@@ -35,9 +28,6 @@ export const getPost = async (req, res) => {
     console.log(error);
   }
 };
-
-
-
 
 // ________________________create operation___________________________
 
@@ -51,9 +41,6 @@ export const createPost = async (req, res) => {
     res.status(409).json({ message: error.message });
   }
 };
-
-
-
 
 // ________________________update operation___________________________
 
@@ -74,9 +61,6 @@ export const updatePost = async (req, res) => {
   res.json(updatedPost);
 };
 
-
-
-
 // ________________________delete operation___________________________
 
 export const deletePost = async (req, res) => {
@@ -88,8 +72,6 @@ export const deletePost = async (req, res) => {
   await AuthenticateUser.findByIdAndRemove(id);
   res.json({ message: "Post deleted successfully" });
 };
-
-
 
 // __________________________________________________________________________________
 
@@ -111,9 +93,6 @@ export const sendData = async (req, res) => {
   res.status(200).json(updatePost);
 };
 
-
-
-
 export const updatedStatus = async (req, res) => {
   const { id } = req.params;
   // console.log(id);
@@ -129,9 +108,6 @@ export const updatedStatus = async (req, res) => {
   });
   res.status(200).json(statusUpdate);
 };
-
-
-
 
 // _________________________To Do List Status_____________________________
 export const todoList = async (req, res) => {
@@ -157,9 +133,6 @@ export const todoList = async (req, res) => {
   }
 };
 
-
-
-
 // _________________________Skill Data Status_____________________________
 export const skillData = async (req, res) => {
   const { id } = req.params;
@@ -183,10 +156,6 @@ export const skillData = async (req, res) => {
     res.status(409).json({ message: error.message });
   }
 };
-
-
-
-
 
 export const editTable = async (req, res) => {
   const id = req.params.id;
@@ -213,10 +182,6 @@ export const editTable = async (req, res) => {
   }
 };
 
-
-
-
-
 export const deleteTable = async (req, res) => {
   const indexNumber = parseInt(req.params.indexed);
   const id = req.params.id;
@@ -242,9 +207,6 @@ export const deleteTable = async (req, res) => {
   }
 };
 
-
-
-
 // _________________________Attendancev Data Status_____________________________
 export const dailyAttendance = async (req, res) => {
   const Post = req.body;
@@ -257,8 +219,6 @@ export const dailyAttendance = async (req, res) => {
   }
 };
 
-
-
 export const dailyEvent = async (req, res) => {
   const Post = req.body;
   const newPost = new EventDetail(Post);
@@ -270,8 +230,6 @@ export const dailyEvent = async (req, res) => {
   }
 };
 
-
-
 export const getAttendancePosts = async (req, res) => {
   try {
     const postMessage = await UserAttendance.find({});
@@ -280,9 +238,6 @@ export const getAttendancePosts = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
-
-
-
 
 // _________________________log List Status_____________________________
 export const logList = async (req, res) => {
@@ -301,6 +256,32 @@ export const logList = async (req, res) => {
     });
 
     res.json(updatedPost);
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+};
+
+export const salarySlipData = async (req, res) => {
+  console.log("mouse");
+
+  const { id: _id } = req.params;
+  console.log(_id);
+  // const { id } = req.params;
+  // const value = req.body;
+
+  try {
+    const user = await AuthenticateUser.findById(_id);
+    console.log(user);
+
+    // user.salarySlip.push(value.salarySlip);
+    // user.logIn.push(value.logIn);
+    // user.logOut.push(value.logOut);
+
+    // const updatedPost = await AuthenticateUser.findByIdAndUpdate(_id, user, {
+    //   new: true,
+    // });
+
+    res.status(200).json({ message: "All running" });
   } catch (error) {
     res.status(409).json({ message: error.message });
   }

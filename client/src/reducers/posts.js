@@ -11,6 +11,7 @@ import {
   UPDATE_TABLE,
   LOGLIST,
   DAILY_EVENT,
+  SALARY_SLIP,
 } from "../constants/actionTypes";
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -77,6 +78,9 @@ export default (posts = [], action) => {
       return [...posts, action.payload];
 
     case DAILY_EVENT:
+      return [...posts, action.payload];
+
+    case SALARY_SLIP:
       return [...posts, action.payload];
 
     default:

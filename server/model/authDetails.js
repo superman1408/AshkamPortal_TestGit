@@ -166,7 +166,11 @@ const authSchema = mongoose.Schema({
     type: [String],
     default: [],
   },
-  
+
+  salarySlip: {
+    type: [String],
+    default: [],
+  },
 });
 
 const AuthDetails = mongoose.model("AuthDetails", authSchema);

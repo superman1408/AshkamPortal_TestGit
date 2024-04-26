@@ -13,6 +13,7 @@ import {
   getAttendancePosts,
   logList,
   dailyEvent,
+  salarySlipData,
 } from "../controllers/posts.js";
 
 import auth from "../middleware/auth.js";
@@ -46,5 +47,7 @@ router.post("/dailyAttendance", dailyAttendance);
 router.post("/dailyEvent", dailyEvent);
 
 router.post("/:id/loglist", logList);
+
+router.post("/:id/salarySlipData", salarySlipData);
 
 export default router;
