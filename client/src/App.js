@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "@mui/material";
 import Authentication from "./components/authentication/Auth";
@@ -12,7 +11,6 @@ import Dashboard from "./components/dashboard/Dashboard";
 import Navibar from "./components/Navbar/Navibar";
 import Communication from "./components/Leave/Communication/Communication";
 import LOGO from "./assets/AshKamLogo.png";
-import BirthdayMail from "./components/Birthday/BirthdayMail";
 import PaySlip from "./components/Payslip/PaySlip";
 import ActivityDisplay from "./components/ActivityDisplay/ActivityDisplay";
 import SkillDisplay from "./components/Skills/SkillDisplay";
@@ -20,6 +18,7 @@ import PrintingLayout from "./components/PrinttingLayout/PrintingLayout";
 import EvolvePrintLayout from "./components/ActivityDisplay/TimeSheet/EvolvePrintLayout";
 import AttendanceDisplay from "./components/Attendance/AttendanceDisplay";
 import PasswordResetForm from "./components/PasswordReset/PasswordResetForm";
+import PayslipLayout from "./components/PayslipLayout/PayslipLayout";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -83,6 +82,13 @@ const App = () => {
               exact
               element={<AttendanceDisplay />}
             />
+
+            <Route
+              path="/:id/payslipLayout"
+              exact
+              element={<PayslipLayout />}
+            />
+
             <Route path="/printingLayout" exact element={<PrintingLayout />} />
             <Route
               path="/evolveprintlayout"
