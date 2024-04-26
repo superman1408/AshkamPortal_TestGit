@@ -15,8 +15,5 @@ export const DAILYATTENDANCE = "DAILYATTENDANCE";
 export const ATTEND_ALL = "ATTEND_ALL";
 export const LOGLIST = "LOGLIST";
 export const DAILY_EVENT = "DAILY_EVENT";
-<<<<<<< HEAD
 export const EVENT_ALL = "EVENT_ALL";
-=======
 export const SALARY_SLIP = "SALARY_SLIP";
->>>>>>> payslipupdate
