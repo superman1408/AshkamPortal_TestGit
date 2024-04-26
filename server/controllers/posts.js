@@ -280,11 +280,10 @@ export const salarySlipData = async (req, res) => {
 
   const { id: _id } = req.params;
   console.log(_id);
-  // const { id } = req.params;
-  // const value = req.body;
 
   try {
     const user = await AuthenticateUser.findById(_id);
+    console.log(_id);
     console.log(user);
 
     // user.salarySlip.push(value.salarySlip);

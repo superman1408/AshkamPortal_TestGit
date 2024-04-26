@@ -19,6 +19,10 @@ import EvolvePrintLayout from "./components/ActivityDisplay/TimeSheet/EvolvePrin
 import AttendanceDisplay from "./components/Attendance/AttendanceDisplay";
 import PasswordResetForm from "./components/PasswordReset/PasswordResetForm";
 import PayslipLayout from "./components/PayslipLayout/PayslipLayout";
+import FileUploadForm from "./components/FileUploadForm/FileUploadForm";
+
+
+
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -86,7 +90,7 @@ const App = () => {
             <Route
               path="/:id/payslipLayout"
               exact
-              element={<PayslipLayout />}
+              element={<FileUploadForm />}
             />
 
             <Route path="/printingLayout" exact element={<PrintingLayout />} />
