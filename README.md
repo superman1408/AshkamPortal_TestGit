@@ -25,3 +25,12 @@ ng serve
 
 
 
+    {/* <marquee
+                direction="left"
+                style={{ color: "", fontFamily: "Roboto" }}
+                loop="2"
+              >
+                <strong style={{ color: "white", fontFamily: "Roboto" }}>
+                  {evento}
+                </strong>
+              </marquee> */}

@@ -2,14 +2,16 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Grid, Typography, Avatar, Container } from "@mui/material";
-
+import { Grid, Typography, Avatar, Container, Card } from "@mui/material";
 
 import { getPosts, getEvents } from "../../action/posts";
 // import AlertDialogSlide from "../Birthday/BirthdayMail";
-import AlertDialogSlide from "./DialogBox/Dialog";
+// import AlertDialogSlide from "./DialogBox/Dialog";
+
+import FormDialog from "./DialogBox/Dialog";
 
 import Image from "../../assets/final.jpg";
+import "./style.css";
 
 const Birthday = () => {
   const dispatch = useDispatch();
@@ -21,7 +23,6 @@ const Birthday = () => {
     height: window.innerHeight,
   });
 
-
   const currentDay = new Date().getDate();
   const currentMonth = new Date().getMonth() + 1;
 
@@ -29,20 +30,18 @@ const Birthday = () => {
     setDimension((prevDimension) => ({
       ...prevDimension,
       width: window.innerWidth,
-      height: window.innerHeight
+      height: window.innerHeight,
     }));
   };
-  
+
   useEffect(() => {
     window.addEventListener("resize", detectSize);
     return () => {
       window.removeEventListener("resize", detectSize);
     };
   }, []); // Empty dependency array to run effect only once when component mounts
-  
 
   const event = useSelector((state) => state.event);
-
 
   useEffect(() => {
     dispatch(getPosts());
@@ -51,22 +50,13 @@ const Birthday = () => {
       if (event) {
         event.map((item) => {
           setEvento(item.dailyevent);
-        })
+        });
       } else {
-          setEvento('No hay eventos programados para hoy');
+        setEvento("No hay eventos programados para hoy");
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, evento, event]);
-
-
-
-
-
-
-
-
-
 
   const isBirthdayToday = () => {
     let status = true;
@@ -88,9 +78,7 @@ const Birthday = () => {
     return status;
   };
 
-
-
-  
+  const [isVisible, setIsVisible] = useState(true);
 
   return (
     <div style={{ display: "flex", flex: 1 }}>
@@ -186,32 +174,24 @@ const Birthday = () => {
               style={{
                 display: "flex",
                 marginTop: "10px",
-                backgroundColor: "#16355d",
+                marginLeft: "10px",
+                // backgroundColor: "#16355d",
               }}
             >
-{/* ..................................Event is being displayed from here onwards........................................................................ */}
-              {/* <Typography sx={{ marginLeft: "10px" }}>{`\u2022`}</Typography> */}
-              
-                  <marquee
-                    direction="left"
-                    style={{ color: "", fontFamily: "Roboto" }}
-                  >
-                    <strong style={{ color: "white", fontFamily: "Roboto" }}>
-                      {evento}
-                    </strong>
-                  </marquee>
-              {/* <Typography sx={{ marginLeft: "30px" }}>Holi</Typography> */}
+              {/* ..................................Event is being displayed from here onwards........................................................................ */}
+
+              <marquee style={{ color: "#16355c", fontWeight: "bold" }}>
+                {evento}
+              </marquee>
             </div>
           </div>
           <div
             style={{
-              marginRight: "0px",
               bgcolor: "#ecd0f5",
-              // fontSize: "13px",
-              // marginLeft: "20vh",
+              float: "right",
             }}
           >
-            <AlertDialogSlide  />
+            <FormDialog />
           </div>
         </Grid>
       </Container>

@@ -168,7 +168,7 @@ const authSchema = mongoose.Schema({
   },
 
   salarySlip: {
-    type: [String],
+    type: [mongoose.Schema.Types.Mixed],
     default: [],
   },
 });

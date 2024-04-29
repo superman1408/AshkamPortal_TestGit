@@ -10,7 +10,7 @@ import RegistrationForm from "./components/registrationForm/Registration_Form";
 import Dashboard from "./components/dashboard/Dashboard";
 import Navibar from "./components/Navbar/Navibar";
 import Communication from "./components/Leave/Communication/Communication";
-import LOGO from "./assets/AshKamLogo.png";
+import LOGO from "./assets/AshkamLogo.png";
 import PaySlip from "./components/Payslip/PaySlip";
 import ActivityDisplay from "./components/ActivityDisplay/ActivityDisplay";
 import SkillDisplay from "./components/Skills/SkillDisplay";
@@ -98,6 +98,9 @@ const App = () => {
           </Routes>
         </div>
       </Container>
+      <div className="wave"></div>
+      <div className="wave"></div>
+      <div className="wave"></div>
       <div>
         <footer
           style={{
