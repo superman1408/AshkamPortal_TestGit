@@ -20,7 +20,6 @@ import Panel from "../Panel/Panel";
 // import { useDispatch } from "react-redux";
 
 const PaySlip = () => {
-  // const [total, setTotal] = useState();
   const [postData, setPostData] = useState({
     total: "",
     netSalary: "",
@@ -35,24 +34,19 @@ const PaySlip = () => {
     baseBranch: "",
     offsite: "",
     panNo: "",
+    accountNo: "",
+    bank: "",
+    designation: "",
+    level: "",
+    leave: "",
+    totalDeduction: "",
+    employeeContribution_pf: "",
+    employeerContribution_pf: "",
+    employeeContribution_esic: "",
   });
-  // const [basic, setBasic] = useState();
-  // const [uanNo, setUanNo] = useState();
 
-  // const [houseRent, setHouserent] = useState();
-  // const [conveyance, setConveyance] = useState();
-  // const [communication, setCommunication] = useState();
-
-  // const [uniform, setUniform] = useState();
-  // const [medical, setMedical] = useState();
-  // const [cityFactor, setCityFactor] = useState();
   // const [showPrintingLayout, setShowPrintingLayout] = useState(false);
 
-  const [employeeContribution_pf, setEmployeeContribution_pf] = useState(0);
-  const [employeerContribution_pf, setEmployeerContribution_pf] = useState(0);
-  const [employeeContribution_esic, setEmployeeContribution_esic] = useState(0);
-  const [totalDeduction, setTotalDeduction] = useState(0);
-  // const [netSalary, setNetSalary] = useState(0);
   const [dataGenerated, setDataGenerated] = useState(false);
   const [printingshow, setPrintingShow] = useState(false);
 
@@ -77,7 +71,6 @@ const PaySlip = () => {
   console.log("net", net);
 
   const calculateTotal = () => {
-    // setTotal(GS);
     setPostData((postData) => {
       return { ...postData, total: GS };
     });
@@ -93,13 +86,15 @@ const PaySlip = () => {
   };
 
   const calculatePf = () => {
-    setEmployeeContribution_pf(pf);
-    setEmployeerContribution_pf(pf);
-    setEmployeeContribution_esic(esic);
-    setTotalDeduction(totaldeduction);
-    // setNetSalary(net);
     setPostData((postData) => {
-      return { ...postData, netSalary: net };
+      return {
+        ...postData,
+        netSalary: net,
+        totalDeduction: totaldeduction,
+        employeeContribution_pf: pf,
+        employeerContribution_pf: pf,
+        employeeContribution_esic: esic,
+      };
     });
   };
 
@@ -270,10 +265,10 @@ const PaySlip = () => {
                         name="bankName"
                         label="Bank Name"
                         variant="outlined"
-                        // value={}
-                        // onChange={(e) =>
-                        //   setPostData({ ...postData, employeeId: e.target.value })
-                        // }
+                        value={postData.bank}
+                        onChange={(e) =>
+                          setPostData({ ...postData, bank: e.target.value })
+                        }
                       />
                     </Grid>
                     <Grid>
@@ -327,10 +322,13 @@ const PaySlip = () => {
                         name="accountNo"
                         label="Account No."
                         variant="outlined"
-                        value=""
-                        // onChange={(e) =>
-                        //   setPostData({ ...postData, employeeId: e.target.value })
-                        // }
+                        value={postData.accountNo}
+                        onChange={(e) =>
+                          setPostData({
+                            ...postData,
+                            accountNo: e.target.value,
+                          })
+                        }
                       />
                     </Grid>
                     <Grid>
@@ -367,10 +365,13 @@ const PaySlip = () => {
                         variant="outlined"
                         required
                         fullwidth="true"
-                        // value={user.result.lastName}
-                        // onChange={(e) =>
-                        //   setPostData({ ...postData, lastName: e.target.value })
-                        // }
+                        value={postData.designation}
+                        onChange={(e) =>
+                          setPostData({
+                            ...postData,
+                            designation: e.target.value,
+                          })
+                        }
                       />
                     </Grid>
 
@@ -392,6 +393,58 @@ const PaySlip = () => {
                       />
                     </Grid>
 
+                    <Grid>
+                      <TextField
+                        sx={{ display: "flex", mt: "10px", width: "auto" }}
+                        margin="dense"
+                        size="small"
+                        type="text"
+                        name="Offsite"
+                        label="Offsite"
+                        variant="outlined"
+                        value={postData.offsite}
+                        onChange={(e) =>
+                          setPostData({ ...postData, offsite: e.target.value })
+                        }
+                      />
+                    </Grid>
+                  </Grid>
+
+                  <Grid
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Grid>
+                      <TextField
+                        sx={{ display: "flex", mt: "10px", width: "auto" }}
+                        margin="dense"
+                        size="small"
+                        type="text"
+                        name="level"
+                        label="Level Gr"
+                        variant="outlined"
+                        value={postData.level}
+                        onChange={(e) =>
+                          setPostData({ ...postData, level: e.target.value })
+                        }
+                      />
+                    </Grid>
+                    <Grid>
+                      <TextField
+                        sx={{ display: "flex" }}
+                        type="text"
+                        size="small"
+                        margin="dense"
+                        name="payDays"
+                        // id="standard-basic"
+                        label="Pay Days"
+                        variant="outlined"
+                        required
+                        value={daysInThisPrevMonth}
+                        onChange={(e) =>
+                          setDaysInThisPrevMonth(+e.target.value)
+                        }
+                      />
+                    </Grid>
                     <Grid>
                       <TextField
                         sx={{ display: "flex" }}
@@ -418,12 +471,12 @@ const PaySlip = () => {
                         size="small"
                         type="text"
                         name="pan"
-                        label="PAN"
+                        label="PAN No."
                         variant="outlined"
-                        // value={}
-                        // onChange={(e) =>
-                        //   setPostData({ ...postData, employeeId: e.target.value })
-                        // }
+                        value={postData.panNo}
+                        onChange={(e) =>
+                          setPostData({ ...postData, panNo: e.target.value })
+                        }
                       />
                     </Grid>
 
@@ -433,14 +486,14 @@ const PaySlip = () => {
                         type="text"
                         size="small"
                         margin="dense"
-                        name="payDays"
+                        name="Leave"
                         // id="standard-basic"
-                        label="Pay Days"
+                        label="Leave balance"
                         variant="outlined"
                         required
-                        value={daysInThisPrevMonth}
+                        value={postData.leave}
                         onChange={(e) =>
-                          setDaysInThisPrevMonth(+e.target.value)
+                          setPostData({ ...postData, leave: e.target.value })
                         }
                       />
                     </Grid>
@@ -778,13 +831,7 @@ const PaySlip = () => {
                           // id="standard-basic"
                           label="amount"
                           variant="outlined"
-                          value={employeeContribution_pf || ""}
-                          // onChange={(e) =>
-                          //   setPostData({
-                          //     ...postData,
-                          //     employeeContribution_pf: e.target.value,
-                          //   })
-                          // }
+                          value={postData.employeeContribution_pf || ""}
                         />
                       </Grid>
 
@@ -805,13 +852,7 @@ const PaySlip = () => {
                           // id="standard-basic"
                           label="amount"
                           variant="outlined"
-                          value={employeerContribution_pf || ""}
-                          // onChange={(e) =>
-                          //   setPostData({
-                          //     ...postData,
-                          //     employeerContribution_pf: e.target.value,
-                          //   })
-                          // }
+                          value={postData.employeerContribution_pf || ""}
                         />
                       </Grid>
                       <Grid
@@ -866,13 +907,7 @@ const PaySlip = () => {
                           // id="standard-basic"
                           label="amount"
                           variant="outlined"
-                          value={employeeContribution_esic || ""}
-                          // onChange={(e) =>
-                          //   setPostData({
-                          //     ...postData,
-                          //     employeeContribution_esic: e.target.value,
-                          //   })
-                          // }
+                          value={postData.employeeContribution_esic || ""}
                         />
                       </Grid>
 
@@ -960,13 +995,7 @@ const PaySlip = () => {
                           // id="standard-basic"
                           label="amount"
                           variant="outlined"
-                          value={totalDeduction || ""}
-                          // onChange={(e) =>
-                          //   setPostData({
-                          //     ...postData,
-                          //     totalDeduction: e.target.value,
-                          //   })
-                          // }
+                          value={postData.totalDeduction || ""}
                         />
                       </Grid>
                     </Grid>
@@ -1075,63 +1104,55 @@ const PaySlip = () => {
                 }}
               >
                 <tbody>
+                  {/* <tr>
+                    <th
+                      style={{
+                        border: "1px solid black",
+                        padding: "30px",
+                        width: "20%",
+                      }}
+                    ></th>
+                    <th
+                      style={{
+                        border: "1px solid black",
+                        padding: "30px",
+                        width: "20%",
+                      }}
+                    ></th>
+                    <th
+                      style={{
+                        border: "1px solid black",
+                        padding: "30px",
+                        width: "20%",
+                      }}
+                    ></th>
+                    <th
+                      style={{
+                        border: "1px solid black",
+                        padding: "30px",
+                        width: "20%",
+                      }}
+                    ></th>
+                    <th
+                      style={{
+                        border: "1px solid black",
+                        padding: "30px",
+                        width: "20%",
+                      }}
+                    ></th>
+                  </tr> */}
                   <tr>
-                    <th
-                      style={{
-                        border: "1px solid black",
-                        padding: "30px",
-                        width: "20%",
-                      }}
-                    ></th>
-                    <th
-                      style={{
-                        border: "1px solid black",
-                        padding: "30px",
-                        width: "20%",
-                      }}
-                    ></th>
-                    <th
-                      style={{
-                        border: "1px solid black",
-                        padding: "30px",
-                        width: "20%",
-                      }}
-                    ></th>
-                    <th
-                      style={{
-                        border: "1px solid black",
-                        padding: "30px",
-                        width: "20%",
-                      }}
-                    ></th>
-                    <th
-                      style={{
-                        border: "1px solid black",
-                        padding: "30px",
-                        width: "20%",
-                      }}
-                    ></th>
-                  </tr>
-                  <tr>
-                    <th style={{ border: "1px solid black", width: "20%" }}>
-                      Employee Id
-                    </th>
-                    <td style={{ border: "1px solid black", width: "20%" }}>
+                    <th style={{ border: "1px solid black" }}>Employee Id</th>
+                    <td style={{ border: "1px solid black" }}>
                       {user.result.employeeId}
                     </td>
-                    <th style={{ border: "1px solid black", width: "20%" }}>
-                      Bank Name
-                    </th>
-                    <td style={{ border: "1px solid black", width: "20%" }}>
-                      {}
+                    <th style={{ border: "1px solid black" }}>Bank Name</th>
+                    <td style={{ border: "1px solid black" }}>
+                      {postData.bank}
                     </td>
 
-                    <th style={{ border: "1px solid black", width: "20%" }}>
-                      Location
-                    </th>
-                    <td style={{ border: "1px solid black", width: "20%" }}>
-                      Ranchi
-                    </td>
+                    <th style={{ border: "1px solid black" }}>Location</th>
+                    <td style={{ border: "1px solid black" }}>Ranchi</td>
                   </tr>
                   <tr>
                     <th style={{ border: "1px solid black" }}>Name</th>
@@ -1139,7 +1160,9 @@ const PaySlip = () => {
                       {user.result.firstName + " " + user.result.lastName}
                     </td>
                     <th style={{ border: "1px solid black" }}>Account No</th>
-                    <td style={{ border: "1px solid black" }}></td>
+                    <td style={{ border: "1px solid black" }}>
+                      {postData.accountNo}
+                    </td>
                     <th style={{ border: "1px solid black" }}>Base Branch</th>
                     <td style={{ border: "1px solid black" }}>
                       {postData.baseBranch}
@@ -1148,7 +1171,7 @@ const PaySlip = () => {
                   <tr>
                     <th style={{ border: "1px solid black" }}>Dsgn</th>
                     <td style={{ border: "1px solid black" }}>
-                      {user.result.jobRole}
+                      {postData.designation}
                     </td>
                     <th style={{ border: "1px solid black" }}>UAN No.</th>
                     <td style={{ border: "1px solid black" }}>
@@ -1161,30 +1184,26 @@ const PaySlip = () => {
                   </tr>
                   <tr>
                     <th style={{ border: "1px solid black" }}>Level (Gr)</th>
-                    <td style={{ border: "1px solid black" }}></td>
+                    <td style={{ border: "1px solid black" }}>
+                      {postData.level}
+                    </td>
                     <th style={{ border: "1px solid black" }}>Pay days</th>
                     <td style={{ border: "1px solid black" }}>
                       {daysInThisPrevMonth}
                     </td>
                   </tr>
                   <tr>
-                    <th style={{ border: "1px solid black" }}>PAN</th>
+                    <th style={{ border: "1px solid black" }}>PAN No.</th>
                     <td style={{ border: "1px solid black" }}>
                       {postData.panNo}
                     </td>
                     <th style={{ border: "1px solid black" }}>Leave Balance</th>
-                    <td style={{ border: "1px solid black" }}></td>
+                    <td style={{ border: "1px solid black" }}>
+                      {postData.leave}
+                    </td>
                     <th style={{ border: "1px solid black" }}>Pay Date</th>
                     <td style={{ border: "1px solid black" }}>{date}</td>
                   </tr>
-                  {/* <tr>
-                    <th style={{ border: "1px solid black" }}>Department</th>
-                    <td style={{ border: "1px solid black" }}>
-                      {user.result.department}
-                    </td>
-                    <th style={{ border: "1px solid black" }}>Pay Period</th>
-                    <td style={{ border: "1px solid black" }}>{prevMonth}</td>
-                  </tr> */}
                 </tbody>
               </table>
               <br />
@@ -1260,7 +1279,7 @@ const PaySlip = () => {
                       Employee's Contribution
                     </td>
                     <td style={{ border: "1px solid black" }}>
-                      {employeeContribution_pf || ""}
+                      {postData.employeeContribution_pf || ""}
                     </td>
                   </tr>
                   <tr>
@@ -1274,7 +1293,7 @@ const PaySlip = () => {
                       Employeer's Contribution
                     </td>
                     <td style={{ border: "1px solid black" }}>
-                      {employeerContribution_pf || ""}
+                      {postData.employeerContribution_pf || ""}
                     </td>
                   </tr>
                   <tr>
@@ -1316,7 +1335,7 @@ const PaySlip = () => {
                       Employee's Contribution
                     </td>
                     <td style={{ border: "1px solid black" }}>
-                      {employeeContribution_esic || ""}
+                      {postData.employeeContribution_esic || ""}
                     </td>
                   </tr>
                   <tr>
@@ -1362,7 +1381,7 @@ const PaySlip = () => {
                       Total Deductions
                     </th>
                     <td style={{ border: "1px solid black" }}>
-                      Rs. {totalDeduction || ""}
+                      Rs. {postData.totalDeduction || ""}
                     </td>
                   </tr>
                   <tr>
