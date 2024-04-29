@@ -9,36 +9,25 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { IconButton } from "@mui/material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-
+import CampaignIcon from "@mui/icons-material/Campaign";
+import CakeIcon from "@mui/icons-material/Cake";
 
 import { dailyEvent } from "../../../action/posts";
-
-
 
 const FormDialog = () => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
-    dailyevent: ""
+    dailyevent: "",
   });
   const [open, setOpen] = useState(false);
-
-  
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  
-
   const handleClose = () => {
     setOpen(false);
   };
-
-
-
-
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,19 +39,12 @@ const FormDialog = () => {
       window.location.reload();
     });
   };
-  
-
-
-
 
   return (
     <>
-      <div>
-        <IconButton
-          variant="outlined"
-          onClick={handleClickOpen}
-        >
-          <MoreVertIcon sx={{color: "blue"}} />
+      <div style={{ float: "right" }}>
+        <IconButton variant="outlined" onClick={handleClickOpen}>
+          <CampaignIcon sx={{ color: "#16365d", fontSize: "35px" }} />
         </IconButton>
       </div>
       <Dialog open={open} onClose={handleClose}>
@@ -93,6 +75,6 @@ const FormDialog = () => {
       </Dialog>
     </>
   );
-}
+};
 
 export default FormDialog;
