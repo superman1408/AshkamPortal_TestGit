@@ -1,10 +1,27 @@
 import mongoose from "mongoose";
+import multer from "multer";
 
 import AuthenticateUser from "../model/authDetails.js";
 
 import UserAttendance from "../model/attendanceDetail.js";
 
 import EventDetail from "../model/eventDetail.js";
+
+import PaySlipModel from "../model/payslip.js";
+
+
+// ....................Multer Storage.apply.......................
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./files");
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now();
+    cb(null, uniqueSuffix + file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage });
 
 // ________________________get operation___________________________
 
@@ -275,16 +292,31 @@ export const logList = async (req, res) => {
   }
 };
 
+
+
+
 export const salarySlipData = async (req, res) => {
+  // console.log(req.file);
+  // const title = req.body.title;
+  // const fileName = req.file.filename;
+  // const {id: _id} = req.params();
+  // try {
+  //   await PaySlipModel.create({ title: title, pdf: fileName },{identify: _id});
+  //   res.send({ status: "ok" });
+  // } catch (error) {
+  //   res.json({ status: error });
+  // }
+  
   console.log("mouse");
+  console.log(req.body);
 
-  const { id: _id } = req.params;
-  console.log(_id);
+  // const { id: _id } = req.params;
+  // console.log(_id);
 
-  try {
-    const user = await AuthenticateUser.findById(_id);
-    console.log(_id);
-    console.log(user);
+  // try {
+  //   const user = await AuthenticateUser.findById(_id);
+    // console.log(_id);
+    // console.log(user);
 
     // user.salarySlip.push(value.salarySlip);
     // user.logIn.push(value.logIn);
@@ -295,7 +327,7 @@ export const salarySlipData = async (req, res) => {
     // });
 
     res.status(200).json({ message: "All running" });
-  } catch (error) {
-    res.status(409).json({ message: error.message });
-  }
+  // } catch (error) {
+  //   res.status(409).json({ message: error.message });
+  // }
 };

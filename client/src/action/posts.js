@@ -197,11 +197,11 @@ export const dailyEvent = (formData) => async (dispatch) => {
   }
 };
 
-export const salarySlipData = (id, formData) => async (dispatch) => {
+export const salarySlipData = (id, file) => async (dispatch) => {
   console.log("Here Come Data");
   console.log("id", id);
   try {
-    const { data } = await API.salarySlipData(id, formData);
+    const { data } = await API.salarySlipData(id, file);
     //console.log(data);
     dispatch({ type: SALARY_SLIP, payload: data });
   } catch (error) {
