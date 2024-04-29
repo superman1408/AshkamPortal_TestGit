@@ -69,6 +69,9 @@ const Navibar = () => {
       case "about":
         navigate(`/aboutUs`);
         break;
+      case "payslipPreview":
+        navigate(`/${id}/payslip`);
+        break;
       default:
         console.log("Click something dude..!!");
     }
@@ -153,6 +156,17 @@ const Navibar = () => {
                     }}
                   >
                     About Us
+                  </Nav.Link>
+                  <Nav.Link
+                    onClick={() => openPage(user.result._id, "payslipPreview")}
+                    style={{
+                      marginTop: "8px",
+                      fontFamily: "Roboto",
+                      fontWeight: "bold",
+                      color: "#16355d",
+                    }}
+                  >
+                    Payslip
                   </Nav.Link>
                   {matches && (
                     <div>

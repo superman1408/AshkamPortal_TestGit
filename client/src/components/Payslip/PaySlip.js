@@ -1,11 +1,16 @@
 import React, { useRef } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import LOGO from "../../assets/AshkamLogoTransparentbc.png";
 import { useReactToPrint } from "react-to-print";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
+
+import ComboBox from "../PayslipLayout/ComboBox";
+
+import { getPosts } from "../../action/posts";
 
 import {
   Grid,
@@ -49,10 +54,14 @@ const PaySlip = () => {
 
   const [dataGenerated, setDataGenerated] = useState(false);
   const [printingshow, setPrintingShow] = useState(false);
+  const [currentId, setCurrentId] = useState(null);
+  const posts = useSelector((state) => state.posts);
 
   const matches = useMediaQuery("(min-width:1120px)");
 
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const GS =
     parseInt(postData.basic) +
@@ -154,6 +163,14 @@ const PaySlip = () => {
     }, 10);
   };
 
+  useEffect(() => {
+    if (!currentId) return setCurrentId(id);
+    dispatch(getPosts()).then(() => {});
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentId, posts]);
+  //   console.log(posts);
+
   return (
     <>
       <div style={{ display: "flex" }}>{matches && <Panel />}</div>
@@ -216,6 +233,10 @@ const PaySlip = () => {
                   >
                     Salary Slip
                   </Typography>
+
+                  <Grid item sx={{ float: "right" }}>
+                    <ComboBox posts={posts} setCurrentId={setCurrentId} />
+                  </Grid>
 
                   <Divider
                     sx={{
