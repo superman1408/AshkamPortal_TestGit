@@ -70,7 +70,7 @@ const Navibar = () => {
         navigate(`/aboutUs`);
         break;
       case "payslipPreview":
-        navigate(`/${id}/payslip`);
+        navigate(`/${id}/payslip1`);
         break;
       default:
         console.log("Click something dude..!!");

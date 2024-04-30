@@ -80,6 +80,7 @@ const App = () => {
 
             <Route path="posts/skill" exact element={<SkillDisplay />} />
             <Route path="/:id/payslip" exact element={<Uploading />} />
+            <Route path="/:id/payslip1" exact element={<PaySlip />} />
             <Route
               path="/:id/attendanceDisplay"
               exact
