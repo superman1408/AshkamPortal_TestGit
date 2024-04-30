@@ -18,8 +18,6 @@ import PrintingLayout from "./components/PrinttingLayout/PrintingLayout";
 import EvolvePrintLayout from "./components/ActivityDisplay/TimeSheet/EvolvePrintLayout";
 import AttendanceDisplay from "./components/Attendance/AttendanceDisplay";
 import PasswordResetForm from "./components/PasswordReset/PasswordResetForm";
-import PayslipLayout from "./components/PayslipLayout/PayslipLayout";
-import FileUploadForm from "./components/FileUploadForm/FileUploadForm";
 import Uploading from "./components/PayslipLayout/Uploading";
 
 
@@ -87,13 +85,6 @@ const App = () => {
               exact
               element={<AttendanceDisplay />}
             />
-
-            <Route
-              path="/:id/payslipLayout"
-              exact
-              element={<FileUploadForm />}
-            />
-
             <Route path="/printingLayout" exact element={<PrintingLayout />} />
             <Route
               path="/evolveprintlayout"
