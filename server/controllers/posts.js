@@ -294,9 +294,6 @@ export const logList = async (req, res) => {
 
 
 export const salarySlipData = async (req, res) => {
-  console.log("Salary Slip Backend Responding....!!!");
-  // console.log(req.file);
-  // console.log(req.body.title);
   try {
     const { title } = req.body; // Extract the title from the request body
     const pdfFile = req.file; // Extract the uploaded PDF file
