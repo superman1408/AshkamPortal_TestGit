@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LOGO from "../../assets/AshkamLogoTransparentbc.png";
 import { useReactToPrint } from "react-to-print";
@@ -10,7 +9,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 import ComboBox from "../PayslipLayout/ComboBox";
 
-import { getPosts } from "../../action/posts";
+import { getPosts, updatePost } from "../../action/posts";
 
 import {
   Grid,
@@ -25,6 +24,26 @@ import Panel from "../Panel/Panel";
 // import { useDispatch } from "react-redux";
 
 const PaySlip = () => {
+  // const [showPrintingLayout, setShowPrintingLayout] = useState(false);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  const [dataGenerated, setDataGenerated] = useState(false);
+  const [printingshow, setPrintingShow] = useState(false);
+  const { id } = useParams();
+
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const posts = useSelector((state) => state.posts);
+  const [currentId, setCurrentId] = useState(id);
+
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  const matches = useMediaQuery("(min-width:1120px)");
+
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
   const [postData, setPostData] = useState({
     total: "",
     netSalary: "",
@@ -50,18 +69,55 @@ const PaySlip = () => {
     employeeContribution_esic: "",
   });
 
-  // const [showPrintingLayout, setShowPrintingLayout] = useState(false);
+  useEffect(() => {
+    if (!currentId) return setCurrentId(id);
+    dispatch(getPosts())
+      .then(() => {
+        console.log("Data is received in the Payslip module");
+        // eslint-disable-next-line array-callback-return
+        posts.map((items) => {
+          for (let index = 0; index <= posts.length; index++) {
+            if (items._id === currentId) {
+              setPostData(() => ({
+                ...postData,
+                firstName: items.firstName,
+                lastName: items.lastName,
+                role: items.role,
+                dob: items.dob,
+                gender: items.gender,
+                email: items.email,
+                maritalStatus: items.maritalStatus,
+                contactNumber: items.contactNumber,
+                streetAddress: items.streetAddress,
+                city: items.city,
+                state: items.state,
+                pincode: items.pincode,
+                jobSkills: items.jobSkills,
+                jobTitle: items.jobTitle,
+                employeeId: items.employeeId,
+                department: items.department,
+                reportingManager: items.reportingManager,
+                emergencyName: items.emergencyName,
+                emergencyAddress: items.emergencyAddress,
+                emergencyContact: items.emergencyContact,
+                relationship: items.relationship,
+                selectedFile: items.selectedFile,
+              }));
+              setSelectedOption(items.role);
 
-  const [dataGenerated, setDataGenerated] = useState(false);
-  const [printingshow, setPrintingShow] = useState(false);
-  const [currentId, setCurrentId] = useState(null);
-  const posts = useSelector((state) => state.posts);
+              break;
+            }
+          }
+        });
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log("Error", err);
+      });
 
-  const matches = useMediaQuery("(min-width:1120px)");
-
-  const navigate = useNavigate();
-
-  const dispatch = useDispatch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentId, isLoading]);
+  console.log(currentId);
 
   const GS =
     parseInt(postData.basic) +
@@ -108,7 +164,6 @@ const PaySlip = () => {
   };
 
   // const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("profile"));
 
   const today = new Date();
   const [date, setDate] = useState(
@@ -138,11 +193,20 @@ const PaySlip = () => {
     return new Date(now.getFullYear(), prevMonth1, 0).getDate();
   });
 
-  const { id } = useParams();
   console.log("Id in Payslip Page", id);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (currentId) {
+      dispatch(updatePost(currentId, postData));
+      setUser(null);
+      // navigate("/home");
+    } else {
+      console.log("Not set current ID");
+    }
+
+    setFormSubmitted(true);
+    console.log("Form submitted:", formSubmitted);
   };
 
   const componentRef = useRef();
@@ -162,14 +226,6 @@ const PaySlip = () => {
       handlePdf();
     }, 10);
   };
-
-  useEffect(() => {
-    if (!currentId) return setCurrentId(id);
-    dispatch(getPosts()).then(() => {});
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentId, posts]);
-  //   console.log(posts);
 
   return (
     <>
@@ -271,9 +327,12 @@ const PaySlip = () => {
                         name="employeeId"
                         label="Employee Id"
                         variant="outlined"
-                        value={user.result.employeeId}
+                        value={postData.employeeId}
                         // onChange={(e) =>
-                        //   setPostData({ ...postData, employeeId: e.target.value })
+                        //   setPostData({
+                        //     ...postData,
+                        //     employeeId: e.target.value,
+                        //   })
                         // }
                       />
                     </Grid>
@@ -325,9 +384,7 @@ const PaySlip = () => {
                         variant="outlined"
                         required
                         fullWidth={true}
-                        value={
-                          user.result.firstName + " " + user.result.lastName
-                        }
+                        value={postData.firstName + " " + postData.lastName}
                         // onChange={(e) =>
                         //   setPostData({ ...postData, firstName: e.target.value })
                         // }
