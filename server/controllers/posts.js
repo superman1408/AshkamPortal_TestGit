@@ -293,38 +293,10 @@ export const logList = async (req, res) => {
 
 
 export const salarySlipData = async (req, res) => {
-  // console.log(req.file);
-  // const title = req.body.title;
-  // const fileName = req.file.filename;
-  // const {id: _id} = req.params();
-  // try {
-  //   await PaySlipModel.create({ title: title, pdf: fileName },{identify: _id});
-  //   res.send({ status: "ok" });
-  // } catch (error) {
-  //   res.json({ status: error });
-  // }
-  
+
   console.log("mouse");
   console.log(req.body);
 
-  // const { id: _id } = req.params;
-  // console.log(_id);
 
-  // try {
-  //   const user = await AuthenticateUser.findById(_id);
-    // console.log(_id);
-    // console.log(user);
-
-    user.salarySlip.push(value.salarySlip);
-    // user.logIn.push(value.logIn);
-    // user.logOut.push(value.logOut);
-
-    const updatedPost = await AuthenticateUser.findByIdAndUpdate(_id, user, {
-      new: true,
-    });
-
-    res.status(200).json({ message: "All running" });
-  // } catch (error) {
-  //   res.status(409).json({ message: error.message });
-  // }
+  res.status(200).json({ message: "All running" });
 };

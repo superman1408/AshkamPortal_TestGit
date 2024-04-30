@@ -70,5 +70,9 @@ export const fetchAttendancePosts = () => API.get("/posts/attendanceposts");
 export const logList = (formData, id) =>
   API.post(`/posts/${id}/loglist`, formData);
 
-export const salarySlipData = (id, file) =>
-  API.post(`/posts/${id}/salarySlipData`, file);
+export const salarySlipData = (id, formData) =>
+  API.post(`/posts/${id}/salarySlipData`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  });

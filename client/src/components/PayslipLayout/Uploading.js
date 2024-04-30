@@ -7,71 +7,45 @@ import { getPosts, salarySlipData } from "../../action/posts";
 import { useParams } from "react-router-dom";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 
-const PayslipLayout = () => {
+const Uploading = () => {
   const id = useParams();
-  //   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const [currentId, setCurrentId] = useState(null);
-  // console.log(currentId);
-
   const dispatch = useDispatch();
-
   const posts = useSelector((state) => state.posts);
-  const [selectedFile, setSelectedFile] = useState({
-    pdf: "",
-  });
-
-  const [formData, setFormData] = useState({
-    salarySlip: "",
-  });
-
-  // {...selectedFile, pdf: e.target.files[0]}
-
-  const handleFileChange = (e) => {
-    e.preventDefault();
-    setSelectedFile((pre) => pre.pdf = e.target.files[0]);
-    console.log(selectedFile);
-    
-    setFormData({
-      ...formData,
-      salarySlip: selectedFile,
-    });
-  };
-
-
+  const [selectedFile, setSelectedFile] = useState(null); // Change to null
 
   useEffect(() => {
-    if (!currentId) return setCurrentId(id);
+    if (!currentId) setCurrentId(id);
     dispatch(getPosts()).then(() => {
-      console.log("Data recieved");
+      console.log("Data received");
     });
+  }, [currentId, dispatch, id]);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentId, posts]);
-
-
+  const handleFileChange = (e) => {
+    setSelectedFile(e.target.files[0]); // Set selected file directly
+  };
 
   const handleUpload = async (e) => {
     e.preventDefault();
-    if (currentId) {
-      console.log(formData);
-      await dispatch(salarySlipData(currentId, formData, {
-        header: {
-          'Content-Type': 'multipart/form-data'
-        }
-      }))
-        .then(() => {
-          console.log("upload");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    if (currentId && selectedFile) {
+      const formData = new FormData();
+      formData.append("pdf", selectedFile);
+
+      try {
+        console.log(formData);
+        await dispatch(salarySlipData(currentId, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }));
+        console.log("upload");
+      } catch (err) {
+        console.log(err);
+      }
     } else {
-      console.log("Not set current ID");
+      console.log("Current ID or file not set");
     }
   };
-
-  
-
 
   return (
     <>
@@ -113,4 +87,4 @@ const PayslipLayout = () => {
   );
 };
 
-export default PayslipLayout;
+export default Uploading;

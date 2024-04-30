@@ -20,6 +20,7 @@ import AttendanceDisplay from "./components/Attendance/AttendanceDisplay";
 import PasswordResetForm from "./components/PasswordReset/PasswordResetForm";
 import PayslipLayout from "./components/PayslipLayout/PayslipLayout";
 import FileUploadForm from "./components/FileUploadForm/FileUploadForm";
+import Uploading from "./components/PayslipLayout/Uploading";
 
 
 
@@ -80,7 +81,7 @@ const App = () => {
             />
 
             <Route path="posts/skill" exact element={<SkillDisplay />} />
-            <Route path="/:id/payslip" exact element={<PaySlip />} />
+            <Route path="/:id/payslip" exact element={<Uploading />} />
             <Route
               path="/:id/attendanceDisplay"
               exact
