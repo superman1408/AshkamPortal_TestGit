@@ -13,6 +13,7 @@ const Uploading = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
   const [selectedFile, setSelectedFile] = useState(null); // Change to null
+  const [title, setTitle] = useState(null);
 
   useEffect(() => {
     if (!currentId) setCurrentId(id);
@@ -25,11 +26,18 @@ const Uploading = () => {
     setSelectedFile(e.target.files[0]); // Set selected file directly
   };
 
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
+
+
+
   const handleUpload = async (e) => {
     e.preventDefault();
     if (currentId && selectedFile) {
       const formData = new FormData();
       formData.append("pdf", selectedFile);
+      formData.append("title", title);
 
       try {
         console.log(formData);
@@ -73,6 +81,7 @@ const Uploading = () => {
                 marginLeft: "10px",
               }}
             >
+              <input type="text" onChange={handleTitleChange} placeholder="Enter the Title"/>
               <input type="file" onChange={handleFileChange} accept=".pdf" />
             </div>
           </Grid>
