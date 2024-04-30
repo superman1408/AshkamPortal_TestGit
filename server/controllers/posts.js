@@ -321,6 +321,8 @@ export const salarySlipData = async (req, res) => {
 
     res.status(200).json({ message: "All running" });
   } catch (error) {
+    // Delete the temporary file
+    fs.unlinkSync(pdfFile.path);
     res.status(500).json({message: error})
   }
 };
