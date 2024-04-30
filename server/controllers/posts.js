@@ -247,19 +247,16 @@ export const dailyEvent = async (req, res) => {
   }
 };
 
-
 export const getAllevents = async (req, res) => {
   // console.log("getting all");
   try {
-    const event = await  EventDetail.find({});
-    if (!event) return res.status(404).json({ message: 'No events found'});
+    const event = await EventDetail.find({});
+    if (!event) return res.status(404).json({ message: "No events found" });
     res.status(200).json(event);
   } catch (error) {
-    res.status(409).json({message: error.message});
+    res.status(409).json({ message: error.message });
   }
 };
-
-
 
 export const getAttendancePosts = async (req, res) => {
   try {
@@ -318,13 +315,13 @@ export const salarySlipData = async (req, res) => {
     // console.log(_id);
     // console.log(user);
 
-    // user.salarySlip.push(value.salarySlip);
+    user.salarySlip.push(value.salarySlip);
     // user.logIn.push(value.logIn);
     // user.logOut.push(value.logOut);
 
-    // const updatedPost = await AuthenticateUser.findByIdAndUpdate(_id, user, {
-    //   new: true,
-    // });
+    const updatedPost = await AuthenticateUser.findByIdAndUpdate(_id, user, {
+      new: true,
+    });
 
     res.status(200).json({ message: "All running" });
   // } catch (error) {
