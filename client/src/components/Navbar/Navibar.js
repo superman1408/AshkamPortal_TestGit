@@ -139,7 +139,7 @@ const Navibar = () => {
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item
-                      onClick={() => openPage(user.result._id, "payslip")}
+                      onClick={() => openPage(user.result._id, "payslipPreview")}
                       style={{ fontFamily: "Roboto", color: "#16355d" }}
                       id="payslip"
                     >
