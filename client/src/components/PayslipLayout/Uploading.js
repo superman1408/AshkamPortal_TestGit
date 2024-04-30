@@ -18,6 +18,9 @@ const Uploading = () => {
   const [selectedFile, setSelectedFile] = useState(null); // Change to null
   const [title, setTitle] = useState(null);
 
+
+
+
   useEffect(() => {
     if (!currentId) setCurrentId(id);
     dispatch(getPosts()).then(() => {
@@ -43,13 +46,12 @@ const Uploading = () => {
       formData.append("title", title);
 
       try {
-        console.log(formData);
         await dispatch(salarySlipData(currentId, formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
         }));
-        console.log("upload");
+        console.log("upload:  ", formData);
       } catch (err) {
         console.log(err);
       }
@@ -57,6 +59,9 @@ const Uploading = () => {
       console.log("Current ID or file not set");
     }
   };
+
+
+
 
   return (
     <>
