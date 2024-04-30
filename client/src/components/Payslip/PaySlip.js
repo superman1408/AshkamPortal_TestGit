@@ -443,11 +443,11 @@ const PaySlip = () => {
                         variant="outlined"
                         required
                         fullwidth="true"
-                        value={postData.designation}
+                        value={postData.jobTitle}
                         onChange={(e) =>
                           setPostData({
                             ...postData,
-                            designation: e.target.value,
+                            jobTitle: e.target.value,
                           })
                         }
                       />
@@ -1182,43 +1182,6 @@ const PaySlip = () => {
                 }}
               >
                 <tbody>
-                  {/* <tr>
-                    <th
-                      style={{
-                        border: "1px solid black",
-                        padding: "30px",
-                        width: "20%",
-                      }}
-                    ></th>
-                    <th
-                      style={{
-                        border: "1px solid black",
-                        padding: "30px",
-                        width: "20%",
-                      }}
-                    ></th>
-                    <th
-                      style={{
-                        border: "1px solid black",
-                        padding: "30px",
-                        width: "20%",
-                      }}
-                    ></th>
-                    <th
-                      style={{
-                        border: "1px solid black",
-                        padding: "30px",
-                        width: "20%",
-                      }}
-                    ></th>
-                    <th
-                      style={{
-                        border: "1px solid black",
-                        padding: "30px",
-                        width: "20%",
-                      }}
-                    ></th>
-                  </tr> */}
                   <tr>
                     <th style={{ border: "1px solid black" }}>Employee Id</th>
                     <td style={{ border: "1px solid black" }}>
@@ -1249,7 +1212,7 @@ const PaySlip = () => {
                   <tr>
                     <th style={{ border: "1px solid black" }}>Dsgn</th>
                     <td style={{ border: "1px solid black" }}>
-                      {postData.designation}
+                      {postData.jobTitle}
                     </td>
                     <th style={{ border: "1px solid black" }}>UAN No.</th>
                     <td style={{ border: "1px solid black" }}>
