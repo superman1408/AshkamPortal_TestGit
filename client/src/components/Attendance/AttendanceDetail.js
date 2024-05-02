@@ -151,7 +151,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
                 padding: "15px",
                 // width: "auto",
                 // marginLeft: "5px",
-                // backgroundColor: "whitesmoke",
+                backgroundColor: "white",
                 margin: "0px 3px 2px 10px",
                 borderRadius: "15px",
                 border: "1px solid lightgray",
@@ -238,7 +238,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
                 // display: "flex",
                 padding: "10px",
                 width: "auto",
-                // backgroundColor: "whitesmoke",
+                backgroundColor: "white",
                 borderRadius: "15px",
                 border: "1px solid lightgray",
                 margin: "0px 5px 2px 5px",
@@ -344,7 +344,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
           <Grid
             sx={{
               borderRadius: "15px",
-              // backgroundColor: "whitesmoke",
+              backgroundColor: "white",
               border: "1px solid lightgray",
               padding: "10px",
             }}
@@ -454,6 +454,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
                 marginLeft: "5px",
                 borderRadius: "15px",
                 border: "1px solid lightgray",
+                backgroundColor: "white",
               }}
             >
               <div style={{ margin: "10px 20px 10px 20px" }}>

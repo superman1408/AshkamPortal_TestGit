@@ -584,134 +584,136 @@ function TimeSheet({ currentId, posts }) {
                     </table>
                   </>
                 )}
-                <table
-                  className="time-sheet-table"
-                  style={{
-                    padding: "10px",
-                    borderCollapse: "collapse",
-                    // border: "1px solid black",
-                    marginLeft: "auto",
-                    marginRight: "auto",
+                <Grid sx={{ backgroundColor: "white" }}>
+                  <table
+                    className="time-sheet-table"
+                    style={{
+                      padding: "10px",
+                      borderCollapse: "collapse",
+                      // border: "1px solid black",
+                      marginLeft: "auto",
+                      marginRight: "auto",
 
-                    width: windowWidth <= 600 ? "30%" : "100%",
-                  }}
-                >
-                  <thead>
-                    <tr>
-                      <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                        Project Code
-                      </th>
-                      <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                        Activity Code
-                      </th>
-                      <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                        Date (yyyy-mm-dd)
-                      </th>
-                      <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                        Net Time (hrs)
-                      </th>
-                      <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                        Over Time (hrs)
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {array.map((post, index) => (
-                      <tr key={index}>
-                        <td
-                          style={{
-                            color: "#e55d17",
-                            fontFamily: "Roboto",
-                            padding: "10px",
-                            alignContent: "center",
-                          }}
-                        >
-                          {post.projectCode}
-                        </td>
-                        <td
-                          style={{
-                            color: "#e55d17",
-                            fontFamily: "Roboto",
-                            padding: "10px",
-                            alignContent: "center",
-                          }}
-                        >
-                          {post.activityCode}
-                        </td>
-                        <td
-                          style={{
-                            color: "#e55d17",
-                            fontFamily: "Roboto",
-                            padding: "10px",
-                            alignContent: "center",
-                          }}
-                        >
-                          {post.date}
-                        </td>
-                        <td
-                          style={{
-                            color: "#e55d17",
-                            fontFamily: "Roboto",
-                            padding: "10px",
-                            alignContent: "center",
-                          }}
-                        >
-                          {post.netTime}
-                        </td>
-                        <td
-                          style={{
-                            color: "#e55d17",
-                            fontFamily: "Roboto",
-                            padding: "10px",
-                            alignContent: "center",
-                          }}
-                        >
-                          {post.overTime}
-                        </td>
-                        {printingShow === false && (
+                      width: windowWidth <= 600 ? "30%" : "100%",
+                    }}
+                  >
+                    <thead>
+                      <tr>
+                        <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                          Project Code
+                        </th>
+                        <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                          Activity Code
+                        </th>
+                        <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                          Date (yyyy-mm-dd)
+                        </th>
+                        <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                          Net Time (hrs)
+                        </th>
+                        <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                          Over Time (hrs)
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {array.map((post, index) => (
+                        <tr key={index}>
                           <td
                             style={{
-                              display: "flex",
-                              justifyContent: "space-around",
+                              color: "#e55d17",
+                              fontFamily: "Roboto",
                               padding: "10px",
                               alignContent: "center",
                             }}
                           >
-                            {role === "admin" && (
-                              <>
-                                <button
-                                  id="editButton"
-                                  style={{ fontFamily: "Roboto" }}
-                                  onClick={() => editEntry(index)}
-                                >
-                                  Edit
-                                </button>
-                                <button
-                                  id="deleteButton"
-                                  style={{ fontFamily: "Roboto" }}
-                                  onClick={() => deleteEntry(index)}
-                                >
-                                  Delete
-                                </button>
-                              </>
-                            )}
-                            {role === "manager" && (
-                              <>
-                                <button
-                                  id="editButton"
-                                  style={{ fontFamily: "Roboto" }}
-                                  onClick={() => editEntry(index)}
-                                >
-                                  Edit
-                                </button>
-                              </>
-                            )}
+                            {post.projectCode}
                           </td>
-                        )}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                          <td
+                            style={{
+                              color: "#e55d17",
+                              fontFamily: "Roboto",
+                              padding: "10px",
+                              alignContent: "center",
+                            }}
+                          >
+                            {post.activityCode}
+                          </td>
+                          <td
+                            style={{
+                              color: "#e55d17",
+                              fontFamily: "Roboto",
+                              padding: "10px",
+                              alignContent: "center",
+                            }}
+                          >
+                            {post.date}
+                          </td>
+                          <td
+                            style={{
+                              color: "#e55d17",
+                              fontFamily: "Roboto",
+                              padding: "10px",
+                              alignContent: "center",
+                            }}
+                          >
+                            {post.netTime}
+                          </td>
+                          <td
+                            style={{
+                              color: "#e55d17",
+                              fontFamily: "Roboto",
+                              padding: "10px",
+                              alignContent: "center",
+                            }}
+                          >
+                            {post.overTime}
+                          </td>
+                          {printingShow === false && (
+                            <td
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-around",
+                                padding: "10px",
+                                alignContent: "center",
+                              }}
+                            >
+                              {role === "admin" && (
+                                <>
+                                  <button
+                                    id="editButton"
+                                    style={{ fontFamily: "Roboto" }}
+                                    onClick={() => editEntry(index)}
+                                  >
+                                    Edit
+                                  </button>
+                                  <button
+                                    id="deleteButton"
+                                    style={{ fontFamily: "Roboto" }}
+                                    onClick={() => deleteEntry(index)}
+                                  >
+                                    Delete
+                                  </button>
+                                </>
+                              )}
+                              {role === "manager" && (
+                                <>
+                                  <button
+                                    id="editButton"
+                                    style={{ fontFamily: "Roboto" }}
+                                    onClick={() => editEntry(index)}
+                                  >
+                                    Edit
+                                  </button>
+                                </>
+                              )}
+                            </td>
+                          )}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </Grid>
               </div>
             )}
             <button

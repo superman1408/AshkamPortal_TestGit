@@ -36,6 +36,7 @@ const Communication = () => {
         style={{
           padding: "5px",
           display: "flex",
+          width: "100%",
           backgroundColor: "white",
           "@media (maxWidth: 600px)": {
             flexDirection: "column",
