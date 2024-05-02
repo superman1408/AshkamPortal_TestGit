@@ -70,7 +70,7 @@ const Navibar = () => {
         navigate(`/aboutUs`);
         break;
       case "payslipPreview":
-        navigate(`/${id}/payslip1`);
+        navigate(`/${id}/payslip`);
         break;
       default:
         console.log("Click something dude..!!");
@@ -91,7 +91,7 @@ const Navibar = () => {
               <Navbar.Collapse id="navbarScroll">
                 <Nav
                   className="me-auto my-0 my-lg-0"
-                  // style={{ maxHeight: "100px" }}
+                  style={{ padding: "10px" }}
                   navbarScroll
                 >
                   <Nav.Link href="/home">
@@ -107,6 +107,7 @@ const Navibar = () => {
                       fontFamily: "Roboto",
                       fontWeight: "bold",
                       color: "#16355d",
+                      padding: "10px",
                     }}
                   >
                     Time Sheet
@@ -137,15 +138,29 @@ const Navibar = () => {
                     >
                       Inbox
                     </NavDropdown.Item>
-                    <NavDropdown.Divider />
+                  </NavDropdown>
+
+                  <NavDropdown
+                    title="Downloads"
+                    id="navbarScrollingDropdown"
+                    style={{
+                      marginTop: "8px",
+                      fontFamily: "Roboto",
+                      fontWeight: "bold",
+                      color: "#16355d",
+                    }}
+                  >
                     <NavDropdown.Item
-                      onClick={() => openPage(user.result._id, "payslipPreview")}
+                      onClick={() =>
+                        openPage(user.result._id, "payslipPreview")
+                      }
                       style={{ fontFamily: "Roboto", color: "#16355d" }}
-                      id="payslip"
+                      id="payslipPreview"
                     >
-                      SalarySlip
+                      Salary Slip
                     </NavDropdown.Item>
                   </NavDropdown>
+
                   <Nav.Link
                     onClick={() => openPage(user.result._id, "about")}
                     style={{
@@ -157,17 +172,7 @@ const Navibar = () => {
                   >
                     About Us
                   </Nav.Link>
-                  <Nav.Link
-                    onClick={() => openPage(user.result._id, "payslipPreview")}
-                    style={{
-                      marginTop: "8px",
-                      fontFamily: "Roboto",
-                      fontWeight: "bold",
-                      color: "#16355d",
-                    }}
-                  >
-                    Payslip
-                  </Nav.Link>
+
                   {matches && (
                     <div>
                       <Nav.Link
@@ -197,10 +202,11 @@ const Navibar = () => {
                 </Nav>
                 <Grid
                   sx={{
+                    float: "right",
                     display: "flex",
                     flexDirection: "row",
                     margin: "15px",
-                    marginLeft: "550px",
+                    marginLeft: "400px",
                   }}
                 >
                   {/* comment is added */}

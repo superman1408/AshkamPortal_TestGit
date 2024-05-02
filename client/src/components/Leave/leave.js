@@ -113,6 +113,7 @@ const Leave = () => {
         padding: "1px",
         display: "flex",
         justifyContent: "space-between",
+        marginTop: "20px",
       }}
     >
       <div>

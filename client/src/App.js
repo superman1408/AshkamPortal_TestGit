@@ -20,9 +20,6 @@ import AttendanceDisplay from "./components/Attendance/AttendanceDisplay";
 import PasswordResetForm from "./components/PasswordReset/PasswordResetForm";
 import Uploading from "./components/PayslipLayout/Uploading";
 
-
-
-
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
 
@@ -80,7 +77,7 @@ const App = () => {
 
             <Route path="posts/skill" exact element={<SkillDisplay />} />
             <Route path="/:id/payslip" exact element={<Uploading />} />
-            <Route path="/:id/payslip1" exact element={<PaySlip />} />
+            <Route path="/:id/payslip" exact element={<PaySlip />} />
             <Route
               path="/:id/attendanceDisplay"
               exact
