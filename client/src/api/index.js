@@ -71,4 +71,8 @@ export const logList = (formData, id) =>
   API.post(`/posts/${id}/loglist`, formData);
 
 export const salarySlipData = (id, formData) =>
-  API.post(`/posts/${id}/salarySlipData`, formData);
+  API.post(`/posts/${id}/salarySlipData`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  });

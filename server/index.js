@@ -4,6 +4,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
+
 import userRouters from "./routes/user.js";
 import postsRouters from "./routes/posts.js";
 import mailRouters from "./routes/mail.js";
@@ -14,6 +15,8 @@ dotenv.config();
 const PORT = process.env.PORT || 8080;
 
 const CONNECT = process.env.CONNECTION_URL;
+
+
 
 app.use(express.static("client"));
 app.use(bodyParser.json({ limit: "35mb", extended: true }));
@@ -27,6 +30,13 @@ app.use("/mail", mailRouters);
 app.get("/", (req, res) => {
   res.send("Hello to ASHKAM  API");
 });
+
+// // Route for handling file uploads
+// app.post("/:id/salarySlipData", upload.single("pdf"), (req, res) => {
+//   // Handle the uploaded file here
+//   console.log(req.file); // Log information about the uploaded file
+//   res.send("File uploaded successfully");
+// });
 
 mongoose.set("strictQuery", true);
 mongoose

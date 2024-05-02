@@ -18,6 +18,7 @@ import {
 } from "../controllers/posts.js";
 
 import auth from "../middleware/auth.js";
+import upload from "../middleware/storage.js";
 
 const router = express.Router();
 
@@ -51,6 +52,6 @@ router.get("/events/display", getAllevents);
 
 router.post("/:id/loglist", logList);
 
-router.post("/:id/salarySlipData", salarySlipData);
+router.post("/:id/salarySlipData", upload.single("pdf"), salarySlipData);
 
 export default router;

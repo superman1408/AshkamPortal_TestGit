@@ -1,10 +1,28 @@
 import mongoose from "mongoose";
+import multer from "multer";
+import fs from "fs";
 
 import AuthenticateUser from "../model/authDetails.js";
 
 import UserAttendance from "../model/attendanceDetail.js";
 
 import EventDetail from "../model/eventDetail.js";
+
+import PaySlipModel from "../model/payslip.js";
+
+
+// ....................Multer Storage.apply.......................
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./files");
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now();
+    cb(null, uniqueSuffix + file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage });
 
 // ________________________get operation___________________________
 
@@ -272,28 +290,39 @@ export const logList = async (req, res) => {
   }
 };
 
+
+
+
 export const salarySlipData = async (req, res) => {
-  console.log("mouse");
-
-  const { id: _id } = req.params;
-  console.log(_id);
-  // const { id } = req.params;
-  // const value = req.body;
-
   try {
-    const user = await AuthenticateUser.findById(_id);
-    console.log(user);
+    const { title } = req.body; // Extract the title from the request body
+    const pdfFile = req.file; // Extract the uploaded PDF file
+    const identify = req.params.id;
 
-    user.salarySlip.push(value.salarySlip);
-    // user.logIn.push(value.logIn);
-    // user.logOut.push(value.logOut);
+    if (!pdfFile) {
+      return res.status(400).json({ message: 'No PDF file uploaded' });
+    };
 
-    const updatedPost = await AuthenticateUser.findByIdAndUpdate(_id, user, {
-      new: true,
+    // Read the PDF file from disk
+    const pdfBuffer = fs.readFileSync(pdfFile.path);
+
+    // Create a new PaySlip document with the title, PDF file buffer, and identify
+    const newPaySlip = new PaySlipModel({
+      title: title,
+      pdf: pdfBuffer, // Store the PDF file buffer
+      identify: identify,
     });
+
+    // Save the document to MongoDB
+    await newPaySlip.save();
+
+    // Delete the temporary file
+    fs.unlinkSync(pdfFile.path);
 
     res.status(200).json({ message: "All running" });
   } catch (error) {
-    res.status(409).json({ message: error.message });
+    // Delete the temporary file
+    fs.unlinkSync(pdfFile.path);
+    res.status(500).json({message: error})
   }
 };

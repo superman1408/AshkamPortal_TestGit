@@ -197,12 +197,31 @@ export const dailyEvent = (formData) => async (dispatch) => {
   }
 };
 
+// export const salarySlipData = (id, formData) => async (dispatch) => {
+//   console.log("Here Come Data");
+//   console.log("id", id);
+//   try {
+//     const { data } = await API.salarySlipData(id, formData, {
+//       header: {
+//         'Content-Type': 'multipart/form-data'
+//       }
+//     });
+//     //console.log(data);
+//     dispatch({ type: SALARY_SLIP, payload: data });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
 export const salarySlipData = (id, formData) => async (dispatch) => {
-  console.log("Here Come Data");
+  console.log("Here Comes Data");
   console.log("id", id);
   try {
-    const { data } = await API.salarySlipData(id, formData);
-    //console.log(data);
+    const { data } = await API.salarySlipData(id, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
     dispatch({ type: SALARY_SLIP, payload: data });
   } catch (error) {
     console.log(error);

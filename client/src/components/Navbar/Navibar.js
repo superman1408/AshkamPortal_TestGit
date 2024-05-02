@@ -69,6 +69,9 @@ const Navibar = () => {
       case "about":
         navigate(`/aboutUs`);
         break;
+      case "payslipPreview":
+        navigate(`/${id}/payslip1`);
+        break;
       default:
         console.log("Click something dude..!!");
     }
@@ -136,7 +139,7 @@ const Navibar = () => {
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item
-                      onClick={() => openPage(user.result._id, "payslip")}
+                      onClick={() => openPage(user.result._id, "payslipPreview")}
                       style={{ fontFamily: "Roboto", color: "#16355d" }}
                       id="payslip"
                     >
@@ -153,6 +156,17 @@ const Navibar = () => {
                     }}
                   >
                     About Us
+                  </Nav.Link>
+                  <Nav.Link
+                    onClick={() => openPage(user.result._id, "payslipPreview")}
+                    style={{
+                      marginTop: "8px",
+                      fontFamily: "Roboto",
+                      fontWeight: "bold",
+                      color: "#16355d",
+                    }}
+                  >
+                    Payslip
                   </Nav.Link>
                   {matches && (
                     <div>
