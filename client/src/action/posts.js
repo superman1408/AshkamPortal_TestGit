@@ -181,11 +181,9 @@ export const logList = (post, id) => async (dispatch) => {
   }
 };
 
-
-
 export const dailyEvent = (formData) => async (dispatch) => {
   // console.log("Hello I am working..!!");
-  
+
   console.log("Hello I am working..!!");
 
   try {
@@ -219,8 +217,8 @@ export const salarySlipData = (id, formData) => async (dispatch) => {
   try {
     const { data } = await API.salarySlipData(id, formData, {
       headers: {
-        'Content-Type': 'multipart/form-data'
-      }
+        "Content-Type": "multipart/form-data",
+      },
     });
     dispatch({ type: SALARY_SLIP, payload: data });
   } catch (error) {
@@ -228,12 +226,24 @@ export const salarySlipData = (id, formData) => async (dispatch) => {
   }
 };
 
+export const getSalarySlipData = () => async (dispatch) => {
+  // console.log("Event acton function working");
+
+  try {
+    const { data } = await API.getSalarySlipData();
+
+    dispatch({ type: SALARY_SLIP, payload: data });
+    // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const getEvents = () => async (dispatch) => {
   // console.log("Event acton function working");
 
   try {
-    const {data}  = await API.getAllEvents();
+    const { data } = await API.getAllEvents();
 
     dispatch({ type: EVENT_ALL, payload: data });
     // console.log(data);

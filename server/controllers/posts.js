@@ -10,7 +10,6 @@ import EventDetail from "../model/eventDetail.js";
 
 import PaySlipModel from "../model/payslip.js";
 
-
 // ....................Multer Storage.apply.......................
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -290,9 +289,6 @@ export const logList = async (req, res) => {
   }
 };
 
-
-
-
 export const salarySlipData = async (req, res) => {
   try {
     const { title } = req.body; // Extract the title from the request body
@@ -300,8 +296,8 @@ export const salarySlipData = async (req, res) => {
     const identify = req.params.id;
 
     if (!pdfFile) {
-      return res.status(400).json({ message: 'No PDF file uploaded' });
-    };
+      return res.status(400).json({ message: "No PDF file uploaded" });
+    }
 
     // Read the PDF file from disk
     const pdfBuffer = fs.readFileSync(pdfFile.path);
@@ -323,6 +319,15 @@ export const salarySlipData = async (req, res) => {
   } catch (error) {
     // Delete the temporary file
     fs.unlinkSync(pdfFile.path);
-    res.status(500).json({message: error})
+    res.status(500).json({ message: error });
+  }
+};
+
+export const getSalarySlipData = async (req, res) => {
+  try {
+    const postMessage = await UserAttendance.find({});
+    res.status(200).json(postMessage);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
   }
 };

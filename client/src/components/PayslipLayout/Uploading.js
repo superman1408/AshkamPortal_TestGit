@@ -1,11 +1,13 @@
-
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-
 import { Button, Card, Grid, Typography } from "@mui/material";
 
-import { getPosts, salarySlipData } from "../../action/posts";
+import {
+  getPosts,
+  getSalarySlipData,
+  salarySlipData,
+} from "../../action/posts";
 import ComboBox from "./ComboBox";
 import { useParams } from "react-router-dom";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
@@ -17,9 +19,6 @@ const Uploading = () => {
   const posts = useSelector((state) => state.posts);
   const [selectedFile, setSelectedFile] = useState(null); // Change to null
   const [title, setTitle] = useState(null);
-
-
-
 
   useEffect(() => {
     if (!currentId) setCurrentId(id);
@@ -36,8 +35,6 @@ const Uploading = () => {
     setTitle(e.target.value);
   };
 
-
-
   const handleUpload = async (e) => {
     e.preventDefault();
     if (currentId && selectedFile) {
@@ -46,11 +43,13 @@ const Uploading = () => {
       formData.append("title", title);
 
       try {
-        await dispatch(salarySlipData(currentId, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        }));
+        await dispatch(
+          salarySlipData(currentId, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+        );
         console.log("upload:  ", formData);
       } catch (err) {
         console.log(err);
@@ -60,8 +59,29 @@ const Uploading = () => {
     }
   };
 
+  const [salaryData, setSalaryData] = useState({
+    pdfFile: "",
+  });
 
+  console.log(posts);
 
+  useEffect(() => {
+    if (posts) {
+      dispatch(getSalarySlipData()).then(() => {
+        // Assuming `attend` is an array of objects, you may need to loop through it
+        posts.forEach((items) => {
+          setSalaryData((prevData) => ({
+            // Merge the new data with previous data using spread operator
+            ...prevData,
+            pdfFile: items.pdfFile,
+            absentEmp: items.absentEmployee,
+          }));
+        });
+      });
+    }
+  }, [dispatch, posts]);
+
+  console.log(salaryData.pdfFile);
 
   return (
     <>
@@ -89,7 +109,11 @@ const Uploading = () => {
                 marginLeft: "10px",
               }}
             >
-              <input type="text" onChange={handleTitleChange} placeholder="Enter the Title"/>
+              <input
+                type="text"
+                onChange={handleTitleChange}
+                placeholder="Enter the Title"
+              />
               <input type="file" onChange={handleFileChange} accept=".pdf" />
             </div>
           </Grid>
@@ -99,6 +123,10 @@ const Uploading = () => {
             </Button>
           </Grid>
         </Grid>
+      </Card>
+
+      <Card>
+        <div>{salaryData.pdfFile}</div>
       </Card>
     </>
   );
