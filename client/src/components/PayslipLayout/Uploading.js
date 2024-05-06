@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
 import { Button, Card, Grid, Typography } from "@mui/material";
 
@@ -13,7 +12,6 @@ const Uploading = () => {
   const id = useParams();
   const [currentId, setCurrentId] = useState(null);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const posts = useSelector((state) => state.posts);
   const [selectedFile, setSelectedFile] = useState(null); // Change to null
   const [title, setTitle] = useState(null);
