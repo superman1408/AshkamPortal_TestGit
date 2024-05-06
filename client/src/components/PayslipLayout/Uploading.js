@@ -1,7 +1,5 @@
-
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 
 import { Button, Card, Grid, Typography } from "@mui/material";
 
@@ -18,9 +16,6 @@ const Uploading = () => {
   const [selectedFile, setSelectedFile] = useState(null); // Change to null
   const [title, setTitle] = useState(null);
 
-
-
-
   useEffect(() => {
     if (!currentId) setCurrentId(id);
     dispatch(getPosts()).then(() => {
@@ -36,8 +31,6 @@ const Uploading = () => {
     setTitle(e.target.value);
   };
 
-
-
   const handleUpload = async (e) => {
     e.preventDefault();
     if (currentId && selectedFile) {
@@ -46,11 +39,13 @@ const Uploading = () => {
       formData.append("title", title);
 
       try {
-        await dispatch(salarySlipData(currentId, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        }));
+        await dispatch(
+          salarySlipData(currentId, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+        );
         console.log("upload:  ", formData);
       } catch (err) {
         console.log(err);
@@ -60,12 +55,9 @@ const Uploading = () => {
     }
   };
 
-
-
-
   return (
     <>
-      <Card sx={{ textAlign: "center", margin: "50px 0px 50px 200px" }}>
+      <Card sx={{ textAlign: "center", margin: "50px 0px 50px 100px" }}>
         <Grid
           container
           sx={{
@@ -75,7 +67,7 @@ const Uploading = () => {
             justifyContent: "space-evenly",
           }}
         >
-          <Grid item sx={{}}>
+          <Grid item sx={{ marginLeft: "20px" }}>
             <ComboBox posts={posts} setCurrentId={setCurrentId} />
           </Grid>
           <Grid item sx={{ display: "flex", marginLeft: "100px" }}>
@@ -89,11 +81,20 @@ const Uploading = () => {
                 marginLeft: "10px",
               }}
             >
-              <input type="text" onChange={handleTitleChange} placeholder="Enter the Title"/>
-              <input type="file" onChange={handleFileChange} accept=".pdf" />
+              <input
+                type="text"
+                onChange={handleTitleChange}
+                placeholder="Enter the Title"
+              />
+              <input
+                style={{ marginLeft: "50px" }}
+                type="file"
+                onChange={handleFileChange}
+                accept=".pdf"
+              />
             </div>
           </Grid>
-          <Grid item sx={{ marginLeft: "100px" }}>
+          <Grid item sx={{ marginLeft: "0px" }}>
             <Button onClick={handleUpload}>
               upload <FileUploadIcon />
             </Button>
