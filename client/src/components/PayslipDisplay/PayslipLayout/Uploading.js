@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Button, Card, Grid, Typography } from "@mui/material";
+import { Card, Grid, Typography } from "@mui/material";
 
-import { getPosts, salarySlipData } from "../../action/posts";
+import { getPosts, salarySlipData } from "../../../action/posts";
 import ComboBox from "./ComboBox";
 import { useParams } from "react-router-dom";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
@@ -47,9 +47,9 @@ const Uploading = () => {
           })
         );
         console.log("upload:  ", formData);
-        alert("Uploaded Successfully!");
-        // Refresh the page
-        window.location.reload();
+        // alert("Uploaded Successfully!");
+        // // Refresh the page
+        // window.location.reload();
       } catch (err) {
         console.log(err);
       }
@@ -57,6 +57,10 @@ const Uploading = () => {
       console.log("Current ID or file not set");
     }
   };
+
+
+
+
 
   return (
     <>
@@ -74,7 +78,7 @@ const Uploading = () => {
             <ComboBox posts={posts} setCurrentId={setCurrentId} />
           </Grid>
           <Grid item sx={{ display: "flex", marginLeft: "100px" }}>
-            <Typography sx={{ fontWeight: "bold", marginTop: "10px" }}>
+            <Typography sx={{ fontWeight: "bold", marginTop: "10px", fontFamily: 'Roboto' }}>
               File Upload
             </Typography>
             <div
@@ -90,7 +94,7 @@ const Uploading = () => {
                 placeholder="Enter the Title"
               />
               <input
-                style={{ marginLeft: "50px" }}
+                style={{ marginLeft: "50px", fontFamily: 'Roboto' }}
                 type="file"
                 onChange={handleFileChange}
                 accept=".pdf"
@@ -98,9 +102,9 @@ const Uploading = () => {
             </div>
           </Grid>
           <Grid item sx={{ marginLeft: "0px" }}>
-            <Button onClick={handleUpload}>
-              upload <FileUploadIcon />
-            </Button>
+            <button style={{fontFamily: 'Roboto'}} onClick={handleUpload}>
+              Upload <FileUploadIcon />
+            </button>
           </Grid>
         </Grid>
       </Card>

@@ -15,6 +15,7 @@ import {
   dailyEvent,
   getAllevents,
   salarySlipData,
+  getSalary,
 } from "../controllers/posts.js";
 
 import auth from "../middleware/auth.js";
@@ -53,5 +54,7 @@ router.get("/events/display", getAllevents);
 router.post("/:id/loglist", logList);
 
 router.post("/:id/salarySlipData", upload.single("pdf"), salarySlipData);
+
+router.get("/salary/slip", getSalary);
 
 export default router;

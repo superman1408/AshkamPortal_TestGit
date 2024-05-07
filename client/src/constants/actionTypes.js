@@ -17,3 +17,4 @@ export const LOGLIST = "LOGLIST";
 export const DAILY_EVENT = "DAILY_EVENT";
 export const EVENT_ALL = "EVENT_ALL";
 export const SALARY_SLIP = "SALARY_SLIP";
+export const SALARY_ALL = "SALARY_ALL";

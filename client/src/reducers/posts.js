@@ -82,6 +82,8 @@ export default (posts = [], action) => {
     case SALARY_SLIP:
       return [...posts, action.payload];
 
+    
+
     default:
       return posts;
   }
