@@ -323,11 +323,16 @@ export const salarySlipData = async (req, res) => {
   }
 };
 
-export const getSalarySlipData = async (req, res) => {
+
+
+
+export const getSalary = async (req, res) => {
+  
   try {
-    const postMessage = await UserAttendance.find({});
-    res.status(200).json(postMessage);
+    const slipData = await PaySlipModel.find({});
+
+    res.status(200).json(slipData);
   } catch (error) {
-    res.status(404).json({ message: error.message });
+    res.status(500).json({ message: error });
   }
 };

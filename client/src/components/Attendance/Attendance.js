@@ -6,7 +6,6 @@ import { getAttendancePosts } from "../../action/posts";
 import { Box, Grid, Typography, IconButton, Container } from "@mui/material";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 
-
 const Attendance = () => {
   const [attendanceData, setAttendanceData] = useState({
     presentEmp: "",

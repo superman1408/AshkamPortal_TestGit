@@ -13,6 +13,7 @@ import {
   DAILY_EVENT,
   EVENT_ALL,
   SALARY_SLIP,
+  SALARY_ALL,
 } from "../constants/actionTypes";
 
 import * as API from "../api";
@@ -227,13 +228,13 @@ export const salarySlipData = (id, formData) => async (dispatch) => {
 };
 
 export const getSalarySlipData = () => async (dispatch) => {
-  // console.log("Event acton function working");
+  console.log("Event acton function working in get salary slipdata");
 
   try {
-    const { data } = await API.getSalarySlipData();
+    const { data } = await API.fetchSalarySlipData();
 
-    dispatch({ type: SALARY_SLIP, payload: data });
-    // console.log(data);
+    dispatch({ type: SALARY_ALL, payload: data });
+    
   } catch (error) {
     console.log(error);
   }

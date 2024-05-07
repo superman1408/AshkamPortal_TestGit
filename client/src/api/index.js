@@ -74,4 +74,4 @@ export const salarySlipData = (id, formData) =>
     },
   });
 
-export const getSalarySlipData = () => API.get(`/posts/salarySlipData`);
+export const fetchSalarySlipData = () => API.get("/posts/salary/slip");
