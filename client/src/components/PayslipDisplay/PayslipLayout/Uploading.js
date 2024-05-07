@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Card, Grid, Typography } from "@mui/material";
 
-import { getPosts, salarySlipData } from "../../action/posts";
+import { getPosts, salarySlipData } from "../../../action/posts";
 import ComboBox from "./ComboBox";
 import { useParams } from "react-router-dom";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
@@ -48,9 +48,9 @@ const Uploading = () => {
           })
         );
         console.log("upload:  ", formData);
-        alert("Uploaded Successfully!");
-        // Refresh the page
-        window.location.reload();
+        // alert("Uploaded Successfully!");
+        // // Refresh the page
+        // window.location.reload();
       } catch (err) {
         console.log(err);
       }
@@ -58,6 +58,8 @@ const Uploading = () => {
       console.log("Current ID or file not set");
     }
   };
+
+
 
 
 

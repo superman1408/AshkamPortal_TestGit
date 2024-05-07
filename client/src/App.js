@@ -18,7 +18,7 @@ import PrintingLayout from "./components/PrinttingLayout/PrintingLayout";
 import EvolvePrintLayout from "./components/ActivityDisplay/TimeSheet/EvolvePrintLayout";
 import AttendanceDisplay from "./components/Attendance/AttendanceDisplay";
 import PasswordResetForm from "./components/PasswordReset/PasswordResetForm";
-import Uploading from "./components/PayslipLayout/Uploading";
+import PayslipDisplay from "./components/PayslipDisplay/PayslipDisplay";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -76,7 +76,8 @@ const App = () => {
             />
 
             <Route path="posts/skill" exact element={<SkillDisplay />} />
-            <Route path="/:id/payslip" exact element={<Uploading />} />
+            <Route path="/:id/payslip" exact element={<PayslipDisplay />} />
+
             <Route path="/:id/payslip" exact element={<PaySlip />} />
             <Route
               path="/:id/attendanceDisplay"

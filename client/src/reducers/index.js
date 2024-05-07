@@ -7,4 +7,5 @@ import attend from "./attendance";
 
 import event from "./event";
 
-export default combineReducers({ posts, auth, attend, event });
+import salary from "./salary";
+export default combineReducers({ posts, auth, attend, event, salary });

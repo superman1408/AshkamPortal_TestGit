@@ -7,7 +7,7 @@ import { useReactToPrint } from "react-to-print";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-import ComboBox from "../PayslipLayout/ComboBox";
+import ComboBox from "../PayslipDisplay/PayslipLayout/ComboBox";
 
 import { getPosts, updatePost } from "../../action/posts";
 

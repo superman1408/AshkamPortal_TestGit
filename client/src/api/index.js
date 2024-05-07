@@ -58,10 +58,7 @@ export const deleteTable = (id, indexed) =>
 export const dailyAttendance = (formData) =>
   API.post(`/posts/dailyAttendance`, formData);
 
-export const dailyEvent = (formData) =>
-  API.post(`/posts/dailyEvent`, formData);
-
-
+export const dailyEvent = (formData) => API.post(`/posts/dailyEvent`, formData);
 
 export const getAllEvents = () => API.get(`/posts/events/display`);
 
@@ -73,6 +70,8 @@ export const logList = (formData, id) =>
 export const salarySlipData = (id, formData) =>
   API.post(`/posts/${id}/salarySlipData`, formData, {
     headers: {
-      'Content-Type': 'multipart/form-data'
-    }
+      "Content-Type": "multipart/form-data",
+    },
   });
+
+export const fetchSalarySlipData = () => API.get("/posts/salary/slip");
