@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSalarySlipData } from "../../../action/posts";
 import { Typography, Button, Card } from "@mui/material";
 
+import FileDownloadIcon from "@mui/icons-material/FileDownload";
+
 const SlipDownload = ({ posts, currentId }) => {
   const dispatch = useDispatch();
   const salary = useSelector((state) => state.salary);
@@ -22,42 +24,55 @@ const SlipDownload = ({ posts, currentId }) => {
             margin: "50px 0px 50px 100px",
           }}
         >
+          <div>
+            {Array.isArray(posts) ? (
+              posts.map((post, index) => {
+                if (post._id === currentId) {
+                  return (
+                    <div key={index}>
+                      <Card>
+                        <Typography>Employee Name</Typography>
+                        <Typography>{post?.firstName}</Typography>
+                      </Card>
+                    </div>
+                  );
+                }
+              })
+            ) : (
+              <tr>
+                <td colSpan="2">Error: posts is not an array</td>
+              </tr>
+            )}
+          </div>
+          <div></div>
           <table>
             <tbody>
-              {Array.isArray(posts) ? (
-                posts.map((post, index) => {
-                  if (post._id === currentId) {
-                    return (
-                      <tr key={index}>
-                        <th>Employee Name</th>
-                        <td>{post?.firstName}</td>
-                      </tr>
-                    );
-                  }
-                })
-              ) : (
-                <tr>
-                  <td colSpan="2">Error: posts is not an array</td>
-                </tr>
-              )}
-              {Array.isArray(salary) ? (
-                salary.map((salar, index) => {
-                  // if (post._id === currentId) {
+              {salary.map((slip, index) => {
+                const matchPost = currentId === slip.identify;
+
+                if (matchPost) {
                   return (
                     <tr key={index}>
                       <th>Title</th>
-                      <td>{salar?.title}</td>
+                      <td>{slip.title}</td>
+
+                      <button style={{ fontFamily: "Roboto" }}>
+                        download <FileDownloadIcon />
+                      </button>
                     </tr>
+
+                    // <Card>
+                    //   <Typography>True</Typography>
+                    // </Card>
                   );
-                })
-              ) : (
-                <tr>
-                  <td colSpan="2">Error: posts is not an array</td>
-                </tr>
-              )}
+                } else {
+                  return null; // If no match is found, skip rendering
+                }
+              })}
             </tbody>
           </table>
         </Card>
+        {/*  */}
       </div>
     </>
   );
