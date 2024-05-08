@@ -228,13 +228,10 @@ export const salarySlipData = (id, formData) => async (dispatch) => {
 };
 
 export const getSalarySlipData = () => async (dispatch) => {
-  console.log("Event acton function working in get salary slipdata");
-
   try {
     const { data } = await API.fetchSalarySlipData();
 
     dispatch({ type: SALARY_ALL, payload: data });
-    
   } catch (error) {
     console.log(error);
   }
