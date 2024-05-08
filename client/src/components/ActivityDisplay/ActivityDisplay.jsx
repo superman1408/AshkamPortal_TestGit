@@ -34,14 +34,11 @@ const ActivityDisplay = () => {
     setIsLoading(false);
   }, [isLoading]);
 
-
-
   
 
   return (
     <div>
-      {
-        !isLoading && (
+      {!isLoading && (
         <>
           {role === "manager" && (
             <ComboBox posts={posts} setCurrentId={setCurrentId} />
@@ -50,9 +47,8 @@ const ActivityDisplay = () => {
             <ComboBox posts={posts} setCurrentId={setCurrentId} />
           )}
           <Evolve currentId={currentId} posts={posts} />
-        </> 
-        )
-      }
+        </>
+      )}
     </div>
   );
 };
