@@ -47,9 +47,9 @@ const Uploading = () => {
           })
         );
         console.log("upload:  ", formData);
-        // alert("Uploaded Successfully!");
-        // // Refresh the page
-        // window.location.reload();
+        alert("Uploaded Successfully!");
+        // Refresh the page
+        window.location.reload();
       } catch (err) {
         console.log(err);
       }
@@ -58,13 +58,9 @@ const Uploading = () => {
     }
   };
 
-
-
-
-
   return (
     <>
-      <Card sx={{ textAlign: "center", margin: "50px 0px 50px 100px" }}>
+      <Card sx={{ textAlign: "center", margin: "50px 80px 50px 100px" }}>
         <Grid
           container
           sx={{
@@ -78,7 +74,13 @@ const Uploading = () => {
             <ComboBox posts={posts} setCurrentId={setCurrentId} />
           </Grid>
           <Grid item sx={{ display: "flex", marginLeft: "100px" }}>
-            <Typography sx={{ fontWeight: "bold", marginTop: "10px", fontFamily: 'Roboto' }}>
+            <Typography
+              sx={{
+                fontWeight: "bold",
+                marginTop: "10px",
+                fontFamily: "Roboto",
+              }}
+            >
               File Upload
             </Typography>
             <div
@@ -94,7 +96,7 @@ const Uploading = () => {
                 placeholder="Enter the Title"
               />
               <input
-                style={{ marginLeft: "50px", fontFamily: 'Roboto' }}
+                style={{ marginLeft: "50px", fontFamily: "Roboto" }}
                 type="file"
                 onChange={handleFileChange}
                 accept=".pdf"
@@ -102,7 +104,7 @@ const Uploading = () => {
             </div>
           </Grid>
           <Grid item sx={{ marginLeft: "0px" }}>
-            <button style={{fontFamily: 'Roboto'}} onClick={handleUpload}>
+            <button style={{ fontFamily: "Roboto" }} onClick={handleUpload}>
               Upload <FileUploadIcon />
             </button>
           </Grid>
