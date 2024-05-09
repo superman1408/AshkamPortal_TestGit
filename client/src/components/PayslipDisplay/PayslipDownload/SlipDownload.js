@@ -1,5 +1,5 @@
 // import { } from "bootstrap";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSalarySlipData } from "../../../action/posts";
 import {
@@ -23,6 +23,39 @@ const SlipDownload = ({ posts, currentId }) => {
     dispatch(getSalarySlipData());
   }, [dispatch, salary]);
 
+  const handleDownload = async () => {
+    console.log("button is working");
+    try {
+      const slip = salary.find((slip) => slip.identify === currentId);
+      if (!slip) {
+        throw new Error("Salary slip not found.");
+      }
+      const binaryDataBuffer = slip.pdf.data;
+      const bufferArray = new Uint8Array(binaryDataBuffer).buffer;
+
+      // Step 4: Create a Blob from the ArrayBuffer, specifying the file type (MIME type)
+      const blob = new Blob([bufferArray], {
+        type: "pdf", // Specify the MIME type of the file
+      });
+
+      // Step 5: Create a download link for the Blob
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+
+      // Step 6: Set the download attribute and trigger the download
+      a.download = "salaryslip.pdf";
+      document.body.appendChild(a);
+      a.click();
+
+      // Step 7: Clean up the temporary URL
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <>
       <Card sx={{ textAlign: "center", margin: "50px 80px 50px 100px" }}>
@@ -40,15 +73,6 @@ const SlipDownload = ({ posts, currentId }) => {
                       padding: "20px",
                     }}
                   >
-                    {/* <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        gap: "20px",
-                        width: "100vh",
-                        padding: "20px",
-                      }} // added gap property
-                    > */}
                     <Typography
                       sx={{
                         margin: "auto 20px",
@@ -93,19 +117,22 @@ const SlipDownload = ({ posts, currentId }) => {
               return (
                 <div key={index} style={{ margin: "20px 20px 20px 20px" }}>
                   <Card sx={{ maxWidth: 180, maxHeight: 280 }}>
-                    <CardActionArea>
-                      <CardMedia
-                        component="img"
-                        height="140"
-                        image={CorporateImage}
-                        alt="Corporate Image"
-                      />
-                      <CardContent sx={{ textAlign: "center" }}>
-                        <Typography>{slip.title}</Typography>
-                      </CardContent>
-                    </CardActionArea>
+                    {/* <CardActionArea> */}
+                    <CardMedia
+                      component="img"
+                      height="140"
+                      image={CorporateImage}
+                      alt="Corporate Image"
+                    />
+                    <CardContent sx={{ textAlign: "center" }}>
+                      <Typography>{slip.title}</Typography>
+                    </CardContent>
+                    {/* </CardActionArea> */}
                     <CardActions sx={{ justifyContent: "center" }}>
-                      <button style={{ fontFamily: "Roboto" }}>
+                      <button
+                        style={{ fontFamily: "Roboto" }}
+                        onClick={handleDownload}
+                      >
                         download <FileDownloadIcon />
                       </button>
                     </CardActions>
@@ -113,7 +140,7 @@ const SlipDownload = ({ posts, currentId }) => {
                 </div>
               );
             } else {
-              return null; // If no match is found, skip rendering
+              return null;
             }
           })}
         </div>
@@ -124,3 +151,5 @@ const SlipDownload = ({ posts, currentId }) => {
 };
 
 export default SlipDownload;
+
+// when download button is clicked it will download pdf files which are stored mongodb through API in file type buffer how to do it
