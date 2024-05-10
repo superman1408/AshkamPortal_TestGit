@@ -28,7 +28,7 @@ const PayslipDisplay = () => {
 
   return (
     <div>
-      <Uploading />
+      <Uploading posts={posts} />
       <SlipDownload posts={posts} currentId={currentId} />
     </div>
   );

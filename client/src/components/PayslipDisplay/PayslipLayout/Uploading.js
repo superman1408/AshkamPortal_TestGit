@@ -8,20 +8,13 @@ import ComboBox from "./ComboBox";
 import { useParams } from "react-router-dom";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 
-const Uploading = () => {
-  const id = useParams();
+const Uploading = ({posts}) => {
   const [currentId, setCurrentId] = useState(null);
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state.posts);
   const [selectedFile, setSelectedFile] = useState(null); // Change to null
   const [title, setTitle] = useState(null);
 
-  useEffect(() => {
-    if (!currentId) setCurrentId(id);
-    dispatch(getPosts()).then(() => {
-      console.log("Data received");
-    });
-  }, [currentId, dispatch, id]);
+
 
   const handleFileChange = (e) => {
     setSelectedFile(e.target.files[0]); // Set selected file directly
