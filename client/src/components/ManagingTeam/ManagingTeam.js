@@ -77,6 +77,7 @@ const ManagingTeam = () => {
                   marginLeft: "30px",
                   marginRight: "0px",
                   marginTop: "10px",
+                  fontSize: "14px",
                   fontFamily: "Roboto",
                 }}
               >
@@ -133,6 +134,7 @@ const ManagingTeam = () => {
                   marginLeft: "30px",
                   marginRight: "0px",
                   marginTop: "10px",
+                  fontSize: "14px",
                   fontFamily: "Roboto",
                 }}
               >
@@ -189,6 +191,7 @@ const ManagingTeam = () => {
                   marginLeft: "30px",
                   marginRight: "0px",
                   marginTop: "10px",
+                  fontSize: "14px",
                   fontFamily: "Roboto",
                 }}
               >
@@ -234,6 +237,7 @@ const ManagingTeam = () => {
                   marginLeft: "30px",
                   marginRight: "0px",
                   marginTop: "10px",
+                  fontSize: "14px",
                   fontFamily: "Roboto",
                 }}
               >
