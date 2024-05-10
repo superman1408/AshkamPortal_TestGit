@@ -21,13 +21,13 @@ const SlipDownload = ({ posts, currentId }) => {
     dispatch(getSalarySlipData());
   }, [dispatch, salary]);
 
-  const handleDownload = async (slipId) => {
+  const handleDownload = async (slip) => {
     try {
-      const slip = salary.find((slip) => slip.identify === slipId);
+      // const slip = salary.find((slip) => slip.identify === slipId);
 
-      if (!slip) {
-        throw new Error("Salary slip not found.");
-      }
+      // if (!slip) {
+      //   throw new Error("Salary slip not found.");
+      // }
 
       const binaryDataBuffer = slip.pdf.data;
       const bufferArray = new Uint8Array(binaryDataBuffer).buffer;
@@ -131,7 +131,7 @@ const SlipDownload = ({ posts, currentId }) => {
                     <CardActions sx={{ justifyContent: "center" }}>
                       <button
                         style={{ fontFamily: "Roboto" }}
-                        onClick={() => handleDownload(slip.identify)}
+                        onClick={() => handleDownload(slip)}
                       >
                         download <FileDownloadIcon />
                       </button>
