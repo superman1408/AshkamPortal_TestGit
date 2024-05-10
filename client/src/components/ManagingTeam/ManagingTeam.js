@@ -13,7 +13,7 @@ import {
 import avatar1 from "../../assets/MD.jpg";
 import avatar2 from "../../assets/avatar2.jpg";
 import avatar3 from "../../assets/avatar3.jpg";
-import avatar4 from "../../assets/sush.jpg";
+import avatar4 from "../../assets/Manilal.jpg";
 
 const ManagingTeam = () => {
   return (
@@ -237,7 +237,7 @@ const ManagingTeam = () => {
                   fontFamily: "Roboto",
                 }}
               >
-                Ms. Sushila Ramamoorthi
+                Mr. Manilal Gupta
               </Typography>
               <Typography
                 sx={{
@@ -248,7 +248,7 @@ const ManagingTeam = () => {
                   fontWeight: "bold",
                 }}
               >
-                Advisor
+                Business Development
               </Typography>
             </Grid>
           </Grid>

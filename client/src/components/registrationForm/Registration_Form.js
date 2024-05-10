@@ -74,11 +74,6 @@ const RegistrationForm = () => {
     setSelectedOption(option);
     console.log(option);
     setPostData({ ...postData, role: option });
-
-    // setFormData({
-    //   ...formData,
-    //   role: option,
-    // });
   };
 
   const { id } = useParams();
