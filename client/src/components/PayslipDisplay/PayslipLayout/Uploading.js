@@ -60,20 +60,31 @@ const Uploading = () => {
 
   return (
     <>
-      <Card sx={{ textAlign: "center", margin: "50px 80px 50px 100px" }}>
+      <Card
+        sx={{
+          textAlign: "center",
+          margin: "10px",
+          "@media(max-Width:600px)": { margin: "10px", width: "40vh" },
+        }}
+      >
         <Grid
-          container
           sx={{
-            padding: "30px",
             display: "flex",
-            width: "auto",
             justifyContent: "space-evenly",
+            gap: "30px",
+            padding: "30px",
+            "@media(max-Width:600px)": { flexDirection: "column" },
           }}
         >
-          <Grid item sx={{ marginLeft: "20px" }}>
+          <Grid>
             <ComboBox posts={posts} setCurrentId={setCurrentId} />
           </Grid>
-          <Grid item sx={{ display: "flex", marginLeft: "100px" }}>
+          <Grid
+            sx={{
+              display: "flex",
+              "@media(max-Width:600px)": { flexDirection: "column" },
+            }}
+          >
             <Typography
               sx={{
                 fontWeight: "bold",
@@ -103,7 +114,7 @@ const Uploading = () => {
               />
             </div>
           </Grid>
-          <Grid item sx={{ marginLeft: "0px" }}>
+          <Grid>
             <button style={{ fontFamily: "Roboto" }} onClick={handleUpload}>
               Upload <FileUploadIcon />
             </button>

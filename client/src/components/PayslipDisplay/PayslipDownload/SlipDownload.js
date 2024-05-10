@@ -4,12 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSalarySlipData } from "../../../action/posts";
 import {
   Typography,
-  Button,
   Card,
   CardMedia,
   CardContent,
   CardActions,
-  CardActionArea,
+  Divider,
 } from "@mui/material";
 
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
@@ -23,32 +22,23 @@ const SlipDownload = ({ posts, currentId }) => {
     dispatch(getSalarySlipData());
   }, [dispatch, salary]);
 
-  const handleDownload = async () => {
-    console.log("button is working");
+  const handleDownload = async (slipId) => {
     try {
-      const slip = salary.find((slip) => slip.identify === currentId);
+      const slip = salary.find((slip) => slip.identify === slipId);
+
       if (!slip) {
         throw new Error("Salary slip not found.");
       }
+
       const binaryDataBuffer = slip.pdf.data;
       const bufferArray = new Uint8Array(binaryDataBuffer).buffer;
-
-      // Step 4: Create a Blob from the ArrayBuffer, specifying the file type (MIME type)
-      const blob = new Blob([bufferArray], {
-        type: "pdf", // Specify the MIME type of the file
-      });
-
-      // Step 5: Create a download link for the Blob
+      const blob = new Blob([bufferArray], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-
-      // Step 6: Set the download attribute and trigger the download
       a.download = "salaryslip.pdf";
       document.body.appendChild(a);
       a.click();
-
-      // Step 7: Clean up the temporary URL
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
     } catch (error) {
@@ -58,7 +48,13 @@ const SlipDownload = ({ posts, currentId }) => {
 
   return (
     <>
-      <Card sx={{ textAlign: "center", margin: "50px 80px 50px 100px" }}>
+      <Card
+        sx={{
+          textAlign: "center",
+          margin: "10px",
+          "@media(max-Width:600px)": { margin: "10px", width: "40vh" },
+        }}
+      >
         <div>
           {Array.isArray(posts) ? (
             posts.map((post, index) => {
@@ -102,7 +98,12 @@ const SlipDownload = ({ posts, currentId }) => {
             </tr>
           )}
         </div>
-
+        <Divider
+          sx={{
+            borderWidth: "3px",
+            bgcolor: "#e55d17",
+          }}
+        />
         <div
           style={{
             display: "flex",
@@ -131,7 +132,7 @@ const SlipDownload = ({ posts, currentId }) => {
                     <CardActions sx={{ justifyContent: "center" }}>
                       <button
                         style={{ fontFamily: "Roboto" }}
-                        onClick={handleDownload}
+                        onClick={() => handleDownload(slip.identify)}
                       >
                         download <FileDownloadIcon />
                       </button>
@@ -151,5 +152,3 @@ const SlipDownload = ({ posts, currentId }) => {
 };
 
 export default SlipDownload;
-
-// when download button is clicked it will download pdf files which are stored mongodb through API in file type buffer how to do it
