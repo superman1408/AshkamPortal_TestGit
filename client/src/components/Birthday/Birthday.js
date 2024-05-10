@@ -5,8 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Grid, Typography, Avatar, Container, Card } from "@mui/material";
 
 import { getPosts, getEvents } from "../../action/posts";
-// import AlertDialogSlide from "../Birthday/BirthdayMail";
-// import AlertDialogSlide from "./DialogBox/Dialog";
+
 
 import FormDialog from "./DialogBox/Dialog";
 
@@ -18,6 +17,8 @@ const Birthday = () => {
   const [evento, setEvento] = useState("");
   const posts = useSelector((state) => state.posts);
   // const event = useSelector((state) => state.event);
+  const user = JSON.parse(localStorage.getItem("profile"));
+  const role = user.result.role;
   const [dimension, setDimension] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -58,6 +59,9 @@ const Birthday = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, evento, event]);
 
+
+
+
   const isBirthdayToday = () => {
     let status = true;
     for (let index = 0; index < posts.length; index++) {
@@ -78,7 +82,15 @@ const Birthday = () => {
     return status;
   };
 
-  const [isVisible, setIsVisible] = useState(true);
+  // const [isVisible, setIsVisible] = useState(false);
+
+  const verify = () => {
+    if (user.result.role === "admin" || user.result.role === "manager") {
+      return true;
+    }else {
+      return false;
+    }
+  };
 
   return (
     <div style={{ display: "flex", flex: 1 }}>
@@ -194,7 +206,12 @@ const Birthday = () => {
               float: "right",
             }}
           >
-            <FormDialog />
+            {
+              verify() === true && (
+                <FormDialog />
+              )
+            }
+            {/* <FormDialog /> */}
           </div>
         </Grid>
       </Container>

@@ -1,4 +1,3 @@
-// import { } from "bootstrap";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSalarySlipData } from "../../../action/posts";
