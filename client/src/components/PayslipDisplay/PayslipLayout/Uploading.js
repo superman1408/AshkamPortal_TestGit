@@ -7,13 +7,11 @@ import { salarySlipData } from "../../../action/posts";
 import ComboBox from "./ComboBox";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 
-const Uploading = ({posts}) => {
-  const [currentId, setCurrentId] = useState(null);
+const Uploading = ({ posts, currentId, setCurrentId }) => {
+  // const [currentId, setCurrentId] = useState(null);
   const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState(null); // Change to null
   const [title, setTitle] = useState(null);
-
-
 
   const handleFileChange = (e) => {
     setSelectedFile(e.target.files[0]); // Set selected file directly

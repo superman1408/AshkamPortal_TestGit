@@ -10,9 +10,18 @@ import Panel from "../Panel/Panel";
 const PayslipDisplay = () => {
   const { id } = useParams();
   const user = JSON.parse(localStorage.getItem("profile"));
-
-  const role = user.result.role;
-  const currentDepartment = user.result.department;
+  // const role = user.result.department;
+  const verify = () => {
+    if (
+      // user.result.role === "admin" ||
+      user.result.department.toLowerCase() === "human resource" &&
+      user.result.role === "manager" || user.result.role === "admin"
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   const [currentId, setCurrentId] = useState(id);
   const [post, setPost] = useState();
@@ -50,7 +59,13 @@ const PayslipDisplay = () => {
           <Panel />
         </div>
         <div>
-          {role === "admin" && <Uploading />}
+          {verify() === true && (
+            <Uploading
+              posts={posts}
+              currentId={currentId}
+              setCurrentId={setCurrentId}
+            />
+          )}
 
           <SlipDownload posts={posts} currentId={currentId} />
         </div>
