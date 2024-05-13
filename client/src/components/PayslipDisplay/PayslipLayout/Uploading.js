@@ -6,6 +6,7 @@ import { Card, Grid, Typography } from "@mui/material";
 import { salarySlipData } from "../../../action/posts";
 import ComboBox from "./ComboBox";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
+import TitlePopup from "./TitlePopup";
 
 const Uploading = ({ posts, currentId, setCurrentId }) => {
   // const [currentId, setCurrentId] = useState(null);
@@ -13,12 +14,18 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
   const [selectedFile, setSelectedFile] = useState(null); // Change to null
   const [title, setTitle] = useState(null);
 
+  const [titleOpen, setTitleOpen] = useState(false);
+
   const handleFileChange = (e) => {
     setSelectedFile(e.target.files[0]); // Set selected file directly
   };
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
+  };
+
+  const togglePopup = () => {
+    setTitleOpen(!titleOpen);
   };
 
   const handleUpload = async (e) => {
@@ -95,7 +102,13 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
                 type="text"
                 onChange={handleTitleChange}
                 placeholder="Enter the Title"
+                defaultValue={title}
+                onFocus={togglePopup}
               />
+
+              {titleOpen && (
+                <TitlePopup setTitle={setTitle} setTitleOpen={setTitleOpen} />
+              )}
               <input
                 style={{ marginLeft: "50px", fontFamily: "Roboto" }}
                 type="file"
