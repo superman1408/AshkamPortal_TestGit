@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Uploading from "./PayslipLayout/Uploading";
 import SlipDownload from "./PayslipDownload/SlipDownload";
 import { useDispatch, useSelector } from "react-redux";
+import { CircularProgress, Box } from "@mui/material";
 
 import { getPosts } from "../../action/posts";
 import { useParams } from "react-router-dom";
@@ -11,6 +12,8 @@ const PayslipDisplay = () => {
   const { id } = useParams();
   const user = JSON.parse(localStorage.getItem("profile"));
   // const role = user.result.department;
+
+  const [isLoading, setIsLoading] = useState(true);
   const verify = () => {
     if (
       // user.result.role === "admin" ||
@@ -38,6 +41,12 @@ const PayslipDisplay = () => {
           setPost(post);
         }
       });
+    }
+
+    if (isLoading === true) {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 3000);
     }
   }, [dispatch, currentId]);
 
@@ -77,14 +86,23 @@ const PayslipDisplay = () => {
         </div>
         <div>
           {verify() === true && (
-            <Uploading
-              posts={posts}
-              currentId={currentId}
-              setCurrentId={setCurrentId}
-            />
+            <div>
+              <Uploading
+                posts={posts}
+                currentId={currentId}
+                setCurrentId={setCurrentId}
+              />
+            </div>
           )}
-
-          <SlipDownload posts={posts} currentId={currentId} />
+          {/* {isLoading ? (
+            <Box sx={{ marginLeft: "400px", marginTop: "100px" }}>
+              <CircularProgress />
+            </Box>
+          ) : ( */}
+          <div>
+            <SlipDownload posts={posts} currentId={currentId} />
+          </div>
+          {/* )} */}
         </div>
       </div>
     </div>
