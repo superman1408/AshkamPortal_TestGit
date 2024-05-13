@@ -133,7 +133,7 @@ const SlipDownload = ({ posts, currentId }) => {
                         style={{ fontFamily: "Roboto" }}
                         onClick={() => handleDownload(slip)}
                       >
-                        download <FileDownloadIcon />
+                        Download <FileDownloadIcon />
                       </button>
                     </CardActions>
                   </Card>
