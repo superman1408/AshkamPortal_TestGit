@@ -93,7 +93,7 @@ const SlipDownload = ({ posts, currentId }) => {
             })
           ) : (
             <tr>
-              <td colSpan="2">Error: posts is not an array</td>
+              <td colSpan="2">Error: post is not an array</td>
             </tr>
           )}
         </div>
