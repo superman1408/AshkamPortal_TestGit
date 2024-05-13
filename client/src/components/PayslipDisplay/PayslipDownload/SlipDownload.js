@@ -23,12 +23,6 @@ const SlipDownload = ({ posts, currentId }) => {
 
   const handleDownload = async (slip) => {
     try {
-      // const slip = salary.find((slip) => slip.identify === slipId);
-
-      // if (!slip) {
-      //   throw new Error("Salary slip not found.");
-      // }
-
       const binaryDataBuffer = slip.pdf.data;
       const bufferArray = new Uint8Array(binaryDataBuffer).buffer;
       const blob = new Blob([bufferArray], { type: "application/pdf" });
@@ -133,7 +127,7 @@ const SlipDownload = ({ posts, currentId }) => {
                         style={{ fontFamily: "Roboto" }}
                         onClick={() => handleDownload(slip)}
                       >
-                        download <FileDownloadIcon />
+                        Download <FileDownloadIcon />
                       </button>
                     </CardActions>
                   </Card>

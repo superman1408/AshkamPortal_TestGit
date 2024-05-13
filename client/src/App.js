@@ -19,7 +19,6 @@ import EvolvePrintLayout from "./components/ActivityDisplay/TimeSheet/EvolvePrin
 import AttendanceDisplay from "./components/Attendance/AttendanceDisplay";
 import PasswordResetForm from "./components/PasswordReset/PasswordResetForm";
 import PayslipDisplay from "./components/PayslipDisplay/PayslipDisplay";
-import Profile from "./components/registrationForm/Profile";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -58,7 +57,7 @@ const App = () => {
               element={!user && <PasswordResetForm />}
             />
             {/* <Route path="/profile" exact element={<Form />} /> */}
-            <Route path="/:id/profile" exact element={<Profile />} />
+            <Route path="/:id/profile" exact element={<RegistrationForm />} />
             <Route path="/mail/:id/leave" exact element={<Leave />} />
             <Route
               path="/mail/:id/communication"
