@@ -14,8 +14,9 @@ const PayslipDisplay = () => {
   const verify = () => {
     if (
       // user.result.role === "admin" ||
-      user.result.department.toLowerCase() === "human resource" &&
-      user.result.role === "manager" || user.result.role === "admin"
+      (user.result.department.toLowerCase() === "human resource" &&
+        user.result.role === "manager") ||
+      user.result.role === "admin"
     ) {
       return true;
     } else {
@@ -40,8 +41,19 @@ const PayslipDisplay = () => {
     }
   }, [dispatch, currentId]);
 
+  console.log(window.innerWidth);
+
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        // "@media (max-width: 600px)": {
+        //   flexDirection: "row",
+        //   // width: "50%",
+        // },
+      }}
+    >
       <div>
         <strong
           style={{
@@ -54,7 +66,12 @@ const PayslipDisplay = () => {
           Salary Slip
         </strong>
       </div>
-      <div style={{ display: "flex", marginTop: "20px" }}>
+      <div
+        style={{
+          display: "flex",
+          marginTop: "20px",
+        }}
+      >
         <div>
           <Panel />
         </div>
