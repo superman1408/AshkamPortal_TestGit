@@ -129,7 +129,7 @@ const Skill = () => {
           ))}
           <Divider />
         </Grid>
-        <Grid>
+        {/* <Grid>
           <IconButton
             size="50px"
             color="black"
@@ -153,7 +153,7 @@ const Skill = () => {
               Save
             </Button>
           )}
-        </Grid>
+        </Grid> */}
       </Container>
     </div>
   );
