@@ -122,7 +122,7 @@ const RegistrationForm = () => {
         setIsLoading(false);
       })
       .catch((err) => {
-        console.log("Error in fetching posts : ", err);
+        console.log("Error", err);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentId, isLoading]);
@@ -130,6 +130,7 @@ const RegistrationForm = () => {
 
 
   
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (currentId) {
