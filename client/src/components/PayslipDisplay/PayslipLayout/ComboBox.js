@@ -33,11 +33,13 @@ const ComboBox = ({ posts, setCurrentId }) => {
       </option>
       {posts.map((item, index) => (
         <option key={index} value={item._id}>
-          {item.firstName.charAt(0).toUpperCase() +
+          {/* {item.firstName.charAt(0).toUpperCase() +
             item.firstName.slice(1).toLowerCase() +
             " " +
             item.lastName.charAt(0).toUpperCase() +
-            item.lastName.slice(1).toLowerCase()}
+            item.lastName.slice(1).toLowerCase()} */}
+
+          {(item.firstName + " " + item.lastName).toUpperCase()}
         </option>
       ))}
     </select>
