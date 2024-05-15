@@ -43,7 +43,7 @@ const TitlePopup = ({ setTitle, setTitleOpen }) => {
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title">Select the boxes</h5>
+            <h5 className="modal-title">Select the credencials</h5>
             <button type="button" className="close" onClick={closetoggle}>
               <span aria-hidden="true">&times;</span>
             </button>

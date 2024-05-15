@@ -20,9 +20,6 @@ import {
   Stack,
   Avatar,
   Card,
-  Button,
-  Drawer,
-  list,
 } from "@mui/material";
 
 import DashboardIcon from "@mui/icons-material/Dashboard";
@@ -93,18 +90,7 @@ const Panel = () => {
     navigate(`/${id}/attendanceDisplay`);
   };
 
-  // const toggleDrawer = (state) => (event) => {
-  //   event.preventDefault();
-  //   if (
-  //     event &&
-  //     event.type === "keydown" &&
-  //     (event.key === "Tab" || event.key === "Shift")
-  //   ) {
-  //     return;
-  //   }
 
-  //   setState(state);
-  // };
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -116,6 +102,17 @@ const Panel = () => {
 
     setState({ ...state, [anchor]: open });
   };
+
+  const firstNameAtInitial = user.result.firstName.toLowerCase();
+
+  const lastNameAtInitial = user.result.lastName.toLowerCase();
+
+  const userName =
+    firstNameAtInitial.charAt(0).toUpperCase() +
+    firstNameAtInitial.slice(1).toLowerCase() +
+    " " +
+    lastNameAtInitial.charAt(0).toUpperCase() +
+    lastNameAtInitial.slice(1).toLowerCase();
 
   return (
     <Card
@@ -135,21 +132,6 @@ const Panel = () => {
     >
       <div>
         {matches && (
-          //   <div>
-          //     {["left"].map((anchor) => (
-          //       <React.Fragment key={anchor}>
-          //         <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-          //         <Drawer
-          //           anchor={anchor}
-          //           open={state[anchor]}
-          //           onClose={toggleDrawer(anchor, false)}
-          //         >
-          //           {/* {Panel(anchor)} */}
-          //         </Drawer>
-          //       </React.Fragment>
-          //     ))}
-          //   </div>
-          // ) : (
           <Grid
             sx={{
               display: "flex",
@@ -194,7 +176,7 @@ const Panel = () => {
                   color: "#16355d",
                 }}
               >
-                {user.result.firstName + " " + user.result.lastName}
+                {userName}
               </Typography>
             </Grid>
 

@@ -55,7 +55,11 @@ const Inbox = ({ post, setCurrentId }) => {
             color="#16355c"
             sx={{ marginLeft: "20px", fontFamily: "Roboto" }}
           >
-            {post?.firstName + " " + post?.lastName}
+            {post?.firstName.charAt(0).toUpperCase() +
+              post?.firstName.slice(1).toLowerCase() +
+              " " +
+              post?.lastName.charAt(0).toUpperCase() +
+              post?.lastName.slice(1).toLowerCase()}
           </Typography>
         </Grid>
 

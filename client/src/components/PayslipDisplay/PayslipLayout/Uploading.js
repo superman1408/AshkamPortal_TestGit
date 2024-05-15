@@ -43,7 +43,7 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
             },
           })
         );
-        console.log("upload:  ", formData);
+
         alert("Uploaded Successfully!");
         // Refresh the page
         window.location.reload();

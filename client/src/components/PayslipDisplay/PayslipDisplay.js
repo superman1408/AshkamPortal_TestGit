@@ -50,8 +50,6 @@ const PayslipDisplay = () => {
     }
   }, [dispatch, currentId]);
 
-  console.log(window.innerWidth);
-
   return (
     <div
       style={{

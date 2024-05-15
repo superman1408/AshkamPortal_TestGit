@@ -198,7 +198,7 @@ const Leave = () => {
                     <DemoContainer components={["DatePicker"]}>
                       <DatePicker
                         label="From"
-                        value={valueTo}
+                        value={valueTo ? valueTo : " "}
                         onChange={(newValue) => setValueTo(newValue)}
                         required
                         fullWidth
@@ -225,7 +225,7 @@ const Leave = () => {
                     <DemoContainer components={["DatePicker"]}>
                       <DatePicker
                         label="To"
-                        value={valueFrom}
+                        value={valueFrom ? valueFrom : ""}
                         required
                         halfWidth
                         onChange={(newValue) => setValueFrom(newValue)}
@@ -265,7 +265,11 @@ const Leave = () => {
                       fontSize: "20px",
                     }}
                     defaultValue={`\n\n\n\n\n\nThanks & Regards\n${
-                      user.result.firstName + " " + user.result.lastName
+                      user.result.firstName.charAt(0).toUpperCase() +
+                      user.result.firstName.slice(1).toLowerCase() +
+                      " " +
+                      user.result.lastName.charAt(0).toUpperCase() +
+                      user.result.lastName.slice(1).toLowerCase()
                     } | ${user.result.department}`}
                     // Regards & username should be on two lines one by one
                     onChange={(e) =>

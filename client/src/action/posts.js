@@ -85,9 +85,7 @@ export const updateStatus = (id, activeStatus) => async (dispatch) => {
 };
 
 export const todoList = (id, post) => async (dispatch) => {
-  console.log("Hello I am working..!!");
-  console.log(id);
-  console.log(post);
+ 
 
   try {
     const { data } = await API.todoList(id, post);
@@ -108,7 +106,7 @@ export const skillData = (post) => async (dispatch) => {
 
   try {
     const { data } = await API.skillData(post);
-    console.log(data);
+  
     dispatch({ type: SKILLDATA, payload: data });
 
     return data.skillData;
@@ -183,7 +181,7 @@ export const logList = (post, id) => async (dispatch) => {
 };
 
 export const dailyEvent = (formData) => async (dispatch) => {
-  // console.log("Hello I am working..!!");
+  
 
   console.log("Hello I am working..!!");
 
@@ -199,8 +197,7 @@ export const dailyEvent = (formData) => async (dispatch) => {
 
 
 export const salarySlipData = (id, formData) => async (dispatch) => {
-  console.log("Here Comes Data");
-  console.log("id", id);
+ 
   try {
     const { data } = await API.salarySlipData(id, formData, {
       headers: {

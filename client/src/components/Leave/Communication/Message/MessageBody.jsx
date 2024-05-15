@@ -158,7 +158,11 @@ const Message = ({ post, currentId }) => {
                       color: "#16355c",
                     }}
                   >
-                    {post.firstName + " " + post.lastName}
+                    {post?.firstName.charAt(0).toUpperCase() +
+                      post?.firstName.slice(1).toLowerCase() +
+                      " " +
+                      post?.lastName.charAt(0).toUpperCase() +
+                      post?.lastName.slice(1).toLowerCase()}
                   </Typography>
                 </div>
                 {item.status ? (

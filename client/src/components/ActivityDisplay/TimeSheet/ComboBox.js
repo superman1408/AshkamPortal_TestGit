@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 
-
-
-
 const ComboBox = ({ posts, setCurrentId }) => {
   const [selectedOption, setSelectedOption] = useState("");
 
@@ -34,7 +31,11 @@ const ComboBox = ({ posts, setCurrentId }) => {
       </option>
       {posts.map((option, index) => (
         <option key={index} value={option._id}>
-          {option.firstName + " " + option.lastName}
+          {option.firstName.charAt(0).toUpperCase() +
+            option.firstName.slice(1).toLowerCase() +
+            " " +
+            option.lastName.charAt(0).toUpperCase() +
+            option.lastName.slice(1).toLowerCase()}
         </option>
       ))}
     </select>

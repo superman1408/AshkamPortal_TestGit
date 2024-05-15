@@ -78,7 +78,12 @@ const SlipDownload = ({ posts, currentId }) => {
                         fontWeight: "bold",
                       }}
                     >
-                      Employee Name : {post?.firstName + " " + post?.lastName}
+                      Employee Name :{" "}
+                      {post?.firstName.charAt(0).toUpperCase() +
+                        post?.firstName.slice(1).toLowerCase() +
+                        " " +
+                        post?.lastName.charAt(0).toUpperCase() +
+                        post?.lastName.slice(1).toLowerCase()}
                     </Typography>
                     {/* </div> */}
                   </div>

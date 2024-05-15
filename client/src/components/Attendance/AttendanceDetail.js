@@ -360,7 +360,13 @@ const AttendanceDetail = ({ currentId, posts }) => {
               Employee Name :{" "}
               {posts.map((post) => {
                 if (post._id === currentId) {
-                  return post?.firstName + " " + post?.lastName;
+                  return (
+                    post?.firstName.charAt(0).toUpperCase() +
+                    post?.firstName.slice(1).toLowerCase() +
+                    " " +
+                    post?.lastName.charAt(0).toUpperCase() +
+                    post?.lastName.slice(1).toLowerCase()
+                  );
                 }
                 return null;
               })}

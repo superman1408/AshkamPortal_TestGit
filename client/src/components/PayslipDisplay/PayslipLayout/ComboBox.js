@@ -31,9 +31,13 @@ const ComboBox = ({ posts, setCurrentId }) => {
       >
         Select Employee{" "}
       </option>
-      {posts.map((option, index) => (
-        <option key={index} value={option._id}>
-          {option.firstName + " " + option.lastName}
+      {posts.map((item, index) => (
+        <option key={index} value={item._id}>
+          {item.firstName.charAt(0).toUpperCase() +
+            item.firstName.slice(1).toLowerCase() +
+            " " +
+            item.lastName.charAt(0).toUpperCase() +
+            item.lastName.slice(1).toLowerCase()}
         </option>
       ))}
     </select>

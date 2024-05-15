@@ -530,7 +530,11 @@ function TimeSheet({ currentId, posts }) {
                                         fontFamily: "Roboto",
                                       }}
                                     >
-                                      {post?.firstName + " " + post?.lastName}
+                                      {post?.firstName.charAt(0).toUpperCase() +
+                                        post?.firstName.slice(1).toLowerCase() +
+                                        " " +
+                                        post?.lastName.charAt(0).toUpperCase() +
+                                        post?.lastName.slice(1).toLowerCase()}
                                     </td>
                                   </tr>
                                   <tr key={index}>
