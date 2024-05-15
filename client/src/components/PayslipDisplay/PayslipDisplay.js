@@ -15,15 +15,19 @@ const PayslipDisplay = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const verify = () => {
-    if (
-      // user.result.role === "admin" ||
-      (user.result.department.toLowerCase() === "human resource" &&
-        user.result.role === "manager") ||
-      user.result.role === "admin"
-    ) {
-      return true;
-    } else {
-      return false;
+    try {
+      if (
+        // user.result.role === "admin" ||
+        (user.result.department.toLowerCase() === "human resource" &&
+          user.result.role === "manager") ||
+        user.result.role === "admin"
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -92,11 +96,7 @@ const PayslipDisplay = () => {
               />
             </div>
           )}
-          {/* {isLoading ? (
-            <Box sx={{ marginLeft: "400px", marginTop: "100px" }}>
-              <CircularProgress />
-            </Box>
-          ) : ( */}
+
           <div>
             <SlipDownload posts={posts} currentId={currentId} />
           </div>

@@ -67,25 +67,29 @@ const SlipDownload = ({ posts, currentId }) => {
                         margin: "auto 20px",
                         fontFamily: "Robota",
                         fontWeight: "bold",
+                        color: post?.employeeId ? "#16355d" : "red", // Change the color based on the condition
                       }}
                     >
-                      Employee Id : {post?.employeeId}
+                      Employee Id :{" "}
+                      {post?.employeeId
+                        ? post?.employeeId
+                        : "Please complete your profile !!"}
                     </Typography>
                     <Typography
                       sx={{
                         margin: "auto 20px",
                         fontFamily: "Robota",
                         fontWeight: "bold",
+                        color: "#16355d",
                       }}
                     >
-                      Employee Name :{" "}
+                      Employee Name :
                       {post?.firstName.charAt(0).toUpperCase() +
                         post?.firstName.slice(1).toLowerCase() +
                         " " +
                         post?.lastName.charAt(0).toUpperCase() +
                         post?.lastName.slice(1).toLowerCase()}
                     </Typography>
-                    {/* </div> */}
                   </div>
                 );
               }
@@ -124,7 +128,13 @@ const SlipDownload = ({ posts, currentId }) => {
                       alt="Corporate Image"
                     />
                     <CardContent sx={{ textAlign: "center" }}>
-                      <Typography>{slip.title}</Typography>
+                      <Typography
+                        sx={{
+                          color: "#16355d",
+                        }}
+                      >
+                        {slip.title}
+                      </Typography>
                     </CardContent>
                     {/* </CardActionArea> */}
                     <CardActions sx={{ justifyContent: "center" }}>

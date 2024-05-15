@@ -87,6 +87,7 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
                 fontWeight: "bold",
                 marginTop: "10px",
                 fontFamily: "Roboto",
+                color: "#16355d",
               }}
             >
               File Upload
@@ -110,7 +111,11 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
                 <TitlePopup setTitle={setTitle} setTitleOpen={setTitleOpen} />
               )}
               <input
-                style={{ marginLeft: "50px", fontFamily: "Roboto" }}
+                style={{
+                  marginLeft: "50px",
+                  fontFamily: "Roboto",
+                  color: "#16355d",
+                }}
                 type="file"
                 onChange={handleFileChange}
                 accept=".pdf"
