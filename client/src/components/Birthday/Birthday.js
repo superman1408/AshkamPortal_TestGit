@@ -6,7 +6,6 @@ import { Grid, Typography, Avatar, Container, Card } from "@mui/material";
 
 import { getPosts, getEvents } from "../../action/posts";
 
-
 import FormDialog from "./DialogBox/Dialog";
 
 import Image from "../../assets/final.jpg";
@@ -59,9 +58,6 @@ const Birthday = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, evento, event]);
 
-
-
-
   const isBirthdayToday = () => {
     let status = true;
     for (let index = 0; index < posts.length; index++) {
@@ -87,7 +83,7 @@ const Birthday = () => {
   const verify = () => {
     if (user.result.role === "admin" || user.result.role === "manager") {
       return true;
-    }else {
+    } else {
       return false;
     }
   };
@@ -173,7 +169,11 @@ const Birthday = () => {
                               color: "#e55d17",
                             }}
                           >
-                            {post.firstName + " " + post.lastName}
+                            {(
+                              post.firstName +
+                              " " +
+                              post.lastName
+                            ).toUpperCase()}
                           </Typography>
                         </div>
                       </React.Fragment>
@@ -183,8 +183,6 @@ const Birthday = () => {
               </div>
             )}
 
-
-            
             <div
               style={{
                 display: "flex",
@@ -206,11 +204,7 @@ const Birthday = () => {
               float: "right",
             }}
           >
-            {
-              verify() === true && (
-                <FormDialog />
-              )
-            }
+            {verify() === true && <FormDialog />}
             {/* <FormDialog /> */}
           </div>
         </Grid>
