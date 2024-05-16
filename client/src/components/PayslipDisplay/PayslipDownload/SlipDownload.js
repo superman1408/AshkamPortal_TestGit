@@ -19,7 +19,7 @@ const SlipDownload = ({ posts, currentId }) => {
 
   useEffect(() => {
     dispatch(getSalarySlipData());
-  }, [dispatch, salary]);
+  }, [dispatch, salary, currentId]);
 
   const handleDownload = async (slip) => {
     try {
@@ -113,6 +113,7 @@ const SlipDownload = ({ posts, currentId }) => {
             justifyContent: "center",
           }}
         >
+          {/* Map over the salary array and display a download button for the salary slip with the matching currentId */}
           {salary.map((slip, index) => {
             const matchPost = currentId === slip.identify;
 
