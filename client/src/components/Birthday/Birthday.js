@@ -140,7 +140,7 @@ const Birthday = () => {
                             color: "#16355d",
                           }}
                         >
-                          Happy Birthday To
+                          Happy Birthday
                         </Typography>
                         <div style={{ display: "flex", marginTop: "5px" }}>
                           {/* <Card
