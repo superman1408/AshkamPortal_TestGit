@@ -6,10 +6,9 @@ import { Grid, Typography, Avatar, Container, Card } from "@mui/material";
 
 import { getPosts, getEvents } from "../../action/posts";
 
-
 import FormDialog from "./DialogBox/Dialog";
 
-import Image from "../../assets/final.jpg";
+import Image from "../../assets/b1.png";
 import "./style.css";
 
 const Birthday = () => {
@@ -59,9 +58,6 @@ const Birthday = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, evento, event]);
 
-
-
-
   const isBirthdayToday = () => {
     let status = true;
     for (let index = 0; index < posts.length; index++) {
@@ -87,7 +83,7 @@ const Birthday = () => {
   const verify = () => {
     if (user.result.role === "admin" || user.result.role === "manager") {
       return true;
-    }else {
+    } else {
       return false;
     }
   };
@@ -101,7 +97,7 @@ const Birthday = () => {
           maxWidth: "500px",
           marginLeft: "20px",
           padding: "10px",
-          bgcolor: "background.paper",
+          // bgcolor: "background.paper",
           boxShadow: 1,
           borderRadius: "10px",
           backgroundImage: `url(${Image})`,
@@ -173,7 +169,11 @@ const Birthday = () => {
                               color: "#e55d17",
                             }}
                           >
-                            {post.firstName + " " + post.lastName}
+                            {(
+                              post.firstName +
+                              " " +
+                              post.lastName
+                            )}
                           </Typography>
                         </div>
                       </React.Fragment>
@@ -183,8 +183,6 @@ const Birthday = () => {
               </div>
             )}
 
-
-            
             <div
               style={{
                 display: "flex",
@@ -195,7 +193,7 @@ const Birthday = () => {
             >
               {/* ..................................Event is being displayed from here onwards........................................................................ */}
 
-              <marquee style={{ color: "#16355c", fontWeight: "bold" }}>
+              <marquee style={{ color: "#16355c", fontWeight: "bold", fontFamily: "Roboto" }}>
                 {evento}
               </marquee>
             </div>
@@ -206,11 +204,7 @@ const Birthday = () => {
               float: "right",
             }}
           >
-            {
-              verify() === true && (
-                <FormDialog />
-              )
-            }
+            {verify() === true && <FormDialog />}
             {/* <FormDialog /> */}
           </div>
         </Grid>

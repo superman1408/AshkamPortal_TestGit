@@ -65,7 +65,7 @@ const Communication = () => {
               // position: "fixed",
               top: "100px",
               // zIndex: 99999,
-              width: "300px",
+              width: "350px",
               pointerEvents: "auto",
               marginLeft: "10px",
               margin: "10px",
