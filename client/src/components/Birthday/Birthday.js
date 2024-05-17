@@ -8,7 +8,7 @@ import { getPosts, getEvents } from "../../action/posts";
 
 import FormDialog from "./DialogBox/Dialog";
 
-import Image from "../../assets/final.jpg";
+import Image from "../../assets/b1.png";
 import "./style.css";
 
 const Birthday = () => {
@@ -97,7 +97,7 @@ const Birthday = () => {
           maxWidth: "500px",
           marginLeft: "20px",
           padding: "10px",
-          bgcolor: "background.paper",
+          // bgcolor: "background.paper",
           boxShadow: 1,
           borderRadius: "10px",
           backgroundImage: `url(${Image})`,
@@ -173,7 +173,7 @@ const Birthday = () => {
                               post.firstName +
                               " " +
                               post.lastName
-                            ).toUpperCase()}
+                            )}
                           </Typography>
                         </div>
                       </React.Fragment>
@@ -193,7 +193,7 @@ const Birthday = () => {
             >
               {/* ..................................Event is being displayed from here onwards........................................................................ */}
 
-              <marquee style={{ color: "#16355c", fontWeight: "bold" }}>
+              <marquee style={{ color: "#16355c", fontWeight: "bold", fontFamily: "Roboto" }}>
                 {evento}
               </marquee>
             </div>

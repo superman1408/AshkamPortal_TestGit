@@ -11,7 +11,6 @@ const ComboBox = ({ posts, setCurrentId }) => {
   };
 
   return (
-    // <Card elevation={5} sx={{ backgroundColor: "blue" }}>
     <select
       value={selectedOption}
       onChange={handleChange}
@@ -56,4 +55,3 @@ const ComboBox = ({ posts, setCurrentId }) => {
 };
 
 export default ComboBox;
-// {/* {(item.firstName + " " + item.lastName).toUpperCase()} */}
