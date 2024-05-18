@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Uploading from "./PayslipLayout/Uploading";
 import SlipDownload from "./PayslipDownload/SlipDownload";
 import { useDispatch, useSelector } from "react-redux";
-import { CircularProgress, Box } from "@mui/material";
+import { CircularProgress, Box, Grid } from "@mui/material";
 
 import { getPosts } from "../../action/posts";
 import { useParams } from "react-router-dom";
@@ -77,16 +77,17 @@ const PayslipDisplay = () => {
           Salary Slip
         </strong>
       </div>
-      <div
-        style={{
+      <Grid
+        sx={{
           display: "flex",
           marginTop: "20px",
+          "@media(max-Width:600px)": { flexDirection: "column" },
         }}
       >
-        <div>
+        <Grid>
           <Panel />
-        </div>
-        <div>
+        </Grid>
+        <Grid>
           {verify() === true && (
             <div>
               <Uploading
@@ -97,12 +98,12 @@ const PayslipDisplay = () => {
             </div>
           )}
 
-          <div>
+          <Grid>
             <SlipDownload posts={posts} currentId={currentId} />
-          </div>
+          </Grid>
           {/* )} */}
-        </div>
-      </div>
+        </Grid>
+      </Grid>
     </div>
   );
 };
