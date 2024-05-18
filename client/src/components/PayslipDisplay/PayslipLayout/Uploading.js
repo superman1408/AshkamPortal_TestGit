@@ -61,7 +61,7 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
         sx={{
           textAlign: "center",
           margin: "10px",
-          "@media(max-Width:600px)": { margin: "10px", width: "40vh" },
+          "@media(max-Width:600px)": { width: "40vh", margin: "0px" },
         }}
       >
         <Grid
