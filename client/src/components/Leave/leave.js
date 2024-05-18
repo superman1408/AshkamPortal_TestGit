@@ -338,6 +338,7 @@ const Leave = () => {
                   width: "40vh",
                   marginTop: "10px",
                   height: "auto",
+                  padding: "10px",
                 },
               }}
             >

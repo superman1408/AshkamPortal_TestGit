@@ -30,7 +30,7 @@ const ManagingTeam = () => {
           overflow: "hidden",
           position: "relative", // Set position to relative
           marginTop: "20px",
-          marginLeft: "10px",
+          marginLeft: "20px",
           marginRight: "10px",
         }}
       >
