@@ -24,10 +24,10 @@ const Inbox = ({ post, setCurrentId }) => {
         fullwidth="true"
         sx={{
           bgcolor: "smokewhite",
-          boxShadow: 5,
-          width: "47vh",
-          padding: "5px",
-          height: "80px",
+          boxShadow: 9,
+          // width: "250px",
+          // padding: "5px",
+          // height: "80px",
           margin: "2px",
 
           borderRadius: "12px",
@@ -40,27 +40,31 @@ const Inbox = ({ post, setCurrentId }) => {
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
-            marginRight: "50px",
+            // marginRight: "10px",
+            // marginLeft: "10px",
           }}
         >
-          <Avatar
-            alt="avatar"
-            src={post?.selectedFile}
-            withborder="true"
-            color="green"
-          />
-
-          <Typography
-            variant="h6"
-            color="#16355c"
-            sx={{ marginLeft: "20px", fontFamily: "Roboto" }}
-          >
-            {post?.firstName.charAt(0).toUpperCase() +
-              post?.firstName.slice(1).toLowerCase() +
-              " " +
-              post?.lastName.charAt(0).toUpperCase() +
-              post?.lastName.slice(1).toLowerCase()}
-          </Typography>
+          <Grid sx={{ padding: "10px"}}>
+            <Avatar
+              alt="avatar"
+              src={post?.selectedFile}
+              withborder="true"
+              color="green"
+            />
+          </Grid>
+          <Grid sx={{width: "240px",padding: "10px"}}>
+            <Typography
+              variant="h6"
+              color="#16355c"
+              sx={{ fontFamily: "Roboto" }}
+            >
+              {post?.firstName.charAt(0).toUpperCase() +
+                post?.firstName.slice(1).toLowerCase() +
+                " " +
+                post?.lastName.charAt(0).toUpperCase() +
+                post?.lastName.slice(1).toLowerCase()}
+            </Typography>
+          </Grid>
         </Grid>
 
         {/* <div width="calc(50%)">

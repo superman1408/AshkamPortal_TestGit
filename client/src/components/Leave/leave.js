@@ -121,7 +121,7 @@ const Leave = () => {
       </div>
       <div>
         <Grid
-          sx={{
+          sx={{       
             display: "flex",
             "@media (max-width: 600px)": {
               flexDirection: "column",
@@ -203,7 +203,7 @@ const Leave = () => {
                         required
                         fullWidth
                       />
-                    </DemoContainer>
+                    </DemoContainer> 
                   </LocalizationProvider>
 
                   <div style={{ margin: "10px 0px" }}>
