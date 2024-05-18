@@ -179,10 +179,6 @@ const Leave = () => {
                     sm: 250,
                     md: 600,
                   },
-                  "@media (max-width: 600px)": {
-                    margin: "0px",
-                    width: "40vh",
-                  },
                 }}
               >
                 <TextField
@@ -322,7 +318,7 @@ const Leave = () => {
             sx={{
               marginLeft: "20px",
               "@media (max-width: 600px)": {
-                marginLeft: "0px",
+                margin: "0px",
                 // display: "flex",
               },
             }}
@@ -337,8 +333,7 @@ const Leave = () => {
                 "@media (max-width: 600px)": {
                   width: "40vh",
                   marginTop: "10px",
-                  height: "auto",
-                  padding: "10px",
+                  
                 },
               }}
             >
