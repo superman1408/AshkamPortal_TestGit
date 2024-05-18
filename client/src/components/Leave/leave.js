@@ -121,14 +121,23 @@ const Leave = () => {
       </div>
       <div>
         <Grid
-          sx={{       
+          sx={{
             display: "flex",
             "@media (max-width: 600px)": {
               flexDirection: "column",
+              margin: "0px",
             },
           }}
         >
-          <Grid sx={{ marginLeft: "15px" }}>
+          <Grid
+            sx={{
+              marginLeft: "15px",
+              "@media (max-width: 600px)": {
+                flexDirection: "column",
+                margin: "0px",
+              },
+            }}
+          >
             <form autoComplete="off" onSubmit={handleSubmit}>
               {/* <div
                 className={classes.mainContainer}
@@ -170,6 +179,10 @@ const Leave = () => {
                     sm: 250,
                     md: 600,
                   },
+                  "@media (max-width: 600px)": {
+                    margin: "0px",
+                    width: "40vh",
+                  },
                 }}
               >
                 <TextField
@@ -203,7 +216,7 @@ const Leave = () => {
                         required
                         fullWidth
                       />
-                    </DemoContainer> 
+                    </DemoContainer>
                   </LocalizationProvider>
 
                   <div style={{ margin: "10px 0px" }}>
@@ -305,7 +318,15 @@ const Leave = () => {
               </div> */}
             </form>
           </Grid>
-          <Grid style={{ marginLeft: "20px" }}>
+          <Grid
+            sx={{
+              marginLeft: "20px",
+              "@media (max-width: 600px)": {
+                marginLeft: "0px",
+                // display: "flex",
+              },
+            }}
+          >
             <Card
               elevation={10}
               sx={{
@@ -314,13 +335,25 @@ const Leave = () => {
                 marginBottom: "10px",
                 height: "300px",
                 "@media (max-width: 600px)": {
-                  // marginTop: "20px",
+                  width: "40vh",
+                  marginTop: "10px",
+                  height: "auto",
+                  padding: "10px",
                 },
               }}
             >
               <Calender />
             </Card>
-            <Card elevation={10} sx={{ padding: "5px" }}>
+            <Card
+              elevation={10}
+              sx={{
+                padding: "5px",
+                "@media (max-width: 600px)": {
+                  margin: "0px",
+                  width: "40vh",
+                },
+              }}
+            >
               <ChartComponent
                 availabelLeave={availabelLeave}
                 style={{ willchange: "transform" }}

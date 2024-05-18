@@ -31,6 +31,7 @@ const ManagingTeam = () => {
           position: "relative", // Set position to relative
           marginTop: "20px",
           marginLeft: "20px",
+          marginRight: "10px",
         }}
       >
         <Grid
@@ -38,6 +39,7 @@ const ManagingTeam = () => {
             display: "flex",
             flexDirection: "column",
             marginBottom: "10px",
+            marginRight: "20px",
           }}
         >
           <Grid>
@@ -74,7 +76,7 @@ const ManagingTeam = () => {
             <Grid>
               <Typography
                 sx={{
-                  marginLeft: "30px",
+                  marginLeft: "20px",
                   marginRight: "0px",
                   marginTop: "10px",
                   fontSize: "14px",
@@ -85,7 +87,7 @@ const ManagingTeam = () => {
               </Typography>
               <Typography
                 sx={{
-                  marginLeft: "30px",
+                  marginLeft: "20px",
                   marginRight: "30px",
                   fontFamily: "Roboto",
                   fontSize: "10px",
@@ -131,7 +133,7 @@ const ManagingTeam = () => {
             <Grid>
               <Typography
                 sx={{
-                  marginLeft: "30px",
+                  marginLeft: "20px",
                   marginRight: "0px",
                   marginTop: "10px",
                   fontSize: "14px",
@@ -142,7 +144,7 @@ const ManagingTeam = () => {
               </Typography>
               <Typography
                 sx={{
-                  marginLeft: "30px",
+                  marginLeft: "20px",
                   marginRight: "30px",
                   fontFamily: "Roboto",
                   fontSize: "10px",
@@ -188,7 +190,7 @@ const ManagingTeam = () => {
             <Grid>
               <Typography
                 sx={{
-                  marginLeft: "30px",
+                  marginLeft: "20px",
                   marginRight: "0px",
                   marginTop: "10px",
                   fontSize: "14px",
@@ -199,7 +201,7 @@ const ManagingTeam = () => {
               </Typography>
               <Typography
                 sx={{
-                  marginLeft: "30px",
+                  marginLeft: "20px",
                   marginRight: "30px",
                   fontFamily: "Roboto",
                   fontSize: "10px",
@@ -234,7 +236,7 @@ const ManagingTeam = () => {
             <Grid>
               <Typography
                 sx={{
-                  marginLeft: "30px",
+                  marginLeft: "20px",
                   marginRight: "0px",
                   marginTop: "10px",
                   fontSize: "14px",
@@ -245,7 +247,7 @@ const ManagingTeam = () => {
               </Typography>
               <Typography
                 sx={{
-                  marginLeft: "30px",
+                  marginLeft: "20px",
                   marginRight: "30px",
                   fontFamily: "Roboto",
                   fontSize: "10px",

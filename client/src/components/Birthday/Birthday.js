@@ -7,7 +7,6 @@ import { Grid, Typography, Avatar, Container, Card } from "@mui/material";
 import { getPosts, getEvents } from "../../action/posts";
 
 import FormDialog from "./DialogBox/Dialog";
-
 import Image from "../../assets/b1.png";
 import "./style.css";
 
