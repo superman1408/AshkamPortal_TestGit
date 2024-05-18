@@ -4,7 +4,9 @@ import axios from "axios";
 
 // const URLL = "http://localhost:5000/auth";
 
-const API = axios.create({ baseURL: "http://localhost:8080" });
+const API = axios.create({
+  baseURL: "https://ashkam-server-b9bc1f76ae2f.herokuapp.com/",
+});
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
