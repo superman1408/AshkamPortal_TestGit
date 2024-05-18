@@ -82,6 +82,21 @@ const AboutUs = () => {
           </p>
           <Typography
             sx={{
+              color: "#0b7882",
+              fontWeight: "bold",
+              fontFamily: "Roboto",
+            }}
+          >
+            VISION
+          </Typography>{" "}
+          <p style={{ fontFamily: "Roboto" }}>
+            A vision of being a Global Leading engineering & and consulting
+            organization driven by our entrepreneurial spirit, cutting-edge
+            technology, and execution excellence combined with our
+            out-of-the-box approach and innovative ideas.
+          </p>
+          <Typography
+            sx={{
               color: "#e46025",
               fontWeight: "bold",
               fontFamily: "Roboto",
@@ -94,21 +109,6 @@ const AboutUs = () => {
             consulting services to our clients encompassing innovative
             out-of-the-box thinking approaches. Our motto for "Thriving on
             Excellence" is achieved by empowering our workforce.
-          </p>
-          <Typography
-            sx={{
-              color: "#0b7882",
-              fontWeight: "bold",
-              fontFamily: "Roboto",
-            }}
-          >
-            VISSION
-          </Typography>{" "}
-          <p style={{ fontFamily: "Roboto" }}>
-            A vision of being a Global Leading engineering & and consulting
-            organization driven by our entrepreneurial spirit, cutting-edge
-            technology, and execution excellence combined with our
-            out-of-the-box approach and innovative ideas.
           </p>
           <Typography
             sx={{
