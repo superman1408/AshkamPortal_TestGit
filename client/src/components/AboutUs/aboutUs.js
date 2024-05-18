@@ -82,6 +82,21 @@ const AboutUs = () => {
           </p>
           <Typography
             sx={{
+              color: "#0b7882",
+              fontWeight: "bold",
+              fontFamily: "Roboto",
+            }}
+          >
+            VISION
+          </Typography>{" "}
+          <p style={{ fontFamily: "Roboto" }}>
+            A vision of being a Global Leading engineering & and consulting
+            organization driven by our entrepreneurial spirit, cutting-edge
+            technology, and execution excellence combined with our
+            out-of-the-box approach and innovative ideas.
+          </p>
+          <Typography
+            sx={{
               color: "#e46025",
               fontWeight: "bold",
               fontFamily: "Roboto",
@@ -97,21 +112,6 @@ const AboutUs = () => {
           </p>
           <Typography
             sx={{
-              color: "#0b7882",
-              fontWeight: "bold",
-              fontFamily: "Roboto",
-            }}
-          >
-            VISSION
-          </Typography>{" "}
-          <p style={{ fontFamily: "Roboto" }}>
-            A vision of being a Global Leading engineering & and consulting
-            organization driven by our entrepreneurial spirit, cutting-edge
-            technology, and execution excellence combined with our
-            out-of-the-box approach and innovative ideas.
-          </p>
-          <Typography
-            sx={{
               color: "#0d325c",
               fontWeight: "bold",
               fontFamily: "Roboto",
@@ -121,15 +121,17 @@ const AboutUs = () => {
           </Typography>{" "}
           <p style={{ fontFamily: "Roboto" }}>
             Our business ethics and high professional integrity drive us to
-            achieve excellence in engineering with values such as - Trust - The
-            organization functions with the belief that everyone embraces the
-            value of the company to deliver the best for the client. Empowerment
-            - We believe in an environment that enables our team to make the
-            decision that contributes to our client's delight in getting
-            world-class engineering solutions. Business Ethics - It's our moral
-            responsibility to adopt robust business ethics to serve our clients
-            with leadership, Integrity, and Accountability. We continuously
-            challenge ourselves to achieve high business ethics.
+            achieve excellence in engineering with values such as - <br />
+            Trust - The organization functions with the belief that everyone
+            embraces the value of the company to deliver the best for the
+            client. <br />
+            Empowerment - We believe in an environment that enables our team to
+            make the decision that contributes to our client's delight in
+            getting world-class engineering solutions. <br />
+            Business Ethics - It's our moral responsibility to adopt robust
+            business ethics to serve our clients with leadership, Integrity, and
+            Accountability. We continuously challenge ourselves to achieve high
+            business ethics.
           </p>
           <br />
           <p style={{ fontStyle: "oblique", fontFamily: "Roboto" }}>
