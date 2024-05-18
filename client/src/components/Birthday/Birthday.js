@@ -59,24 +59,22 @@ const Birthday = () => {
   }, [dispatch, evento, event]);
 
   const isBirthdayToday = () => {
-    let status = true;
-    for (let index = 0; index < posts.length; index++) {
-      // eslint-disable-next-line no-loop-func, array-callback-return
-      posts.map((post) => {
-        // console.log(post.firstName)
-        let day = new Date(post.dob).getDate();
-        let month = new Date(post.dob).getMonth() + 1;
-        const currentDay = new Date().getDate();
-        const currentMonth = new Date().getMonth() + 1;
-        if (currentDay === day && currentMonth === month) {
-          status = false;
-          // return false
-          // return false
-        }
-      });
-    }
-    return status;
+    posts.map((post) => {
+      // console.log(post.firstName)
+      let day = new Date(post.dob).getDate();
+      let month = new Date(post.dob).getMonth() + 1;
+      const currentDay = new Date().getDate();
+      const currentMonth = new Date().getMonth() + 1;
+      if (currentDay === day && currentMonth === month) {
+      }
+    });
   };
+
+  const birthdaysToday = posts.filter((post) => {
+    const day = new Date(post.dob).getDate();
+    const month = new Date(post.dob).getMonth() + 1;
+    return currentDay === day && currentMonth === month;
+  });
 
   // const [isVisible, setIsVisible] = useState(false);
 
@@ -122,24 +120,21 @@ const Birthday = () => {
               </marquee>
             ) : (
               <div style={{ padding: "10px", width: "100%" }}>
-                {posts.map((post) => {
-                  let day = new Date(post.dob).getDate();
-                  let month = new Date(post.dob).getMonth() + 1;
-                  if (currentDay === day && currentMonth === month) {
-                    return (
-                      <React.Fragment key={post.dob}>
-                        <Typography
-                          variant="h6"
-                          sx={{
-                            fontFamily: "Roboto",
-                            textAlign: "left",
-                            color: "#16355d",
-                          }}
-                        >
-                          Happy Birthday
-                        </Typography>
-                        <div style={{ display: "flex", marginTop: "5px" }}>
-                          {/* <Card
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontFamily: "Roboto",
+                    textAlign: "left",
+                    color: "#16355d",
+                  }}
+                >
+                  Happy Birthday
+                </Typography>
+                {birthdaysToday.map((post) => {
+                  return (
+                    <React.Fragment key={post.dob}>
+                      <div style={{ display: "flex", marginTop: "5px" }}>
+                        {/* <Card
                           elevation={15}
                           sx={{
                             display: "flex",
@@ -148,38 +143,33 @@ const Birthday = () => {
                             width: "70%",
                           }}
                         > */}
-                          <Typography>{`\u2022`}</Typography>
-                          <Avatar
-                            post={post}
-                            sx={{
-                              width: 31,
-                              height: 30,
-                              marginLeft: "20px",
-                            }}
-                            alt="user"
-                            src={post.selectedFile}
-                          />
-                          <Typography
-                            post={post}
-                            variant="h6"
-                            sx={{
-                              marginLeft: "20px",
-                              fontFamily: "Roboto",
-                              fontSize: "18px",
-                              color: "#e55d17",
-                            }}
-                          >
-                            {(
-                              post.firstName +
-                              " " +
-                              post.lastName
-                            )}
-                          </Typography>
-                        </div>
-                      </React.Fragment>
-                    );
-                  }
-                })}{" "}
+                        <Typography>{`\u2022`}</Typography>
+                        <Avatar
+                          post={post}
+                          sx={{
+                            width: 31,
+                            height: 30,
+                            marginLeft: "20px",
+                          }}
+                          alt="user"
+                          src={post.selectedFile}
+                        />
+                        <Typography
+                          post={post}
+                          variant="h6"
+                          sx={{
+                            marginLeft: "20px",
+                            fontFamily: "Roboto",
+                            fontSize: "18px",
+                            color: "#e55d17",
+                          }}
+                        >
+                          {post.firstName + " " + post.lastName}
+                        </Typography>
+                      </div>
+                    </React.Fragment>
+                  );
+                })}
               </div>
             )}
 
@@ -193,7 +183,13 @@ const Birthday = () => {
             >
               {/* ..................................Event is being displayed from here onwards........................................................................ */}
 
-              <marquee style={{ color: "#16355c", fontWeight: "bold", fontFamily: "Roboto" }}>
+              <marquee
+                style={{
+                  color: "#16355c",
+                  fontWeight: "bold",
+                  fontFamily: "Roboto",
+                }}
+              >
                 {evento}
               </marquee>
             </div>
