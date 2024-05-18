@@ -72,8 +72,6 @@ const Birthday = () => {
     return currentDay === day && currentMonth === month;
   });
 
-  // const [isVisible, setIsVisible] = useState(false);
-
   const verify = () => {
     if (user.result.role === "admin" || user.result.role === "manager") {
       return true;
@@ -163,7 +161,6 @@ const Birthday = () => {
                 display: "flex",
                 marginTop: "10px",
                 marginLeft: "10px",
-                // backgroundColor: "#16355d",
               }}
             >
               {/* ..................................Event is being displayed from here onwards........................................................................ */}
