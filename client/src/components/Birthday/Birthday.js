@@ -15,7 +15,7 @@ const Birthday = () => {
   const dispatch = useDispatch();
   const [evento, setEvento] = useState("");
   const posts = useSelector((state) => state.posts);
-  const event = useSelector((state) => state.event);
+  // const event = useSelector((state) => state.event);
   const user = JSON.parse(localStorage.getItem("profile"));
   const role = user.result.role;
   const [dimension, setDimension] = useState({
@@ -41,9 +41,11 @@ const Birthday = () => {
     };
   }, []); // Empty dependency array to run effect only once when component mounts
 
+  const event = useSelector((state) => state.event);
+
   useEffect(() => {
     dispatch(getPosts());
-    // isBirthdayToday();
+    isBirthdayToday();
     dispatch(getEvents()).then(() => {
       if (event) {
         event.map((item) => {
@@ -54,23 +56,29 @@ const Birthday = () => {
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, event]);
+  }, [dispatch, evento, event]);
 
   const isBirthdayToday = () => {
-    posts.map((post) => {
-      let day = new Date(post.dob).getDate();
-      let month = new Date(post.dob).getMonth() + 1;
-      const currentDay = new Date().getDate();
-      const currentMonth = new Date().getMonth() + 1;
-      return currentDay === day && currentMonth === month;
-    });
+    let status = true;
+    for (let index = 0; index < posts.length; index++) {
+      // eslint-disable-next-line no-loop-func, array-callback-return
+      posts.map((post) => {
+        // console.log(post.firstName)
+        let day = new Date(post.dob).getDate();
+        let month = new Date(post.dob).getMonth() + 1;
+        const currentDay = new Date().getDate();
+        const currentMonth = new Date().getMonth() + 1;
+        if (currentDay === day && currentMonth === month) {
+          status = false;
+          // return false
+          // return false
+        }
+      });
+    }
+    return status;
   };
 
-  const birthdaysToday = posts.filter((post) => {
-    const day = new Date(post.dob).getDate();
-    const month = new Date(post.dob).getMonth() + 1;
-    return currentDay === day && currentMonth === month;
-  });
+  // const [isVisible, setIsVisible] = useState(false);
 
   const verify = () => {
     if (user.result.role === "admin" || user.result.role === "manager") {
@@ -114,45 +122,64 @@ const Birthday = () => {
               </marquee>
             ) : (
               <div style={{ padding: "10px", width: "100%" }}>
-                {" "}
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontFamily: "Roboto",
-                    textAlign: "left",
-                    color: "#16355d",
-                  }}
-                >
-                  Happy Birthday
-                </Typography>
-                {birthdaysToday.map((post) => (
-                  <div
-                    style={{ display: "flex", marginTop: "5px" }}
-                    key={post._id}
-                  >
-                    <Typography>{`\u2022`}</Typography>
-                    <Avatar
-                      sx={{
-                        width: 31,
-                        height: 30,
-                        marginLeft: "20px",
-                      }}
-                      alt="user"
-                      src={post.selectedFile}
-                    />
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        marginLeft: "20px",
-                        fontFamily: "Roboto",
-                        fontSize: "18px",
-                        color: "#e55d17",
-                      }}
-                    >
-                      {post.firstName + " " + post.lastName}
-                    </Typography>
-                  </div>
-                ))}
+                {posts.map((post) => {
+                  let day = new Date(post.dob).getDate();
+                  let month = new Date(post.dob).getMonth() + 1;
+                  if (currentDay === day && currentMonth === month) {
+                    return (
+                      <React.Fragment key={post.dob}>
+                        <Typography
+                          variant="h6"
+                          sx={{
+                            fontFamily: "Roboto",
+                            textAlign: "left",
+                            color: "#16355d",
+                          }}
+                        >
+                          Happy Birthday
+                        </Typography>
+                        <div style={{ display: "flex", marginTop: "5px" }}>
+                          {/* <Card
+                          elevation={15}
+                          sx={{
+                            display: "flex",
+                            marginTop: "15px",
+                            alignItems: "center",
+                            width: "70%",
+                          }}
+                        > */}
+                          <Typography>{`\u2022`}</Typography>
+                          <Avatar
+                            post={post}
+                            sx={{
+                              width: 31,
+                              height: 30,
+                              marginLeft: "20px",
+                            }}
+                            alt="user"
+                            src={post.selectedFile}
+                          />
+                          <Typography
+                            post={post}
+                            variant="h6"
+                            sx={{
+                              marginLeft: "20px",
+                              fontFamily: "Roboto",
+                              fontSize: "18px",
+                              color: "#e55d17",
+                            }}
+                          >
+                            {(
+                              post.firstName +
+                              " " +
+                              post.lastName
+                            )}
+                          </Typography>
+                        </div>
+                      </React.Fragment>
+                    );
+                  }
+                })}{" "}
               </div>
             )}
 
@@ -161,17 +188,12 @@ const Birthday = () => {
                 display: "flex",
                 marginTop: "10px",
                 marginLeft: "10px",
+                // backgroundColor: "#16355d",
               }}
             >
               {/* ..................................Event is being displayed from here onwards........................................................................ */}
 
-              <marquee
-                style={{
-                  color: "#16355c",
-                  fontWeight: "bold",
-                  fontFamily: "Roboto",
-                }}
-              >
+              <marquee style={{ color: "#16355c", fontWeight: "bold", fontFamily: "Roboto" }}>
                 {evento}
               </marquee>
             </div>
