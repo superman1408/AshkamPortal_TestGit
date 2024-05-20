@@ -82,7 +82,8 @@ const AboutUs = () => {
           </p>
           <Typography
             sx={{
-              color: "#0b7882",
+              color: "#0d325c",
+
               fontWeight: "bold",
               fontFamily: "Roboto",
             }}
@@ -112,12 +113,12 @@ const AboutUs = () => {
           </p>
           <Typography
             sx={{
-              color: "#0d325c",
+              color: "#0b7882",
               fontWeight: "bold",
               fontFamily: "Roboto",
             }}
           >
-            VALUE
+            VALUES
           </Typography>{" "}
           <p style={{ fontFamily: "Roboto" }}>
             Our business ethics and high professional integrity drive us to
