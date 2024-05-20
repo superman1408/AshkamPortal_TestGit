@@ -97,11 +97,9 @@ const Communication = () => {
             <div style={{ height: "600" }}>
               <div
                 style={{
-                  // border: "0.5px dotted gray",
                   background: "white",
                   height: "600px",
                   overflow: "auto",
-                  // position: "fixed",
                   top: "100px",
                   zIndex: 99999,
                   width: "auto",
