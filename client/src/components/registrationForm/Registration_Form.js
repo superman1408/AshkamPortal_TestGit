@@ -127,10 +127,6 @@ const RegistrationForm = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentId, isLoading]);
 
-
-
-  
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (currentId) {
@@ -301,7 +297,7 @@ const RegistrationForm = () => {
                         fontFamily: "Roboto",
                       }}
                     >
-                      Role
+                      Role :
                     </Typography>
 
                     <TextField
@@ -329,7 +325,7 @@ const RegistrationForm = () => {
                     fontFamily: "Roboto",
                   }}
                 >
-                  Full Name
+                  Full Name:
                 </Typography>
 
                 <TextField
@@ -368,7 +364,17 @@ const RegistrationForm = () => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <Grid sx={{ marginTop: "40px" }}>
+                  <Grid sx={{ marginTop: "20px" }}>
+                    <Typography
+                      sx={{
+                        margin: "30px 0px 10px 0px",
+                        fontSize: "18px",
+                        fontWeight: "bold",
+                        fontFamily: "Roboto",
+                      }}
+                    >
+                      Profile Picture :
+                    </Typography>
                     <FileBase
                       type="file"
                       multiple={false}
