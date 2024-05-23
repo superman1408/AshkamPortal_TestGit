@@ -188,7 +188,7 @@ const Birthday = () => {
                   fontFamily: "Roboto",
                 }}
               >
-                <div style={{ backgroundColor: "#f7f797" }}>{evento}</div>
+                <div>{evento}</div>
               </marquee>
             </div>
           </div>

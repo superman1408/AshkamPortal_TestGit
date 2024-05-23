@@ -360,7 +360,6 @@ const RegistrationForm = () => {
                     "@media (max-width: 600px)": {
                       flexDirection: "column",
                     },
-
                     justifyContent: "space-between",
                   }}
                 >
@@ -393,7 +392,16 @@ const RegistrationForm = () => {
                     }}
                   >
                     <img
-                      style={{ width: "150px", height: "100px" }}
+                      onContextMenu={(e) => e.preventDefault()}
+                      style={{
+                        width: "150px",
+                        height: "100px",
+                        userSelect: "none",
+                        webkitTouchCallout: "none",
+                        webkitUserSelect: "none",
+                        mozUserSelect: "none",
+                        msUserSelect: "none",
+                      }}
                       src={postData.selectedFile}
                       alt="Profile_Picture"
                     />

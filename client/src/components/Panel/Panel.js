@@ -90,8 +90,6 @@ const Panel = () => {
     navigate(`/${id}/attendanceDisplay`);
   };
 
-
-
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event.type === "keydown" &&
@@ -160,6 +158,8 @@ const Panel = () => {
                     // marginLeft: "10px",
                     justifyContent: "center",
                     bgcolor: "orange",
+                    userSelect: "none", // Prevent selection
+                    pointerEvents: "none", // Prevent interaction
                   }}
                   src={user.result.selectedFile}
                 />
