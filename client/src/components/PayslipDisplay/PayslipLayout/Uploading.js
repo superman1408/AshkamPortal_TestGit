@@ -97,6 +97,9 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
                 fontWeight: "bold",
                 marginTop: "5px",
                 marginLeft: "10px",
+                "@media(max-width:600px)": {
+                  margin: "0px",
+                },
               }}
             >
               <input
