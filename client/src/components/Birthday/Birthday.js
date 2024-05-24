@@ -44,7 +44,6 @@ const Birthday = () => {
 
   useEffect(() => {
     dispatch(getPosts());
-    isBirthdayToday();
     dispatch(getEvents()).then(() => {
       if (event) {
         event.map((item) => {
@@ -57,17 +56,17 @@ const Birthday = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, evento, event]);
 
-  const isBirthdayToday = () => {
-    posts.map((post) => {
-      // console.log(post.firstName)
-      let day = new Date(post.dob).getDate();
-      let month = new Date(post.dob).getMonth() + 1;
-      const currentDay = new Date().getDate();
-      const currentMonth = new Date().getMonth() + 1;
-      if (currentDay === day && currentMonth === month) {
-      }
-    });
-  };
+  // const isBirthdayToday = () => {
+  //   posts.map((post) => {
+  //     // console.log(post.firstName)
+  //     let day = new Date(post.dob).getDate();
+  //     let month = new Date(post.dob).getMonth() + 1;
+  //     const currentDay = new Date().getDate();
+  //     const currentMonth = new Date().getMonth() + 1;
+  //     if (currentDay === day && currentMonth === month) {
+  //     }
+  //   });
+  // };
 
   const birthdaysToday = posts.filter((post) => {
     const day = new Date(post.dob).getDate();
@@ -103,18 +102,18 @@ const Birthday = () => {
       >
         <Grid sx={{ display: "flex" }}>
           <div>
-            {isBirthdayToday() ? (
+            {birthdaysToday.length === 0 ? (
               // eslint-disable-next-line jsx-a11y/no-distracting-elements
               <marquee
                 direction="up"
                 style={{ color: "#047681", fontFamily: "Roboto" }}
               >
                 <strong style={{ color: "#e55d17", fontFamily: "Roboto" }}>
-                  No Event Today!
+                  No Birthday Today!
                 </strong>
                 <br />
                 <br />
-                There are no event today. <br />
+                {/* There are no event today. <br /> */}
                 Please check back tomorrow or try again later.
               </marquee>
             ) : (
@@ -189,7 +188,7 @@ const Birthday = () => {
                   fontFamily: "Roboto",
                 }}
               >
-                {evento}
+                <div>{evento}</div>
               </marquee>
             </div>
           </div>

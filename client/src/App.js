@@ -25,22 +25,24 @@ const App = () => {
 
   return (
     <BrowserRouter>
+      <header>
+        <div
+          style={{
+            display: {
+              xs: "0",
+              sm: "600",
+            },
+            justifyContent: "space-evenly",
+            padding: "10px",
+          }}
+        >
+          <img src={LOGO} alt="logo" style={{ width: "185px" }} />
+        </div>
+        {/* )} */}
+      </header>
+
+      <Navibar />
       <Container maxWidth={false}>
-        <header>
-          <div
-            style={{
-              display: {
-                xs: "0",
-                sm: "600",
-              },
-              justifyContent: "space-evenly",
-            }}
-          >
-            <img src={LOGO} alt="logo" style={{ width: "185px" }} />
-          </div>
-          {/* )} */}
-        </header>
-        <Navibar />
         <div style={{ display: "flex" }}>
           <Routes>
             <Route

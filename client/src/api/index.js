@@ -3,9 +3,9 @@ import axios from "axios";
 // const URL = "http://localhost:5000/posts";
 
 // const URLL = "http://localhost:5000/auth";
-
+// https://ashkam-server-b9bc1f76ae2f.herokuapp.com/
 const API = axios.create({
-  baseURL: "https://ashkam-server-b9bc1f76ae2f.herokuapp.com/",
+  baseURL: "http://localhost:8080/",
 });
 
 API.interceptors.request.use((req) => {

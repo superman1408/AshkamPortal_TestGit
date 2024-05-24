@@ -23,7 +23,7 @@ const Inbox = ({ post, setCurrentId }) => {
         required
         fullwidth="true"
         sx={{
-          bgcolor: "smokewhite",
+          bgcolor: "white",
           boxShadow: 9,
           // width: "250px",
           // padding: "5px",
@@ -44,7 +44,7 @@ const Inbox = ({ post, setCurrentId }) => {
             // marginLeft: "10px",
           }}
         >
-          <Grid sx={{ padding: "10px"}}>
+          <Grid sx={{ padding: "10px" }}>
             <Avatar
               alt="avatar"
               src={post?.selectedFile}
@@ -52,7 +52,7 @@ const Inbox = ({ post, setCurrentId }) => {
               color="green"
             />
           </Grid>
-          <Grid sx={{width: "240px",padding: "10px"}}>
+          <Grid sx={{ width: "240px", padding: "10px" }}>
             <Typography
               variant="h6"
               color="#16355c"

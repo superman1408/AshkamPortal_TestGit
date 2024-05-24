@@ -38,7 +38,6 @@ const Communication = () => {
           padding: "5px",
           display: "flex",
           width: "100%",
-          backgroundColor: "white",
           "@media (maxWidth: 600px)": {
             flexDirection: "column",
           },
@@ -47,7 +46,6 @@ const Communication = () => {
         {matches && <Panel />}
         <Grid
           sx={{
-            bgcolor: "white",
             display: "flex",
             boxShadow: 2,
             margin: "15px",
@@ -58,8 +56,6 @@ const Communication = () => {
         >
           <div
             style={{
-              // border: "0.5px dotted gray",
-              background: "white",
               height: "600px",
               overflow: "auto",
               // position: "fixed",
@@ -101,11 +97,9 @@ const Communication = () => {
             <div style={{ height: "600" }}>
               <div
                 style={{
-                  // border: "0.5px dotted gray",
                   background: "white",
                   height: "600px",
                   overflow: "auto",
-                  // position: "fixed",
                   top: "100px",
                   zIndex: 99999,
                   width: "auto",
