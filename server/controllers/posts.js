@@ -100,6 +100,7 @@ export const sendData = async (req, res) => {
 
   const post = await AuthenticateUser.findById(id);
   post.recipient.push(value.recipient);
+  post.recipient2.push(value.recipient2);
   post.requiredMessage.push(value.requiredMessage);
   post.subject.push(value.subject);
   // console.log(value.recipient);
@@ -323,11 +324,7 @@ export const salarySlipData = async (req, res) => {
   }
 };
 
-
-
-
 export const getSalary = async (req, res) => {
-  
   try {
     const slipData = await PaySlipModel.find({});
 
