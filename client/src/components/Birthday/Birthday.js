@@ -109,11 +109,11 @@ const Birthday = () => {
                 style={{ color: "#047681", fontFamily: "Roboto" }}
               >
                 <strong style={{ color: "#e55d17", fontFamily: "Roboto" }}>
-                  No Event Today!
+                  No Birthday Today!
                 </strong>
                 <br />
                 <br />
-                There are no event today. <br />
+                {/* There are no event today. <br /> */}
                 Please check back tomorrow or try again later.
               </marquee>
             ) : (
@@ -188,7 +188,7 @@ const Birthday = () => {
                   fontFamily: "Roboto",
                 }}
               >
-                {evento}
+                <div>{evento}</div>
               </marquee>
             </div>
           </div>

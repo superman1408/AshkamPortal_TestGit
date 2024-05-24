@@ -127,10 +127,6 @@ const RegistrationForm = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentId, isLoading]);
 
-
-
-  
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (currentId) {
@@ -301,7 +297,7 @@ const RegistrationForm = () => {
                         fontFamily: "Roboto",
                       }}
                     >
-                      Role
+                      Role :
                     </Typography>
 
                     <TextField
@@ -329,7 +325,7 @@ const RegistrationForm = () => {
                     fontFamily: "Roboto",
                   }}
                 >
-                  Full Name
+                  Full Name:
                 </Typography>
 
                 <TextField
@@ -364,11 +360,20 @@ const RegistrationForm = () => {
                     "@media (max-width: 600px)": {
                       flexDirection: "column",
                     },
-
                     justifyContent: "space-between",
                   }}
                 >
-                  <Grid sx={{ marginTop: "40px" }}>
+                  <Grid sx={{ marginTop: "20px" }}>
+                    <Typography
+                      sx={{
+                        margin: "30px 0px 10px 0px",
+                        fontSize: "18px",
+                        fontWeight: "bold",
+                        fontFamily: "Roboto",
+                      }}
+                    >
+                      Profile Picture :
+                    </Typography>
                     <FileBase
                       type="file"
                       multiple={false}
@@ -387,7 +392,16 @@ const RegistrationForm = () => {
                     }}
                   >
                     <img
-                      style={{ width: "150px", height: "100px" }}
+                      onContextMenu={(e) => e.preventDefault()}
+                      style={{
+                        width: "150px",
+                        height: "100px",
+                        userSelect: "none",
+                        webkitTouchCallout: "none",
+                        webkitUserSelect: "none",
+                        mozUserSelect: "none",
+                        msUserSelect: "none",
+                      }}
                       src={postData.selectedFile}
                       alt="Profile_Picture"
                     />

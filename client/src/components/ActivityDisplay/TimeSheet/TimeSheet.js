@@ -132,6 +132,25 @@ function TimeSheet({ currentId, posts }) {
     return totalNetTime + newEntry.netTime <= 48;
   };
 
+  const handleCheck = () => {
+    const newEntry = {
+      projectCode,
+      activityCode,
+      date,
+      netTime: parseFloat(netTime),
+      overTime: parseFloat(overTime),
+      editIndex: parseFloat(editIndex),
+    };
+
+    if (validateEntry(newEntry)) {
+      console.log(true); // Validation passed
+    } else {
+      alert(
+        'Invalid entry! Please check your input values and try again. Selected Date must not fall under "SUNDAY" & 2nd-4th "SATURDAY".'
+      );
+    }
+  };
+
   //Logic for Second and Fourth Saturday....!!!!!
   const isSecondOrFourthSaturday = (date) => {
     const dayOfMonth = date.getDate();
@@ -303,6 +322,22 @@ function TimeSheet({ currentId, posts }) {
               <div className="form-group">
                 <label
                   style={{ color: "#16355d", fontFamily: "Roboto" }}
+                  htmlFor="date"
+                >
+                  Date:
+                </label>
+                <input
+                  type="date"
+                  id="date"
+                  // value={date}
+                  defaultValue={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  onClick={handleCheck}
+                />
+              </div>
+              <div className="form-group">
+                <label
+                  style={{ color: "#16355d", fontFamily: "Roboto" }}
                   htmlFor="projectCode"
                 >
                   Project Code:
@@ -367,21 +402,6 @@ function TimeSheet({ currentId, posts }) {
                 )}
               </div>
 
-              <div className="form-group">
-                <label
-                  style={{ color: "#16355d", fontFamily: "Roboto" }}
-                  htmlFor="date"
-                >
-                  Date:
-                </label>
-                <input
-                  type="date"
-                  id="date"
-                  // value={date}
-                  defaultValue={date}
-                  onChange={(e) => setDate(e.target.value)}
-                />
-              </div>
               <div className="form-group">
                 <label
                   style={{ color: "#16355d", fontFamily: "Roboto" }}

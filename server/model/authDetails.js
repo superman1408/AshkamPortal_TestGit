@@ -86,6 +86,9 @@ const authSchema = mongoose.Schema({
   recipient: {
     type: [String],
   },
+  recipient2: {
+    type: [String],
+  },
   requiredMessage: {
     type: [String],
   },

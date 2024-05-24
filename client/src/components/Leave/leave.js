@@ -29,6 +29,7 @@ const Leave = () => {
   const [select, setSelect] = useState("");
   const [mailData, setMailData] = useState({
     recipient: "",
+    recipient2: "",
     requiredMessage: "",
     subject: "",
   });
@@ -101,6 +102,7 @@ const Leave = () => {
   const clear = () => {
     setMailData({
       recipient: "",
+      recipient2: "",
       requiredMessage: "",
       subject: "",
     });
@@ -184,13 +186,26 @@ const Leave = () => {
                 <TextField
                   type="email"
                   name="recipient"
-                  label="Recipient"
+                  label="To"
                   variant="outlined"
                   required
                   fullWidth
                   sx={{ marginTop: "10px" }}
                   onChange={(e) =>
                     setMailData({ ...mailData, recipient: e.target.value })
+                  }
+                />
+
+                <TextField
+                  type="email"
+                  name="recipient2"
+                  label="Cc"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  sx={{ marginTop: "10px" }}
+                  onChange={(e) =>
+                    setMailData({ ...mailData, recipient2: e.target.value })
                   }
                 />
 
@@ -333,7 +348,6 @@ const Leave = () => {
                 "@media (max-width: 600px)": {
                   width: "40vh",
                   marginTop: "10px",
-                  
                 },
               }}
             >

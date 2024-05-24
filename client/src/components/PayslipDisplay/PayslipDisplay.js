@@ -59,17 +59,17 @@ const PayslipDisplay = () => {
       style={{
         display: "flex",
         flexDirection: "column",
-        // "@media (max-width: 600px)": {
-        //   flexDirection: "row",
-        //   // width: "50%",
-        // },
+        "@media (max-width: 600px)": {
+          display: "flex",
+        },
       }}
     >
       <div>
         <strong
           style={{
             color: "#16355d",
-            marginLeft: "50px",
+            // marginLeft: "50px",
+            alignItems: "center",
             fontFamily: "Roboto",
             fontSize: "30px",
           }}

@@ -130,7 +130,11 @@ const TotalEmployee = () => {
                 }}
               >
                 <Grid>
-                  <IconButton height="40px" width="40px" color="primary">
+                  <IconButton
+                    height="40px"
+                    width="40px"
+                    sx={{ color: "#dc3912" }}
+                  >
                     <WomanIcon />
                   </IconButton>
                 </Grid>
