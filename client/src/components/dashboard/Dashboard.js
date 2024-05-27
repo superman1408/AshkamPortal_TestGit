@@ -67,6 +67,7 @@ const Admin = ({ currentId }) => {
               "@media (max-width: 600px)": {
                 margin: "0px",
                 marginLeft: "0px",
+                display: "flex",
               },
             }}
           >
