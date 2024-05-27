@@ -32,6 +32,10 @@ const ManagingTeam = () => {
           marginTop: "20px",
           marginLeft: "20px",
           marginRight: "10px",
+          "@media (max-width: 600px)": {
+            display: "flex",
+            margin:"0px"
+          },
         }}
       >
         <Grid

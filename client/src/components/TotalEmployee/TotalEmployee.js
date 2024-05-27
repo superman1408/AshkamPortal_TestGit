@@ -49,6 +49,10 @@ const TotalEmployee = () => {
           bgcolor: "#e9edf7",
           boxShadow: 1,
           borderRadius: "10px",
+          "@media (max-width: 600px)": {
+            display: "flex",
+            margin: "20px 0px 0px 0px",
+          },
         }}
       >
         <Grid sx={{ display: "flex", flexDirection: "column" }}>

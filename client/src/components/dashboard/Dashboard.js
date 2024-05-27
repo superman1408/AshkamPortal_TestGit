@@ -64,6 +64,10 @@ const Admin = ({ currentId }) => {
               flexDirection: "column",
               flex: 1,
               // bgcolor: "#f0f2f1",
+              "@media (max-width: 600px)": {
+                margin: "0px",
+                marginLeft: "0px",
+              },
             }}
           >
             {/* <Grid
@@ -155,7 +159,15 @@ const Admin = ({ currentId }) => {
                     <ManagingTeam />
                   </Grid>
 
-                  <Grid sx={{ margin: "20px 0px 0px 20px" }}>
+                  <Grid
+                    sx={{
+                      margin: "20px 0px 0px 20px",
+                      "@media (max-width: 600px)": {
+                        // display: "flex",
+                        margin: "20px 0px 0px 0px",
+                      },
+                    }}
+                  >
                     <SkillDisplay currentId={currentId} />
                   </Grid>
                 </Grid>
@@ -183,6 +195,10 @@ const Admin = ({ currentId }) => {
                     marginTop: "10px",
                     marginLeft: "20px",
                     marginRight: "0px",
+                    "@media (max-width: 600px)": {
+                      display: "flex",
+                      margin: "20px 0px 0px 0px",
+                    },
                   }}
                 >
                   <Calender />

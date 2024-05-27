@@ -98,6 +98,10 @@ const Birthday = () => {
           borderRadius: "10px",
           backgroundImage: `url(${Image})`,
           backgroundSize: "cover",
+          "@media (max-width: 600px)": {
+            display: "flex",
+            margin: "20px 0px 0px 0px",
+          },
         }}
       >
         <Grid sx={{ display: "flex" }}>
