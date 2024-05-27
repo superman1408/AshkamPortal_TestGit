@@ -35,6 +35,9 @@ const Admin = ({ currentId }) => {
           padding: "2px",
           // bgcolor: "background.paper",
           boxShadow: 1,
+          "@media (max-width: 600px)": {
+            display: "flex",
+          },
         }}
       >
         <Grid
@@ -63,12 +66,12 @@ const Admin = ({ currentId }) => {
               // bgcolor: "#f0f2f1",
             }}
           >
-            <Grid
+            {/* <Grid
               sx={{
                 display: "flex",
                 flexDirection: "row",
               }}
-            ></Grid>
+            ></Grid> */}
 
             <Grid
               sx={{
@@ -77,6 +80,7 @@ const Admin = ({ currentId }) => {
                 marginTop: "20px",
                 "@media (max-width: 750px)": {
                   flexDirection: "column",
+                  margin: "0px",
                 },
 
                 "@media (min-width: 750px)": {
@@ -133,6 +137,7 @@ const Admin = ({ currentId }) => {
                     display: "flex",
                     "@media (max-width: 720px)": {
                       flexDirection: "column",
+                      margin: "0px",
                     },
 
                     "@media (min-width: 720px)": {
@@ -140,7 +145,13 @@ const Admin = ({ currentId }) => {
                     },
                   }}
                 >
-                  <Grid>
+                  <Grid
+                    sx={{
+                      "@media (max-width: 720px)": {
+                        margin: "0px",
+                      },
+                    }}
+                  >
                     <ManagingTeam />
                   </Grid>
 
