@@ -35,7 +35,10 @@ const Admin = ({ currentId }) => {
           padding: "2px",
           // bgcolor: "background.paper",
           boxShadow: 1,
-          "@media (max-width: 600px)": {
+          "@media (max-width: 700px)": {
+            display: "flex",
+          },
+          "@media (min-width: 600px)": {
             display: "flex",
           },
         }}
@@ -64,32 +67,29 @@ const Admin = ({ currentId }) => {
               flexDirection: "column",
               flex: 1,
               // bgcolor: "#f0f2f1",
-              "@media (max-width: 600px)": {
+              "@media only screen and  (max-width: 600px)": {
                 margin: "0px",
                 marginLeft: "0px",
                 display: "flex",
               },
+              "@media (min-width: 600px)": {
+                display: "flex",
+              },
             }}
           >
-            {/* <Grid
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-              }}
-            ></Grid> */}
-
             <Grid
               sx={{
                 display: "flex",
                 flexDirection: "row",
                 marginTop: "20px",
-                "@media (max-width: 750px)": {
+                "@media only screen and (max-width: 750px)": {
                   flexDirection: "column",
                   margin: "0px",
                 },
 
                 "@media (min-width: 750px)": {
                   flexDirection: "row",
+                  display: "flex",
                 },
               }}
             >
