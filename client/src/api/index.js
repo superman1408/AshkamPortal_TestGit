@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 const API = axios.create({
-  baseURL: "http://localhost:8080/",
+  baseURL: "https://ashkam-server-b9bc1f76ae2f.herokuapp.com/",
 });
 
 API.interceptors.request.use((req) => {

@@ -30,6 +30,14 @@ const Communication = () => {
     }
   };
 
+  const sortedPosts = [...posts].sort((a, b) => {
+    const nameA = a.firstName.toLowerCase() + " " + a.lastName.toLowerCase();
+    const nameB = b.firstName.toLowerCase() + " " + b.lastName.toLowerCase();
+    if (nameA < nameB) return -1;
+    if (nameA > nameB) return 1;
+    return 0;
+  });
+
   return (
     <>
       <div
@@ -69,7 +77,7 @@ const Communication = () => {
           >
             <div>
               {verifyTheRole()
-                ? posts.map((post) => (
+                ? sortedPosts.map((post) => (
                     <div key={post._id} style={{ marginTop: "10px" }}>
                       <Inbox post={post} setCurrentId={setCurrentId} />
                       <Divider
@@ -78,7 +86,7 @@ const Communication = () => {
                       />
                     </div>
                   ))
-                : posts.map(
+                : sortedPosts.map(
                     (post) =>
                       post._id === user.result._id && (
                         <div key={post._id} style={{ marginTop: "10px" }}>
