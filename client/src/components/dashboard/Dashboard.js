@@ -26,14 +26,7 @@ const Admin = ({ currentId }) => {
   const role = user.result.role;
 
   return (
-    <div
-      style={{
-        minheight: "100%",
-        minWidth: "100%",
-        padding: "10px",
-        display: "flex",
-      }}
-    >
+    <div style={{ minheight: "100%", padding: "10px", display: "flex" }}>
       <Box
         sx={{
           display: "flex",
@@ -45,7 +38,7 @@ const Admin = ({ currentId }) => {
           "@media (max-width: 700px)": {
             display: "flex",
           },
-          "@media (min-width: 700px)": {
+          "@media (min-width: 600px)": {
             display: "flex",
           },
         }}
@@ -203,14 +196,10 @@ const Admin = ({ currentId }) => {
                     marginTop: "10px",
                     marginLeft: "20px",
                     marginRight: "0px",
-                    "@media (max-width: 700px)": {
+                    "@media (max-width: 600px)": {
                       display: "flex",
                       margin: "20px 0px 0px 0px",
                     },
-                    // "@media (min-width: 600px)": {
-                    //   display: "flex",
-                    //   margin: "20px 0px 0px 0px",
-                    // },
                   }}
                 >
                   <Calender />
