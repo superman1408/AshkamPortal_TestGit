@@ -24,6 +24,9 @@ const Calender = () => {
           maxWidth: "500px",
           borderRadius: "10px",
           justifyContent: "space-between",
+          // "@media (max-width:350px)": {
+          //   width: "40vh",
+          // },
         }}
       >
         <Grid

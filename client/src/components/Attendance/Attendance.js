@@ -55,6 +55,7 @@ const Attendance = () => {
           "@media (max-width: 600px)": {
             display: "flex",
             margin: "20px 0px 0px 0px",
+            width: "40vh",
           },
         }}
       >

@@ -38,7 +38,7 @@ const Admin = ({ currentId }) => {
           "@media (max-width: 700px)": {
             display: "flex",
           },
-          "@media (min-width: 600px)": {
+          "@media (min-width: 700px)": {
             display: "flex",
           },
         }}
@@ -164,8 +164,12 @@ const Admin = ({ currentId }) => {
                     sx={{
                       margin: "20px 0px 0px 20px",
                       "@media (max-width: 600px)": {
+                        // width: "40vh",
                         // display: "flex",
                         margin: "20px 0px 0px 0px",
+                      },
+                      "@media (max-width: 400px)": {
+                        width: "40vh",
                       },
                     }}
                   >
@@ -179,7 +183,13 @@ const Admin = ({ currentId }) => {
               </Grid>
 
               <Grid sx={{ display: "flex", flexDirection: "column " }}>
-                <Grid>
+                <Grid
+                  sx={{
+                    "@media (max-width: 400px)": {
+                      width: "40vh",
+                    },
+                  }}
+                >
                   <Attendance />
                 </Grid>
 
@@ -197,8 +207,12 @@ const Admin = ({ currentId }) => {
                     marginLeft: "20px",
                     marginRight: "0px",
                     "@media (max-width: 600px)": {
+                      // width: "40vh",
                       display: "flex",
                       margin: "20px 0px 0px 0px",
+                    },
+                    "@media (max-width: 400px)": {
+                      width: "40vh",
                     },
                   }}
                 >

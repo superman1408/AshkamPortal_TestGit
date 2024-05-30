@@ -102,6 +102,9 @@ const Birthday = () => {
             display: "flex",
             margin: "20px 0px 0px 0px",
           },
+          "@media (max-width: 400px)": {
+            width: "40vh",
+          },
         }}
       >
         <Grid sx={{ display: "flex" }}>
