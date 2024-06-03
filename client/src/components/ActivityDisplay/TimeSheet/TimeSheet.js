@@ -19,6 +19,7 @@ import Panel from "../../Panel/Panel";
 
 function TimeSheet({ currentId, posts }) {
   const dispatch = useDispatch();
+
   const [entries, setEntries] = useState([]);
   const [projectCode, setProjectCode] = useState("");
   const [activityCode, setActivityCode] = useState("");
@@ -63,7 +64,7 @@ function TimeSheet({ currentId, posts }) {
       });
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoading, currentId]);
+  }, [dispatch, currentId, posts]);
 
   const handleSubmit = async (e) => {
     const newEntry = {
@@ -102,7 +103,7 @@ function TimeSheet({ currentId, posts }) {
 
   //checking for the valid entry in the form and return result in "True" or "False".....!!!
   const validateEntry = (newEntry) => {
-    const today = new Date(date);
+    const today = new Date(newEntry.date);
     const currentDay = today.getDay();
     if (
       currentDay === 0 ||
@@ -129,25 +130,22 @@ function TimeSheet({ currentId, posts }) {
       0
     );
 
-    return totalNetTime + newEntry.netTime <= 48;
+    return totalNetTime + newEntry.netTime <= 8;
   };
 
-  const handleCheck = () => {
-    const newEntry = {
-      projectCode,
-      activityCode,
-      date,
-      netTime: parseFloat(netTime),
-      overTime: parseFloat(overTime),
-      editIndex: parseFloat(editIndex),
-    };
-
-    if (validateEntry(newEntry)) {
-      console.log(true); // Validation passed
-    } else {
+  const handleCheck = (e) => {
+    const selectedDate = new Date(e.target.value);
+    const currentDay = selectedDate.getDay();
+    const isInvalidDate =
+      currentDay === 0 ||
+      (currentDay === 6 && isSecondOrFourthSaturday(selectedDate));
+    if (isInvalidDate) {
       alert(
         'Invalid entry! Please check your input values and try again. Selected Date must not fall under "SUNDAY" & 2nd-4th "SATURDAY".'
       );
+      window.location.reload();
+    } else {
+      setDate(e.target.value);
     }
   };
 
@@ -157,6 +155,14 @@ function TimeSheet({ currentId, posts }) {
     const weekOfMonth = Math.floor((dayOfMonth - 1) / 7) + 1;
     return weekOfMonth === 2 || weekOfMonth === 4;
   };
+
+  // const handleNetSubmit = (e) => {
+  //   let value = parseInt(e.target.value);
+  //   if (value > 8) {
+  //     value = 8;
+  //   }
+  //   setNetTime(value);
+  // };
 
   //Logic for clearing the form.........
   const clearForm = () => {
@@ -329,10 +335,10 @@ function TimeSheet({ currentId, posts }) {
                 <input
                   type="date"
                   id="date"
-                  // value={date}
                   defaultValue={date}
-                  onChange={(e) => setDate(e.target.value)}
-                  onClick={handleCheck}
+                  // onChange={(e) => setDate(e.target.value)}
+                  onChange={handleCheck}
+                  required
                 />
               </div>
               <div className="form-group">
@@ -415,6 +421,7 @@ function TimeSheet({ currentId, posts }) {
                   // value={netTime}
                   defaultValue={netTime}
                   onChange={(e) => setNetTime(e.target.value)}
+                  // max={8}
                 />
               </div>
               <div className="form-group">
@@ -624,14 +631,15 @@ function TimeSheet({ currentId, posts }) {
                     <thead>
                       <tr>
                         <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
+                          Date (yyyy-mm-dd)
+                        </th>
+                        <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
                           Project Code
                         </th>
                         <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
                           Activity Code
                         </th>
-                        <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                          Date (yyyy-mm-dd)
-                        </th>
+
                         <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
                           Net Time (hrs)
                         </th>
@@ -643,6 +651,17 @@ function TimeSheet({ currentId, posts }) {
                     <tbody>
                       {array.map((post, index) => (
                         <tr key={index}>
+                          {" "}
+                          <td
+                            style={{
+                              color: "#e55d17",
+                              fontFamily: "Roboto",
+                              padding: "10px",
+                              alignContent: "center",
+                            }}
+                          >
+                            {post.date}
+                          </td>
                           <td
                             style={{
                               color: "#e55d17",
@@ -662,16 +681,6 @@ function TimeSheet({ currentId, posts }) {
                             }}
                           >
                             {post.activityCode}
-                          </td>
-                          <td
-                            style={{
-                              color: "#e55d17",
-                              fontFamily: "Roboto",
-                              padding: "10px",
-                              alignContent: "center",
-                            }}
-                          >
-                            {post.date}
                           </td>
                           <td
                             style={{
@@ -754,3 +763,5 @@ function TimeSheet({ currentId, posts }) {
   );
 }
 export default TimeSheet;
+
+// update the code as as soon as user click the 2nd saturday & sunday alert displays
