@@ -82,49 +82,31 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
               "@media(max-Width:600px)": { flexDirection: "column" },
             }}
           >
-            <Grid>
-              <Typography
-                sx={{
-                  fontWeight: "bold",
-                  marginTop: "10px",
-                  fontFamily: "Roboto",
-                  color: "#16355d",
-                }}
-              >
-                File Upload
-              </Typography>
-            </Grid>
-            <Grid
+            <Typography
               sx={{
-                marginLeft: "10px",
-                "@media(max-width:600px)": {
-                  marginLeft: "0px",
-                  marginTop: "10px",
-                  marginBottom: "10px",
-                },
+                fontWeight: "bold",
+                marginTop: "10px",
+                fontFamily: "Roboto",
+                color: "#16355d",
               }}
             >
-              <div
-                style={{
-                  fontWeight: "bold",
-                  marginTop: "5px",
-                  // marginLeft: "10px",
-                  "@media(max-width:600px)": {
-                    marginLeft: "0px",
-                    marginTop: "10px",
-                  },
-                }}
-              >
-                <input
-                  type="text"
-                  onChange={handleTitleChange}
-                  placeholder="Enter the Title"
-                  defaultValue={title}
-                  onFocus={togglePopup}
-                />
-              </div>
-            </Grid>
-            <Grid>
+              File Upload
+            </Typography>
+            <div
+              style={{
+                fontWeight: "bold",
+                marginTop: "5px",
+                marginLeft: "10px",
+              }}
+            >
+              <input
+                type="text"
+                onChange={handleTitleChange}
+                placeholder="Enter the Title"
+                defaultValue={title}
+                onFocus={togglePopup}
+              />
+
               {titleOpen && (
                 <TitlePopup setTitle={setTitle} setTitleOpen={setTitleOpen} />
               )}
@@ -138,8 +120,7 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
                 onChange={handleFileChange}
                 accept=".pdf"
               />
-              {/* </div> */}
-            </Grid>
+            </div>
           </Grid>
           <Grid>
             <button style={{ fontFamily: "Roboto" }} onClick={handleUpload}>
@@ -153,6 +134,5 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
 };
 
 export default Uploading;
-
 
 // Delays in uploading file

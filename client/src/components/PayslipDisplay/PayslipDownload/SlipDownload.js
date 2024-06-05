@@ -8,6 +8,8 @@ import {
   CardContent,
   CardActions,
   Divider,
+  Box,
+  CircularProgress,
 } from "@mui/material";
 
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
@@ -16,10 +18,15 @@ import CorporateImage from "../../../assets/salary.png";
 const SlipDownload = ({ posts, currentId }) => {
   const dispatch = useDispatch();
   const salary = useSelector((state) => state.salary);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(getSalarySlipData());
-  }, [dispatch, salary, currentId]);
+    const fetchData = async () => {
+      await dispatch(getSalarySlipData());
+      setIsLoading(false);
+    };
+    fetchData();
+  }, [dispatch]);
 
   const handleDownload = async (slip) => {
     try {
@@ -106,55 +113,60 @@ const SlipDownload = ({ posts, currentId }) => {
             bgcolor: "#e55d17",
           }}
         />
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-          }}
-        >
-          {/* Map over the salary array and display a download button for the salary slip with the matching currentId */}
-          {salary.map((slip, index) => {
-            const matchPost = currentId === slip.identify;
+        {isLoading ? (
+          <Box sx={{ marginTop: "100px" }}>
+            <CircularProgress />
+          </Box>
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+            }}
+          >
+            {/* Map over the salary array and display a download button for the salary slip with the matching currentId */}
+            {salary.map((slip, index) => {
+              const matchPost = currentId === slip.identify;
 
-            if (matchPost) {
-              return (
-                <div key={index} style={{ margin: "20px 20px 20px 20px" }}>
-                  <Card sx={{ maxWidth: 180, maxHeight: 280 }}>
-                    {/* <CardActionArea> */}
-                    <CardMedia
-                      component="img"
-                      height="140"
-                      image={CorporateImage}
-                      alt="Corporate Image"
-                    />
-                    <CardContent sx={{ textAlign: "center" }}>
-                      <Typography
-                        sx={{
-                          color: "#16355d",
-                        }}
-                      >
-                        {slip.title}
-                      </Typography>
-                    </CardContent>
-                    {/* </CardActionArea> */}
-                    <CardActions sx={{ justifyContent: "center" }}>
-                      <button
-                        style={{ fontFamily: "Roboto" }}
-                        onClick={() => handleDownload(slip)}
-                      >
-                        Download <FileDownloadIcon />
-                      </button>
-                    </CardActions>
-                  </Card>
-                </div>
-              );
-            } else {
-              return null;
-            }
-          })}
-        </div>
-        {/*  */}
+              if (matchPost) {
+                return (
+                  <div key={index} style={{ margin: "20px 20px 20px 20px" }}>
+                    <Card sx={{ maxWidth: 180, maxHeight: 280 }}>
+                      {/* <CardActionArea> */}
+                      <CardMedia
+                        component="img"
+                        height="140"
+                        image={CorporateImage}
+                        alt="Corporate Image"
+                      />
+                      <CardContent sx={{ textAlign: "center" }}>
+                        <Typography
+                          sx={{
+                            color: "#16355d",
+                          }}
+                        >
+                          {slip.title}
+                        </Typography>
+                      </CardContent>
+                      {/* </CardActionArea> */}
+                      <CardActions sx={{ justifyContent: "center" }}>
+                        <button
+                          style={{ fontFamily: "Roboto" }}
+                          onClick={() => handleDownload(slip)}
+                        >
+                          Download <FileDownloadIcon />
+                        </button>
+                      </CardActions>
+                    </Card>
+                  </div>
+                );
+              } else {
+                return null;
+              }
+            })}
+          </div>
+        )}
       </Card>
     </>
   );
