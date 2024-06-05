@@ -55,7 +55,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
         }
       });
     });
-  }, [currentId, dispatch, posts]);
+  }, [currentId, dispatch]);
 
   //  changes the "handle submit" code as window.location.relaod() is not good practice for sending response to server side
 
@@ -67,6 +67,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
     await dispatch(logList(logData, currentId))
       .then(() => {
         alert("Successfully Logged!");
+
         // Update the state or perform any necessary updates instead of reloading
       })
       .catch((err) => {
@@ -75,6 +76,8 @@ const AttendanceDetail = ({ currentId, posts }) => {
       .finally(() => {
         setIsSubmitting(false); // Reset the form submission state
       });
+
+    window.location.reload();
   };
 
   const handleAttendanceSubmit = (e) => {

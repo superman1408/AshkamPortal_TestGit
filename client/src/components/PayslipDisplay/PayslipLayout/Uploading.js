@@ -134,3 +134,6 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
 };
 
 export default Uploading;
+
+
+// Delays in uploading file

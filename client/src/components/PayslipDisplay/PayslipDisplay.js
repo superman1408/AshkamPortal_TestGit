@@ -52,7 +52,7 @@ const PayslipDisplay = () => {
         setIsLoading(false);
       }, 3000);
     }
-  }, [dispatch, currentId]);
+  }, [dispatch, currentId, posts]);
 
   return (
     <div
