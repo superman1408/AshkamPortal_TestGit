@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Card } from "@mui/material";
 
 const ComboBox = ({ posts, setCurrentId }) => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -10,8 +9,23 @@ const ComboBox = ({ posts, setCurrentId }) => {
     setCurrentId(value);
   };
 
+  const formatName = (firstName, lastName) => {
+    return (
+      firstName.charAt(0).toUpperCase() +
+      firstName.slice(1).toLowerCase() +
+      " " +
+      lastName.charAt(0).toUpperCase() +
+      lastName.slice(1).toLowerCase()
+    );
+  };
+
+  const sortedPosts = [...posts].sort((a, b) => {
+    const nameA = formatName(a.firstName, a.lastName);
+    const nameB = formatName(b.firstName, b.lastName);
+    return nameA.localeCompare(nameB);
+  });
+
   return (
-    // <Card elevation={5} sx={{ backgroundColor: "blue" }}>
     <select
       value={selectedOption}
       onChange={handleChange}
@@ -31,17 +45,12 @@ const ComboBox = ({ posts, setCurrentId }) => {
       >
         Select Employee{" "}
       </option>
-      {posts.map((option, index) => (
+      {sortedPosts.map((option, index) => (
         <option key={index} value={option._id}>
-          {option.firstName.charAt(0).toUpperCase() +
-            option.firstName.slice(1).toLowerCase() +
-            " " +
-            option.lastName.charAt(0).toUpperCase() +
-            option.lastName.slice(1).toLowerCase()}
+          {formatName(option.firstName, option.lastName)}
         </option>
       ))}
     </select>
-    // </Card>
   );
 };
 

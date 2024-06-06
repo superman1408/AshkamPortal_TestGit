@@ -24,12 +24,15 @@ const Calender = () => {
           maxWidth: "500px",
           borderRadius: "10px",
           justifyContent: "space-between",
+          // "@media (max-width:350px)": {
+          //   width: "40vh",
+          // },
         }}
       >
         <Grid
           sx={{
             display: "flex",
-            marginLeft: "20px",
+            // marginLeft: "20px",
             marginRight: "0px",
             marginTop: "10px",
             justifyContent: "space-between",

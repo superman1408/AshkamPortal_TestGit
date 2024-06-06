@@ -35,6 +35,12 @@ const Admin = ({ currentId }) => {
           padding: "2px",
           // bgcolor: "background.paper",
           boxShadow: 1,
+          "@media (max-width: 700px)": {
+            display: "flex",
+          },
+          "@media (min-width: 700px)": {
+            display: "flex",
+          },
         }}
       >
         <Grid
@@ -61,26 +67,29 @@ const Admin = ({ currentId }) => {
               flexDirection: "column",
               flex: 1,
               // bgcolor: "#f0f2f1",
+              "@media only screen and  (max-width: 600px)": {
+                margin: "0px",
+                marginLeft: "0px",
+                display: "flex",
+              },
+              "@media (min-width: 600px)": {
+                display: "flex",
+              },
             }}
           >
             <Grid
               sx={{
                 display: "flex",
                 flexDirection: "row",
-              }}
-            ></Grid>
-
-            <Grid
-              sx={{
-                display: "flex",
-                flexDirection: "row",
                 marginTop: "20px",
-                "@media (max-width: 750px)": {
+                "@media only screen and (max-width: 750px)": {
                   flexDirection: "column",
+                  margin: "0px",
                 },
 
                 "@media (min-width: 750px)": {
                   flexDirection: "row",
+                  display: "flex",
                 },
               }}
             >
@@ -133,6 +142,7 @@ const Admin = ({ currentId }) => {
                     display: "flex",
                     "@media (max-width: 720px)": {
                       flexDirection: "column",
+                      margin: "0px",
                     },
 
                     "@media (min-width: 720px)": {
@@ -140,11 +150,29 @@ const Admin = ({ currentId }) => {
                     },
                   }}
                 >
-                  <Grid>
+                  <Grid
+                    sx={{
+                      "@media (max-width: 720px)": {
+                        margin: "0px",
+                      },
+                    }}
+                  >
                     <ManagingTeam />
                   </Grid>
 
-                  <Grid sx={{ margin: "20px 0px 0px 20px" }}>
+                  <Grid
+                    sx={{
+                      margin: "20px 0px 0px 20px",
+                      "@media (max-width: 600px)": {
+                        // width: "40vh",
+                        // display: "flex",
+                        margin: "20px 0px 0px 0px",
+                      },
+                      "@media (max-width: 400px)": {
+                        width: "40vh",
+                      },
+                    }}
+                  >
                     <SkillDisplay currentId={currentId} />
                   </Grid>
                 </Grid>
@@ -155,7 +183,13 @@ const Admin = ({ currentId }) => {
               </Grid>
 
               <Grid sx={{ display: "flex", flexDirection: "column " }}>
-                <Grid>
+                <Grid
+                  sx={{
+                    "@media (max-width: 400px)": {
+                      width: "40vh",
+                    },
+                  }}
+                >
                   <Attendance />
                 </Grid>
 
@@ -172,6 +206,14 @@ const Admin = ({ currentId }) => {
                     marginTop: "10px",
                     marginLeft: "20px",
                     marginRight: "0px",
+                    "@media (max-width: 600px)": {
+                      // width: "40vh",
+                      display: "flex",
+                      margin: "20px 0px 0px 0px",
+                    },
+                    "@media (max-width: 400px)": {
+                      width: "40vh",
+                    },
                   }}
                 >
                   <Calender />

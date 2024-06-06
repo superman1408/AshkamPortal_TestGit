@@ -10,6 +10,25 @@ const ComboBox = ({ posts, setCurrentId }) => {
     setCurrentId(value);
   };
 
+  const formatName = (firstName, lastName) => {
+    if (typeof firstName === "string" && typeof lastName === "string") {
+      return (
+        firstName.charAt(0).toUpperCase() +
+        firstName.slice(1).toLowerCase() +
+        " " +
+        lastName.charAt(0).toUpperCase() +
+        lastName.slice(1).toLowerCase()
+      );
+    }
+    return ""; // Return an empty string if firstName or lastName is not a string
+  };
+
+  const sortedPosts = [...posts].sort((a, b) => {
+    const nameA = formatName(a.firstName, a.lastName);
+    const nameB = formatName(b.firstName, b.lastName);
+    return nameA.localeCompare(nameB);
+  });
+
   return (
     <select
       value={selectedOption}
@@ -28,21 +47,17 @@ const ComboBox = ({ posts, setCurrentId }) => {
         style={{ fontWeight: "bold", textAlign: "center", fontStyle: "italic" }}
         value=""
       >
-        Select Employee{" "}
+        Select Employee
       </option>
-      {posts.map((item, index) => {
+      {sortedPosts.map((item, index) => {
         if (
           typeof item === "object" &&
-          "firstName" in item &&
-          "lastName" in item
+          typeof item.firstName === "string" &&
+          typeof item.lastName === "string"
         ) {
           return (
             <option key={index} value={item._id}>
-              {item.firstName.charAt(0).toUpperCase() +
-                item.firstName.slice(1).toLowerCase() +
-                " " +
-                item.lastName.charAt(0).toUpperCase() +
-                item.lastName.slice(1).toLowerCase()}
+              {formatName(item.firstName, item.lastName)}
             </option>
           );
         } else {
@@ -50,7 +65,6 @@ const ComboBox = ({ posts, setCurrentId }) => {
         }
       })}
     </select>
-    // </Card>
   );
 };
 

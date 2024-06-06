@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 const API = axios.create({
   baseURL: "https://ashkam-server-b9bc1f76ae2f.herokuapp.com/",
 });
@@ -74,3 +73,5 @@ export const salarySlipData = (id, formData) =>
   });
 
 export const fetchSalarySlipData = () => API.get("/posts/salary/slip");
+
+// SERVER ADDRESS : https://ashkam-server-b9bc1f76ae2f.herokuapp.com/ 

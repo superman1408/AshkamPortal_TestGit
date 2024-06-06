@@ -52,6 +52,11 @@ const Attendance = () => {
           overflow: "hidden",
           position: "relative", // Set position to relative
           flex: 1,
+          "@media (max-width: 600px)": {
+            display: "flex",
+            margin: "20px 0px 0px 0px",
+            width: "40vh",
+          },
         }}
       >
         <Grid sx={{ display: "flex", flexDirection: "column" }}>

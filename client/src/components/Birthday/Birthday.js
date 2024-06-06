@@ -98,6 +98,13 @@ const Birthday = () => {
           borderRadius: "10px",
           backgroundImage: `url(${Image})`,
           backgroundSize: "cover",
+          "@media (max-width: 600px)": {
+            display: "flex",
+            margin: "20px 0px 0px 0px",
+          },
+          "@media (max-width: 400px)": {
+            width: "40vh",
+          },
         }}
       >
         <Grid sx={{ display: "flex" }}>
@@ -148,6 +155,8 @@ const Birthday = () => {
                             width: 31,
                             height: 30,
                             marginLeft: "20px",
+                            userSelect: "none", // Prevent selection
+                            pointerEvents: "none", // Prevent interaction
                           }}
                           alt="user"
                           src={post.selectedFile}

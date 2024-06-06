@@ -30,6 +30,8 @@ const AttendanceDetail = ({ currentId, posts }) => {
     logOut: "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const array = [];
 
   useEffect(() => {
@@ -53,17 +55,29 @@ const AttendanceDetail = ({ currentId, posts }) => {
         }
       });
     });
-  }, [currentId]);
+  }, [currentId, dispatch]);
+
+  //  changes the "handle submit" code as window.location.relaod() is not good practice for sending response to server side
 
   const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent default form submission
+    if (isSubmitting) return; // Prevent duplicate submissions
+
+    setIsSubmitting(true);
     await dispatch(logList(logData, currentId))
       .then(() => {
         alert("Successfully Logged!");
-        window.location.reload();
+
+        // Update the state or perform any necessary updates instead of reloading
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsSubmitting(false); // Reset the form submission state
       });
+
+    window.location.reload();
   };
 
   const handleAttendanceSubmit = (e) => {
@@ -489,9 +503,6 @@ const AttendanceDetail = ({ currentId, posts }) => {
               </div>
             </Grid>
           )}
-          {/* <div>
-                
-              </div> */}
         </Grid>
       </Grid>
     </div>

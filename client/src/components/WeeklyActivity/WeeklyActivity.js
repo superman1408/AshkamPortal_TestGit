@@ -100,10 +100,14 @@ const WeeklyActivity = () => {
           boxShadow: 1,
           borderRadius: "10px",
           height: "480px",
-          // "@media (max-width: 600px)": {
-          //   overflow: "hidden",
-          //   position: "relative",
-          // },
+          "@media (max-width: 600px)": {
+            // display: "flex",
+            margin: "20px 0px 0px 0px",
+            height: "40vh",
+          },
+          "@media (max-width: 400px)": {
+            width: "40vh",
+          },
 
           // "@media (min-width: 600px)": {},
         }}

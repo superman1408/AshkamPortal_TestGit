@@ -218,17 +218,25 @@ const Navibar = () => {
             </Navbar.Collapse>
           </div>
         ) : (
-          <div>
-            <Marquee
-              style={{
-                color: "#16355d",
-                fontFamily: "Roboto",
-                fontWeight: "bold",
-              }}
-            >
-              Please Login to your account
-            </Marquee>
-          </div>
+          // <div>
+          <Marquee
+            style={{
+              color: "#16355d",
+              fontFamily: "Roboto",
+              fontWeight: "bold",
+              // minWidth: "390px",
+              maxWidth: "1380px",
+              // "@media (max-width: 600px)": {
+              //   maxWidth: "1380px",
+              // },
+              "@media (min-width: 600px)": {
+                minWidth: "1380px",
+              },
+            }}
+          >
+            Please Login to your account
+          </Marquee>
+          // </div>
         )}
       </div>
     </Navbar>
