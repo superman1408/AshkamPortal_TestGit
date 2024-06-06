@@ -197,7 +197,7 @@ const Leave = () => {
                 />
 
                 <TextField
-                  type="email"
+                  type="text"
                   name="recipient2"
                   label="Cc"
                   variant="outlined"

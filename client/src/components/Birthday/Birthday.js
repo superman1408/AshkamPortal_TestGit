@@ -155,6 +155,8 @@ const Birthday = () => {
                             width: 31,
                             height: 30,
                             marginLeft: "20px",
+                            userSelect: "none", // Prevent selection
+                            pointerEvents: "none", // Prevent interaction
                           }}
                           alt="user"
                           src={post.selectedFile}
