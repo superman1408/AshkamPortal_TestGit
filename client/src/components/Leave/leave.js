@@ -218,18 +218,35 @@ const Leave = () => {
                     },
                   }}
                 >
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DemoContainer components={["DatePicker"]}>
-                      <DatePicker
-                        label="From"
-                        value={valueTo ? valueTo : " "}
-                        onChange={(newValue) => setValueTo(newValue)}
-                        required
-                        fullWidth
-                      />
-                    </DemoContainer>
-                  </LocalizationProvider>
+                  <Grid>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <DemoContainer components={["DatePicker"]}>
+                        <DatePicker
+                          label="From"
+                          value={valueTo ? valueTo : " "}
+                          onChange={(newValue) => setValueTo(newValue)}
+                          required
+                          fullWidth
+                        />
+                      </DemoContainer>
+                    </LocalizationProvider>
+                  </Grid>
+                  <Grid>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <DemoContainer components={["DatePicker"]}>
+                        <DatePicker
+                          label="To"
+                          value={valueFrom ? valueFrom : ""}
+                          required
+                          halfWidth
+                          onChange={(newValue) => setValueFrom(newValue)}
+                        />
+                      </DemoContainer>
+                    </LocalizationProvider>
+                  </Grid>
+                </Grid>
 
+                <Grid>
                   <div style={{ margin: "10px 0px" }}>
                     <select
                       value={select ? select : ""}
@@ -245,64 +262,52 @@ const Leave = () => {
                 </Grid>
 
                 <Grid>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DemoContainer components={["DatePicker"]}>
-                      <DatePicker
-                        label="To"
-                        value={valueFrom ? valueFrom : ""}
-                        required
-                        halfWidth
-                        onChange={(newValue) => setValueFrom(newValue)}
-                      />
-                    </DemoContainer>
-                  </LocalizationProvider>
-                </Grid>
-
-                {select && (
-                  <TextField
-                    name="subject"
-                    label="Subject"
-                    required
-                    fullWidth
-                    sx={{ marginTop: "10px", fontWeight: "500px" }}
-                    value={
-                      (mailData.subject = `Applying for ${leaveType} from ${fromDate} to ${toDate}`)
-                    }
-                    onChange={(e) =>
-                      setMailData({
-                        ...mailData,
-                        [e.target.subject]: e.target.value,
-                      })
-                    }
-                  />
-                )}
-                <Grid sx={{ display: "flex", flexDirection: "column" }}>
-                  <TextField
-                    variant="outlined"
-                    required
-                    fullWidth
-                    multiline
-                    minRows={8}
-                    sx={{
-                      marginTop: "10px",
-                      fontWeight: "bold",
-                      fontSize: "20px",
-                    }}
-                    defaultValue={`\n\n\n\n\n\nThanks & Regards\n${
-                      user.result.firstName.charAt(0).toUpperCase() +
-                      user.result.firstName.slice(1).toLowerCase() +
-                      " " +
-                      user.result.lastName.charAt(0).toUpperCase() +
-                      user.result.lastName.slice(1).toLowerCase()
-                    } | ${user.result.department}`}
-                    // Regards & username should be on two lines one by one
-                    onChange={(e) =>
-                      setMailData({
-                        ...mailData,
-                        requiredMessage: e.target.value,
-                      })
-                    }
-                  />
+                  {select && (
+                    <TextField
+                      name="subject"
+                      label="Subject"
+                      required
+                      fullWidth
+                      sx={{ marginTop: "10px", fontWeight: "500px" }}
+                      value={
+                        (mailData.subject = `Applying for ${leaveType} from ${fromDate} to ${toDate}`)
+                      }
+                      onChange={(e) =>
+                        setMailData({
+                          ...mailData,
+                          [e.target.subject]: e.target.value,
+                        })
+                      }
+                    />
+                  )}
+                  <Grid sx={{ display: "flex", flexDirection: "column" }}>
+                    <TextField
+                      variant="outlined"
+                      required
+                      fullWidth
+                      multiline
+                      minRows={8}
+                      sx={{
+                        marginTop: "10px",
+                        fontWeight: "bold",
+                        fontSize: "20px",
+                      }}
+                      defaultValue={`\n\n\n\n\n\nThanks & Regards\n${
+                        user.result.firstName.charAt(0).toUpperCase() +
+                        user.result.firstName.slice(1).toLowerCase() +
+                        " " +
+                        user.result.lastName.charAt(0).toUpperCase() +
+                        user.result.lastName.slice(1).toLowerCase()
+                      } | ${user.result.department}`}
+                      // Regards & username should be on two lines one by one
+                      onChange={(e) =>
+                        setMailData({
+                          ...mailData,
+                          requiredMessage: e.target.value,
+                        })
+                      }
+                    />
+                  </Grid>
                   <div style={{ display: "flex", justifyContent: "right" }}>
                     <button
                       variant="contained"
