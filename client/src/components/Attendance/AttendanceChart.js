@@ -12,7 +12,7 @@ const HalfDoughnutWithPointer = ({ totalHours }) => {
     datasets: [
       {
         label: "Total working Hours",
-        data: [totalHours, 8.3],
+        data: [totalHours, 8.5],
         // backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
         backgroundColor: ["#e55d17", "#047682"],
         borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
