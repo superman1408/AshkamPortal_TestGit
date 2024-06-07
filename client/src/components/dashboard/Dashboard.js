@@ -166,11 +166,11 @@ const Admin = ({ currentId }) => {
                       "@media (max-width: 600px)": {
                         // width: "40vh",
                         // display: "flex",
-                        margin: "20px 0px 0px 0px",
+                        margin: "20px 20px 0px 0px",
                       },
-                      "@media (max-width: 400px)": {
-                        width: "40vh",
-                      },
+                      // "@media (max-width: 400px)": {
+                      //   width: "40vh",
+                      // },
                     }}
                   >
                     <SkillDisplay currentId={currentId} />
@@ -185,9 +185,9 @@ const Admin = ({ currentId }) => {
               <Grid sx={{ display: "flex", flexDirection: "column " }}>
                 <Grid
                   sx={{
-                    "@media (max-width: 400px)": {
-                      width: "40vh",
-                    },
+                    // "@media (max-width: 400px)": {
+                    //   width: "40vh",
+                    // },
                   }}
                 >
                   <Attendance />

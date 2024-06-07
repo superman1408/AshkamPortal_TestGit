@@ -19,6 +19,7 @@ const Calender = () => {
       <Container
         sx={{
           display: "flex",
+          alignContent: "center",
           bgcolor: " #f2e6e8",
           boxShadow: 1,
           maxWidth: "500px",
@@ -32,8 +33,9 @@ const Calender = () => {
         <Grid
           sx={{
             display: "flex",
+            alignItems: "center",
             // marginLeft: "20px",
-            marginRight: "0px",
+            // marginRight: "0px",
             marginTop: "10px",
             justifyContent: "space-between",
           }}
