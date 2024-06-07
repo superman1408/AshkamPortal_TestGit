@@ -34,11 +34,11 @@ const ManagingTeam = () => {
           marginRight: "10px",
           "@media (max-width: 600px)": {
             display: "flex",
-            margin: "0px",
+            margin: "0px 20px 0px 0px",
           },
-          "@media (max-width: 400px)": {
-            width: "40vh",
-          },
+          // "@media (max-width: 400px)": {
+          //   width: "40vh",
+          // },
         }}
       >
         <Grid

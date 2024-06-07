@@ -40,7 +40,7 @@ const Panel = () => {
   });
   // const [Btn, setBtn] = useState(false);
 
-  const matches = useMediaQuery("(min-width:1120px)");
+  const matches = useMediaQuery("(min-width:990px)");
 
   const dispatch = useDispatch();
 
