@@ -349,9 +349,9 @@ const Leave = () => {
                 // margin: "10px",
                 marginTop: "40px",
                 marginBottom: "10px",
-                height: "300px",
+                // height: "300px",
                 "@media (max-width: 600px)": {
-                  width: "40vh",
+                  // width: "40vh",
                   marginTop: "10px",
                 },
               }}
@@ -364,7 +364,7 @@ const Leave = () => {
                 padding: "5px",
                 "@media (max-width: 600px)": {
                   margin: "0px",
-                  width: "40vh",
+                  // width: "40vh",
                 },
               }}
             >
