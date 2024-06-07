@@ -362,7 +362,7 @@ const Leave = () => {
               elevation={10}
               sx={{
                 padding: "5px",
-                "@media (max-width: 600px)": {
+                "@media (max-width: 600px)": {  
                   margin: "0px",
                   // width: "40vh",
                 },
