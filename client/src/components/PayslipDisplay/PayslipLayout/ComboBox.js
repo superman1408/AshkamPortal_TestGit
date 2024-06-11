@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Card } from "@mui/material";
 
 const ComboBox = ({ posts, setCurrentId }) => {
   const [selectedOption, setSelectedOption] = useState("");

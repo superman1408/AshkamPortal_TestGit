@@ -76,7 +76,6 @@ const TitlePopup = ({ setTitle, setTitleOpen }) => {
               </div>
             </div>
             {/*_______________Month____________________  */}
-            {/*_______________Month____________________  */}
             <div>
               <label
                 style={{

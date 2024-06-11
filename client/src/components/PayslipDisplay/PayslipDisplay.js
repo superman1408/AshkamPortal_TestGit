@@ -2,18 +2,32 @@ import React, { useEffect, useState } from "react";
 import Uploading from "./PayslipLayout/Uploading";
 import SlipDownload from "./PayslipDownload/SlipDownload";
 import { useDispatch, useSelector } from "react-redux";
-import { CircularProgress, Box, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 
-import { getPosts } from "../../action/posts";
+import { getPosts, getSalarySlipData } from "../../action/posts";
 import { useParams } from "react-router-dom";
 import Panel from "../Panel/Panel";
 
 const PayslipDisplay = () => {
   const { id } = useParams();
   const user = JSON.parse(localStorage.getItem("profile"));
-  // const role = user.result.department;
+  const [currentId, setCurrentId] = useState(id);
+  const dispatch = useDispatch();
+  const posts = useSelector((state) => state.posts);
+
+  const salary = useSelector((state) => state.salary);
 
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      dispatch(getPosts());
+      await dispatch(getSalarySlipData());
+      setIsLoading(false);
+    };
+    fetchData();
+  }, [dispatch]);
+
   const verify = () => {
     try {
       if (
@@ -31,38 +45,13 @@ const PayslipDisplay = () => {
     }
   };
 
-  const [currentId, setCurrentId] = useState(id);
-  const [post, setPost] = useState();
-  const dispatch = useDispatch();
-  const posts = useSelector((state) => state.posts);
-
-  useEffect(() => {
-    if (posts) {
-      dispatch(getPosts());
-
-      posts.map((post) => {
-        if (post._id === currentId) {
-          setPost(post);
-        }
-      });
-    }
-
-    if (isLoading === true) {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 3000);
-    }
-  }, [dispatch, currentId, posts]);
+  // const [post, setPost] = useState();
 
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "column",
-        // "@media (max-width: 600px)": {
-        //   flexDirection: "row",
-        //   // width: "50%",
-        // },
       }}
     >
       <div>
@@ -99,9 +88,13 @@ const PayslipDisplay = () => {
           )}
 
           <Grid>
-            <SlipDownload posts={posts} currentId={currentId} />
+            <SlipDownload
+              posts={posts}
+              currentId={currentId}
+              salary={salary}
+              isLoading={isLoading}
+            />
           </Grid>
-          {/* )} */}
         </Grid>
       </Grid>
     </div>

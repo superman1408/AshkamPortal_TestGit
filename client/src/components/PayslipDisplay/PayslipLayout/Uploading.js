@@ -9,7 +9,6 @@ import FileUploadIcon from "@mui/icons-material/FileUpload";
 import TitlePopup from "./TitlePopup";
 
 const Uploading = ({ posts, currentId, setCurrentId }) => {
-  // const [currentId, setCurrentId] = useState(null);
   const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState(null); // Change to null
   const [title, setTitle] = useState(null);
