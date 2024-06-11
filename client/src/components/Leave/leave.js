@@ -42,7 +42,7 @@ const Leave = () => {
     { label: "SELECT LEAVE", value: "" },
     { label: "Casual Leave", value: "Casual Leave" },
     { label: "Sick Leave", value: "Sick Leave" },
-    // { label: "P Leave", value: "P Leave" },
+    { label: "Leave (others)", value: "Leave" },
     // { label: "Floating Leave", value: "Floating Leave" },
   ];
 
@@ -264,6 +264,7 @@ const Leave = () => {
                     label="Subject"
                     required
                     fullWidth
+                    disabled={false}
                     sx={{ marginTop: "10px", fontWeight: "500px" }}
                     value={
                       (mailData.subject = `Applying for ${leaveType} from ${fromDate} to ${toDate}`)
