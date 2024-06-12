@@ -76,16 +76,20 @@ const PayslipDisplay = () => {
         <Grid>
           <Panel />
         </Grid>
+
+        {/*--------------------------------------------------------------------------------------------------  */}
         <Grid>
-          {verify() === true && (
-            <div>
-              <Uploading
-                posts={posts}
-                currentId={currentId}
-                setCurrentId={setCurrentId}
-              />
-            </div>
-          )}
+          <Grid>
+            {verify() === true && (
+              <div>
+                <Uploading
+                  posts={posts}
+                  currentId={currentId}
+                  setCurrentId={setCurrentId}
+                />
+              </div>
+            )}
+          </Grid>
 
           <Grid>
             <SlipDownload

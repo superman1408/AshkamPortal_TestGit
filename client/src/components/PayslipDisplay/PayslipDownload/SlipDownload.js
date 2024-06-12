@@ -42,6 +42,7 @@ const SlipDownload = ({ posts, currentId, salary, isLoading }) => {
         sx={{
           textAlign: "center",
           margin: "10px",
+          width: "1050px",
           "@media(max-Width:600px)": { width: "40vh", margin: "0px" },
         }}
       >
