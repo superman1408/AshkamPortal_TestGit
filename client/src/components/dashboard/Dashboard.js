@@ -17,6 +17,7 @@ import manager from "../../assets/managerimg.png";
 import admin from "../../assets/IT.png";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
+import Department from "../Department/Department";
 
 const Admin = ({ currentId }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -173,7 +174,7 @@ const Admin = ({ currentId }) => {
                       // },
                     }}
                   >
-                    <SkillDisplay currentId={currentId} />
+                    <Department />
                   </Grid>
                 </Grid>
 
@@ -184,11 +185,13 @@ const Admin = ({ currentId }) => {
 
               <Grid sx={{ display: "flex", flexDirection: "column " }}>
                 <Grid
-                  sx={{
-                    // "@media (max-width: 400px)": {
-                    //   width: "40vh",
-                    // },
-                  }}
+                  sx={
+                    {
+                      // "@media (max-width: 400px)": {
+                      //   width: "40vh",
+                      // },
+                    }
+                  }
                 >
                   <Attendance />
                 </Grid>

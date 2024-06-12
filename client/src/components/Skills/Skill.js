@@ -27,38 +27,46 @@ const Skill = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const posts = useSelector((state) => state.posts);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    // skill1: "Marine",
-    // skill2: "Pipeline",
-    // skill3: "Civil & Infrastructure",
-    // skill4: "Architectural & Interior Design",
-    // skill5: "Information Technology",
+    department: "",
+    reportingManager: "",
+    jobTitle: "",
+    selectedFile: "",
   });
 
   useEffect(() => {
-    posts.map((items) => {
-      for (let index = 0; index <= posts.length; index++) {
-        if (items._id === currentId) {
-          setFormData(() => ({
-            ...formData,
-            firstName: items.firstName,
-            lastName: items.lastName,
-            role: items.role,
-            employeeId: items.employeeId,
-            department: items.department,
-            reportingManager: items.reportingManager,
-            selectedFile: items.selectedFile,
-          }));
-          setSelectedOption(items.role);
+    if (!currentId) return setCurrentId(id);
+    dispatch(getPosts())
+      .then(() => {
+        console.log("Data is received in the Skills  module");
+        posts.map((items) => {
+          for (let index = 0; index <= posts.length; index++) {
+            if (items._id === currentId) {
+              setFormData(() => ({
+                ...formData,
+                firstName: items.firstName,
+                lastName: items.lastName,
+                department: items.department,
+                reportingManager: items.reportingManager,
+                selectedFile: items.selectedFile,
+              }));
+              setSelectedOption(items.role);
 
-          break;
-        }
-      }
-    });
-  });
+              break;
+            }
+          }
+        });
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log("Error", err);
+      });
+  }, [currentId, isLoading]);
+  console.log(currentId);
 
   const dispatch = useDispatch();
   // const useNavigate = useNavigate();
@@ -90,6 +98,9 @@ const Skill = () => {
     //   console.log(Error);
     // }
   };
+
+
+  
 
   return (
     <div style={{ display: "flex", flex: 1 }}>
@@ -125,7 +136,7 @@ const Skill = () => {
               fontSize: "18px",
             }}
           >
-            Our Department
+          My Department
           </Typography>
           {Object.keys(formData).map((field) => (
             <div key={field} style={{ marginTop: "5px" }}>
@@ -154,7 +165,7 @@ const Skill = () => {
                       fontFamily: "Roboto",
                     }}
                   >
-                    {formData[field]}
+                    {formData[field].firstName}
                   </Typography>
                 </div>
               )}
