@@ -10,6 +10,19 @@ const Department = () => {
 
   const dispatch = useDispatch();
 
+  const [postData, setPostData] = useState({
+    firstName: "",
+    lastName: "",
+    jobTitle: "",
+    department: "",
+    reportingManager: "",
+    emergencyName: "",
+    emergencyAddress: "",
+    emergencyContact: "",
+    relationship: "",
+    selectedFile: "",
+  });
+
   useEffect(() => {
     dispatch(getPost()).then(() => {
       console.log("Data is recieved in the Registration Module..!!!");
