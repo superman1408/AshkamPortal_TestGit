@@ -3,35 +3,55 @@ import React, { useEffect, useState } from "react";
 
 import avatar1 from "../../assets/MD.jpg";
 import { useDispatch, useSelector } from "react-redux";
-import { getPost } from "../../action/posts";
+import { getPost, getPosts } from "../../action/posts";
+import Lead from "./Lead/Lead";
 
 const Department = () => {
   const posts = useSelector((state) => state.posts);
+  const user = JSON.parse(localStorage.getItem("profile"));
+
+  const verifyDepat = user.result.department;
+
+  console.log(verifyDepat);
 
   const dispatch = useDispatch();
 
-  const [postData, setPostData] = useState({
+  const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     jobTitle: "",
     department: "",
     reportingManager: "",
-    emergencyName: "",
-    emergencyAddress: "",
-    emergencyContact: "",
-    relationship: "",
     selectedFile: "",
   });
 
   useEffect(() => {
-    dispatch(getPost()).then(() => {
-      console.log("Data is recieved in the Registration Module..!!!");
-    });
-  }, [dispatch]);
+    if (posts) {
+      dispatch(getPosts()).then(() => {
+        console.log("Data is recieved in the Department Module..!!!");
+        // posts.forEach((post) => {
+        //   if (post.department === user.result.department) {
+        //     setFormData((prevData) => ({
+        //       // Merge the new data with previous data using spread operator
+        //       ...prevData,
+        //       firstName: post.firstName,
+        //       lastName: post.lastName,
+        //       jobTitle: post.jobTitle,
+        //       department: post.department,
+        //       reportingManager: post.reportingManager,
+        //       selectedFile: post.selectedFile,
+        //     }));
+        //   }
+        //   console.log(formData.firstName);
+        // });
+      });
+    }
+  }, [dispatch, posts]);
 
   return (
     <div style={{ display: "flex", flex: 1 }}>
-      <Container
+      <Lead posts={posts} verifyDepat={verifyDepat} />
+      {/* <Container
         sx={{
           display: "flex",
           padding: "10px",
@@ -93,7 +113,7 @@ const Department = () => {
                   fontFamily: "Roboto",
                 }}
               >
-                Mr.Abhishek Kumar
+                {formData.reportingManager}
               </Typography>
               <Typography
                 sx={{
@@ -149,7 +169,7 @@ const Department = () => {
             </Grid>
           </Grid>
         </Grid>
-      </Container>
+      </Container> */}
     </div>
   );
 };
