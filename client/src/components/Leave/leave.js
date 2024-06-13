@@ -42,7 +42,7 @@ const Leave = () => {
     { label: "SELECT LEAVE", value: "" },
     { label: "Casual Leave", value: "Casual Leave" },
     { label: "Sick Leave", value: "Sick Leave" },
-    // { label: "P Leave", value: "P Leave" },
+    { label: "Leave (others)", value: "Leave" },
     // { label: "Floating Leave", value: "Floating Leave" },
   ];
 
@@ -362,7 +362,7 @@ const Leave = () => {
               elevation={10}
               sx={{
                 padding: "5px",
-                "@media (max-width: 600px)": {  
+                "@media (max-width: 600px)": {
                   margin: "0px",
                   // width: "40vh",
                 },

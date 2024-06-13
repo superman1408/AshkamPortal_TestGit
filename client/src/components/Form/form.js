@@ -135,7 +135,7 @@ const Form = ({ currentId, setCurrentId }) => {
             variant="outlined"
             type="text"
             name="department"
-            className={classes.form__input}
+            className={classes.form__input} 
             value={postData.department}
             onChange={(e) =>
               setPostData({ ...postData, department: e.target.value })
