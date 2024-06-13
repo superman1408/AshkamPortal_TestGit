@@ -50,7 +50,14 @@ const Department = () => {
 
   return (
     <div style={{ display: "flex", flex: 1 }}>
-      <Lead posts={posts} verifyDepat={verifyDepat} />
+      {
+        posts.map((post) => {
+          if (post.department == verifyDepat) {
+            <Lead post={post} verifyDepat={verifyDepat} />
+          }
+        })
+      }
+      
       {/* <Container
         sx={{
           display: "flex",
