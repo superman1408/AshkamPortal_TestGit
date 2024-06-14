@@ -23,7 +23,20 @@ const Communication = () => {
   }, [dispatch, currentId]);
 
   const verifyTheRole = () => {
-    if (user.result.role === "admin" || user.result.role === "manager") {
+    if (user.result.role === "admin") {
+      return true;
+    } else if (
+      user.result.role === "manager" &&
+      user.result.department.toLowerCase() === "human resource"
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const verifyManager = () => {
+    if (user.result.role === "manager") {
       return true;
     } else {
       return false;
@@ -86,6 +99,19 @@ const Communication = () => {
                       />
                     </div>
                   ))
+                : verifyManager()
+                ? sortedPosts.map(
+                    (post) =>
+                      post.department === user.result.department && (
+                        <div key={post._id} style={{ marginTop: "10px" }}>
+                          <Inbox post={post} setCurrentId={setCurrentId} />
+                          <Divider
+                            variant="inset"
+                            sx={{ borderWidth: "1px", fontWeight: "15px" }}
+                          />
+                        </div>
+                      )
+                  )
                 : sortedPosts.map(
                     (post) =>
                       post._id === user.result._id && (

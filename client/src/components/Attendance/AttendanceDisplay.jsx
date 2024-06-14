@@ -37,18 +37,28 @@ const AttendanceDisplay = () => {
   //   setTotalHours(null);
   // };
 
+  const verify = () => {
+    try {
+      if (
+        // user.result.role === "admin" ||
+        (user.result.department.toLowerCase() === "human resource" &&
+          user.result.role === "manager") ||
+        user.result.role === "admin"
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       {!isLoading && (
         <>
-          {role === "manager" && (
-            <AttendanceCombo
-              posts={posts}
-              setCurrentId={setCurrentId}
-              // onUserChange={handleUserChange}
-            />
-          )}
-          {role === "admin" && (
+          {verify() === true && (
             <AttendanceCombo posts={posts} setCurrentId={setCurrentId} />
           )}
           <AttendanceDetail currentId={currentId} posts={posts} />
