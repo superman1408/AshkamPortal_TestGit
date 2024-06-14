@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { getPosts, updatePost } from "../../action/posts";
 import {
   Grid,
   IconButton,
@@ -19,13 +22,51 @@ import { useDispatch } from "react-redux";
 import { skillData } from "../../action/posts";
 
 const Skill = () => {
+  const { id } = useParams();
+  const [currentId, setCurrentId] = useState(id);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  const posts = useSelector((state) => state.posts);
+  const [isLoading, setIsLoading] = useState(true);
+
   const [formData, setFormData] = useState({
-    skill1: "Marine",
-    skill2: "Pipeline",
-    skill3: "Civil & Infrastructure",
-    skill4: "Architectural & Interior Design",
-    skill5: "Information Technology",
+    firstName: "",
+    lastName: "",
+    department: "",
+    reportingManager: "",
+    jobTitle: "",
+    selectedFile: "",
   });
+
+  useEffect(() => {
+    if (!currentId) return setCurrentId(id);
+    dispatch(getPosts())
+      .then(() => {
+        console.log("Data is received in the Skills  module");
+        posts.map((items) => {
+          for (let index = 0; index <= posts.length; index++) {
+            if (items._id === currentId) {
+              setFormData(() => ({
+                ...formData,
+                firstName: items.firstName,
+                lastName: items.lastName,
+                department: items.department,
+                reportingManager: items.reportingManager,
+                selectedFile: items.selectedFile,
+              }));
+              setSelectedOption(items.role);
+
+              break;
+            }
+          }
+        });
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log("Error", err);
+      });
+  }, [currentId, isLoading]);
+  console.log(currentId);
 
   const dispatch = useDispatch();
   // const useNavigate = useNavigate();
@@ -57,6 +98,9 @@ const Skill = () => {
     //   console.log(Error);
     // }
   };
+
+
+  
 
   return (
     <div style={{ display: "flex", flex: 1 }}>
@@ -92,7 +136,7 @@ const Skill = () => {
               fontSize: "18px",
             }}
           >
-            Our Services
+          My Department
           </Typography>
           {Object.keys(formData).map((field) => (
             <div key={field} style={{ marginTop: "5px" }}>
@@ -111,8 +155,8 @@ const Skill = () => {
                     }}
                     alt="avatar"
                   >
-                    {" "}
-                    {formData[field].charAt(0)}
+                    {formData[field].selectedFile}
+                    {/* {formData[field].charAt(0)} */}
                   </Avatar>
                   <Typography
                     sx={{
@@ -121,7 +165,7 @@ const Skill = () => {
                       fontFamily: "Roboto",
                     }}
                   >
-                    {formData[field]}
+                    {formData[field].firstName}
                   </Typography>
                 </div>
               )}
