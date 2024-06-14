@@ -169,9 +169,9 @@ const Admin = ({ currentId }) => {
                         // display: "flex",
                         margin: "20px 20px 0px 0px",
                       },
-                      // "@media (max-width: 400px)": {
-                      //   width: "40vh",
-                      // },
+                      "@media (min-width: 600px)": {
+                        width: "50vh",
+                      },
                     }}
                   >
                     <Department />
