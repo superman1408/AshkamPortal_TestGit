@@ -358,7 +358,7 @@ const Leave = () => {
             >
               <Calender />
             </Card>
-            <Card
+            {/* <Card
               elevation={10}
               sx={{
                 padding: "5px",
@@ -372,7 +372,7 @@ const Leave = () => {
                 availabelLeave={availabelLeave}
                 style={{ willchange: "transform" }}
               />
-            </Card>
+            </Card> */}
           </Grid>
         </Grid>
       </div>
