@@ -1,9 +1,11 @@
-import { Container, Typography, Grid } from "@mui/material";
+import { Container, Typography, Grid, IconButton } from "@mui/material";
 import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getPost, getPosts } from "../../action/posts";
 import Lead from "./Lead/Lead";
+
+import GroupsIcon from "@mui/icons-material/Groups";
 
 const Department = () => {
   const posts = useSelector((state) => state.posts);
@@ -46,24 +48,50 @@ const Department = () => {
         }}
       >
         <Grid>
+          <Grid sx={{ display: "flex", flexDirection: "row" }}>
+            <Grid>
+              <IconButton>
+                {" "}
+                <GroupsIcon />
+              </IconButton>
+            </Grid>
+            <Grid>
+              <Typography
+                sx={{
+                  color: "#16355d",
+                  marginLeft: "30px",
+                  // marginRight: "30px",
+                  marginTop: "9px",
+                  fontFamily: "Roboto",
+                  fontSize: "18px",
+                  textAlign: "center",
+                  fontWeight: "bold",
+                }}
+              >
+                Department
+              </Typography>
+            </Grid>
+          </Grid>
           <Typography
             sx={{
               color: "#16355d",
               fontFamily: "Roboto",
               fontWeight: "bolder",
-              mt: "5px",
+              mt: "opx",
               mb: "1px",
-              ml: "10px",
+              ml: "30px",
+              // mr: "40px",
               alignItems: "center",
-              fontSize: "17px",
+              fontSize: "15px",
+              textAlign: "center",
             }}
           >
-            {verifyDepat}
+            <h5>{verifyDepat}</h5>
           </Typography>
         </Grid>
         <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
           {posts.map((post) => {
-            if (post.department === verifyDepat) {
+            if (post.department === verifyDepat && post.role === "manager") {
               return (
                 <Lead key={post._id} post={post} verifyDepat={verifyDepat} />
               );
