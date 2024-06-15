@@ -15,7 +15,6 @@ import PaySlip from "./components/Payslip/PaySlip";
 import ActivityDisplay from "./components/ActivityDisplay/ActivityDisplay";
 import SkillDisplay from "./components/Skills/SkillDisplay";
 import PrintingLayout from "./components/PrinttingLayout/PrintingLayout";
-import EvolvePrintLayout from "./components/ActivityDisplay/TimeSheet/EvolvePrintLayout";
 import AttendanceDisplay from "./components/Attendance/AttendanceDisplay";
 import PasswordResetForm from "./components/PasswordReset/PasswordResetForm";
 import PayslipDisplay from "./components/PayslipDisplay/PayslipDisplay";
@@ -87,11 +86,6 @@ const App = () => {
               element={<AttendanceDisplay />}
             />
             <Route path="/printingLayout" exact element={<PrintingLayout />} />
-            <Route
-              path="/evolveprintlayout"
-              exact
-              element={<EvolvePrintLayout />}
-            />
           </Routes>
         </div>
       </Container>

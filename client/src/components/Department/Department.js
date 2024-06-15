@@ -13,15 +13,13 @@ const Department = () => {
 
   const verifyDepat = user.result.department;
 
-  console.log(verifyDepat);
+  // console.log(verifyDepat);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (posts) {
-      dispatch(getPosts()).then(() => {
-        console.log("Data is recieved in the Department Module..!!!");
-      });
+      dispatch(getPosts());
     }
   }, [dispatch, posts]);
 
@@ -43,7 +41,7 @@ const Department = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          marginBottom: "10px",
+          marginBottom: "48px",
           // marginRight: "20px",
         }}
       >
@@ -73,6 +71,7 @@ const Department = () => {
             </Grid>
           </Grid>
           <Typography
+            variant="h6"
             sx={{
               color: "#16355d",
               fontFamily: "Roboto",
@@ -82,11 +81,11 @@ const Department = () => {
               ml: "30px",
               // mr: "40px",
               alignItems: "center",
-              fontSize: "15px",
+              // fontSize: "15px",
               textAlign: "center",
             }}
           >
-            <h5>{verifyDepat}</h5>
+            {verifyDepat}
           </Typography>
         </Grid>
         <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
