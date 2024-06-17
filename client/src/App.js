@@ -18,6 +18,7 @@ import PrintingLayout from "./components/PrinttingLayout/PrintingLayout";
 import AttendanceDisplay from "./components/Attendance/AttendanceDisplay";
 import PasswordResetForm from "./components/PasswordReset/PasswordResetForm";
 import PayslipDisplay from "./components/PayslipDisplay/PayslipDisplay";
+import DepartmentDetails from "./components/Department/DepartmentDetails";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -86,6 +87,11 @@ const App = () => {
               element={<AttendanceDisplay />}
             />
             <Route path="/printingLayout" exact element={<PrintingLayout />} />
+            <Route
+              path="/departmentdetails"
+              exact
+              element={<DepartmentDetails />}
+            />
           </Routes>
         </div>
       </Container>
