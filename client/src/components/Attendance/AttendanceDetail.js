@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Typography, Grid, Divider, Card } from "@mui/material";
+import { Typography, Grid, Divider, Card, Box } from "@mui/material";
 
 import { getPosts } from "../../action/posts";
 import { dailyAttendance, logList } from "../../action/posts";
@@ -361,6 +361,12 @@ const AttendanceDetail = ({ currentId, posts }) => {
               backgroundColor: "white",
               border: "1px solid lightgray",
               padding: "10px",
+              height: "600px",
+              overflow: "auto",
+
+              top: "100px",
+              pointerEvents: "auto",
+              marginLeft: "10px",
             }}
           >
             <Typography
@@ -469,15 +475,19 @@ const AttendanceDetail = ({ currentId, posts }) => {
             <Grid
               elevation={10}
               sx={{
-                padding: "5px",
+                padding: "20px",
                 width: "auto",
                 marginLeft: "5px",
                 borderRadius: "15px",
                 border: "1px solid lightgray",
                 backgroundColor: "white",
+                display: "flex",
+                flexDirection: "column",
+
+                alignItems: "center", // Center-align content horizontally
               }}
             >
-              <div style={{ margin: "10px 20px 10px 20px" }}>
+              <div>
                 {hoveredData === false ? (
                   <>
                     {posts.map((post, index) => {
@@ -487,9 +497,29 @@ const AttendanceDetail = ({ currentId, posts }) => {
                           post.logOut[post.logOut.length - 1]
                         );
                         return (
-                          <div key={index}>
-                            <HalfDoughnutWithPointer totalHours={totalHours} />
-                          </div>
+                          <>
+                            <div key={index}>
+                              <HalfDoughnutWithPointer
+                                totalHours={totalHours}
+                              />
+                            </div>
+                            {/* <div style={{ margin: "20px 0px 0px 20px" }}>
+                              <Box
+                                sx={{
+                                  padding: "10px",
+                                }}
+                              >
+                                <Typography
+                                  sx={{
+                                    fontFamily: "Roboto",
+                                    color: "#16355d",
+                                  }}
+                                >
+                                  Total Worked = {totalHours}
+                                </Typography>
+                              </Box>
+                            </div> */}
+                          </>
                         );
                       }
                       return null;
@@ -498,8 +528,29 @@ const AttendanceDetail = ({ currentId, posts }) => {
                 ) : (
                   <>
                     <HalfDoughnutWithPointer totalHours={totalHours} />
+                    {/* <div style={{ margin: "20px 0px 0px 20px" }}>
+                      <Box
+                        sx={{
+                          padding: "10px",
+                        }}
+                      >
+                        <Typography
+                          sx={{
+                            fontFamily: "Roboto",
+                            color: "#16355d",
+                          }}
+                        >
+                          Total Worked = {totalHours}
+                        </Typography>
+                      </Box>
+                    </div> */}
                   </>
                 )}
+              </div>
+              <div style={{ marginTop: "300px" }}>
+                <Typography sx={{ fontWeight: "bold", fontSize: "12px" }}>
+                  Note : 0.10 hours = 6 minutes ; 0.01 hours = 36 seconds
+                </Typography>
               </div>
             </Grid>
           )}
@@ -510,3 +561,5 @@ const AttendanceDetail = ({ currentId, posts }) => {
 };
 
 export default AttendanceDetail;
+
+// align Card of Graph in center
