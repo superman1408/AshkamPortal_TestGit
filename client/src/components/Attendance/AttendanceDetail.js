@@ -475,7 +475,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
             <Grid
               elevation={10}
               sx={{
-                padding: "20px",
+                padding: "15px",
                 width: "auto",
                 marginLeft: "5px",
                 borderRadius: "15px",

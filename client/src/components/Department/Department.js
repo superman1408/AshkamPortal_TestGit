@@ -71,7 +71,6 @@ const Department = () => {
             </Grid>
           </Grid>
           <Typography
-            variant="h6"
             sx={{
               color: "#16355d",
               fontFamily: "Roboto",
@@ -81,7 +80,7 @@ const Department = () => {
               ml: "30px",
               // mr: "40px",
               alignItems: "center",
-              // fontSize: "15px",
+              fontSize: "15px",
               textAlign: "center",
             }}
           >
