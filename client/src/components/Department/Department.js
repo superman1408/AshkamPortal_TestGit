@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getPost, getPosts } from "../../action/posts";
+import { getPosts } from "../../action/posts";
 import Lead from "./Lead/Lead";
 
 import GroupsIcon from "@mui/icons-material/Groups";
