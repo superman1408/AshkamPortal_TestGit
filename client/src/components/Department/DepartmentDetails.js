@@ -16,6 +16,7 @@ import {
   IconButton,
   Button,
   CardActions,
+  ButtonBase,
 } from "@mui/material";
 import avatar1 from "../../assets/MD.jpg";
 
@@ -41,70 +42,18 @@ const DepartmentDetails = () => {
   }, [dispatch, posts]);
 
   return (
-    <div style={{ display: "flex", flex: 1 }}>
-      <Grid
-        sx={{ flexDirection: "column", padding: "10px", textAlign: "center" }}
-      >
-        <Grid sx={{ marginTop: "20px" }}>
-          <Grid
-            container
-            // justifyContent="space-evenly"
-            spacing={7}
-            sx={{ display: "flex", flexDirection: "row", marginLeft: "60px" }}
-          >
-            <Grid item>
-              <Item>ENGINEERING</Item>
-              <div>
-                {verifyDepat.toUpperCase() === "ENGINEERING" && (
-                  <div style={{ textAlign: "center" }}>
-                    <SouthIcon />
-                  </div>
-                )}
-              </div>
-            </Grid>
-            <Grid item>
-              <Item>INFORMATION TECHNOLOGY</Item>
-              <div>
-                {verifyDepat.toUpperCase() === "INFORMATION TECHNOLOGY" && (
-                  <div style={{ textAlign: "center" }}>
-                    <SouthIcon />
-                  </div>
-                )}
-              </div>
-            </Grid>
-            <Grid item>
-              <Item>HUMAN RESOURCE </Item>
-              <div>
-                {verifyDepat.toUpperCase() === "HUMAN RESOURCE" && (
-                  <div style={{ textAlign: "center" }}>
-                    <SouthIcon />
-                  </div>
-                )}
-              </div>
-            </Grid>
-            <Grid item>
-              <Item>ACCOUNTS & TAXATION</Item>
-              <div>
-                {verifyDepat.toUpperCase() === "ACCOUNTS & TAXATION" && (
-                  <div style={{ textAlign: "center" }}>
-                    <SouthIcon />
-                  </div>
-                )}
-              </div>
-            </Grid>
-            <Grid item>
-              <Item>COMMERCIAL & BD</Item>
-              <div>
-                {verifyDepat.toUpperCase() === "COMMERCIAL & BD" && (
-                  <div style={{ textAlign: "center" }}>
-                    <SouthIcon />
-                  </div>
-                )}
-              </div>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid sx={{ marginTop: "20px" }}>
+    <Container
+      fluid="true"
+      sx={{
+        padding: "10px",
+        display: "flex",
+        justifyContent: "center",
+        marginTop: "20px",
+      }}
+    >
+      <Grid sx={{ textAlign: "center" }}>
+        <Typography variant="h5">{verifyDepat}</Typography>
+        <Grid sx={{ marginTop: "20px", textAlign: "center" }}>
           <div
             style={{
               display: "flex",
@@ -115,20 +64,29 @@ const DepartmentDetails = () => {
             {posts.map((post, index) => {
               if (post.department === verifyDepat) {
                 return (
-                  <div key={index} style={{ margin: "20px 20px 20px 20px" }}>
-                    <Card sx={{ maxWidth: 200, maxHeight: 250 }}>
-                      <CardMedia
-                        component="img"
-                        height="140"
-                        image={post.selectedFile}
-                      />
-                      <CardContent>
-                        <Typography gutterBottom variant="h6" component="div">
-                          {post.firstName + " " + post.lastName}
-                        </Typography>
-                        <Typography>{post.jobTitle}</Typography>
-                      </CardContent>
-                    </Card>
+                  <div key={index} style={{ margin: "20px" }}>
+                    <ButtonBase>
+                      <Card sx={{ maxWidth: 300, maxHeight: 250 }}>
+                        <CardMedia
+                          sx={{ padding: "2px" }}
+                          component="img"
+                          height="180"
+                          image={post.selectedFile}
+                        />
+                        <CardContent sx={{ padding: "5px", height: "200px" }}>
+                          <Typography
+                            gutterBottom
+                            component="div"
+                            sx={{ fontSize: "18px" }}
+                          >
+                            {post.firstName + " " + post.lastName}
+                          </Typography>
+                          <Typography sx={{ fontSize: "15px" }}>
+                            {post.jobTitle}
+                          </Typography>
+                        </CardContent>
+                      </Card>
+                    </ButtonBase>
                   </div>
                 );
               }
@@ -136,7 +94,7 @@ const DepartmentDetails = () => {
           </div>
         </Grid>
       </Grid>
-    </div>
+    </Container>
   );
 };
 
