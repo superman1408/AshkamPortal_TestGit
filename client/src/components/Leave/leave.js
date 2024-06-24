@@ -334,12 +334,11 @@ const Leave = () => {
                 sx={{
                   marginLeft: "10px",
                   display: "flex",
-                  // marginTop: "40px",
                   marginBottom: "10px",
                   "@media (max-width: 600px)": {
-                    // width: "40vh",
                     marginTop: "10px",
                   },
+                  height: "400px", // Adjust the height of the Card
                 }}
               >
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -347,6 +346,12 @@ const Leave = () => {
                     <DateCalendar
                       value={value}
                       onChange={(newValue) => setValue(newValue)}
+                      sx={{
+                        height: "100%", // Adjust the height of the DateCalendar
+                        "& .MuiCalendarPicker-root": {
+                          height: "100%", // Ensures the calendar picker takes the full height
+                        },
+                      }}
                     />
                   </DemoContainer>
                 </LocalizationProvider>
