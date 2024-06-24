@@ -170,6 +170,23 @@ const authSchema = mongoose.Schema({
     default: [],
   },
 
+  CL: {
+    type: String,
+  },
+  SL: {
+    type: String,
+  },
+
+  PL: {
+    type: String,
+  },
+  FL: {
+    type: String,
+  },
+  Coff: {
+    type: String,
+  },
+
   salarySlip: {
     type: [mongoose.Schema.Types.Mixed],
     default: [],
