@@ -121,10 +121,10 @@ const Leave = () => {
         marginTop: "20px",
       }}
     >
-      <div>
+      <div style={{ display: "flex" }}>
         <Panel />
       </div>
-      <div>
+      <div style={{display:"flex"}}>
         <Grid
           sx={{
             display: "flex",
@@ -328,11 +328,11 @@ const Leave = () => {
             }}
           >
             <LeaveTableDisplay />{" "}
-            {user.result.role === "employee" ? (
+            {user.result.role === "employee" || user.result.role === "manager" ? (
               <Card
                 elevation={10}
                 sx={{
-                  marginLeft: "10px",
+                  marginLeft: "5px",
                   display: "flex",
                   marginBottom: "10px",
                   "@media (max-width: 600px)": {

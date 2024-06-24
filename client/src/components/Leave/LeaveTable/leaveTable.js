@@ -34,8 +34,10 @@ const LeaveTable = ({ posts, currentId }) => {
     FL: "",
     Coff: "",
   };
-
   const [leaveBalances, setLeaveBalances] = useState(initialLeaveBalances);
+
+
+
 
   const verify = () => {
     try {
@@ -53,9 +55,15 @@ const LeaveTable = ({ posts, currentId }) => {
     }
   };
 
+
+
+
   useEffect(() => {
     currentId && setLeaveBalances(initialLeaveBalances);
   }, [currentId]);
+
+
+
 
   const headerCellStyle = {
     display: "table-cell",
@@ -66,19 +74,30 @@ const LeaveTable = ({ posts, currentId }) => {
     borderBottom: "1px solid #ccc",
   };
 
+
+
+
   const cellStyle = {
     display: "table-cell",
     padding: "10px",
     borderBottom: "1px solid #ccc",
   };
 
+
+
   const inputStyle = {
     width: "50px",
   };
 
+
+
+
   const reloadPage = () => {
     window.location.reload();
   };
+
+
+
 
   const handleSubmit = async () => {
     await dispatch(leaveList(leaveBalances, currentId)).then(() => {
@@ -87,12 +106,15 @@ const LeaveTable = ({ posts, currentId }) => {
     reloadPage();
   };
 
+
+
+
   return (
     <div
       style={{
-        padding: "16px",
-        borderRadius: "8px",
-        boxShadow: 3,
+        padding: "5px",
+        borderRadius: "12px",
+        boxShadow: 6,
       }}
     >
       {verify() === true && (
@@ -100,7 +122,8 @@ const LeaveTable = ({ posts, currentId }) => {
           <Typography
             variant="h6"
             sx={{
-              margin: "5px",
+              textAlign: "center",
+              // margin: "5px",
               color: "#16355d",
               fontFamily: "Roboto",
             }}
@@ -178,7 +201,7 @@ const LeaveTable = ({ posts, currentId }) => {
           {verify() === true && (
             <button
               onClick={handleSubmit}
-              style={{ float: "right", marginTop: "20px" }}
+              style={{ float: "right", margin: "5px", fontFamily:"roboto", fontSize: '12px' }}
             >
               Submit
             </button>
@@ -190,7 +213,7 @@ const LeaveTable = ({ posts, currentId }) => {
           variant="h6"
           sx={{
             textAlign: "center",
-            margin: "5px",
+            // margin: "2px",
             color: "#16355d",
             fontFamily: "Roboto",
           }}
