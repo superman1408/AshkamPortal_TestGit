@@ -272,7 +272,7 @@ const Leave = () => {
                       required
                       fullWidth
                       multiline
-                      minRows={8}
+                      minRows={9}
                       sx={{
                         marginTop: "10px",
                         fontWeight: "bold",
