@@ -14,7 +14,8 @@ import useStyles from "./style";
 import Panel from "../Panel/Panel";
 import { sendMail, sendMailData } from "../../action/mail";
 import Calender from "../Calender/Calender";
-import ChartComponent from "./pieGraph";
+// import ChartComponent from "./pieGraph";
+import LeaveTableDisplay from "./LeaveTable/leaveTableDisplay";
 
 const Leave = () => {
   const classes = useStyles();
@@ -347,9 +348,10 @@ const Leave = () => {
               elevation={10}
               sx={{
                 // margin: "10px",
+                display: "flex",
                 marginTop: "40px",
                 marginBottom: "10px",
-                // height: "300px",
+                // height: "200px",
                 "@media (max-width: 600px)": {
                   // width: "40vh",
                   marginTop: "10px",
@@ -358,6 +360,7 @@ const Leave = () => {
             >
               <Calender />
             </Card>
+            <LeaveTableDisplay />
             {/* <Card
               elevation={10}
               sx={{

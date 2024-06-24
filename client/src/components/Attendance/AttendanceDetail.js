@@ -112,10 +112,12 @@ const AttendanceDetail = ({ currentId, posts }) => {
   const calculateTotalHours = (logIn, logOut) => {
     const loginTime = new Date(`01/01/2022 ${logIn}`);
     const logoutTime = new Date(`01/01/2022 ${logOut}`);
+    // const loginTime = parseFloat(logIn.replace(":", "."));
+    // const logoutTime = parseFloat(logOut.replace(":", "."));
 
     const diffInMilliseconds = logoutTime - loginTime;
     const diffInHours = diffInMilliseconds / (1000 * 60 * 60);
-    return diffInHours.toFixed(2);
+    return diffInHours.toFixed(1);
   };
 
   const handleHoverDate = (logDate) => {
@@ -503,7 +505,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
                                 totalHours={totalHours}
                               />
                             </div>
-                            {/* <div style={{ margin: "20px 0px 0px 20px" }}>
+                            <div style={{ margin: "20px 0px 0px 20px" }}>
                               <Box
                                 sx={{
                                   padding: "10px",
@@ -518,7 +520,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
                                   Total Worked = {totalHours}
                                 </Typography>
                               </Box>
-                            </div> */}
+                            </div>
                           </>
                         );
                       }
@@ -528,7 +530,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
                 ) : (
                   <>
                     <HalfDoughnutWithPointer totalHours={totalHours} />
-                    {/* <div style={{ margin: "20px 0px 0px 20px" }}>
+                    <div style={{ margin: "20px 0px 0px 20px" }}>
                       <Box
                         sx={{
                           padding: "10px",
@@ -543,7 +545,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
                           Total Worked = {totalHours}
                         </Typography>
                       </Box>
-                    </div> */}
+                    </div>
                   </>
                 )}
               </div>
