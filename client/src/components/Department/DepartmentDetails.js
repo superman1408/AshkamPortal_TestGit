@@ -52,7 +52,12 @@ const DepartmentDetails = () => {
       }}
     >
       <Grid sx={{ textAlign: "center" }}>
-        <Typography variant="h5">{verifyDepat}</Typography>
+        <Typography
+          variant="h4"
+          sx={{ color: "#16355d", fontFamily: "Roboto" }}
+        >
+          {verifyDepat}
+        </Typography>
         <Grid sx={{ marginTop: "20px", textAlign: "center" }}>
           <div
             style={{
@@ -77,11 +82,21 @@ const DepartmentDetails = () => {
                           <Typography
                             gutterBottom
                             component="div"
-                            sx={{ fontSize: "18px" }}
+                            sx={{
+                              fontSize: "18px",
+                              color: "#16355d",
+                              fontFamily: "Roboto",
+                            }}
                           >
                             {post.firstName + " " + post.lastName}
                           </Typography>
-                          <Typography sx={{ fontSize: "15px" }}>
+                          <Typography
+                            sx={{
+                              fontSize: "15px",
+                              color: "#16355d",
+                              fontFamily: "Roboto",
+                            }}
+                          >
                             {post.jobTitle}
                           </Typography>
                         </CardContent>
