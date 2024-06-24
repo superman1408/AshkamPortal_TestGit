@@ -328,13 +328,12 @@ const Leave = () => {
             }}
           >
             <LeaveTableDisplay />{" "}
-            {user.result.role === "employee" ? (
+            {user.result.role === "employee" || user.result.role === "manager" ? (
               <Card
                 elevation={10}
                 sx={{
-                  marginLeft: "10px",
+                  marginLeft: "5px",
                   display: "flex",
-                  // marginTop: "40px",
                   marginBottom: "10px",
                   "@media (max-width: 600px)": {
                     // width: "40vh",
