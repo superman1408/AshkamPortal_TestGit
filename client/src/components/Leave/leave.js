@@ -16,6 +16,7 @@ import { sendMail, sendMailData } from "../../action/mail";
 import dayjs from "dayjs";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import LeaveTableDisplay from "./LeaveTable/leaveTableDisplay";
+import ChartComponent from "./pieGraph";
 
 const Leave = () => {
   const classes = useStyles();
@@ -124,7 +125,7 @@ const Leave = () => {
       <div style={{ display: "flex" }}>
         <Panel />
       </div>
-      <div style={{display:"flex"}}>
+      <div style={{ display: "flex" }}>
         <Grid
           sx={{
             display: "flex",
@@ -328,7 +329,8 @@ const Leave = () => {
             }}
           >
             <LeaveTableDisplay />{" "}
-            {user.result.role === "employee" || user.result.role === "manager" ? (
+            {user.result.role === "employee" ||
+            user.result.role === "manager" ? (
               <Card
                 elevation={10}
                 sx={{
@@ -338,7 +340,7 @@ const Leave = () => {
                   "@media (max-width: 600px)": {
                     marginTop: "10px",
                   },
-                  height: "400px", // Adjust the height of the Card
+                  height: "350px", // Adjust the height of the Card
                 }}
               >
                 <LocalizationProvider dateAdapter={AdapterDayjs}>

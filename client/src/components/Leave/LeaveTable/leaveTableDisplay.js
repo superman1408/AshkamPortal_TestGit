@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../../action/posts";
 import LeaveTable from "./leaveTable";
 import Combo from "./combo";
+import ChartComponent from "../pieGraph";
 
 // import AttendanceCombo from "./AttendanceCombo";
 // import AttendanceDetail from "./AttendanceDetail";
