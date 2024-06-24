@@ -83,18 +83,18 @@ const LeaveTable = ({ posts, currentId }) => {
   return (
     <div
       style={{
-        padding: "16px",
-        borderRadius: "8px",
-        boxShadow: 3,
+        padding: "5px",
+        borderRadius: "12px",
+        boxShadow: 6,
       }}
     >
-      {" "}
       {verify() === true && (
         <Card sx={{ padding: "12px" }}>
           <Typography
             variant="h6"
             sx={{
-              margin: "5px",
+              textAlign: "center",
+              // margin: "5px",
               color: "#16355d",
               fontFamily: "Roboto",
             }}
@@ -208,7 +208,7 @@ const LeaveTable = ({ posts, currentId }) => {
           variant="h6"
           sx={{
             textAlign: "center",
-            margin: "5px",
+            // margin: "2px",
             color: "#16355d",
             fontFamily: "Roboto",
           }}
