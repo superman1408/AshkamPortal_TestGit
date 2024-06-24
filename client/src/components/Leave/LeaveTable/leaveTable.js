@@ -57,6 +57,25 @@ const LeaveTable = ({ posts, currentId }) => {
     currentId && setLeaveBalances(initialLeaveBalances);
   }, [currentId]);
 
+  const headerCellStyle = {
+    display: "table-cell",
+    padding: "10px",
+    color: "#16355d",
+    fontFamily: "Roboto",
+    fontSize: "15px",
+    borderBottom: "1px solid #ccc",
+  };
+
+  const cellStyle = {
+    display: "table-cell",
+    padding: "10px",
+    borderBottom: "1px solid #ccc",
+  };
+
+  const inputStyle = {
+    width: "50px",
+  };
+
   const reloadPage = () => {
     window.location.reload();
   };
@@ -76,7 +95,6 @@ const LeaveTable = ({ posts, currentId }) => {
         boxShadow: 3,
       }}
     >
-      {" "}
       {verify() === true && (
         <Card sx={{ padding: "12px" }}>
           <Typography
@@ -89,102 +107,78 @@ const LeaveTable = ({ posts, currentId }) => {
           >
             Leave Balance
           </Typography>
-          <table>
-            <thead>
-              {verify() === true && (
-                <tr>
-                  <th
-                    style={{
-                      color: "#16355d",
-                      fontFamily: "Roboto",
-                      fontSize: "15px",
-                    }}
-                  >
-                    Casual Leave
-                  </th>
-                  <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                    Sick Leave
-                  </th>
-                  <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                    Privilege Leave
-                  </th>
-                  <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                    Floating Leave
-                  </th>
-                  <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                    C-off
-                  </th>
-                </tr>
-              )}
-            </thead>
-
-            <tbody>
-              <tr>
-                <td>
-                  <input
-                    style={{ width: "50px" }}
-                    type="text"
-                    id="CL"
-                    value={leaveBalances.CL}
-                    onChange={(e) =>
-                      setLeaveBalances({ ...leaveBalances, CL: e.target.value })
-                    }
-                  />
-                </td>
-                <td>
-                  <input
-                    style={{ width: "50px" }}
-                    type="text"
-                    id="SL"
-                    value={leaveBalances.SL}
-                    onChange={(e) =>
-                      setLeaveBalances({ ...leaveBalances, SL: e.target.value })
-                    }
-                  />
-                </td>
-                <td>
-                  <input
-                    style={{ width: "50px" }}
-                    type="text"
-                    id="PL"
-                    value={leaveBalances.PL}
-                    onChange={(e) =>
-                      setLeaveBalances({ ...leaveBalances, PL: e.target.value })
-                    }
-                  />
-                </td>
-                <td>
-                  <input
-                    style={{ width: "50px" }}
-                    type="text"
-                    id="FL"
-                    value={leaveBalances.FL}
-                    onChange={(e) =>
-                      setLeaveBalances({ ...leaveBalances, FL: e.target.value })
-                    }
-                  />
-                </td>
-                <td>
-                  <input
-                    style={{ width: "50px" }}
-                    type="text"
-                    id="Coff"
-                    value={leaveBalances.Coff}
-                    onChange={(e) =>
-                      setLeaveBalances({
-                        ...leaveBalances,
-                        Coff: e.target.value,
-                      })
-                    }
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>{" "}
+          <div style={{ display: "table", width: "100%", marginTop: "10px" }}>
+            {verify() === true && (
+              <div style={{ display: "table-row", fontWeight: "bold" }}>
+                <div style={headerCellStyle}>Casual Leave</div>
+                <div style={headerCellStyle}>Sick Leave</div>
+                <div style={headerCellStyle}>Privilege Leave</div>
+                <div style={headerCellStyle}>Floating Leave</div>
+                <div style={headerCellStyle}>C-off</div>
+              </div>
+            )}
+            <div style={{ display: "table-row" }}>
+              <div style={cellStyle}>
+                <input
+                  style={inputStyle}
+                  type="text"
+                  id="CL"
+                  value={leaveBalances.CL}
+                  onChange={(e) =>
+                    setLeaveBalances({ ...leaveBalances, CL: e.target.value })
+                  }
+                />
+              </div>
+              <div style={cellStyle}>
+                <input
+                  style={inputStyle}
+                  type="text"
+                  id="SL"
+                  value={leaveBalances.SL}
+                  onChange={(e) =>
+                    setLeaveBalances({ ...leaveBalances, SL: e.target.value })
+                  }
+                />
+              </div>
+              <div style={cellStyle}>
+                <input
+                  style={inputStyle}
+                  type="text"
+                  id="PL"
+                  value={leaveBalances.PL}
+                  onChange={(e) =>
+                    setLeaveBalances({ ...leaveBalances, PL: e.target.value })
+                  }
+                />
+              </div>
+              <div style={cellStyle}>
+                <input
+                  style={inputStyle}
+                  type="text"
+                  id="FL"
+                  value={leaveBalances.FL}
+                  onChange={(e) =>
+                    setLeaveBalances({ ...leaveBalances, FL: e.target.value })
+                  }
+                />
+              </div>
+              <div style={cellStyle}>
+                <input
+                  style={inputStyle}
+                  type="text"
+                  id="Coff"
+                  value={leaveBalances.Coff}
+                  onChange={(e) =>
+                    setLeaveBalances({ ...leaveBalances, Coff: e.target.value })
+                  }
+                />
+              </div>
+            </div>
+          </div>
           {verify() === true && (
             <button
               onClick={handleSubmit}
-              style={{ float: "right", marginTop: "50px" }}
+              style={{ float: "right", marginTop: "20px" }}
             >
               Submit
             </button>
