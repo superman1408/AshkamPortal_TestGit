@@ -118,10 +118,10 @@ const Leave = () => {
         marginTop: "20px",
       }}
     >
-      <div>
+      <div style={{ display: "flex" }}>
         <Panel />
       </div>
-      <div>
+      <div style={{display:"flex"}}>
         <Grid
           sx={{
             display: "flex",
