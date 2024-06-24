@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Card, Container, Typography } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch} from "react-redux";
 import { leaveList } from "../../../action/posts";
 import { CChart } from "@coreui/react-chartjs";
-import { Doughnut } from "react-chartjs-2";
 import {
   Chart,
   BarElement,
@@ -24,8 +23,10 @@ Chart.register(
 );
 
 const LeaveTable = ({ posts, currentId }) => {
+  const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
-
+  // Find the current post based on currentId
+  const currentPost = posts.find((post) => post._id === currentId);
   const initialLeaveBalances = {
     CL: 0,
     SL: 0,
@@ -36,7 +37,6 @@ const LeaveTable = ({ posts, currentId }) => {
 
   const [leaveBalances, setLeaveBalances] = useState(initialLeaveBalances);
 
-  const dispatch = useDispatch();
 
   const verify = () => {
     try {
@@ -54,16 +54,31 @@ const LeaveTable = ({ posts, currentId }) => {
     }
   };
 
+
+
   useEffect(() => {
     currentId && setLeaveBalances(initialLeaveBalances);
   }, [currentId]);
 
-  const handleSubmit = () => {
-    dispatch(leaveList(leaveBalances, currentId));
+
+  const reloadPage = () => {
+    window.location.reload();
   };
 
-  // Find the current post based on currentId
-  const currentPost = posts.find((post) => post._id === currentId);
+
+
+
+  const handleSubmit = async () => {
+    await dispatch(leaveList(leaveBalances, currentId)).then(() => {
+      alert("Leave Status is uploaded...!!!");
+    });
+    reloadPage();
+  };
+
+
+
+
+
 
   return (
     <Card
