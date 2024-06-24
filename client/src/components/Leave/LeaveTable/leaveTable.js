@@ -203,10 +203,11 @@ const LeaveTable = ({ posts, currentId }) => {
           )}
         </Card>
       )}
-      <Card sx={{ padding: "20px", marginTop: "25px" }}>
+      <Card sx={{ padding: "5px", marginTop: "5px" }}>
         <Typography
           variant="h6"
           sx={{
+            textAlign: "center",
             margin: "5px",
             color: "#16355d",
             fontFamily: "Roboto",
@@ -216,8 +217,9 @@ const LeaveTable = ({ posts, currentId }) => {
         </Typography>
         <Container
           sx={{
-            width: "300px",
-            // height: "300px",
+            // width: "350px",
+            // height: "200px",
+            display: "flex",
             justifyContent: "center",
             alignContent: "center",
           }}
