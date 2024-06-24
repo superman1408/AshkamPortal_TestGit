@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, Grid, TextField, Typography } from "@mui/material";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -13,8 +13,9 @@ import PublicSharpIcon from "@mui/icons-material/PublicSharp";
 import useStyles from "./style";
 import Panel from "../Panel/Panel";
 import { sendMail, sendMailData } from "../../action/mail";
-import Calender from "../Calender/Calender";
-import ChartComponent from "./pieGraph";
+import dayjs from "dayjs";
+import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
+import LeaveTableDisplay from "./LeaveTable/leaveTableDisplay";
 
 const Leave = () => {
   const classes = useStyles();
@@ -49,6 +50,8 @@ const Leave = () => {
   const UsFormatter = new Intl.DateTimeFormat("en-US");
   const fromDate = UsFormatter.format(valueTo);
   const toDate = UsFormatter.format(valueFrom);
+
+  const [value, setValue] = React.useState(dayjs(new Date()));
 
   // ----------------------------- Calculate Total Number of Leave Days ---------------------------------------------------------
 
@@ -141,23 +144,6 @@ const Leave = () => {
             }}
           >
             <form autoComplete="off" onSubmit={handleSubmit}>
-              {/* <div
-                className={classes.mainContainer}
-                style={{
-                  padding: "2px",
-                  display: "flex",
-                  // marginLeft: "2px",
-                  // bgcolor: "#f0f2f1",
-                  bgcolor: "blue",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    // marginLeft: "10px",
-                  }}
-                > */}
               <Grid>
                 <Typography
                   variant="h6"
@@ -336,43 +322,35 @@ const Leave = () => {
           </Grid>
           <Grid
             sx={{
-              marginLeft: "20px",
               "@media (max-width: 600px)": {
                 margin: "0px",
-                // display: "flex",
               },
             }}
           >
-            <Card
-              elevation={10}
-              sx={{
-                // margin: "10px",
-                marginTop: "40px",
-                marginBottom: "10px",
-                // height: "300px",
-                "@media (max-width: 600px)": {
-                  // width: "40vh",
-                  marginTop: "10px",
-                },
-              }}
-            >
-              <Calender />
-            </Card>
-            {/* <Card
-              elevation={10}
-              sx={{
-                padding: "5px",
-                "@media (max-width: 600px)": {
-                  margin: "0px",
-                  // width: "40vh",
-                },
-              }}
-            >
-              <ChartComponent
-                availabelLeave={availabelLeave}
-                style={{ willchange: "transform" }}
-              />
-            </Card> */}
+            <LeaveTableDisplay />{" "}
+            {user.result.role === "employee" || user.result.role === "manager" ? (
+              <Card
+                elevation={10}
+                sx={{
+                  marginLeft: "5px",
+                  display: "flex",
+                  marginBottom: "10px",
+                  "@media (max-width: 600px)": {
+                    // width: "40vh",
+                    marginTop: "10px",
+                  },
+                }}
+              >
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DemoContainer components={["DateCalendar", "DateCalendar"]}>
+                    <DateCalendar
+                      value={value}
+                      onChange={(newValue) => setValue(newValue)}
+                    />
+                  </DemoContainer>
+                </LocalizationProvider>
+              </Card>
+            ) : null}
           </Grid>
         </Grid>
       </div>

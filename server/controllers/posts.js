@@ -333,3 +333,33 @@ export const getSalary = async (req, res) => {
     res.status(500).json({ message: error });
   }
 };
+
+
+
+
+export const leaveList = async (req, res) => {
+  const { id } = req.params;
+  const value = req.body;
+
+  try {
+    if (!mongoose.Types.ObjectId.isValid(id))
+      return res.status(404).send("Invalid User ID!");
+
+
+    const user = await AuthenticateUser.findById(id);
+
+    user.CL = value.CL;
+    user.SL = value.SL;
+    user.PL = value.PL;
+    user.FL = value.FL;
+    user.Coff = value.Coff;
+
+    const updatedPost = await AuthenticateUser.findByIdAndUpdate(id, user, {
+      new: true,
+    });
+
+    res.status(200).json(updatedPost);
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+};

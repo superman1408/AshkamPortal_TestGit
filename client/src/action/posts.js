@@ -14,6 +14,7 @@ import {
   EVENT_ALL,
   SALARY_SLIP,
   SALARY_ALL,
+  LEAVELIST,
 } from "../constants/actionTypes";
 
 import * as API from "../api";
@@ -85,8 +86,6 @@ export const updateStatus = (id, activeStatus) => async (dispatch) => {
 };
 
 export const todoList = (id, post) => async (dispatch) => {
- 
-
   try {
     const { data } = await API.todoList(id, post);
     //console.log(data);
@@ -106,7 +105,7 @@ export const skillData = (post) => async (dispatch) => {
 
   try {
     const { data } = await API.skillData(post);
-  
+
     dispatch({ type: SKILLDATA, payload: data });
 
     return data.skillData;
@@ -181,8 +180,6 @@ export const logList = (post, id) => async (dispatch) => {
 };
 
 export const dailyEvent = (formData) => async (dispatch) => {
-  
-
   console.log("Hello I am working..!!");
 
   try {
@@ -194,10 +191,7 @@ export const dailyEvent = (formData) => async (dispatch) => {
   }
 };
 
-
-
 export const salarySlipData = (id, formData) => async (dispatch) => {
- 
   try {
     const { data } = await API.salarySlipData(id, formData, {
       headers: {
@@ -228,6 +222,16 @@ export const getEvents = () => async (dispatch) => {
 
     dispatch({ type: EVENT_ALL, payload: data });
     // console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const leaveList = (post, id) => async (dispatch) => {
+  try {
+    const { data } = await API.leaveList(post, id);
+    console.log(data);
+    dispatch({ type: LEAVELIST, payload: data });
   } catch (error) {
     console.log(error);
   }
