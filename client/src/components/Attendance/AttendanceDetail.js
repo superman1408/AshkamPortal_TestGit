@@ -117,7 +117,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
 
     const diffInMilliseconds = logoutTime - loginTime;
     const diffInHours = diffInMilliseconds / (1000 * 60 * 60);
-    return diffInHours.toFixed(1);
+    return diffInHours.toFixed(2);
   };
 
   const handleHoverDate = (logDate) => {
@@ -549,7 +549,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
                   </>
                 )}
               </div>
-              <div style={{ marginTop: "300px" }}>
+              <div style={{ marginTop: "250px" }}>
                 <Typography sx={{ fontWeight: "bold", fontSize: "12px" }}>
                   Note : 0.10 hours = 6 minutes ; 0.01 hours = 36 seconds
                 </Typography>

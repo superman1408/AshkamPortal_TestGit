@@ -61,7 +61,9 @@ const LeaveTableDisplay = () => {
       {!isLoading && (
         <>
           {verify() === true && (
-            <Combo posts={posts} setCurrentId={setCurrentId} />
+            <div style={{ float: "right", marginLeft: "200px" }}>
+              <Combo posts={posts} setCurrentId={setCurrentId} />
+            </div>
           )}
           <LeaveTable currentId={currentId} posts={posts} />
         </>

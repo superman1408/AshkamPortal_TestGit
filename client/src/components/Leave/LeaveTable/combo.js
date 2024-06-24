@@ -31,7 +31,6 @@ const ComboBox = ({ posts, setCurrentId }) => {
       onChange={handleChange}
       style={{
         color: "#16355d",
-        float: "right",
         marginTop: "10px",
         width: "200px",
         backgroundColor: "#f2f2f2",
