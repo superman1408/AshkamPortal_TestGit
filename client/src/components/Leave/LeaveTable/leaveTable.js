@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, Container, Typography } from "@mui/material";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { leaveList } from "../../../action/posts";
 import { CChart } from "@coreui/react-chartjs";
 import {
@@ -37,7 +37,6 @@ const LeaveTable = ({ posts, currentId }) => {
 
   const [leaveBalances, setLeaveBalances] = useState(initialLeaveBalances);
 
-
   const verify = () => {
     try {
       if (
@@ -54,19 +53,13 @@ const LeaveTable = ({ posts, currentId }) => {
     }
   };
 
-
-
   useEffect(() => {
     currentId && setLeaveBalances(initialLeaveBalances);
   }, [currentId]);
 
-
   const reloadPage = () => {
     window.location.reload();
   };
-
-
-
 
   const handleSubmit = async () => {
     await dispatch(leaveList(leaveBalances, currentId)).then(() => {
@@ -74,11 +67,6 @@ const LeaveTable = ({ posts, currentId }) => {
     });
     reloadPage();
   };
-
-
-
-
-
 
   return (
     <div
@@ -216,7 +204,7 @@ const LeaveTable = ({ posts, currentId }) => {
         </Typography>
         <Container
           sx={{
-            width: "300px",
+            // width: "300px",
             // height: "300px",
             justifyContent: "center",
             alignContent: "center",
@@ -224,8 +212,8 @@ const LeaveTable = ({ posts, currentId }) => {
         >
           <CChart
             type="doughnut"
-            // width="100px"
-            // height="100px"
+            width={200} // Set the desired width
+            height={200} // Set the desired height
             data={{
               labels: [
                 "Casual Leave",
@@ -262,6 +250,11 @@ const LeaveTable = ({ posts, currentId }) => {
                     color: "--cui-body-color",
                   },
                   position: "right",
+                },
+                tooltip: {
+                  // Example for changing tooltip position to nearest
+                  position: "nearest",
+                  // Additional tooltip customization can be done here
                 },
               },
             }}
