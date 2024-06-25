@@ -71,7 +71,7 @@ const DepartmentDetails = () => {
                 return (
                   <div key={index} style={{ margin: "20px" }}>
                     <ButtonBase>
-                      <Card sx={{ maxWidth: 300, maxHeight: 250 }}>
+                      <Card sx={{ width: 200, maxHeight: 300 }}>
                         <CardMedia
                           sx={{ padding: "2px" }}
                           component="img"
