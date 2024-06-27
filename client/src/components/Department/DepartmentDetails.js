@@ -17,6 +17,7 @@ import {
   Button,
   CardActions,
   ButtonBase,
+  Divider,
 } from "@mui/material";
 import avatar1 from "../../assets/MD.jpg";
 
@@ -58,6 +59,62 @@ const DepartmentDetails = () => {
         >
           {verifyDepat}
         </Typography>
+        <Grid>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+            }}
+          >
+            {posts.map((post) => {
+              if (post.department === verifyDepat && post.role === "manager") {
+                return (
+                  <div style={{ margin: "20px" }}>
+                    <ButtonBase>
+                      <Card sx={{ width: 200, maxHeight: 280 }}>
+                        <CardMedia
+                          sx={{ padding: "2px" }}
+                          component="img"
+                          height="180"
+                          image={post.selectedFile}
+                        />
+                        <CardContent sx={{ padding: "5px", height: "200px" }}>
+                          <Typography
+                            gutterBottom
+                            component="div"
+                            sx={{
+                              fontSize: "18px",
+                              color: "#16355d",
+                              fontFamily: "Roboto",
+                            }}
+                          >
+                            {post.firstName + " " + post.lastName}
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontSize: "15px",
+                              color: "#16355d",
+                              fontFamily: "Roboto",
+                            }}
+                          >
+                            {post.jobTitle}
+                          </Typography>
+                        </CardContent>
+                      </Card>
+                    </ButtonBase>
+                  </div>
+                );
+              }
+            })}
+          </div>
+        </Grid>
+        <Divider
+          sx={{
+            borderWidth: "5px",
+            bgcolor: "grey",
+          }}
+        />
         <Grid sx={{ marginTop: "20px", textAlign: "center" }}>
           <div
             style={{
@@ -67,11 +124,11 @@ const DepartmentDetails = () => {
             }}
           >
             {posts.map((post, index) => {
-              if (post.department === verifyDepat) {
+              if (post.department === verifyDepat && post.role === "employee") {
                 return (
                   <div key={index} style={{ margin: "20px" }}>
                     <ButtonBase>
-                      <Card sx={{ maxWidth: 300, maxHeight: 250 }}>
+                      <Card sx={{ width: 200, maxHeight: 300 }}>
                         <CardMedia
                           sx={{ padding: "2px" }}
                           component="img"
