@@ -110,14 +110,14 @@ const AttendanceDetail = ({ currentId, posts }) => {
   };
 
   const calculateTotalHours = (logIn, logOut) => {
-    const loginTime = new Date(`01/01/2022 ${logIn}`);
-    const logoutTime = new Date(`01/01/2022 ${logOut}`);
-    // const loginTime = parseFloat(logIn.replace(":", "."));
-    // const logoutTime = parseFloat(logOut.replace(":", "."));
-
-    const diffInMilliseconds = logoutTime - loginTime;
-    const diffInHours = diffInMilliseconds / (1000 * 60 * 60);
-    return diffInHours.toFixed(2);
+    if (logIn && logOut) {
+      const loginTime = new Date(`01/01/2022 ${logIn}`);
+      const logoutTime = new Date(`01/01/2022 ${logOut}`);
+      const diffInMilliseconds = logoutTime - loginTime;
+      const diffInHours = diffInMilliseconds / (1000 * 60 * 60);
+      return diffInHours.toFixed(2);
+    }
+    return null;
   };
 
   const handleHoverDate = (logDate) => {
