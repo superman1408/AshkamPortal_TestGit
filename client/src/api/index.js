@@ -76,4 +76,7 @@ export const fetchSalarySlipData = () => API.get("/posts/salary/slip");
 
 export const leaveList = (formData, id) =>
   API.patch(`/posts/${id}/leavelist`, formData);
+
+export const presentList = (formData, id) =>
+  API.patch(`/posts/${id}/presentList`, formData);
 // SERVER ADDRESS : https://ashkam-server-b9bc1f76ae2f.herokuapp.com/

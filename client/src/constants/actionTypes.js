@@ -19,3 +19,4 @@ export const EVENT_ALL = "EVENT_ALL";
 export const SALARY_SLIP = "SALARY_SLIP";
 export const SALARY_ALL = "SALARY_ALL";
 export const LEAVELIST = "LEAVELIST";
+export const PRESENTLIST = "PRESENTLIST";

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Typography, Grid, Divider, Card, Box } from "@mui/material";
+import { Typography, Grid, Divider, Card, Box, Checkbox } from "@mui/material";
 
 import { getPosts } from "../../action/posts";
 import { dailyAttendance, logList } from "../../action/posts";
@@ -138,6 +138,12 @@ const AttendanceDetail = ({ currentId, posts }) => {
     }
   };
 
+  const [checked, setChecked] = React.useState(false);
+
+  const handleChange = () => {
+    setChecked(!checked);
+  };
+
   return (
     <div>
       <h2
@@ -248,7 +254,68 @@ const AttendanceDetail = ({ currentId, posts }) => {
                 </div>
               </form>
             </Grid>
+            {/* -------------------------------------------------------------------------------------------------------- */}
 
+            <Grid
+              sx={{
+                // display: "flex",
+                padding: "10px",
+                width: "auto",
+                backgroundColor: "white",
+                borderRadius: "15px",
+                border: "1px solid lightgray",
+                margin: "0px 5px 2px 5px",
+              }}
+            >
+              <form className="time-sheet-form" onSubmit={handleSubmit}>
+                <div
+                  className="form-group"
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <tr>
+                    <h6>Employee List</h6>
+                    {posts.map((post, index) => {
+                      return (
+                        // <div key={index}>
+                        <div
+                          key={index}
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <Typography>
+                            {post?.firstName + " " + post?.lastName}
+                          </Typography>
+                          <Checkbox
+                            // defaultChecked
+                            color="success"
+                            checked={checked}
+                            onChange={handleChange}
+                          />
+                        </div>
+                        // </div>
+                      );
+                    })}
+                  </tr>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    float: "right",
+                    marginTop: "65px",
+                  }}
+                >
+                  <button style={{ fontFamily: "Roboto" }} type="submit">
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </Grid>
+            {/* ---------------------------------------------------------------------------------------------------------- */}
             <Grid
               sx={{
                 // display: "flex",

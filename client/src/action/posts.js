@@ -15,6 +15,7 @@ import {
   SALARY_SLIP,
   SALARY_ALL,
   LEAVELIST,
+  PRESENTLIST,
 } from "../constants/actionTypes";
 
 import * as API from "../api";
@@ -232,6 +233,16 @@ export const leaveList = (post, id) => async (dispatch) => {
     const { data } = await API.leaveList(post, id);
     console.log(data);
     dispatch({ type: LEAVELIST, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const presentList = (post, id) => async (dispatch) => {
+  try {
+    const { data } = await API.presentList(post, id);
+    console.log(data);
+    dispatch({ type: PRESENTLIST, payload: data });
   } catch (error) {
     console.log(error);
   }

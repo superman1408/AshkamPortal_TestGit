@@ -334,9 +334,6 @@ export const getSalary = async (req, res) => {
   }
 };
 
-
-
-
 export const leaveList = async (req, res) => {
   const { id } = req.params;
   const value = req.body;
@@ -344,7 +341,6 @@ export const leaveList = async (req, res) => {
   try {
     if (!mongoose.Types.ObjectId.isValid(id))
       return res.status(404).send("Invalid User ID!");
-
 
     const user = await AuthenticateUser.findById(id);
 
@@ -354,6 +350,27 @@ export const leaveList = async (req, res) => {
     user.FL = value.FL;
     user.Coff = value.Coff;
 
+    const updatedPost = await AuthenticateUser.findByIdAndUpdate(id, user, {
+      new: true,
+    });
+
+    res.status(200).json(updatedPost);
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+};
+
+export const presentList = async (req, res) => {
+  const { id } = req.params;
+  const value = req.body;
+
+  try {
+    if (!mongoose.Types.ObjectId.isValid(id))
+      return res.status(404).send("Invalid User ID!");
+
+    const user = await AuthenticateUser.findById(id);
+
+    user.presentStatus = value.presentStatus;
     const updatedPost = await AuthenticateUser.findByIdAndUpdate(id, user, {
       new: true,
     });

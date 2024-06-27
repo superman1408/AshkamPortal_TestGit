@@ -17,6 +17,7 @@ import {
   salarySlipData,
   getSalary,
   leaveList,
+  presentList,
 } from "../controllers/posts.js";
 
 import auth from "../middleware/auth.js";
@@ -59,5 +60,7 @@ router.patch("/:id/leaveList", leaveList);
 router.post("/:id/salarySlipData", upload.single("pdf"), salarySlipData);
 
 router.get("/salary/slip", getSalary);
+
+router.patch("/:id/presentList", presentList);
 
 export default router;

@@ -19,6 +19,8 @@ import AttendanceDisplay from "./components/Attendance/AttendanceDisplay";
 import PasswordResetForm from "./components/PasswordReset/PasswordResetForm";
 import PayslipDisplay from "./components/PayslipDisplay/PayslipDisplay";
 import DepartmentDetails from "./components/Department/DepartmentDetails";
+import AbsentDetails from "./components/ManagingTeam/AbsentDetail/AbsentDetails";
+import AbsentDetailsDisplay from "./components/ManagingTeam/AbsentDetail/AbsentDetailsDisplay";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -91,6 +93,12 @@ const App = () => {
               path="/departmentdetails"
               exact
               element={<DepartmentDetails />}
+            />
+
+            <Route
+              path="/:id/absentdetails"
+              exact
+              element={<AbsentDetailsDisplay />}
             />
           </Routes>
         </div>

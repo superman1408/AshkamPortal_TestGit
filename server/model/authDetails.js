@@ -187,6 +187,13 @@ const authSchema = mongoose.Schema({
     type: String,
   },
 
+  Coff: {
+    type: String,
+  },
+  presentStatus: {
+    type: String,
+  },
+
   salarySlip: {
     type: [mongoose.Schema.Types.Mixed],
     default: [],
