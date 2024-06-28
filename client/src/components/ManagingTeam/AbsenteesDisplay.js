@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 import {
-  Box,
   Grid,
   Typography,
-  Divider,
   Stack,
   Avatar,
   Container,
@@ -14,14 +12,8 @@ import HailIcon from "@mui/icons-material/Hail";
 import { getPosts } from "../../action/posts";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
 
-import avatar1 from "../../assets/MD.jpg";
-import avatar2 from "../../assets/avatar2.jpg";
-import avatar3 from "../../assets/avatar3.jpg";
-import avatar4 from "../../assets/Manilal.jpg";
-
-const ManagingTeam = () => {
+const AbsenteesDisplay = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
   const id = user.result._id;
   const posts = useSelector((state) => state.posts);
@@ -45,6 +37,30 @@ const ManagingTeam = () => {
     }
   }, [dispatch]);
 
+  const verifyTheRole = () => {
+    if (user.result.role === "admin") {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const formatName = (firstName, lastName) => {
+    return (
+      firstName.charAt(0).toUpperCase() +
+      firstName.slice(1).toLowerCase() +
+      " " +
+      lastName.charAt(0).toUpperCase() +
+      lastName.slice(1).toLowerCase()
+    );
+  };
+
+  const sortedPosts = [...posts].sort((a, b) => {
+    const nameA = formatName(a.firstName, a.lastName);
+    const nameB = formatName(b.firstName, b.lastName);
+    return nameA.localeCompare(nameB);
+  });
+
   return (
     <div style={{ display: "flex", flex: 1 }}>
       <Container
@@ -55,19 +71,16 @@ const ManagingTeam = () => {
           boxShadow: 1,
           maxWidth: "500px",
           borderRadius: "10px",
-          // width: "300px",
-          overflow: "hidden",
+
           position: "relative", // Set position to relative
           marginTop: "20px",
           marginLeft: "20px",
           marginRight: "0px",
+
           "@media (max-width: 600px)": {
             display: "flex",
             margin: "0px 20px 0px 0px",
           },
-          // "@media (max-width: 400px)": {
-          //   width: "40vh",
-          // },
         }}
       >
         <Grid
@@ -86,33 +99,47 @@ const ManagingTeam = () => {
           >
             <Grid>
               <IconButton
-                onClick={() => {
-                  navigate(`/${id}/absentdetails`); // Employee Attendance Route
-                }}
+                onClick={
+                  verifyTheRole()
+                    ? () => navigate(`/${id}/absentdetails`)
+                    : null // Employee Attendance Route
+                }
               >
                 <HailIcon />
               </IconButton>
             </Grid>
-            <Grid>
-              <Typography
-                sx={{
-                  color: "#16355d",
-                  fontFamily: "Roboto",
-                  fontWeight: "bolder",
-                  mt: "5px",
-                  mb: "1px",
-                  ml: "10px",
-                  alignItems: "center",
-                  fontSize: "18px",
-                }}
-              >
-                Absentees
-              </Typography>
+            <Grid container justifyContent="center" alignItems="center">
+              <Grid item>
+                <Typography
+                  sx={{
+                    color: "#16355d",
+                    fontFamily: "Roboto",
+                    fontWeight: "bolder",
+                    mt: "5px",
+                    mb: "1px",
+                    ml: "10px",
+                    fontSize: "18px",
+                    textAlign: "center",
+                  }}
+                >
+                  Absentees
+                </Typography>
+              </Grid>
             </Grid>
           </Grid>
-          <Grid sx={{ display: "flex", flexDirection: "row" }}>
+          <Grid
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              height: "100px",
+              overflow: "auto",
+
+              width: "300px",
+              pointerEvents: "auto",
+            }}
+          >
             <Grid>
-              {posts.map((post) => {
+              {sortedPosts.map((post) => {
                 if (post.presentStatus === "false") {
                   return (
                     <>
@@ -125,6 +152,8 @@ const ManagingTeam = () => {
                                 height: 40,
                                 marginLeft: "10px",
                                 marginTop: "10px",
+                                userSelect: "none", // Prevent selection
+                                pointerEvents: "none", // Prevent interaction
                               }}
                               alt="Femy sharp"
                               src={post?.selectedFile}
@@ -141,7 +170,7 @@ const ManagingTeam = () => {
                               fontFamily: "Roboto",
                             }}
                           >
-                            {post?.firstName + " " + post.lastName}
+                            {formatName(post.firstName, post.lastName)}
                           </Typography>
                         </Grid>
                       </Grid>
@@ -157,4 +186,4 @@ const ManagingTeam = () => {
   );
 };
 
-export default ManagingTeam;
+export default AbsenteesDisplay;

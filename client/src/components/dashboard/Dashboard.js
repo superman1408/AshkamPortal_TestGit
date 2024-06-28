@@ -2,7 +2,7 @@ import React from "react";
 
 import WeeklyActivity from "../WeeklyActivity/WeeklyActivity";
 import TotalEmployee from "../TotalEmployee/TotalEmployee";
-import ManagingTeam from "../ManagingTeam/ManagingTeam";
+import AbsenteesDisplay from "../ManagingTeam/AbsenteesDisplay";
 import Calender from "../Calender/Calender";
 import Birthday from "../Birthday/Birthday";
 
@@ -200,7 +200,7 @@ const Admin = ({ currentId }) => {
                     },
                   }}
                 >
-                  <ManagingTeam />
+                  <AbsenteesDisplay />
                 </Grid>
 
                 <Grid
