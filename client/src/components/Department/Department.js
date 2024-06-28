@@ -55,7 +55,7 @@ const Department = () => {
               <IconButton
                 onClick={() => {
                   navigate(`/departmentdetails`); // Employee Attendance Route
-                }}
+                }}                        
               >
                 {" "}
                 <GroupsIcon />

@@ -12,6 +12,7 @@ import {
   LOGLIST,
   DAILY_EVENT,
   SALARY_SLIP,
+  PRESENTLIST,
 } from "../constants/actionTypes";
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -77,13 +78,11 @@ export default (posts = [], action) => {
     case LOGLIST:
       return [...posts, action.payload];
 
-    
-
     case SALARY_SLIP:
       return [...posts, action.payload];
 
-    
-
+    case PRESENTLIST:
+      return [...posts, action.payload];
     default:
       return posts;
   }

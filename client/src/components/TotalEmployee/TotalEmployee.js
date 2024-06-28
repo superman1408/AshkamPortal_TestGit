@@ -42,10 +42,12 @@ const TotalEmployee = () => {
       <Container
         sx={{
           display: "flex",
-          marginTop: "10px",
+          marginTop: "20px",
           marginLeft: "20px",
-          maxWidth: "500px",
-          padding: "5px",
+          // maxWidth: "700px",
+          width: "350px",
+          height: "250px",
+          padding: "20px",
           bgcolor: "#e9edf7",
           boxShadow: 1,
           borderRadius: "10px",
@@ -156,7 +158,7 @@ const TotalEmployee = () => {
 
             <Grid
               sx={{
-                width: "250px",
+                // width: "250px",
                 height: "120px",
                 marginLeft: "0px",
               }}

@@ -36,9 +36,6 @@ const LeaveTable = ({ posts, currentId }) => {
   };
   const [leaveBalances, setLeaveBalances] = useState(initialLeaveBalances);
 
-
-
-
   const verify = () => {
     try {
       if (
@@ -55,15 +52,9 @@ const LeaveTable = ({ posts, currentId }) => {
     }
   };
 
-
-
-
   useEffect(() => {
     currentId && setLeaveBalances(initialLeaveBalances);
   }, [currentId]);
-
-
-
 
   const headerCellStyle = {
     display: "table-cell",
@@ -74,30 +65,19 @@ const LeaveTable = ({ posts, currentId }) => {
     borderBottom: "1px solid #ccc",
   };
 
-
-
-
   const cellStyle = {
     display: "table-cell",
     padding: "10px",
     borderBottom: "1px solid #ccc",
   };
 
-
-
   const inputStyle = {
     width: "50px",
   };
 
-
-
-
   const reloadPage = () => {
     window.location.reload();
   };
-
-
-
 
   const handleSubmit = async () => {
     await dispatch(leaveList(leaveBalances, currentId)).then(() => {
@@ -105,9 +85,6 @@ const LeaveTable = ({ posts, currentId }) => {
     });
     reloadPage();
   };
-
-
-
 
   return (
     <div
@@ -201,7 +178,12 @@ const LeaveTable = ({ posts, currentId }) => {
           {verify() === true && (
             <button
               onClick={handleSubmit}
-              style={{ float: "right", margin: "5px", fontFamily:"roboto", fontSize: '12px' }}
+              style={{
+                float: "right",
+                margin: "5px",
+                fontFamily: "roboto",
+                fontSize: "12px",
+              }}
             >
               Submit
             </button>
@@ -257,6 +239,7 @@ const LeaveTable = ({ posts, currentId }) => {
                     "#4BC0C0",
                     "#9966FF",
                   ],
+                  hoverOffset: 4,
                 },
               ],
             }}
@@ -270,7 +253,7 @@ const LeaveTable = ({ posts, currentId }) => {
                 },
                 tooltip: {
                   // Example for changing tooltip position to nearest
-                  position: "nearest",
+                  position: "top",
                   // Additional tooltip customization can be done here
                 },
               },

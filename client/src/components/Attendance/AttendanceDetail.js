@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Typography, Grid, Divider, Card, Box } from "@mui/material";
+import { Typography, Grid, Divider, Card, Box, Checkbox } from "@mui/material";
 
 import { getPosts } from "../../action/posts";
 import { dailyAttendance, logList } from "../../action/posts";
@@ -136,6 +136,12 @@ const AttendanceDetail = ({ currentId, posts }) => {
       // If no matching log is found, reset total hours to null
       setTotalHours(null);
     }
+  };
+
+  const [checked, setChecked] = React.useState(false);
+
+  const handleChange = () => {
+    setChecked(!checked);
   };
 
   return (
