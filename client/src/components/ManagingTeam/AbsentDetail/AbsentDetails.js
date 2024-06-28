@@ -44,6 +44,9 @@ const AbsentDetails = ({ posts, currentId }) => {
     window.location.reload();
   };
 
+
+  
+
   return (
     <Grid
       sx={{
