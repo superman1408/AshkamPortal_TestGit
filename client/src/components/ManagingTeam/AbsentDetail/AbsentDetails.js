@@ -55,7 +55,10 @@ const AbsentDetails = ({ posts, currentId }) => {
         // border: "1px solid lightgray",
         margin: "0px 5px 2px 5px",
 
-        "@media (max-width: 600px)": { display: "flex" },
+        "@media (max-width: 600px)": {
+          display: "flex",
+          margin: "0px 0px 0px 0px",
+        },
       }}
     >
       <form className="time-sheet-form" onSubmit={handleSubmit}>

@@ -53,7 +53,7 @@ const Lead = ({ post, verifyDepat }) => {
         <Grid sx={{ marginBottom: "62px" }}></Grid>
       ) : (
         <Grid
-          sx={{ display: "flex", flexDirection: "row", marginBottom: "20px" }}
+          sx={{ display: "flex", flexDirection: "row", marginBottom: "2px" }}
         >
           <Grid
             sx={{ display: "flex", flexDirection: "row", marginTop: "10px" }}
