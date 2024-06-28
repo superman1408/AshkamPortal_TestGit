@@ -54,6 +54,8 @@ const AbsentDetails = ({ posts, currentId }) => {
         // borderRadius: "15px",
         // border: "1px solid lightgray",
         margin: "0px 5px 2px 5px",
+
+        "@media (max-width: 600px)": { display: "flex" },
       }}
     >
       <form className="time-sheet-form" onSubmit={handleSubmit}>
@@ -75,7 +77,14 @@ const AbsentDetails = ({ posts, currentId }) => {
                 {posts.map((post, index) => {
                   if (post._id === currentId) {
                     return (
-                      <div key={index} style={{ display: "flex" }}>
+                      <div
+                        key={index}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
                         <FormControl>
                           <FormLabel id="demo-row-radio-buttons-group-label">
                             {post.firstName + " " + post.lastName}
@@ -115,7 +124,7 @@ const AbsentDetails = ({ posts, currentId }) => {
           style={{
             display: "flex",
             float: "right",
-            marginTop: "65px",
+            // marginTop:
           }}
         >
           <button style={{ fontFamily: "Roboto" }} type="submit">

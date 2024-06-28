@@ -29,7 +29,14 @@ const AbsentDetailsDisplay = () => {
   }, [dispatch]);
 
   return (
-    <div style={{ alignItems: "center", justifyContent: "center" }}>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100vw",
+      }}
+    >
       <Card
         sx={{
           display: "flex",
@@ -42,7 +49,7 @@ const AbsentDetailsDisplay = () => {
         <Divider
           sx={{
             margin: "20px 0px 20px 0px",
-            borderWidth: "7px",
+            borderWidth: "5px",
             bgcolor: "#e55d17",
           }}
         />
