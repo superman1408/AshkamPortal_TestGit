@@ -51,13 +51,15 @@ const TotalEmployee = () => {
           bgcolor: "#e9edf7",
           boxShadow: 1,
           borderRadius: "10px",
-          "@media (max-width: 600px)": {
-            // display: "flex",
-            margin: "20px 20px 0px 0px",
-          },
-          // "@media (max-width: 720px)": {
-          //   // display: "flex",
+          // "@media (max-width: 600px)": {
+          //   display: "flex",
           //   margin: "20px 20px 0px 0px",
+          //   width: "50vh",
+          // },
+          // "@media (max-width: 720px)": {
+          //   display: "flex",
+          //   margin: "20px 20px 0px 20px",
+          //   width: "100%",
           // },
         }}
       >
