@@ -40,12 +40,10 @@ const Department = () => {
         overflow: "hidden",
         position: "relative", // Set position to relative
         "@media (max-width: 600px)": {
-          display: "flex",
-          margin: "20px 20px 0px 0px",
-          width: "50vh",
+          // display: "flex",
+          margin: "20px 0px 0px 0px",
+          // width: "50vh",
         },
-
-        "@media (min-width: 600px)": {},
       }}
     >
       <Grid

@@ -169,8 +169,9 @@ const Admin = ({ currentId }) => {
                   <Grid
                     sx={{
                       "@media (max-width: 720px)": {
-                        margin: "0px",
-                        width: "50vh",
+                        display: "flex",
+                        margin: "0px 0px 0px 20px",
+                        // width: "50vh",
                       },
                     }}
                   >
