@@ -103,7 +103,7 @@ const WeeklyActivity = () => {
           "@media (max-width: 600px)": {
             // display: "flex",
             margin: "20px 20px 0px 0px",
-            height: "40vh",
+            height: "60vh",
           },
           // "@media (max-width: 400px)": {
           //   width: "40vh",
