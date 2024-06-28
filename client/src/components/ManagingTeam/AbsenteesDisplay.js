@@ -160,18 +160,33 @@ const AbsenteesDisplay = () => {
                             />
                           </Stack>
                         </Grid>
-                        <Grid>
-                          <Typography
-                            sx={{
-                              marginLeft: "10px",
-                              marginRight: "0px",
-                              marginTop: "10px",
-                              fontSize: "14px",
-                              fontFamily: "Roboto",
-                            }}
-                          >
-                            {formatName(post.firstName, post.lastName)}
-                          </Typography>
+                        <Grid sx={{ display: "flex", flexDirection: "column" }}>
+                          <Grid>
+                            <Typography
+                              sx={{
+                                marginLeft: "10px",
+                                marginRight: "0px",
+                                marginTop: "10px",
+                                fontSize: "14px",
+                                fontFamily: "Roboto",
+                                fontWeight: "bold",
+                              }}
+                            >
+                              {formatName(post.firstName, post.lastName)}
+                            </Typography>
+                          </Grid>
+                          <Grid>
+                            <Typography
+                              sx={{
+                                marginLeft: "10px",
+                                marginRight: "0px",
+                                fontSize: "11px",
+                                fontFamily: "Roboto",
+                              }}
+                            >
+                              {post.department}
+                            </Typography>
+                          </Grid>
                         </Grid>
                       </Grid>
                     </div>
