@@ -157,7 +157,7 @@ const Admin = ({ currentId }) => {
                       "@media (max-width: 600px)": {
                         // width: "40vh",
                         // display: "flex",
-                        margin: "20px 20px 0px 0px",
+                        margin: "20px 0px 0px 0px",
                       },
                       "@media (min-width: 600px)": {
                         width: "50vh",
@@ -166,7 +166,14 @@ const Admin = ({ currentId }) => {
                   >
                     <Department />
                   </Grid>
-                  <Grid>
+                  <Grid
+                    sx={{
+                      "@media (max-width: 720px)": {
+                        margin: "0px",
+                        width: "50vh",
+                      },
+                    }}
+                  >
                     <TotalEmployee />
                   </Grid>
                 </Grid>
@@ -193,13 +200,7 @@ const Admin = ({ currentId }) => {
                   <Birthday />
                 </Grid>
 
-                <Grid
-                  sx={{
-                    "@media (max-width: 720px)": {
-                      margin: "0px",
-                    },
-                  }}
-                >
+                <Grid>
                   <AbsenteesDisplay />
                 </Grid>
 

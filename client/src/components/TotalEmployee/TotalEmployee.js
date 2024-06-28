@@ -44,9 +44,9 @@ const TotalEmployee = () => {
           display: "flex",
           marginTop: "20px",
           marginLeft: "20px",
-          // maxWidth: "700px",
-          width: "350px",
-          height: "250px",
+          maxWidth: "330px",
+          width: "330px",
+          height: "280px",
           padding: "20px",
           bgcolor: "#e9edf7",
           boxShadow: 1,
@@ -94,7 +94,7 @@ const TotalEmployee = () => {
               </Typography>
             </Grid>
 
-            <Grid>
+            {/* <Grid>
               <Typography
                 sx={{
                   marginLeft: "20px",
@@ -105,7 +105,7 @@ const TotalEmployee = () => {
               >
                 {menCount + womenCount}
               </Typography>
-            </Grid>
+            </Grid> */}
           </Grid>
           <Grid sx={{ display: "flex", flexDirection: "row" }}>
             <Grid
@@ -116,7 +116,11 @@ const TotalEmployee = () => {
               }}
             >
               <Grid
-                sx={{ display: "flex", flexDirection: "row", marginTop: "" }}
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  marginTop: "20px",
+                }}
               >
                 <Grid>
                   <IconButton height="40px" width="40px" color="primary">
@@ -159,7 +163,7 @@ const TotalEmployee = () => {
             <Grid
               sx={{
                 // width: "250px",
-                height: "120px",
+                // height: "120px",
                 marginLeft: "0px",
               }}
             >
@@ -175,9 +179,12 @@ const TotalEmployee = () => {
                   backgroundColor: {
                     fill: "#e9edf7",
                   },
+                  legend: {
+                    position: "top",
+                  },
                 }}
-                width={"250px"}
-                height={"100px"}
+                width={"230px"}
+                height={"180px"}
               />
             </Grid>
           </Grid>
