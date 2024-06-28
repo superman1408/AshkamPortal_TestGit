@@ -231,7 +231,6 @@ export const getEvents = () => async (dispatch) => {
 export const leaveList = (post, id) => async (dispatch) => {
   try {
     const { data } = await API.leaveList(post, id);
-    console.log(data);
     dispatch({ type: LEAVELIST, payload: data });
   } catch (error) {
     console.log(error);
@@ -241,7 +240,6 @@ export const leaveList = (post, id) => async (dispatch) => {
 export const presentList = (post, id) => async (dispatch) => {
   try {
     const { data } = await API.presentList(post, id);
-    console.log(data);
     dispatch({ type: PRESENTLIST, payload: data });
   } catch (error) {
     console.log(error);

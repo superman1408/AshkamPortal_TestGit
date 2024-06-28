@@ -66,59 +66,57 @@ const AbsentDetails = ({ posts, currentId }) => {
             justifyContent: "space-between",
           }}
         >
-          <tr>
-            <div>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-              >
-                {posts.map((post, index) => {
-                  if (post._id === currentId) {
-                    return (
-                      <div
-                        key={index}
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                      >
-                        <FormControl>
-                          <FormLabel id="demo-row-radio-buttons-group-label">
-                            {post.firstName + " " + post.lastName}
-                          </FormLabel>
-                          <RadioGroup
-                            row
-                            aria-labelledby="demo-row-radio-buttons-group-label"
-                            name="row-radio-buttons-group"
-                            onChange={(e) =>
-                              setFormData({
-                                ...formData,
-                                presentStatus: e.target.value,
-                              })
-                            }
-                          >
-                            <FormControlLabel
-                              value="true"
-                              control={<Radio />}
-                              label="Present"
-                            />
-                            <FormControlLabel
-                              value="false"
-                              control={<Radio />}
-                              label="Absent"
-                            />
-                          </RadioGroup>
-                        </FormControl>
-                      </div>
-                    );
-                  }
-                })}
-              </div>
+          <div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+              }}
+            >
+              {posts.map((post, index) => {
+                if (post._id === currentId) {
+                  return (
+                    <div
+                      key={index}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <FormControl>
+                        <FormLabel id="demo-row-radio-buttons-group-label">
+                          {post.firstName + " " + post.lastName}
+                        </FormLabel>
+                        <RadioGroup
+                          row
+                          aria-labelledby="demo-row-radio-buttons-group-label"
+                          name="row-radio-buttons-group"
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              presentStatus: e.target.value,
+                            })
+                          }
+                        >
+                          <FormControlLabel
+                            value="true"
+                            control={<Radio />}
+                            label="Present"
+                          />
+                          <FormControlLabel
+                            value="false"
+                            control={<Radio />}
+                            label="Absent"
+                          />
+                        </RadioGroup>
+                      </FormControl>
+                    </div>
+                  );
+                }
+              })}
             </div>
-          </tr>
+          </div>
         </div>
         <div
           style={{

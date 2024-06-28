@@ -139,10 +139,10 @@ const AbsenteesDisplay = () => {
             }}
           >
             <Grid>
-              {sortedPosts.map((post) => {
+              {sortedPosts.map((post, index) => {
                 if (post.presentStatus === "false") {
                   return (
-                    <>
+                    <div key={index}>
                       <Grid sx={{ display: "flex", flexDirection: "row" }}>
                         <Grid>
                           <Stack flexDirection="row">
@@ -174,7 +174,7 @@ const AbsenteesDisplay = () => {
                           </Typography>
                         </Grid>
                       </Grid>
-                    </>
+                    </div>
                   );
                 }
               })}
