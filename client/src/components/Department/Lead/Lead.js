@@ -52,8 +52,12 @@ const Lead = ({ post, verifyDepat }) => {
       {user.result.role === post.role ? (
         <Grid sx={{ marginBottom: "62px" }}></Grid>
       ) : (
-        <Grid sx={{ display: "flex", flexDirection: "row" }}>
-          <Grid sx={{ display: "flex", flexDirection: "row" }}>
+        <Grid
+          sx={{ display: "flex", flexDirection: "row", marginBottom: "20px" }}
+        >
+          <Grid
+            sx={{ display: "flex", flexDirection: "row", marginTop: "10px" }}
+          >
             <div>
               <Stack flexDirection="row">
                 <Avatar

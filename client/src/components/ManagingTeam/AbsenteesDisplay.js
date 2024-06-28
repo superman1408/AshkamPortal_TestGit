@@ -79,7 +79,6 @@ const AbsenteesDisplay = () => {
 
           "@media (max-width: 600px)": {
             display: "flex",
-            margin: "0px 20px 0px 0px",
           },
         }}
       >

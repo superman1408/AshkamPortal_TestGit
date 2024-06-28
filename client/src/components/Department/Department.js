@@ -34,11 +34,18 @@ const Department = () => {
         padding: "10px",
         bgcolor: "#f2d5d6",
         boxShadow: 1,
-        maxWidth: "500px",
+        maxWidth: "700px",
         borderRadius: "10px",
         // width: "100%",
         overflow: "hidden",
         position: "relative", // Set position to relative
+        "@media (max-width: 600px)": {
+          display: "flex",
+          margin: "20px 20px 0px 0px",
+          width: "50vh",
+        },
+
+        "@media (min-width: 600px)": {},
       }}
     >
       <Grid
@@ -55,7 +62,7 @@ const Department = () => {
               <IconButton
                 onClick={() => {
                   navigate(`/departmentdetails`); // Employee Attendance Route
-                }}                        
+                }}
               >
                 {" "}
                 <GroupsIcon />
