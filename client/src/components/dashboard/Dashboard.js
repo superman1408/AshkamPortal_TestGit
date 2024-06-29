@@ -153,13 +153,13 @@ const Admin = ({ currentId }) => {
                 >
                   <Grid
                     sx={{
-                      margin: "20px 0px 0px 20px",
+                      margin: "20px 0px 0px 0px",
                       "@media (max-width: 720px)": {
                         margin: "20px 20px 0px 20px",
                         // width: "70vh",
                       },
                       "@media (min-width: 600px)": {
-                        margin: "20px 20px 0px 20px",
+                        margin: "20px 0px 0px 20px",
                         width: "50vh",
                       },
                       "@media (max-width: 400px)": {
@@ -177,7 +177,7 @@ const Admin = ({ currentId }) => {
                         // width: "50vh",
                       },
                       "@media (max-width: 600px)": {
-                        margin: "20px 20px 0px 0px",
+                        margin: "20px 0px 0px 0px",
                         width: "70vh",
                       },
                     }}
@@ -243,7 +243,7 @@ const Admin = ({ currentId }) => {
                       margin: "20px 20px 0px 0px",
                     },
                     "@media (max-width: 600px)": {
-                      margin: "20px 20px 0px 20px",
+                      margin: "20px 0px 0px 20px",
                     },
                     "@media (max-width: 400px)": {
                       width: "44vh",
