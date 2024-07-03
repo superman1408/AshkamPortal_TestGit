@@ -103,7 +103,7 @@ const Attendance = () => {
               <Grid sx={{ marginLeft: "40px" }}>
                 <Typography sx={{ fontFamily: "Roboto" }}>Present</Typography>
 
-                <Typography>{attendanceData.presentEmp}</Typography>
+                <Typography>{attendanceData.presentEmp}</Typography>                                                       
               </Grid>
 
               <Grid sx={{ marginLeft: "40px" }}>

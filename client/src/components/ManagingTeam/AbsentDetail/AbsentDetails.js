@@ -18,8 +18,18 @@ const AbsentDetails = ({ posts, currentId }) => {
   //   dispatch(presentList(posts, currentId));
   // }, [dispatch]);
 
+  const [nameCount, setNameCount] = useState(0);
+
+  React.useEffect(() => {
+    const count = posts.filter((post) => post._id === currentId).length;
+    setNameCount(count);
+  }, [posts, currentId]);
+
+  console.log(nameCount);
+
   const [formData, setFormData] = useState({
     presentStatus: "",
+    nameCount: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
