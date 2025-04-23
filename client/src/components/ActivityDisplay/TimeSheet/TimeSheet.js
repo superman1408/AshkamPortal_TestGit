@@ -126,7 +126,7 @@ function TimeSheet({ currentId, posts }) {
     });
 
     const totalNetTime = entriesForCurrentWeek.reduce(
-      (total, entry) => total + entry.netTime,
+      (total, entry) => total + entry.netTime,    
       0
     );
 
@@ -301,6 +301,7 @@ function TimeSheet({ currentId, posts }) {
         Project Time Sheet
       </strong>
       {/* <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} /> */}
+      {/*   */}
       <div style={{ display: "flex" }}>
         {matches && (
           <div style={{ display: "flex" }}>
@@ -337,6 +338,7 @@ function TimeSheet({ currentId, posts }) {
                   id="date"
                   defaultValue={date}
                   // onChange={(e) => setDate(e.target.value)}
+                  // 
                   onChange={handleCheck}
                   required
                 />
@@ -764,4 +766,4 @@ function TimeSheet({ currentId, posts }) {
 }
 export default TimeSheet;
 
-// update the code as as soon as user click the 2nd saturday & sunday alert displays
+
