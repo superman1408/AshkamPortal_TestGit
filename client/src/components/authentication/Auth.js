@@ -83,13 +83,17 @@ const Auth = () => {
         backgroundImage: `url(${image})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        padding: "40px",
+        padding: "20px",
       }}
     >
-      <Card className="card" elevation={10} sx={{ display: "flex" }}>
+      <Card
+        className="card"
+        elevation={10}
+        sx={{ display: "flex", padding: "10px" }}
+      >
         <Grid>
-          <div
-            style={{
+          <Grid
+            sx={{
               display: "flex",
               justifyContent: "center",
               color: "primary",
@@ -100,11 +104,25 @@ const Auth = () => {
               fontSize="large"
               color={isSignUp ? "primary" : "secondary"}
             />
-          </div>
+          </Grid>
 
-          <h4 style={{ fontFamily: "Roboto ", color: "#16355d" }}>
-            {isSignUp ? "Sign Up" : "Sign In"}
-          </h4>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center", // optional: centers vertically too if needed
+            }}
+          >
+            <h4
+              style={{
+                fontFamily: "Roboto",
+                color: "#16355d",
+                margin: 0, // optional, removes default margin
+              }}
+            >
+              {isSignUp ? "Sign Up" : "Sign In"}
+            </h4>
+          </div>
           {/* <Typography color="#0B7882">Welcome to Ashkam 👋 </Typography> */}
 
           <form autoComplete="on" onSubmit={handleSubmit}>
@@ -279,7 +297,12 @@ const Auth = () => {
             </div>
             <div>
               <Button
-                style={{ fontFamily: "Roboto ", color: "#16355d" }}
+                style={{
+                  fontFamily: "Roboto ",
+                  color: "#16355d",
+                  textAlign: "center",
+                  width: "100%",
+                }}
                 onClick={resetPassword}
               >
                 Reset The Password
@@ -287,7 +310,12 @@ const Auth = () => {
             </div>
             <div>
               <Button
-                style={{ fontFamily: "Roboto ", color: "#16355d" }}
+                style={{
+                  fontFamily: "Roboto ",
+                  color: "#16355d",
+                  textAlign: "center",
+                  width: "100%",
+                }}
                 onClick={switchMode}
               >
                 {isSignUp
