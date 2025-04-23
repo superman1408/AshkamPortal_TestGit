@@ -43,27 +43,27 @@ const App = () => {
         {/* )} */}
       </header>
 
-      {/* <Navibar /> */}
+      <Navibar />
       <Container maxWidth={false}>
         <div>
           <Routes>
-            <Route path="/" exact element={<Decommission />} />
+            {/* <Route path="/" exact element={<Decommission />} /> */}
 
             {/*  These Routes are important*/}
 
-            {/* <Route
+            <Route
               exact
               path="/"
               element={!user ? <Authentication /> : <Dashboard />}
-            /> */}
+            />
             {/* this part need to be examined after ward */}
 
-            {/* <Route path="/auth" exact element={!user && <Authentication />} /> */}
-            {/* <Route
+            <Route path="/auth" exact element={!user && <Authentication />} />
+            <Route
               path="/auth/reset"
               exact
               element={!user && <PasswordResetForm />}
-            /> */}
+            />
             {/* <Route path="/profile" exact element={<Form />} /> */}
             <Route path="/:id/profile" exact element={<RegistrationForm />} />
             <Route path="/mail/:id/leave" exact element={<Leave />} />
@@ -76,7 +76,7 @@ const App = () => {
             {/* <Route path="/mail/:id/payslip" exact element={<Payslip />} /> */}
 
             <Route path="/aboutUs" exact element={<AboutUS />} />
-            {/* <Route path="/home" exact element={<Dashboard />} /> */}
+            <Route path="/home" exact element={<Dashboard />} />
             <Route
               path="posts/:id/fullweeklyactivity"
               exact
