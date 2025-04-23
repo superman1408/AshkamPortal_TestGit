@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Grid, Typography, Avatar, Container, Card } from "@mui/material";
+import { Grid, Typography, Avatar, Container } from "@mui/material";
 
 import { getPosts, getEvents } from "../../action/posts";
 
@@ -17,9 +17,8 @@ const Birthday = () => {
   const dispatch = useDispatch();
   const [evento, setEvento] = useState("");
   const posts = useSelector((state) => state.posts);
-  // const event = useSelector((state) => state.event);
   const user = JSON.parse(localStorage.getItem("profile"));
-  const role = user.result.role;
+
   const [dimension, setDimension] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -59,18 +58,6 @@ const Birthday = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, evento, event]);
 
-  // const isBirthdayToday = () => {
-  //   posts.map((post) => {
-  //     // console.log(post.firstName)
-  //     let day = new Date(post.dob).getDate();
-  //     let month = new Date(post.dob).getMonth() + 1;
-  //     const currentDay = new Date().getDate();
-  //     const currentMonth = new Date().getMonth() + 1;
-  //     if (currentDay === day && currentMonth === month) {
-  //     }
-  //   });
-  // };
-
   const bounce = keyframes`
   0%, 100% {
     transform: translateY(0);
@@ -85,8 +72,6 @@ const Birthday = () => {
     const month = new Date(post.dob).getMonth() + 1;
     return currentDay === day && currentMonth === month;
   });
-
-  // const [isVisible, setIsVisible] = useState(false);
 
   const verify = () => {
     if (user.result.role === "admin" || user.result.role === "manager") {
@@ -105,7 +90,6 @@ const Birthday = () => {
           maxWidth: "500px",
           marginLeft: "20px",
           padding: "10px",
-          // bgcolor: "background.paper",
           boxShadow: 1,
           borderRadius: "10px",
           backgroundImage: `url(${Image})`,
@@ -114,9 +98,6 @@ const Birthday = () => {
             display: "flex",
             margin: "20px 0px 0px 0px",
           },
-          // "@media (max-width: 400px)": {
-          //   width: "40vh",
-          // },
         }}
       >
         <Grid sx={{ display: "flex" }}>
@@ -136,142 +117,101 @@ const Birthday = () => {
                 Please check back tomorrow or try again later.
               </marquee>
             ) : (
-              // <div style={{ padding: "10px", width: "100%" }}>
-              //   <Typography
-              //     variant="h6"
-              //     sx={{
-              //       fontFamily: "Roboto",
-              //       textAlign: "left",
-              //       color: "#16355d",
-              //     }}
-              //   >
-              //     Happy Birthday
-              //   </Typography>
-              //   {birthdaysToday.map((post) => {
-              //     return (
-              //       <React.Fragment key={post.dob}>
-              //         <div style={{ display: "flex", marginTop: "5px" }}>
-              //           {/* <Card
-              //             elevation={15}
-              //             sx={{
-              //               display: "flex",
-              //               marginTop: "15px",
-              //               alignItems: "center",
-              //               width: "70%",
-              //             }}
-              //           > */}
-              //           <Typography>{`\u2022`}</Typography>
-              //           <Avatar
-              //             post={post}
-              //             sx={{
-              //               width: 31,
-              //               height: 30,
-              //               marginLeft: "20px",
-              //               userSelect: "none", // Prevent selection
-              //               pointerEvents: "none", // Prevent interaction
-              //             }}
-              //             alt="user"
-              //             src={post.selectedFile}
-              //           />
-              //           <Typography
-              //             post={post}
-              //             variant="h6"
-              //             sx={{
-              //               marginLeft: "20px",
-              //               fontFamily: "Roboto",
-              //               fontSize: "18px",
-              //               color: "#e55d17",
-              //             }}
-              //           >
-              //             {post.firstName + " " + post.lastName}
-              //           </Typography>
-              //         </div>
-              //       </React.Fragment>
-              //     );
-              //   })}
-              // </div>
-
               <div style={{}}>
-                <div style={{ display: "flex", padding: "12px" }}>
-                  <CakeIcon />
+                <div style={{ display: "flex", padding: "5px" }}>
+                  <CakeIcon sx={{ color: "#16355d" }} />
                   <Typography
                     sx={{
+                      color: "#16355d",
                       fontWeight: "bold",
                       fontFamily: "Roboto",
                       paddingLeft: "10px",
+                      textAlign: "center",
+                      width: "100%",
                     }}
                   >
                     Today's Birthday
                   </Typography>
                 </div>
-
-                {birthdaysToday.map((post) => {
-                  return (
-                    <React.Fragment key={post.dob}>
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "column",
-                          marginTop: "5px",
-                          backgroundColor: "white",
-                          padding: "10px",
-                          borderRadius: "10px",
-                        }}
-                      >
-                        <div style={{ display: "flex", alignItems: "center" }}>
-                          <Avatar
-                            sx={{
-                              width: 31,
-                              height: 30,
-                              marginLeft: "20px",
-                              userSelect: "none",
-                              pointerEvents: "none",
-                            }}
-                            alt="user"
-                            src={post.selectedFile}
-                          />
+                <div style={{ height: "100px", overflowY: "auto" }}>
+                  {birthdaysToday.map((post) => {
+                    return (
+                      <React.Fragment key={post.dob}>
+                        <div
+                          style={{
+                            display: "flex",
+                            // flexDirection: "column",
+                            marginTop: "5px",
+                            backgroundColor: "white",
+                            borderRadius: "10px",
+                            padding: "5px",
+                          }}
+                        >
                           <div
                             style={{
                               display: "flex",
-                              flexDirection: "column",
-                              marginLeft: "20px",
+                              alignItems: "center",
+                              gap: "5px",
                             }}
                           >
-                            <div>
-                              <Typography
-                                variant="h6"
-                                sx={{
-                                  fontFamily: "Roboto",
-                                  fontSize: "18px",
-                                  color: "#e55d17",
-                                }}
-                              >
-                                {post.firstName + " " + post.lastName}
-                              </Typography>
-                            </div>
-                            <div
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "5px",
+                            <Avatar
+                              sx={{
+                                width: 31,
+                                height: 30,
+                                marginLeft: "20px",
+                                userSelect: "none",
+                                pointerEvents: "none",
+                              }}
+                              alt="user"
+                              src={post.selectedFile}
+                            />
+
+                            <Typography
+                              variant="h6"
+                              sx={{
+                                fontFamily: "Roboto",
+                                fontSize: "18px",
+                                // color: "#e55d17",
+                                color: "#16355d",
                               }}
                             >
-                              <CelebrationIcon
-                                sx={{
-                                  color: "#ff9800",
-                                  animation: `${bounce} 1.5s infinite`,
-                                }}
-                              />
-                              <Typography variant="body2" color="textSecondary">
-                                {post.department}
-                              </Typography>
-                            </div>
+                              {post.firstName + " " + post.lastName}
+                            </Typography>
+                          </div>
+
+                          <span style={{ padding: "5px" }}>-</span>
+                          <div
+                            style={{
+                              display: "flex",
+                              gap: "5px",
+                              marginTop: "5px",
+                            }}
+                          >
+                            <CelebrationIcon
+                              sx={{
+                                color: "#ff9800",
+                                // animation: `${bounce} 1.5s infinite`,
+                                fontSize: "20px",
+                                padding: "3px",
+                              }}
+                            />
+                            <Typography
+                              variant="body2"
+                              color="textSecondary"
+                              sx={{
+                                fontFamily: "Roboto",
+                                fontSize: "13px",
+                                padding: "3px",
+                              }}
+                            >
+                              {post.department}
+                            </Typography>
                           </div>
                         </div>
-                      </div>
-                    </React.Fragment>
-                  );
-                })}
+                      </React.Fragment>
+                    );
+                  })}
+                </div>
               </div>
             )}
 
@@ -296,14 +236,13 @@ const Birthday = () => {
               </marquee>
             </div>
           </div>
+
           <div
             style={{
               bgcolor: "#ecd0f5",
-              float: "right",
             }}
           >
             {verify() === true && <FormDialog />}
-            {/* <FormDialog /> */}
           </div>
         </Grid>
       </Container>

@@ -10,7 +10,6 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { IconButton } from "@mui/material";
 import CampaignIcon from "@mui/icons-material/Campaign";
-import CakeIcon from "@mui/icons-material/Cake";
 
 import { dailyEvent } from "../../../action/posts";
 
@@ -44,7 +43,7 @@ const FormDialog = () => {
     <>
       <div style={{ float: "right" }}>
         <IconButton variant="outlined" onClick={handleClickOpen}>
-          <CampaignIcon sx={{ color: "#16365d", fontSize: "35px" }} />
+          <CampaignIcon sx={{ color: "#16365d", fontSize: "30px" }} />
         </IconButton>
       </div>
       <Dialog open={open} onClose={handleClose}>
