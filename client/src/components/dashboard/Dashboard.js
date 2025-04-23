@@ -27,7 +27,7 @@ const Admin = ({ currentId }) => {
   const role = user.result.role;
 
   return (
-    <div style={{ minheight: "100%", padding: "10px", display: "flex" }}>
+    <div style={{ minHeight: "100%", padding: "10px", display: "flex" }}>
       <Box
         sx={{
           display: "flex",
