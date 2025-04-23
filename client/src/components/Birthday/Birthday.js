@@ -7,6 +7,9 @@ import { Grid, Typography, Avatar, Container, Card } from "@mui/material";
 import { getPosts, getEvents } from "../../action/posts";
 
 import FormDialog from "./DialogBox/Dialog";
+import CakeIcon from "@mui/icons-material/Cake";
+import CelebrationIcon from "@mui/icons-material/Celebration";
+import { keyframes } from "@mui/system";
 import Image from "../../assets/b1.png";
 import "./style.css";
 
@@ -68,6 +71,15 @@ const Birthday = () => {
   //   });
   // };
 
+  const bounce = keyframes`
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+`;
+
   const birthdaysToday = posts.filter((post) => {
     const day = new Date(post.dob).getDate();
     const month = new Date(post.dob).getMonth() + 1;
@@ -124,55 +136,138 @@ const Birthday = () => {
                 Please check back tomorrow or try again later.
               </marquee>
             ) : (
-              <div style={{ padding: "10px", width: "100%" }}>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontFamily: "Roboto",
-                    textAlign: "left",
-                    color: "#16355d",
-                  }}
-                >
-                  Happy Birthday
-                </Typography>
+              // <div style={{ padding: "10px", width: "100%" }}>
+              //   <Typography
+              //     variant="h6"
+              //     sx={{
+              //       fontFamily: "Roboto",
+              //       textAlign: "left",
+              //       color: "#16355d",
+              //     }}
+              //   >
+              //     Happy Birthday
+              //   </Typography>
+              //   {birthdaysToday.map((post) => {
+              //     return (
+              //       <React.Fragment key={post.dob}>
+              //         <div style={{ display: "flex", marginTop: "5px" }}>
+              //           {/* <Card
+              //             elevation={15}
+              //             sx={{
+              //               display: "flex",
+              //               marginTop: "15px",
+              //               alignItems: "center",
+              //               width: "70%",
+              //             }}
+              //           > */}
+              //           <Typography>{`\u2022`}</Typography>
+              //           <Avatar
+              //             post={post}
+              //             sx={{
+              //               width: 31,
+              //               height: 30,
+              //               marginLeft: "20px",
+              //               userSelect: "none", // Prevent selection
+              //               pointerEvents: "none", // Prevent interaction
+              //             }}
+              //             alt="user"
+              //             src={post.selectedFile}
+              //           />
+              //           <Typography
+              //             post={post}
+              //             variant="h6"
+              //             sx={{
+              //               marginLeft: "20px",
+              //               fontFamily: "Roboto",
+              //               fontSize: "18px",
+              //               color: "#e55d17",
+              //             }}
+              //           >
+              //             {post.firstName + " " + post.lastName}
+              //           </Typography>
+              //         </div>
+              //       </React.Fragment>
+              //     );
+              //   })}
+              // </div>
+
+              <div style={{}}>
+                <div style={{ display: "flex", padding: "12px" }}>
+                  <CakeIcon />
+                  <Typography
+                    sx={{
+                      fontWeight: "bold",
+                      fontFamily: "Roboto",
+                      paddingLeft: "10px",
+                    }}
+                  >
+                    Today's Birthday
+                  </Typography>
+                </div>
+
                 {birthdaysToday.map((post) => {
                   return (
                     <React.Fragment key={post.dob}>
-                      <div style={{ display: "flex", marginTop: "5px" }}>
-                        {/* <Card
-                          elevation={15}
-                          sx={{
-                            display: "flex",
-                            marginTop: "15px",
-                            alignItems: "center",
-                            width: "70%",
-                          }}
-                        > */}
-                        <Typography>{`\u2022`}</Typography>
-                        <Avatar
-                          post={post}
-                          sx={{
-                            width: 31,
-                            height: 30,
-                            marginLeft: "20px",
-                            userSelect: "none", // Prevent selection
-                            pointerEvents: "none", // Prevent interaction
-                          }}
-                          alt="user"
-                          src={post.selectedFile}
-                        />
-                        <Typography
-                          post={post}
-                          variant="h6"
-                          sx={{
-                            marginLeft: "20px",
-                            fontFamily: "Roboto",
-                            fontSize: "18px",
-                            color: "#e55d17",
-                          }}
-                        >
-                          {post.firstName + " " + post.lastName}
-                        </Typography>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          marginTop: "5px",
+                          backgroundColor: "white",
+                          padding: "10px",
+                          borderRadius: "10px",
+                        }}
+                      >
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                          <Avatar
+                            sx={{
+                              width: 31,
+                              height: 30,
+                              marginLeft: "20px",
+                              userSelect: "none",
+                              pointerEvents: "none",
+                            }}
+                            alt="user"
+                            src={post.selectedFile}
+                          />
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              marginLeft: "20px",
+                            }}
+                          >
+                            <div>
+                              <Typography
+                                variant="h6"
+                                sx={{
+                                  fontFamily: "Roboto",
+                                  fontSize: "18px",
+                                  color: "#e55d17",
+                                }}
+                              >
+                                {post.firstName + " " + post.lastName}
+                              </Typography>
+                            </div>
+                            <div
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "5px",
+                              }}
+                            >
+                              <CelebrationIcon
+                                sx={{
+                                  color: "#ff9800",
+                                  animation: `${bounce} 1.5s infinite`,
+                                }}
+                              />
+                              <Typography variant="body2" color="textSecondary">
+                                {post.department}
+                              </Typography>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </React.Fragment>
                   );
