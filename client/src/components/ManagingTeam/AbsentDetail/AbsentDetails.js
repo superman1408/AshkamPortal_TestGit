@@ -54,6 +54,9 @@ const AbsentDetails = ({ posts, currentId }) => {
     window.location.reload();
   };
 
+
+  
+
   return (
     <Grid
       sx={{
@@ -65,7 +68,6 @@ const AbsentDetails = ({ posts, currentId }) => {
         // border: "1px solid lightgray",
         margin: "0px 5px 2px 5px",
 
-        "@media (max-width: 600px)": { display: "flex" },
       }}
     >
       <form className="time-sheet-form" onSubmit={handleSubmit}>

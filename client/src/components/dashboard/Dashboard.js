@@ -153,14 +153,17 @@ const Admin = ({ currentId }) => {
                 >
                   <Grid
                     sx={{
-                      margin: "20px 0px 0px 20px",
-                      "@media (max-width: 600px)": {
-                        // width: "40vh",
-                        // display: "flex",
-                        margin: "20px 0px 0px 0px",
+                      margin: "20px 0px 0px 0px",
+                      "@media (max-width: 720px)": {
+                        margin: "20px 20px 0px 20px",
+                        // width: "70vh",
                       },
                       "@media (min-width: 600px)": {
+                        margin: "20px 0px 0px 20px",
                         width: "50vh",
+                      },
+                      "@media (max-width: 400px)": {
+                        width: "42vh",
                       },
                     }}
                   >
@@ -169,8 +172,13 @@ const Admin = ({ currentId }) => {
                   <Grid
                     sx={{
                       "@media (max-width: 720px)": {
-                        margin: "0px",
-                        width: "50vh",
+                        display: "flex",
+                        margin: "0px 20px 0px 0px",
+                        // width: "50vh",
+                      },
+                      "@media (max-width: 600px)": {
+                        margin: "20px 0px 0px 0px",
+                        width: "70vh",
                       },
                     }}
                   >
@@ -178,29 +186,70 @@ const Admin = ({ currentId }) => {
                   </Grid>
                 </Grid>
 
-                <Grid>
+                <Grid
+                  sx={{
+                    "@media (max-width: 720px)": {
+                      display: "flex",
+                      margin: "0px 20px 0px 0px",
+                    },
+                    "@media (max-width: 600px)": {
+                      margin: "20px 20px 0px 20px",
+                    },
+                    "@media (max-width: 400px)": {
+                      width: "43vh",
+                    },
+                  }}
+                >
                   <WeeklyActivity />
                 </Grid>
               </Grid>
 
               <Grid sx={{ display: "flex", flexDirection: "column " }}>
                 <Grid
-                  sx={
-                    {
-                      // "@media (max-width: 400px)": {
-                      //   width: "40vh",
-                      // },
-                    }
-                  }
+                  sx={{
+                    "@media (max-width: 720px)": {
+                      margin: "20px 20px 0px 0px",
+                    },
+                    "@media (max-width: 600px)": {
+                      margin: "20px 20px 0px 20px",
+                    },
+                    "@media (max-width: 400px)": {
+                      width: "44vh",
+                    },
+                  }}
                 >
                   <Attendance />
                 </Grid>
 
-                <Grid>
+                <Grid
+                  sx={{
+                    "@media (max-width: 720px)": {
+                      margin: "20px 20px 0px 0px",
+                    },
+                    "@media (max-width: 600px)": {
+                      margin: "20px 20px 0px 20px",
+                    },
+                    "@media (max-width: 400px)": {
+                      width: "44vh",
+                    },
+                  }}
+                >
                   <Birthday />
                 </Grid>
 
-                <Grid>
+                <Grid
+                  sx={{
+                    "@media (max-width: 720px)": {
+                      margin: "20px 20px 0px 0px",
+                    },
+                    "@media (max-width: 600px)": {
+                      margin: "20px 0px 0px 20px",
+                    },
+                    "@media (max-width: 400px)": {
+                      width: "44vh",
+                    },
+                  }}
+                >
                   <AbsenteesDisplay />
                 </Grid>
 
@@ -209,10 +258,13 @@ const Admin = ({ currentId }) => {
                     marginTop: "10px",
                     marginLeft: "20px",
                     marginRight: "0px",
+                    "@media (max-width: 720px)": {
+                      margin: "20px 20px 0px 20px",
+                    },
                     "@media (max-width: 600px)": {
                       // width: "40vh",
                       display: "flex",
-                      margin: "20px 0px 0px 0px",
+                      margin: "20px 20px 0px 20px",
                     },
                     "@media (max-width: 400px)": {
                       width: "40vh",

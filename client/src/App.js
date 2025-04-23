@@ -14,13 +14,13 @@ import LOGO from "./assets/AshkamLogoTransparentbc.png";
 import PaySlip from "./components/Payslip/PaySlip";
 import ActivityDisplay from "./components/ActivityDisplay/ActivityDisplay";
 import SkillDisplay from "./components/Skills/SkillDisplay";
-import PrintingLayout from "./components/PrinttingLayout/PrintingLayout";
 import AttendanceDisplay from "./components/Attendance/AttendanceDisplay";
 import PasswordResetForm from "./components/PasswordReset/PasswordResetForm";
 import PayslipDisplay from "./components/PayslipDisplay/PayslipDisplay";
 import DepartmentDetails from "./components/Department/DepartmentDetails";
 import AbsentDetails from "./components/ManagingTeam/AbsentDetail/AbsentDetails";
 import AbsentDetailsDisplay from "./components/ManagingTeam/AbsentDetail/AbsentDetailsDisplay";
+import Decommission from "./components/Decommission/Decommission";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -43,23 +43,27 @@ const App = () => {
         {/* )} */}
       </header>
 
-      <Navibar />
+      {/* <Navibar /> */}
       <Container maxWidth={false}>
-        <div style={{ display: "flex" }}>
+        <div>
           <Routes>
-            <Route
+            <Route path="/" exact element={<Decommission />} />
+
+            {/*  These Routes are important*/}
+
+            {/* <Route
               exact
               path="/"
               element={!user ? <Authentication /> : <Dashboard />}
-            />
+            /> */}
             {/* this part need to be examined after ward */}
 
-            <Route path="/auth" exact element={!user && <Authentication />} />
-            <Route
+            {/* <Route path="/auth" exact element={!user && <Authentication />} /> */}
+            {/* <Route
               path="/auth/reset"
               exact
               element={!user && <PasswordResetForm />}
-            />
+            /> */}
             {/* <Route path="/profile" exact element={<Form />} /> */}
             <Route path="/:id/profile" exact element={<RegistrationForm />} />
             <Route path="/mail/:id/leave" exact element={<Leave />} />
@@ -72,7 +76,7 @@ const App = () => {
             {/* <Route path="/mail/:id/payslip" exact element={<Payslip />} /> */}
 
             <Route path="/aboutUs" exact element={<AboutUS />} />
-            <Route path="/home" exact element={<Dashboard />} />
+            {/* <Route path="/home" exact element={<Dashboard />} /> */}
             <Route
               path="posts/:id/fullweeklyactivity"
               exact
@@ -88,7 +92,7 @@ const App = () => {
               exact
               element={<AttendanceDisplay />}
             />
-            <Route path="/printingLayout" exact element={<PrintingLayout />} />
+
             <Route
               path="/departmentdetails"
               exact

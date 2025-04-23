@@ -38,7 +38,7 @@ const TotalEmployee = () => {
   }, [posts]);
 
   return (
-    <div style={{ display: "flex", flex: 1 }}>
+    <div style={{ display: "flex" }}>
       <Container
         sx={{
           display: "flex",
@@ -51,12 +51,15 @@ const TotalEmployee = () => {
           bgcolor: "#e9edf7",
           boxShadow: 1,
           borderRadius: "10px",
-          "@media (max-width: 600px)": {
-            display: "flex",
-            margin: "20px 20px 0px 0px",
-          },
-          // "@media (max-width: 400px)": {
-          //   width: "40vh",
+          // "@media (max-width: 600px)": {
+          //   display: "flex",
+          //   margin: "20px 20px 0px 0px",
+          //   width: "50vh",
+          // },
+          // "@media (max-width: 720px)": {
+          //   display: "flex",
+          //   margin: "20px 20px 0px 20px",
+          //   width: "100%",
           // },
         }}
       >
@@ -66,7 +69,7 @@ const TotalEmployee = () => {
               <IconButton
                 height="40px"
                 width="40px"
-                color="primary"
+                // color="primary"
                 sx={{
                   ml: "0px",
                   display: {
