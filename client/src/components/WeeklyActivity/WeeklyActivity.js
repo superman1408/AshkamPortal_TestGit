@@ -65,6 +65,15 @@ const WeeklyActivity = () => {
       },
       title: {
         display: true,
+        text: "Net Time vs Over Time (Stacked)",
+      },
+    },
+    scales: {
+      x: {
+        stacked: true,
+      },
+      y: {
+        stacked: true,
       },
     },
   };
@@ -91,7 +100,6 @@ const WeeklyActivity = () => {
     <div style={{ display: "flex", flex: 1 }}>
       <Container
         sx={{
-          // display: "flex",
           marginTop: "20px",
           marginLeft: "20px",
           padding: "5px",
@@ -101,15 +109,9 @@ const WeeklyActivity = () => {
           borderRadius: "10px",
           height: "480px",
           "@media (max-width: 600px)": {
-            // display: "flex",
             margin: "20px 0px 0px 0px",
             height: "60vh",
           },
-          // "@media (max-width: 400px)": {
-          //   width: "40vh",
-          // },
-
-          // "@media (min-width: 600px)": {},
         }}
       >
         <div>
@@ -151,4 +153,5 @@ const WeeklyActivity = () => {
     </div>
   );
 };
+
 export default WeeklyActivity;

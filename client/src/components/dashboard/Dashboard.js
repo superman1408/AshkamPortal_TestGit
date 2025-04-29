@@ -27,7 +27,7 @@ const Admin = ({ currentId }) => {
   const role = user.result.role;
 
   return (
-    <div style={{ minheight: "100%", padding: "10px", display: "flex" }}>
+    <div style={{ minHeight: "100%", padding: "10px", display: "flex" }}>
       <Box
         sx={{
           display: "flex",
@@ -170,35 +170,41 @@ const Admin = ({ currentId }) => {
                     <Department />
                   </Grid>
                   <Grid
-                    sx={{
-                      "@media (max-width: 720px)": {
-                        display: "flex",
-                        margin: "0px 20px 0px 0px",
-                        // width: "50vh",
-                      },
-                      "@media (max-width: 600px)": {
-                        margin: "20px 0px 0px 0px",
-                        width: "70vh",
-                      },
-                    }}
+                    item
+                    xs={12}
+                    sm={6}
+                    // sx={{
+                    //   "@media (max-width: 720px)": {
+                    //     display: "flex",
+                    //     margin: "0px 20px 0px 0px",
+                    //     // width: "50vh",
+                    //   },
+                    //   "@media (max-width: 600px)": {
+                    //     margin: "20px 0px 0px 0px",
+                    //     width: "70vh",
+                    //   },
+                    // }}
                   >
                     <TotalEmployee />
                   </Grid>
                 </Grid>
 
                 <Grid
-                  sx={{
-                    "@media (max-width: 720px)": {
-                      display: "flex",
-                      margin: "0px 20px 0px 0px",
-                    },
-                    "@media (max-width: 600px)": {
-                      margin: "20px 20px 0px 20px",
-                    },
-                    "@media (max-width: 400px)": {
-                      width: "43vh",
-                    },
-                  }}
+                  item
+                  xs={12}
+                  sm={6}
+                  // sx={{
+                  //   "@media (max-width: 720px)": {
+                  //     display: "flex",
+                  //     margin: "0px 20px 0px 0px",
+                  //   },
+                  //   "@media (max-width: 600px)": {
+                  //     margin: "20px 20px 0px 20px",
+                  //   },
+                  //   "@media (max-width: 400px)": {
+                  //     width: "43vh",
+                  //   },
+                  // }}
                 >
                   <WeeklyActivity />
                 </Grid>
@@ -206,69 +212,81 @@ const Admin = ({ currentId }) => {
 
               <Grid sx={{ display: "flex", flexDirection: "column " }}>
                 <Grid
-                  sx={{
-                    "@media (max-width: 720px)": {
-                      margin: "20px 20px 0px 0px",
-                    },
-                    "@media (max-width: 600px)": {
-                      margin: "20px 20px 0px 20px",
-                    },
-                    "@media (max-width: 400px)": {
-                      width: "44vh",
-                    },
-                  }}
+                  item
+                  xs={12}
+                  sm={6}
+                  // sx={{
+                  //   "@media (max-width: 720px)": {
+                  //     margin: "20px 20px 0px 0px",
+                  //   },
+                  //   "@media (max-width: 600px)": {
+                  //     margin: "20px 20px 0px 20px",
+                  //   },
+                  //   "@media (max-width: 400px)": {
+                  //     width: "44vh",
+                  //   },
+                  // }}
                 >
                   <Attendance />
                 </Grid>
 
                 <Grid
-                  sx={{
-                    "@media (max-width: 720px)": {
-                      margin: "20px 20px 0px 0px",
-                    },
-                    "@media (max-width: 600px)": {
-                      margin: "20px 20px 0px 20px",
-                    },
-                    "@media (max-width: 400px)": {
-                      width: "44vh",
-                    },
-                  }}
+                  item
+                  xs={12}
+                  sm={6}
+                  // sx={{
+                  //   "@media (max-width: 720px)": {
+                  //     margin: "20px 20px 0px 0px",
+                  //   },
+                  //   "@media (max-width: 600px)": {
+                  //     margin: "20px 20px 0px 20px",
+                  //   },
+                  //   "@media (max-width: 400px)": {
+                  //     width: "44vh",
+                  //   },
+                  // }}
                 >
                   <Birthday />
                 </Grid>
 
                 <Grid
-                  sx={{
-                    "@media (max-width: 720px)": {
-                      margin: "20px 20px 0px 0px",
-                    },
-                    "@media (max-width: 600px)": {
-                      margin: "20px 0px 0px 20px",
-                    },
-                    "@media (max-width: 400px)": {
-                      width: "44vh",
-                    },
-                  }}
+                  item
+                  xs={12}
+                  sm={6}
+                  // sx={{
+                  //   "@media (max-width: 720px)": {
+                  //     margin: "20px 20px 0px 0px",
+                  //   },
+                  //   "@media (max-width: 600px)": {
+                  //     margin: "20px 0px 0px 20px",
+                  //   },
+                  //   "@media (max-width: 400px)": {
+                  //     width: "44vh",
+                  //   },
+                  // }}
                 >
                   <AbsenteesDisplay />
                 </Grid>
 
                 <Grid
+                  item
+                  xs={12}
+                  sm={6}
                   sx={{
                     marginTop: "10px",
                     marginLeft: "20px",
                     marginRight: "0px",
-                    "@media (max-width: 720px)": {
-                      margin: "20px 20px 0px 20px",
-                    },
-                    "@media (max-width: 600px)": {
-                      // width: "40vh",
-                      display: "flex",
-                      margin: "20px 20px 0px 20px",
-                    },
-                    "@media (max-width: 400px)": {
-                      width: "40vh",
-                    },
+                    // "@media (max-width: 720px)": {
+                    //   margin: "20px 20px 0px 20px",
+                    // },
+                    // "@media (max-width: 600px)": {
+                    //   // width: "40vh",
+                    //   display: "flex",
+                    //   margin: "20px 20px 0px 20px",
+                    // },
+                    // "@media (max-width: 400px)": {
+                    //   width: "40vh",
+                    // },
                   }}
                 >
                   <Calender />
