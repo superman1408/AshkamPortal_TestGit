@@ -4,6 +4,7 @@ import { Box, Typography, Grid, IconButton, Container } from "@mui/material";
 import { getPosts } from "../../action/posts";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { useDispatch, useSelector } from "react-redux";
+import dayjs from "dayjs";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -52,10 +53,15 @@ const WeeklyActivity = () => {
   // Filter the post based on currentId
   const filteredPosts = posts.filter((post) => post._id === currentId);
 
-  // Extract project codes, over time, and net time data
-  const dateData = filteredPosts.map((post) => post.date);
-  const overTimeData = filteredPosts.map((post) => post.overTime);
-  const netTimeData = filteredPosts.map((post) => post.netTime);
+  // Sort by date
+  const sortedPosts = [...filteredPosts].sort(
+    (a, b) => new Date(a.date) - new Date(b.date)
+  );
+
+  // Extract sorted data
+  const dateData = sortedPosts.map((post) => post.date);
+  const overTimeData = sortedPosts.map((post) => post.overTime);
+  const netTimeData = sortedPosts.map((post) => post.netTime);
 
   const options = {
     responsive: true,
