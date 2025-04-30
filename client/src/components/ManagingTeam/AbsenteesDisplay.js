@@ -83,6 +83,13 @@ const AbsenteesDisplay = () => {
             display: "flex",
             margin: "20px 20px 0px 0px",
           },
+
+          "&:hover": {
+            bgcolor: "#BBDEFB", // Light gray background on hover
+            // boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)", // Optional shadow effect
+            transform: "translateY(-3px) " /* Hover effect for cards */,
+            boxShadow: "0 4px 16px rgba(0, 0, 0, 0.2)",
+          },
         }}
       >
         <Grid
@@ -132,74 +139,63 @@ const AbsenteesDisplay = () => {
             </Grid>
           </Grid>
           <Grid
+            container
             sx={{
-              display: "flex",
-              flexDirection: "row",
-              height: "100px",
-              overflow: "auto",
-
-              width: "300px",
-              pointerEvents: "auto",
+              display: "grid",
+              gridTemplateColumns: "repeat(8, 1fr)", // 4 columns per row
+              gap: "10px",
+              padding: "10px 0",
             }}
           >
-            <Grid>
-              {sortedPosts.map((post, index) => {
-                if (post.presentStatus === "false") {
-                  return (
-                    <div key={index}>
-                      <Grid sx={{ display: "flex", flexDirection: "row" }}>
-                        <Grid>
-                          <Stack flexDirection="row">
-                            <Avatar
-                              sx={{
-                                width: 40,
-                                height: 40,
-                                marginLeft: "10px",
-                                marginTop: "10px",
-                                userSelect: "none", // Prevent selection
-                                pointerEvents: "none", // Prevent interaction
-                              }}
-                              alt="Femy sharp"
-                              src={post?.selectedFile}
-                            />
-                          </Stack>
-                        </Grid>
-                        <Grid sx={{ display: "flex", flexDirection: "column" }}>
-                          <Grid>
-                            <Typography
-                              sx={{
-                                marginLeft: "10px",
-                                marginRight: "0px",
-                                marginTop: "10px",
-                                fontSize: "14px",
-                                fontFamily: "Roboto",
-                                fontWeight: "bold",
-                                color: "#16355d",
-                              }}
-                            >
-                              {formatName(post.firstName, post.lastName)}
-                            </Typography>
-                          </Grid>
-                          <Grid>
-                            <Typography
-                              sx={{
-                                marginLeft: "10px",
-                                marginRight: "0px",
-                                fontSize: "11px",
-                                fontFamily: "Roboto",
-                                color: "#16355d",
-                              }}
-                            >
-                              {post.department}
-                            </Typography>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                    </div>
-                  );
-                }
-              })}
-            </Grid>
+            {sortedPosts.map((post, index) => {
+              if (post.presentStatus === "false") {
+                return (
+                  <Grid
+                    item
+                    key={index}
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      textAlign: "center",
+                    }}
+                  >
+                    <Avatar
+                      sx={{
+                        width: 40,
+                        height: 40,
+                        userSelect: "none",
+                        pointerEvents: "none",
+                      }}
+                      alt={formatName(post.firstName, post.lastName)}
+                      src={post?.selectedFile}
+                    />
+                    <Typography
+                      sx={{
+                        fontSize: "13px",
+                        fontWeight: "bold",
+                        mt: "4px",
+                        color: "#16355d",
+                        fontFamily: "Roboto",
+                      }}
+                    >
+                      {formatName(post.firstName, post.lastName)}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontSize: "11px",
+                        color: "#16355d",
+                        fontFamily: "Roboto",
+                      }}
+                    >
+                      {post.department}
+                    </Typography>
+                  </Grid>
+                );
+              } else {
+                return null;
+              }
+            })}
           </Grid>
         </Grid>
       </Container>

@@ -41,6 +41,12 @@ const Department = () => {
         overflow: "hidden",
         position: "relative",
         height: "330px",
+        "&:hover": {
+          bgcolor: "#BBDEFB", // Light gray background on hover
+          // boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)", // Optional shadow effect
+          transform: "translateY(-1px) " /* Hover effect for cards */,
+          boxShadow: "0 4px 16px rgba(0, 0, 0, 0.2)",
+        },
       }}
     >
       <Grid

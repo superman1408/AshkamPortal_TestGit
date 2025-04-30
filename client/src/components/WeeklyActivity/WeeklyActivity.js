@@ -112,11 +112,20 @@ const WeeklyActivity = () => {
           maxWidth: "500px",
           bgcolor: "#e2e6cf",
           boxShadow: 1,
+          width: "560px",
           borderRadius: "10px",
-          height: "480px",
+          // height: "480px",
+
+          // width: "400px",
           "@media (max-width: 600px)": {
             margin: "20px 0px 0px 0px",
             height: "60vh",
+          },
+          "&:hover": {
+            bgcolor: "#BBDEFB", // Light gray background on hover
+            // boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)", // Optional shadow effect
+            transform: "translateY(-1px) " /* Hover effect for cards */,
+            boxShadow: "0 4px 16px rgba(0, 0, 0, 0.2)",
           },
         }}
       >

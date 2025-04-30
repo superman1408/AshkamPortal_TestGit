@@ -268,9 +268,8 @@ const Admin = ({ currentId }) => {
                   <Grid>
                     <Grid
                       sx={{
-                        marginTop: "10px",
+                        marginTop: "20px",
                         marginLeft: "20px",
-                        marginRight: "0px",
                         "@media (max-width: 720px)": {
                           margin: "20px 20px 0px 20px",
                         },
@@ -286,12 +285,11 @@ const Admin = ({ currentId }) => {
                     >
                       <Calender />
                     </Grid>
-
-                    <Grid sx={{ marginTop: "20px" }}>
-                      <AbsenteesDisplay />
-                    </Grid>
                   </Grid>
                 </div>
+                <Grid sx={{ marginTop: "20px" }}>
+                  <AbsenteesDisplay />
+                </Grid>
               </Grid>
 
               {/* </Grid> */}
@@ -304,7 +302,3 @@ const Admin = ({ currentId }) => {
 };
 // {/* <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>; */}
 export default Admin;
-
-// I have different cards like depaartmnt card, total employee card, birthday card, absentees card, Activity Display card (which is used to dipsly the time working on graph ), Calender card & total office strength .
-// So these card will be rendered in my dashboard but I am not getting any ideas how  to arrange them , I really need help
-// on the above code how to increase with of each card like i have to show all in landscape format
