@@ -28,7 +28,7 @@ const Admin = ({ currentId }) => {
   const role = user.result.role;
 
   return (
-    <div style={{ minheight: "100%", padding: "10px", display: "flex" }}>
+    <div style={{ minHeight: "100%", padding: "10px", display: "flex" }}>
       <Box
         sx={{
           display: "flex",
@@ -251,7 +251,6 @@ const Admin = ({ currentId }) => {
                 <div style={{ display: "flex" }}>
                   <Grid
                     sx={{
-                      
                       "@media (max-width: 720px)": {
                         display: "flex",
                         margin: "0px 20px 0px 0px",
