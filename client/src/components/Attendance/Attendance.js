@@ -43,10 +43,13 @@ const Attendance = () => {
           // width: "100%",
           maxWidth: "500px",
           flexDirection: "column",
-          marginTop: "52px",
+          // marginTop: "52px",
           marginLeft: "20px",
-          padding: "5px",
-          bgcolor: "#e2e6cf",
+          padding: "10px",
+          // bgcolor: "#e2e6cf",
+
+          // bgcolor: "#16355d",
+          bgcolor: "#E3F2FD",
           boxShadow: 1,
           borderRadius: "10px",
           overflow: "hidden",
@@ -63,6 +66,7 @@ const Attendance = () => {
           <Grid sx={{ display: "flex", flexDirection: "row" }}>
             <Grid sx={{ marginLeft: "10px" }}>
               <IconButton
+                sx={{ fontFamily: "Roboto", color: "#16355d" }}
                 onClick={() => {
                   navigate(`/${id}/attendanceDisplay`); // Employee Attendance Route
                 }}
@@ -94,21 +98,31 @@ const Attendance = () => {
               }}
             >
               <Grid>
-                <Typography sx={{ fontFamily: "Roboto" }}>Total</Typography>
-                <Typography>
+                <Typography sx={{ fontFamily: "Roboto", color: "#16355d" }}>
+                  Total
+                </Typography>
+                <Typography sx={{ fontFamily: "Roboto", color: "#16355d" }}>
                   {+attendanceData.presentEmp + +attendanceData.absentEmp}
                 </Typography>
               </Grid>
 
               <Grid sx={{ marginLeft: "40px" }}>
-                <Typography sx={{ fontFamily: "Roboto" }}>Present</Typography>
+                <Typography sx={{ fontFamily: "Roboto", color: "#16355d" }}>
+                  Present
+                </Typography>
 
-                <Typography>{attendanceData.presentEmp}</Typography>                                                       
+                <Typography sx={{ fontFamily: "Roboto", color: "#16355d" }}>
+                  {attendanceData.presentEmp}
+                </Typography>
               </Grid>
 
               <Grid sx={{ marginLeft: "40px" }}>
-                <Typography sx={{ fontFamily: "Roboto" }}>Absent</Typography>
-                <Typography>{attendanceData.absentEmp}</Typography>
+                <Typography sx={{ fontFamily: "Roboto", color: "#16355d" }}>
+                  Absent
+                </Typography>
+                <Typography sx={{ fontFamily: "Roboto", color: "#16355d" }}>
+                  {attendanceData.absentEmp}
+                </Typography>
               </Grid>
             </Grid>
           </div>

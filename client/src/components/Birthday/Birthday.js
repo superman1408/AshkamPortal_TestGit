@@ -86,12 +86,13 @@ const Birthday = () => {
       <Container
         sx={{
           display: "flex",
-          marginTop: "10px",
+          // marginTop: "10px",
           maxWidth: "500px",
           marginLeft: "20px",
           padding: "10px",
           boxShadow: 1,
           borderRadius: "10px",
+          height: "200px",
           backgroundImage: `url(${Image})`,
           backgroundSize: "cover",
           "@media (max-width: 600px)": {

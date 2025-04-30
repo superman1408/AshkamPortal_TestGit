@@ -77,105 +77,67 @@ const RegistrationForm = () => {
   };
 
   const { id } = useParams();
-  // console.log("id in registration page", id);
 
-  // useEffect(() => {
-  //   dispatch(getPosts());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
 
-  // useEffect(() => {
-  //   if (id) {
-  //     setCurrentId(id);
-  //   }
-  // }, [id]);
+  // 2. Set currentId from URL
+  useEffect(() => {
+    if (id) {
+      setCurrentId(id);
+    }
+  }, [id]);
+
+  useEffect(() => {
+    if (!currentId || posts.length === 0) return;
+
+    const targetPost = posts.find((item) => item._id === currentId);
+    if (targetPost) {
+      setPostData({ ...targetPost });
+      setSelectedOption(targetPost.role);
+      setIsLoading(false);
+    }
+  }, [currentId, posts]);
 
   useEffect(() => {
     if (!currentId) return setCurrentId(id);
-    dispatch(getPosts())
-      .then(() => {
-        console.log("Data is recieved in the Registration Module..!!!");
-        // eslint-disable-next-line array-callback-return
-        posts.map((items) => {
-          for (let index = 0; index <= posts.length; index++) {
-            if (items._id === currentId) {
-              setPostData(() => ({
-                ...postData,
-                firstName: items.firstName,
-                lastName: items.lastName,
-                role: items.role,
-                dob: items.dob,
-                gender: items.gender,
-                email: items.email,
-                maritalStatus: items.maritalStatus,
-                contactNumber: items.contactNumber,
-                streetAddress: items.streetAddress,
-                city: items.city,
-                state: items.state,
-                pincode: items.pincode,
-                jobSkills: items.jobSkills,
-                jobTitle: items.jobTitle,
-                employeeId: items.employeeId,
-                department: items.department,
-                reportingManager: items.reportingManager,
-                emergencyName: items.emergencyName,
-                emergencyAddress: items.emergencyAddress,
-                emergencyContact: items.emergencyContact,
-                relationship: items.relationship,
-                selectedFile: items.selectedFile,
-              }));
-              setSelectedOption(items.role);
+    posts.map((items) => {
+      for (let index = 0; index < items; index++) {
+        if (items._id === currentId) {
+          setPostData(() => ({
+            ...postData,
+            firstName: items.firstName,
+            lastName: items.lastName,
+            role: items.role,
+            dob: items.dob,
+            gender: items.gender,
+            email: items.email,
+            maritalStatus: items.maritalStatus,
+            contactNumber: items.contactNumber,
+            streetAddress: items.streetAddress,
+            city: items.city,
+            state: items.state,
+            pincode: items.pincode,
+            jobSkills: items.jobSkills,
+            jobTitle: items.jobTitle,
+            employeeId: items.employeeId,
+            department: items.department,
+            reportingManager: items.reportingManager,
+            emergencyName: items.emergencyName,
+            emergencyAddress: items.emergencyAddress,
+            emergencyContact: items.emergencyContact,
+            relationship: items.relationship,
+            selectedFile: items.selectedFile,
+          }));
+          setSelectedOption(items.role);
+          break;
+        }
+      }
+    });
 
-              break;
-            }
-          }
-        });
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.log("Error", err);
-      });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentId, isLoading]);
-
-  // useEffect(() => {
-  //   if (!currentId) return setCurrentId(id);
-  //   posts.map((items) => {
-  //     for (let index = 0; index < items; index++) {
-  //       if (items._id === currentId) {
-  //         setPostData(() => ({
-  //           ...postData,
-  //           firstName: items.firstName,
-  //           lastName: items.lastName,
-  //           role: items.role,
-  //           dob: items.dob,
-  //           gender: items.gender,
-  //           email: items.email,
-  //           maritalStatus: items.maritalStatus,
-  //           contactNumber: items.contactNumber,
-  //           streetAddress: items.streetAddress,
-  //           city: items.city,
-  //           state: items.state,
-  //           pincode: items.pincode,
-  //           jobSkills: items.jobSkills,
-  //           jobTitle: items.jobTitle,
-  //           employeeId: items.employeeId,
-  //           department: items.department,
-  //           reportingManager: items.reportingManager,
-  //           emergencyName: items.emergencyName,
-  //           emergencyAddress: items.emergencyAddress,
-  //           emergencyContact: items.emergencyContact,
-  //           relationship: items.relationship,
-  //           selectedFile: items.selectedFile,
-  //         }));
-  //         setSelectedOption(items.role);
-  //         break;
-  //       }
-  //     }
-  //   });
-
-  //   setIsLoading(false);
-  // }, [currentId, posts, isLoading, id, postData]);
+    setIsLoading(false);
+  }, [currentId, posts]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -1,199 +1,135 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, IconButton, Typography, Grid, Container } from "@mui/material";
-
-import { getPosts } from "../../action/posts";
 import { useDispatch, useSelector } from "react-redux";
 
+import { getPosts } from "../../action/posts";
 import WcIcon from "@mui/icons-material/Wc";
 import WomanIcon from "@mui/icons-material/Woman";
 import ManIcon from "@mui/icons-material/Man";
-import { Chart } from "react-google-charts";
+
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+
+const COLORS = ["#1976d2", "#dc3912"];
 
 const TotalEmployee = () => {
-  // const [isEditing, setIsEditing] = useState(false);
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
-  // Editable data state
+
   const [menCount, setMenCount] = useState(0);
   const [womenCount, setWomenCount] = useState(0);
 
   useEffect(() => {
     dispatch(getPosts());
-  }, [posts]);
+  }, [dispatch]);
 
   useEffect(() => {
     if (posts.length > 0) {
       let men = 0;
       let women = 0;
       posts.forEach((post) => {
-        if (post.gender === "male") {
-          men++;
-        } else if (post.gender === "female") {
-          women++;
-        }
+        if (post.gender === "male") men++;
+        else if (post.gender === "female") women++;
       });
       setMenCount(men);
       setWomenCount(women);
     }
   }, [posts]);
 
+  const data = [
+    { name: "Men", value: menCount },
+    { name: "Women", value: womenCount },
+  ];
+
   return (
-    <div style={{ display: "flex" }}>
-      <Container
-        sx={{
-          display: "flex",
-          marginTop: "20px",
-          marginLeft: "20px",
-          maxWidth: "330px",
-          width: "330px",
-          height: "280px",
-          padding: "20px",
-          bgcolor: "#e9edf7",
-          boxShadow: 1,
-          borderRadius: "10px",
-          // "@media (max-width: 600px)": {
-          //   display: "flex",
-          //   margin: "20px 20px 0px 0px",
-          //   width: "50vh",
-          // },
-          // "@media (max-width: 720px)": {
-          //   display: "flex",
-          //   margin: "20px 20px 0px 20px",
-          //   width: "100%",
-          // },
-        }}
-      >
-        <Grid sx={{ display: "flex", flexDirection: "column" }}>
-          <Grid sx={{ display: "flex", flexDirection: "row" }}>
-            <Grid>
-              <IconButton
-                height="40px"
-                width="40px"
-                // color="primary"
-                sx={{
-                  ml: "0px",
-                  display: {
-                    xs: "flex",
-                    sm: "flex",
-                  },
-                }}
-              >
-                <WcIcon />
-              </IconButton>
-            </Grid>
-            <Grid>
-              <Typography
-                sx={{
-                  marginTop: "5px",
-                  marginRight: "0px",
-                  marginLeft: "20px",
-                  fontWeight: "bolder",
-                  color: "#16355d",
-                  fontFamily: "Roboto",
-                  fontSize: "18px",
-                }}
-              >
-                Total Employees
-              </Typography>
-            </Grid>
+    <Container
+      sx={{
+        display: "flex",
+        padding: "20px",
+        // bgcolor: "#16355d",
 
-            {/* <Grid>
-              <Typography
-                sx={{
-                  marginLeft: "20px",
-                  marginTop: "5px",
-                  marginRight: "50px",
-                  fontFamily: "Roboto",
-                }}
-              >
-                {menCount + womenCount}
-              </Typography>
-            </Grid> */}
+        bgcolor: "#E3F2FD",
+        boxShadow: 1,
+        maxWidth: "700px",
+        borderRadius: "10px",
+        overflow: "hidden",
+        marginTop: "20px",
+        marginLeft: "20px",
+
+        height: "330px",
+        width: "auto",
+      }}
+    >
+      <Grid container direction="column">
+        <Grid item container alignItems="center" spacing={1}>
+          <Grid item>
+            <IconButton>
+              <WcIcon sx={{ color: "#16355d" }} />
+            </IconButton>
           </Grid>
-          <Grid sx={{ display: "flex", flexDirection: "row" }}>
-            <Grid
+          <Grid item>
+            <Typography
               sx={{
-                display: "flex",
-                flexDirection: "column",
-                marginRight: "10px",
+                fontWeight: "bold",
+                fontSize: "18px",
+                color: "#16355d",
               }}
             >
-              <Grid
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  marginTop: "20px",
-                }}
-              >
-                <Grid>
-                  <IconButton height="40px" width="40px" color="primary">
-                    <ManIcon />
-                  </IconButton>
-                </Grid>
-
-                <Grid>
-                  <Typography sx={{ marginTop: "10px" }}>
-                    :{menCount}
-                  </Typography>
-                </Grid>
-              </Grid>
-
-              <Grid
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  marginBottom: "0px",
-                }}
-              >
-                <Grid>
-                  <IconButton
-                    height="40px"
-                    width="40px"
-                    sx={{ color: "#dc3912" }}
-                  >
-                    <WomanIcon />
-                  </IconButton>
-                </Grid>
-
-                <Grid>
-                  <Typography sx={{ marginTop: "10px" }}>
-                    :{womenCount}
-                  </Typography>
-                </Grid>
-              </Grid>
-            </Grid>
-
-            <Grid
-              sx={{
-                // width: "250px",
-                // height: "120px",
-                marginLeft: "0px",
-              }}
-            >
-              <Chart
-                chartType="PieChart"
-                data={[
-                  ["Task", "Hours per Day"],
-                  ["Men", menCount],
-                  ["Women", womenCount],
-                ]}
-                options={{
-                  is3D: true,
-                  backgroundColor: {
-                    fill: "#e9edf7",
-                  },
-                  legend: {
-                    position: "top",
-                  },
-                }}
-                width={"230px"}
-                height={"180px"}
-              />
-            </Grid>
+              Total Employees
+            </Typography>
           </Grid>
         </Grid>
-      </Container>
-    </div>
+
+        <Grid item container spacing={2} mt={2}>
+          <Grid item>
+            <Box display="flex" alignItems="center" mb={1}>
+              <ManIcon color="primary" />
+              <Typography sx={{ color: "#16355d", ml: 1 }}>
+                {menCount}
+              </Typography>
+            </Box>
+            <Box display="flex" alignItems="center">
+              <WomanIcon sx={{ color: "#dc3912" }} />
+              <Typography sx={{ color: "#16355d", ml: 1 }}>
+                {womenCount}
+              </Typography>
+            </Box>
+          </Grid>
+
+          <Grid item xs>
+            <ResponsiveContainer width="100%" height={200}>
+              <PieChart>
+                <Pie
+                  data={data}
+                  dataKey="value"
+                  nameKey="name"
+                  cx="50%"
+                  cy="50%"
+                  outerRadius={60}
+                  fill="#8884d8"
+                  label
+                >
+                  {data.map((entry, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS[index % COLORS.length]}
+                    />
+                  ))}
+                </Pie>
+                <Tooltip />
+                <Legend />
+              </PieChart>
+            </ResponsiveContainer>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
 

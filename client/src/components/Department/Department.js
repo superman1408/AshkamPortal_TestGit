@@ -32,18 +32,15 @@ const Department = () => {
       sx={{
         display: "flex",
         padding: "10px",
-        bgcolor: "#f2d5d6",
+        // bgcolor: "#f2d5d6",
+        // bgcolor: "#16355d",
+        bgcolor: "#E3F2FD",
         boxShadow: 1,
         maxWidth: "700px",
         borderRadius: "10px",
-        // width: "100%",
         overflow: "hidden",
-        position: "relative", // Set position to relative
-        // "@media (max-width: 600px)": {
-        //   display: "flex",
-        //   margin: "20px 20px 0px 0px",
-        //   width: "50vh",
-        // },
+        position: "relative",
+        height: "330px",
       }}
     >
       <Grid
@@ -51,13 +48,13 @@ const Department = () => {
           display: "flex",
           flexDirection: "column",
           marginBottom: "48px",
-          // marginRight: "20px",
         }}
       >
         <Grid>
           <Grid sx={{ display: "flex", flexDirection: "row" }}>
             <Grid>
               <IconButton
+                sx={{ color: "#16355d" }}
                 onClick={() => {
                   navigate(`/departmentdetails`); // Employee Attendance Route
                 }}
@@ -70,8 +67,8 @@ const Department = () => {
               <Typography
                 sx={{
                   color: "#16355d",
+                  // color: "white",
                   marginLeft: "30px",
-                  // marginRight: "30px",
                   marginTop: "9px",
                   fontFamily: "Roboto",
                   fontSize: "18px",
@@ -86,12 +83,12 @@ const Department = () => {
           <Typography
             sx={{
               color: "#16355d",
+              // color: "white",
               fontFamily: "Roboto",
               fontWeight: "bolder",
               mt: "opx",
               mb: "1px",
               ml: "30px",
-              // mr: "40px",
               alignItems: "center",
               fontSize: "15px",
               textAlign: "center",
@@ -116,3 +113,26 @@ const Department = () => {
 };
 
 export default Department;
+
+// sx={{
+//   display: "flex",
+//   marginTop: "20px",
+//   marginLeft: "20px",
+//   maxWidth: "330px",
+//   width: "330px",
+//   height: "280px",
+//   padding: "20px",
+//   bgcolor: "#e9edf7",
+//   boxShadow: 1,
+//   borderRadius: "10px",
+//   // "@media (max-width: 600px)": {
+//   //   display: "flex",
+//   //   margin: "20px 20px 0px 0px",
+//   //   width: "50vh",
+//   // },
+//   // "@media (max-width: 720px)": {
+//   //   display: "flex",
+//   //   margin: "20px 20px 0px 20px",
+//   //   width: "100%",
+//   // },
+// }}

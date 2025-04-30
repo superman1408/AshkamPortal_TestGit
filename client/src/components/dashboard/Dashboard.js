@@ -6,7 +6,7 @@ import AbsenteesDisplay from "../ManagingTeam/AbsenteesDisplay";
 import Calender from "../Calender/Calender";
 import Birthday from "../Birthday/Birthday";
 
-import { Avatar, Box, Grid, Typography } from "@mui/material";
+import { Avatar, Box, Grid, Card, CardContent } from "@mui/material";
 import Panel from "../Panel/Panel";
 import Attendance from "../Attendance/Attendance";
 import SkillDisplay from "../Skills/SkillDisplay";
@@ -18,6 +18,7 @@ import admin from "../../assets/IT.png";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Department from "../Department/Department";
+import Topbar from "../Topbar/Topbar";
 
 const Admin = ({ currentId }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -95,98 +96,89 @@ const Admin = ({ currentId }) => {
               }}
             >
               <Grid>
-                <div style={{ display: "flex" }}>
-                  <div style={{ width: "20px", height: "30px" }}>
-                    <Avatar
-                      sx={{
-                        width: 30,
-                        height: 30,
-                        marginLeft: "30px",
-                        marginTop: "5px",
-                      }}
-                      src={
-                        role === "employee"
-                          ? employee
-                          : role === "manager"
-                          ? manager
-                          : role === "admin" && admin
-                      }
-                    />
-                  </div>
-                  <div>
-                    <Typography
-                      variant="h5"
-                      sx={{
-                        color: "#16355d",
-                        fontFamily: "Roboto",
-                        display: "flex",
-                        marginLeft: "60px",
-                        marginBottom: "20px",
-                        // fontWeight: "bold",
-                        "@media (max-width: 600px)": {
-                          flexDirection: "column",
-                          color: "#16355d",
-                        },
+                {/* <div style={{ display: "flex" }}>
+                  <div style={{ width: "20px", height: "30px" }}></div>
+                </div> */}
+                <div>
+                  <Topbar />
+                </div>
 
+                <div>
+                  <Grid
+                    sx={{
+                      display: "flex",
+                      "@media (max-width: 720px)": {
+                        flexDirection: "column",
+                        margin: "0px",
+                      },
+
+                      "@media (min-width: 720px)": {
+                        flexDirection: "row",
+                      },
+                    }}
+                  >
+                    <Grid
+                      sx={{
+                        margin: "20px 0px 0px 0px",
+                        "@media (max-width: 720px)": {
+                          margin: "20px 20px 0px 20px",
+                          // width: "70vh",
+                        },
                         "@media (min-width: 600px)": {
-                          flexDirection: "row",
+                          margin: "20px 0px 0px 20px",
+                          width: "50vh",
+                        },
+                        "@media (max-width: 400px)": {
+                          width: "42vh",
                         },
                       }}
                     >
-                      Welcome
-                      {` ${user.result.firstName.toUpperCase()} !`}
-                    </Typography>
-                  </div>
-                </div>
-                <Grid
-                  sx={{
-                    display: "flex",
-                    "@media (max-width: 720px)": {
-                      flexDirection: "column",
-                      margin: "0px",
-                    },
+                      <Department />
+                    </Grid>
+                    <Grid
+                      sx={{
+                        "@media (max-width: 720px)": {
+                          display: "flex",
+                          margin: "0px 20px 0px 0px",
+                          // width: "50vh",
+                        },
+                        "@media (max-width: 600px)": {
+                          margin: "20px 0px 0px 0px",
+                          width: "70vh",
+                        },
+                      }}
+                    >
+                      <TotalEmployee />
+                    </Grid>
 
-                    "@media (min-width: 720px)": {
-                      flexDirection: "row",
-                    },
-                  }}
-                >
-                  <Grid
-                    sx={{
-                      margin: "20px 0px 0px 0px",
-                      "@media (max-width: 720px)": {
-                        margin: "20px 20px 0px 20px",
-                        // width: "70vh",
-                      },
-                      "@media (min-width: 600px)": {
-                        margin: "20px 0px 0px 20px",
-                        width: "50vh",
-                      },
-                      "@media (max-width: 400px)": {
-                        width: "42vh",
-                      },
-                    }}
-                  >
-                    <Department />
-                  </Grid>
-                  <Grid
-                    sx={{
-                      "@media (max-width: 720px)": {
+                    <div
+                      style={{
+                        width: "auto",
+                        minWidth: 320,
+                        maxWidth: "100%",
+                        height: "300px",
                         display: "flex",
-                        margin: "0px 20px 0px 0px",
-                        // width: "50vh",
-                      },
-                      "@media (max-width: 600px)": {
-                        margin: "20px 0px 0px 0px",
-                        width: "70vh",
-                      },
-                    }}
-                  >
-                    <TotalEmployee />
-                  </Grid>
-                </Grid>
+                        flexDirection: "column",
+                        boxShadow: 3,
+                        borderRadius: 2,
+                        marginTop: "20px",
+                      }}
+                    >
+                      <div style={{ flex: 1 }}>
+                        <Birthday />
+                      </div>
+                      {/* <div style={{ flex: 1 }}>
+                      <AbsenteesDisplay />
+                    </div> */}
 
-                <Grid
+                      <div style={{ marginTop: "20px" }}>
+                        <Attendance />
+                      </div>
+                    </div>
+                  </Grid>
+                </div>
+
+                {/* <Grid
                   sx={{
                     "@media (max-width: 720px)": {
                       display: "flex",
@@ -201,11 +193,10 @@ const Admin = ({ currentId }) => {
                   }}
                 >
                   <WeeklyActivity />
-                </Grid>
-              </Grid>
+                </Grid> */}
 
-              <Grid sx={{ display: "flex", flexDirection: "column " }}>
-                <Grid
+                {/* <Grid sx={{ display: "flex", flexDirection: "column " }}> */}
+                {/* <Grid
                   sx={{
                     "@media (max-width: 720px)": {
                       margin: "20px 20px 0px 0px",
@@ -219,9 +210,9 @@ const Admin = ({ currentId }) => {
                   }}
                 >
                   <Attendance />
-                </Grid>
+                </Grid> */}
 
-                <Grid
+                {/* <Grid
                   sx={{
                     "@media (max-width: 720px)": {
                       margin: "20px 20px 0px 0px",
@@ -235,25 +226,9 @@ const Admin = ({ currentId }) => {
                   }}
                 >
                   <Birthday />
-                </Grid>
+                </Grid> */}
 
-                <Grid
-                  sx={{
-                    "@media (max-width: 720px)": {
-                      margin: "20px 20px 0px 0px",
-                    },
-                    "@media (max-width: 600px)": {
-                      margin: "20px 0px 0px 20px",
-                    },
-                    "@media (max-width: 400px)": {
-                      width: "44vh",
-                    },
-                  }}
-                >
-                  <AbsenteesDisplay />
-                </Grid>
-
-                <Grid
+                {/* <Grid
                   sx={{
                     marginTop: "10px",
                     marginLeft: "20px",
@@ -272,8 +247,55 @@ const Admin = ({ currentId }) => {
                   }}
                 >
                   <Calender />
-                </Grid>
+                </Grid> */}
+                <div style={{ display: "flex" }}>
+                  <Grid
+                    sx={{
+                      
+                      "@media (max-width: 720px)": {
+                        display: "flex",
+                        margin: "0px 20px 0px 0px",
+                      },
+                      "@media (max-width: 600px)": {
+                        margin: "20px 20px 0px 20px",
+                      },
+                      "@media (max-width: 400px)": {
+                        width: "43vh",
+                      },
+                    }}
+                  >
+                    <WeeklyActivity />
+                  </Grid>
+                  <Grid>
+                    <Grid
+                      sx={{
+                        marginTop: "10px",
+                        marginLeft: "20px",
+                        marginRight: "0px",
+                        "@media (max-width: 720px)": {
+                          margin: "20px 20px 0px 20px",
+                        },
+                        "@media (max-width: 600px)": {
+                          // width: "40vh",
+                          display: "flex",
+                          margin: "20px 20px 0px 20px",
+                        },
+                        "@media (max-width: 400px)": {
+                          width: "40vh",
+                        },
+                      }}
+                    >
+                      <Calender />
+                    </Grid>
+
+                    <Grid sx={{ marginTop: "20px" }}>
+                      <AbsenteesDisplay />
+                    </Grid>
+                  </Grid>
+                </div>
               </Grid>
+
+              {/* </Grid> */}
             </Grid>
           </Grid>
         </Grid>
@@ -283,3 +305,7 @@ const Admin = ({ currentId }) => {
 };
 // {/* <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>; */}
 export default Admin;
+
+// I have different cards like depaartmnt card, total employee card, birthday card, absentees card, Activity Display card (which is used to dipsly the time working on graph ), Calender card & total office strength .
+// So these card will be rendered in my dashboard but I am not getting any ideas how  to arrange them , I really need help
+// on the above code how to increase with of each card like i have to show all in landscape format

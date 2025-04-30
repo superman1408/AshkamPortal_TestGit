@@ -67,13 +67,15 @@ const AbsenteesDisplay = () => {
         sx={{
           display: "flex",
           padding: "3px",
-          bgcolor: "#e9edf7",
+          // bgcolor: "#e9edf7",
+          // bgcolor: "#16355d",
+          bgcolor: "#E3F2FD",
           boxShadow: 1,
           maxWidth: "500px",
           borderRadius: "10px",
 
           position: "relative", // Set position to relative
-          marginTop: "20px",
+          // marginTop: "20px",
           marginLeft: "20px",
           marginRight: "0px",
 
@@ -99,6 +101,7 @@ const AbsenteesDisplay = () => {
           >
             <Grid>
               <IconButton
+                sx={{ color: "#16355d" }}
                 onClick={
                   verifyTheRole()
                     ? () => navigate(`/${id}/absentdetails`)
@@ -113,6 +116,7 @@ const AbsenteesDisplay = () => {
                 <Typography
                   sx={{
                     color: "#16355d",
+                    // color: "white",
                     fontFamily: "Roboto",
                     fontWeight: "bolder",
                     mt: "5px",
@@ -170,6 +174,7 @@ const AbsenteesDisplay = () => {
                                 fontSize: "14px",
                                 fontFamily: "Roboto",
                                 fontWeight: "bold",
+                                color: "#16355d",
                               }}
                             >
                               {formatName(post.firstName, post.lastName)}
@@ -182,6 +187,7 @@ const AbsenteesDisplay = () => {
                                 marginRight: "0px",
                                 fontSize: "11px",
                                 fontFamily: "Roboto",
+                                color: "#16355d",
                               }}
                             >
                               {post.department}

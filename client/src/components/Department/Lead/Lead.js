@@ -29,6 +29,7 @@ const Lead = ({ post, verifyDepat }) => {
               marginRight: "0px",
               marginTop: "18px",
               fontSize: "14px",
+              color: "#16355d",
               fontFamily: "Roboto",
             }}
           >
@@ -40,7 +41,7 @@ const Lead = ({ post, verifyDepat }) => {
               marginRight: "30px",
               fontFamily: "Roboto",
               fontSize: "12px",
-
+              color: "#16355d",
               fontWeight: "bold",
             }}
           >
@@ -86,6 +87,7 @@ const Lead = ({ post, verifyDepat }) => {
                 marginTop: "18px",
                 fontSize: "14px",
                 fontFamily: "Roboto",
+                color: "#16355d",
               }}
             >
               {user.result.firstName + " " + user.result.lastName}
@@ -98,6 +100,7 @@ const Lead = ({ post, verifyDepat }) => {
                 fontSize: "12px",
                 marginBottom: "2px",
                 fontWeight: "bold",
+                color: "#16355d",
               }}
             >
               {user.result.jobTitle}
