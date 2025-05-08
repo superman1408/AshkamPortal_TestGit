@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 
 import {
   Grid,
@@ -26,17 +26,21 @@ const AbsenteesDisplay = () => {
 
   const theme = useTheme();
 
+  // useEffect(() => {
+  //   if (posts) {
+  //     dispatch(getPosts()).then(() => {
+  //       // eslint-disable-next-line array-callback-return
+  //       posts.map((post) => {
+  //         if (post._id === currentId) {
+  //           setCurrentId(post._id);
+  //         }
+  //       });
+  //     });
+  //   }
+  // }, [dispatch]);
+
   useEffect(() => {
-    if (posts) {
-      dispatch(getPosts()).then(() => {
-        // eslint-disable-next-line array-callback-return
-        posts.map((post) => {
-          if (post._id === currentId) {
-            setCurrentId(post._id);
-          }
-        });
-      });
-    }
+    dispatch(getPosts());
   }, [dispatch]);
 
   const verifyTheRole = () => {
@@ -47,7 +51,7 @@ const AbsenteesDisplay = () => {
     }
   };
 
-  const formatName = (firstName, lastName) => {
+  const formatName = (firstName = "", lastName = "") => {
     return (
       firstName.charAt(0).toUpperCase() +
       firstName.slice(1).toLowerCase() +
@@ -57,10 +61,15 @@ const AbsenteesDisplay = () => {
     );
   };
 
-  const sortedPosts = [...posts].sort((a, b) => {
-    const nameA = formatName(a.firstName, a.lastName);
-    const nameB = formatName(b.firstName, b.lastName);
-    return nameA.localeCompare(nameB);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const sortedPosts = useMemo(() => {
+    return [...posts]
+      .filter((post) => post.firstName && post.lastName)
+      .sort((a, b) => {
+        const nameA = formatName(a.firstName, a.lastName);
+        const nameB = formatName(b.firstName, b.lastName);
+        return nameA.localeCompare(nameB);
+      });
   });
 
   return (

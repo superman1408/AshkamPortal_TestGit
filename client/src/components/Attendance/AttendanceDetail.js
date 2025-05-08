@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Typography, Grid, Divider, Card, Box, Checkbox } from "@mui/material";
+import {
+  Typography,
+  Grid,
+  Divider,
+  Card,
+  Box,
+  Checkbox,
+  Button,
+} from "@mui/material";
 
 import { getPosts } from "../../action/posts";
 import { dailyAttendance, logList } from "../../action/posts";
@@ -156,22 +164,32 @@ const AttendanceDetail = ({ currentId, posts }) => {
       <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} />
 
       <Grid
+        container
         sx={{
           display: "flex",
+          flexGrow: 1,
+          alignItems: "stretch",
+
           "@media (max-width: 600px)": {
             flexDirection: "column",
             // width: "50%",
           },
         }}
       >
-        <Panel />
+        <Grid item xs={12} md={2}>
+          <Panel />
+        </Grid>
         {verifyTheRole() && (
           <>
             <Grid
+              item
+              xs={12}
+              md={2}
               sx={{
                 display: "flex",
                 padding: "15px",
-                // width: "auto",
+                width: "100%",
+                minHeight: "400px", // ✅ Add this
                 // marginLeft: "5px",
                 backgroundColor: "white",
                 margin: "0px 3px 2px 10px",
@@ -193,9 +211,6 @@ const AttendanceDetail = ({ currentId, posts }) => {
 
                   <input
                     style={{
-                      // width: "auto",
-                      // height: "30px",
-                      // padding: "8px",
                       fontSize: "16px",
                       border: "1px solid #ccc",
                       borderRadius: "4px",
@@ -248,18 +263,25 @@ const AttendanceDetail = ({ currentId, posts }) => {
                     marginTop: "50px",
                   }}
                 >
-                  <button style={{ fontFamily: "Roboto" }} type="submit">
-                    Submit
-                  </button>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    sx={{ bgcolor: "#16355d" }}
+                  >
+                    SUBMIT
+                  </Button>
                 </div>
               </form>
             </Grid>
 
             <Grid
+              item
+              xs={12}
+              md={3}
               sx={{
                 // display: "flex",
                 padding: "10px",
-                width: "auto",
+                width: "100%",
                 backgroundColor: "white",
                 borderRadius: "15px",
                 border: "1px solid lightgray",
@@ -345,17 +367,24 @@ const AttendanceDetail = ({ currentId, posts }) => {
                     marginTop: "65px",
                   }}
                 >
-                  <button style={{ fontFamily: "Roboto" }} type="submit">
-                    Submit
-                  </button>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    sx={{ bgcolor: "#16355d" }}
+                  >
+                    SUBMIT
+                  </Button>
                 </div>
               </form>
             </Grid>
           </>
         )}
         <Grid
+          xs={12}
+          md={4}
           sx={{
             display: "flex",
+            width: "100%",
             padding: "2px",
             // marginLeft: "5px",
             "@media (max-width: 600px)": {
@@ -364,17 +393,17 @@ const AttendanceDetail = ({ currentId, posts }) => {
           }}
         >
           <Grid
+            item
             sx={{
               borderRadius: "15px",
               backgroundColor: "white",
               border: "1px solid lightgray",
               padding: "10px",
-              height: "600px",
+              height: "auto",
               overflow: "auto",
-
+              width: "100%",
               top: "100px",
               pointerEvents: "auto",
-              marginLeft: "10px",
             }}
           >
             <Typography
@@ -479,6 +508,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
               </table>
             </div>
           </Grid>
+
           {(role === "employee" || role === "manager") && (
             <Grid
               elevation={10}

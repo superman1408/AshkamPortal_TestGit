@@ -32,11 +32,7 @@ const AttendanceDisplay = () => {
     setIsLoading(false);
   }, [isLoading]);
 
-  // const handleUserChange = () => {
-  //   // Reset totalHours to null when user changes
-  //   setTotalHours(null);
-  // };
-
+ 
   const verify = () => {
     try {
       if (

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -17,8 +17,6 @@ const AbsentDetails = ({ posts, currentId }) => {
     const count = posts.filter((post) => post._id === currentId).length;
     setNameCount(count);
   }, [posts, currentId]);
-
-  console.log(nameCount);
 
   const [formData, setFormData] = useState({
     presentStatus: "",
@@ -126,9 +124,15 @@ const AbsentDetails = ({ posts, currentId }) => {
             // marginTop:
           }}
         >
-          <button style={{ fontFamily: "Roboto" }} type="submit">
+          {/* <button
+            type="submit" style=""
+          >
             Submit
-          </button>
+          </button> */}
+
+          <Button type="submit" variant="contained" sx={{ bgcolor: "#16355d" }}>
+            Submit
+          </Button>
         </div>
       </form>
     </Grid>

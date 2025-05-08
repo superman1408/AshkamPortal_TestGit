@@ -13,7 +13,11 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-export const fetchPosts = () => API.get("/posts");
+// export const fetchPosts = () => API.get("/posts");
+
+// inside your action/posts.js
+export const fetchPosts = (page = 1) =>
+  axios.get(`/posts?page=${page}&limit=10`);
 
 export const fetchPost = (id) => API.get(`/posts/${id}`);
 

@@ -126,7 +126,7 @@ function TimeSheet({ currentId, posts }) {
     });
 
     const totalNetTime = entriesForCurrentWeek.reduce(
-      (total, entry) => total + entry.netTime,    
+      (total, entry) => total + entry.netTime,
       0
     );
 
@@ -338,7 +338,7 @@ function TimeSheet({ currentId, posts }) {
                   id="date"
                   defaultValue={date}
                   // onChange={(e) => setDate(e.target.value)}
-                  // 
+                  //
                   onChange={handleCheck}
                   required
                 />
@@ -457,7 +457,7 @@ function TimeSheet({ currentId, posts }) {
             </form>
           </Grid>
 
-          <Grid>
+          <Grid item md={8}>
             {" "}
             {isLoading ? (
               <Box sx={{ marginLeft: "400px", marginTop: "100px" }}>
@@ -765,5 +765,3 @@ function TimeSheet({ currentId, posts }) {
   );
 }
 export default TimeSheet;
-
-
