@@ -5,7 +5,14 @@ const Lead = ({ post, verifyDepat }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
   return (
     <div>
-      <Grid sx={{ display: "flex", flexDirection: "row" }}>
+      <Grid
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap", // This allows layout to wrap if needed
+          width: "100%",
+        }}
+      >
         <Grid sx={{ display: "flex", flexDirection: "row" }}>
           <div>
             <Stack flexDirection="row">

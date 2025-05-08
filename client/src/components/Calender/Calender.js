@@ -20,7 +20,7 @@ const Calender = () => {
         sx={{
           display: "flex",
           alignContent: "center",
-          bgcolor: " #f2e6e8",
+          // bgcolor: " #f2e6e8",
           boxShadow: 1,
           maxWidth: "500px",
           borderRadius: "10px",

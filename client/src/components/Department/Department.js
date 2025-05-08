@@ -1,4 +1,10 @@
-import { Container, Typography, Grid, IconButton } from "@mui/material";
+import {
+  Container,
+  Typography,
+  Grid,
+  IconButton,
+  useTheme,
+} from "@mui/material";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -12,6 +18,7 @@ const Department = () => {
   const posts = useSelector((state) => state.posts);
   const user = JSON.parse(localStorage.getItem("profile"));
   const id = user.result._id;
+  const theme = useTheme();
 
   const verifyDepat = user.result.department;
 
@@ -30,22 +37,20 @@ const Department = () => {
   return (
     <Container
       sx={{
-        display: "flex",
-        padding: "10px",
-        // bgcolor: "#f2d5d6",
-        // bgcolor: "#16355d",
-        bgcolor: "#E3F2FD",
-        boxShadow: 1,
-        maxWidth: "700px",
+        backdropFilter: "blur(8px)",
+        background: "linear-gradient(145deg, #ffffffcc, #f3f4f6cc)",
+        boxShadow: "0 4px 30px rgba(0, 0, 0, 0.05)",
+        maxWidth: 700,
+        width: "100%",
+        p: 3,
         borderRadius: "10px",
         overflow: "hidden",
         position: "relative",
         height: "330px",
+        transition: "all 0.2s ease-in-out",
         "&:hover": {
-          bgcolor: "#BBDEFB", // Light gray background on hover
-          // boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)", // Optional shadow effect
-          transform: "translateY(-1px) " /* Hover effect for cards */,
-          boxShadow: "0 4px 16px rgba(0, 0, 0, 0.2)",
+          transform: "scale(1.02)",
+          boxShadow: theme.shadows[6],
         },
       }}
     >
@@ -57,47 +62,44 @@ const Department = () => {
         }}
       >
         <Grid>
-          <Grid sx={{ display: "flex", flexDirection: "row" }}>
-            <Grid>
-              <IconButton
-                sx={{ color: "#16355d" }}
-                onClick={() => {
-                  navigate(`/departmentdetails`); // Employee Attendance Route
-                }}
-              >
-                {" "}
-                <GroupsIcon />
-              </IconButton>
-            </Grid>
-            <Grid>
-              <Typography
-                sx={{
-                  color: "#16355d",
-                  // color: "white",
-                  marginLeft: "30px",
-                  marginTop: "9px",
-                  fontFamily: "Roboto",
-                  fontSize: "18px",
-                  textAlign: "center",
-                  fontWeight: "bold",
-                }}
-              >
-                Department
-              </Typography>
-            </Grid>
+          <Grid
+            item
+            xs={12}
+            display="flex"
+            alignItems="center"
+            mt={2}
+            ml={1}
+            gap={1}
+          >
+            <IconButton
+              sx={{ color: "#16355d" }}
+              onClick={() => {
+                navigate(`/departmentdetails`); // Employee Attendance Route
+              }}
+            >
+              <GroupsIcon />
+            </IconButton>
+            <Typography
+              variant="h6"
+              fontWeight={600}
+              color="#16355d"
+              fontFamily="Roboto"
+            >
+              Department
+            </Typography>
           </Grid>
+
           <Typography
+            variant="subtitle1"
+            color="text.secondary"
+            fontFamily="Poppins"
+            ml={7}
             sx={{
-              color: "#16355d",
-              // color: "white",
-              fontFamily: "Roboto",
               fontWeight: "bolder",
-              mt: "opx",
+              mt: "0px",
               mb: "1px",
-              ml: "30px",
               alignItems: "center",
               fontSize: "15px",
-              textAlign: "center",
             }}
           >
             {verifyDepat}
@@ -119,26 +121,3 @@ const Department = () => {
 };
 
 export default Department;
-
-// sx={{
-//   display: "flex",
-//   marginTop: "20px",
-//   marginLeft: "20px",
-//   maxWidth: "330px",
-//   width: "330px",
-//   height: "280px",
-//   padding: "20px",
-//   bgcolor: "#e9edf7",
-//   boxShadow: 1,
-//   borderRadius: "10px",
-//   // "@media (max-width: 600px)": {
-//   //   display: "flex",
-//   //   margin: "20px 20px 0px 0px",
-//   //   width: "50vh",
-//   // },
-//   // "@media (max-width: 720px)": {
-//   //   display: "flex",
-//   //   margin: "20px 20px 0px 20px",
-//   //   width: "100%",
-//   // },
-// }}

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { Grid, Typography, Avatar, Container } from "@mui/material";
+import { Grid, Typography, Avatar, Container, useTheme } from "@mui/material";
 
 import { getPosts, getEvents } from "../../action/posts";
 
@@ -18,6 +18,8 @@ const Birthday = () => {
   const [evento, setEvento] = useState("");
   const posts = useSelector((state) => state.posts);
   const user = JSON.parse(localStorage.getItem("profile"));
+
+  const theme = useTheme();
 
   const [dimension, setDimension] = useState({
     width: window.innerWidth,
@@ -86,24 +88,22 @@ const Birthday = () => {
       <Container
         sx={{
           display: "flex",
-          // marginTop: "10px",
           maxWidth: "500px",
           marginLeft: "20px",
-          padding: "10px",
+          padding: "20px",
           boxShadow: 1,
           borderRadius: "10px",
           height: "200px",
           backgroundImage: `url(${Image})`,
           backgroundSize: "cover",
+          transition: "all 0.2s ease-in-out",
           "@media (max-width: 600px)": {
             display: "flex",
             margin: "20px 0px 0px 0px",
           },
           "&:hover": {
-            bgcolor: "#BBDEFB", // Light gray background on hover
-            // boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)", // Optional shadow effect
-            transform: "translateY(-1px) " /* Hover effect for cards */,
-            boxShadow: "0 4px 16px rgba(0, 0, 0, 0.2)",
+            transform: "scale(1.02)",
+            boxShadow: theme.shadows[6],
           },
         }}
       >
@@ -125,21 +125,20 @@ const Birthday = () => {
               </marquee>
             ) : (
               <div style={{}}>
-                <div style={{ display: "flex", padding: "5px" }}>
+                <Grid gap={2} p={1} style={{ display: "flex", padding: "5px" }}>
                   <CakeIcon sx={{ color: "#16355d" }} />
                   <Typography
+                    variant="h6"
+                    fontWeight={600}
                     sx={{
                       color: "#16355d",
-                      fontWeight: "bold",
                       fontFamily: "Roboto",
-                      paddingLeft: "10px",
-                      textAlign: "center",
                       width: "100%",
                     }}
                   >
                     Today's Birthday
                   </Typography>
-                </div>
+                </Grid>
                 <div style={{ height: "100px", overflowY: "auto" }}>
                   {birthdaysToday.map((post) => {
                     return (

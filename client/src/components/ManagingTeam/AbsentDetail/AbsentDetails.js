@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Grid, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { Grid } from "@mui/material";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -9,14 +9,7 @@ import { useDispatch } from "react-redux";
 import { presentList } from "../../../action/posts";
 
 const AbsentDetails = ({ posts, currentId }) => {
-  const [value, setValue] = React.useState(false);
-
   const dispatch = useDispatch();
-  // const [checkedAbsent, setCheckedAbsent] = React.useState(false);
-
-  // useEffect(() => {
-  //   dispatch(presentList(posts, currentId));
-  // }, [dispatch]);
 
   const [nameCount, setNameCount] = useState(0);
 
@@ -54,9 +47,6 @@ const AbsentDetails = ({ posts, currentId }) => {
     window.location.reload();
   };
 
-
-  
-
   return (
     <Grid
       sx={{
@@ -67,7 +57,6 @@ const AbsentDetails = ({ posts, currentId }) => {
         // borderRadius: "15px",
         // border: "1px solid lightgray",
         margin: "0px 5px 2px 5px",
-
       }}
     >
       <form className="time-sheet-form" onSubmit={handleSubmit}>

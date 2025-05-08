@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Box, Typography, Grid, IconButton, Container } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Grid,
+  IconButton,
+  Container,
+  useTheme,
+} from "@mui/material";
 import { getPosts } from "../../action/posts";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { useDispatch, useSelector } from "react-redux";
@@ -33,6 +40,7 @@ const WeeklyActivity = () => {
 
   const posts = useSelector((state) => state.posts);
   const dispatch = useDispatch();
+  const theme = useTheme();
 
   useEffect(() => {
     dispatch(getPosts()).then(() => {
@@ -105,33 +113,33 @@ const WeeklyActivity = () => {
   return (
     <div style={{ display: "flex", flex: 1 }}>
       <Container
+        mt={2}
         sx={{
-          marginTop: "20px",
-          marginLeft: "20px",
           padding: "5px",
           maxWidth: "500px",
-          bgcolor: "#e2e6cf",
+          backdropFilter: "blur(8px)",
+          background: "linear-gradient(145deg, #ffffffcc, #f3f4f6cc)",
           boxShadow: 1,
-          width: "560px",
+          width: "100%",
           borderRadius: "10px",
-          // height: "480px",
+          height: "auto",
 
-          // width: "400px",
+          transform: "all 0.2 ease-in-out",
           "@media (max-width: 600px)": {
             margin: "20px 0px 0px 0px",
-            height: "60vh",
+            height: "auto",
           },
+          transition: "all 0.2s ease-in-out",
           "&:hover": {
-            bgcolor: "#BBDEFB", // Light gray background on hover
-            // boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)", // Optional shadow effect
-            transform: "translateY(-1px) " /* Hover effect for cards */,
-            boxShadow: "0 4px 16px rgba(0, 0, 0, 0.2)",
+            transform: "scale(1.02)",
+            boxShadow: theme.shadows[6],
           },
         }}
       >
         <div>
           <Grid sx={{ display: "flex", flexDirection: "column" }}>
             <Grid
+              mt={2} gap={1}
               sx={{
                 display: "flex",
                 flexDirection: "row",
@@ -141,6 +149,7 @@ const WeeklyActivity = () => {
             >
               <Grid>
                 <IconButton
+                  sx={{ color: "#16355d" }}
                   onClick={() => {
                     navigate(`/posts/${user.result._id}/fullweeklyactivity`);
                   }}
@@ -148,20 +157,29 @@ const WeeklyActivity = () => {
                   <DescriptionIcon />
                 </IconButton>
               </Grid>
-              <Grid sx={{ marginTop: "10px" }}>
+              <Grid>
                 <Typography
+                  variant="h6"
+                  fontWeight={600}
                   sx={{
                     fontWeight: "bolder",
                     fontFamily: "Roboto",
                     color: "#16355d",
-                    fontSize: "18px",
                   }}
                 >
                   Weekly Activity
                 </Typography>
               </Grid>
             </Grid>
-            <Bar options={options} data={data} />
+            <div style={{ height: 400 }}>
+              {" "}
+              {/* or whatever height you want */}
+              <Bar
+                options={{ ...options, maintainAspectRatio: false }}
+                data={data}
+              />
+            </div>
+            {/* <Bar options={options} data={data} /> */}
           </Grid>
         </div>
       </Container>

@@ -117,13 +117,16 @@ const Panel = () => {
       sx={{
         bgcolor: "#ede4e5",
         borderRadius: "12px",
+        padding: "20px",
         "@media (max-width: 600px)": {
           flexDirection: "column",
           width: "50vh",
+          padding: "0px",
         },
 
         "@media (min-width: 600px)": {
           flexDirection: "column",
+          // padding: "0px",
         },
       }}
       elevation={10}
@@ -141,20 +144,17 @@ const Panel = () => {
           >
             <Grid>
               <Stack
-                flexDirection="row"
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
                 sx={{
-                  mt: "10px",
-                  ml: "85px",
-                  display: {
-                    xs: "block",
-                    sm: "block",
-                  },
+                  mt: 2,
                 }}
               >
                 <Avatar
                   sx={{
-                    width: 40,
-                    height: 40,
+                    width: 50,
+                    height: 50,
                     // marginLeft: "10px",
                     justifyContent: "center",
                     bgcolor: "orange",

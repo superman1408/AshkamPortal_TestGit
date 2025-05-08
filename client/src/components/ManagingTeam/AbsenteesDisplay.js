@@ -3,10 +3,10 @@ import React, { useState, useEffect } from "react";
 import {
   Grid,
   Typography,
-  Stack,
   Avatar,
   Container,
   IconButton,
+  useTheme,
 } from "@mui/material";
 import HailIcon from "@mui/icons-material/Hail";
 import { getPosts } from "../../action/posts";
@@ -23,6 +23,8 @@ const AbsenteesDisplay = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+
+  const theme = useTheme();
 
   useEffect(() => {
     if (posts) {
@@ -67,15 +69,14 @@ const AbsenteesDisplay = () => {
         sx={{
           display: "flex",
           padding: "3px",
-          // bgcolor: "#e9edf7",
-          // bgcolor: "#16355d",
-          bgcolor: "#E3F2FD",
+
+          backdropFilter: "blur(8px)",
+          background: "linear-gradient(145deg, #ffffffcc, #f3f4f6cc)",
           boxShadow: 1,
           maxWidth: "500px",
           borderRadius: "10px",
-
+          width: "100%",
           position: "relative", // Set position to relative
-          // marginTop: "20px",
           marginLeft: "20px",
           marginRight: "0px",
 
@@ -84,11 +85,10 @@ const AbsenteesDisplay = () => {
             margin: "20px 20px 0px 0px",
           },
 
+          transition: "all 0.2s ease-in-out",
           "&:hover": {
-            bgcolor: "#BBDEFB", // Light gray background on hover
-            // boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)", // Optional shadow effect
-            transform: "translateY(-3px) " /* Hover effect for cards */,
-            boxShadow: "0 4px 16px rgba(0, 0, 0, 0.2)",
+            transform: "scale(1.02)",
+            boxShadow: theme.shadows[6],
           },
         }}
       >
@@ -101,50 +101,44 @@ const AbsenteesDisplay = () => {
           }}
         >
           <Grid
+            gap={1}
+            p={1.5}
             sx={{
               display: "flex",
               flexDirection: "row",
             }}
           >
-            <Grid>
-              <IconButton
-                sx={{ color: "#16355d" }}
-                onClick={
-                  verifyTheRole()
-                    ? () => navigate(`/${id}/absentdetails`)
-                    : null // Employee Attendance Route
-                }
-              >
-                <HailIcon />
-              </IconButton>
-            </Grid>
-            <Grid container justifyContent="center" alignItems="center">
-              <Grid item>
-                <Typography
-                  sx={{
-                    color: "#16355d",
-                    // color: "white",
-                    fontFamily: "Roboto",
-                    fontWeight: "bolder",
-                    mt: "5px",
-                    mb: "1px",
-                    ml: "10px",
-                    fontSize: "18px",
-                    textAlign: "center",
-                  }}
-                >
-                  Absentees
-                </Typography>
-              </Grid>
-            </Grid>
+            <IconButton
+              sx={{ color: "#16355d" }}
+              onClick={
+                verifyTheRole() ? () => navigate(`/${id}/absentdetails`) : null // Employee Attendance Route
+              }
+            >
+              <HailIcon />
+            </IconButton>
+
+            <Typography
+              variant="h6"
+              fontWeight={600}
+              sx={{
+                color: "#16355d",
+                // color: "white",
+                fontFamily: "Roboto",
+                fontWeight: "bolder",
+              }}
+            >
+              Absentees
+            </Typography>
           </Grid>
           <Grid
             container
             sx={{
               display: "grid",
-              gridTemplateColumns: "repeat(8, 1fr)", // 4 columns per row
+              gridTemplateColumns: "repeat(4, 1fr)", // 4 columns per row
               gap: "10px",
               padding: "10px 0",
+              height: "200px",
+              overflowY: "auto",
             }}
           >
             {sortedPosts.map((post, index) => {

@@ -3,7 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAttendancePosts } from "../../action/posts";
 
-import { Box, Grid, Typography, IconButton, Container } from "@mui/material";
+import {
+  Grid,
+  Typography,
+  IconButton,
+  Container,
+  useTheme,
+} from "@mui/material";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 
 const Attendance = () => {
@@ -18,6 +24,7 @@ const Attendance = () => {
   const attend = useSelector((state) => state.attend);
   const user = JSON.parse(localStorage.getItem("profile"));
   const id = user.result._id;
+  const theme = useTheme();
 
   useEffect(() => {
     if (attend) {
@@ -40,60 +47,54 @@ const Attendance = () => {
       <Container
         sx={{
           display: "flex",
-          // width: "100%",
           maxWidth: "500px",
           flexDirection: "column",
-          // marginTop: "52px",
           marginLeft: "20px",
           padding: "10px",
-          // bgcolor: "#e2e6cf",
+          height: "150px",
 
-          // bgcolor: "#16355d",
-          bgcolor: "#E3F2FD",
+          backdropFilter: "blur(8px)",
+          background: "linear-gradient(145deg, #ffffffcc, #f3f4f6cc)",
           boxShadow: 1,
           borderRadius: "10px",
           overflow: "hidden",
           position: "relative", // Set position to relative
           flex: 1,
+          transition: "all 0.2s ease-in-out",
           "@media (max-width: 600px)": {
             display: "flex",
             margin: "20px 0px 0px 0px",
             width: "40vh",
           },
           "&:hover": {
-            bgcolor: "#BBDEFB", // Light gray background on hover
-            // boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)", // Optional shadow effect
-            transform: "translateY(-1px) " /* Hover effect for cards */,
-            boxShadow: "0 4px 16px rgba(0, 0, 0, 0.2)",
+            transform: "scale(1.02)",
+            boxShadow: theme.shadows[6],
           },
         }}
       >
         <Grid sx={{ display: "flex", flexDirection: "column" }}>
-          <Grid sx={{ display: "flex", flexDirection: "row" }}>
-            <Grid sx={{ marginLeft: "10px" }}>
-              <IconButton
-                sx={{ fontFamily: "Roboto", color: "#16355d" }}
-                onClick={() => {
-                  navigate(`/${id}/attendanceDisplay`); // Employee Attendance Route
-                }}
-              >
-                <NewspaperIcon />
-              </IconButton>
-            </Grid>
-            <Grid sx={{ marginLeft: "70px" }}>
-              <Typography
-                sx={{
-                  fontFamily: "Roboto",
-                  fontWeight: "bold",
-                  // marginLeft: "100px",
-                  marginTop: "10px",
-                  color: "#16355d",
-                  fontSize: "18px",
-                }}
-              >
-                Attendance
-              </Typography>
-            </Grid>
+          <Grid gap={1} p={1} sx={{ display: "flex", flexDirection: "row" }}>
+            <IconButton
+              sx={{ color: "#16355d" }}
+              onClick={() => {
+                navigate(`/${id}/attendanceDisplay`); // Employee Attendance Route
+              }}
+            >
+              <NewspaperIcon />
+            </IconButton>
+
+            <Typography
+              variant="h6"
+              fontWeight={600}
+              sx={{
+                fontFamily: "Roboto",
+                fontWeight: "bold",
+                // marginLeft: "100px",
+                color: "#16355d",
+              }}
+            >
+              Attendance
+            </Typography>
           </Grid>
           <div>
             <Grid

@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Box, IconButton, Typography, Grid, Container } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  Typography,
+  Grid,
+  Card,
+  CardContent,
+  useTheme,
+} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-
 import { getPosts } from "../../action/posts";
 import WcIcon from "@mui/icons-material/Wc";
 import WomanIcon from "@mui/icons-material/Woman";
 import ManIcon from "@mui/icons-material/Man";
-
 import {
   PieChart,
   Pie,
@@ -21,6 +27,7 @@ const COLORS = ["#1976d2", "#dc3912"];
 const TotalEmployee = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
+  const theme = useTheme();
 
   const [menCount, setMenCount] = useState(0);
   const [womenCount, setWomenCount] = useState(0);
@@ -48,69 +55,52 @@ const TotalEmployee = () => {
   ];
 
   return (
-    <Container
+    <Card
+      elevation={6}
       sx={{
-        display: "flex",
-        padding: "20px",
-        // bgcolor: "#16355d",
-
-        bgcolor: "#E3F2FD",
-        boxShadow: 1,
-        maxWidth: "700px",
-        borderRadius: "10px",
-        overflow: "hidden",
-        marginTop: "20px",
-        marginLeft: "20px",
-
-        height: "330px",
-        width: "auto",
+        p: 2,
+        backdropFilter: "blur(8px)",
+        background: "linear-gradient(145deg, #ffffffcc, #f3f4f6cc)",
+        borderRadius: 3,
+        transition: "0.3s",
+        height: "100%",
         "&:hover": {
-          bgcolor: "#BBDEFB", // Light gray background on hover
-          // boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.1)", // Optional shadow effect
-          transform: "translateY(-1px) " /* Hover effect for cards */,
-          boxShadow: "0 4px 16px rgba(0, 0, 0, 0.2)",
+          transform: "scale(1.02)",
+          boxShadow: theme.shadows[6],
         },
       }}
     >
-      <Grid container direction="column">
-        <Grid item container alignItems="center" spacing={1}>
-          <Grid item>
-            <IconButton>
-              <WcIcon sx={{ color: "#16355d" }} />
+      <CardContent>
+        <Grid container spacing={2}>
+          <Grid item xs={12} display="flex" alignItems="center">
+            <IconButton sx={{ color: "#16355d" }}>
+              <WcIcon />
             </IconButton>
-          </Grid>
-          <Grid item>
             <Typography
-              sx={{
-                fontWeight: "bold",
-                fontSize: "18px",
-                color: "#16355d",
-                fontFamily: "Roboto",
-              }}
+              variant="h6"
+              fontWeight={600}
+              color="#16355d"
+              fontFamily="Roboto"
             >
               Total Employees
             </Typography>
           </Grid>
-        </Grid>
 
-        <Grid item container spacing={2} mt={2}>
-          <Grid item>
-            <Box display="flex" alignItems="center" mb={1}>
-              <ManIcon color="primary" />
-              <Typography sx={{ color: "#16355d", ml: 1 }}>
-                {menCount}
-              </Typography>
-            </Box>
-            <Box display="flex" alignItems="center">
-              <WomanIcon sx={{ color: "#dc3912" }} />
-              <Typography sx={{ color: "#16355d", ml: 1 }}>
-                {womenCount}
-              </Typography>
+          <Grid item xs={12} sm={4}>
+            <Box display="flex" flexDirection="column" gap={1}>
+              <Box display="flex" alignItems="center">
+                <ManIcon color="primary" />
+                <Typography ml={1}>{menCount}</Typography>
+              </Box>
+              <Box display="flex" alignItems="center">
+                <WomanIcon sx={{ color: COLORS[1] }} />
+                <Typography ml={1}>{womenCount}</Typography>
+              </Box>
             </Box>
           </Grid>
 
-          <Grid item xs>
-            <ResponsiveContainer width="100%" height={200}>
+          <Grid item xs={12} sm={8}>
+            <ResponsiveContainer p={10} width="100%" height={200}>
               <PieChart>
                 <Pie
                   data={data}
@@ -119,8 +109,11 @@ const TotalEmployee = () => {
                   cx="50%"
                   cy="50%"
                   outerRadius={60}
+                  innerRadius={30}
                   fill="#8884d8"
-                  label
+                  label={({ name, percent }) =>
+                    `${name} ${(percent * 100).toFixed(0)}%`
+                  }
                 >
                   {data.map((entry, index) => (
                     <Cell
@@ -129,14 +122,14 @@ const TotalEmployee = () => {
                     />
                   ))}
                 </Pie>
-                <Tooltip />
-                <Legend />
+                <Tooltip formatter={(value, name) => [`${value}`, `${name}`]} />
+                <Legend verticalAlign="bottom" height={36} />
               </PieChart>
             </ResponsiveContainer>
           </Grid>
         </Grid>
-      </Grid>
-    </Container>
+      </CardContent>
+    </Card>
   );
 };
 
