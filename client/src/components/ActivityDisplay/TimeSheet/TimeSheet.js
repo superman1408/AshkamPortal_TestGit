@@ -309,6 +309,8 @@ function TimeSheet({ currentId, posts }) {
           </div>
         )}
         <Grid
+          container
+          spacing={2}
           sx={{
             display: "flex",
             padding: "12px",
@@ -319,7 +321,11 @@ function TimeSheet({ currentId, posts }) {
           }}
         >
           <Grid
+            item
+            xs={12}
+            md={2}
             sx={{
+              width: "flex",
               padding: "15px",
               backgroundColor: "whitesmoke",
               margin: "0px 8px 8px 8px",
@@ -457,8 +463,7 @@ function TimeSheet({ currentId, posts }) {
             </form>
           </Grid>
 
-          <Grid item md={8}>
-            {" "}
+          <Grid item xs={12} md={8}>
             {isLoading ? (
               <Box sx={{ marginLeft: "400px", marginTop: "100px" }}>
                 <CircularProgress />

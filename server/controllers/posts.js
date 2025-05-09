@@ -25,32 +25,32 @@ const upload = multer({ storage: storage });
 
 // ________________________get operation___________________________
 
-// export const getPosts = async (req, res) => {
-//   try {
-//     const postMessage = await AuthenticateUser.find({});
-//     // console.log(postMessage);
-//     res.status(200).json(postMessage);
-//     // console.log("postMessage", postMessage);
-//   } catch (error) {
-//     res.status(404).json({ message: error.message });
-//   }
-// };
-
 export const getPosts = async (req, res) => {
-  const { page = 1, limit = 10 } = req.query;
-
   try {
-    const startIndex = (Number(page) - 1) * Number(limit);
-
-    const postMessage = await AuthenticateUser.find()
-      .limit(Number(limit))
-      .skip(startIndex);
-
-    res.status(200).json(postMessage); // 👈 returning array only!
+    const postMessage = await AuthenticateUser.find({});
+    // console.log(postMessage);
+    res.status(200).json(postMessage);
+    // console.log("postMessage", postMessage);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
 };
+
+// export const getPosts = async (req, res) => {
+//   const { page = 1, limit = 10 } = req.query;
+
+//   try {
+//     const startIndex = (Number(page) - 1) * Number(limit);
+
+//     const postMessage = await AuthenticateUser.find()
+//       .limit(Number(limit))
+//       .skip(startIndex);
+
+//     res.status(200).json(postMessage); // 👈 returning array only!
+//   } catch (error) {
+//     res.status(404).json({ message: error.message });
+//   }
+// };
 
 export const getPost = async (req, res) => {
   const { id } = req.params;

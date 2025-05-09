@@ -99,7 +99,13 @@ const TotalEmployee = () => {
             </Box>
           </Grid>
 
-          <Grid item xs={12} sm={8}>
+          <Grid
+            item
+            xs={12}
+            sm={8}
+            bgcolor="lightgray"
+            sx={{ borderRadius: "12px" }}
+          >
             <ResponsiveContainer p={10} width="100%" height={200}>
               <PieChart>
                 <Pie
@@ -108,12 +114,22 @@ const TotalEmployee = () => {
                   nameKey="name"
                   cx="50%"
                   cy="50%"
-                  outerRadius={60}
+                  outerRadius={50}
                   innerRadius={30}
                   fill="#8884d8"
-                  label={({ name, percent }) =>
-                    `${name} ${(percent * 100).toFixed(0)}%`
-                  }
+                  label={({ name, percent, x, y }) => (
+                    <text
+                      x={x}
+                      y={y}
+                      textAnchor="middle"
+                      dominantBaseline="central"
+                      fill="#333"
+                      fontSize={13} // ← change this to control label size
+                      fontFamily="Roboto"
+                    >
+                      {`${name} ${(percent * 100).toFixed(0)}%`}
+                    </text>
+                  )}
                 >
                   {data.map((entry, index) => (
                     <Cell

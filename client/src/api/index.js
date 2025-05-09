@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: "http://192.168.168.110:8080",
 });
 
 API.interceptors.request.use((req) => {
@@ -13,11 +13,11 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-// export const fetchPosts = () => API.get("/posts");
+export const fetchPosts = () => API.get("/posts");
 
-// inside your action/posts.js
-export const fetchPosts = (page = 1) =>
-  axios.get(`/posts?page=${page}&limit=10`);
+// // inside your action/posts.js
+// export const fetchPosts = (page = 1) =>
+//   axios.get(`/posts?page=${page}&limit=10`);
 
 export const fetchPost = (id) => API.get(`/posts/${id}`);
 

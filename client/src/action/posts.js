@@ -20,27 +20,25 @@ import {
 
 import * as API from "../api";
 
-// export const getPosts = () => async (dispatch) => {
-//   try {
-//     const { data } = await API.fetchPosts();
-
-//     dispatch({ type: FETCH_ALL, payload: data });
-//     // console.log(data);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-
-export const getPosts = (page = 1) => async (dispatch) => {
+export const getPosts = () => async (dispatch) => {
   try {
-    const { data } = await API.fetchPosts(page);
+    const { data } = await API.fetchPosts();
+
     dispatch({ type: FETCH_ALL, payload: data });
+    // console.log(data);
   } catch (error) {
     console.log(error);
   }
 };
 
+// export const getPosts = (page = 1) => async (dispatch) => {
+//   try {
+//     const { data } = await API.fetchPosts(page);
+//     dispatch({ type: FETCH_ALL, payload: data });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 // _________________________________________
 
