@@ -13,6 +13,7 @@ const app = express();
 dotenv.config();
 
 const PORT = process.env.PORT || 8080;
+const HOST = process.env.HOST || 'localhost';
 
 const CONNECT = process.env.CONNECTION_URL;
 
@@ -38,13 +39,27 @@ app.get("/", (req, res) => {
 //   res.send("File uploaded successfully");
 // });
 
+// mongoose.set("strictQuery", true);
+// mongoose
+//   .connect(CONNECT, { useNewUrlParser: true }, { useUnifiedTopology: true })
+//   .then(() =>
+//     app.listen(PORT, () => {
+//       console.log(
+//         "Listening at " + PORT + "\nMongoDB database is connected..!!"
+//       );
+//     })
+//   )
+//   .catch((error) => console.log(error));
+
+
 mongoose.set("strictQuery", true);
+
 mongoose
-  .connect(CONNECT, { useNewUrlParser: true }, { useUnifiedTopology: true })
+  .connect(CONNECT, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() =>
-    app.listen(PORT, () => {
+    app.listen(PORT, HOST, () => {
       console.log(
-        "Listening at " + PORT + "\nMongoDB database is connected..!!"
+        "Listening at " + `http://${HOST}:${PORT}` + "\nMongoDB database is connected..!!"
       );
     })
   )
