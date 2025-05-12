@@ -113,19 +113,19 @@ const Leave = () => {
   };
 
   return (
-    <div
+    <Grid
       className={classes.mainContainer}
-      style={{
+      sx={{
         padding: "1px",
         display: "flex",
-        justifyContent: "space-between",
+        // justifyContent:"" ,
         marginTop: "20px",
       }}
     >
-      <div style={{ display: "flex" }}>
+      <Grid item xs={12} md={8} sx={{ display:"flex" }}>
         <Panel />
-      </div>
-      <div style={{ display: "flex" }}>
+      </Grid>
+      <Grid item xs={12} md={4} sx={{ p: 1, width: "100%" }}>
         <Grid
           sx={{
             display: "flex",
@@ -322,10 +322,13 @@ const Leave = () => {
             </form>
           </Grid>
           <Grid
+            item
+            xs={12}
+            md={4}
             sx={{
-              "@media (max-width: 600px)": {
-                margin: "0px",
-              },
+              display: "flex",
+              p: 1,
+              width: "100%",
             }}
           >
             <LeaveTableDisplay />{" "}
@@ -361,8 +364,8 @@ const Leave = () => {
             ) : null}
           </Grid>
         </Grid>
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
 };
 
