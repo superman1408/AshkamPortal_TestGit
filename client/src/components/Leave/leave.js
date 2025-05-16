@@ -113,33 +113,15 @@ const Leave = () => {
   };
 
   return (
-    <Grid
-      className={classes.mainContainer}
-      sx={{
-        padding: "1px",
-        display: "flex",
-        // justifyContent:"" ,
-        marginTop: "20px",
-      }}
-    >
-      <Box
-        p={2}
-        sx={{
-          display: "flex",
-          minHeight: "100vh",
-
-          // bgcolor: "#f4f6f8"
-        }}
-      >
+    <Grid container className={classes.mainContainer} sx={{ mt: 2 }}>
+      <Box sx={{ display: "flex", width: "100%" }}>
         <Panel />
 
         <Box
-          ml={1}
           component="main"
           sx={{
             flexGrow: 1,
-            px: 2,
-            py: 2,
+            p: 2,
             width: "100%",
             display: "flex",
             flexDirection: "column",
@@ -147,247 +129,171 @@ const Leave = () => {
           }}
         >
           <Grid
-            item
-            xs={12}
-            md={4}
+            container
+            spacing={2}
             sx={{
-              width: "100%",
-              display: "flex",
-              "@media (max-width: 600px)": {
-                flexDirection: "column",
-                margin: "0px",
-              },
+              flexDirection: { xs: "column", md: "row" },
             }}
           >
-            <Grid
-              sx={{
-                marginLeft: "15px",
-                "@media (max-width: 600px)": {
-                  flexDirection: "column",
-                  margin: "0px",
-                },
-              }}
-            >
+            {/* Left side - Form */}
+            <Grid item xs={12} md={6}>
               <form autoComplete="off" onSubmit={handleSubmit}>
-                <Grid>
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      padding: "5px",
-                      textAlign: "center",
-                      fontFamily: "Roboto",
-                    }}
-                  >
-                    <PublicSharpIcon sx={{ marginRight: "10px" }} />
-                    {`${user.result.email}`}
-                  </Typography>
-                </Grid>
-                <Card
-                  elevation={10}
-                  sx={{
-                    padding: "10px",
-                    // width: "700px",
-                    width: {
-                      sx: 1.0,
-                      sm: 250,
-                      md: 600,
-                    },
-                  }}
+                <Typography
+                  variant="h6"
+                  align="center"
+                  sx={{ mb: 2, fontFamily: "Roboto" }}
                 >
+                  <PublicSharpIcon sx={{ mr: 1 }} />
+                  {user.result.email}
+                </Typography>
+
+                <Card elevation={10} sx={{ p: 2 }}>
                   <TextField
                     type="email"
-                    name="recipient"
                     label="To"
-                    variant="outlined"
                     required
                     fullWidth
-                    sx={{ marginTop: "10px" }}
+                    sx={{ mb: 2 }}
                     onChange={(e) =>
                       setMailData({ ...mailData, recipient: e.target.value })
                     }
                   />
-
                   <TextField
-                    type="text"
-                    name="recipient2"
                     label="Cc"
-                    variant="outlined"
                     required
                     fullWidth
-                    sx={{ marginTop: "10px" }}
+                    sx={{ mb: 2 }}
                     onChange={(e) =>
                       setMailData({ ...mailData, recipient2: e.target.value })
                     }
                   />
 
                   <Grid
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      "@media (max-width: 600px)": {
-                        flexDirection: "column",
-                      },
-                    }}
+                    container
+                    spacing={2}
+                    sx={{ flexDirection: { xs: "column", sm: "row" } }}
                   >
-                    <Grid>
+                    <Grid item xs={12} sm={6}>
                       <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DemoContainer components={["DatePicker"]}>
-                          <DatePicker
-                            label="From"
-                            value={valueTo ? valueTo : " "}
-                            onChange={(newValue) => setValueTo(newValue)}
-                            required
-                            fullWidth
-                          />
-                        </DemoContainer>
+                        <DatePicker
+                          label="From"
+                          value={valueTo || null}
+                          onChange={setValueTo}
+                          slotProps={{
+                            textField: { fullWidth: true, required: true },
+                          }}
+                        />
                       </LocalizationProvider>
                     </Grid>
-                    <Grid>
+                    <Grid item xs={12} sm={6}>
                       <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DemoContainer components={["DatePicker"]}>
-                          <DatePicker
-                            label="To"
-                            value={valueFrom ? valueFrom : ""}
-                            required
-                            halfWidth
-                            onChange={(newValue) => setValueFrom(newValue)}
-                          />
-                        </DemoContainer>
+                        <DatePicker
+                          label="To"
+                          value={valueFrom || null}
+                          onChange={setValueFrom}
+                          slotProps={{
+                            textField: { fullWidth: true, required: true },
+                          }}
+                        />
                       </LocalizationProvider>
                     </Grid>
                   </Grid>
 
-                  <Grid>
-                    <div style={{ margin: "10px 0px" }}>
-                      <select
-                        value={select ? select : ""}
-                        onChange={handleSelect}
-                        placeholder="Select Leave"
-                        className={classes.dropDown}
-                      >
-                        {options.map((option) => (
-                          <option key={option.value}>{option.label}</option>
-                        ))}
-                      </select>
-                    </div>
-                  </Grid>
+                  <Box sx={{ my: 2 }}>
+                    <select
+                      value={select}
+                      onChange={handleSelect}
+                      className={classes.dropDown}
+                      style={{ width: "100%", padding: "10px" }}
+                    >
+                      {options.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                  </Box>
 
-                  <Grid>
-                    {select && (
-                      <TextField
-                        name="subject"
-                        label="Subject"
-                        required
-                        fullWidth
-                        sx={{ marginTop: "10px", fontWeight: "500px" }}
-                        value={
-                          (mailData.subject = `Applying for ${leaveType} from ${fromDate} to ${toDate}`)
-                        }
-                        onChange={(e) =>
-                          setMailData({
-                            ...mailData,
-                            [e.target.subject]: e.target.value,
-                          })
-                        }
-                      />
-                    )}
-                    <Grid sx={{ display: "flex", flexDirection: "column" }}>
-                      <TextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        multiline
-                        minRows={9}
-                        sx={{
-                          marginTop: "10px",
-                          fontWeight: "bold",
-                          fontSize: "20px",
-                        }}
-                        defaultValue={`\n\n\n\n\n\nThanks & Regards\n${
-                          user.result.firstName.charAt(0).toUpperCase() +
-                          user.result.firstName.slice(1).toLowerCase() +
-                          " " +
-                          user.result.lastName.charAt(0).toUpperCase() +
-                          user.result.lastName.slice(1).toLowerCase()
-                        } | ${user.result.department}`}
-                        // Regards & username should be on two lines one by one
-                        onChange={(e) =>
-                          setMailData({
-                            ...mailData,
-                            requiredMessage: e.target.value,
-                          })
-                        }
-                      />
-                    </Grid>
-                    <div style={{ display: "flex", justifyContent: "right" }}>
-                      <button
-                        variant="contained"
-                        type="submit"
-                        style={{
-                          height: "50px",
-                          width: "20%",
-                          display: "flex",
-                          flexDirection: "column",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          margin: "10px",
-                          padding: "2px",
-                          fontFamily: "Roboto",
-                        }}
-                      >
-                        <SendSharpIcon />
-                        Send
-                      </button>
-                    </div>
-                  </Grid>
+                  {select && (
+                    <TextField
+                      label="Subject"
+                      required
+                      fullWidth
+                      sx={{ mb: 2 }}
+                      value={`Applying for ${leaveType} from ${fromDate} to ${toDate}`}
+                      onChange={(e) =>
+                        setMailData({ ...mailData, subject: e.target.value })
+                      }
+                    />
+                  )}
+
+                  <TextField
+                    multiline
+                    minRows={9}
+                    fullWidth
+                    required
+                    defaultValue={`\n\n\n\n\n\nThanks & Regards\n${
+                      user.result.firstName.charAt(0).toUpperCase() +
+                      user.result.firstName.slice(1).toLowerCase() +
+                      " " +
+                      user.result.lastName.charAt(0).toUpperCase() +
+                      user.result.lastName.slice(1).toLowerCase()
+                    } | ${user.result.department}`}
+                    onChange={(e) =>
+                      setMailData({
+                        ...mailData,
+                        requiredMessage: e.target.value,
+                      })
+                    }
+                  />
+
+                  <Box display="flex" justifyContent="flex-end" mt={2}>
+                    <button
+                      type="submit"
+                      style={{
+                        height: "50px",
+                        width: "100px",
+                        fontFamily: "Roboto",
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <SendSharpIcon sx={{ mr: 1 }} />
+                      Send
+                    </button>
+                  </Box>
                 </Card>
-                {/* </div>
-              </div> */}
               </form>
             </Grid>
-            <Grid
-              item
-              xs={12}
-              md={8}
-              sx={{
-                display: "flex",
-                p: 1,
-                width: "100%",
-              }}
-            >
-              <LeaveTableDisplay />{" "}
-              {user.result.role === "employee" ||
-              user.result.role === "manager" ? (
+
+            {/* Right side - Leave table and calendar */}
+            <Grid item xs={12} md={6}>
+              <LeaveTableDisplay />
+              {(user.result.role === "employee" ||
+                user.result.role === "manager") && (
                 <Card
                   elevation={10}
                   sx={{
-                    marginLeft: "5px",
-                    display: "flex",
-                    marginBottom: "10px",
-                    "@media (max-width: 600px)": {
-                      marginTop: "10px",
-                    },
-                    height: "350px", // Adjust the height of the Card
+                    mt: 2,
+                    height: "350px",
                   }}
                 >
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DemoContainer
-                      components={["DateCalendar", "DateCalendar"]}
-                    >
-                      <DateCalendar
-                        value={value}
-                        onChange={(newValue) => setValue(newValue)}
-                        sx={{
-                          height: "100%", // Adjust the height of the DateCalendar
-                          "& .MuiCalendarPicker-root": {
-                            height: "100%", // Ensures the calendar picker takes the full height
-                          },
-                        }}
-                      />
-                    </DemoContainer>
+                    <DateCalendar
+                      value={value}
+                      onChange={(newValue) => setValue(newValue)}
+                      sx={{
+                        height: "100%",
+                        "& .MuiCalendarPicker-root": {
+                          height: "100%",
+                        },
+                      }}
+                    />
                   </LocalizationProvider>
                 </Card>
-              ) : null}
+              )}
             </Grid>
           </Grid>
         </Box>
