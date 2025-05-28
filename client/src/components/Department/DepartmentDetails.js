@@ -82,7 +82,7 @@ const DepartmentDetails = () => {
                           sx={{
                             padding: "2px",
                             height: "150px",
-                            borderRadius: "60%", // or "50%" for circle
+                            borderRadius: "10%", // or "50%" for circle
                             objectFit: "cover",
                           }}
                         />
@@ -147,7 +147,7 @@ const DepartmentDetails = () => {
                           sx={{
                             padding: "2px",
                             height: "150px",
-                            borderRadius: "60%", // or "50%" for circle
+                            borderRadius: "10%", // or "50%" for circle
                             objectFit: "cover",
                           }}
                         />
