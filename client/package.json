@@ -2,7 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://192.168.168.110:8080/",
+  "proxy": "http://192.168.168.101:8080/",
   "dependencies": {
     "@coreui/react-chartjs": "^2.1.2",
     "@emotion/react": "^11.10.6",
