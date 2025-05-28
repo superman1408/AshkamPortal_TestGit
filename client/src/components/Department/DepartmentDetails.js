@@ -72,14 +72,21 @@ const DepartmentDetails = () => {
                 return (
                   <div style={{ margin: "20px" }}>
                     <ButtonBase>
-                      <Card sx={{ width: 200, maxHeight: 280 }}>
+                      <Card
+                        sx={{ width: 180, maxHeight: 220, borderRadius: "10%" }}
+                      >
                         <CardMedia
-                          sx={{ padding: "2px" }}
                           component="img"
-                          height="180"
                           image={post.selectedFile}
+                          alt="Post image"
+                          sx={{
+                            padding: "2px",
+                            height: "150px",
+                            borderRadius: "10%", // or "50%" for circle
+                            objectFit: "cover",
+                          }}
                         />
-                        <CardContent sx={{ padding: "5px", height: "200px" }}>
+                        <CardContent sx={{ padding: "5px" }}>
                           <Typography
                             gutterBottom
                             component="div"
@@ -87,6 +94,7 @@ const DepartmentDetails = () => {
                               fontSize: "18px",
                               color: "#16355d",
                               fontFamily: "Roboto",
+                              lineHeight: 1.2,
                             }}
                           >
                             {post.firstName + " " + post.lastName}
@@ -96,6 +104,7 @@ const DepartmentDetails = () => {
                               fontSize: "15px",
                               color: "#16355d",
                               fontFamily: "Roboto",
+                              lineHeight: 1.2,
                             }}
                           >
                             {post.jobTitle}
@@ -128,14 +137,22 @@ const DepartmentDetails = () => {
                 return (
                   <div key={index} style={{ margin: "20px" }}>
                     <ButtonBase>
-                      <Card sx={{ width: 200, maxHeight: 300 }}>
+                      <Card
+                        sx={{ width: 180, maxHeight: 220, borderRadius: "10%" }}
+                      >
                         <CardMedia
-                          sx={{ padding: "2px" }}
                           component="img"
-                          height="180"
                           image={post.selectedFile}
+                          alt="Post image"
+                          sx={{
+                            padding: "2px",
+                            height: "150px",
+                            borderRadius: "10%", // or "50%" for circle
+                            objectFit: "cover",
+                          }}
                         />
-                        <CardContent sx={{ padding: "5px", height: "200px" }}>
+
+                        <CardContent sx={{ padding: "5px" }}>
                           <Typography
                             gutterBottom
                             component="div"
@@ -143,6 +160,7 @@ const DepartmentDetails = () => {
                               fontSize: "18px",
                               color: "#16355d",
                               fontFamily: "Roboto",
+                              lineHeight: 1.2,
                             }}
                           >
                             {post.firstName + " " + post.lastName}
@@ -152,6 +170,7 @@ const DepartmentDetails = () => {
                               fontSize: "15px",
                               color: "#16355d",
                               fontFamily: "Roboto",
+                              lineHeight: 1.2,
                             }}
                           >
                             {post.jobTitle}
