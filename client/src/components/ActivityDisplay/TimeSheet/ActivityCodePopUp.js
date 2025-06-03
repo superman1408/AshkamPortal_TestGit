@@ -75,6 +75,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       Lists: "LI",
       Projectcontrol: "PC",
       ProjectManagement: "PM",
+      Task: "TA",
     };
 
     return Activities[ActivitiesCode];
@@ -159,6 +160,22 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
 
   useEffect(() => {}, [discipline]);
 
+  const activityHierarchy = {
+    Account: {
+      Documents: ["InvoiceInput", "DocumentReciept", "Reporting"],
+      Reporting: ["InvoiceInput", "DocumentReporting"],
+    },
+    Electrical: {
+      Drawings: ["SingleLineDrawings", "LoopDrawings"],
+      Calculations: ["CableSizing", "Lighting", "Earthing"],
+    },
+    Mechanical: {
+      Calculations: ["PumpSizing", "ValveSizing"],
+      Drawings: ["EquipmentLayout", "PipingLayout"],
+    },
+    // Add other disciplines similarly...
+  };
+
   return (
     <div
       className="modal fade show"
@@ -236,9 +253,18 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
                 name="Activities"
                 value={activities}
                 onChange={handleActivitiesChange}
+                disabled={!discipline}
               >
                 <option value="select">Select</option>
-                <option value="Calculations">Calculations</option>
+                {discipline &&
+                  Object.keys(activityHierarchy[discipline] || {}).map(
+                    (act) => (
+                      <option key={act} value={act}>
+                        {act}
+                      </option>
+                    )
+                  )}
+                {/* <option value="Calculations">Calculations</option>
                 <option value="DocumentationControl">
                   Documentation Control
                 </option>
@@ -247,7 +273,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
                 <option value="General">General</option>
                 <option value="Lists">Lists</option>
                 <option value="Projectcontrol">Project Control</option>
-                <option value="ProjectManagement">Project Management</option>
+                <option value="ProjectManagement">Project Management</option> */}
               </select>
 
               <div>
@@ -270,9 +296,19 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
                   name="Discipline"
                   value={subActivity}
                   onChange={handleSubActivityChange}
+                  disabled={!activities}
                 >
                   <option value="select">Select</option>
-                  <option value="Airflow">Air flow</option>
+                  {discipline &&
+                    activities &&
+                    (activityHierarchy[discipline]?.[activities] || []).map(
+                      (sub) => (
+                        <option key={sub} value={sub}>
+                          {sub}
+                        </option>
+                      )
+                    )}
+                  {/* <option value="Airflow">Air flow</option>
                   <option value="CableSchedule">Cable Schedule</option>
                   <option value="CableSizing">Cable Sizing</option>
                   <option value="CableTrayORConduit">Cable Tray/Conduit</option>
@@ -340,7 +376,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
                     Structural Drawings
                   </option>
                   <option value="Training">Training</option>
-                  <option value="ValveSizing">Valve Sizing</option>
+                  <option value="ValveSizing">Valve Sizing</option> */}
                 </select>
               </div>
             </div>
