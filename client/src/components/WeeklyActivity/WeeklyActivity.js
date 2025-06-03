@@ -43,8 +43,9 @@ const WeeklyActivity = () => {
   const theme = useTheme();
 
   useEffect(() => {
+    setIsLoading(true);
     dispatch(getPosts()).then(() => {
-      setIsLoading(true);
+      setIsLoading(false);
     });
   }, []);
 
@@ -94,18 +95,40 @@ const WeeklyActivity = () => {
 
   const labels = dateData[0];
 
+  const datasets = [
+    {
+      label: "Net Time",
+      data: netTimeData,
+      backgroundColor: "rgba(255, 99, 132, 0.2)",
+      borderColor: "rgba(255, 99, 132, 1)",
+      borderWidth: 1,
+    },
+    {
+      label: "Over Time",
+      data: overTimeData,
+      backgroundColor: "rgba(54, 162, 235, 0.2)",
+      borderColor: "rgba(54, 162, 235, 1)",
+      borderWidth: 1,
+    },
+  ];
   const data = {
     labels,
     datasets: [
       {
         label: "Net Time",
         data: netTimeData[0],
-        backgroundColor: "#eb9367",
+        // backgroundColor: "#eb9367",
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        borderColor: "rgba(255, 99, 132, 1)",
+        borderWidth: 1,
       },
       {
         label: "Over Time",
         data: overTimeData[0],
-        backgroundColor: "#047682",
+        // backgroundColor: "#047682",
+        backgroundColor: "rgba(54, 162, 235, 0.2)",
+        borderColor: "rgba(54, 162, 235, 1)",
+        borderWidth: 1,
       },
     ],
   };
@@ -139,7 +162,8 @@ const WeeklyActivity = () => {
         <div>
           <Grid sx={{ display: "flex", flexDirection: "column" }}>
             <Grid
-              mt={2} gap={1}
+              mt={2}
+              gap={1}
               sx={{
                 display: "flex",
                 flexDirection: "row",

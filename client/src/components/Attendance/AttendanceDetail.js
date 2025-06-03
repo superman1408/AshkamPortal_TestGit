@@ -386,7 +386,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
             display: "flex",
             width: "100%",
             padding: "2px",
-            // marginLeft: "5px",
+            marginLeft: "5px",
             "@media (max-width: 600px)": {
               flexDirection: "column",
             },
@@ -511,6 +511,9 @@ const AttendanceDetail = ({ currentId, posts }) => {
 
           {(role === "employee" || role === "manager") && (
             <Grid
+              item
+              sm={12}
+              md={8}
               elevation={10}
               sx={{
                 padding: "15px",

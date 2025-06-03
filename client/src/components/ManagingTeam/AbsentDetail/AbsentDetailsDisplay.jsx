@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../../../action/posts";
 import AbsentDetails from "./AbsentDetails";
 import AbsentComboBox from "./ComboBox";
+import Panel from "../../Panel/Panel";
 import { useParams } from "react-router-dom";
 import { Card, Divider } from "@mui/material";
 
@@ -29,32 +30,35 @@ const AbsentDetailsDisplay = () => {
   }, [dispatch]);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        width: "100vw",
-      }}
-    >
-      <Card
-        sx={{
+    <div style={{ display: "flex" ,marginTop:"10px"}}>
+      <Panel />
+      <div
+        style={{
           display: "flex",
-          flexDirection: "column",
-          margin: "50px",
+          alignItems: "center",
           justifyContent: "center",
+          width: "100vw",
         }}
       >
-        <AbsentComboBox posts={posts} setCurrentId={setCurrentId} />
-        <Divider
+        <Card
           sx={{
-            margin: "20px 0px 20px 0px",
-            borderWidth: "5px",
-            bgcolor: "#e55d17",
+            display: "flex",
+            flexDirection: "column",
+            margin: "50px",
+            justifyContent: "center",
           }}
-        />
-        <AbsentDetails posts={posts} currentId={currentId} />
-      </Card>
+        >
+          <AbsentComboBox posts={posts} setCurrentId={setCurrentId} />
+          <Divider
+            sx={{
+              margin: "20px 0px 20px 0px",
+              borderWidth: "5px",
+              bgcolor: "#e55d17",
+            }}
+          />
+          <AbsentDetails posts={posts} currentId={currentId} />
+        </Card>
+      </div>
     </div>
   );
 };
