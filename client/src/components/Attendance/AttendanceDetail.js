@@ -65,6 +65,8 @@ const AttendanceDetail = ({ currentId, posts }) => {
     });
   }, [currentId, dispatch]);
 
+  console.log("posts", posts.length);
+
   //  changes the "handle submit" code as window.location.relaod() is not good practice for sending response to server side
 
   const handleSubmit = async (e) => {
@@ -181,99 +183,6 @@ const AttendanceDetail = ({ currentId, posts }) => {
         </Grid>
         {verifyTheRole() && (
           <>
-            <Grid
-              item
-              xs={12}
-              md={2}
-              sx={{
-                display: "flex",
-                padding: "15px",
-                width: "100%",
-                minHeight: "400px", // ✅ Add this
-                // marginLeft: "5px",
-                backgroundColor: "white",
-                margin: "0px 3px 2px 10px",
-                borderRadius: "15px",
-                border: "1px solid lightgray",
-              }}
-            >
-              <form
-                className="time-sheet-form"
-                onSubmit={handleAttendanceSubmit}
-              >
-                <div className="form-group">
-                  <label
-                    style={{ color: "#16355d", fontFamily: "Roboto" }}
-                    htmlFor="projectCode"
-                  >
-                    Present Employee :
-                  </label>
-
-                  <input
-                    style={{
-                      fontSize: "16px",
-                      border: "1px solid #ccc",
-                      borderRadius: "4px",
-                      color: "#e55d17",
-                    }}
-                    type="text"
-                    id="projectCode"
-                    value={formData.presentEmployee}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        presentEmployee: e.target.value,
-                      })
-                    }
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label
-                    style={{ color: "#16355d", fontFamily: "Roboto" }}
-                    htmlFor="activityCode"
-                  >
-                    Absent Employee :
-                  </label>
-                  <input
-                    style={{
-                      // width: "auto",
-                      // height: "30px",
-                      // padding: "8px",
-                      fontSize: "16px",
-                      border: "1px solid #ccc",
-                      borderRadius: "4px",
-                      color: "#e55d17",
-                    }}
-                    type="text"
-                    id="activityCode"
-                    value={formData.absentEmployee}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        absentEmployee: e.target.value,
-                      })
-                    }
-                  />
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    float: "right",
-                    marginTop: "50px",
-                  }}
-                >
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    sx={{ bgcolor: "#16355d" }}
-                  >
-                    SUBMIT
-                  </Button>
-                </div>
-              </form>
-            </Grid>
-
             <Grid
               item
               xs={12}
