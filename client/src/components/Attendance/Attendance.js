@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getAttendancePosts } from "../../action/posts";
+import { getPosts } from "../../action/posts";
 
 import {
   Grid,
@@ -13,34 +13,33 @@ import {
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 
 const Attendance = () => {
-  const [attendanceData, setAttendanceData] = useState({
-    presentEmp: "",
-    absentEmp: "",
-  });
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const attend = useSelector((state) => state.attend);
   const user = JSON.parse(localStorage.getItem("profile"));
   const id = user.result._id;
   const theme = useTheme();
 
+  const posts = useSelector((state) => state.posts);
+
   useEffect(() => {
-    if (attend) {
-      dispatch(getAttendancePosts()).then(() => {
-        // Assuming `attend` is an array of objects, you may need to loop through it
-        attend.forEach((items) => {
-          setAttendanceData((prevData) => ({
-            // Merge the new data with previous data using spread operator
-            ...prevData,
-            presentEmp: items.presentEmployee,
-            absentEmp: items.absentEmployee,
-          }));
-        });
-      });
-    }
-  }, [dispatch, attend]);
+    dispatch(getPosts());
+  }, [dispatch]);
+
+  console.log(posts.presentStatus);
+
+  const absentEmployees = posts.filter(
+    (post) => post.presentStatus === "false"
+  );
+
+  // const empStrength = posts.filter((post) => post.gender);
+
+  const empStrength = useMemo(
+    () => posts.filter((post) => post.gender),
+    [posts]
+  );
+
+  console.log(empStrength.length);
 
   return (
     <div style={{ display: "flex", flex: 1 }}>
@@ -109,7 +108,7 @@ const Attendance = () => {
                   Total
                 </Typography>
                 <Typography sx={{ fontFamily: "Roboto", color: "#16355d" }}>
-                  {+attendanceData.presentEmp + +attendanceData.absentEmp}
+                  {empStrength.length}
                 </Typography>
               </Grid>
 
@@ -119,7 +118,7 @@ const Attendance = () => {
                 </Typography>
 
                 <Typography sx={{ fontFamily: "Roboto", color: "#16355d" }}>
-                  {attendanceData.presentEmp}
+                  {empStrength.length - absentEmployees.length}
                 </Typography>
               </Grid>
 
@@ -128,7 +127,7 @@ const Attendance = () => {
                   Absent
                 </Typography>
                 <Typography sx={{ fontFamily: "Roboto", color: "#16355d" }}>
-                  {attendanceData.absentEmp}
+                  {absentEmployees.length}
                 </Typography>
               </Grid>
             </Grid>
