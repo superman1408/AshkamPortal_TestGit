@@ -18,6 +18,7 @@ import FormControl from "@mui/joy/FormControl";
 import Radio from "@mui/joy/Radio";
 import RadioGroup from "@mui/joy/RadioGroup";
 import FileBase from "react-file-base64";
+import Panel from "../Panel/Panel";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts, updatePost } from "../../action/posts";
 import { useNavigate, useParams } from "react-router-dom";
@@ -199,383 +200,182 @@ const RegistrationForm = () => {
   };
 
   return (
-    <Container
-      fluid="true"
-      ref={componentRef}
-      maxwidth="true"
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        marginTop: "20px",
-      }}
-    >
-      <Card
-        elevation={24}
-        sx={{ width: "800px", justifyContent: "center", height: "100%" }}
+    <div style={{ display: "flex" }}>
+      <div style={{ padding: "20px", height: "auto" }}>
+        <Panel prop={user.result} />
+      </div>
+
+      <Container
+        fluid="true"
+        ref={componentRef}
+        maxwidth="true"
+        sx={{
+          display: "flex",
+          // justifyContent: "center",
+          marginTop: "20px",
+        }}
       >
-        {isLoading ? (
-          <div style={{ marginLeft: "350px" }}>
-            <CircularProgress />
-            Loading...
-          </div>
-        ) : (
-          <Grid
-            sx={{
-              marginLeft: "30px",
-              marginRight: "30px",
-              marginBottom: "30px",
-            }}
-          >
-            <form onSubmit={handleSubmit}>
-              <div style={{ textAlign: "center" }}>
-                <Typography
-                  variant="h4"
-                  component="div"
-                  sx={{
-                    flexGrow: 1,
-                    fontSize: "30px",
-                    fontWeight: "bold",
-                    marginTop: "20px",
-                    marginBottom: "20px",
-                    fontFamily: "Roboto",
-                  }}
-                >
-                  Employee Registration Form
-                </Typography>
-              </div>
-              <Divider
-                sx={{
-                  borderWidth: "7px",
-                  bgcolor: "#e55d17",
-                }}
-              />
-              <div>
-                {role === "admin" && (
-                  <>
-                    <ComboBox posts={posts} setCurrentId={setCurrentId} />
-                    <Grid
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-evenly",
-                      }}
-                    >
-                      <div style={{ display: "flex", flexDirection: "column" }}>
-                        <div style={{ alignItems: "center" }}>
-                          {selectedOption === "admin" ? (
-                            <AdminPanelSettingsIcon
-                              fontSize="small"
-                              style={{ color: "#e55d17" }}
-                            />
-                          ) : (
-                            <AdminPanelSettingsOutlinedIcon fontSize="10px" />
-                          )}
-                        </div>
-
-                        <label
-                          style={{ fontFamily: "Roboto ", color: "#16355d" }}
-                        >
-                          <input
-                            style={{ marginRight: "5px", padding: "2px" }}
-                            name="role"
-                            type="checkbox"
-                            checked={selectedOption === "admin"}
-                            onChange={() => handleCheckboxChange("admin")}
-                          />
-                          Admin
-                        </label>
-                      </div>
-
-                      <div style={{ display: "flex", flexDirection: "column" }}>
-                        <div style={{ alignItems: "center" }}>
-                          {selectedOption === "manager" ? (
-                            <ManageAccountsIcon
-                              fontSize="small"
-                              style={{ color: "#047681" }}
-                            />
-                          ) : (
-                            <ManageAccountsOutlinedIcon fontSize="10px" />
-                          )}
-                        </div>
-
-                        <label
-                          style={{ fontFamily: "Roboto ", color: "#16355d" }}
-                        >
-                          <input
-                            style={{ marginRight: "5px", padding: "2px" }}
-                            name="role"
-                            type="checkbox"
-                            checked={selectedOption === "manager"}
-                            value={postData.role}
-                            onChange={() => handleCheckboxChange("manager")}
-                          />
-                          Manager
-                        </label>
-                      </div>
-
-                      <div style={{ display: "flex", flexDirection: "column" }}>
-                        <div style={{ alignItems: "center" }}>
-                          {selectedOption === "employee" ? (
-                            <BadgeIcon
-                              fontSize="small"
-                              style={{ color: "#16355c" }}
-                            />
-                          ) : (
-                            <BadgeOutlinedIcon fontSize="10px" />
-                          )}
-                        </div>
-
-                        <label
-                          style={{ fontFamily: "Roboto ", color: "#16355d" }}
-                        >
-                          <input
-                            style={{ marginRight: "5px", padding: "2px" }}
-                            name="role"
-                            type="checkbox"
-                            value={postData.role}
-                            checked={selectedOption === "employee"}
-                            onChange={() => handleCheckboxChange("employee")}
-                          />
-                          Employee
-                        </label>
-                      </div>
-                    </Grid>
-                    <Typography
-                      sx={{
-                        margin: "30px 0px 0px 0px",
-                        fontSize: "18px",
-                        fontWeight: "bold",
-                        fontFamily: "Roboto",
-                      }}
-                    >
-                      Role :
-                    </Typography>
-
-                    <TextField
-                      type="text"
-                      name="role"
-                      variant="outlined"
-                      label="Role"
-                      sx={{ marginTop: "10px" }}
-                      value={postData.role}
-                      disabled={true}
-                      onChange={(e) =>
-                        setPostData({ ...postData, role: e.target.value })
-                      }
-                    />
-                  </>
-                )}
-              </div>
-
-              <div sx={{ display: "flex", flexDirection: "row" }}>
-                <Typography
-                  sx={{
-                    margin: "30px 0px 0px 0px",
-                    fontSize: "18px",
-                    fontWeight: "bold",
-                    fontFamily: "Roboto",
-                  }}
-                >
-                  Full Name:
-                </Typography>
-
-                <TextField
-                  type="text"
-                  name="firstName"
-                  variant="outlined"
-                  disabled={true}
-                  label="First Name"
-                  sx={{ margin: "20px" }}
-                  value={postData.firstName}
-                  onChange={(e) =>
-                    setPostData({ ...postData, firstName: e.target.value })
-                  }
-                />
-
-                <TextField
-                  type="text"
-                  name="lastName"
-                  variant="outlined"
-                  disabled={true}
-                  label="Last Name"
-                  sx={{ margin: "20px" }}
-                  value={postData.lastName}
-                  onChange={(e) =>
-                    setPostData({ ...postData, lastName: e.target.value })
-                  }
-                />
-
-                <Grid
-                  sx={{
-                    display: "flex",
-                    "@media (max-width: 600px)": {
-                      flexDirection: "column",
-                    },
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <Grid sx={{ marginTop: "20px" }}>
-                    <Typography
-                      sx={{
-                        margin: "30px 0px 10px 0px",
-                        fontSize: "18px",
-                        fontWeight: "bold",
-                        fontFamily: "Roboto",
-                      }}
-                    >
-                      Profile Picture :
-                    </Typography>
-                    <FileBase
-                      type="file"
-                      multiple={false}
-                      fileName="Profile.png"
-                      onDone={({ base64 }) =>
-                        setPostData({ ...postData, selectedFile: base64 })
-                      }
-                    />
-                  </Grid>
-
-                  <Grid
+        <Card elevation={24} sx={{ width: "800px", height: "100%" }}>
+          {isLoading ? (
+            <div style={{ marginLeft: "350px" }}>
+              <CircularProgress />
+              Loading...
+            </div>
+          ) : (
+            <Grid
+              sx={{
+                marginLeft: "30px",
+                marginRight: "30px",
+                marginBottom: "30px",
+              }}
+            >
+              <form onSubmit={handleSubmit}>
+                <div style={{ textAlign: "center" }}>
+                  <Typography
+                    variant="h4"
+                    component="div"
                     sx={{
-                      width: "150px",
-                      height: "100px",
-                      marginTop: "40px",
+                      flexGrow: 1,
+                      fontSize: "30px",
+                      fontWeight: "bold",
+                      marginTop: "20px",
+                      marginBottom: "20px",
+                      fontFamily: "Roboto",
                     }}
                   >
-                    <img
-                      onContextMenu={(e) => e.preventDefault()}
-                      style={{
-                        width: "150px",
-                        height: "100px",
-                        userSelect: "none",
-                        webkitTouchCallout: "none",
-                        webkitUserSelect: "none",
-                        mozUserSelect: "none",
-                        msUserSelect: "none",
-                      }}
-                      src={postData.selectedFile}
-                      alt="Profile_Picture"
-                    />
-                  </Grid>
-                </Grid>
-
-                <div style={{ marginTop: "30px", display: "flex" }}>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DemoContainer components={["DatePicker"]}>
-                      <DatePicker
-                        label="Date of Birth"
-                        slotProps={{
-                          textField: {
-                            error: false,
-                          },
+                    Employee Registration Form
+                  </Typography>
+                </div>
+                <Divider
+                  sx={{
+                    borderWidth: "7px",
+                    bgcolor: "#e55d17",
+                  }}
+                />
+                <div>
+                  {role === "admin" && (
+                    <>
+                      <ComboBox posts={posts} setCurrentId={setCurrentId} />
+                      <Grid
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-evenly",
                         }}
-                        value={dob}
-                        selected={dob}
-                        halfwidth="true"
-                        dateFormat="dd.MM.yyyy"
-                        onChange={handleDOB}
+                      >
+                        <div
+                          style={{ display: "flex", flexDirection: "column" }}
+                        >
+                          <div style={{ alignItems: "center" }}>
+                            {selectedOption === "admin" ? (
+                              <AdminPanelSettingsIcon
+                                fontSize="small"
+                                style={{ color: "#e55d17" }}
+                              />
+                            ) : (
+                              <AdminPanelSettingsOutlinedIcon fontSize="10px" />
+                            )}
+                          </div>
+
+                          <label
+                            style={{ fontFamily: "Roboto ", color: "#16355d" }}
+                          >
+                            <input
+                              style={{ marginRight: "5px", padding: "2px" }}
+                              name="role"
+                              type="checkbox"
+                              checked={selectedOption === "admin"}
+                              onChange={() => handleCheckboxChange("admin")}
+                            />
+                            Admin
+                          </label>
+                        </div>
+
+                        <div
+                          style={{ display: "flex", flexDirection: "column" }}
+                        >
+                          <div style={{ alignItems: "center" }}>
+                            {selectedOption === "manager" ? (
+                              <ManageAccountsIcon
+                                fontSize="small"
+                                style={{ color: "#047681" }}
+                              />
+                            ) : (
+                              <ManageAccountsOutlinedIcon fontSize="10px" />
+                            )}
+                          </div>
+
+                          <label
+                            style={{ fontFamily: "Roboto ", color: "#16355d" }}
+                          >
+                            <input
+                              style={{ marginRight: "5px", padding: "2px" }}
+                              name="role"
+                              type="checkbox"
+                              checked={selectedOption === "manager"}
+                              value={postData.role}
+                              onChange={() => handleCheckboxChange("manager")}
+                            />
+                            Manager
+                          </label>
+                        </div>
+
+                        <div
+                          style={{ display: "flex", flexDirection: "column" }}
+                        >
+                          <div style={{ alignItems: "center" }}>
+                            {selectedOption === "employee" ? (
+                              <BadgeIcon
+                                fontSize="small"
+                                style={{ color: "#16355c" }}
+                              />
+                            ) : (
+                              <BadgeOutlinedIcon fontSize="10px" />
+                            )}
+                          </div>
+
+                          <label
+                            style={{ fontFamily: "Roboto ", color: "#16355d" }}
+                          >
+                            <input
+                              style={{ marginRight: "5px", padding: "2px" }}
+                              name="role"
+                              type="checkbox"
+                              value={postData.role}
+                              checked={selectedOption === "employee"}
+                              onChange={() => handleCheckboxChange("employee")}
+                            />
+                            Employee
+                          </label>
+                        </div>
+                      </Grid>
+                      <Typography
+                        sx={{
+                          margin: "30px 0px 0px 0px",
+                          fontSize: "18px",
+                          fontWeight: "bold",
+                          fontFamily: "Roboto",
+                        }}
+                      >
+                        Role :
+                      </Typography>
+
+                      <TextField
+                        type="text"
+                        name="role"
+                        variant="outlined"
+                        label="Role"
+                        sx={{ marginTop: "10px" }}
+                        value={postData.role}
+                        disabled={true}
+                        onChange={(e) =>
+                          setPostData({ ...postData, role: e.target.value })
+                        }
                       />
-                    </DemoContainer>
-                  </LocalizationProvider>
-                  <div style={{ marginTop: "30px", marginLeft: "30px" }}>
-                    <Typography
-                      variant="standard"
-                      sx={{ fontFamily: "Robota", fontSize: "18px" }}
-                    >
-                      {postData.dob}
-                    </Typography>
-                  </div>
+                    </>
+                  )}
                 </div>
 
-                <div>
-                  <FormControl>
-                    <Typography
-                      sx={{
-                        margin: "30px 0px 0px 0px",
-                        fontSize: "18px",
-                        fontWeight: "bold",
-                        fontFamily: "Roboto",
-                      }}
-                    >
-                      Gender :
-                    </Typography>
-
-                    <RadioGroup
-                      // defaultValue="female"
-                      name="controlled-radio-buttons-group"
-                      value={postData.gender}
-                      onChange={(e) =>
-                        setPostData(
-                          { ...postData, gender: e.target.value },
-                          console.log(e.target.value)
-                        )
-                      }
-                    >
-                      <Radio value="female" label="Female" color="primary" />
-                      <Radio value="male" label="Male" color="primary" />
-                      {/* <Radio value="other" label="Other" color="primary" /> */}
-                    </RadioGroup>
-                    <span style={{ fontSize: "12px", fontFamily: "Roboto" }}>
-                      ** Please select the desired value
-                    </span>
-                  </FormControl>
-                </div>
-                <div>
-                  <TextField
-                    sx={{ marginTop: "30px" }}
-                    variant="outlined"
-                    fullWidth
-                    type="email"
-                    name="email"
-                    label="Email"
-                    placeholder="example@example.com"
-                    disabled={true}
-                    value={postData.email}
-                    onChange={(e) =>
-                      setPostData({ ...postData, email: e.target.value })
-                    }
-                  />
-                </div>
-                <div style={{ display: "flex" }}>
-                  <select
-                    style={{
-                      width: "300px",
-                      height: "50px",
-                      fontSize: "16px",
-                      marginTop: "30px",
-                    }}
-                    name="maritalStatus"
-                    value={postData.maritalStatus}
-                    onChange={(e) =>
-                      setPostData({
-                        ...postData,
-                        maritalStatus: e.target.value,
-                      })
-                    }
-                  >
-                    <option value="">Marital Status</option>
-                    <option value="single">Single</option>
-                    <option value="married">Married</option>
-                  </select>
-                  {/* )} */}
-                </div>
-
-                <div>
-                  <TextField
-                    sx={{ marginTop: "30px" }}
-                    variant="outlined"
-                    fullWidth
-                    label="Contact Number"
-                    name="contactNumber"
-                    value={postData.contactNumber}
-                    onChange={(e) =>
-                      setPostData({
-                        ...postData,
-                        contactNumber: e.target.value,
-                      })
-                    }
-                  />
-                </div>
-                <div>
+                <div sx={{ display: "flex", flexDirection: "row" }}>
                   <Typography
                     sx={{
                       margin: "30px 0px 0px 0px",
@@ -584,243 +384,456 @@ const RegistrationForm = () => {
                       fontFamily: "Roboto",
                     }}
                   >
-                    Address :
+                    Full Name:
                   </Typography>
+
                   <TextField
-                    sx={{ marginTop: "10px" }}
+                    type="text"
+                    name="firstName"
                     variant="outlined"
-                    fullWidth
-                    label="Street Address"
-                    name="streetAddress"
-                    value={postData.streetAddress}
+                    disabled={true}
+                    label="First Name"
+                    sx={{ margin: "20px" }}
+                    value={postData.firstName}
                     onChange={(e) =>
-                      setPostData({
-                        ...postData,
-                        streetAddress: e.target.value,
-                      })
+                      setPostData({ ...postData, firstName: e.target.value })
                     }
                   />
-                </div>
 
+                  <TextField
+                    type="text"
+                    name="lastName"
+                    variant="outlined"
+                    disabled={true}
+                    label="Last Name"
+                    sx={{ margin: "20px" }}
+                    value={postData.lastName}
+                    onChange={(e) =>
+                      setPostData({ ...postData, lastName: e.target.value })
+                    }
+                  />
+
+                  <Grid
+                    sx={{
+                      display: "flex",
+                      "@media (max-width: 600px)": {
+                        flexDirection: "column",
+                      },
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Grid sx={{ marginTop: "20px" }}>
+                      <Typography
+                        sx={{
+                          margin: "30px 0px 10px 0px",
+                          fontSize: "18px",
+                          fontWeight: "bold",
+                          fontFamily: "Roboto",
+                        }}
+                      >
+                        Profile Picture :
+                      </Typography>
+                      <FileBase
+                        type="file"
+                        multiple={false}
+                        fileName="Profile.png"
+                        onDone={({ base64 }) =>
+                          setPostData({ ...postData, selectedFile: base64 })
+                        }
+                      />
+                    </Grid>
+
+                    <Grid
+                      sx={{
+                        width: "150px",
+                        height: "100px",
+                        marginTop: "40px",
+                      }}
+                    >
+                      <img
+                        onContextMenu={(e) => e.preventDefault()}
+                        style={{
+                          width: "150px",
+                          height: "100px",
+                          userSelect: "none",
+                          webkitTouchCallout: "none",
+                          webkitUserSelect: "none",
+                          mozUserSelect: "none",
+                          msUserSelect: "none",
+                        }}
+                        src={postData.selectedFile}
+                        alt="Profile_Picture"
+                      />
+                    </Grid>
+                  </Grid>
+
+                  <div style={{ marginTop: "30px", display: "flex" }}>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <DemoContainer components={["DatePicker"]}>
+                        <DatePicker
+                          label="Date of Birth"
+                          slotProps={{
+                            textField: {
+                              error: false,
+                            },
+                          }}
+                          value={dob}
+                          selected={dob}
+                          halfwidth="true"
+                          dateFormat="dd.MM.yyyy"
+                          onChange={handleDOB}
+                        />
+                      </DemoContainer>
+                    </LocalizationProvider>
+                    <div style={{ marginTop: "30px", marginLeft: "30px" }}>
+                      <Typography
+                        variant="standard"
+                        sx={{ fontFamily: "Robota", fontSize: "18px" }}
+                      >
+                        {postData.dob}
+                      </Typography>
+                    </div>
+                  </div>
+
+                  <div>
+                    <FormControl>
+                      <Typography
+                        sx={{
+                          margin: "30px 0px 0px 0px",
+                          fontSize: "18px",
+                          fontWeight: "bold",
+                          fontFamily: "Roboto",
+                        }}
+                      >
+                        Gender :
+                      </Typography>
+
+                      <RadioGroup
+                        // defaultValue="female"
+                        name="controlled-radio-buttons-group"
+                        value={postData.gender}
+                        onChange={(e) =>
+                          setPostData(
+                            { ...postData, gender: e.target.value },
+                            console.log(e.target.value)
+                          )
+                        }
+                      >
+                        <Radio value="female" label="Female" color="primary" />
+                        <Radio value="male" label="Male" color="primary" />
+                        {/* <Radio value="other" label="Other" color="primary" /> */}
+                      </RadioGroup>
+                      <span style={{ fontSize: "12px", fontFamily: "Roboto" }}>
+                        ** Please select the desired value
+                      </span>
+                    </FormControl>
+                  </div>
+                  <div>
+                    <TextField
+                      sx={{ marginTop: "30px" }}
+                      variant="outlined"
+                      fullWidth
+                      type="email"
+                      name="email"
+                      label="Email"
+                      placeholder="example@example.com"
+                      disabled={true}
+                      value={postData.email}
+                      onChange={(e) =>
+                        setPostData({ ...postData, email: e.target.value })
+                      }
+                    />
+                  </div>
+                  <div style={{ display: "flex" }}>
+                    <select
+                      style={{
+                        width: "300px",
+                        height: "50px",
+                        fontSize: "16px",
+                        marginTop: "30px",
+                      }}
+                      name="maritalStatus"
+                      value={postData.maritalStatus}
+                      onChange={(e) =>
+                        setPostData({
+                          ...postData,
+                          maritalStatus: e.target.value,
+                        })
+                      }
+                    >
+                      <option value="">Marital Status</option>
+                      <option value="single">Single</option>
+                      <option value="married">Married</option>
+                    </select>
+                    {/* )} */}
+                  </div>
+
+                  <div>
+                    <TextField
+                      sx={{ marginTop: "30px" }}
+                      variant="outlined"
+                      fullWidth
+                      label="Contact Number"
+                      name="contactNumber"
+                      value={postData.contactNumber}
+                      onChange={(e) =>
+                        setPostData({
+                          ...postData,
+                          contactNumber: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <Typography
+                      sx={{
+                        margin: "30px 0px 0px 0px",
+                        fontSize: "18px",
+                        fontWeight: "bold",
+                        fontFamily: "Roboto",
+                      }}
+                    >
+                      Address :
+                    </Typography>
+                    <TextField
+                      sx={{ marginTop: "10px" }}
+                      variant="outlined"
+                      fullWidth
+                      label="Street Address"
+                      name="streetAddress"
+                      value={postData.streetAddress}
+                      onChange={(e) =>
+                        setPostData({
+                          ...postData,
+                          streetAddress: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+
+                  <Grid
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      padding: "2px",
+                    }}
+                  >
+                    <div style={{ padding: "2px" }}>
+                      <TextField
+                        sx={{ marginTop: "10px" }}
+                        variant="outlined"
+                        label="City"
+                        name="city"
+                        value={postData.city}
+                        onChange={(e) =>
+                          setPostData({ ...postData, city: e.target.value })
+                        }
+                      />
+                    </div>
+                    <div style={{ padding: "2px" }}>
+                      <TextField
+                        sx={{ marginTop: "10px" }}
+                        variant="outlined"
+                        label="State"
+                        name="state"
+                        value={postData.state}
+                        onChange={(e) =>
+                          setPostData({ ...postData, state: e.target.value })
+                        }
+                      />
+                    </div>
+
+                    <div style={{ padding: "2px" }}>
+                      <TextField
+                        sx={{ marginTop: "10px" }}
+                        variant="outlined"
+                        label="Pincode"
+                        name="pincode"
+                        value={postData.pincode}
+                        onChange={(e) =>
+                          setPostData({ ...postData, pincode: e.target.value })
+                        }
+                      />
+                    </div>
+                  </Grid>
+
+                  <Divider
+                    sx={{
+                      margin: "20px 0px 20px 0px",
+                      borderWidth: "7px",
+                      bgcolor: "#e55d17",
+                    }}
+                  />
+                  <h4 style={{ fontFamily: "Roboto", fontWeight: "bold" }}>
+                    Job Informations :
+                  </h4>
+                  <div sx={{ display: "flex", flexDirection: "row" }}>
+                    <TextField
+                      variant="outlined"
+                      fullWidth
+                      label="Skills"
+                      name="jobSkills"
+                      value={postData.jobSkills}
+                      onChange={(e) =>
+                        setPostData({ ...postData, jobSkills: e.target.value })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      sx={{ marginTop: "10px" }}
+                      variant="outlined"
+                      fullWidth
+                      label="Job Role"
+                      name="jobTitle"
+                      value={postData.jobTitle}
+                      onChange={(e) =>
+                        setPostData({ ...postData, jobTitle: e.target.value })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      sx={{ marginTop: "10px" }}
+                      variant="outlined"
+                      fullWidth
+                      label="Employee Id"
+                      name="employeeId"
+                      value={postData.employeeId}
+                      onChange={(e) =>
+                        setPostData({ ...postData, employeeId: e.target.value })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      sx={{ marginTop: "10px" }}
+                      variant="outlined"
+                      fullWidth
+                      label="Department"
+                      name="department"
+                      value={postData.department}
+                      onChange={(e) =>
+                        setPostData({ ...postData, department: e.target.value })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      sx={{ marginTop: "10px" }}
+                      variant="outlined"
+                      fullWidth
+                      label="Reporting Manager"
+                      name="ReportingManager"
+                      value={postData.reportingManager}
+                      onChange={(e) =>
+                        setPostData({
+                          ...postData,
+                          reportingManager: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+
+                  <Divider
+                    sx={{
+                      margin: "20px 0px 20px 0px",
+                      borderWidth: "7px",
+                      bgcolor: "#e55d17",
+                    }}
+                  />
+                  <h4 style={{ fontFamily: "Roboto", fontWeight: "bold" }}>
+                    Emergency Contact Informations :
+                  </h4>
+                  <div sx={{ display: "flex", flexDirection: "row" }}>
+                    <TextField
+                      variant="outlined"
+                      fullWidth
+                      label="Name"
+                      name="emergencyName"
+                      value={postData.emergencyName}
+                      onChange={(e) =>
+                        setPostData({
+                          ...postData,
+                          emergencyName: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      sx={{ marginTop: "10px" }}
+                      variant="outlined"
+                      fullWidth
+                      label="Address"
+                      name="emergencyAddress"
+                      value={postData.emergencyAddress}
+                      onChange={(e) =>
+                        setPostData({
+                          ...postData,
+                          emergencyAddress: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      sx={{ marginTop: "10px" }}
+                      variant="outlined"
+                      fullWidth
+                      label="Contact Number"
+                      name="emergencyContact"
+                      value={postData.emergencyContact}
+                      onChange={(e) =>
+                        setPostData({
+                          ...postData,
+                          emergencyContact: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+                  <div>
+                    <TextField
+                      sx={{ marginTop: "10px" }}
+                      variant="outlined"
+                      fullWidth
+                      label="Relationship"
+                      name="relationship"
+                      value={postData.relationship}
+                      onChange={(e) =>
+                        setPostData({
+                          ...postData,
+                          relationship: e.target.value,
+                        })
+                      }
+                    />
+                  </div>
+                </div>
                 <Grid
+                  container
                   sx={{
                     display: "flex",
                     justifyContent: "space-between",
-                    padding: "2px",
+                    marginTop: "20px",
+                    marginBottom: "20px",
                   }}
                 >
-                  <div style={{ padding: "2px" }}>
-                    <TextField
-                      sx={{ marginTop: "10px" }}
-                      variant="outlined"
-                      label="City"
-                      name="city"
-                      value={postData.city}
-                      onChange={(e) =>
-                        setPostData({ ...postData, city: e.target.value })
-                      }
-                    />
-                  </div>
-                  <div style={{ padding: "2px" }}>
-                    <TextField
-                      sx={{ marginTop: "10px" }}
-                      variant="outlined"
-                      label="State"
-                      name="state"
-                      value={postData.state}
-                      onChange={(e) =>
-                        setPostData({ ...postData, state: e.target.value })
-                      }
-                    />
-                  </div>
-
-                  <div style={{ padding: "2px" }}>
-                    <TextField
-                      sx={{ marginTop: "10px" }}
-                      variant="outlined"
-                      label="Pincode"
-                      name="pincode"
-                      value={postData.pincode}
-                      onChange={(e) =>
-                        setPostData({ ...postData, pincode: e.target.value })
-                      }
-                    />
-                  </div>
+                  <Grid>
+                    <button
+                      sx={{ fontFamily: "Roboto" }}
+                      type="submit"
+                      variant="contained"
+                    >
+                      Register
+                    </button>
+                  </Grid>
                 </Grid>
-
-                <Divider
-                  sx={{
-                    margin: "20px 0px 20px 0px",
-                    borderWidth: "7px",
-                    bgcolor: "#e55d17",
-                  }}
-                />
-                <h4 style={{ fontFamily: "Roboto", fontWeight: "bold" }}>
-                  Job Informations :
-                </h4>
-                <div sx={{ display: "flex", flexDirection: "row" }}>
-                  <TextField
-                    variant="outlined"
-                    fullWidth
-                    label="Skills"
-                    name="jobSkills"
-                    value={postData.jobSkills}
-                    onChange={(e) =>
-                      setPostData({ ...postData, jobSkills: e.target.value })
-                    }
-                  />
-                </div>
-                <div>
-                  <TextField
-                    sx={{ marginTop: "10px" }}
-                    variant="outlined"
-                    fullWidth
-                    label="Job Role"
-                    name="jobTitle"
-                    value={postData.jobTitle}
-                    onChange={(e) =>
-                      setPostData({ ...postData, jobTitle: e.target.value })
-                    }
-                  />
-                </div>
-                <div>
-                  <TextField
-                    sx={{ marginTop: "10px" }}
-                    variant="outlined"
-                    fullWidth
-                    label="Employee Id"
-                    name="employeeId"
-                    value={postData.employeeId}
-                    onChange={(e) =>
-                      setPostData({ ...postData, employeeId: e.target.value })
-                    }
-                  />
-                </div>
-                <div>
-                  <TextField
-                    sx={{ marginTop: "10px" }}
-                    variant="outlined"
-                    fullWidth
-                    label="Department"
-                    name="department"
-                    value={postData.department}
-                    onChange={(e) =>
-                      setPostData({ ...postData, department: e.target.value })
-                    }
-                  />
-                </div>
-                <div>
-                  <TextField
-                    sx={{ marginTop: "10px" }}
-                    variant="outlined"
-                    fullWidth
-                    label="Reporting Manager"
-                    name="ReportingManager"
-                    value={postData.reportingManager}
-                    onChange={(e) =>
-                      setPostData({
-                        ...postData,
-                        reportingManager: e.target.value,
-                      })
-                    }
-                  />
-                </div>
-
-                <Divider
-                  sx={{
-                    margin: "20px 0px 20px 0px",
-                    borderWidth: "7px",
-                    bgcolor: "#e55d17",
-                  }}
-                />
-                <h4 style={{ fontFamily: "Roboto", fontWeight: "bold" }}>
-                  Emergency Contact Informations :
-                </h4>
-                <div sx={{ display: "flex", flexDirection: "row" }}>
-                  <TextField
-                    variant="outlined"
-                    fullWidth
-                    label="Name"
-                    name="emergencyName"
-                    value={postData.emergencyName}
-                    onChange={(e) =>
-                      setPostData({
-                        ...postData,
-                        emergencyName: e.target.value,
-                      })
-                    }
-                  />
-                </div>
-                <div>
-                  <TextField
-                    sx={{ marginTop: "10px" }}
-                    variant="outlined"
-                    fullWidth
-                    label="Address"
-                    name="emergencyAddress"
-                    value={postData.emergencyAddress}
-                    onChange={(e) =>
-                      setPostData({
-                        ...postData,
-                        emergencyAddress: e.target.value,
-                      })
-                    }
-                  />
-                </div>
-                <div>
-                  <TextField
-                    sx={{ marginTop: "10px" }}
-                    variant="outlined"
-                    fullWidth
-                    label="Contact Number"
-                    name="emergencyContact"
-                    value={postData.emergencyContact}
-                    onChange={(e) =>
-                      setPostData({
-                        ...postData,
-                        emergencyContact: e.target.value,
-                      })
-                    }
-                  />
-                </div>
-                <div>
-                  <TextField
-                    sx={{ marginTop: "10px" }}
-                    variant="outlined"
-                    fullWidth
-                    label="Relationship"
-                    name="relationship"
-                    value={postData.relationship}
-                    onChange={(e) =>
-                      setPostData({ ...postData, relationship: e.target.value })
-                    }
-                  />
-                </div>
-              </div>
-              <Grid
-                container
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  marginTop: "20px",
-                  marginBottom: "20px",
-                }}
-              >
-                <Grid>
-                  <button
-                    sx={{ fontFamily: "Roboto" }}
-                    type="submit"
-                    variant="contained"
-                  >
-                    Register
-                  </button>
-                </Grid>
-              </Grid>
-            </form>
-          </Grid>
-        )}
-      </Card>
-    </Container>
+              </form>
+            </Grid>
+          )}
+        </Card>
+      </Container>
+    </div>
   );
 };
 

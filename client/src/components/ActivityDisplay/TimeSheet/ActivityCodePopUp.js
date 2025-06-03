@@ -80,8 +80,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
     return Activities[ActivitiesCode];
   };
 
-  useEffect(() => {
-  }, [discipline]);
+  useEffect(() => {}, [discipline]);
 
   //  ---------------Sub  Activity Code Function -------------------------------
 
@@ -158,8 +157,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
     return SubActivityies[SubActivityName];
   };
 
-  useEffect(() => {
-  }, [discipline]);
+  useEffect(() => {}, [discipline]);
 
   return (
     <div
@@ -369,4 +367,3 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
 };
 
 export default ActivityCodePopUp;
-

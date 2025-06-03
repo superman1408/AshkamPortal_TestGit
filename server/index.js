@@ -13,6 +13,7 @@ const app = express();
 dotenv.config();
 
 const PORT = process.env.PORT || 8080;
+const HOST = process.env.HOST;
 
 const CONNECT = process.env.CONNECTION_URL;
 
@@ -42,9 +43,9 @@ mongoose.set("strictQuery", true);
 mongoose
   .connect(CONNECT, { useNewUrlParser: true }, { useUnifiedTopology: true })
   .then(() =>
-    app.listen(PORT, () => {
+    app.listen(PORT,HOST, () => {
       console.log(
-        "Listening at " + PORT + "\nMongoDB database is connected..!!"
+        "Listening at " + HOST + ":" + PORT + "\nMongoDB database is connected..!!"
       );
     })
   )

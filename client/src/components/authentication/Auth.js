@@ -54,6 +54,7 @@ const Auth = () => {
 
   const switchMode = () => {
     setisSignUp((prevState) => !prevState);
+    console.log();
   };
 
   const [selectedOption, setSelectedOption] = useState(null);
