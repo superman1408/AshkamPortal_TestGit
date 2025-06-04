@@ -51,10 +51,10 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       HumanResource: "HR",
       HVAC: "HV",
       Instrumentation: "IN",
-      Management: "MG",
+      ProjectManagement: "PM",
       Mechanical: "ME",
-      Naval: "NA",
-      Piping: "PI",
+      NavalArchitecture: "NA",
+      PipingORPipeline: "PI",
       Process: "PR",
       Procurement: "PC",
       Projects: "PJ",
@@ -67,6 +67,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
   const getActivitiesCode = (ActivitiesCode) => {
     const Activities = {
       Select: "--",
+      Assembly: "AS",
       Calculations: "CL",
       DocumentationControl: "DC",
       Documents: "DO",
@@ -74,7 +75,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       General: "GN",
       Lists: "LI",
       Projectcontrol: "PC",
-      ProjectManagement: "PM",
+      ProjectEngineering: "PE",
       Task: "TA",
     };
 
@@ -100,20 +101,27 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       CableSchedule: "002",
       CableSizing: "003",
       CableTrayORConduit: "004",
-      Coordination: "005",
+      Coding: "002",
+      Coordination: "001",
       CoordinationORSupervision: "006",
-      DataSheets: "007",
+      DataSheets: "002",
       DocReviews: "008",
       DocumentIssue: "009",
       DocumentReciept: "010",
       DocumentReporting: "011",
       Duct: "012",
       Earthing: "013",
-      EquipmentLayout: "014",
-      EquipmentSizing: "015",
+      Electrical: "001",
+      Equipments: "005",
+      EquipmentLayout: "001",
+      EquipmentLayout1: "003",
+      EquipmentLayouts: "003",
+      EquipmentSizing: "001",
+      EquipmentSizing1: "002",
+      EquipmentSizing2: "006",
       Equipments: "016",
       ExternalMeetings: "017",
-      FEA: "018",
+      FEA_OR_CFD: "018",
       Foundation: "019",
       FoundationLayout: "020",
       HAZ: "021",
@@ -125,34 +133,45 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       InterfaceSchedule: "027",
       InternalMeetings: "028",
       InvoiceInput: "029",
-      layout: "030",
+      layout: "001",
       Lighting: "031",
       LightningProtection: "032",
       LineList: "033",
       LineSizing: "034",
       LoadList: "035",
       LoopDrawings: "036",
-      Meetings: "037",
-      Mooring: "038",
-      MooringLines: "039",
+      MaxsurfStability: "003",
+      Mechanical: "002",
+      Meetings: "002",
+      MooringLayout: "038",
+      MooringAnalysis: "039",
+      NavalArchCalcs: "004",
       MTO: "040",
+      MTO_OR_BOQ: "001",
       P_OR_ID: "041",
       PFD: "042",
       PipeStress: "043",
       PipingLayout: "044",
-      Planning: "045",
+      Planning: "001",
       PowerSystemCalculations: "046",
       ProjectSupport: "047",
       Proposals: "048",
       PumpSizing: "049",
-      Reporting: "050",
+      Report: "001",
+      Reports: "003",
+      Reporting: "003",
+      SacsOffshore: "005",
       SchematicDrawings: "051",
       SingleLineDrawings: "052",
-      Specifications: "053",
+      Specifications: "001",
       Structural: "054",
       StructuralDrawings: "054",
+      SubStructure: "001",
+      SuperStructure: "002",
+      Testing: "001",
       Training: "056",
       ValveSizing: "057",
+      Three_D_Model: "001",
     };
 
     return SubActivityies[SubActivityName];
@@ -162,16 +181,150 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
 
   const activityHierarchy = {
     Account: {
-      Documents: ["InvoiceInput", "DocumentReciept", "Reporting"],
-      Reporting: ["InvoiceInput", "DocumentReporting"],
+      General: ["Coordination", "Meetings"],
     },
     Electrical: {
-      Drawings: ["SingleLineDrawings", "LoopDrawings"],
-      Calculations: ["CableSizing", "Lighting", "Earthing"],
+      Drawings: [
+        "SingleLineDrawings",
+        "SchematicDrawings",
+        "EquipmentLayout",
+        "Lighting",
+        "Earthing",
+        "CableTrayORConduit",
+        "LightningProtection",
+      ],
+      Calculations: [
+        "CableSizing",
+        "Lighting",
+        "Earthing",
+        "EquipmentSizing",
+        "PowerSystemCalculations",
+        "LightningProtection",
+        "CableTrayORConduit",
+      ],
+      Lists: ["MTO", "LoadList", "CableSchedule", "InterfaceSchedule"],
+      Documents: ["Specifications", "DataSheets"],
+      General: ["Coordination", "Meetings"],
+      Task: ["ThreeDModel"],
     },
     Mechanical: {
-      Calculations: ["PumpSizing", "ValveSizing"],
+      Lists: ["MTO"],
+      Calculations: ["EquipmentLayout"],
+      Documents: ["Specifications", "DataSheets"],
+      General: ["Coordination", "Meetings"],
+    },
+    ProjectManagement: {
+      Projectcontrol: ["Planning", "Meetings", "Reporting"],
+      ProjectEngineering: ["Coordination", "Meetings"],
+      DocumentationControl: ["Coordination", "Meetings"],
+    },
+    Process: {
+      Lists: ["LineList", "HeatandMassBalance"],
+      Calculations: ["EquipmentSizing"],
+      Drawings: ["PFD", "P_OR_ID"],
+      Documents: ["Specifications", "DataSheets"],
+      General: ["Coordination", "Meetings"],
+    },
+    PipingORPipeline: {
+      Lists: ["LineList", "MTO"],
+      Calculations: ["LineSizing", "PipeStress"],
       Drawings: ["EquipmentLayout", "PipingLayout"],
+      Documents: ["Specifications", "DataSheets"],
+      General: ["Coordination", "Meetings"],
+      Task: ["Three_D_Model"],
+    },
+    Instrumentation: {
+      Lists: [
+        "MTO",
+        "I_OR_Olist",
+        "InstrumentList",
+        "CableSchedule",
+        "InterfaceSchedule",
+      ],
+      Calculations: ["Instruments"],
+      Documents: ["Specifications", "DataSheets"],
+      Drawings: [
+        "InstrumentLayout",
+        "SchematicDrawings",
+        "CableTrayORConduit",
+        "LoopDrawings",
+        "Equipments",
+      ],
+      General: ["Coordination", "Meetings"],
+      Task: ["Three_D_Model"],
+    },
+    CivilORStructural: {
+      Lists: ["MTO_OR_BOQ", "BarBendingSchedule"],
+      Calculations: ["SubStructure", "SuperStructure"],
+      Documents: ["Specifications", "DataSheets", "Reports"],
+      Drawings: [
+        "GeneralArrangement",
+        "StructuralDrawings",
+        "FoundationLayout",
+      ],
+      General: ["Coordination", "Meetings"],
+      Task: ["Three_D_Model"],
+    },
+    Architectural: {
+      Documents: ["Specifications"],
+      Drawings: ["Layout"],
+      General: ["Coordination", "Meetings", "Task"],
+    },
+    HVAC: {
+      Calculations: ["AirFLow", "Duct"],
+      Documents: ["Specifications", "DataSheets"],
+      Drawings: ["Layout"],
+      General: ["Coordination", "Meetings"],
+    },
+    Telecom: {
+      Documents: ["Specifications", "DataSheets"],
+      Drawings: ["Layout"],
+      General: ["Coordination", "Meetings"],
+    },
+    HSE: {
+      Calculations: ["EquipmentSizing"],
+      Documents: ["Specifications", "DataSheets"],
+      Drawings: ["Layout"],
+      General: ["Coordination", "Meetings"],
+    },
+    HumanResource: {
+      General: ["Coordination", "Meetings", "Trainings", "Leave"],
+    },
+    Administration: {
+      General: ["Coordination", "Meetings"],
+    },
+    BusinessDevelopment: {
+      Documents: ["Proposals"],
+      General: ["Coordination", "Meetings"],
+    },
+    Procurement: {
+      Documents: ["Proposals"],
+      General: ["Coordination", "Meetings"],
+    },
+    Construction: {
+      Documents: ["DocReviews"],
+      General: ["CoordinationORSupervision", "Meetings"],
+    },
+    NavalArchitecture: {
+      Lists: ["MTO"],
+      Calculations: [
+        "MooringAnalysis",
+        "FEA_OR_CFD",
+        "MaxsurfStability",
+        "NavalArchCalcs",
+        "SacsOffshore",
+        "EquipmentSizing",
+      ],
+      Drawings: [
+        "StructuralDrawings",
+        "MooringLayout",
+        "EquipmentLayout",
+        "SchematicDrawings",
+      ],
+      Documents: ["Report", "DataSheets"],
+      General: ["Coordination", "Meetings"],
+      Assembly: ["Electrical", "Mechanical"],
+      Coding: ["Testing", "Coding"],
     },
     // Add other disciplines similarly...
   };
@@ -221,13 +374,13 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
                 <option value="HumanResource">Human Resource</option>
                 <option value="HVAC">HVAC</option>
                 <option value="Instrumentation">Instrumentation</option>
-                <option value="Management">Management</option>
+                <option value="ProjectManagement">Project Management</option>
                 <option value="Mechanical">Mechanical</option>
-                <option value="Naval">Naval</option>
-                <option value="Piping">Piping</option>
+                <option value="NavalArchitecture">Naval Architecture</option>
+                <option value="PipingORPipeline">Piping/Pipeline</option>
                 <option value="Process">Process</option>
                 <option value="Procurement">Procurement</option>
-                <option value="Projects">Projects</option>
+                {/* <option value="Projects">Projects</option> */}
                 <option value="Telecom">Telecom</option>
               </select>
             </div>
