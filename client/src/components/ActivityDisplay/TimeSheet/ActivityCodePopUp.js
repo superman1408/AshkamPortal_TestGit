@@ -459,7 +459,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
                     activities &&
                     (activityHierarchy[discipline]?.[activities] || []).map(
                       (sub) => {
-                        const label = sub.replace(/\d+$/, ""); // removes any trailling digits
+                        const label = sub.replace(/\d+$/, ""); // removes any trailing digits
                         return (
                           <option key={sub} value={sub}>
                             {label}
