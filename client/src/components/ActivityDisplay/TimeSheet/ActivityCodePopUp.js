@@ -51,10 +51,10 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       HumanResource: "HR",
       HVAC: "HV",
       Instrumentation: "IN",
-      Management: "MG",
+      ProjectManagement: "PM",
       Mechanical: "ME",
-      Naval: "NA",
-      Piping: "PI",
+      NavalArchitecture: "NA",
+      PipingORPipeline: "PI",
       Process: "PR",
       Procurement: "PC",
       Projects: "PJ",
@@ -67,6 +67,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
   const getActivitiesCode = (ActivitiesCode) => {
     const Activities = {
       Select: "--",
+      Assembly: "AS",
       Calculations: "CL",
       DocumentationControl: "DC",
       Documents: "DO",
@@ -74,7 +75,8 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       General: "GN",
       Lists: "LI",
       Projectcontrol: "PC",
-      ProjectManagement: "PM",
+      ProjectEngineering: "PE",
+      Task: "TA",
     };
 
     return Activities[ActivitiesCode];
@@ -96,68 +98,239 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
     const SubActivityies = {
       Select: "--",
       Airflow: "001",
-      CableSchedule: "002",
+      Algorithm: "002",
+      BarBendingSchedule: "002",
+      CableSchedule: "003",
+      CableSchedule1: "004",
       CableSizing: "003",
-      CableTrayORConduit: "004",
-      Coordination: "005",
-      CoordinationORSupervision: "006",
-      DataSheets: "007",
-      DocReviews: "008",
-      DocumentIssue: "009",
-      DocumentReciept: "010",
-      DocumentReporting: "011",
-      Duct: "012",
-      Earthing: "013",
-      EquipmentLayout: "014",
-      EquipmentSizing: "015",
-      Equipments: "016",
-      ExternalMeetings: "017",
-      FEA: "018",
-      Foundation: "019",
-      FoundationLayout: "020",
+      CableTrayORConduit: "003",
+      CableTrayORConduit1: "004",
+      CableTrayORConduit2: "007",
+      Coordination: "001",
+      CoordinationORSupervision: "001",
+      DataSheets: "002",
+      DocReviews: "001",
+      Duct: "002",
+      Earthing: "004",
+      Earthing1: "005",
+      Electrical: "001",
+      Equipments: "005",
+      EquipmentLayout: "001",
+      EquipmentLayouts: "003",
+      EquipmentSizing: "001",
+      EquipmentSizing1: "002",
+      EquipmentSizing2: "006",
+      Equipments: "005",
+      FEA_OR_CFD: "002",
+      FoundationLayout: "003",
+      GeneralArrangement: "001",
       HAZ: "021",
-      HeatandMassBalance: "022",
-      I_OR_Olist: "023",
-      InstrumentLayout: "024",
-      InstrumentList: "025",
-      Instruments: "026",
-      InterfaceSchedule: "027",
-      InternalMeetings: "028",
-      InvoiceInput: "029",
-      layout: "030",
-      Lighting: "031",
-      LightningProtection: "032",
-      LineList: "033",
-      LineSizing: "034",
-      LoadList: "035",
-      LoopDrawings: "036",
-      Meetings: "037",
-      Mooring: "038",
-      MooringLines: "039",
-      MTO: "040",
-      P_OR_ID: "041",
-      PFD: "042",
-      PipeStress: "043",
-      PipingLayout: "044",
-      Planning: "045",
-      PowerSystemCalculations: "046",
-      ProjectSupport: "047",
-      Proposals: "048",
-      PumpSizing: "049",
-      Reporting: "050",
-      SchematicDrawings: "051",
-      SingleLineDrawings: "052",
-      Specifications: "053",
-      Structural: "054",
-      StructuralDrawings: "054",
-      Training: "056",
-      ValveSizing: "057",
+      HeatandMassBalance: "002",
+      I_OR_Olist: "002",
+      InstrumentLayout: "001",
+      InstrumentList: "003",
+      Instruments: "001",
+      InterfaceSchedule: "004",
+      InterfaceSchedule1: "005",
+      layout: "001",
+      Leave: "004",
+      Lighting: "005",
+      Lighting1: "006",
+      LightningProtection: "006",
+      LightningProtection1: "007",
+      LineList: "001",
+      LineSizing: "001",
+      LoadList: "002",
+      LoopDrawings: "004",
+      MaxsurfStability: "003",
+      Mechanical: "002",
+      Meetings: "002",
+      MooringLayout: "002",
+      MooringAnalysis: "001",
+      NavalArchCalcs: "004",
+      MTO: "001",
+      MTO1: "002",
+      MTO_OR_BOQ: "001",
+      P_OR_ID: "002",
+      PFD: "001",
+      PipeStress: "002",
+      PipingLayout: "002",
+      Planning: "001",
+      PowerSystemCalculations: "001",
+      Proposals: "001",
+      Report: "001",
+      Reports: "003",
+      Reporting: "003",
+      SacsOffshore: "005",
+      Schematics: "004",
+      SchematicDrawings: "002",
+      SingleLineDrawings: "001",
+      Specifications: "001",
+      StructuralDrawing: "001",
+      StructuralDrawings: "002",
+      SubStructure: "001",
+      SuperStructure: "002",
+      Testing: "001",
+      Training: "003",
+      Three_D_Model: "001",
     };
 
     return SubActivityies[SubActivityName];
   };
 
   useEffect(() => {}, [discipline]);
+
+  const activityHierarchy = {
+    ProjectManagement: {
+      Projectcontrol: ["Planning", "Meetings", "Reporting"],
+      ProjectEngineering: ["Coordination", "Meetings"],
+      DocumentationControl: ["Coordination", "Meetings"],
+    },
+    Process: {
+      Lists: ["LineList", "HeatandMassBalance"],
+      Calculations: ["EquipmentSizing"],
+      Drawings: ["PFD", "P_OR_ID"],
+      Documents: ["Specifications", "DataSheets"],
+      General: ["Coordination", "Meetings"],
+    },
+    PipingORPipeline: {
+      Lists: ["LineList", "MTO1"],
+      Calculations: ["LineSizing", "PipeStress"],
+      Drawings: ["EquipmentLayout", "PipingLayout"],
+      Documents: ["Specifications", "DataSheets"],
+      General: ["Coordination", "Meetings"],
+      Task: ["Three_D_Model"],
+    },
+    Mechanical: {
+      Lists: ["MTO"],
+      Calculations: ["EquipmentSizing"],
+      Documents: ["Specifications", "DataSheets"],
+      General: ["Coordination", "Meetings"],
+    },
+    Electrical: {
+      Drawings: [
+        "SingleLineDrawings",
+        "SchematicDrawings",
+        "EquipmentLayouts",
+        "Lighting1",
+        "Earthing1",
+        "CableTrayORConduit1",
+        "LightningProtection1",
+      ],
+      Calculations: [
+        "CableSizing",
+        "Lighting",
+        "Earthing",
+        "EquipmentSizing1",
+        "PowerSystemCalculations",
+        "LightningProtection",
+        "CableTrayORConduit2",
+      ],
+      Lists: ["MTO", "LoadList", "CableSchedule", "InterfaceSchedule"],
+      Documents: ["Specifications", "DataSheets"],
+      General: ["Coordination", "Meetings"],
+      Task: ["ThreeDModel"],
+    },
+
+    Instrumentation: {
+      Lists: [
+        "MTO",
+        "I_OR_Olist",
+        "InstrumentList",
+        "CableSchedule1",
+        "InterfaceSchedule1",
+      ],
+      Calculations: ["Instruments"],
+      Documents: ["Specifications", "DataSheets"],
+      Drawings: [
+        "InstrumentLayout",
+        "SchematicDrawings",
+        "CableTrayORConduit",
+        "LoopDrawings",
+        "Equipments",
+      ],
+      General: ["Coordination", "Meetings"],
+      Task: ["Three_D_Model"],
+    },
+    CivilORStructural: {
+      Lists: ["MTO_OR_BOQ", "BarBendingSchedule"],
+      Calculations: ["SubStructure", "SuperStructure"],
+      Documents: ["Specifications", "DataSheets", "Reports"],
+      Drawings: [
+        "GeneralArrangement",
+        "StructuralDrawings",
+        "FoundationLayout",
+      ],
+      General: ["Coordination", "Meetings"],
+      Task: ["Three_D_Model"],
+    },
+    Architectural: {
+      Documents: ["Specifications"],
+      Drawings: ["Layout"],
+      General: ["Coordination", "Meetings"],
+      Task: ["Three_D_Model"],
+    },
+    HVAC: {
+      Calculations: ["AirFLow", "Duct"],
+      Documents: ["Specifications", "DataSheets"],
+      Drawings: ["Layout"],
+      General: ["Coordination", "Meetings"],
+    },
+    Telecom: {
+      Documents: ["Specifications", "DataSheets"],
+      Drawings: ["Layout"],
+      General: ["Coordination", "Meetings"],
+    },
+    HSE: {
+      Calculations: ["EquipmentSizing"],
+      Documents: ["Specifications", "DataSheets"],
+      Drawings: ["Layout"],
+      General: ["Coordination", "Meetings"],
+    },
+    HumanResource: {
+      General: ["Coordination", "Meetings", "Training", "Leave"],
+    },
+    Account: {
+      General: ["Coordination", "Meetings"],
+    },
+    Administration: {
+      General: ["Coordination", "Meetings"],
+    },
+    BusinessDevelopment: {
+      Documents: ["Proposals"],
+      General: ["Coordination", "Meetings"],
+    },
+    Procurement: {
+      Documents: ["Proposals"],
+      General: ["Coordination", "Meetings"],
+    },
+    Construction: {
+      Documents: ["DocReviews"],
+      General: ["CoordinationORSupervision", "Meetings"],
+    },
+    NavalArchitecture: {
+      Lists: ["MTO"],
+      Calculations: [
+        "MooringAnalysis",
+        "FEA_OR_CFD",
+        "MaxsurfStability",
+        "NavalArchCalcs",
+        "SacsOffshore",
+        "EquipmentSizing2",
+      ],
+      Drawings: [
+        "StructuralDrawings",
+        "MooringLayout",
+        "EquipmentLayouts",
+        "Schematics",
+      ],
+      Documents: ["Report", "DataSheets"],
+      General: ["Coordination", "Meetings"],
+      Assembly: ["Electrical", "Mechanical"],
+      Coding: ["Testing", "Algorithm"],
+    },
+    // Add other disciplines similarly...
+  };
 
   return (
     <div
@@ -204,13 +377,13 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
                 <option value="HumanResource">Human Resource</option>
                 <option value="HVAC">HVAC</option>
                 <option value="Instrumentation">Instrumentation</option>
-                <option value="Management">Management</option>
+                <option value="ProjectManagement">Project Management</option>
                 <option value="Mechanical">Mechanical</option>
-                <option value="Naval">Naval</option>
-                <option value="Piping">Piping</option>
+                <option value="NavalArchitecture">Naval Architecture</option>
+                <option value="PipingORPipeline">Piping/Pipeline</option>
                 <option value="Process">Process</option>
                 <option value="Procurement">Procurement</option>
-                <option value="Projects">Projects</option>
+                {/* <option value="Projects">Projects</option> */}
                 <option value="Telecom">Telecom</option>
               </select>
             </div>
@@ -236,9 +409,18 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
                 name="Activities"
                 value={activities}
                 onChange={handleActivitiesChange}
+                disabled={!discipline}
               >
                 <option value="select">Select</option>
-                <option value="Calculations">Calculations</option>
+                {discipline &&
+                  Object.keys(activityHierarchy[discipline] || {}).map(
+                    (act) => (
+                      <option key={act} value={act}>
+                        {act}
+                      </option>
+                    )
+                  )}
+                {/* <option value="Calculations">Calculations</option>
                 <option value="DocumentationControl">
                   Documentation Control
                 </option>
@@ -247,7 +429,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
                 <option value="General">General</option>
                 <option value="Lists">Lists</option>
                 <option value="Projectcontrol">Project Control</option>
-                <option value="ProjectManagement">Project Management</option>
+                <option value="ProjectManagement">Project Management</option> */}
               </select>
 
               <div>
@@ -270,9 +452,22 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
                   name="Discipline"
                   value={subActivity}
                   onChange={handleSubActivityChange}
+                  disabled={!activities}
                 >
                   <option value="select">Select</option>
-                  <option value="Airflow">Air flow</option>
+                  {discipline &&
+                    activities &&
+                    (activityHierarchy[discipline]?.[activities] || []).map(
+                      (sub) => {
+                        const label = sub.replace(/\d+$/, ""); // removes any trailling digits
+                        return (
+                          <option key={sub} value={sub}>
+                            {label}
+                          </option>
+                        );
+                      }
+                    )}
+                  {/* <option value="Airflow">Air flow</option>
                   <option value="CableSchedule">Cable Schedule</option>
                   <option value="CableSizing">Cable Sizing</option>
                   <option value="CableTrayORConduit">Cable Tray/Conduit</option>
@@ -340,7 +535,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
                     Structural Drawings
                   </option>
                   <option value="Training">Training</option>
-                  <option value="ValveSizing">Valve Sizing</option>
+                  <option value="ValveSizing">Valve Sizing</option> */}
                 </select>
               </div>
             </div>
