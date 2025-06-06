@@ -100,8 +100,9 @@ const LeaveTable = ({ posts, currentId }) => {
             variant="h6"
             sx={{
               textAlign: "center",
+              bgcolor: "#0D325C",
               // margin: "5px",
-              color: "#16355d",
+              color: "#ffffff",
               fontFamily: "Roboto",
             }}
           >
@@ -196,7 +197,8 @@ const LeaveTable = ({ posts, currentId }) => {
           sx={{
             textAlign: "center",
             // margin: "2px",
-            color: "#16355d",
+            bgcolor: "#0D325C",
+            color: "#ffffff",
             fontFamily: "Roboto",
           }}
         >

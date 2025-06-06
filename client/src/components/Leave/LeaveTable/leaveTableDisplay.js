@@ -62,7 +62,13 @@ const LeaveTableDisplay = () => {
       {!isLoading && (
         <>
           {verify() === true && (
-            <div style={{ float: "right", marginLeft: "200px" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                marginBottom: "1rem",
+              }}
+            >
               <Combo posts={posts} setCurrentId={setCurrentId} />
             </div>
           )}

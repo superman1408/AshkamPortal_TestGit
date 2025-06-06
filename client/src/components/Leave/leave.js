@@ -125,9 +125,21 @@ const Leave = () => {
             width: "100%",
             display: "flex",
             flexDirection: "column",
-            gap: 2,
+            // gap: 2,
           }}
         >
+          <Typography
+            fontWeight={600}
+            variant="h4"
+            sx={{
+              textAlign: "center",
+              fontWeight: "bolder",
+              fontFamily: "Roboto",
+              color: "#16355d",
+            }}
+          >
+            Leave Section
+          </Typography>
           <Grid
             container
             spacing={2}
@@ -140,39 +152,62 @@ const Leave = () => {
               <form autoComplete="off" onSubmit={handleSubmit}>
                 <Typography
                   variant="h6"
-                  align="center"
-                  sx={{ mb: 2, fontFamily: "Roboto" }}
+                  align="left" // or just remove this line
+                  sx={{
+                    mb: 2,
+                    fontFamily: "Roboto",
+                    display: "flex",
+                    alignItems: "center",
+                    // bgcolor: "#0D325C",
+                  }}
                 >
                   <PublicSharpIcon sx={{ mr: 1 }} />
                   {user.result.email}
                 </Typography>
 
                 <Card elevation={10} sx={{ p: 2 }}>
-                  <TextField
-                    type="email"
-                    label="To"
-                    required
-                    fullWidth
-                    sx={{ mb: 2 }}
-                    onChange={(e) =>
-                      setMailData({ ...mailData, recipient: e.target.value })
-                    }
-                  />
-                  <TextField
-                    label="Cc"
-                    required
-                    fullWidth
-                    sx={{ mb: 2 }}
-                    onChange={(e) =>
-                      setMailData({ ...mailData, recipient2: e.target.value })
-                    }
-                  />
-
-                  <Grid
-                    container
-                    spacing={2}
-                    sx={{ flexDirection: { xs: "column", sm: "row" } }}
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      textAlign: "center",
+                      // margin: "2px",
+                      bgcolor: "#0D325C",
+                      color: "#ffffff",
+                      fontFamily: "Roboto",
+                      mb: "10px",
+                    }}
                   >
+                    Mail
+                  </Typography>
+                  <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                      <TextField
+                        type="email"
+                        label="To"
+                        required
+                        fullWidth
+                        onChange={(e) =>
+                          setMailData({
+                            ...mailData,
+                            recipient: e.target.value,
+                          })
+                        }
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        label="Cc"
+                        required
+                        fullWidth
+                        onChange={(e) =>
+                          setMailData({
+                            ...mailData,
+                            recipient2: e.target.value,
+                          })
+                        }
+                      />
+                    </Grid>
+
                     <Grid item xs={12} sm={6}>
                       <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker
@@ -185,6 +220,7 @@ const Leave = () => {
                         />
                       </LocalizationProvider>
                     </Grid>
+
                     <Grid item xs={12} sm={6}>
                       <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker
@@ -197,73 +233,79 @@ const Leave = () => {
                         />
                       </LocalizationProvider>
                     </Grid>
+
+                    <Grid item xs={12}>
+                      <select
+                        value={select}
+                        onChange={handleSelect}
+                        className={classes.dropDown}
+                        style={{ width: "100%", padding: "10px" }}
+                      >
+                        {options.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </Grid>
+
+                    {select && (
+                      <Grid item xs={12}>
+                        <TextField
+                          label="Subject"
+                          required
+                          fullWidth
+                          value={`Applying for ${leaveType} from ${fromDate} to ${toDate}`}
+                          onChange={(e) =>
+                            setMailData({
+                              ...mailData,
+                              subject: e.target.value,
+                            })
+                          }
+                        />
+                      </Grid>
+                    )}
+
+                    <Grid item xs={12}>
+                      <TextField
+                        multiline
+                        minRows={8}
+                        fullWidth
+                        required
+                        defaultValue={`\n\n\n\n\n\nThanks & Regards\n${
+                          user.result.firstName.charAt(0).toUpperCase() +
+                          user.result.firstName.slice(1).toLowerCase() +
+                          " " +
+                          user.result.lastName.charAt(0).toUpperCase() +
+                          user.result.lastName.slice(1).toLowerCase()
+                        } | ${user.result.department}`}
+                        onChange={(e) =>
+                          setMailData({
+                            ...mailData,
+                            requiredMessage: e.target.value,
+                          })
+                        }
+                      />
+                    </Grid>
+
+                    <Grid item xs={12} display="flex" justifyContent="flex-end">
+                      <button
+                        type="submit"
+                        style={{
+                          height: "50px",
+                          width: "100px",
+                          fontFamily: "Roboto",
+                          cursor: "pointer",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <SendSharpIcon sx={{ mr: 1 }} />
+                        Send
+                      </button>
+                    </Grid>
                   </Grid>
-
-                  <Box sx={{ my: 2 }}>
-                    <select
-                      value={select}
-                      onChange={handleSelect}
-                      className={classes.dropDown}
-                      style={{ width: "100%", padding: "10px" }}
-                    >
-                      {options.map((option) => (
-                        <option key={option.value} value={option.value}>
-                          {option.label}
-                        </option>
-                      ))}
-                    </select>
-                  </Box>
-
-                  {select && (
-                    <TextField
-                      label="Subject"
-                      required
-                      fullWidth
-                      sx={{ mb: 2 }}
-                      value={`Applying for ${leaveType} from ${fromDate} to ${toDate}`}
-                      onChange={(e) =>
-                        setMailData({ ...mailData, subject: e.target.value })
-                      }
-                    />
-                  )}
-
-                  <TextField
-                    multiline
-                    minRows={9}
-                    fullWidth
-                    required
-                    defaultValue={`\n\n\n\n\n\nThanks & Regards\n${
-                      user.result.firstName.charAt(0).toUpperCase() +
-                      user.result.firstName.slice(1).toLowerCase() +
-                      " " +
-                      user.result.lastName.charAt(0).toUpperCase() +
-                      user.result.lastName.slice(1).toLowerCase()
-                    } | ${user.result.department}`}
-                    onChange={(e) =>
-                      setMailData({
-                        ...mailData,
-                        requiredMessage: e.target.value,
-                      })
-                    }
-                  />
-
-                  <Box display="flex" justifyContent="flex-end" mt={2}>
-                    <button
-                      type="submit"
-                      style={{
-                        height: "50px",
-                        width: "100px",
-                        fontFamily: "Roboto",
-                        cursor: "pointer",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <SendSharpIcon sx={{ mr: 1 }} />
-                      Send
-                    </button>
-                  </Box>
                 </Card>
               </form>
             </Grid>
