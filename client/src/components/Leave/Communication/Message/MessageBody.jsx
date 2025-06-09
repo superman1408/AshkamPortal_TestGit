@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getPost, updateStatus } from "../../../../action/posts";
 import { useNavigate } from "react-router-dom";
-import { Card, Typography, Avatar } from "@mui/material";
+import { Card, Typography, Avatar, Grid } from "@mui/material";
 
 import CheckSharpIcon from "@mui/icons-material/CheckSharp";
 import ClearSharpIcon from "@mui/icons-material/ClearSharp";
@@ -98,7 +98,7 @@ const Message = ({ post, currentId }) => {
 
   return (
     currentId && (
-      <div>
+      <Grid container justifyContent="center">
         {array.map((item, index) => (
           <Card
             key={index}
@@ -216,7 +216,7 @@ const Message = ({ post, currentId }) => {
                   marginTop: "10px",
                 }}
               >
-                {verifyTheRole() ? (
+                {item.status?.toLowerCase() === "pending" && verifyTheRole() ? (
                   <>
                     <button
                       style={{ fontFamily: "Roboto" }}
@@ -242,7 +242,7 @@ const Message = ({ post, currentId }) => {
             </div>
           </Card>
         ))}
-      </div>
+      </Grid>
     )
   );
 };
