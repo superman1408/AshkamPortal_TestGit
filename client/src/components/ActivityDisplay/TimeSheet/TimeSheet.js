@@ -316,7 +316,8 @@ function TimeSheet({ currentId, posts }) {
             padding: "12px",
             flexDirection: "row", // Add this line
             "@media (max-width: 600px)": {
-              flexDirection: "column",
+              xs: "column", // 0px and up
+              sm: "row",
             },
           }}
         >

@@ -492,7 +492,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
               overflow: "auto",
               width: "100%",
               top: "100px",
-              height: "100%",
+              height: "950px",
               minHeight: "300px",
               pointerEvents: "auto",
             }}
