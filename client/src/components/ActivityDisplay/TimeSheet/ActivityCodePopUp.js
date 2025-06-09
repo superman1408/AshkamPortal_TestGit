@@ -271,7 +271,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       Task: ["Three_D_Model"],
     },
     HVAC: {
-      Calculations: ["AirFLow", "Duct"],
+      Calculations: ["Airflow", "Duct"],
       Documents: ["Specifications", "DataSheets"],
       Drawings: ["Layout"],
       General: ["Coordination", "Meetings"],
