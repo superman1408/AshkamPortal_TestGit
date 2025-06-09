@@ -53,30 +53,32 @@ const Communication = () => {
 
   return (
     <>
-      <div
-        style={{
+      <Grid
+        container
+        spacing={2}
+        sx={{
           marginTop: "20px",
           padding: "5px",
-          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
           width: "100%",
-          "@media (maxWidth: 600px)": {
-            flexDirection: "column",
-          },
         }}
       >
         {matches && <Panel />}
         <Grid
           sx={{
             display: "flex",
-            boxShadow: 2,
+            // boxShadow: 2,
             margin: "15px",
             "@media (max-width: 600px)": {
               flexDirection: "column",
             },
           }}
         >
-          <div
-            style={{
+          <Grid
+            item
+            xs={12}
+            md={7}
+            sx={{
               height: "600px",
               overflow: "auto",
               // position: "fixed",
@@ -88,84 +90,83 @@ const Communication = () => {
               margin: "10px",
             }}
           >
-            <div>
-              {verifyTheRole()
-                ? sortedPosts.map((post) => (
-                    <div key={post._id} style={{ marginTop: "10px" }}>
-                      <Inbox post={post} setCurrentId={setCurrentId} />
-                      <Divider
-                        variant="inset"
-                        sx={{ borderWidth: "1px", fontWeight: "15px" }}
-                      />
-                    </div>
-                  ))
-                : verifyManager()
-                ? sortedPosts.map(
-                    (post) =>
-                      post.department === user.result.department && (
-                        <div key={post._id} style={{ marginTop: "10px" }}>
-                          <Inbox post={post} setCurrentId={setCurrentId} />
-                          <Divider
-                            variant="inset"
-                            sx={{ borderWidth: "1px", fontWeight: "15px" }}
-                          />
-                        </div>
-                      )
-                  )
-                : sortedPosts.map(
-                    (post) =>
-                      post._id === user.result._id && (
-                        <div key={post._id} style={{ marginTop: "10px" }}>
-                          <Inbox post={post} setCurrentId={setCurrentId} />
-                          <Divider
-                            variant="inset"
-                            sx={{ borderWidth: "1px", fontWeight: "15px" }}
-                          />
-                        </div>
-                      )
-                  )}
-            </div>
-          </div>
+            {verifyTheRole()
+              ? sortedPosts.map((post) => (
+                  <div key={post._id} style={{ marginTop: "10px" }}>
+                    <Inbox post={post} setCurrentId={setCurrentId} />
+                    <Divider
+                      variant="inset"
+                      sx={{ borderWidth: "1px", fontWeight: "15px" }}
+                    />
+                  </div>
+                ))
+              : verifyManager()
+              ? sortedPosts.map(
+                  (post) =>
+                    post.department === user.result.department && (
+                      <div key={post._id} style={{ marginTop: "10px" }}>
+                        <Inbox post={post} setCurrentId={setCurrentId} />
+                        <Divider
+                          variant="inset"
+                          sx={{ borderWidth: "1px", fontWeight: "15px" }}
+                        />
+                      </div>
+                    )
+                )
+              : sortedPosts.map(
+                  (post) =>
+                    post._id === user.result._id && (
+                      <div key={post._id} style={{ marginTop: "10px" }}>
+                        <Inbox post={post} setCurrentId={setCurrentId} />
+                        <Divider
+                          variant="inset"
+                          sx={{ borderWidth: "1px", fontWeight: "15px" }}
+                        />
+                      </div>
+                    )
+                )}
+          </Grid>
 
-          <div>
-            <div style={{ height: "600" }}>
-              <div
-                style={{
-                  background: "white",
-                  height: "600px",
-                  overflow: "auto",
-                  top: "100px",
-                  zIndex: 99999,
-                  width: "auto",
-                  pointerEvents: "auto",
+          <Grid>
+            <Grid
+              item
+              xs={12}
+              md={12}
+              // lg={9}
+              sx={{
+                height: 600,
+                overflowY: "auto",
+                bgcolor: "white",
+                position: "relative",
+                // marginLeft: "10px",
+              }}
+            >
+              {user &&
+                posts.map(
+                  (post) =>
+                    post._id === currentId && (
+                      <div key={post._id}>
+                        {" "}
+                        {/* Use post._id as the key */}
+                        <MessageBody post={post} currentId={currentId} />
+                      </div>
+                    )
+                )}
+
+              <Grid
+                sx={{
+                  ...(matches && {
+                    margin: "100px 130px 100px 130px", // Apply gray background if matches is true
+                  }),
                 }}
               >
-                {user &&
-                  posts.map(
-                    (post) =>
-                      post._id === currentId && (
-                        <div key={post._id}>
-                          {" "}
-                          {/* Use post._id as the key */}
-                          <MessageBody post={post} currentId={currentId} />
-                        </div>
-                      )
-                  )}
-
-                <div
-                  style={{
-                    ...(matches && {
-                      margin: "100px 130px 100px 130px", // Apply gray background if matches is true
-                    }),
-                  }}
-                >
-                  <img src={inbox} alt="logo" style={{ opacity: "70%" }} />
-                </div>
-              </div>
-            </div>
-          </div>
+                <img src={inbox} alt="logo" style={{ opacity: "70%" }} />
+              </Grid>
+            </Grid>
+          </Grid>
         </Grid>
-      </div>
+        {/* </Grid> */}
+      </Grid>
     </>
   );
 };
