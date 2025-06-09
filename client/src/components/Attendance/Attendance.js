@@ -26,8 +26,6 @@ const Attendance = () => {
     dispatch(getPosts());
   }, [dispatch]);
 
-  console.log(posts.presentStatus);
-
   const absentEmployees = posts.filter(
     (post) => post.presentStatus === "false"
   );
@@ -38,8 +36,6 @@ const Attendance = () => {
     () => posts.filter((post) => post.gender),
     [posts]
   );
-
-  console.log(empStrength.length);
 
   return (
     <div style={{ display: "flex", flex: 1 }}>
