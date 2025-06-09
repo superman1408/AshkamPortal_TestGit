@@ -9,11 +9,14 @@ import {
   Box,
   Checkbox,
   Button,
+  Avatar,
+  Stack,
 } from "@mui/material";
 
 import { getPosts } from "../../action/posts";
 import { dailyAttendance, logList } from "../../action/posts";
-import HalfDoughnutWithPointer from "../Attendance/AttendanceChart";
+// import HalfDoughnutWithPointer from "../Attendance/AttendanceChart";
+import PunctualityRadarChart from "./AttendanceChart";
 import Panel from "../Panel/Panel";
 
 const AttendanceDetail = ({ currentId, posts }) => {
@@ -42,30 +45,27 @@ const AttendanceDetail = ({ currentId, posts }) => {
 
   const array = [];
 
-  useEffect(() => {
-    currentId && setTotalHours(null);
-  }, [currentId]);
+  // useEffect(() => {
+  //   currentId && setTotalHours(null);
+  // }, [currentId]);
 
   useEffect(() => {
     array.length = 0;
     dispatch(getPosts()).then(() => {
-      // eslint-disable-next-line array-callback-return
-      posts.forEach((post) => {
+      posts.map((post) => {
         if (post._id === currentId) {
-          for (let i = 0; i < post.logDate.length; i++) {
+          // console.log(post.logIn);
+          for (let i = 0; i < post.logIn.length; i++) {
             array.push({
-              logDate: post.logDate[i],
               logIn: post.logIn[i],
-              logOut: post.logOut[i],
             });
           }
-          setTotalHours(null);
         }
       });
     });
-  }, [currentId, dispatch]);
+  }, [currentId, dispatch, posts, array]);
 
-  console.log("posts", posts.length);
+  // console.log("logData", logData);
 
   //  changes the "handle submit" code as window.location.relaod() is not good practice for sending response to server side
 
@@ -150,12 +150,48 @@ const AttendanceDetail = ({ currentId, posts }) => {
 
   const [checked, setChecked] = React.useState(false);
 
-  const handleChange = () => {
-    setChecked(!checked);
+  const headerCellStyle = {
+    padding: "12px",
+    fontFamily: "Roboto",
+    fontSize: "14px",
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "white",
+    backgroundColor: "#16355d",
+  };
+
+  const cellStyle = {
+    padding: "16px",
+    fontFamily: "Roboto",
+    fontSize: "14px",
+    textAlign: "center",
+    verticalAlign: "middle",
+    backgroundColor: "#f9f9f9",
+    borderRadius: "12px",
+  };
+
+  const loginStyle = {
+    backgroundColor: "#d4f6dd",
+    color: "#1a8f46",
+    padding: "8px 16px",
+    borderRadius: "12px",
+    fontWeight: "500",
+    display: "inline-block",
+    fontFamily: "Roboto",
+  };
+
+  const logoutStyle = {
+    backgroundColor: "#ffe6d9",
+    color: "#e55d17",
+    padding: "8px 16px",
+    borderRadius: "12px",
+    fontWeight: "500",
+    display: "inline-block",
+    fontFamily: "Roboto",
   };
 
   return (
-    <div>
+    <div style={{ height: "auto" }}>
       <h2
         style={{ color: "#16355d", marginLeft: "20px", fontFamily: "Roboto" }}
       >
@@ -181,116 +217,261 @@ const AttendanceDetail = ({ currentId, posts }) => {
         <Grid item xs={12} md={2}>
           <Panel />
         </Grid>
-        {verifyTheRole() && (
-          <>
-            <Grid
-              item
-              xs={12}
-              md={3}
-              sx={{
-                // display: "flex",
-                padding: "10px",
-                width: "100%",
-                backgroundColor: "white",
-                borderRadius: "15px",
-                border: "1px solid lightgray",
-                margin: "0px 5px 2px 5px",
-              }}
-            >
+
+        <Grid
+          item
+          xs={12}
+          md={3.5}
+          sx={{
+            // display: "flex",
+            padding: "20px",
+            width: "100%",
+            backgroundColor: "white",
+            borderRadius: "15px",
+            margin: "0px 5px 2px 10px",
+          }}
+        >
+          {" "}
+          {verifyTheRole() && (
+            <>
               <form className="time-sheet-form" onSubmit={handleSubmit}>
                 <div
-                  className="form-group"
                   style={{
-                    display: "flex",
-                    justifyContent: "space-between",
+                    border: "1px solid #ccc",
+                    borderRadius: "16px",
+                    padding: "24px",
+                    maxWidth: "400px",
+                    backgroundColor: "#f9f9f9",
+                    boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                    marginBottom: "auto",
+                    marginLeft: "auto",
+                    marginRight: "auto",
                   }}
                 >
-                  <label
-                    style={{ color: "#16355d", fontFamily: "Roboto" }}
-                    htmlFor="logout"
+                  <Stack
+                    direction="row"
+                    justifyContent="center"
+                    alignItems="center"
+                    sx={{
+                      mt: 2,
+                    }}
                   >
-                    Date :
-                  </label>
-                  <input
-                    style={{ width: "120px" }}
-                    width="100"
-                    type="date"
-                    id="netTime"
-                    value={logData.logDate}
-                    onChange={(e) =>
-                      setLogData({ ...logData, logDate: e.target.value })
-                    }
-                  />
+                    <Avatar
+                      sx={{
+                        width: 50,
+                        height: 50,
+                        // marginLeft: "10px",
+                        justifyContent: "center",
+                        bgcolor: "orange",
+                        userSelect: "none", // Prevent selection
+                        pointerEvents: "none", // Prevent interaction
+                      }}
+                      src={user.result.selectedFile}
+                    />
+                  </Stack>
+                  <Typography
+                    sx={{
+                      fontFamily: "Roboto",
+                      fontWeight: "bold",
+                      margin: "5px",
+                      textAlign: "center",
+                      color: "#16355d",
+                    }}
+                  >
+                    {posts.map((post) => {
+                      if (post._id === currentId) {
+                        return (
+                          post?.firstName.charAt(0).toUpperCase() +
+                          post?.firstName.slice(1).toLowerCase() +
+                          " " +
+                          post?.lastName.charAt(0).toUpperCase() +
+                          post?.lastName.slice(1).toLowerCase()
+                        );
+                      }
+                      return null;
+                    })}
+                  </Typography>
+
+                  <Box sx={{ display: "flex", justifyContent: "center" }}>
+                    {(() => {
+                      const matchedPost = posts.find(
+                        (post) => post._id === currentId
+                      );
+                      console.log("Matched Post:", matchedPost);
+
+                      let statusText = "Not found";
+                      let statusColor = "grey";
+
+                      if (matchedPost) {
+                        if (matchedPost.presentStatus === "true") {
+                          statusText = "Present";
+                          statusColor = "green";
+                        } else if (matchedPost.presentStatus === "false") {
+                          statusText = "Absent";
+                          statusColor = "red";
+                        } else {
+                          statusText = "Unknown";
+                          statusColor = "orange";
+                        }
+                      }
+
+                      return (
+                        <Typography
+                          sx={{
+                            fontFamily: "Roboto",
+                            fontSize: 12,
+                            color: "white",
+                            bgcolor: statusColor,
+                            borderRadius: "12px",
+                            padding: "5px",
+                            width: "50%",
+                            textAlign: "center",
+                          }}
+                        >
+                          {statusText}
+                        </Typography>
+                      );
+                    })()}
+                  </Box>
                 </div>
 
                 <div
-                  className="form-group"
                   style={{
-                    display: "flex",
-                    justifyContent: "space-between",
+                    border: "1px solid #ccc",
+                    borderRadius: "16px",
+                    padding: "24px",
+                    maxWidth: "400px",
+                    backgroundColor: "#f9f9f9",
+                    boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+                    marginTop: "10px",
+                    marginBottom: "auto",
+                    marginLeft: "auto",
+                    marginRight: "auto",
                   }}
                 >
-                  <label
-                    style={{ color: "#16355d", fontFamily: "Roboto" }}
-                    htmlFor="login"
-                  >
-                    Log In Time :
-                  </label>
-                  <input
-                    style={{}}
-                    type="time"
-                    id="netTime"
-                    value={logData.logIn}
-                    onChange={(e) =>
-                      setLogData({ ...logData, logIn: e.target.value })
-                    }
-                  />
-                </div>
-                <div
-                  className="form-group"
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <label
-                    style={{ color: "#16355d", fontFamily: "Roboto" }}
-                    htmlFor="logout"
-                  >
-                    Log Out Time :
-                  </label>
-                  <input
-                    width="100"
-                    type="time"
-                    id="netTime"
-                    value={logData.logOut}
-                    onChange={(e) =>
-                      setLogData({ ...logData, logOut: e.target.value })
-                    }
-                  />
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    float: "right",
-                    marginTop: "65px",
-                  }}
-                >
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    sx={{ bgcolor: "#16355d" }}
-                  >
-                    SUBMIT
-                  </Button>
+                  {/* DATE */}
+
+                  <div className="form-group" style={{ marginBottom: "20px" }}>
+                    <label
+                      htmlFor="logDate"
+                      style={{
+                        display: "block",
+                        marginBottom: "6px",
+                        color: "#16355d",
+                        fontFamily: "Roboto",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Date:
+                    </label>
+                    <input
+                      type="date"
+                      id="logDate"
+                      value={logData.logDate}
+                      onChange={(e) =>
+                        setLogData({ ...logData, logDate: e.target.value })
+                      }
+                      style={{
+                        width: "100%",
+                        padding: "8px 12px",
+                        borderRadius: "8px",
+                        border: "1px solid #ccc",
+                        outlineColor: "#16355d",
+                      }}
+                    />
+                  </div>
+                  {/* LOG IN */}
+                  <div className="form-group" style={{ marginBottom: "20px" }}>
+                    <label
+                      htmlFor="logIn"
+                      style={{
+                        display: "block",
+                        marginBottom: "6px",
+                        color: "#16355d",
+                        fontFamily: "Roboto",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Log In Time:
+                    </label>
+                    <input
+                      type="time"
+                      id="logIn"
+                      value={logData.logIn}
+                      onChange={(e) =>
+                        setLogData({ ...logData, logIn: e.target.value })
+                      }
+                      style={{
+                        width: "100%",
+                        padding: "8px 12px",
+                        borderRadius: "8px",
+                        border: "1px solid #ccc",
+                        outlineColor: "#16355d",
+                      }}
+                    />
+                  </div>
+                  {/* LOG OUT */}
+                  <div className="form-group" style={{ marginBottom: "20px" }}>
+                    <label
+                      htmlFor="logOut"
+                      style={{
+                        display: "block",
+                        marginBottom: "6px",
+                        color: "#16355d",
+                        fontFamily: "Roboto",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Log Out Time:
+                    </label>
+                    <input
+                      type="time"
+                      id="logOut"
+                      value={logData.logOut}
+                      onChange={(e) =>
+                        setLogData({ ...logData, logOut: e.target.value })
+                      }
+                      style={{
+                        width: "100%",
+                        padding: "8px 12px",
+                        borderRadius: "8px",
+                        border: "1px solid #ccc",
+                        outlineColor: "#16355d",
+                      }}
+                    />
+                  </div>
+                  {/* SUBMIT BUTTON */}
+                  <div style={{ textAlign: "right" }}>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      sx={{
+                        bgcolor: "#16355d",
+                        borderRadius: "8px",
+                        textTransform: "none",
+                        fontWeight: "bold",
+                        px: 3,
+                        py: 1,
+                        "&:hover": { bgcolor: "#122a4a" },
+                      }}
+                    >
+                      Submit
+                    </Button>
+                  </div>
                 </div>
               </form>
-            </Grid>
-          </>
-        )}
+            </>
+          )}
+          {(role === "employee" || role === "manager") && (
+            <>
+              <PunctualityRadarChart data={array} />
+            </>
+          )}{" "}
+        </Grid>
+
         <Grid
           xs={12}
-          md={4}
+          md={6}
           sx={{
             display: "flex",
             width: "100%",
@@ -308,10 +489,11 @@ const AttendanceDetail = ({ currentId, posts }) => {
               backgroundColor: "white",
               border: "1px solid lightgray",
               padding: "10px",
-              height: "auto",
               overflow: "auto",
               width: "100%",
               top: "100px",
+              height: "100%",
+              minHeight: "300px",
               pointerEvents: "auto",
             }}
           >
@@ -321,54 +503,27 @@ const AttendanceDetail = ({ currentId, posts }) => {
                 fontWeight: "bold",
                 margin: "5px",
                 color: "#16355d",
+                textAlign: "center",
               }}
             >
-              Employee Name :{" "}
-              {posts.map((post) => {
-                if (post._id === currentId) {
-                  return (
-                    post?.firstName.charAt(0).toUpperCase() +
-                    post?.firstName.slice(1).toLowerCase() +
-                    " " +
-                    post?.lastName.charAt(0).toUpperCase() +
-                    post?.lastName.slice(1).toLowerCase()
-                  );
-                }
-                return null;
-              })}
+              Daily Time Records
             </Typography>
+            <Divider sx={{ borderWidth: "3px", margin: "5px" }} />
             <div>
               <table
-                className="time-sheet-table"
                 style={{
-                  padding: "15px",
-                  // backgroundColor: "#f2f2f2",
-                  borderCollapse: "collapse",
-                  border: "1px solid black",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  borderSpacing: "0",
                   width: "100%",
-                  marginBottom: "10px",
                   maxWidth: "800px",
+                  margin: "10px auto",
+                  borderCollapse: "separate",
+                  borderSpacing: "0 10px", // spacing between rows
                 }}
               >
-                <thead>
-                  <tr>
-                    <th
-                      style={{
-                        color: "#16355d",
-                        fontFamily: "Roboto",
-                      }}
-                    >
-                      Date
-                    </th>
-                    <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                      Log In
-                    </th>
-                    <th style={{ color: "#16355d", fontFamily: "Roboto" }}>
-                      Log Out
-                    </th>
+                <thead style={{ borderRadius: "12px" }}>
+                  <tr style={{ borderRadius: "12px" }}>
+                    <th style={headerCellStyle}>Date</th>
+                    <th style={headerCellStyle}>Log In</th>
+                    <th style={headerCellStyle}>Log Out</th>
                   </tr>
                 </thead>
 
@@ -377,39 +532,24 @@ const AttendanceDetail = ({ currentId, posts }) => {
                     <tr
                       key={index}
                       onClick={() => handleHoverDate(item.logDate)}
+                      style={{
+                        backgroundColor: "#fff",
+                        boxShadow: "0 2px 6px rgba(0, 0, 0, 0.05)",
+                        borderRadius: "12px",
+                        // cursor: "pointer",
+                        textAlign: "center",
+                      }}
                     >
                       <td
-                        style={{
-                          color: "#e55d17",
-                          fontFamily: "Roboto",
-                          paddingLeft: "40px",
-                          paddingRight: "40px",
-                          alignContent: "center",
-                        }}
+                        style={{ ...cellStyle, borderRadius: "12px 0 0 12px" }}
                       >
                         {item?.logDate}
                       </td>
-                      <td
-                        style={{
-                          color: "#e55d17",
-                          fontFamily: "Roboto",
-                          paddingLeft: "40px",
-                          paddingRight: "40px",
-                          alignContent: "center",
-                        }}
-                      >
-                        {item?.logIn}
+                      <td>
+                        <span style={loginStyle}>{item?.logIn}</span>
                       </td>
-                      <td
-                        style={{
-                          color: "#e55d17",
-                          fontFamily: "Roboto",
-                          paddingLeft: "40px",
-                          paddingRight: "40px",
-                          alignContent: "center",
-                        }}
-                      >
-                        {item?.logOut}
+                      <td>
+                        <span style={logoutStyle}>{item?.logOut}</span>
                       </td>
                     </tr>
                   ))}
@@ -417,93 +557,6 @@ const AttendanceDetail = ({ currentId, posts }) => {
               </table>
             </div>
           </Grid>
-
-          {(role === "employee" || role === "manager") && (
-            <Grid
-              item
-              sm={12}
-              md={8}
-              elevation={10}
-              sx={{
-                padding: "15px",
-                width: "auto",
-                marginLeft: "5px",
-                borderRadius: "15px",
-                border: "1px solid lightgray",
-                backgroundColor: "white",
-                display: "flex",
-                flexDirection: "column",
-
-                alignItems: "center", // Center-align content horizontally
-              }}
-            >
-              <div>
-                {hoveredData === false ? (
-                  <>
-                    {posts.map((post, index) => {
-                      if (post._id === currentId) {
-                        const totalHours = calculateTotalHours(
-                          post.logIn[post.logIn.length - 1],
-                          post.logOut[post.logOut.length - 1]
-                        );
-                        return (
-                          <>
-                            <div key={index}>
-                              <HalfDoughnutWithPointer
-                                totalHours={totalHours}
-                              />
-                            </div>
-                            <div style={{ margin: "20px 0px 0px 20px" }}>
-                              <Box
-                                sx={{
-                                  padding: "10px",
-                                }}
-                              >
-                                <Typography
-                                  sx={{
-                                    fontFamily: "Roboto",
-                                    color: "#16355d",
-                                  }}
-                                >
-                                  Total Worked = {totalHours}
-                                </Typography>
-                              </Box>
-                            </div>
-                          </>
-                        );
-                      }
-                      return null;
-                    })}
-                  </>
-                ) : (
-                  <>
-                    <HalfDoughnutWithPointer totalHours={totalHours} />
-                    <div style={{ margin: "20px 0px 0px 20px" }}>
-                      <Box
-                        sx={{
-                          padding: "10px",
-                        }}
-                      >
-                        <Typography
-                          sx={{
-                            fontFamily: "Roboto",
-                            color: "#16355d",
-                          }}
-                        >
-                          Total Worked = {totalHours}
-                        </Typography>
-                      </Box>
-                    </div>
-                  </>
-                )}
-              </div>
-              <div style={{ marginTop: "250px" }}>
-                <Typography sx={{ fontWeight: "bold", fontSize: "12px" }}>
-                  Note : 0.10 hours = 6 minutes ; 0.01 hours = 36 seconds
-                </Typography>
-              </div>
-            </Grid>
-          )}
         </Grid>
       </Grid>
     </div>
@@ -512,4 +565,4 @@ const AttendanceDetail = ({ currentId, posts }) => {
 
 export default AttendanceDetail;
 
-// align Card of Graph in center
+//
