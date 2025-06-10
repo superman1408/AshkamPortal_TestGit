@@ -314,9 +314,10 @@ function TimeSheet({ currentId, posts }) {
           sx={{
             display: "flex",
             padding: "12px",
-            flexDirection: "row", // Add this line
+            flexDirection: "row",
             "@media (max-width: 600px)": {
-              flexDirection: "column",
+              xs: "column",
+              sm: "row",
             },
           }}
         >

@@ -34,8 +34,6 @@ const ActivityDisplay = () => {
     setIsLoading(false);
   }, [isLoading]);
 
-  
-
   return (
     <div>
       {!isLoading && (

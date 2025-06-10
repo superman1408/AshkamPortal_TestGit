@@ -297,7 +297,6 @@ const AttendanceDetail = ({ currentId, posts }) => {
                       const matchedPost = posts.find(
                         (post) => post._id === currentId
                       );
-                      console.log("Matched Post:", matchedPost);
 
                       let statusText = "Not found";
                       let statusColor = "grey";
@@ -472,6 +471,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
         <Grid
           xs={12}
           md={6}
+          item
           sx={{
             display: "flex",
             width: "100%",
@@ -492,7 +492,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
               overflow: "auto",
               width: "100%",
               top: "100px",
-              height: "100%",
+              height: "950px",
               minHeight: "300px",
               pointerEvents: "auto",
             }}
