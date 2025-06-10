@@ -48,12 +48,9 @@ const AbsentDetails = ({ posts, currentId }) => {
   return (
     <Grid
       sx={{
-        // display: "flex",
         padding: "10px",
-        width: "100vh",
+        width: "100%",
         backgroundColor: "white",
-        // borderRadius: "15px",
-        // border: "1px solid lightgray",
         margin: "0px 5px 2px 5px",
       }}
     >
@@ -62,75 +59,56 @@ const AbsentDetails = ({ posts, currentId }) => {
           className="form-group"
           style={{
             display: "flex",
-            justifyContent: "space-between",
+            flexDirection: "column",
+            gap: "10px",
           }}
         >
-          <div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-            >
-              {posts.map((post, index) => {
-                if (post._id === currentId) {
-                  return (
-                    <div
-                      key={index}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <FormControl>
-                        <FormLabel id="demo-row-radio-buttons-group-label">
-                          {post.firstName + " " + post.lastName}
-                        </FormLabel>
-                        <RadioGroup
-                          row
-                          aria-labelledby="demo-row-radio-buttons-group-label"
-                          name="row-radio-buttons-group"
-                          onChange={(e) =>
-                            setFormData({
-                              ...formData,
-                              presentStatus: e.target.value,
-                            })
-                          }
-                        >
-                          <FormControlLabel
-                            value="true"
-                            control={<Radio />}
-                            label="Present"
-                          />
-                          <FormControlLabel
-                            value="false"
-                            control={<Radio />}
-                            label="Absent"
-                          />
-                        </RadioGroup>
-                      </FormControl>
-                    </div>
-                  );
-                }
-              })}
-            </div>
-          </div>
+          {posts.map((post, index) => {
+            if (post._id === currentId) {
+              return (
+                <FormControl key={index} fullWidth>
+                  <FormLabel>{post.firstName + " " + post.lastName}</FormLabel>
+                  <RadioGroup
+                    row
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        presentStatus: e.target.value,
+                      })
+                    }
+                  >
+                    <FormControlLabel
+                      value="true"
+                      control={<Radio />}
+                      label="Present"
+                    />
+                    <FormControlLabel
+                      value="false"
+                      control={<Radio />}
+                      label="Absent"
+                    />
+                  </RadioGroup>
+                </FormControl>
+              );
+            }
+          })}
         </div>
+
         <div
           style={{
             display: "flex",
-            float: "right",
-            // marginTop:
+            justifyContent: "flex-end",
+            marginTop: "20px",
           }}
         >
-          {/* <button
-            type="submit" style=""
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{
+              bgcolor: "#16355d",
+              width: { xs: "100%", sm: "auto" },
+            }}
           >
-            Submit
-          </button> */}
-
-          <Button type="submit" variant="contained" sx={{ bgcolor: "#16355d" }}>
             Submit
           </Button>
         </div>

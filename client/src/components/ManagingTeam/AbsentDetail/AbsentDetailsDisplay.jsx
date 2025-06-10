@@ -30,28 +30,38 @@ const AbsentDetailsDisplay = () => {
   }, [dispatch]);
 
   return (
-    <div style={{ display: "flex" ,marginTop:"10px"}}>
-      <Panel />
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        marginTop: "10px",
+      }}
+    >
+      {/* <div>
+        <Panel />
+      </div> */}
+
       <div
         style={{
           display: "flex",
-          alignItems: "center",
           justifyContent: "center",
-          width: "100vw",
+          alignItems: "center",
+          width: "100%",
         }}
       >
         <Card
           sx={{
             display: "flex",
             flexDirection: "column",
-            margin: "50px",
-            justifyContent: "center",
+            margin: { xs: "20px", md: "50px" },
+            width: { xs: "90%", sm: "80%", md: "60%" },
+            padding: "16px",
           }}
         >
           <AbsentComboBox posts={posts} setCurrentId={setCurrentId} />
           <Divider
             sx={{
-              margin: "20px 0px 20px 0px",
+              margin: "20px 0",
               borderWidth: "5px",
               bgcolor: "#e55d17",
             }}

@@ -200,10 +200,8 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div style={{ display: "flex" }}>
-      <div style={{ display: "flex", padding: "20px", height: "auto" }}>
-        <Panel prop={user.result} />
-      </div>
+    <div style={{ display: "flex", marginTop: "20px" }}>
+      <Panel prop={user.result} />
 
       <Container
         fluid="true"
