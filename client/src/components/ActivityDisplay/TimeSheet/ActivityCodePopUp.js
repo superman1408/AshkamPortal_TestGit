@@ -182,154 +182,281 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
 
   const activityHierarchy = {
     ProjectManagement: {
-      Projectcontrol: ["Planning", "Meetings", "Reporting"],
-      ProjectEngineering: ["Coordination", "Meetings"],
-      DocumentationControl: ["Coordination", "Meetings"],
+      Projectcontrol: [
+        { label: "Planning", value: "Planning" },
+        { label: "Meetings", value: "Meetings" },
+        { label: "Reporting", value: "Reporting" },
+      ],
+      ProjectEngineering: [
+        { label: "Coordination", value: "Coordination" },
+        { label: "Meetings", value: "Meetings" },
+      ],
+      DocumentationControl: [
+        { label: "Coordination", value: "Coordination" },
+        { label: "Meetings", value: "Meetings" },
+      ],
     },
+
     Process: {
-      Lists: ["LineList", "HeatandMassBalance"],
-      Calculations: ["EquipmentSizing"],
-      Drawings: ["PFD", "P_OR_ID"],
-      Documents: ["Specifications", "DataSheets"],
-      General: ["Coordination", "Meetings"],
-    },
-    PipingORPipeline: {
-      Lists: ["LineList", "MTO1"],
-      Calculations: ["LineSizing", "PipeStress"],
-      Drawings: ["EquipmentLayout", "PipingLayout"],
-      Documents: ["Specifications", "DataSheets"],
-      General: ["Coordination", "Meetings"],
-      Task: ["Three_D_Model"],
-    },
-    Mechanical: {
-      Lists: ["MTO"],
-      Calculations: ["EquipmentSizing"],
-      Documents: ["Specifications", "DataSheets"],
-      General: ["Coordination", "Meetings"],
-    },
-    Electrical: {
+      Lists: [
+        { label: "LineList", value: "LineList" },
+        { label: "Heat & MassBalance", value: "HeatandMassBalance" },
+      ],
+      Calculations: [{ label: "Equipment Sizing", value: "EquipmentSizing" }],
       Drawings: [
-        "SingleLineDrawings",
-        "SchematicDrawings",
-        "EquipmentLayouts",
-        "Lighting1",
-        "Earthing1",
-        "CableTrayORConduit1",
-        "LightningProtection1",
+        { label: "PFD", value: "PFD" },
+        { label: "P&ID", value: "P_OR_ID" },
+      ],
+      Documents: [
+        { label: "Specifications", value: "Specifications" },
+        { label: "DataSheets", value: "DataSheets" },
+      ],
+      General: [
+        { label: "Coordination", value: "Coordination" },
+        { label: "Meetings", value: "Meetings" },
+      ],
+    },
+
+    PipingORPipeline: {
+      Lists: [
+        { label: "Line List", value: "LineList" },
+        { label: "MTO", value: "MTO1" },
       ],
       Calculations: [
-        "CableSizing",
-        "Lighting",
-        "Earthing",
-        "EquipmentSizing1",
-        "PowerSystemCalculations",
-        "LightningProtection",
-        "CableTrayORConduit2",
+        { label: "Line Sizing", value: "LineSizing" },
+        { label: "Pipe Stress", value: "PipeStress" },
       ],
-      Lists: ["MTO", "LoadList", "CableSchedule", "InterfaceSchedule"],
-      Documents: ["Specifications", "DataSheets"],
-      General: ["Coordination", "Meetings"],
-      Task: ["ThreeDModel"],
+      Drawings: [
+        { label: "Equipment Layout", value: "EquipmentLayout" },
+        { label: "Piping Layout", value: "PipingLayout" },
+      ],
+      Documents: [
+        { label: "Specifications", value: "Specifications" },
+        { label: "DataSheets", value: "DataSheets" },
+      ],
+      General: [
+        { label: "Coordination", value: "Coordination" },
+        { label: "Meetings", value: "Meetings" },
+      ],
+      Task: [{ label: "3D Model", value: "Three_D_Model" }],
+    },
+
+    Mechanical: {
+      Lists: [{ label: "MTO", value: "MTO" }],
+      Calculations: [{ label: "Equipment Sizing", value: "EquipmentSizing" }],
+      Documents: [
+        { label: "Specifications", value: "Specifications" },
+        { label: "DataSheets", value: "DataSheets" },
+      ],
+      General: [
+        { label: "Coordination", value: "Coordination" },
+        { label: "Meetings", value: "Meetings" },
+      ],
+    },
+
+    Electrical: {
+      Drawings: [
+        { label: "Single Line Drawings", value: "SingleLineDrawings" },
+        { label: "Schematic Drawings", value: "SchematicDrawings" },
+        { label: "Equipment Layouts", value: "EquipmentLayouts" },
+        { label: "Lighting", value: "Lighting1" },
+        { label: "Earthing", value: "Earthing1" },
+        { label: "Cable Tray/Conduit", value: "CableTrayORConduit1" },
+        { label: "Lightning Protection", value: "LightningProtection1" },
+      ],
+      Calculations: [
+        { label: "Cable Sizing", value: "CableSizing" },
+        { label: "Lighting", value: "Lighting" },
+        { label: "Earthing", value: "Earthing" },
+        { label: "Equipment Sizing", value: "EquipmentSizing1" },
+        {
+          label: "Power System Calculations",
+          value: "PowerSystemCalculations",
+        },
+        { label: "Lightning Protection", value: "LightningProtection" },
+        { label: "Cable Tray/Conduit", value: "CableTrayORConduit2" },
+      ],
+      Lists: [
+        { label: "MTO", value: "MTO" },
+        { label: "LoadList", value: "LoadList" },
+        { label: "Cable Schedule", value: "CableSchedule" },
+        { label: "Interface Schedule", value: "InterfaceSchedule" },
+      ],
+      Documents: [
+        { label: "Specifications", value: "Specifications" },
+        { label: "DataSheets", value: "DataSheets" },
+      ],
+      General: [
+        { label: "Coordination", value: "Coordination" },
+        { label: "Meetings", value: "Meetings" },
+      ],
+      Task: [{ label: "3D Model", value: "ThreeDModel" }],
     },
 
     Instrumentation: {
       Lists: [
-        "MTO",
-        "I_OR_Olist",
-        "InstrumentList",
-        "CableSchedule1",
-        "InterfaceSchedule1",
+        { label: "MTO", value: "MTO" },
+        { label: "I/O list", value: "I_OR_Olist" },
+        { label: "Instrument List", value: "InstrumentList" },
+        { label: "Cable Schedule", value: "CableSchedule1" },
+        { label: "Interface Schedule", value: "InterfaceSchedule1" },
       ],
-      Calculations: ["Instruments"],
-      Documents: ["Specifications", "DataSheets"],
+      Calculations: [{ label: "Instruments", value: "Instruments" }],
+      Documents: [
+        { label: "Specifications", value: "Specifications" },
+        { label: "Data Sheets", value: "DataSheets" },
+      ],
       Drawings: [
-        "InstrumentLayout",
-        "SchematicDrawings",
-        "CableTrayORConduit",
-        "LoopDrawings",
-        "Equipments",
+        { label: "Instrument Layout", value: "InstrumentLayout" },
+        { label: "Schematic Drawings", value: "SchematicDrawings" },
+        { label: "Cable Tray/Conduit", value: "CableTrayORConduit" },
+        { label: "Loop Drawings", value: "LoopDrawings" },
+        { label: "Equipments", value: "Equipments" },
       ],
-      General: ["Coordination", "Meetings"],
-      Task: ["Three_D_Model"],
+      General: [
+        { label: "Coordination", value: "Coordination" },
+        { label: "Meetings", value: "Meetings" },
+      ],
+      Task: [{ label: "3D Model", value: "Three_D_Model" }],
     },
+
     CivilORStructural: {
-      Lists: ["MTO_OR_BOQ", "BarBendingSchedule"],
-      Calculations: ["SubStructure", "SuperStructure"],
-      Documents: ["Specifications", "DataSheets", "Reports"],
-      Drawings: [
-        "GeneralArrangement",
-        "StructuralDrawings",
-        "FoundationLayout",
+      Lists: [
+        { label: "MTO/BOQ", value: "MTO_OR_BOQ" },
+        { label: "Bar Bending Schedule", value: "BarBendingSchedule" },
       ],
-      General: ["Coordination", "Meetings"],
-      Task: ["Three_D_Model"],
+      Calculations: [
+        { label: "Sub Structure", value: "SubStructure" },
+        { label: "Super Structure", value: "SuperStructure" },
+      ],
+      Documents: [
+        { label: "Specifications", value: "Specifications" },
+        { label: "Data Sheets", value: "DataSheets" },
+        { label: "Reports", value: "Reports" },
+      ],
+      Drawings: [
+        { label: "General Arrangement", value: "GeneralArrangement" },
+        { label: "Structural Drawings", value: "StructuralDrawings" },
+        { label: "Foundation Layout", value: "FoundationLayout" },
+      ],
+      General: [
+        { label: "Coordination", value: "Coordination" },
+        { label: "Meetings", value: "Meetings" },
+      ],
+      Task: [{ label: "3D Model", value: "Three_D_Model" }],
     },
+
     Architectural: {
-      Documents: ["Specifications"],
-      Drawings: ["Layout"],
-      General: ["Coordination", "Meetings"],
-      Task: ["Three_D_Model"],
+      Documents: [{ label: "Specifications", value: "Specifications" }],
+      Drawings: [{ label: "Layout", value: "Layout" }],
+      General: [
+        { label: "Coordination", value: "Coordination" },
+        { label: "Meetings", value: "Meetings" },
+      ],
+      Task: [{ label: "3D Model", value: "Three_D_Model" }],
     },
+
     HVAC: {
-      Calculations: ["Airflow", "Duct"],
-      Documents: ["Specifications", "DataSheets"],
-      Drawings: ["Layout"],
-      General: ["Coordination", "Meetings"],
+      Calculations: [
+        { label: "Air flow", value: "Airflow" },
+        { label: "Duct", value: "Duct" },
+      ],
+      Documents: [
+        { label: "Specifications", value: "Specifications" },
+        { label: "Data Sheets", value: "DataSheets" },
+      ],
+      Drawings: [{ label: "Layout", value: "Layout" }],
+      General: [
+        { label: "Coordination", value: "Coordination" },
+        { label: "Meetings", value: "Meetings" },
+      ],
     },
+
     Telecom: {
-      Documents: ["Specifications", "DataSheets"],
-      Drawings: ["Layout"],
-      General: ["Coordination", "Meetings"],
+      Documents: [
+        { label: "Specifications", value: "Specifications" },
+        { label: "Data Sheets", value: "DataSheets" },
+      ],
+      Drawings: [{ label: "Layout", value: "Layout" }],
+      General: [
+        { label: "Coordination", value: "Coordination" },
+        { label: "Meetings", value: "Meetings" },
+      ],
     },
+
     HSE: {
-      Calculations: ["EquipmentSizing"],
+      Calculations: [{ label: "Equipment Sizing", value: "EquipmentSizing" }],
       Documents: ["Specifications", "DataSheets"],
       Drawings: ["Layout"],
       General: ["Coordination", "Meetings"],
     },
+
     HumanResource: {
       General: ["Coordination", "Meetings", "Training", "Leave"],
     },
+
     Account: {
       General: ["Coordination", "Meetings"],
     },
+
     Administration: {
       General: ["Coordination", "Meetings"],
     },
+
     BusinessDevelopment: {
       Documents: ["Proposals"],
       General: ["Coordination", "Meetings"],
     },
+
     Procurement: {
       Documents: ["Proposals"],
-      General: ["Coordination", "Meetings"],
+      General: ["Meetings"],
     },
+
     Construction: {
-      Documents: ["DocReviews"],
-      General: ["CoordinationORSupervision", "Meetings"],
+      Documents: [{ label: "Doc Reviews", value: "DocReviews" }],
+      General: [
+        {
+          label: "Coordination/Supervision",
+          value: "CoordinationORSupervision",
+        },
+        { label: "Meetings", value: "Meetings" },
+      ],
     },
+
     NavalArchitecture: {
-      Lists: ["MTO"],
+      Lists: [{ label: "MTO", value: "MTO" }],
       Calculations: [
-        "MooringAnalysis",
-        "FEA_OR_CFD",
-        "MaxsurfStability",
-        "NavalArchCalcs",
-        "SacsOffshore",
-        "EquipmentSizing2",
+        { label: "Mooring Analysis", value: "MooringAnalysis" },
+        { label: "FEA/CFD", value: "FEA_OR_CFD" },
+        { label: "Maxsurf Stability", value: "MaxsurfStability" },
+        { label: "Naval Arch Calcs", value: "NavalArchCalcs" },
+        { label: "Sacs Offshore", value: "SacsOffshore" },
+        { label: "Equipment Sizing", value: "EquipmentSizing2" },
       ],
       Drawings: [
-        "StructuralDrawings",
-        "MooringLayout",
-        "EquipmentLayouts",
-        "Schematics",
+        { label: "Structural Drawings", value: "StructuralDrawings" },
+        { label: "Mooring Layout", value: "MooringLayout" },
+        { label: "Equipment Layouts", value: "EquipmentLayouts" },
+        { label: "Schematics", value: "Schematics" },
       ],
-      Documents: ["Report", "DataSheets"],
-      General: ["Coordination", "Meetings"],
-      Assembly: ["Electrical", "Mechanical"],
-      Coding: ["Testing", "Algorithm"],
+      Documents: [
+        { label: "Report", value: "Report" },
+        { label: "DataSheets", value: "DataSheets" },
+      ],
+      General: [
+        { label: "Coordination", value: "Coordination" },
+        { label: "Meetings", value: "Meetings" },
+      ],
+      Assembly: [
+        { label: "Electrical", value: "Electrical" },
+        { label: "Mechanical", value: "Mechanical" },
+      ],
+      Coding: [
+        { label: "Testing", value: "Testing" },
+        { label: "Algorithm", value: "Algorithm" },
+      ],
     },
-    // Add other disciplines similarly...
   };
 
   return (
@@ -459,9 +586,14 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
                     activities &&
                     (activityHierarchy[discipline]?.[activities] || []).map(
                       (sub) => {
-                        const label = sub.replace(/\d+$/, ""); // removes any trailing digits
+                        const value = typeof sub === "string" ? sub : sub.value;
+                        const label =
+                          typeof sub === "string"
+                            ? sub
+                            : sub.label || sub.value;
+
                         return (
-                          <option key={sub} value={sub}>
+                          <option key={value} value={value}>
                             {label}
                           </option>
                         );
