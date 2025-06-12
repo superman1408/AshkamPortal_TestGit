@@ -8,7 +8,7 @@ import MessageBody from "./Message/MessageBody";
 import { getPosts } from "../../../action/posts";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
-import inbox from "../../../../src/assets/inbox.png";
+import MessageBodyImage from "../../../../src/assets/MessageBodyImage.png";
 
 const Communication = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -160,7 +160,7 @@ const Communication = () => {
                   }),
                 }}
               >
-                <img src={inbox} alt="logo" style={{ opacity: "70%" }} />
+                <img src={MessageBodyImage} alt="logo" style={{ opacity: "70%" }} />
               </Grid>
             </Grid>
           </Grid>
