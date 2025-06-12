@@ -117,7 +117,7 @@ const Panel = () => {
       sx={{
         bgcolor: "#ede4e5",
         borderRadius: "12px",
-        padding: "20px",
+        padding: "10px",
         "@media (max-width: 600px)": {
           flexDirection: "column",
           width: "50vh",
@@ -195,9 +195,9 @@ const Panel = () => {
                 sx={{
                   color: "white",
                   textAlign: "center",
-                  fontFamily: "Robota",
+                  fontFamily: "Roboto",
                   fontWeight: "bold",
-                  fontSize: "12px",
+                  fontSize: "10px",
                 }}
               >
                 {user.result.role.toUpperCase()}

@@ -104,8 +104,8 @@ const Message = ({ post, currentId }) => {
             key={index}
             elevation={10}
             sx={{
-              padding: "15px",
-              margin: "10px",
+              padding: "10px",
+              margin: "5px",
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
@@ -146,12 +146,12 @@ const Message = ({ post, currentId }) => {
                     alt="avatar"
                     src={post.selectedFile}
                     size="xs"
-                    withborder="true"
+                    withBorder="true"
                     className="p-0.5"
                   />
                   <Typography
                     sx={{
-                      marginLeft: "15px",
+                      marginLeft: "10px",
                       marginTop: "5px",
                       fontFamily: "Roboto",
                       fontWeight: "bold",
@@ -200,9 +200,10 @@ const Message = ({ post, currentId }) => {
               >
                 <textarea
                   style={{
-                    resize: "none",
+                    margin: "2px",
+                    // resize: "none",
                     height: "120px",
-                    width: windowWidth <= 600 ? "250px" : "600px",
+                    width: windowWidth <= 600 ? "200px" : "580px",
                     backgroundColor: "white",
                   }}
                   defaultValue={item.message}
