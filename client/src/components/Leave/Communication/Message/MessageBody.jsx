@@ -217,7 +217,7 @@ const Message = ({ post, currentId }) => {
                   marginTop: "10px",
                 }}
               >
-                {item.status?.toLowerCase() === "pending" && verifyTheRole() ? (
+                {verifyTheRole() && (item.status !== "Accepted" && item.status !== "Rejected") ? (
                   <>
                     <button
                       style={{ fontFamily: "Roboto" }}
