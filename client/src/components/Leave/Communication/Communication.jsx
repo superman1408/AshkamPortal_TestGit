@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Divider } from "@mui/material";
+import { Grid, Divider, Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import Panel from "../../Panel/Panel";
 
+import { useNavigate } from "react-router-dom";
 import Inbox from "./Inbox/inbox";
 import MessageBody from "./Message/MessageBody";
 import { getPosts } from "../../../action/posts";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 import inbox from "../../../../src/assets/inbox.png";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const Communication = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
   const [currentId, setCurrentId] = useState(user.result.id);
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
+
+  const navigate = useNavigate();
 
   const matches = useMediaQuery("(min-width:1120px)");
 
@@ -51,8 +55,28 @@ const Communication = () => {
     return 0;
   });
 
+  const handleGoBack = () => {
+    navigate(-1); // this means "go back one step in history"
+  };
+
   return (
     <>
+      {" "}
+      {/* <div style={{ display: "inline" }}>
+        <Button
+          onClick={handleGoBack}
+          sx={{
+            padding: "8px 16px",
+            color: "#16355d",
+            display: {
+              xs: "none",
+              sm: "inline-block",
+            },
+          }}
+        >
+          <ArrowBackIcon />
+        </Button>
+      </div> */}
       <Grid
         container
         spacing={2}
@@ -154,6 +178,9 @@ const Communication = () => {
                 )}
 
               <Grid
+                item
+                xs={12}
+                md={8}
                 sx={{
                   ...(matches && {
                     margin: "100px 130px 100px 130px", // Apply gray background if matches is true

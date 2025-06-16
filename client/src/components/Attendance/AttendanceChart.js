@@ -73,9 +73,9 @@ const PunctualityRadarChart = ({ data }) => {
         backgroundColor:
           lateLoginCount > 3
             ? "rgba(255, 99, 132, 0.3)"
-            : "rgba(54, 162, 235, 0.3)",
+            : "rgba(82, 204, 119, 0.3)",
         backgborderroundColor: onTimeLoginCount > 3 ? "green" : "green",
-        borderColor: lateLoginCount > 3 ? "red" : "blue",
+        borderColor: lateLoginCount > 3 ? "red" : "green",
         borderWidth: 2,
         pointBackgroundColor: [
           "blue",

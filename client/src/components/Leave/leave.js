@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Grid, TextField, Typography, Box } from "@mui/material";
+import { Card, Grid, TextField, Typography, Box, Button } from "@mui/material";
 import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -9,6 +9,8 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import SendSharpIcon from "@mui/icons-material/SendSharp";
 import PublicSharpIcon from "@mui/icons-material/PublicSharp";
+
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 import useStyles from "./style";
 import Panel from "../Panel/Panel";
@@ -112,8 +114,27 @@ const Leave = () => {
     });
   };
 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   return (
     <Grid container className={classes.mainContainer} sx={{ mt: 2 }}>
+      {/* <div style={{ display: "inline" }}>
+        <Button
+          onClick={handleGoBack}
+          sx={{
+            // padding: "8px 16px",
+            color: "#16355d",
+            display: {
+              xs: "none",
+              sm: "inline-block",
+            },
+          }}
+        >
+          <ArrowBackIcon />
+        </Button>
+      </div> */}
       <Box sx={{ display: "flex", width: "100%" }}>
         <Panel />
 
