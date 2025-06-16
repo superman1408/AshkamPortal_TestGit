@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Card, Grid, Typography } from "@mui/material";
 
 import { salarySlipData } from "../../../action/posts";
-import ComboBox from "./ComboBox";
+import ComboBox from "../../ComboBox/ComboBox";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import TitlePopup from "./TitlePopup";
 

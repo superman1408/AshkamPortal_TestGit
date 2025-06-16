@@ -17,6 +17,11 @@ const Inbox = ({ post, setCurrentId }) => {
     } else setIsClicked(!isClicked);
   };
 
+  // 🔒 Exclude Admin roles (case-insensitive)
+  if (post?.role?.toLowerCase() === "admin") {
+    return null; // Do not render anything
+  }
+
   return (
     <>
       <ButtonBase
