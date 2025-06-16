@@ -120,7 +120,7 @@ const Leave = () => {
 
   return (
     <Grid container className={classes.mainContainer} sx={{ mt: 2 }}>
-      {/* <div style={{ display: "inline" }}>
+      <div style={{ display: "inline" }}>
         <Button
           onClick={handleGoBack}
           sx={{
@@ -134,7 +134,16 @@ const Leave = () => {
         >
           <ArrowBackIcon />
         </Button>
-      </div> */}
+      </div>
+      <h2
+        style={{
+          color: "#16355d",
+          marginLeft: "20px",
+          fontFamily: "Roboto",
+        }}
+      >
+        Leave Section
+      </h2>
       <Box sx={{ display: "flex", width: "100%" }}>
         <Panel />
 
@@ -149,18 +158,6 @@ const Leave = () => {
             // gap: 2,
           }}
         >
-          <Typography
-            fontWeight={600}
-            variant="h4"
-            sx={{
-              textAlign: "center",
-              fontWeight: "bolder",
-              fontFamily: "Roboto",
-              color: "#16355d",
-            }}
-          >
-            Leave Section
-          </Typography>
           <Grid
             container
             spacing={2}
@@ -179,6 +176,7 @@ const Leave = () => {
                     fontFamily: "Roboto",
                     display: "flex",
                     alignItems: "center",
+                    justifyContent: "center",
                     // bgcolor: "#0D325C",
                   }}
                 >
@@ -334,8 +332,9 @@ const Leave = () => {
             {/* Right side - Leave table and calendar */}
             <Grid item xs={12} md={6}>
               <LeaveTableDisplay />
-              {(user.result.role === "employee" ||
-                user.result.role === "manager") && (
+              {(user?.result?.role === "employee" ||
+                (user?.result?.role === "manager" &&
+                  user?.result?.jobTitle !== "HR")) && (
                 <Card
                   elevation={10}
                   sx={{
