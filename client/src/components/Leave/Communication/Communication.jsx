@@ -93,7 +93,6 @@ const Communication = () => {
         container
         spacing={2}
         sx={{
-          marginTop: "10px",
           padding: "2px",
           flexDirection: matches ? "row" : "column", // Switch layout based on screen
           width: "100%",
