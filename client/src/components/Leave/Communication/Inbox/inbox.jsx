@@ -20,6 +20,8 @@ const Inbox = ({ post, setCurrentId }) => {
   return (
     <>
       <ButtonBase
+        xs={12}
+        md={12}
         required
         fullwidth="true"
         sx={{
@@ -36,6 +38,7 @@ const Inbox = ({ post, setCurrentId }) => {
         // onMouseEnter={handleMouseEnter}
       >
         <Grid
+          item
           sx={{
             display: "flex",
             flexDirection: "row",

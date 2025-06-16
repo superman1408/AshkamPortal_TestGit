@@ -98,7 +98,7 @@ const Message = ({ post, currentId }) => {
 
   return (
     currentId && (
-      <Grid container justifyContent="center">
+      <Grid item xs={12} md={12} justifyContent="center">
         {array.map((item, index) => (
           <Card
             key={index}
@@ -202,8 +202,8 @@ const Message = ({ post, currentId }) => {
                   style={{
                     margin: "2px",
                     // resize: "none",
-                    height: "120px",
-                    width: windowWidth <= 600 ? "200px" : "580px",
+                    height: "150px",
+                    width: windowWidth <= 600 ? "200px" : "800px",
                     backgroundColor: "white",
                   }}
                   defaultValue={item.message}
@@ -217,7 +217,9 @@ const Message = ({ post, currentId }) => {
                   marginTop: "10px",
                 }}
               >
-                {verifyTheRole() && (item.status !== "Accepted" && item.status !== "Rejected") ? (
+                {verifyTheRole() &&
+                item.status !== "Accepted" &&
+                item.status !== "Rejected" ? (
                   <>
                     <button
                       style={{ fontFamily: "Roboto" }}
