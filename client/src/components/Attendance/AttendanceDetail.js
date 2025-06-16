@@ -235,7 +235,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
           },
         }}
       >
-        <Grid item xs={12} md={2}>
+        <Grid item xs={12} md={2} sx={{ display: "flex" }}>
           <Panel />
         </Grid>
 
