@@ -2,17 +2,21 @@ import React, { useEffect, useState } from "react";
 import Uploading from "./PayslipLayout/Uploading";
 import SlipDownload from "./PayslipDownload/SlipDownload";
 import { useDispatch, useSelector } from "react-redux";
-import { Grid } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { Grid, Button } from "@mui/material";
 
 import { getPosts, getSalarySlipData } from "../../action/posts";
 import { useParams } from "react-router-dom";
 import Panel from "../Panel/Panel";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const PayslipDisplay = () => {
   const { id } = useParams();
   const user = JSON.parse(localStorage.getItem("profile"));
   const [currentId, setCurrentId] = useState(id);
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
   const posts = useSelector((state) => state.posts);
 
   const salary = useSelector((state) => state.salary);
@@ -47,6 +51,10 @@ const PayslipDisplay = () => {
 
   // const [post, setPost] = useState();
 
+  const handleGoBack = () => {
+    navigate(-1); // this means "go back one step in history"
+  };
+
   return (
     <div
       style={{
@@ -54,17 +62,34 @@ const PayslipDisplay = () => {
         flexDirection: "column",
       }}
     >
-      <div>
-        <strong
-          style={{
-            color: "#16355d",
-            marginLeft: "50px",
-            fontFamily: "Roboto",
-            fontSize: "30px",
-          }}
-        >
-          Salary Slip
-        </strong>
+      <div style={{ display: "flex" }}>
+        <div style={{ display: "inline" }}>
+          <Button
+            onClick={handleGoBack}
+            sx={{
+              padding: "8px 16px",
+              color: "#16355d",
+              display: {
+                xs: "none",
+                sm: "inline-block",
+              },
+            }}
+          >
+            <ArrowBackIcon />
+          </Button>
+        </div>
+        <div>
+          <strong
+            style={{
+              color: "#16355d",
+              marginLeft: "50px",
+              fontFamily: "Roboto",
+              fontSize: "30px",
+            }}
+          >
+            Salary Slip
+          </strong>
+        </div>
       </div>
       <Grid
         sx={{

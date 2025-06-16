@@ -32,7 +32,6 @@ const AttendanceDisplay = () => {
     setIsLoading(false);
   }, [isLoading]);
 
- 
   const verify = () => {
     try {
       if (
@@ -54,6 +53,8 @@ const AttendanceDisplay = () => {
     <div>
       {!isLoading && (
         <>
+         
+         
           {verify() === true && (
             <AttendanceCombo posts={posts} setCurrentId={setCurrentId} />
           )}

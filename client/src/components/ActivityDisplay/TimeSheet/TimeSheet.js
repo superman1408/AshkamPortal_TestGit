@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Divider, Grid, CircularProgress, Box, Button } from "@mui/material";
 
 import { useDispatch } from "react-redux";
@@ -17,8 +18,12 @@ import { useReactToPrint } from "react-to-print";
 
 import Panel from "../../Panel/Panel";
 
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+
 function TimeSheet({ currentId, posts }) {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const [entries, setEntries] = useState([]);
   const [projectCode, setProjectCode] = useState("");
@@ -288,8 +293,27 @@ function TimeSheet({ currentId, posts }) {
     };
   }, []);
 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   return (
     <div>
+      <div style={{ display: "inline" }}>
+        <Button
+          onClick={handleGoBack}
+          sx={{
+            padding: "8px 16px",
+            color: "#16355d",
+            display: {
+              xs: "none",
+              sm: "inline-block",
+            },
+          }}
+        >
+          <ArrowBackIcon />
+        </Button>
+      </div>
       <strong
         style={{
           color: "#16355d",

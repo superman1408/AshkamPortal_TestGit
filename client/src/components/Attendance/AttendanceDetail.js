@@ -18,6 +18,7 @@ import { dailyAttendance, logList } from "../../action/posts";
 // import HalfDoughnutWithPointer from "../Attendance/AttendanceChart";
 import PunctualityRadarChart from "./AttendanceChart";
 import Panel from "../Panel/Panel";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const AttendanceDetail = ({ currentId, posts }) => {
   const dispatch = useDispatch();
@@ -190,14 +191,34 @@ const AttendanceDetail = ({ currentId, posts }) => {
     fontFamily: "Roboto",
   };
 
+  const handleGoBack = () => {
+    navigate(-1); // this means "go back one step in history"
+  };
+
   return (
     <div style={{ height: "auto" }}>
-      <h2
-        style={{ color: "#16355d", marginLeft: "20px", fontFamily: "Roboto" }}
-      >
-        Employee Attendance
-      </h2>
-      <div style={{ display: "flex" }}></div>
+      <div style={{ display: "flex" }}>
+        <div style={{ display: "inline" }}>
+          <Button
+            onClick={handleGoBack}
+            sx={{
+              padding: "8px 16px",
+              color: "#16355d",
+              display: {
+                xs: "none",
+                sm: "inline-block",
+              },
+            }}
+          >
+            <ArrowBackIcon />
+          </Button>
+        </div>
+        <h2
+          style={{ color: "#16355d", marginLeft: "20px", fontFamily: "Roboto" }}
+        >
+          Employee Attendance
+        </h2>
+      </div>
 
       <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} />
 
@@ -231,7 +252,6 @@ const AttendanceDetail = ({ currentId, posts }) => {
             margin: "0px 5px 2px 10px",
           }}
         >
-          {" "}
           {verifyTheRole() && (
             <>
               <form className="time-sheet-form" onSubmit={handleSubmit}>
