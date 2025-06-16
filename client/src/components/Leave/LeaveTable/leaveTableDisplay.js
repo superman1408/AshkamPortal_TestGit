@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import Evolve from "./UnderTrial/Evolve";
 import { getPosts } from "../../../action/posts";
 import LeaveTable from "./leaveTable";
-import Combo from "./combo";
+import Combo from "../../ComboBox/ComboBox";
 import ChartComponent from "../pieGraph";
 
 // import AttendanceCombo from "./AttendanceCombo";

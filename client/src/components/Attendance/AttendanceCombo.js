@@ -19,11 +19,13 @@ const ComboBox = ({ posts, setCurrentId }) => {
     );
   };
 
-  const sortedPosts = [...posts].sort((a, b) => {
-    const nameA = formatName(a.firstName, a.lastName);
-    const nameB = formatName(b.firstName, b.lastName);
-    return nameA.localeCompare(nameB);
-  });
+  const sortedPosts = [...posts]
+    .filter((post) => post.role?.toLowerCase() !== "admin") // exclude any case variation of "Admin"
+    .sort((a, b) => {
+      const nameA = formatName(a.firstName, a.lastName);
+      const nameB = formatName(b.firstName, b.lastName);
+      return nameA.localeCompare(nameB);
+    });
 
   return (
     <select

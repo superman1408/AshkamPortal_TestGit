@@ -7,7 +7,7 @@ import { getPosts } from "../../action/posts";
 
 import "./Style.css";
 
-import ComboBox from "./TimeSheet/ComboBox";
+import ComboBox from "../ComboBox/ComboBox";
 
 const ActivityDisplay = () => {
   const { id } = useParams();

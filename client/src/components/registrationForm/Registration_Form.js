@@ -23,7 +23,7 @@ import Panel from "../Panel/Panel";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts, updatePost } from "../../action/posts";
 import { useNavigate, useParams } from "react-router-dom";
-import ComboBox from "./ComboBox/ComboBox";
+import ComboBox from "../ComboBox/ComboBox";
 import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
 import BadgeIcon from "@mui/icons-material/Badge";
 import ManageAccountsOutlinedIcon from "@mui/icons-material/ManageAccountsOutlined";
