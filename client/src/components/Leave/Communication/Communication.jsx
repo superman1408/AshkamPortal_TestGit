@@ -9,7 +9,9 @@ import MessageBody from "./Message/MessageBody";
 import { getPosts } from "../../../action/posts";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
-import MessageBodyImage from "../../../../src/assets/MessageBodyImage.png";
+// import MessageBodyImage from "../../../../src/assets/MessageBodyImage.png";
+import InboxBodyImage from "../../../../src/assets/InboxBodyImage.png";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const Communication = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -17,8 +19,10 @@ const Communication = () => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
 
-  const matches = useMediaQuery("(min-width:1024px) and (max-width:1440px)");
-  // const matches = useMediaQuery("(min-width:1244px)");
+  const navigate = useNavigate();
+
+  // const matches = useMediaQuery("(min-width:1024px) and (max-width:1440px)");
+  const matches = useMediaQuery("(min-width:600px)");
 
   useEffect(() => {
     dispatch(getPosts());
@@ -53,24 +57,37 @@ const Communication = () => {
     return 0;
   });
 
+  const handleGoBack = () => {
+    navigate(-1); // this means "go back one step in history"
+  };
+
   return (
-    <Grid
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "2px",
-      }}
-    >
-      <div
-        style={{
-          fontSize: "28px",
-          font: "Roboto",
-          fontWeight: "bolder",
-          color: "#0D325C",
-        }}
-      >
-        Message Center
+    <>
+      <div style={{ display: "flex" }}>
+        <div style={{ display: "inline" }}>
+          <Button
+            onClick={handleGoBack}
+            sx={{
+              padding: "8px 16px",
+              color: "#16355d",
+              display: {
+                xs: "none",
+                sm: "inline-block",
+              },
+            }}
+          >
+            <ArrowBackIcon />
+          </Button>
+        </div>
+        <h2
+          style={{
+            color: "#16355d",
+            marginLeft: "20px",
+            fontFamily: "Roboto",
+          }}
+        >
+          Message Center
+        </h2>
       </div>
       <Grid
         container
@@ -78,7 +95,7 @@ const Communication = () => {
         sx={{
           marginTop: "10px",
           padding: "2px",
-          flexDirection: { xs: "column", md: "row" },
+          flexDirection: matches ? "row" : "column", // Switch layout based on screen
           width: "100%",
         }}
       >
@@ -88,59 +105,89 @@ const Communication = () => {
           </Grid>
         )}
 
-        <Grid item xs={12} md={4} sx={{ height: "600px", overflow: "auto" }}>
-          {verifyTheRole()
-            ? sortedPosts.map((post) => (
-                <div key={post._id} style={{ marginTop: "10px" }}>
-                  <Inbox post={post} setCurrentId={setCurrentId} />
-                  <Divider sx={{ borderWidth: "1px" }} />
-                </div>
-              ))
-            : verifyManager()
-            ? sortedPosts.map(
+        {/* Inbox + Message Body Container */}
+
+        <Grid
+          item
+          xs={12}
+          md={10}
+          sx={{
+            display: "flex",
+            flexDirection: matches ? "row" : "column",
+            gap: 2,
+          }}
+        >
+          {/* Inbox Section */}
+          <Grid
+            item
+            xs={12}
+            md={3}
+            sx={{
+              maxHeight: "100vh",
+              overflowY: "auto",
+              bgcolor: "white",
+              padding: 1,
+              borderRadius: 2,
+            }}
+          >
+            {verifyTheRole()
+              ? sortedPosts.map((post) => (
+                  <div key={post._id} style={{ marginTop: "10px" }}>
+                    <Inbox post={post} setCurrentId={setCurrentId} />
+                    <Divider sx={{ borderWidth: "1px" }} />
+                  </div>
+                ))
+              : verifyManager()
+              ? sortedPosts.map(
+                  (post) =>
+                    post.department === user.result.department && (
+                      <div key={post._id} style={{ marginTop: "10px" }}>
+                        <Inbox post={post} setCurrentId={setCurrentId} />
+                        <Divider sx={{ borderWidth: "1px" }} />
+                      </div>
+                    )
+                )
+              : sortedPosts.map(
+                  (post) =>
+                    post._id === user.result._id && (
+                      <div key={post._id} style={{ marginTop: "10px" }}>
+                        <Inbox post={post} setCurrentId={setCurrentId} />
+                        <Divider sx={{ borderWidth: "1px" }} />
+                      </div>
+                    )
+                )}
+          </Grid>
+
+          {/* Message Body Section */}
+          <Grid
+            item
+            xs={12}
+            md={8}
+            sx={{
+              maxHeight: "100vh",
+              overflowY: "auto",
+              bgcolor: "white",
+              padding: 2,
+              borderRadius: 2,
+              backgroundImage: `url(${InboxBodyImage})`,
+              // backgroundSize: "contain", // or "cover", "auto" based on your design
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
+            }}
+          >
+            {user &&
+              posts.map(
                 (post) =>
-                  post.department === user.result.department && (
-                    <div key={post._id} style={{ marginTop: "10px" }}>
-                      <Inbox post={post} setCurrentId={setCurrentId} />
-                      <Divider sx={{ borderWidth: "1px" }} />
-                    </div>
-                  )
-              )
-            : sortedPosts.map(
-                (post) =>
-                  post._id === user.result._id && (
-                    <div key={post._id} style={{ marginTop: "10px" }}>
-                      <Inbox post={post} setCurrentId={setCurrentId} />
-                      <Divider sx={{ borderWidth: "1px" }} />
+                  post._id === currentId && (
+                    <div key={post._id}>
+                      <MessageBody post={post} currentId={currentId} />
                     </div>
                   )
               )}
-        </Grid>
-
-        <Grid item xs={12} md={6} sx={{ height: "600px", overflowY: "auto" }}>
-          {user &&
-            posts.map(
-              (post) =>
-                post._id === currentId && (
-                  <div key={post._id}>
-                    <MessageBody post={post} currentId={currentId} />
-                  </div>
-                )
-            )}
-          <Grid
-            sx={{
-              margin: matches ? "100px 130px" : "20px",
-            }}
-          >
-            <img
-              src={MessageBodyImage}
-              alt="logo"
-              style={{ opacity: "70%", width: "100%" }}
-            />
           </Grid>
         </Grid>
       </Grid>
-    </Grid>
+    </>
   );
 };
 
