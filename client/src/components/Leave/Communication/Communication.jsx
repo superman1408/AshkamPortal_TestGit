@@ -124,7 +124,6 @@ const Communication = () => {
             sx={{
               maxHeight: "100vh",
               overflowY: "auto",
-              bgcolor: "white",
               padding: 1,
               borderRadius: 2,
             }}

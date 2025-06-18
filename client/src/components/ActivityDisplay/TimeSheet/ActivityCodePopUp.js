@@ -120,7 +120,6 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       EquipmentSizing: "001",
       EquipmentSizing1: "002",
       EquipmentSizing2: "006",
-      Equipments: "005",
       FEA_OR_CFD: "002",
       FoundationLayout: "003",
       GeneralArrangement: "001",
@@ -132,7 +131,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       Instruments: "001",
       InterfaceSchedule: "004",
       InterfaceSchedule1: "005",
-      layout: "001",
+      Layout: "001",
       Leave: "004",
       Lighting: "005",
       Lighting1: "006",
@@ -547,16 +546,6 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
                       </option>
                     )
                   )}
-                {/* <option value="Calculations">Calculations</option>
-                <option value="DocumentationControl">
-                  Documentation Control
-                </option>
-                <option value="Documents">Documents</option>
-                <option value="Drawings">Drawings</option>
-                <option value="General">General</option>
-                <option value="Lists">Lists</option>
-                <option value="Projectcontrol">Project Control</option>
-                <option value="ProjectManagement">Project Management</option> */}
               </select>
 
               <div>
@@ -599,75 +588,6 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
                         );
                       }
                     )}
-                  {/* <option value="Airflow">Air flow</option>
-                  <option value="CableSchedule">Cable Schedule</option>
-                  <option value="CableSizing">Cable Sizing</option>
-                  <option value="CableTrayORConduit">Cable Tray/Conduit</option>
-                  <option value="Coordination">Coordination</option>
-                  <option value="CoordinationORSupervision">
-                    Coordination/ supervision
-                  </option>
-                  <option value="DataSheets">Data Sheets</option>
-                  <option value="DocReviews">Doc Reviews</option>
-                  <option value="DocumentIssue">Document Issue</option>
-                  <option value="DocumentReciept">Document Reciept</option>
-                  <option value="DocumentReporting">Document Reporting</option>
-                  <option value="Duct">Duct</option>
-                  <option value="Earthing">Earthing</option>
-                  <option value="EquipmentLayout">Equipment Layout</option>
-                  <option value="EquipmentSizing">Equipment Sizing</option>
-                  <option value="Equipments">Equipments</option>
-                  <option value="ExternalMeetings">External Meetings</option>
-                  <option value="FEA">FEA</option>
-                  <option value="Foundation">Foundation</option>
-                  <option value="FoundationLayout">Foundation Layout</option>
-                  <option value="HAZ">HAZ</option>
-                  <option value="HeatandMassBalance">
-                    Heat and Mass Balance
-                  </option>
-                  <option value="I_OR_Olist">I/Olist</option>
-                  <option value="InstrumentLayout">Instrument Layout</option>
-                  <option value="InstrumentList">Instrument List</option>
-                  <option value="Instruments">Instruments</option>
-                  <option value="InterfaceSchedule">Interface Schedule</option>
-                  <option value="InternalMeetings">Internal Meetings</option>
-                  <option value="InvoiceInput">Invoice Input</option>
-                  <option value="layout">layout</option>
-                  <option value="Lighting">Lighting</option>
-                  <option value="LightningProtection">
-                    Lightning Protection
-                  </option>
-                  <option value="LineList">Line List</option>
-                  <option value="LineSizing">Line Sizing</option>
-                  <option value="LoadList">Load List</option>
-                  <option value="LoopDrawings">Loop Drawings</option>
-                  <option value="Meetings">Meetings</option>
-                  <option value="Mooring">Mooring</option>
-                  <option value="MooringLines">Mooring Lines</option>
-                  <option value="MTO">MTO</option>
-                  <option value="P_OR_ID">P/ID</option>
-                  <option value="PFD">PFD</option>
-                  <option value="PipeStress">Pipe Stress</option>
-                  <option value="PipingLayout">Piping Layout</option>
-                  <option value="Planning">Planning</option>
-                  <option value="PowerSystemCalculations">
-                    Power System Calculations
-                  </option>
-                  <option value="ProjectSupport">Project Support</option>
-                  <option value="Proposals">Proposals</option>
-                  <option value="PumpSizing">Pump Sizing</option>
-                  <option value="Reporting">Reporting</option>
-                  <option value="SchematicDrawings">Schematic Drawings</option>
-                  <option value="SingleLineDrawings">
-                    Single Line Drawings
-                  </option>
-                  <option value="Specifications">Specifications</option>
-                  <option value="Structural">Structural</option>
-                  <option value="StructuralDrawings">
-                    Structural Drawings
-                  </option>
-                  <option value="Training">Training</option>
-                  <option value="ValveSizing">Valve Sizing</option> */}
                 </select>
               </div>
             </div>
