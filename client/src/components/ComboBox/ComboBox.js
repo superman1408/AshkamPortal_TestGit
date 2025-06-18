@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const AbsentComboBox = ({ posts, setCurrentId }) => {
+  const user = JSON.parse(localStorage.getItem("profile"));
   const [selectedOption, setSelectedOption] = useState("");
 
   const handleChange = (event) => {
@@ -8,6 +9,9 @@ const AbsentComboBox = ({ posts, setCurrentId }) => {
     setSelectedOption(value);
     setCurrentId(value);
   };
+
+  const role = user?.result?.role;
+  const department = user?.result?.department;
 
   const formatName = (firstName, lastName) => {
     return (
@@ -33,6 +37,16 @@ const AbsentComboBox = ({ posts, setCurrentId }) => {
       return nameA.localeCompare(nameB);
     });
 
+  const currentUser = user?.result; // manager
+
+  const sortedDepartmentPosts = [...posts]
+    .filter((post) => post?.department === currentUser?.department) // exclude any case variation of "Admin"
+    .sort((a, b) => {
+      const nameA = formatName(a.firstName, a.lastName);
+      const nameB = formatName(b.firstName, b.lastName);
+      return nameA.localeCompare(nameB);
+    });
+
   return (
     <select
       value={selectedOption}
@@ -41,7 +55,7 @@ const AbsentComboBox = ({ posts, setCurrentId }) => {
         color: "#16355d",
         float: "right",
         marginTop: "10px",
-        marginLeft: "200px",
+        // marginLeft: "200px",
         width: "200px",
         backgroundColor: "#f2f2f2",
         fontFamily: "Roboto",
@@ -54,11 +68,17 @@ const AbsentComboBox = ({ posts, setCurrentId }) => {
       >
         Select Employee{" "}
       </option>
-      {sortedPosts.map((option, index) => (
-        <option key={index} value={option._id}>
-          {formatName(option.firstName, option.lastName)}
-        </option>
-      ))}
+      {role === "manager" && department !== "Human Resource"
+        ? sortedDepartmentPosts.map((option, index) => (
+            <option key={index} value={option._id}>
+              {formatName(option.firstName, option.lastName)}
+            </option>
+          ))
+        : sortedPosts.map((option, index) => (
+            <option key={index} value={option._id}>
+              {formatName(option.firstName, option.lastName)}
+            </option>
+          ))}
     </select>
   );
 };

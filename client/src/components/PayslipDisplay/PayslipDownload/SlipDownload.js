@@ -6,6 +6,7 @@ import {
   CardContent,
   CardActions,
   Divider,
+  Grid,
   Box,
   LinearProgress,
 } from "@mui/material";
@@ -42,8 +43,7 @@ const SlipDownload = ({ posts, currentId, salary, isLoading }) => {
         sx={{
           textAlign: "center",
           margin: "10px",
-          width: "1050px",
-          "@media(max-Width:600px)": { width: "40vh", margin: "0px" },
+          // "@media(max-Width:600px)": { width: "40vh", margin: "0px" },
         }}
       >
         <div>
@@ -66,7 +66,7 @@ const SlipDownload = ({ posts, currentId, salary, isLoading }) => {
                     color: post?.employeeId ? "#16355d" : "red",
                   }}
                 >
-                  Employee Id :{" "}
+                  Employee Id :
                   {post?.employeeId
                     ? post?.employeeId
                     : "Please complete your profile !!"}
@@ -108,11 +108,19 @@ const SlipDownload = ({ posts, currentId, salary, isLoading }) => {
               display: "flex",
               flexWrap: "wrap",
               justifyContent: "center",
+              gap: "20px",
             }}
           >
             {salary.map((slip, index) =>
               currentId === slip.identify ? (
-                <div key={index} style={{ margin: "20px 20px 20px 20px" }}>
+                <div
+                  key={index}
+                  style={{
+                    flex: "1 1 160px",
+                    maxWidth: "180px",
+                    margin: "10px",
+                  }}
+                >
                   <Card sx={{ maxWidth: 180, maxHeight: 280 }}>
                     <CardMedia
                       component="img"

@@ -3,7 +3,7 @@ import Uploading from "./PayslipLayout/Uploading";
 import SlipDownload from "./PayslipDownload/SlipDownload";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Grid, Button } from "@mui/material";
+import { Grid, Button, Typography, Card } from "@mui/material";
 
 import { getPosts, getSalarySlipData } from "../../action/posts";
 import { useParams } from "react-router-dom";
@@ -105,24 +105,57 @@ const PayslipDisplay = () => {
         {/*--------------------------------------------------------------------------------------------------  */}
         <Grid>
           <Grid>
-            {verify() === true && (
-              <div>
-                <Uploading
-                  posts={posts}
-                  currentId={currentId}
-                  setCurrentId={setCurrentId}
-                />
-              </div>
-            )}
+            <Card
+              elevation={4}
+              sx={{ margin: "10px", width: { xs: "auto", md: "1000px" } }}
+            >
+              {verify() && (
+                <>
+                  <Typography
+                    variant="h6"
+                    fontWeight={600}
+                    sx={{
+                      textAlign: "center",
+                      padding: "2px",
+                      fontWeight: "bolder",
+                      fontFamily: "Roboto",
+                      color: "#16355d",
+                    }}
+                  >
+                    Upload Payslip
+                  </Typography>
+                  <Uploading
+                    posts={posts}
+                    currentId={currentId}
+                    setCurrentId={setCurrentId}
+                  />
+                </>
+              )}
+            </Card>
           </Grid>
 
           <Grid>
-            <SlipDownload
-              posts={posts}
-              currentId={currentId}
-              salary={salary}
-              isLoading={isLoading}
-            />
+            <Card elevation={4} sx={{ margin: "10px" }}>
+              <Typography
+                variant="h6"
+                fontWeight={600}
+                sx={{
+                  textAlign: "center",
+                  padding: "2px",
+                  fontWeight: "bolder",
+                  fontFamily: "Roboto",
+                  color: "#16355d",
+                }}
+              >
+                Download Payslip
+              </Typography>
+              <SlipDownload
+                posts={posts}
+                currentId={currentId}
+                salary={salary}
+                isLoading={isLoading}
+              />
+            </Card>
           </Grid>
         </Grid>
       </Grid>

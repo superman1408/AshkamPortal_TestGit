@@ -56,78 +56,81 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
 
   return (
     <>
-      <Card
-        sx={{
-          textAlign: "center",
-          margin: "10px",
-          "@media(max-Width:600px)": { width: "40vh", margin: "0px" },
-        }}
-      >
-        <Grid
+      <Grid item xs={12} md={12}>
+        <Card
           sx={{
-            display: "flex",
-            justifyContent: "space-evenly",
-            gap: "30px",
-            padding: "30px",
-            "@media(max-Width:600px)": { flexDirection: "column" },
+            padding: "2px",
+            // "@media(max-Width:600px)": { width: "40vh", margin: "0px" },
           }}
         >
-          <Grid>
-            <ComboBox posts={posts} setCurrentId={setCurrentId} />
-          </Grid>
           <Grid
             sx={{
               display: "flex",
-              "@media(max-Width:600px)": { flexDirection: "column" },
+              flexWrap: "wrap",
+              flexDirection: { xs: "column", sm: "row" }, // this is the correct way
+              justifyContent: "space-evenly",
+              gap: "30px",
+              padding: "30px",
             }}
           >
-            <Typography
+            <Grid>
+              <ComboBox posts={posts} setCurrentId={setCurrentId} />
+            </Grid>
+            <Grid
               sx={{
-                fontWeight: "bold",
-                marginTop: "10px",
-                fontFamily: "Roboto",
-                color: "#16355d",
+                display: "flex",
+                flexDirection: { xs: "column", sm: "row" },
+                alignItems: "center",
               }}
             >
-              File Upload
-            </Typography>
-            <div
-              style={{
-                fontWeight: "bold",
-                marginTop: "5px",
-                marginLeft: "10px",
-              }}
-            >
-              <input
-                type="text"
-                onChange={handleTitleChange}
-                placeholder="Enter the Title"
-                defaultValue={title}
-                onFocus={togglePopup}
-              />
-
-              {titleOpen && (
-                <TitlePopup setTitle={setTitle} setTitleOpen={setTitleOpen} />
-              )}
-              <input
-                style={{
-                  marginLeft: "50px",
+              <Typography
+                sx={{
+                  fontWeight: "bold",
+                  marginTop: "10px",
                   fontFamily: "Roboto",
                   color: "#16355d",
                 }}
-                type="file"
-                onChange={handleFileChange}
-                accept=".pdf"
-              />
-            </div>
+              >
+                File Upload
+              </Typography>
+              <div
+                style={{
+                  fontWeight: "bold",
+                  marginTop: "5px",
+                  marginLeft: "10px",
+                }}
+              >
+                <input
+                  type="text"
+                  onChange={handleTitleChange}
+                  placeholder="Enter the Title"
+                  defaultValue={title}
+                  onFocus={togglePopup}
+                />
+
+                {titleOpen && (
+                  <TitlePopup setTitle={setTitle} setTitleOpen={setTitleOpen} />
+                )}
+                <input
+                  style={{
+                    marginLeft: "50px",
+                    fontFamily: "Roboto",
+                    color: "#16355d",
+                  }}
+                  type="file"
+                  onChange={handleFileChange}
+                  accept=".pdf"
+                />
+              </div>
+            </Grid>
+            <Grid>
+              <button style={{ fontFamily: "Roboto" }} onClick={handleUpload}>
+                Upload <FileUploadIcon />
+              </button>
+            </Grid>
           </Grid>
-          <Grid>
-            <button style={{ fontFamily: "Roboto" }} onClick={handleUpload}>
-              Upload <FileUploadIcon />
-            </button>
-          </Grid>
-        </Grid>
-      </Card>
+        </Card>
+      </Grid>
     </>
   );
 };

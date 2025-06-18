@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 
 import "./Style1.css"; // Import CSS file for styling
 import { tableDelete, tableEdit, todoList } from "../../../action/posts";
-import ProjectCodePopUp from "./ProjectCodePopUp";
+// import ProjectCodePopUp from "./ProjectCodePopUp";
 import ActivityCodePopUp from "./ActivityCodePopUp";
 import { getPosts } from "../../../action/posts";
 
@@ -397,17 +397,18 @@ function TimeSheet({ currentId, posts }) {
                   id="projectCode"
                   // value={projectCode}
                   defaultValue={projectCode}
-                  onFocus={togglePopup1} // Using onFocus event to trigger the popup
+                  // onFocus={togglePopup1} // Using onFocus event to trigger the popup
+                  onChange={(e) => setProjectCode(e.target.value)}
                   autoComplete="off"
                 />
                 {/* ______________________________________pop window contents_____________________________________________ */}
 
-                {projectopen && (
+                {/* {projectopen && (
                   <ProjectCodePopUp
                     setProjectCode={setProjectCode}
                     setProjectOpen={setProjectOpen}
                   />
-                )}
+                )} */}
               </div>
 
               <div className="form-group">
@@ -705,28 +706,53 @@ function TimeSheet({ currentId, posts }) {
                       <thead>
                         <tr>
                           <th
-                            style={{ color: "#16355d", fontFamily: "Roboto" }}
+                            style={{
+                              textAlign: "center",
+                              width: "15%",
+                              color: "#16355d",
+                              fontFamily: "Roboto",
+                            }}
                           >
                             Date (yyyy-mm-dd)
                           </th>
                           <th
-                            style={{ color: "#16355d", fontFamily: "Roboto" }}
+                            style={{
+                              textAlign: "center",
+                              width: "25%",
+                              color: "#16355d",
+                              fontFamily: "Roboto",
+                            }}
                           >
                             Project Code
                           </th>
                           <th
-                            style={{ color: "#16355d", fontFamily: "Roboto" }}
+                            style={{
+                              textAlign: "center",
+                              width: "25%",
+                              color: "#16355d",
+                              fontFamily: "Roboto",
+                            }}
                           >
                             Activity Code
                           </th>
 
                           <th
-                            style={{ color: "#16355d", fontFamily: "Roboto" }}
+                            style={{
+                              textAlign: "center",
+                              width: "15%",
+                              color: "#16355d",
+                              fontFamily: "Roboto",
+                            }}
                           >
                             Net Time (hrs)
                           </th>
                           <th
-                            style={{ color: "#16355d", fontFamily: "Roboto" }}
+                            style={{
+                              textAlign: "center",
+                              width: "15%",
+                              color: "#16355d",
+                              fontFamily: "Roboto",
+                            }}
                           >
                             Over Time (hrs)
                           </th>
@@ -741,7 +767,7 @@ function TimeSheet({ currentId, posts }) {
                                 color: "#e55d17",
                                 fontFamily: "Roboto",
                                 padding: "10px",
-                                alignContent: "center",
+                                textAlign: "center",
                               }}
                             >
                               {post.date}
@@ -751,7 +777,7 @@ function TimeSheet({ currentId, posts }) {
                                 color: "#e55d17",
                                 fontFamily: "Roboto",
                                 padding: "10px",
-                                alignContent: "center",
+                                textAlign: "center",
                               }}
                             >
                               {post.projectCode}
@@ -761,7 +787,7 @@ function TimeSheet({ currentId, posts }) {
                                 color: "#e55d17",
                                 fontFamily: "Roboto",
                                 padding: "10px",
-                                alignContent: "center",
+                                textAlign: "center",
                               }}
                             >
                               {post.activityCode}
@@ -771,7 +797,7 @@ function TimeSheet({ currentId, posts }) {
                                 color: "#e55d17",
                                 fontFamily: "Roboto",
                                 padding: "10px",
-                                alignContent: "center",
+                                textAlign: "center",
                               }}
                             >
                               {post.netTime}
@@ -781,50 +807,49 @@ function TimeSheet({ currentId, posts }) {
                                 color: "#e55d17",
                                 fontFamily: "Roboto",
                                 padding: "10px",
-                                alignContent: "center",
+                                textAlign: "center",
                               }}
                             >
                               {post.overTime}
                             </td>
-                            {printingShow === false && (
-                              <td
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "space-around",
-                                  padding: "10px",
-                                  alignContent: "center",
-                                }}
-                              >
-                                {role === "admin" && (
-                                  <>
-                                    <button
-                                      id="editButton"
-                                      style={{ fontFamily: "Roboto" }}
-                                      onClick={() => editEntry(index)}
-                                    >
-                                      Edit
-                                    </button>
-                                    <button
-                                      id="deleteButton"
-                                      style={{ fontFamily: "Roboto" }}
-                                      onClick={() => deleteEntry(index)}
-                                    >
-                                      Delete
-                                    </button>
-                                  </>
-                                )}
-                                {role === "manager" && (
-                                  <>
-                                    <button
-                                      id="editButton"
-                                      style={{ fontFamily: "Roboto" }}
-                                      onClick={() => editEntry(index)}
-                                    >
-                                      Edit
-                                    </button>
-                                  </>
-                                )}
-                              </td>
+                            {printingShow === false && role === "admin" && (
+                              <>
+                                <td
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "space-around",
+                                    padding: "10px",
+                                    textAlign: "center",
+                                  }}
+                                >
+                                  <button
+                                    id="editButton"
+                                    style={{ fontFamily: "Roboto" }}
+                                    onClick={() => editEntry(index)}
+                                  >
+                                    Edit
+                                  </button>
+                                  <button
+                                    id="deleteButton"
+                                    style={{ fontFamily: "Roboto" }}
+                                    onClick={() => deleteEntry(index)}
+                                  >
+                                    Delete
+                                  </button>
+
+                                  {role === "manager" && (
+                                    <>
+                                      <button
+                                        id="editButton"
+                                        style={{ fontFamily: "Roboto" }}
+                                        onClick={() => editEntry(index)}
+                                      >
+                                        Edit
+                                      </button>
+                                    </>
+                                  )}
+                                </td>
+                              </>
                             )}
                           </tr>
                         ))}
