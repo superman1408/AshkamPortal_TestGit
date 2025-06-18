@@ -90,17 +90,18 @@ const AboutUs = () => {
             }}
           >
             <p style={{ fontFamily: "Roboto" }}>
-              ASHKAM ENERGY was incorporated in 2015 by a group of passionate
-              engineers and professionals accomplishing Make in India Global
-              Energy Consulting services. Their Mission, Vision, and Values
-              turned into a progressive & dynamic multi-disciplinary engineering
-              consulting company actively involved in Marine & Naval
-              Architectural, Process, Structural, Civil, Mechanical, and Piping
-              Engineering across the industry. The group has expertise in
-              Offshore Engineering, Mooring Design, Engineering, Subsea Pipeline
-              & Marine Engineering, Advisory services to Oil & Gas, LNG &
-              Re-gasification Terminal Design, Marine Port & Harbor development,
-              and Renewable Energy.
+              ASHKAM ENERGY PVT LTD was incorporated in 2015 by a group of
+              passionate engineers and professionals accomplishing Make in India
+              Global Energy Consultancy services. Their Vision, Mission, and
+              Values turned into a progressive & dynamic multi-disciplinary
+              engineering consultancy company actively involved in Marine
+              Engineering, Naval Architecture, Process, Structural, Civil,
+              Mechanical, and Piping Engineering across the industry. The group
+              has expertise in Ship Design, Offshore Engineering, Mooring
+              Design, Critical Equipment Design, Subsea Pipeline & Marine
+              Engineering, Advisory services to Oil & Gas, LNG & Re-gasification
+              Terminal Design, Port & Harbour development, Renewable Energy and
+              EPC Services.
             </p>
             <Typography
               sx={{
@@ -113,10 +114,10 @@ const AboutUs = () => {
               VISION
             </Typography>{" "}
             <p style={{ fontFamily: "Roboto" }}>
-              A vision of being a Global Leading engineering & and consulting
+              A vision of being a Global Leading engineering & consultancy
               organization driven by our entrepreneurial spirit, cutting-edge
-              technology, and execution excellence combined with our
-              out-of-the-box approach and innovative ideas.
+              technology, and execution excellence combined with our innovative
+              approach ideas.
             </p>
             <Typography
               sx={{
@@ -128,10 +129,10 @@ const AboutUs = () => {
               MISSION
             </Typography>{" "}
             <p style={{ fontFamily: "Roboto" }}>
-              We are committed to providing Best-in-Class engineering and
-              consulting services to our clients encompassing innovative
-              out-of-the-box thinking approaches. Our motto for "Thriving on
-              Excellence" is achieved by empowering our workforce.
+              We are committed to provide Best-in-Class engineering and
+              consultancy services encompassing innovative out-of-the-box
+              thinking approaches. Our motto for "Thriving on Excellence" is
+              achieved by empowering our workforce.
             </p>
             <Typography
               sx={{
@@ -143,32 +144,32 @@ const AboutUs = () => {
               VALUES
             </Typography>{" "}
             <p style={{ fontFamily: "Roboto" }}>
-              Our business ethics and high professional integrity drive us to
-              achieve excellence in engineering with values such as - <br />
-              <b>Trust</b> - The organization functions with the belief that
-              everyone embraces the value of the company to deliver the best for
+              Our business ethics & high professional integrity drive us to
+              achieve excellence in engineering with values - <br />
+              <b>Trust</b> - The organisation functions with the belief that
+              everyone embrace the value of company to deliver what is best for
               the client. <br />
-              <b>Empowerment</b> - We believe in an environment that enables our
-              team to make the decision that contributes to our client's delight
-              in getting world-class engineering solutions. <br />
-              <b>Business Ethics</b> - It's our moral responsibility to adopt
-              robust business ethics to serve our clients with leadership,
-              Integrity, and Accountability. We continuously challenge ourselves
-              to achieve high business ethics.
+              <b>Empowerment</b> - We believe in an environment which enables
+              our team to make decision that contributes to our client's delight
+              in setting world-class engineering solution. <br />
+              <b>Business Ethics</b> - Its our moral responsibility to adapt the
+              robust business ethics to serve our clients with the leadership.
+              Integrity & Accountability. We continuously challenge ourselves to
+              achieve the high business ethics.
             </p>
             <br />
             <p style={{ fontStyle: "oblique", fontFamily: "Roboto" }}>
-              “We conceptualized Ashkam Energy to become a key Global
-              Engineering Consulting Firm operating from tier- II city of India.
-              We started off our journey rather slowly. However, with the backup
-              of years of experience, knowledge, and the commitment and vision
-              needed to enter a competitive environment we have been able to
-              make our name and place in the industry. Ashkam with the motto of
-              Thriving on Excellence is on the right track to becoming a dynamic
-              multi-disciplinary engineering consulting company in Marine &
-              Offshore, Oil & Gas, Civil Infrastructure, Underwater and Subsea
-              Engineering.” To me, “Ashkam is a synonym for Leadership, Passion,
-              and Engineering Excellence!”
+              “We conceptualized Ashkam Energy Pvt Ltd to become a key Global
+              Engineering Consultancy Firm operating from tier- II city of
+              India. We started off our journey rather slowly. However, with the
+              backup of years of experience, knowledge, commitment and the
+              vision needed to entering a competitive environment, we have been
+              able to make our name and place in the industry. Ashkam with the
+              motto of “Thriving on Excellence” is on the right track to
+              becoming a dynamic multi-disciplinary engineering consultancy
+              company in Marine & Offshore, Oil & Gas, Civil Infrastructure,
+              Underwater and Subsea Engineering.” To me, “Ashkam is a synonym
+              for Leadership, Passion, and Engineering Excellence!”
               <br />
             </p>{" "}
             <Typography sx={{ float: "right", fontStyle: "oblique" }}>
