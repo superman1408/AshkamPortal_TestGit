@@ -77,6 +77,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       Projectcontrol: "PC",
       ProjectEngineering: "PE",
       Task: "TA",
+      Coding: "CO",
     };
 
     return Activities[ActivitiesCode];
