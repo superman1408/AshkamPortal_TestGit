@@ -72,6 +72,8 @@ function TimeSheet({ currentId, posts }) {
   }, [dispatch, currentId, posts]);
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
+
     const newEntry = {
       projectCode,
       activityCode,
@@ -98,6 +100,9 @@ function TimeSheet({ currentId, posts }) {
           clearForm();
         });
       }
+
+      alert("✅ Entry submitted successfully!");
+      window.location.reload();
     } else {
       alert(
         'Invalid entry! Please check your input values and try again. Selected Date must not fall under "SUNDAY" & 2nd-4th "SATURDAY".'
@@ -135,7 +140,7 @@ function TimeSheet({ currentId, posts }) {
       0
     );
 
-    return totalNetTime + newEntry.netTime <= 8;
+    return totalNetTime + newEntry.netTime <= 9;
   };
 
   const handleCheck = (e) => {
@@ -455,7 +460,8 @@ function TimeSheet({ currentId, posts }) {
                   id="netTime"
                   // value={netTime}
                   defaultValue={netTime}
-                  onChange={(e) => setNetTime(e.target.value)}
+                  onChange={(e) => setNetTime(parseFloat(e.target.value))}
+                  step="0.1"
                   // max={8}
                 />
               </div>
@@ -471,7 +477,8 @@ function TimeSheet({ currentId, posts }) {
                   id="overTime"
                   // value={overTime}
                   defaultValue={overTime}
-                  onChange={(e) => setOverTime(e.target.value)}
+                  onChange={(e) => setOverTime(parseFloat(e.target.value))}
+                  step="0.1"
                 />
               </div>
               {/* </div> */}
