@@ -16,7 +16,7 @@ const authSchema = mongoose.Schema({
   gender: {
     type: String,
     require: true,
-  }, 
+  },
   maritalStatus: {
     type: String,
     require: true,
