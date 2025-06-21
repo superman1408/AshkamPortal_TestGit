@@ -31,6 +31,8 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import Select from "react-select";
+import customSelectStyles from "./selectStyles";
 
 const RegistrationForm = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
@@ -185,7 +187,12 @@ const RegistrationForm = () => {
     if (currentId) {
       dispatch(updatePost(currentId, postData));
       setUser(null);
-      navigate("/home");
+      alert(
+        "✅ Registration successful. Please log out and sign in again to see changes."
+      );
+
+      navigate(`/home`, { replace: true });
+      // navigate("/home");
     } else {
       console.log("Not set current ID");
     }
@@ -204,6 +211,25 @@ const RegistrationForm = () => {
   const handleGoBack = () => {
     navigate(-1); // this means "go back one step in history"
   };
+
+  const maritalOptions = [
+    { value: "Single", label: "Single" },
+    { value: "Married", label: "Married" },
+  ];
+
+  const options = [
+    { value: "Business Development", label: "Business Development" },
+    { value: "Civil & Structural", label: "Civil & Structural" },
+    { value: "Design", label: "Design" },
+    { value: "Finanace", label: "Finanace" },
+    { value: "Human Resource", label: "Human Resource" },
+    { value: "Information Technology", label: "Information Technology" },
+    {
+      value: "Naval Architecture & Marine",
+      label: "Naval Architecture & Marine",
+    },
+    { value: "Projects", label: "Projects" },
+  ];
 
   return (
     <>
@@ -581,8 +607,8 @@ const RegistrationForm = () => {
                         }
                       />
                     </div>
-                    <div style={{ display: "flex" }}>
-                      <select
+                    <div style={{ marginTop: "10px", padding: "3px" }}>
+                      {/* <select
                         style={{
                           width: "300px",
                           height: "50px",
@@ -601,13 +627,48 @@ const RegistrationForm = () => {
                         <option value="">Marital Status</option>
                         <option value="single">Single</option>
                         <option value="married">Married</option>
-                      </select>
+                      </select> */}
                       {/* )} */}
+
+                      <Select
+                        placeholder="Select Marital Status..."
+                        name="maritalStatus"
+                        value={maritalOptions.find(
+                          (opt) => opt.value === postData.maritalStatus
+                        )}
+                        options={maritalOptions}
+                        onChange={(selectedOption) =>
+                          setPostData({
+                            ...postData,
+                            maritalStatus: selectedOption.value,
+                          })
+                        }
+                        styles={{
+                          ...customSelectStyles,
+                          menu: (base) => ({
+                            ...base,
+                            backgroundColor: "#fff",
+                            zIndex: 1000,
+                            overflow: "hidden",
+                          }),
+                          option: (base, state) => ({
+                            ...base,
+                            backgroundColor: state.isSelected
+                              ? "#0d325c"
+                              : state.isFocused
+                              ? "#f3f4f6"
+                              : "#fff",
+                            color: state.isSelected ? "#fff" : "#000",
+                            fontWeight: state.isSelected ? 600 : 400,
+                            borderBottom: "1px solid #f0f0f0",
+                          }),
+                        }}
+                      />
                     </div>
 
                     <div>
                       <TextField
-                        sx={{ marginTop: "30px" }}
+                        sx={{ marginTop: "10px" }}
                         variant="outlined"
                         fullWidth
                         label="Contact Number"
@@ -751,8 +812,8 @@ const RegistrationForm = () => {
                         }
                       />
                     </div>
-                    <div>
-                      <TextField
+                    <div style={{ marginTop: "10px", padding: "3px" }}>
+                      {/* <TextField
                         sx={{ marginTop: "10px" }}
                         variant="outlined"
                         fullWidth
@@ -765,6 +826,41 @@ const RegistrationForm = () => {
                             department: e.target.value,
                           })
                         }
+                      /> */}
+
+                      <Select
+                        placeholder="Select Department..."
+                        name="department"
+                        value={options.find(
+                          (opt) => opt.value === postData.department
+                        )}
+                        options={options}
+                        onChange={(selectedOption) =>
+                          setPostData({
+                            ...postData,
+                            department: selectedOption.value,
+                          })
+                        }
+                        styles={{
+                          ...customSelectStyles,
+                          menu: (base) => ({
+                            ...base,
+                            backgroundColor: "#fff",
+                            zIndex: 1000,
+                            overflow: "hidden",
+                          }),
+                          option: (base, state) => ({
+                            ...base,
+                            backgroundColor: state.isSelected
+                              ? "#0d325c"
+                              : state.isFocused
+                              ? "#f3f4f6"
+                              : "#fff",
+                            color: state.isSelected ? "#fff" : "#000",
+                            fontWeight: state.isSelected ? 600 : 400,
+                            borderBottom: "1px solid #f0f0f0",
+                          }),
+                        }}
                       />
                     </div>
                     <div>

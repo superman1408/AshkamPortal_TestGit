@@ -45,8 +45,9 @@ const Leave = () => {
   const options = [
     { label: "SELECT LEAVE", value: "" },
     { label: "Casual Leave", value: "Casual Leave" },
-    { label: "Sick Leave", value: "Sick Leave" },
     { label: "Leave (others)", value: "Leave" },
+    { label: "Sick Leave", value: "Sick Leave" },
+
     // { label: "Floating Leave", value: "Floating Leave" },
   ];
 
@@ -96,12 +97,15 @@ const Leave = () => {
       dispatch(sendMail(mailData, navigate));
       dispatch(sendMailData(id, mailData))
         .then(() => {
+          alert("✅ Leave request sent for approval.");
+
           navigate(`/home`, { replace: true });
         })
         .catch((err) => {
           console.log("Error : ", err);
         });
     }
+
     clear();
   };
 
@@ -291,13 +295,23 @@ const Leave = () => {
                         minRows={8}
                         fullWidth
                         required
-                        defaultValue={`\n\n\n\n\n\nThanks & Regards\n${
-                          user.result.firstName.charAt(0).toUpperCase() +
-                          user.result.firstName.slice(1).toLowerCase() +
-                          " " +
+                        defaultValue={`\n\n\n\n
+
+
+Thanks & Regards,  
+${
+  user.result.firstName.charAt(0).toUpperCase() +
+  user.result.firstName.slice(1).toLowerCase()
+} ${
                           user.result.lastName.charAt(0).toUpperCase() +
                           user.result.lastName.slice(1).toLowerCase()
-                        } | ${user.result.department}`}
+                        } | ${user.result.department}
+
+${user.result.contactNumber} | [Web]: www.ashkam.in  
+ASHKAM ENERGY PRIVATE LIMITED  
+169, Old A G Colony, Kadru, Ashok Nagar,  
+Ranchi, Jharkhand – 834002
+`}
                         onChange={(e) =>
                           setMailData({
                             ...mailData,

@@ -43,7 +43,7 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
           })
         );
 
-        alert("Uploaded Successfully!");
+        alert("✅ Salary slip uploaded successfully.");
         // Refresh the page
         window.location.reload();
       } catch (err) {
