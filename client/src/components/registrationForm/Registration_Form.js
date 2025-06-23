@@ -228,7 +228,7 @@ const RegistrationForm = () => {
       value: "Naval Architecture & Marine",
       label: "Naval Architecture & Marine",
     },
-    { value: "Projects", label: "Projects" },
+    { value: "Oil & Gas", label: "Oil & Gas" },
   ];
 
   return (
