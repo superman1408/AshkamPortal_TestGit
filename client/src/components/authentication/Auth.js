@@ -33,6 +33,8 @@ const Auth = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = React.useState(false);
   const [code, setCode] = useState(null);
+  const [error, setError] = useState(false);
+  const [touched, setTouched] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -250,21 +252,24 @@ const Auth = () => {
                   variant="outlined"
                   required
                   fullWidth
-                  type="password"
-                  label="Confirm Password"
-                  autoComplete="current-password"
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      confirmPassword: e.target.value,
-                    })
-                  }
+                  error={
+                    touched && formData.confirmPassword !== formData.password
+                  } // Show red border
                 >
                   <InputLabel htmlFor="outlined-adornment-confirmPassword">
                     Confirm Password
                   </InputLabel>
                   <OutlinedInput
+                    id="outlined-adornment-confirmPassword"
                     type={showPassword ? "text" : "password"}
+                    value={formData.confirmPassword}
+                    onChange={(e) => {
+                      setTouched(true);
+                      setFormData({
+                        ...formData,
+                        confirmPassword: e.target.value,
+                      });
+                    }}
                     endAdornment={
                       <InputAdornment position="end">
                         <IconButton
@@ -279,6 +284,19 @@ const Auth = () => {
                     }
                     label="Confirm Password"
                   />
+                  {/* Show message only if user has touched the field and it doesn't match */}
+                  {touched &&
+                    formData.confirmPassword !== formData.password && (
+                      <p
+                        style={{
+                          color: "red",
+                          fontSize: "12px",
+                          margin: "5px 14px 0",
+                        }}
+                      >
+                        Passwords do not match
+                      </p>
+                    )}
                 </FormControl>
               )}
             </div>
