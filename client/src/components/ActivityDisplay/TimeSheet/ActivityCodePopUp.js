@@ -599,8 +599,8 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
               }}
             >
               <button
-                type="button"
-                className="btn btn-secondary"
+                style={{ fontFamily: "Roboto" }}
+                variant="contained"
                 onClick={appendData}
               >
                 Save
