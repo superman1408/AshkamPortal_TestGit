@@ -438,6 +438,7 @@ function TimeSheet({ currentId, posts }) {
                   // value={activityCode}
                   defaultValue={activityCode}
                   onFocus={togglePopup2}
+                  readOnly
                   autoComplete="off"
                 />
                 {activityopen && (
