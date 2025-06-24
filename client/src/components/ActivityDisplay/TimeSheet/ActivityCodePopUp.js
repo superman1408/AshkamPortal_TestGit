@@ -132,6 +132,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       Instruments: "001",
       InterfaceSchedule: "004",
       InterfaceSchedule1: "005",
+      Idle: "005",
       Layout: "001",
       Leave: "004",
       Lighting: "005",
@@ -392,7 +393,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
     },
 
     HumanResource: {
-      General: ["Coordination", "Meetings", "Training", "Leave"],
+      General: ["Coordination", "Meetings", "Training", "Leave", "Idle"],
     },
 
     Account: {
