@@ -164,63 +164,70 @@ const DepartmentDetails = () => {
                 justifyContent: "center",
               }}
             >
-              {posts.map((post, index) => {
-                if (
-                  post.department === verifyDepat &&
-                  post.role === "employee"
-                ) {
-                  return (
-                    <div key={index} style={{ margin: "20px" }}>
-                      <ButtonBase>
-                        <Card
-                          sx={{
-                            width: 180,
-                            maxHeight: 220,
-                            borderRadius: "10%",
-                          }}
-                        >
-                          <CardMedia
-                            component="img"
-                            image={post.selectedFile}
-                            alt="Post image"
+              {posts
+                .sort((a, b) =>
+                  (a.firstName + " " + a.lastName).localeCompare(
+                    b.firstName + " " + b.lastName
+                  )
+                )
+                .map((post, index) => {
+                  if (
+                    post.department === verifyDepat &&
+                    post.role === "employee"
+                  ) {
+                    return (
+                      <div key={index} style={{ margin: "20px" }}>
+                        <ButtonBase>
+                          <Card
                             sx={{
-                              padding: "2px",
-                              height: "150px",
-                              borderRadius: "10%", // or "50%" for circle
-                              objectFit: "cover",
+                              width: 180,
+                              maxHeight: 220,
+                              borderRadius: "10%",
                             }}
-                          />
+                          >
+                            <CardMedia
+                              component="img"
+                              image={post.selectedFile}
+                              alt="Post image"
+                              sx={{
+                                padding: "2px",
+                                height: "150px",
+                                borderRadius: "10%", // or "50%" for circle
+                                objectFit: "cover",
+                              }}
+                            />
 
-                          <CardContent sx={{ padding: "5px" }}>
-                            <Typography
-                              gutterBottom
-                              component="div"
-                              sx={{
-                                fontSize: "18px",
-                                color: "#16355d",
-                                fontFamily: "Roboto",
-                                lineHeight: 1.2,
-                              }}
-                            >
-                              {post.firstName + " " + post.lastName}
-                            </Typography>
-                            <Typography
-                              sx={{
-                                fontSize: "15px",
-                                color: "#16355d",
-                                fontFamily: "Roboto",
-                                lineHeight: 1.2,
-                              }}
-                            >
-                              {post.jobTitle}
-                            </Typography>
-                          </CardContent>
-                        </Card>
-                      </ButtonBase>
-                    </div>
-                  );
-                }
-              })}
+                            <CardContent sx={{ padding: "5px" }}>
+                              <Typography
+                                gutterBottom
+                                component="div"
+                                sx={{
+                                  fontSize: "18px",
+                                  color: "#16355d",
+                                  fontFamily: "Roboto",
+                                  lineHeight: 1.2,
+                                }}
+                              >
+                                {post.firstName + " " + post.lastName}
+                              </Typography>
+                              <Typography
+                                sx={{
+                                  mb: "2px",
+                                  fontSize: "15px",
+                                  color: "#16355d",
+                                  fontFamily: "Roboto",
+                                  lineHeight: 1.2,
+                                }}
+                              >
+                                {post.jobTitle}
+                              </Typography>
+                            </CardContent>
+                          </Card>
+                        </ButtonBase>
+                      </div>
+                    );
+                  }
+                })}
             </div>
           </Grid>
         </Grid>
