@@ -228,7 +228,7 @@ const RegistrationForm = () => {
       value: "Naval Architecture & Marine",
       label: "Naval Architecture & Marine",
     },
-    { value: "Oil & Gas", label: "Oil & Gas" },
+    { value: "Process", label: "Process" },
   ];
 
   return (
@@ -636,6 +636,7 @@ const RegistrationForm = () => {
                         value={maritalOptions.find(
                           (opt) => opt.value === postData.maritalStatus
                         )}
+                        isSearchable={false} //  This disables typing
                         options={maritalOptions}
                         onChange={(selectedOption) =>
                           setPostData({
@@ -834,6 +835,7 @@ const RegistrationForm = () => {
                         value={options.find(
                           (opt) => opt.value === postData.department
                         )}
+                        isSearchable={false} // This disables typing
                         options={options}
                         onChange={(selectedOption) =>
                           setPostData({
