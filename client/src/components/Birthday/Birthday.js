@@ -76,7 +76,11 @@ const Birthday = () => {
   });
 
   const verify = () => {
-    if (user.result.role === "admin" || user.result.role === "manager") {
+    if (
+      user.result.role === "admin" ||
+      (user.result.role === "manager" &&
+        user.result.department === "Human Resource")
+    ) {
       return true;
     } else {
       return false;
