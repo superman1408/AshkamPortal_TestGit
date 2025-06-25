@@ -37,6 +37,7 @@ function TimeSheet({ currentId, posts }) {
   const [projectopen, setProjectOpen] = useState(false);
 
   const [activityopen, setActivityOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const user = JSON.parse(localStorage.getItem("profile"));
   // eslint-disable-next-line no-unused-vars
@@ -73,7 +74,7 @@ function TimeSheet({ currentId, posts }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setIsLoading(true); // Start loading
     const newEntry = {
       projectCode,
       activityCode,
@@ -107,9 +108,12 @@ function TimeSheet({ currentId, posts }) {
       alert(
         'Invalid entry! Please check your input values and try again. Selected Date must not fall under "SUNDAY" & 2nd-4th "SATURDAY".'
       );
+      setIsLoading(false); // Reset only if validation fails
     }
     clearForm();
   };
+
+  //
 
   //checking for the valid entry in the form and return result in "True" or "False".....!!!
   const validateEntry = (newEntry) => {
@@ -484,9 +488,18 @@ function TimeSheet({ currentId, posts }) {
               </div>
               {/* </div> */}
               <div style={{ display: "flex", justifyContent: "space-around" }}>
-                <button style={{ fontFamily: "Roboto" }} type="submit">
-                  {editIndex !== -1 ? "Update" : "Submit"}
+                <button
+                  style={{ fontFamily: "Roboto" }}
+                  type="submit"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting
+                    ? "Submitting..."
+                    : editIndex !== -1
+                    ? "Update"
+                    : "Submit"}
                 </button>
+
                 <button
                   style={{ fontFamily: "Roboto" }}
                   type="button"
@@ -893,3 +906,5 @@ function TimeSheet({ currentId, posts }) {
   );
 }
 export default TimeSheet;
+
+// observe the code here I want to implement a loading function when user click submit button till he shoows alert
