@@ -74,7 +74,7 @@ function TimeSheet({ currentId, posts }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true); // Start loading
+    // setIsLoading(true); // Start loading
     const newEntry = {
       projectCode,
       activityCode,
@@ -108,7 +108,7 @@ function TimeSheet({ currentId, posts }) {
       alert(
         'Invalid entry! Please check your input values and try again. Selected Date must not fall under "SUNDAY" & 2nd-4th "SATURDAY".'
       );
-      setIsLoading(false); // Reset only if validation fails
+      // setIsLoading(false); // Reset only if validation fails
     }
     clearForm();
   };
