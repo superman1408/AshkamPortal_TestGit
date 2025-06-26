@@ -7,11 +7,14 @@ import { salarySlipData } from "../../../action/posts";
 import ComboBox from "../../ComboBox/ComboBox";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import TitlePopup from "./TitlePopup";
+import LoadingSpinner from "../../ReactSpinner/reactSpinner";
 
 const Uploading = ({ posts, currentId, setCurrentId }) => {
   const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState(null); // Change to null
   const [title, setTitle] = useState(null);
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [titleOpen, setTitleOpen] = useState(false);
 
@@ -29,6 +32,7 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
 
   const handleUpload = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true); // Start loading
     if (currentId && selectedFile) {
       const formData = new FormData();
       formData.append("pdf", selectedFile);
@@ -44,6 +48,7 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
         );
 
         alert("✅ Salary slip uploaded successfully.");
+        setIsSubmitting(false); // Stop loading
         // Refresh the page
         window.location.reload();
       } catch (err) {
@@ -124,8 +129,29 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
               </div>
             </Grid>
             <Grid>
-              <button style={{ fontFamily: "Roboto" }} onClick={handleUpload}>
-                Upload <FileUploadIcon />
+              <button
+                style={{
+                  fontFamily: "Roboto",
+                  height: "50px",
+                  width: "100px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: isSubmitting ? "not-allowed" : "pointer",
+                  opacity: isSubmitting ? 0.6 : 1,
+                }}
+                disabled={isSubmitting}
+                onClick={handleUpload}
+              >
+                {isSubmitting ? (
+                  <div style={{ display: "flex" }}>
+                    Uploading... <LoadingSpinner size={16} color="#999" />
+                  </div>
+                ) : (
+                  <>
+                    Upload <FileUploadIcon />
+                  </>
+                )}
               </button>
             </Grid>
           </Grid>
