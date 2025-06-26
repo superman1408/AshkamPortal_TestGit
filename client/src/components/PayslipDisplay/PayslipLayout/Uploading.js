@@ -34,6 +34,16 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
     e.preventDefault();
     setIsSubmitting(true); // Start loading
     if (currentId && selectedFile) {
+      const MAX_FILE_SIZE_MB = 5; // Limit to 5 MB
+      const fileSizeInMB = selectedFile.size / (1024 * 1024); // convert bytes to MB
+
+      if (fileSizeInMB > MAX_FILE_SIZE_MB) {
+        alert(
+          `⚠️ File size exceeds ${MAX_FILE_SIZE_MB} MB. Please upload a smaller file.`
+        );
+        setIsSubmitting(false);
+        return;
+      }
       const formData = new FormData();
       formData.append("pdf", selectedFile);
       formData.append("title", title);
