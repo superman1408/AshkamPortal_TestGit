@@ -33,6 +33,7 @@ import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Select from "react-select";
 import customSelectStyles from "./selectStyles";
+import LoadingSpinner from "../ReactSpinner/reactSpinner";
 
 const RegistrationForm = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
@@ -43,6 +44,8 @@ const RegistrationForm = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const posts = useSelector((state) => state.posts);
   const [isLoading, setIsLoading] = useState(true);
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [postData, setPostData] = useState({
     firstName: "",
@@ -182,16 +185,19 @@ const RegistrationForm = () => {
   //   setIsLoading(false);
   // }, [currentId, posts, isLoading, id, postData]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setIsSubmitting(true); // Start loading
     if (currentId) {
-      dispatch(updatePost(currentId, postData));
-      setUser(null);
+      await dispatch(updatePost(currentId, postData));
+
       alert(
         "✅ Registration successful. Please log out and sign in again to see changes."
       );
-
+      setUser(null);
       navigate(`/home`, { replace: true });
+
       // navigate("/home");
     } else {
       console.log("Not set current ID");
@@ -199,6 +205,7 @@ const RegistrationForm = () => {
 
     setFormSubmitted(true);
     console.log("Form submitted:", formSubmitted);
+    setIsSubmitting(false);
   };
 
   const handleDOB = (dob) => {
@@ -967,11 +974,26 @@ const RegistrationForm = () => {
                   >
                     <Grid>
                       <button
-                        sx={{ fontFamily: "Roboto" }}
                         type="submit"
-                        variant="contained"
+                        disabled={isSubmitting}
+                        style={{
+                          fontFamily: "Roboto",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "8px",
+                          padding: "8px 16px",
+                          cursor: isSubmitting ? "not-allowed" : "pointer",
+                          opacity: isSubmitting ? 0.6 : 1,
+                        }}
                       >
-                        Register
+                        {isSubmitting ? (
+                          <div style={{ display: "flex" }}>
+                            Registering...
+                            <LoadingSpinner size={16} color="#999" />
+                          </div>
+                        ) : (
+                          "Register"
+                        )}
                       </button>
                     </Grid>
                   </Grid>

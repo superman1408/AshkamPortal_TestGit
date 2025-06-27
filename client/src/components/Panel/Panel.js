@@ -101,16 +101,17 @@ const Panel = () => {
     setState({ ...state, [anchor]: open });
   };
 
-  const firstNameAtInitial = user.result.firstName.toLowerCase();
+  const fullName = `${user.result.firstName} ${user.result.lastName}`;
 
-  const lastNameAtInitial = user.result.lastName.toLowerCase();
+  const formatFullName = (name) => {
+    return name
+      .trim()
+      .split(/\s+/)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  };
 
-  const userName =
-    firstNameAtInitial.charAt(0).toUpperCase() +
-    firstNameAtInitial.slice(1).toLowerCase() +
-    " " +
-    lastNameAtInitial.charAt(0).toUpperCase() +
-    lastNameAtInitial.slice(1).toLowerCase();
+  const userName = formatFullName(fullName);
 
   return (
     <Card

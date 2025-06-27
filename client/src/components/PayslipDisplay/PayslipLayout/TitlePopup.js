@@ -20,7 +20,7 @@ const TitlePopup = ({ setTitle, setTitleOpen }) => {
     setMonth(selectedMonthName);
   };
 
-  const maxOffset = 5;
+  const maxOffset = 0;
   const thisYear = new Date().getFullYear();
   const allYears = [];
   for (let x = 0; x <= maxOffset; x++) {

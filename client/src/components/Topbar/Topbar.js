@@ -56,7 +56,7 @@ const Topbar = () => {
           }}
         >
           Welcome
-          {` ${user.result.firstName.toUpperCase()} !`}
+          {` ${user.result.firstName.toUpperCase()} ${user.result.lastName.toUpperCase()} !`}
         </Typography>
       </Box>
     </Box>

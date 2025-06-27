@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Divider, Grid, CircularProgress, Box, Button } from "@mui/material";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./Style1.css"; // Import CSS file for styling
 import { tableDelete, tableEdit, todoList } from "../../../action/posts";
@@ -19,6 +19,7 @@ import { useReactToPrint } from "react-to-print";
 import Panel from "../../Panel/Panel";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import LoadingSpinner from "../../ReactSpinner/reactSpinner";
 
 function TimeSheet({ currentId, posts }) {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ function TimeSheet({ currentId, posts }) {
   const [projectopen, setProjectOpen] = useState(false);
 
   const [activityopen, setActivityOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const user = JSON.parse(localStorage.getItem("profile"));
   // eslint-disable-next-line no-unused-vars
@@ -44,9 +46,24 @@ function TimeSheet({ currentId, posts }) {
 
   const [printingShow, setPrintingShow] = useState(false);
 
+  const [disable, setDisabled] = useState(true);
+
   const array = [];
 
   const matches = useMediaQuery("(min-width:1120px)");
+
+  const loggedInUserId = user?.result?._id;
+
+  // const role = user?.result?.role;
+
+  // For enabling form only for login users
+  useEffect(() => {
+    if (loggedInUserId === currentId || role === "admin") {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [loggedInUserId, currentId, role]);
 
   useEffect(() => {
     array.length = 0;
@@ -63,6 +80,7 @@ function TimeSheet({ currentId, posts }) {
               overTime: post.overTime[i],
               editIndex: post.editIndex[i],
             });
+
             // setRole(post?.role);
           }
         }
@@ -73,6 +91,7 @@ function TimeSheet({ currentId, posts }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true); // Start loading
 
     const newEntry = {
       projectCode,
@@ -84,32 +103,42 @@ function TimeSheet({ currentId, posts }) {
     };
 
     if (validateEntry(newEntry)) {
-      if (editIndex !== -1) {
-        const indexed = [editIndex];
-        const updatedEntries = [...entries];
-        updatedEntries[editIndex] = newEntry;
-        setEntries(updatedEntries);
-        await dispatch(tableEdit(currentId, indexed, newEntry)).then((res) => {
-          console.log("Data is recieved in the Data Base for Editing....");
-          setEditIndex(-1); // Reset edit index
-        });
-      } else {
-        setEntries([...entries, newEntry]);
-        await dispatch(todoList(newEntry, currentId)).then((res) => {
-          console.log("Data is recieved in the Data Base");
-          clearForm();
-        });
+      try {
+        if (editIndex !== -1) {
+          const indexed = [editIndex];
+          const updatedEntries = [...entries];
+          updatedEntries[editIndex] = newEntry;
+          setEntries(updatedEntries);
+          await dispatch(tableEdit(currentId, indexed, newEntry)).then(
+            (res) => {
+              console.log("Data is recieved in the Data Base for Editing....");
+              setEditIndex(-1); // Reset edit index
+            }
+          );
+        } else {
+          setEntries([...entries, newEntry]);
+          await dispatch(todoList(newEntry, currentId)).then((res) => {
+            console.log("Data is recieved in the Data Base");
+            clearForm();
+            alert("✅ Entry submitted successfully!");
+            window.location.reload();
+          });
+        }
+      } catch (err) {
+        console.error("Submission failed :", err);
+        alert("❌ Something went wrong while submitting.");
+        setIsSubmitting(false); // Stop loading
       }
-
-      alert("✅ Entry submitted successfully!");
-      window.location.reload();
     } else {
       alert(
         'Invalid entry! Please check your input values and try again. Selected Date must not fall under "SUNDAY" & 2nd-4th "SATURDAY".'
       );
+      setIsSubmitting(false); // Reset only if validation fails
     }
     clearForm();
   };
+
+  //
 
   //checking for the valid entry in the form and return result in "True" or "False".....!!!
   const validateEntry = (newEntry) => {
@@ -363,138 +392,177 @@ function TimeSheet({ currentId, posts }) {
             }}
           >
             <form onSubmit={handleSubmit} className="time-sheet-form">
-              <div className="form-group">
-                <label
-                  style={{ color: "#16355d", fontFamily: "Roboto" }}
-                  htmlFor="date"
-                >
-                  Date:
-                </label>
-                <input
-                  type="date"
-                  id="date"
-                  defaultValue={date}
-                  // onChange={(e) => setDate(e.target.value)}
-                  //
-                  onChange={handleCheck}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label
-                  style={{ color: "#16355d", fontFamily: "Roboto" }}
-                  htmlFor="projectCode"
-                >
-                  Project Code:
-                </label>
+              <fieldset disabled={disable}>
+                <div className="form-group">
+                  <label
+                    style={{ color: "#16355d", fontFamily: "Roboto" }}
+                    htmlFor="date"
+                  >
+                    Date:
+                  </label>
+                  <input
+                    type="date"
+                    id="date"
+                    defaultValue={date}
+                    // onChange={(e) => setDate(e.target.value)}
+                    //
+                    onChange={handleCheck}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label
+                    style={{ color: "#16355d", fontFamily: "Roboto" }}
+                    htmlFor="projectCode"
+                  >
+                    Project Code:
+                  </label>
 
-                <input
-                  style={{
-                    width: "100%",
-                    height: "30px",
-                    padding: "8px",
-                    fontSize: "16px",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                    color: "#e55d17",
-                  }}
-                  type="text"
-                  id="projectCode"
-                  // value={projectCode}
-                  defaultValue={projectCode}
-                  // onFocus={togglePopup1} // Using onFocus event to trigger the popup
-                  onChange={(e) => setProjectCode(e.target.value)}
-                  autoComplete="off"
-                />
-                {/* ______________________________________pop window contents_____________________________________________ */}
+                  <input
+                    style={{
+                      width: "100%",
+                      height: "30px",
+                      padding: "8px",
+                      fontSize: "16px",
+                      border: "1px solid #ccc",
+                      borderRadius: "4px",
+                      color: "#e55d17",
+                    }}
+                    type="text"
+                    id="projectCode"
+                    // value={projectCode}
+                    defaultValue={projectCode}
+                    // onFocus={togglePopup1} // Using onFocus event to trigger the popup
+                    onChange={(e) => setProjectCode(e.target.value)}
+                    autoComplete="off"
+                  />
+                  {/* ______________________________________pop window contents_____________________________________________ */}
 
-                {/* {projectopen && (
+                  {/* {projectopen && (
                   <ProjectCodePopUp
                     setProjectCode={setProjectCode}
                     setProjectOpen={setProjectOpen}
                   />
                 )} */}
-              </div>
+                </div>
 
-              <div className="form-group">
-                <label
-                  style={{ color: "#16355d", fontFamily: "Roboto" }}
-                  htmlFor="activityCode"
-                >
-                  Activity Code:
-                </label>
-                <input
-                  style={{
-                    width: "100%",
-                    height: "30px",
-                    padding: "8px",
-                    fontSize: "16px",
-                    border: "1px solid #ccc",
-                    borderRadius: "4px",
-                    color: "#e55d17",
-                  }}
-                  type="text"
-                  id="activityCode"
-                  // value={activityCode}
-                  defaultValue={activityCode}
-                  onFocus={togglePopup2}
-                  readOnly
-                  autoComplete="off"
-                />
-                {activityopen && (
-                  <ActivityCodePopUp
-                    setActivityCode={setActivityCode}
-                    setActivityOpen={setActivityOpen}
+                <div className="form-group">
+                  <label
+                    style={{ color: "#16355d", fontFamily: "Roboto" }}
+                    htmlFor="activityCode"
+                  >
+                    Activity Code:
+                  </label>
+                  <input
+                    style={{
+                      width: "100%",
+                      height: "30px",
+                      padding: "8px",
+                      fontSize: "16px",
+                      border: "1px solid #ccc",
+                      borderRadius: "4px",
+                      color: "#e55d17",
+                    }}
+                    type="text"
+                    id="activityCode"
+                    // value={activityCode}
+                    defaultValue={activityCode}
+                    onFocus={togglePopup2}
+                    readOnly
+                    autoComplete="off"
                   />
-                )}
-              </div>
+                  {activityopen && (
+                    <ActivityCodePopUp
+                      setActivityCode={setActivityCode}
+                      setActivityOpen={setActivityOpen}
+                    />
+                  )}
+                </div>
 
-              <div className="form-group">
-                <label
-                  style={{ color: "#16355d", fontFamily: "Roboto" }}
-                  htmlFor="netTime"
-                >
-                  Net Time (hrs):
-                </label>
-                <input
-                  type="number"
-                  id="netTime"
-                  // value={netTime}
-                  defaultValue={netTime}
-                  onChange={(e) => setNetTime(parseFloat(e.target.value))}
-                  step="0.1"
-                  // max={8}
-                />
-              </div>
-              <div className="form-group">
-                <label
-                  style={{ color: "#16355d", fontFamily: "Roboto" }}
-                  htmlFor="overTime"
-                >
-                  Over Time (hrs):
-                </label>
-                <input
-                  type="number"
-                  id="overTime"
-                  // value={overTime}
-                  defaultValue={overTime}
-                  onChange={(e) => setOverTime(parseFloat(e.target.value))}
-                  step="0.1"
-                />
-              </div>
-              {/* </div> */}
-              <div style={{ display: "flex", justifyContent: "space-around" }}>
-                <button style={{ fontFamily: "Roboto" }} type="submit">
-                  {editIndex !== -1 ? "Update" : "Submit"}
-                </button>
-                <button
-                  style={{ fontFamily: "Roboto" }}
-                  type="button"
-                  onClick={clearForm}
-                >
-                  Clear
-                </button>
-              </div>
+                <div className="form-group">
+                  <label
+                    style={{ color: "#16355d", fontFamily: "Roboto" }}
+                    htmlFor="netTime"
+                  >
+                    Net Time (hrs):
+                  </label>
+                  <input
+                    type="number"
+                    id="netTime"
+                    // value={netTime}
+                    defaultValue={netTime}
+                    onChange={(e) => setNetTime(parseFloat(e.target.value))}
+                    step="0.1"
+                    // max={8}
+                  />
+                </div>
+                <div className="form-group">
+                  <label
+                    style={{ color: "#16355d", fontFamily: "Roboto" }}
+                    htmlFor="overTime"
+                  >
+                    Over Time (hrs):
+                  </label>
+                  <input
+                    type="number"
+                    id="overTime"
+                    // value={overTime}
+                    defaultValue={overTime}
+                    onChange={(e) => setOverTime(parseFloat(e.target.value))}
+                    step="0.1"
+                  />
+                </div>
+                {/* </div> */}
+
+                {disable ? (
+                  <p
+                    style={{
+                      color: "#888",
+                      fontStyle: "italic",
+                      textAlign: "center",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    ⚠️ You are not authorized to submit this timesheet.
+                  </p>
+                ) : (
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-around",
+                    }}
+                  >
+                    <button
+                      style={{
+                        fontFamily: "Roboto",
+                        cursor: isSubmitting ? "not-allowed" : "pointer",
+                        opacity: isSubmitting ? 0.6 : 1,
+                      }}
+                      type="submit"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <div style={{ display: "flex" }}>
+                          Submitting...
+                          <LoadingSpinner size={16} color="#999" />
+                        </div>
+                      ) : editIndex !== -1 ? (
+                        "Update"
+                      ) : (
+                        "Submit"
+                      )}
+                    </button>
+
+                    <button
+                      style={{ fontFamily: "Roboto" }}
+                      type="button"
+                      onClick={clearForm}
+                    >
+                      Clear
+                    </button>
+                  </div>
+                )}
+              </fieldset>
             </form>
           </Grid>
 
@@ -778,7 +846,7 @@ function TimeSheet({ currentId, posts }) {
                                 textAlign: "center",
                               }}
                             >
-                              {post.date}
+                              {post.date} {/* here I have to arrange */}
                             </td>
                             <td
                               style={{
