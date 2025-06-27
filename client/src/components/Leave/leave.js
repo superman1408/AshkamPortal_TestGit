@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Grid, TextField, Typography, Box, Button } from "@mui/material";
 import { DemoContainer, DemoItem } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers";
@@ -19,6 +19,7 @@ import dayjs from "dayjs";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import LeaveTableDisplay from "./LeaveTable/leaveTableDisplay";
 import ChartComponent from "./pieGraph";
+import LoadingSpinner from "../ReactSpinner/reactSpinner";
 
 const Leave = () => {
   const classes = useStyles();
@@ -41,6 +42,8 @@ const Leave = () => {
   const [valueTo, setValueTo] = useState();
 
   const [valueFrom, setValueFrom] = useState();
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const options = [
     { label: "SELECT LEAVE", value: "" },
@@ -91,11 +94,20 @@ const Leave = () => {
   const handleSelect = (event) => setSelect(event.target.value);
   const leaveType = select;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    console.log("mailData.subject", mailData.subject);
     e.preventDefault();
+    setIsSubmitting(true); // Start loading
+
+    //     const formattedSubject = `Applying for ${leaveType} from ${fromDate} to ${toDate}`;
+    // const updatedMailData = { ...mailData, subject: formattedSubject };
+
     if (mailData) {
-      dispatch(sendMail(mailData, navigate));
-      dispatch(sendMailData(id, mailData))
+      await Promise.all([
+        dispatch(sendMail(mailData, navigate)),
+        dispatch(sendMailData(id, mailData)),
+      ])
+
         .then(() => {
           alert("✅ Leave request sent for approval.");
 
@@ -103,10 +115,14 @@ const Leave = () => {
         })
         .catch((err) => {
           console.log("Error : ", err);
+          alert("❌ Something went wrong while submitting.");
         });
     }
 
     clear();
+    setIsSubmitting(false);
+
+    console.log(mailData.subject);
   };
 
   const clear = () => {
@@ -121,6 +137,16 @@ const Leave = () => {
   const handleGoBack = () => {
     navigate(-1);
   };
+
+  const [subjectFormat, setSubjectFormat] = useState("");
+
+  useEffect(() => {
+    if (leaveType && fromDate && toDate) {
+      const newSubject = `Applying for ${leaveType} from ${fromDate} to ${toDate}`;
+      setSubjectFormat(newSubject);
+      setMailData((prev) => ({ ...prev, subject: newSubject }));
+    }
+  }, [leaveType, fromDate, toDate]);
 
   return (
     <Grid container className={classes.mainContainer} sx={{ mt: 2 }}>
@@ -278,13 +304,15 @@ const Leave = () => {
                           label="Subject"
                           required
                           fullWidth
-                          value={`Applying for ${leaveType} from ${fromDate} to ${toDate}`}
-                          onChange={(e) =>
+                          value={subjectFormat}
+                          onChange={(e) => {
+                            const updatedSubject = e.target.value;
+                            setSubjectFormat(updatedSubject);
                             setMailData({
                               ...mailData,
-                              subject: e.target.value,
-                            })
-                          }
+                              subject: updatedSubject,
+                            });
+                          }}
                         />
                       </Grid>
                     )}
@@ -328,14 +356,24 @@ Ranchi, Jharkhand – 834002
                           height: "50px",
                           width: "100px",
                           fontFamily: "Roboto",
-                          cursor: "pointer",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
+                          cursor: isSubmitting ? "not-allowed" : "pointer",
+                          opacity: isSubmitting ? 0.6 : 1,
                         }}
+                        disabled={isSubmitting}
                       >
-                        <SendSharpIcon sx={{ mr: 1 }} />
-                        Send
+                        {isSubmitting ? (
+                          <div style={{ display: "flex" }}>
+                            Sending... <LoadingSpinner size={16} color="#999" />
+                          </div>
+                        ) : (
+                          <>
+                            Send
+                            <SendSharpIcon sx={{ ml: 2 }} />
+                          </>
+                        )}
                       </button>
                     </Grid>
                   </Grid>

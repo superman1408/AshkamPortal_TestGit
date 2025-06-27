@@ -22,6 +22,14 @@ const Inbox = ({ post, setCurrentId }) => {
     return null; // Do not render anything
   }
 
+  const formatFullName = (first, last) => {
+    return `${first} ${last}`
+      .trim()
+      .split(/\s+/)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  };
+
   return (
     <>
       <ButtonBase
@@ -66,11 +74,7 @@ const Inbox = ({ post, setCurrentId }) => {
               color="#16355c"
               sx={{ fontFamily: "Roboto" }}
             >
-              {post?.firstName.charAt(0).toUpperCase() +
-                post?.firstName.slice(1).toLowerCase() +
-                " " +
-                post?.lastName.charAt(0).toUpperCase() +
-                post?.lastName.slice(1).toLowerCase()}
+              {formatFullName(post?.firstName, post?.lastName)}
             </Typography>
           </Grid>
         </Grid>
