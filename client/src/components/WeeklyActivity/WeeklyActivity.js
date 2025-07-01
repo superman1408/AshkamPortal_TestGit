@@ -67,10 +67,29 @@ const WeeklyActivity = () => {
     (a, b) => new Date(a.date) - new Date(b.date)
   );
 
-  // Extract sorted data
-  const dateData = sortedPosts.map((post) => post.date);
-  const overTimeData = sortedPosts.map((post) => post.overTime);
-  const netTimeData = sortedPosts.map((post) => post.netTime);
+  // // Extract sorted data
+  // const dateData = sortedPosts.map((post) => post.date);
+  // const overTimeData = sortedPosts.map((post) => post.overTime);
+  // const netTimeData = sortedPosts.map((post) => post.netTime);
+
+  // Group and sum data by day
+  const groupedData = {};
+
+  sortedPosts.forEach((post) => {
+    const date = dayjs(post.date).format("YYYY-MM-DD");
+
+    if (!groupedData[date]) {
+      groupedData[date] = { netTime: 0, overTime: 0 };
+    }
+
+    groupedData[date].netTime += post.netTime || 0;
+    groupedData[date].overTime += post.overTime || 0;
+  });
+
+  // Separate out the labels and datasets
+  const labels = Object.keys(groupedData); // Dates
+  const netTimeData = labels.map((date) => groupedData[date].netTime);
+  const overTimeData = labels.map((date) => groupedData[date].overTime);
 
   const options = {
     responsive: true,
@@ -93,7 +112,7 @@ const WeeklyActivity = () => {
     },
   };
 
-  const labels = dateData[0];
+  // const labels = dateData[0];
 
   const datasets = [
     {
@@ -111,21 +130,20 @@ const WeeklyActivity = () => {
       borderWidth: 1,
     },
   ];
+
   const data = {
     labels,
     datasets: [
       {
         label: "Net Time",
-        data: netTimeData[0],
-        // backgroundColor: "#eb9367",
+        data: netTimeData,
         backgroundColor: "rgba(255, 99, 132, 0.2)",
         borderColor: "rgba(255, 99, 132, 1)",
         borderWidth: 1,
       },
       {
         label: "Over Time",
-        data: overTimeData[0],
-        // backgroundColor: "#047682",
+        data: overTimeData,
         backgroundColor: "rgba(54, 162, 235, 0.2)",
         borderColor: "rgba(54, 162, 235, 1)",
         borderWidth: 1,
