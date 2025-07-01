@@ -63,9 +63,9 @@ const WeeklyActivity = () => {
   const filteredPosts = posts.filter((post) => post._id === currentId);
 
   // Sort by date
-  const sortedPosts = [...filteredPosts].sort(
-    (a, b) => new Date(a.date) - new Date(b.date)
-  );
+  // const sortedPosts = [...filteredPosts].sort(
+  //   (a, b) => new Date(a.date) - new Date(b.date)
+  // );
 
   // // Extract sorted data
   // const dateData = sortedPosts.map((post) => post.date);
@@ -90,6 +90,10 @@ const WeeklyActivity = () => {
   const labels = Object.keys(groupedData); // Dates
   const netTimeData = labels.map((date) => groupedData[date].netTime);
   const overTimeData = labels.map((date) => groupedData[date].overTime);
+  // // Extract sorted data
+  // const labels = sortedPosts.map((post) => post.date);
+  // const overTimeData = sortedPosts.map((post) => post.overTime);
+  // const netTimeData = sortedPosts.map((post) => post.netTime);
 
   const options = {
     responsive: true,
@@ -114,22 +118,42 @@ const WeeklyActivity = () => {
 
   // const labels = dateData[0];
 
-  const datasets = [
-    {
-      label: "Net Time",
-      data: netTimeData,
-      backgroundColor: "rgba(255, 99, 132, 0.2)",
-      borderColor: "rgba(255, 99, 132, 1)",
-      borderWidth: 1,
-    },
-    {
-      label: "Over Time",
-      data: overTimeData,
-      backgroundColor: "rgba(54, 162, 235, 0.2)",
-      borderColor: "rgba(54, 162, 235, 1)",
-      borderWidth: 1,
-    },
-  ];
+  const groupedMap = {};
+
+  filteredPosts.forEach((post) => {
+    for (let i = 0; i < post.date.length; i++) {
+      const date = post.date[i];
+      const net = parseFloat(post.netTime[i]) || 0;
+      const over = parseFloat(post.overTime[i]) || 0;
+
+      if (!groupedMap[date]) {
+        groupedMap[date] = { netTime: 0, overTime: 0 };
+      }
+
+      groupedMap[date].netTime += net;
+      groupedMap[date].overTime += over;
+    }
+  });
+
+  // Convert the map back to an array
+  const groupedEntries = Object.keys(groupedMap)
+    .map((date) => ({
+      date,
+      netTime: groupedMap[date].netTime,
+      overTime: groupedMap[date].overTime,
+    }))
+    .sort((a, b) => new Date(a.date) - new Date(b.date));
+
+  // Then extract your data for the graph
+  const labels = groupedEntries.map(
+    (entry) =>
+      entry.date && dayjs(entry.date).isValid()
+        ? dayjs(entry.date).format("ddd, DD MMM")
+        : "N/A" // or "--" or "" or "N/A" if you prefer
+  );
+
+  const netTimeData = groupedEntries.map((entry) => entry.netTime);
+  const overTimeData = groupedEntries.map((entry) => entry.overTime);
 
   const data = {
     labels,
@@ -230,3 +254,19 @@ const WeeklyActivity = () => {
 };
 
 export default WeeklyActivity;
+// const datasets = [
+//     {
+//       label: "Net Time",
+//       data: netTimeData,
+//       backgroundColor: "rgba(255, 99, 132, 0.2)",
+//       borderColor: "rgba(255, 99, 132, 1)",
+//       borderWidth: 1,
+//     },
+//     {
+//       label: "Over Time",
+//       data: overTimeData,
+//       backgroundColor: "rgba(54, 162, 235, 0.2)",
+//       borderColor: "rgba(54, 162, 235, 1)",
+//       borderWidth: 1,
+//     },
+//   ];
