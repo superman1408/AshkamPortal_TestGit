@@ -68,29 +68,6 @@ const WeeklyActivity = () => {
   // );
 
   // // Extract sorted data
-  // const dateData = sortedPosts.map((post) => post.date);
-  // const overTimeData = sortedPosts.map((post) => post.overTime);
-  // const netTimeData = sortedPosts.map((post) => post.netTime);
-
-  // Group and sum data by day
-  const groupedData = {};
-
-  sortedPosts.forEach((post) => {
-    const date = dayjs(post.date).format("YYYY-MM-DD");
-
-    if (!groupedData[date]) {
-      groupedData[date] = { netTime: 0, overTime: 0 };
-    }
-
-    groupedData[date].netTime += post.netTime || 0;
-    groupedData[date].overTime += post.overTime || 0;
-  });
-
-  // Separate out the labels and datasets
-  const labels = Object.keys(groupedData); // Dates
-  const netTimeData = labels.map((date) => groupedData[date].netTime);
-  const overTimeData = labels.map((date) => groupedData[date].overTime);
-  // // Extract sorted data
   // const labels = sortedPosts.map((post) => post.date);
   // const overTimeData = sortedPosts.map((post) => post.overTime);
   // const netTimeData = sortedPosts.map((post) => post.netTime);
