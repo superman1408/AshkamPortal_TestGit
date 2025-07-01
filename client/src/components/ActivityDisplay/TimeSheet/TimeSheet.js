@@ -835,100 +835,101 @@ function TimeSheet({ currentId, posts }) {
                         </tr>
                       </thead>
                       <tbody>
-                        {array.map((post, index) => (
-                          <tr key={index}>
-                            {" "}
-                            <td
-                              style={{
-                                color: "#e55d17",
-                                fontFamily: "Roboto",
-                                padding: "10px",
-                                textAlign: "center",
-                              }}
-                            >
-                              {post.date} {/* here I have to arrange */}
-                            </td>
-                            <td
-                              style={{
-                                color: "#e55d17",
-                                fontFamily: "Roboto",
-                                padding: "10px",
-                                textAlign: "center",
-                              }}
-                            >
-                              {post.projectCode}
-                            </td>
-                            <td
-                              style={{
-                                color: "#e55d17",
-                                fontFamily: "Roboto",
-                                padding: "10px",
-                                textAlign: "center",
-                              }}
-                            >
-                              {post.activityCode}
-                            </td>
-                            <td
-                              style={{
-                                color: "#e55d17",
-                                fontFamily: "Roboto",
-                                padding: "10px",
-                                textAlign: "center",
-                              }}
-                            >
-                              {post.netTime}
-                            </td>
-                            <td
-                              style={{
-                                color: "#e55d17",
-                                fontFamily: "Roboto",
-                                padding: "10px",
-                                textAlign: "center",
-                              }}
-                            >
-                              {post.overTime}
-                            </td>
-                            {printingShow === false && role === "admin" && (
-                              <>
-                                <td
-                                  style={{
-                                    display: "flex",
-                                    justifyContent: "space-around",
-                                    padding: "10px",
-                                    textAlign: "center",
-                                  }}
-                                >
-                                  <button
-                                    id="editButton"
-                                    style={{ fontFamily: "Roboto" }}
-                                    onClick={() => editEntry(index)}
+                        {array
+                          .sort((a, b) => new Date(a.date) - new Date(b.date))
+                          .map((post, index) => (
+                            <tr key={index}>
+                              <td
+                                style={{
+                                  color: "#e55d17",
+                                  fontFamily: "Roboto",
+                                  padding: "10px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {post.date} {/* here I have to arrange */}
+                              </td>
+                              <td
+                                style={{
+                                  color: "#e55d17",
+                                  fontFamily: "Roboto",
+                                  padding: "10px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {post.projectCode}
+                              </td>
+                              <td
+                                style={{
+                                  color: "#e55d17",
+                                  fontFamily: "Roboto",
+                                  padding: "10px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {post.activityCode}
+                              </td>
+                              <td
+                                style={{
+                                  color: "#e55d17",
+                                  fontFamily: "Roboto",
+                                  padding: "10px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {post.netTime}
+                              </td>
+                              <td
+                                style={{
+                                  color: "#e55d17",
+                                  fontFamily: "Roboto",
+                                  padding: "10px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {post.overTime}
+                              </td>
+                              {printingShow === false && role === "admin" && (
+                                <>
+                                  <td
+                                    style={{
+                                      display: "flex",
+                                      justifyContent: "space-around",
+                                      padding: "10px",
+                                      textAlign: "center",
+                                    }}
                                   >
-                                    Edit
-                                  </button>
-                                  <button
-                                    id="deleteButton"
-                                    style={{ fontFamily: "Roboto" }}
-                                    onClick={() => deleteEntry(index)}
-                                  >
-                                    Delete
-                                  </button>
+                                    <button
+                                      id="editButton"
+                                      style={{ fontFamily: "Roboto" }}
+                                      onClick={() => editEntry(index)}
+                                    >
+                                      Edit
+                                    </button>
+                                    <button
+                                      id="deleteButton"
+                                      style={{ fontFamily: "Roboto" }}
+                                      onClick={() => deleteEntry(index)}
+                                    >
+                                      Delete
+                                    </button>
 
-                                  {role === "manager" && (
-                                    <>
-                                      <button
-                                        id="editButton"
-                                        style={{ fontFamily: "Roboto" }}
-                                        onClick={() => editEntry(index)}
-                                      >
-                                        Edit
-                                      </button>
-                                    </>
-                                  )}
-                                </td>
-                              </>
-                            )}
-                          </tr>
-                        ))}
+                                    {role === "manager" && (
+                                      <>
+                                        <button
+                                          id="editButton"
+                                          style={{ fontFamily: "Roboto" }}
+                                          onClick={() => editEntry(index)}
+                                        >
+                                          Edit
+                                        </button>
+                                      </>
+                                    )}
+                                  </td>
+                                </>
+                              )}
+                            </tr>
+                          ))}
                       </tbody>
                     </table>
                   </Grid>
