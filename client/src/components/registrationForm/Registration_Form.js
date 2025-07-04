@@ -228,7 +228,7 @@ const RegistrationForm = () => {
     { value: "Business Development", label: "Business Development" },
     { value: "Civil & Structural", label: "Civil & Structural" },
     { value: "Design", label: "Design" },
-    { value: "Finanace", label: "Finanace" },
+    { value: "Finance", label: "Finance" },
     { value: "Human Resource", label: "Human Resource" },
     { value: "Information Technology", label: "Information Technology" },
     {
