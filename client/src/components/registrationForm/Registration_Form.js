@@ -307,7 +307,7 @@ const RegistrationForm = () => {
                   />
                   <div>
                     {
-                      role === "admin" || (user.result.department.toLowerCase() === "human resource" && user.result.role === "manager") && (
+                      ((role === "admin") || ((user.result.department.toLowerCase() === "human resource") && (user.result.role === "manager"))) && (
                         <ComboBox posts={posts} setCurrentId={setCurrentId} />
                       )
                     }
