@@ -35,10 +35,10 @@ const AttendanceDisplay = () => {
   const verify = () => {
     try {
       if (
-        // user.result.role === "admin" ||
+        user.result.role === "admin" ||
         (user.result.department.toLowerCase() === "human resource" &&
-          user.result.role === "manager") ||
-        user.result.role === "admin"
+          user.result.role === "manager")
+        // user.result.role === "admin"
       ) {
         return true;
       } else {
@@ -57,7 +57,7 @@ const AttendanceDisplay = () => {
          
           {verify() === true && (
             <AttendanceCombo posts={posts} setCurrentId={setCurrentId} />
-          )}
+           )} 
           <AttendanceDetail currentId={currentId} posts={posts} />
         </>
       )}
