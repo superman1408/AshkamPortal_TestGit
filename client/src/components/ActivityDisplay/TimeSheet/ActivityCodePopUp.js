@@ -59,6 +59,9 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       Procurement: "PC",
       Projects: "PJ",
       Telecom: "TE",
+      // It - discipline
+
+      InformationTechnology: "IT",
     };
 
     return Disciplines[DisciplineName];
@@ -78,6 +81,17 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       ProjectEngineering: "PE",
       Task: "TA",
       Coding: "CO",
+
+      // IT - Activities
+      NetworkSetup: "NW",
+      HardwareAndSoftware: "HS",
+      SocialMedia: "SM",
+      GraphicDesign: "GD",
+      WebsiteUpdates: "WB",
+      SystemSecurity: "SS",
+      SoftwareDevelopment: "SD",
+      ServerConfiguration: "SV",
+      OtherActivities: "OA",
     };
 
     return Activities[ActivitiesCode];
@@ -174,6 +188,35 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       Testing: "001",
       Training: "003",
       Three_D_Model: "001",
+
+      //IT - SubActivities-Codes
+      RouterORSwitchConfig: "001",
+      Cabling: "002",
+      NetworkMaintenanceTroubleshooting: "003",
+      HardwareORInstallation: "001",
+      SoftwareInstallationUpdates: "002",
+      HardwareTroubleshooting: "003",
+      SocialMediaPost: "001",
+      MarketingCollateralLayoutDesign: "002",
+      BusinessDevelopmentMaterial: "003",
+      PresentationAndDocumentation: "004",
+      WebsiteContentUpdate: "001",
+      WebsiteUI_UXEnhancement: "002",
+      WebsiteBugFixes_Maintenance: "003",
+      Antivirus_FirewallSetup: "001",
+      SecurityAudit_Monitoring: "002",
+      DataBackup_Recovery: "003",
+      RequirementAnalysis: "001",
+      BackendDevelopment: "002",
+      FrontendDevelopment: "003",
+      Testing_Debugging: "004",
+      Deployment_Maintenance: "005",
+      ServerHostingSetup: "001",
+      DatabaseConfiguration: "002",
+      CloudServiceIntegration: "003",
+      InternalMeeting_Documentation: "001",
+      Training_KnowledgeSharing: "002",
+      VendorCoordination_Procurement: "003",
     };
 
     return SubActivityies[SubActivityName];
@@ -458,6 +501,132 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
         { label: "Algorithm", value: "Algorithm" },
       ],
     },
+    //  IT Sub- Activities
+
+    InformationTechnology: {
+      NetworkSetup: [
+        { label: "Router/Switch Config", value: "RouterORSwitchConfig" },
+        { label: "Cabling", value: "Cabling" },
+        {
+          label: "Network Maintenance & Troubleshooting",
+          value: "NetworkMaintenanceTroubleshooting",
+        },
+      ],
+      HardwareAndSoftware: [
+        {
+          label: "Hardware Installation (PC, Printer)",
+          value: "HardwareORInstallation",
+        },
+        {
+          label: "Software Installation & Updates",
+          value: "SoftwareInstallationUpdates",
+        },
+        {
+          label: "Hardware Troubleshooting",
+          value: "HardwareTroubleshooting",
+        },
+      ],
+
+      GraphicDesign: [
+        {
+          label: "Social Media Post",
+          value: "SocialMediaPost",
+        },
+        {
+          label: "Marketing Collateral Layout Design",
+          value: "MarketingCollateralLayoutDesign",
+        },
+        {
+          label: "Business Development Material",
+          value: "BusinessDevelopmentMaterial",
+        },
+        {
+          label: "Presentation and Documentation",
+          value: "PresentationAndDocumentation",
+        },
+      ],
+      WebsiteUpdates: [
+        {
+          label: "Website Content Update",
+          value: "WebsiteContentUpdate",
+        },
+        {
+          label: "Website UI/UX Enhancement",
+          value: "WebsiteUI_UXEnhancement",
+        },
+        {
+          label: "Website Bug Fixes & Maintenance",
+          value: "WebsiteBugFixes_Maintenance",
+        },
+      ],
+      SystemSecurity: [
+        {
+          label: "Antivirus & Firewall Setup",
+          value: "Antivirus_FirewallSetup",
+        },
+        {
+          label: "Security Audit & Monitoring",
+          value: "SecurityAudit_Monitoring",
+        },
+        {
+          label: "Data Backup & Recovery",
+          value: "DataBackup_Recovery",
+        },
+      ],
+
+      SoftwareDevelopment: [
+        {
+          label: "Requirement Analysis",
+          value: "RequirementAnalysis",
+        },
+        {
+          label: "Backend Development",
+          value: "BackendDevelopment",
+        },
+        {
+          label: "Frontend Development",
+          value: "FrontendDevelopment",
+        },
+        {
+          label: "Testing & Debugging",
+          value: "Testing_Debugging",
+        },
+        {
+          label: "Deployment & Maintenance",
+          value: "Deployment_Maintenance",
+        },
+      ],
+
+      ServerConfiguration: [
+        {
+          label: "Server Hosting Setup",
+          value: "ServerHostingSetup",
+        },
+        {
+          label: "Database Configuration",
+          value: "DatabaseConfiguration",
+        },
+        {
+          label: "Cloud Service Integration",
+          value: "CloudServiceIntegration",
+        },
+      ],
+
+      OtherActivities: [
+        {
+          label: "Internal Meeting & Documentation",
+          value: "InternalMeeting_Documentation",
+        },
+        {
+          label: "Training & Knowledge Sharing",
+          value: "Training_KnowledgeSharing",
+        },
+        {
+          label: "Vendor Coordination & Procurement",
+          value: "VendorCoordination_Procurement",
+        },
+      ],
+    },
   };
 
   return (
@@ -504,6 +673,9 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
                 <option value="HSE">HSE</option>
                 <option value="HumanResource">Human Resource</option>
                 <option value="HVAC">HVAC</option>
+                <option value="InformationTechnology">
+                  Information Technology
+                </option>
                 <option value="Instrumentation">Instrumentation</option>
                 <option value="ProjectManagement">Project Management</option>
                 <option value="Mechanical">Mechanical</option>
