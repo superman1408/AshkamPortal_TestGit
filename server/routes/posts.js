@@ -11,6 +11,8 @@ import {
   deleteTable,
   dailyAttendance,
   getAttendancePosts,
+  updateAttendance,
+  deleteAttendance,
   logList,
   dailyEvent,
   getAllevents,
@@ -42,6 +44,10 @@ router.post("/:id/todo", auth, todoList);
 router.patch("/:id/:indexed/edit", auth, editTable);
 
 router.delete("/:id/deleteTable/:indexed", auth, deleteTable);
+
+router.patch("/:id/Attendance", auth, updateAttendance);
+
+router.delete("/:id/deleteAttendance/:indexed", auth, deleteAttendance);
 
 // @desc    Get all skills data for autocomplete
 

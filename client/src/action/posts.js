@@ -49,7 +49,6 @@ export const getPosts = () => async (dispatch) => {
 //   }
 // };
 
-
 // _________________________________________
 
 export const createPost = (post) => async (dispatch) => {
@@ -184,6 +183,31 @@ export const getAttendancePosts = () => async (dispatch) => {
     const { data } = await API.fetchAttendancePosts();
 
     dispatch({ type: ATTEND_ALL, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// -----------------------------Update Attendance --------------------------
+export const updateAttendance = (id, post) => async (dispatch) => {
+  console.log("Code is workinng");
+
+  try {
+    const { data } = await API.updateAttendance(id, post);
+
+    dispatch({ type: UPDATE, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// -----------------------------Delete Attendance------------------------------
+export const deleteAttendance = (id) => async (dispatch) => {
+  console.log("Code is working");
+
+  try {
+    await API.deleteAttendance(id);
+    dispatch({ type: DELETE, payload: id });
   } catch (error) {
     console.log(error);
   }
