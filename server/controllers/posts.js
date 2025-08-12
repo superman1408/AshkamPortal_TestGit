@@ -10,6 +10,8 @@ import EventDetail from "../model/eventDetail.js";
 
 import PaySlipModel from "../model/payslip.js";
 
+import AttendanceDetail from "../model/attendanceDetail.js";
+
 // ....................Multer Storage.apply.......................
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -316,22 +318,33 @@ export const deleteAttendance = async (req, res) => {
 };
 
 // _________________________log List Status_____________________________
-export const logList = async (req, res) => {
-  const { id } = req.params;
-  const value = req.body;
+// export const logList = async (req, res) => {
+//   const { id } = req.params;
+//   const value = req.body;
 
+//   try {
+//     const user = await AuthenticateUser.findById(id);
+
+//     user.logDate.push(value.logDate);
+//     user.logIn.push(value.logIn);
+//     user.logOut.push(value.logOut);
+
+//     const updatedPost = await AuthenticateUser.findByIdAndUpdate(id, user, {
+//       new: true,
+//     });
+
+//     res.json(updatedPost);
+//   } catch (error) {
+//     res.status(409).json({ message: error.message });
+//   }
+// };
+
+export const loglist = async (req, res) => {
+  const Post = req.body;
+  const newPost = new AttendanceDetail(Post);
   try {
-    const user = await AuthenticateUser.findById(id);
-
-    user.logDate.push(value.logDate);
-    user.logIn.push(value.logIn);
-    user.logOut.push(value.logOut);
-
-    const updatedPost = await AuthenticateUser.findByIdAndUpdate(id, user, {
-      new: true,
-    });
-
-    res.json(updatedPost);
+    await newPost.save();
+    res.status(201).json(newPost);
   } catch (error) {
     res.status(409).json({ message: error.message });
   }
