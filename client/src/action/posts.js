@@ -178,6 +178,7 @@ export const dailyAttendance = (formdata) => async (dispatch) => {
   }
 };
 
+// -----------------------------get Operation------------------------------------
 export const getAttendancePosts = () => async (dispatch) => {
   try {
     const { data } = await API.fetchAttendancePosts();

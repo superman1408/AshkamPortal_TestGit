@@ -45,9 +45,9 @@ router.patch("/:id/:indexed/edit", auth, editTable);
 
 router.delete("/:id/deleteTable/:indexed", auth, deleteTable);
 
-router.patch("/:id/Attendance", auth, updateAttendance);
+router.patch("/updateAttendance", auth, updateAttendance);
 
-router.delete("/:id/deleteAttendance/:indexed", auth, deleteAttendance);
+router.delete("/deleteAttendance", auth, deleteAttendance);
 
 // @desc    Get all skills data for autocomplete
 

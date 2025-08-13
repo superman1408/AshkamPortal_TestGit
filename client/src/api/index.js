@@ -27,11 +27,11 @@ export const updatePost = (id, updatedPost) =>
   API.patch(`/posts/${id}/registration`, updatedPost);
 
 export const updateAttendance = (id, updatedAttendance) =>
-  API.patch(`/posts/${id}/Attendance`, updatedAttendance);
+  API.patch(`/posts/updateAttendance`, updatedAttendance);
 
 export const deletePost = (id) => API.delete(`/posts/${id}`);
 
-export const deleteAttendance = (id) => API.delete(`/posts/${id}`);
+export const deleteAttendance = (id) => API.delete(`/posts/deleteAttendance`);
 
 export const signIn = (formData) => API.post("/user/signin", formData);
 
