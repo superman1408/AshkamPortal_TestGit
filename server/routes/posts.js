@@ -13,13 +13,13 @@ import {
   getAttendancePosts,
   updateAttendance,
   deleteAttendance,
-  logList,
   dailyEvent,
   getAllevents,
   salarySlipData,
   getSalary,
   leaveList,
   presentList,
+  logList,
 } from "../controllers/posts.js";
 
 import auth from "../middleware/auth.js";

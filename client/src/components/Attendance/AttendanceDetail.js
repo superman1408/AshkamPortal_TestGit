@@ -88,7 +88,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
         setIsSubmitting(false); // Reset the form submission state
       });
 
-    window.location.reload();
+    // window.location.reload();
   };
 
   const handleAttendanceSubmit = (e) => {
@@ -300,12 +300,20 @@ const AttendanceDetail = ({ currentId, posts }) => {
                   >
                     {posts.map((post) => {
                       if (post._id === currentId) {
+                        const firstName = post?.firstName
+                          ? post.firstName.charAt(0).toUpperCase() +
+                            post.firstName.slice(1).toLowerCase()
+                          : "";
+
+                        const lastName = post?.lastName
+                          ? post.lastName.charAt(0).toUpperCase() +
+                            post.lastName.slice(1).toLowerCase()
+                          : "";
+
                         return (
-                          post?.firstName.charAt(0).toUpperCase() +
-                          post?.firstName.slice(1).toLowerCase() +
-                          " " +
-                          post?.lastName.charAt(0).toUpperCase() +
-                          post?.lastName.slice(1).toLowerCase()
+                          <span key={post._id}>
+                            {firstName} {lastName}
+                          </span>
                         );
                       }
                       return null;

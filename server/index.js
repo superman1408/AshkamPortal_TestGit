@@ -17,6 +17,9 @@ const HOST = process.env.HOST || 'localhost';
 
 const CONNECT = process.env.CONNECTION_URL;
 
+console.log(CONNECT);
+
+
 
 
 app.use(express.static("client"));
@@ -50,6 +53,12 @@ app.get("/", (req, res) => {
 //     })
 //   )
 //   .catch((error) => console.log(error));
+
+
+// app.listen(PORT, () => {
+//   console.log(`Server is running at port: ${PORT}`);
+  
+// });
 
 
 mongoose.set("strictQuery", true);

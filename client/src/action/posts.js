@@ -228,7 +228,7 @@ export const logList = (formData, id) => async (dispatch) => {
   console.log("Hello I am working at loglist!!");
 
   try {
-    const { data } = await API.logList(formData);
+    const { data } = await API.logList(formData, id);
 
     dispatch({ type: LOGLIST, payload: data });
   } catch (error) {

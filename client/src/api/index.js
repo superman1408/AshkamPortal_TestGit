@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://192.168.168.110:8080/",
+  baseURL: "http://localhost:8080/",
 });
 
 API.interceptors.request.use((req) => {
@@ -27,7 +27,7 @@ export const updatePost = (id, updatedPost) =>
   API.patch(`/posts/${id}/registration`, updatedPost);
 
 export const updateAttendance = (id, updatedAttendance) =>
-  API.patch(`/posts/updateAttendance`, updatedAttendance);
+  API.patch(`/posts/${id}/updateAttendance`, updatedAttendance);
 
 export const deletePost = (id) => API.delete(`/posts/${id}`);
 

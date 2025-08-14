@@ -339,16 +339,41 @@ export const deleteAttendance = async (req, res) => {
 //   }
 // };
 
-export const loglist = async (req, res) => {
-  const Post = req.body;
-  const newPost = new AttendanceDetail(Post);
+// -------------------------For Creation and updation(AttendanceDetail)---------------------------------
+export const logList = async (req, res) => {
+  const { id } = req.params;
+  const value = req.body;
+
   try {
-    await newPost.save();
-    res.status(201).json(newPost);
+    const user = await AttendanceDetail.findById(id);
+
+    user.logDate.push(value.logDate);
+    user.logIn.push(value.logIn);
+    user.logOut.push(value.logOut);
+
+    const updatedPost = await AttendanceDetail.findByIdAndUpdate(id, user, {
+      new: true,
+    });
+
+    res.json(updatedPost);
   } catch (error) {
     res.status(409).json({ message: error.message });
   }
 };
+
+// -------------------------For creating id-------------------------
+// export const logList = async (req, res) => {
+//   console.log("Yes you are watching log for attendance function");
+
+//   try {
+//     const Post = req.body;
+//     const newPost = new AttendanceDetail(Post);
+//     await newPost.save();
+//     res.status(201).json(newPost);
+//   } catch (error) {
+//     res.status(409).json({ message: error.message });
+//   }
+// };
 
 export const salarySlipData = async (req, res) => {
   try {
