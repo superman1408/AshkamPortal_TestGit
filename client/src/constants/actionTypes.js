@@ -20,3 +20,4 @@ export const SALARY_SLIP = "SALARY_SLIP";
 export const SALARY_ALL = "SALARY_ALL";
 export const LEAVELIST = "LEAVELIST";
 export const PRESENTLIST = "PRESENTLIST";
+export const FETCHLOGLIST = "FETCHLOGLIST";

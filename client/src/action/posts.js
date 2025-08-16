@@ -16,6 +16,7 @@ import {
   SALARY_ALL,
   LEAVELIST,
   PRESENTLIST,
+  FETCHLOGLIST,
 } from "../constants/actionTypes";
 
 import * as API from "../api";
@@ -183,7 +184,7 @@ export const getAttendancePosts = () => async (dispatch) => {
   try {
     const { data } = await API.fetchAttendancePosts();
 
-    dispatch({ type: ATTEND_ALL, payload: data });
+    dispatch({ type: FETCHLOGLIST, payload: data });
   } catch (error) {
     console.log(error);
   }

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 // import Evolve from "./UnderTrial/Evolve";
-import { getPosts } from "../../action/posts";
+import { getPosts, getAttendancePosts } from "../../action/posts";
 
 import AttendanceCombo from "./AttendanceCombo";
 import AttendanceDetail from "./AttendanceDetail";
@@ -12,11 +12,15 @@ const AttendanceDisplay = () => {
   const { id } = useParams();
   const [currentId, setCurrentId] = useState(id);
   const posts = useSelector((state) => state.posts);
+  console.log(posts);
+
   const dispatch = useDispatch();
   const [post, setPost] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const user = JSON.parse(localStorage.getItem("profile"));
   const role = user.result.role;
+
+  const attendancePost = useSelector((state) => state.attendancePost);
 
   useEffect(() => {
     if (posts) {
@@ -31,6 +35,22 @@ const AttendanceDisplay = () => {
     }
     setIsLoading(false);
   }, [isLoading]);
+
+  useEffect(() => {
+    if (!attendancePost) {
+      dispatch(getAttendancePosts()).then(() => {
+        // eslint-disable-next-line array-callback-return
+        attendancePost.map((post) => {
+          if (post._id === currentId) {
+            setPost(post);
+          }
+        });
+      });
+    }
+
+    console.log("attendancePost", attendancePost);
+    setIsLoading(false);
+  }, [isLoading, dispatch, attendancePost]);
 
   const verify = () => {
     try {
@@ -53,11 +73,9 @@ const AttendanceDisplay = () => {
     <div>
       {!isLoading && (
         <>
-         
-         
           {verify() === true && (
             <AttendanceCombo posts={posts} setCurrentId={setCurrentId} />
-           )} 
+          )}
           <AttendanceDetail currentId={currentId} posts={posts} />
         </>
       )}

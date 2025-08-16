@@ -4,7 +4,7 @@ import fs from "fs";
 
 import AuthenticateUser from "../model/authDetails.js";
 
-import UserAttendance from "../model/attendanceDetail.js";
+// import UserAttendance from "../model/attendanceDetail.js";
 
 import EventDetail from "../model/eventDetail.js";
 
@@ -279,13 +279,26 @@ export const getAllevents = async (req, res) => {
 
 // -------------------get operation------------------
 export const getAttendancePosts = async (req, res) => {
+  console.log("this is working");
   try {
-    const postMessage = await UserAttendance.find({});
+    const postMessage = await AttendanceDetail.find({});
+
+    console.log("this is working");
+
     res.status(200).json(postMessage);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
 };
+
+// try {
+//   const postMessage = await AuthenticateUser.find({});
+//   // console.log(postMessage);
+//   res.status(200).json(postMessage);
+//   // console.log("postMessage", postMessage);
+// } catch (error) {
+//   res.status(404).json({ message: error.message });
+// }
 
 //------------------Update Operation --------------------------
 export const updateAttendance = async (req, res) => {
