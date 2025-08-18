@@ -69,7 +69,9 @@ export const dailyEvent = (formData) => API.post(`/posts/dailyEvent`, formData);
 
 export const getAllEvents = () => API.get(`/posts/events/display`);
 
-export const fetchAttendancePosts = () => API.get("/posts/attendanceposts");
+// export const fetchAttendancePosts = () => API.get("/posts/attendanceposts");
+
+export const getAttendancePosts = () => API.get("/attend/attendanceposts");
 
 export const logList = (formData, id) =>
   API.post(`/posts/${id}/loglist`, formData);

@@ -10,9 +10,6 @@ import {
   editTable,
   deleteTable,
   dailyAttendance,
-  getAttendancePosts,
-  updateAttendance,
-  deleteAttendance,
   dailyEvent,
   getAllevents,
   salarySlipData,
@@ -29,7 +26,6 @@ const router = express.Router();
 
 router.get("/", getPosts);
 
-router.get("/attendanceposts", getAttendancePosts);
 
 router.get("/:id", getPost);
 
@@ -45,9 +41,6 @@ router.patch("/:id/:indexed/edit", auth, editTable);
 
 router.delete("/:id/deleteTable/:indexed", auth, deleteTable);
 
-router.patch("/updateAttendance", auth, updateAttendance);
-
-router.delete("/deleteAttendance", auth, deleteAttendance);
 
 // @desc    Get all skills data for autocomplete
 

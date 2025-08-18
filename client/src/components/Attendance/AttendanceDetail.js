@@ -14,13 +14,14 @@ import {
 } from "@mui/material";
 
 import { getPosts } from "../../action/posts";
+import { getAttendancePosts } from "../../action/attendance";
 import { dailyAttendance, logList } from "../../action/posts";
 // import HalfDoughnutWithPointer from "../Attendance/AttendanceChart";
 import PunctualityRadarChart from "./AttendanceChart";
 import Panel from "../Panel/Panel";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-const AttendanceDetail = ({ currentId, posts }) => {
+const AttendanceDetail = ({ currentId, attend, posts }) => {
   const dispatch = useDispatch();
 
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -52,24 +53,23 @@ const AttendanceDetail = ({ currentId, posts }) => {
 
   useEffect(() => {
     array.length = 0;
-    dispatch(getPosts()).then(() => {
-      posts.map((post) => {
-        if (post._id === currentId) {
+    dispatch(getAttendancePosts()).then(() => {
+      attend.map((a) => {
+        if (a._id === currentId) {
           // console.log(post.logIn);
-          for (let i = 0; i < post.logIn.length; i++) {
+          for (let i = 0; i < a.logIn.length; i++) {
             array.push({
-              logIn: post.logIn[i],
+              logIn: a.logIn[i],
             });
           }
         }
       });
     });
-  }, [currentId, dispatch, posts, array]);
+  }, [currentId, dispatch]);
 
-  // console.log("logData", logData);
+
 
   //  changes the "handle submit" code as window.location.relaod() is not good practice for sending response to server side
-
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission
     if (isSubmitting) return; // Prevent duplicate submissions
@@ -88,7 +88,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
         setIsSubmitting(false); // Reset the form submission state
       });
 
-    // window.location.reload();
+    window.location.reload();
   };
 
   const handleAttendanceSubmit = (e) => {
@@ -98,13 +98,13 @@ const AttendanceDetail = ({ currentId, posts }) => {
   };
 
   // eslint-disable-next-line array-callback-return
-  posts.forEach((post) => {
-    if (post._id === currentId) {
-      for (let i = 0; i < post.logDate.length; i++) {
+  attend.map((a) => {
+    if (a._id === currentId) {
+      for (let i = 0; i < a.logDate.length; i++) {
         array.push({
-          logDate: post.logDate[i],
-          logIn: post.logIn[i],
-          logOut: post.logOut[i],
+          logDate: a.logDate[i],
+          logIn: a.logIn[i],
+          logOut: a.logOut[i],
         });
       }
     }
@@ -195,6 +195,10 @@ const AttendanceDetail = ({ currentId, posts }) => {
     navigate(-1); // this means "go back one step in history"
   };
 
+  // console.log(attend);
+  // console.log(posts);
+  // console.log(currentId);
+
   return (
     <div style={{ height: "auto" }}>
       <div style={{ display: "flex" }}>
@@ -276,7 +280,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
                       mt: 2,
                     }}
                   >
-                    <Avatar
+                  <Avatar
                       sx={{
                         width: 50,
                         height: 50,
@@ -322,7 +326,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
 
                   <Box sx={{ display: "flex", justifyContent: "center" }}>
                     {(() => {
-                      const matchedPost = posts.find(
+                      const matchedPost = attend.find(
                         (post) => post._id === currentId
                       );
 

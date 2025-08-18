@@ -8,7 +8,6 @@ import {
   TODOLIST,
   SKILLDATA,
   UPDATE_TABLE,
-  ATTEND_ALL,
   LOGLIST,
   DAILY_EVENT,
   EVENT_ALL,
@@ -16,7 +15,6 @@ import {
   SALARY_ALL,
   LEAVELIST,
   PRESENTLIST,
-  FETCHLOGLIST,
 } from "../constants/actionTypes";
 
 import * as API from "../api";
@@ -179,16 +177,7 @@ export const dailyAttendance = (formdata) => async (dispatch) => {
   }
 };
 
-// -----------------------------get Operation------------------------------------
-export const getAttendancePosts = () => async (dispatch) => {
-  try {
-    const { data } = await API.fetchAttendancePosts();
 
-    dispatch({ type: FETCHLOGLIST, payload: data });
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 // -----------------------------Update Attendance --------------------------
 export const updateAttendance = (id, post) => async (dispatch) => {
@@ -215,15 +204,7 @@ export const deleteAttendance = (id) => async (dispatch) => {
   }
 };
 
-// export const logList = (post, id) => async (dispatch) => {
-//   try {
-//     const { data } = await API.logList(post, id);
-//     //console.log(data);
-//     dispatch({ type: LOGLIST, payload: data });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+
 
 export const logList = (formData, id) => async (dispatch) => {
   console.log("Hello I am working at loglist!!");

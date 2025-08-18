@@ -9,11 +9,9 @@ import {
   UPDATE_STATUS,
   TODOLIST,
   UPDATE_TABLE,
-  LOGLIST,
   DAILY_EVENT,
   SALARY_SLIP,
   PRESENTLIST,
-  FETCHLOGLIST,
 } from "../constants/actionTypes";
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -76,11 +74,11 @@ export default (posts = [], action) => {
     case UPDATE_TABLE:
       return [...posts, action.payload];
 
-    case LOGLIST:
-      return [...posts, action.payload];
+    // case LOGLIST:
+    //   return [...posts, action.payload];
 
-    case FETCHLOGLIST:
-      return [...posts, action.payload];
+    // case FETCHLOGLIST:
+    //   return [...posts, action.payload];
 
     case SALARY_SLIP:
       return [...posts, action.payload];

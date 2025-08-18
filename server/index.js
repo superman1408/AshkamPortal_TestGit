@@ -8,6 +8,7 @@ import dotenv from "dotenv";
 import userRouters from "./routes/user.js";
 import postsRouters from "./routes/posts.js";
 import mailRouters from "./routes/mail.js";
+import attendRouters from "./routes/attendence.js";
 
 const app = express();
 dotenv.config();
@@ -30,6 +31,7 @@ app.use(cors());
 app.use("/user", userRouters);
 app.use("/posts", postsRouters);
 app.use("/mail", mailRouters);
+app.use("/attend", attendRouters);
 
 app.get("/", (req, res) => {
   res.send("Hello to ASHKAM  API");
