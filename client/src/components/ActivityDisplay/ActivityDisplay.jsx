@@ -8,13 +8,16 @@ import { getPosts } from "../../action/posts";
 import "./Style.css";
 
 import ComboBox from "../ComboBox/ComboBox";
+import { getTimesheetPosts } from "../../action/timesheet";
 
 const ActivityDisplay = () => {
   const { id } = useParams();
   const [currentId, setCurrentId] = useState(id);
   const posts = useSelector((state) => state.posts);
+  const tSheet = useSelector((state) => state.tSheet);
   const dispatch = useDispatch();
   const [post, setPost] = useState();
+  const [timesheetDetail, setTimesheetDetail] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const user = JSON.parse(localStorage.getItem("profile"));
   const role = user.result.role;
@@ -34,6 +37,21 @@ const ActivityDisplay = () => {
     setIsLoading(false);
   }, [isLoading]);
 
+  useEffect(() => {
+    if (posts) {
+      dispatch(getTimesheetPosts()).then(() => {
+        console.log("Activity Display is recieving the posts..!!!@@@@@@");
+        // eslint-disable-next-line array-callback-return
+        posts.map((post) => {
+          if (post._id === currentId) {
+            setTimesheetDetail(post);
+          }
+        });
+      });
+    }
+    setIsLoading(false);
+  }, [isLoading]);
+
   return (
     <div>
       {!isLoading && (
@@ -44,7 +62,7 @@ const ActivityDisplay = () => {
           {role === "admin" && (
             <ComboBox posts={posts} setCurrentId={setCurrentId} />
           )}
-          <Evolve currentId={currentId} posts={posts} />
+          <Evolve currentId={currentId} posts={posts} tSheet={tSheet} />
         </>
       )}
     </div>

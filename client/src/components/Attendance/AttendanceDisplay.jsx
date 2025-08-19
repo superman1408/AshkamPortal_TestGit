@@ -79,7 +79,6 @@ const AttendanceDisplay = () => {
 
   return (
     <div>
-      Home
       {!isLoading && (
         <>
           {verify() === true && (

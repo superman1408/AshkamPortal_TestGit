@@ -4,24 +4,21 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
-
 import userRouters from "./routes/user.js";
 import postsRouters from "./routes/posts.js";
 import mailRouters from "./routes/mail.js";
 import attendRouters from "./routes/attendence.js";
+// import timesheetRouters from "./routes/timesheet.js";
 
 const app = express();
 dotenv.config();
 
 const PORT = process.env.PORT || 8080;
-const HOST = process.env.HOST || 'localhost';
+const HOST = process.env.HOST || "localhost";
 
 const CONNECT = process.env.CONNECTION_URL;
 
 console.log(CONNECT);
-
-
-
 
 app.use(express.static("client"));
 app.use(bodyParser.json({ limit: "35mb", extended: true }));
@@ -32,6 +29,7 @@ app.use("/user", userRouters);
 app.use("/posts", postsRouters);
 app.use("/mail", mailRouters);
 app.use("/attend", attendRouters);
+// app.use("/timesheet", timesheetRouters);
 
 app.get("/", (req, res) => {
   res.send("Hello to ASHKAM  API");
@@ -56,12 +54,10 @@ app.get("/", (req, res) => {
 //   )
 //   .catch((error) => console.log(error));
 
-
 // app.listen(PORT, () => {
 //   console.log(`Server is running at port: ${PORT}`);
-  
-// });
 
+// });
 
 mongoose.set("strictQuery", true);
 
@@ -70,7 +66,9 @@ mongoose
   .then(() =>
     app.listen(PORT, HOST, () => {
       console.log(
-        "Listening at " + `http://${HOST}:${PORT}` + "\nMongoDB database is connected..!!"
+        "Listening at " +
+          `http://${HOST}:${PORT}` +
+          "\nMongoDB database is connected..!!"
       );
     })
   )

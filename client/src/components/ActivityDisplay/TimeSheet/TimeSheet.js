@@ -10,6 +10,8 @@ import { tableDelete, tableEdit, todoList } from "../../../action/posts";
 import ActivityCodePopUp from "./ActivityCodePopUp";
 import { getPosts } from "../../../action/posts";
 
+import { getTimesheetPosts } from "../../../action/timesheet";
+
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import LOGO from "../../../assets/AshkamLogoTransparentbc.png";
@@ -68,6 +70,31 @@ function TimeSheet({ currentId, posts }) {
   useEffect(() => {
     array.length = 0;
     dispatch(getPosts()).then(() => {
+      // eslint-disable-next-line array-callback-return
+      posts.map((post) => {
+        for (let i = 0; i < post.projectCode.length; i++) {
+          if (post._id === currentId) {
+            array.push({
+              projectCode: post.projectCode[i],
+              activityCode: post.activityCode[i],
+              date: post.date[i],
+              netTime: post.netTime[i],
+              overTime: post.overTime[i],
+              editIndex: post.editIndex[i],
+            });
+
+            // setRole(post?.role);
+          }
+        }
+      });
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, currentId, posts]);
+
+  //---------------------------------For getting data of Timesheet----------------------------------------
+  useEffect(() => {
+    array.length = 0;
+    dispatch(getTimesheetPosts()).then(() => {
       // eslint-disable-next-line array-callback-return
       posts.map((post) => {
         for (let i = 0; i < post.projectCode.length; i++) {
