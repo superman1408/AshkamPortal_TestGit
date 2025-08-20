@@ -10,7 +10,7 @@ import { tableDelete, tableEdit, todoList } from "../../../action/posts";
 import ActivityCodePopUp from "./ActivityCodePopUp";
 import { getPosts } from "../../../action/posts";
 
-import { getTimesheetPosts } from "../../../action/timesheet";
+import { getTimesheetPosts, timesheetList } from "../../../action/timesheet";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -23,7 +23,7 @@ import Panel from "../../Panel/Panel";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import LoadingSpinner from "../../ReactSpinner/reactSpinner";
 
-function TimeSheet({ currentId, posts }) {
+function TimeSheet({ currentId, posts, tSheet }) {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -96,16 +96,16 @@ function TimeSheet({ currentId, posts }) {
     array.length = 0;
     dispatch(getTimesheetPosts()).then(() => {
       // eslint-disable-next-line array-callback-return
-      posts.map((post) => {
-        for (let i = 0; i < post.projectCode.length; i++) {
-          if (post._id === currentId) {
+      tSheet.map((t) => {
+        for (let i = 0; i < t.projectCode.length; i++) {
+          if (t._id === currentId) {
             array.push({
-              projectCode: post.projectCode[i],
-              activityCode: post.activityCode[i],
-              date: post.date[i],
-              netTime: post.netTime[i],
-              overTime: post.overTime[i],
-              editIndex: post.editIndex[i],
+              projectCode: t.projectCode[i],
+              activityCode: t.activityCode[i],
+              date: t.date[i],
+              netTime: t.netTime[i],
+              overTime: t.overTime[i],
+              editIndex: t.editIndex[i],
             });
 
             // setRole(post?.role);
@@ -114,7 +114,7 @@ function TimeSheet({ currentId, posts }) {
       });
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, currentId, posts]);
+  }, [dispatch, currentId, tSheet]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -144,7 +144,7 @@ function TimeSheet({ currentId, posts }) {
           );
         } else {
           setEntries([...entries, newEntry]);
-          await dispatch(todoList(newEntry, currentId)).then((res) => {
+          await dispatch(timesheetList(newEntry, currentId)).then((res) => {
             console.log("Data is recieved in the Data Base");
             clearForm();
             alert("✅ Entry submitted successfully!");
@@ -250,16 +250,16 @@ function TimeSheet({ currentId, posts }) {
 
   // Here the array is being loaded....!!!
   // eslint-disable-next-line array-callback-return
-  posts.map((post) => {
-    for (let i = 0; i < post.projectCode.length; i++) {
-      if (post._id === currentId) {
+  tSheet.map((t) => {
+    for (let i = 0; i < t.projectCode.length; i++) {
+      if (t._id === currentId) {
         array.push({
-          projectCode: post.projectCode[i],
-          activityCode: post.activityCode[i],
-          date: post.date[i],
-          netTime: post.netTime[i],
-          overTime: post.overTime[i],
-          editIndex: post.editIndex[i],
+          projectCode: t.projectCode[i],
+          activityCode: t.activityCode[i],
+          date: t.date[i],
+          netTime: t.netTime[i],
+          overTime: t.overTime[i],
+          editIndex: t.editIndex[i],
         });
       }
     }
@@ -300,15 +300,15 @@ function TimeSheet({ currentId, posts }) {
 
   const updateArray = () => {
     // eslint-disable-next-line array-callback-return
-    posts.map((post) => {
-      for (let i = 0; i < post.projectCode.length; i++) {
-        if (post._id === currentId) {
+    tSheet.map((t) => {
+      for (let i = 0; i < t.projectCode.length; i++) {
+        if (t._id === currentId) {
           array.push({
-            projectCode: post.projectCode[i],
-            activityCode: post.activityCode[i],
-            date: post.date[i],
-            netTime: post.netTime[i],
-            overTime: post.overTime[i],
+            projectCode: t.projectCode[i],
+            activityCode: t.activityCode[i],
+            date: t.date[i],
+            netTime: t.netTime[i],
+            overTime: t.overTime[i],
           });
         }
       }
@@ -691,8 +691,8 @@ function TimeSheet({ currentId, posts }) {
                         <tbody>
                           {
                             // eslint-disable-next-line array-callback-return
-                            posts.map((post, index) => {
-                              if (post._id === currentId) {
+                            tSheet.map((t, index) => {
+                              if (t._id === currentId) {
                                 return (
                                   <>
                                     <tr key={index}>
@@ -712,7 +712,7 @@ function TimeSheet({ currentId, posts }) {
                                           fontFamily: "Roboto",
                                         }}
                                       >
-                                        {post?.employeeId}
+                                        {t?.employeeId}
                                       </td>
                                       <th
                                         style={{
@@ -730,17 +730,17 @@ function TimeSheet({ currentId, posts }) {
                                           fontFamily: "Roboto",
                                         }}
                                       >
-                                        {post?.firstName
+                                        {t?.firstName
                                           .charAt(0)
                                           .toUpperCase() +
-                                          post?.firstName
+                                          t?.firstName
                                             .slice(1)
                                             .toLowerCase() +
                                           " " +
-                                          post?.lastName
+                                          t?.lastName
                                             .charAt(0)
                                             .toUpperCase() +
-                                          post?.lastName.slice(1).toLowerCase()}
+                                          t?.lastName.slice(1).toLowerCase()}
                                       </td>
                                     </tr>
                                     <tr key={index}>
@@ -760,7 +760,7 @@ function TimeSheet({ currentId, posts }) {
                                           fontFamily: "Roboto",
                                         }}
                                       >
-                                        {post?.department}
+                                        {t?.department}
                                       </td>
                                       <th
                                         style={{
@@ -778,11 +778,11 @@ function TimeSheet({ currentId, posts }) {
                                           fontFamily: "Roboto",
                                         }}
                                       >
-                                        {post?.date[0] +
+                                        {t?.date[0] +
                                           " " +
                                           "to" +
                                           " " +
-                                          post?.date[post.date.length - 1]}
+                                          t?.date[t.date.length - 1]}
                                       </td>
                                     </tr>
                                   </>

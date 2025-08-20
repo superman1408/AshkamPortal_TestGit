@@ -52,6 +52,8 @@ const ActivityDisplay = () => {
     setIsLoading(false);
   }, [isLoading]);
 
+  console.log(tSheet);
+
   return (
     <div>
       {!isLoading && (
