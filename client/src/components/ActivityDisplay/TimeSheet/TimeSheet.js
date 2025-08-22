@@ -23,7 +23,7 @@ import Panel from "../../Panel/Panel";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import LoadingSpinner from "../../ReactSpinner/reactSpinner";
 
-function TimeSheet({ currentId, posts, tSheet }) {
+function TimeSheet({ currentId, posts = [], tSheet = [] }) {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -36,6 +36,7 @@ function TimeSheet({ currentId, posts, tSheet }) {
   const [overTime, setOverTime] = useState("");
   const [editIndex, setEditIndex] = useState(-1);
   const [isLoading, setIsLoading] = useState(true);
+  const [timesheet, setTimesheet] = useState("");
 
   const [projectopen, setProjectOpen] = useState(false);
 
@@ -55,6 +56,8 @@ function TimeSheet({ currentId, posts, tSheet }) {
   const matches = useMediaQuery("(min-width:1120px)");
 
   const loggedInUserId = user?.result?._id;
+
+  // console.log(timesheetList);
 
   // const role = user?.result?.role;
 
@@ -91,13 +94,14 @@ function TimeSheet({ currentId, posts, tSheet }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, currentId, posts]);
 
-  //---------------------------------For getting data of Timesheet----------------------------------------
+  //---------------------------------------------------For getting data of Timesheet----------------------------------------------------
   useEffect(() => {
     array.length = 0;
     dispatch(getTimesheetPosts()).then(() => {
       // eslint-disable-next-line array-callback-return
       tSheet.map((t) => {
         for (let i = 0; i < t.projectCode.length; i++) {
+          console.log("Data pushed successfully");
           if (t._id === currentId) {
             array.push({
               projectCode: t.projectCode[i],
@@ -114,7 +118,7 @@ function TimeSheet({ currentId, posts, tSheet }) {
       });
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, currentId, tSheet]);
+  }, [dispatch, currentId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -148,7 +152,7 @@ function TimeSheet({ currentId, posts, tSheet }) {
             console.log("Data is recieved in the Data Base");
             clearForm();
             alert("✅ Entry submitted successfully!");
-            window.location.reload();
+            // window.location.reload();
           });
         }
       } catch (err) {
@@ -250,20 +254,22 @@ function TimeSheet({ currentId, posts, tSheet }) {
 
   // Here the array is being loaded....!!!
   // eslint-disable-next-line array-callback-return
-  tSheet.map((t) => {
-    for (let i = 0; i < t.projectCode.length; i++) {
-      if (t._id === currentId) {
-        array.push({
-          projectCode: t.projectCode[i],
-          activityCode: t.activityCode[i],
-          date: t.date[i],
-          netTime: t.netTime[i],
-          overTime: t.overTime[i],
-          editIndex: t.editIndex[i],
-        });
+  {
+    tSheet?.map((t) => {
+      for (let i = 0; i < t.projectCode.length; i++) {
+        if (t._id === currentId) {
+          array.push({
+            projectCode: t.projectCode[i],
+            activityCode: t.activityCode[i],
+            date: t.date[i],
+            netTime: t.netTime[i],
+            overTime: t.overTime[i],
+            editIndex: t.editIndex[i],
+          });
+        }
       }
-    }
-  });
+    });
+  }
 
   //This logic is creating a delay time for loading the array....!!
   useEffect(() => {
@@ -730,16 +736,10 @@ function TimeSheet({ currentId, posts, tSheet }) {
                                           fontFamily: "Roboto",
                                         }}
                                       >
-                                        {t?.firstName
-                                          .charAt(0)
-                                          .toUpperCase() +
-                                          t?.firstName
-                                            .slice(1)
-                                            .toLowerCase() +
+                                        {t?.firstName.charAt(0).toUpperCase() +
+                                          t?.firstName.slice(1).toLowerCase() +
                                           " " +
-                                          t?.lastName
-                                            .charAt(0)
-                                            .toUpperCase() +
+                                          t?.lastName.charAt(0).toUpperCase() +
                                           t?.lastName.slice(1).toLowerCase()}
                                       </td>
                                     </tr>
