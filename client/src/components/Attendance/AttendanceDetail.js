@@ -32,6 +32,8 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
 
   const [hoveredData, setHoveredData] = useState(false);
 
+  const [editIndex, setEditIndex] = useState(-1);
+
   const [formData, setFormData] = useState({
     presentEmployee: "",
     absentEmployee: "",
@@ -60,14 +62,13 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
           for (let i = 0; i < a.logIn.length; i++) {
             array.push({
               logIn: a.logIn[i],
+              // editIndex: post.editIndex[i],
             });
           }
         }
       });
     });
   }, [currentId, dispatch]);
-
-
 
   //  changes the "handle submit" code as window.location.relaod() is not good practice for sending response to server side
   const handleSubmit = async (e) => {
@@ -199,6 +200,41 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
   // console.log(posts);
   // console.log(currentId);
 
+  //Logic for clearing the form.........
+  const clearForm = () => {
+    setLogData("");
+    setEditIndex(-1);
+  };
+
+  //To Edit the entry....!!!!
+  const editEntry = (index) => {
+    let updatedArray = updateArray();
+    console.log("editEntry is working");
+
+    setEditIndex(index);
+    setLogData(updatedArray[index].logDate);
+    setLogData(updatedArray[index].logIn);
+    setLogData(updatedArray[index].logOut);
+    console.log(updatedArray);
+    
+  };
+
+  const updateArray = () => {
+    // eslint-disable-next-line array-callback-return
+    attend.map((a) => {
+      for (let i = 0; i < a.logDate.length; i++) {
+        if (a._id === currentId) {
+          array.push({
+            logDate: a.logDate[i],
+            logIn: a.logIn[i],
+            logOut: a.logOut[i],
+          });
+        }
+      }
+    });
+    return array;
+  };
+
   return (
     <div style={{ height: "auto" }}>
       <div style={{ display: "flex" }}>
@@ -280,7 +316,7 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
                       mt: 2,
                     }}
                   >
-                  <Avatar
+                    <Avatar
                       sx={{
                         width: 50,
                         height: 50,
@@ -583,6 +619,45 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
                       <td>
                         <span style={logoutStyle}>{item?.logOut}</span>
                       </td>
+                      {role === "admin" && (
+                        <>
+                          <td
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-around",
+                              padding: "10px",
+                              textAlign: "center",
+                            }}
+                          >
+                            <button
+                              id="editButton"
+                              style={{ fontFamily: "Roboto" }}
+                              onClick={() => editEntry(index)}
+                            >
+                              Edit
+                            </button>
+                            {/* <button
+                              id="deleteButton"
+                              style={{ fontFamily: "Roboto" }}
+                              onClick={() => deleteEntry(index)}
+                            >
+                              Delete
+                            </button> */}
+
+                            {role === "manager" && (
+                              <>
+                                <button
+                                  id="editButton"
+                                  style={{ fontFamily: "Roboto" }}
+                                  onClick={() => editEntry(index)}
+                                >
+                                  Edit
+                                </button>
+                              </>
+                            )}
+                          </td>
+                        </>
+                      )}
                     </tr>
                   ))}
                 </tbody>
