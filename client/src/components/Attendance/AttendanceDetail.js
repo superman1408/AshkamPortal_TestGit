@@ -71,25 +71,50 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
   }, [currentId, dispatch]);
 
   //  changes the "handle submit" code as window.location.relaod() is not good practice for sending response to server side
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault(); // Prevent default form submission
+  //   if (isSubmitting) return; // Prevent duplicate submissions
+
+  //   setIsSubmitting(true);
+  //   await dispatch(logList(logData, currentId))
+  //     .then(() => {
+  //       alert("Successfully Logged!");
+
+  //       // Update the state or perform any necessary updates instead of reloading
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     })
+  //     .finally(() => {
+  //       setIsSubmitting(false); // Reset the form submission state
+  //     });
+
+  //   window.location.reload();
+  // };
+
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default form submission
-    if (isSubmitting) return; // Prevent duplicate submissions
+    e.preventDefault();
+    if (isSubmitting) return;
 
     setIsSubmitting(true);
-    await dispatch(logList(logData, currentId))
-      .then(() => {
+
+    try {
+      if (editIndex >= 0) {
+        // 🔹 UPDATE existing record
+        // await dispatch(updateLog(currentId, editIndex, logData));
+        alert("Successfully Updated!");
+      } else {
+        // 🔹 ADD new record
+        await dispatch(logList(logData, currentId));
         alert("Successfully Logged!");
-
-        // Update the state or perform any necessary updates instead of reloading
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setIsSubmitting(false); // Reset the form submission state
-      });
-
-    window.location.reload();
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsSubmitting(false);
+      setEditIndex(-1); // reset edit mode
+      setLogData({ logDate: "", logIn: "", logOut: "" }); // clear form
+    }
   };
 
   const handleAttendanceSubmit = (e) => {
@@ -212,19 +237,21 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
     console.log("editEntry is working");
 
     setEditIndex(index);
-    setLogData(updatedArray[index].logDate);
-    setLogData(updatedArray[index].logIn);
-    setLogData(updatedArray[index].logOut);
-    console.log(updatedArray);
-    
+    setLogData({
+      logDate: updatedArray[index].logDate,
+      logIn: updatedArray[index].logIn,
+      logOut: updatedArray[index].logOut,
+    });
+
+    console.log(updatedArray[index]);
   };
 
   const updateArray = () => {
-    // eslint-disable-next-line array-callback-return
-    attend.map((a) => {
-      for (let i = 0; i < a.logDate.length; i++) {
-        if (a._id === currentId) {
-          array.push({
+    const newArray = [];
+    attend.forEach((a) => {
+      if (a._id === currentId) {
+        for (let i = 0; i < a.logDate.length; i++) {
+          newArray.push({
             logDate: a.logDate[i],
             logIn: a.logIn[i],
             logOut: a.logOut[i],
@@ -232,7 +259,7 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
         }
       }
     });
-    return array;
+    return newArray;
   };
 
   return (
@@ -434,7 +461,8 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
                     <input
                       type="date"
                       id="logDate"
-                      value={logData.logDate}
+                      // value={logData.logDate}
+                      defaultValue={logData.logDate}
                       onChange={(e) =>
                         setLogData({ ...logData, logDate: e.target.value })
                       }
@@ -464,7 +492,8 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
                     <input
                       type="time"
                       id="logIn"
-                      value={logData.logIn}
+                      // value={logData.logIn}
+                      defaultValue={logData.logIn}
                       onChange={(e) =>
                         setLogData({ ...logData, logIn: e.target.value })
                       }
@@ -494,7 +523,8 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
                     <input
                       type="time"
                       id="logOut"
-                      value={logData.logOut}
+                      // value={logData.logOut}
+                      defaultValue={logData.logOut}
                       onChange={(e) =>
                         setLogData({ ...logData, logOut: e.target.value })
                       }
