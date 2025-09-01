@@ -1,6 +1,6 @@
 import {
   ATTEND_ALL,
-  UPDATE,
+  UPDATE_ATTENDANCE,
   DELETE,
   FETCHLOGLIST,
   LOGLIST,
@@ -11,7 +11,12 @@ export default (attendance = [], action) => {
   switch (action.type) {
     case ATTEND_ALL:
       return action.payload;
-      
+
+    case UPDATE_ATTENDANCE:
+      return attendance.map((a) =>
+        a._id === action.payload._id ? action.payload : a
+      );
+
     default:
       return attendance;
   }

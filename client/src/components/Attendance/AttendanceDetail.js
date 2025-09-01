@@ -14,12 +14,13 @@ import {
 } from "@mui/material";
 
 import { getPosts } from "../../action/posts";
-import { getAttendancePosts } from "../../action/attendance";
+import { getAttendancePosts, updateAttendance } from "../../action/attendance";
 import { dailyAttendance, logList } from "../../action/posts";
 // import HalfDoughnutWithPointer from "../Attendance/AttendanceChart";
 import PunctualityRadarChart from "./AttendanceChart";
 import Panel from "../Panel/Panel";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import LoadingSpinner from "../ReactSpinner/reactSpinner";
 
 const AttendanceDetail = ({ currentId, attend, posts }) => {
   const dispatch = useDispatch();
@@ -101,7 +102,7 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
     try {
       if (editIndex >= 0) {
         // 🔹 UPDATE existing record
-        // await dispatch(updateLog(currentId, editIndex, logData));
+        await dispatch(updateAttendance(currentId, editIndex, logData));
         alert("Successfully Updated!");
       } else {
         // 🔹 ADD new record
@@ -227,7 +228,7 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
 
   //Logic for clearing the form.........
   const clearForm = () => {
-    setLogData("");
+    setLogData({ logDate: "", logIn: "", logOut: "" });
     setEditIndex(-1);
   };
 
@@ -461,8 +462,7 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
                     <input
                       type="date"
                       id="logDate"
-                      // value={logData.logDate}
-                      defaultValue={logData.logDate}
+                      value={logData.logDate || ""}
                       onChange={(e) =>
                         setLogData({ ...logData, logDate: e.target.value })
                       }
@@ -492,8 +492,7 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
                     <input
                       type="time"
                       id="logIn"
-                      // value={logData.logIn}
-                      defaultValue={logData.logIn}
+                      value={logData.logIn || ""}
                       onChange={(e) =>
                         setLogData({ ...logData, logIn: e.target.value })
                       }
@@ -523,8 +522,7 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
                     <input
                       type="time"
                       id="logOut"
-                      // value={logData.logOut}
-                      defaultValue={logData.logOut}
+                      value={logData.logOut || ""}
                       onChange={(e) =>
                         setLogData({ ...logData, logOut: e.target.value })
                       }
@@ -539,7 +537,7 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
                   </div>
                   {/* SUBMIT BUTTON */}
                   <div style={{ textAlign: "right" }}>
-                    <Button
+                    {/*<Button
                       type="submit"
                       variant="contained"
                       sx={{
@@ -553,7 +551,27 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
                       }}
                     >
                       Submit
-                    </Button>
+                    </Button>*/}
+                    <button
+                      style={{
+                        fontFamily: "Roboto",
+                        cursor: isSubmitting ? "not-allowed" : "pointer",
+                        opacity: isSubmitting ? 0.6 : 1,
+                      }}
+                      type="submit"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <div style={{ display: "flex" }}>
+                          Submitting...
+                          <LoadingSpinner size={16} color="#999" />
+                        </div>
+                      ) : editIndex !== -1 ? (
+                        "Update"
+                      ) : (
+                        "Submit"
+                      )}
+                    </button>
                   </div>
                 </div>
               </form>
@@ -701,5 +719,3 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
 };
 
 export default AttendanceDetail;
-
-//

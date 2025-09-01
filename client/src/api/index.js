@@ -64,7 +64,7 @@ export const dailyEvent = (formData) => API.post(`/posts/dailyEvent`, formData);
 
 export const getAllEvents = () => API.get(`/posts/events/display`);
 
-//---------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------
 
 export const salarySlipData = (id, formData) =>
   API.post(`/posts/${id}/salarySlipData`, formData, {
@@ -82,7 +82,7 @@ export const presentList = (formData, id) =>
   API.patch(`/posts/${id}/presentList`, formData);
 // SERVER ADDRESS : https://ashkam-server-b9bc1f76ae2f.herokuapp.com/
 
-//---------------------------------Attendance Operations---------------------------------
+//-----------------------------------Attendance Operations-----------------------------------
 
 // export const fetchAttendancePosts = () => API.get("/posts/attendanceposts");
 
@@ -92,11 +92,11 @@ export const logList = (formData, id) =>
 export const getAttendancePosts = () => API.get("/attend/attendanceposts");
 
 export const updateAttendance = (id, updatedAttendance) =>
-  API.patch(`/posts/${id}/updateAttendance`, updatedAttendance);
+  API.patch(`/attend/${id}/updateAttendance`, updatedAttendance);
 
-export const deleteAttendance = (id) => API.delete(`/posts/deleteAttendance`);
+export const deleteAttendance = (id) => API.delete(`/attend/deleteAttendance`);
 
-//-------------------------Timesheet Operations------------------------------------
+//-----------------------------------Timesheet Operations---------------------------------------
 
 export const timesheetList = (formData, id) =>
   API.post(`/posts/${id}/timesheet`, formData);

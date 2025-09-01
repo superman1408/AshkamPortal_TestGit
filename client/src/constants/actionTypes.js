@@ -23,6 +23,7 @@ export const PRESENTLIST = "PRESENTLIST";
 
 export const LOGLIST = "LOGLIST"; // for punching  Attendance data
 export const FETCHLOGLIST = "FETCHLOGLIST"; // for fetching attendance data
+export const UPDATE_ATTENDANCE = "UPDATE_ATTENDANCE";
 
 export const TIMESHEET_LIST = "TIMESHEET_LIST"; ///for punching Timesheet data
 export const FETCH_TIMESHEET = "FETCH_TIMESHEET"; // for fetching Timesheet data

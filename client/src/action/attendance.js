@@ -1,5 +1,10 @@
 import * as API from "../api";
-import { LOGLIST, FETCHLOGLIST, ATTEND_ALL } from "../constants/actionTypes";
+import {
+  LOGLIST,
+  FETCHLOGLIST,
+  ATTEND_ALL,
+  UPDATE_ATTENDANCE,
+} from "../constants/actionTypes";
 
 export const logList = (formData, id) => async (dispatch) => {
   console.log("Hello I am working at loglist!!");
@@ -13,34 +18,30 @@ export const logList = (formData, id) => async (dispatch) => {
   }
 };
 
-
 export const getAttendancePosts = () => async (dispatch) => {
   try {
     const { data } = await API.getAttendancePosts();
 
     dispatch({ type: ATTEND_ALL, payload: data });
-
-    
   } catch (error) {
     console.log(error);
   }
 };
 
+// // -------------------------------------------Update Attendance -----------------------------------------------------
+export const updateAttendance = (id, updateAttendance) => async (dispatch) => {
+  console.log("UpdateAttendance is workinng");
 
-// // -----------------------------Update Attendance --------------------------
-// export const updateAttendance = (id, post) => async (dispatch) => {
-//   console.log("Code is workinng");
+  try {
+    const { data } = await API.updateAttendance(id, updateAttendance);
 
-//   try {
-//     const { data } = await API.updateAttendance(id, post);
+    dispatch({ type: UPDATE_ATTENDANCE, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-//     dispatch({ type: UPDATE, payload: data });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// // -----------------------------Delete Attendance------------------------------
+// // ----------------------------------------------Delete Attendance---------------------------------------------------
 // export const deleteAttendance = (id) => async (dispatch) => {
 //   console.log("Code is working");
 

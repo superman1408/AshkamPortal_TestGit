@@ -1,16 +1,13 @@
 import express from "express";
-import { getAttendancePosts } from "../controllers/attendance.js";
-
+import {
+  getAttendancePosts,
+  updateAttendance,
+} from "../controllers/attendance.js";
 
 const router = express.Router();
 
-
-
-
-
-
-
 router.get("/attendanceposts", getAttendancePosts);
 
+router.get("/:id/updateAttendance", updateAttendance);
 
 export default router;
