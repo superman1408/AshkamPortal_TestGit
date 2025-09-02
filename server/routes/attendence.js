@@ -8,6 +8,6 @@ const router = express.Router();
 
 router.get("/attendanceposts", getAttendancePosts);
 
-router.get("/:id/updateAttendance", updateAttendance);
+router.patch("/:id/:index/updateAttendance", updateAttendance);
 
 export default router;

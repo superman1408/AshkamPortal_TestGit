@@ -29,17 +29,16 @@ export const getAttendancePosts = () => async (dispatch) => {
 };
 
 // // -------------------------------------------Update Attendance -----------------------------------------------------
-export const updateAttendance = (id, updateAttendance) => async (dispatch) => {
-  console.log("UpdateAttendance is workinng");
+export const updateAttendance =
+  (id, index, updateAttendance) => async (dispatch) => {
+    try {
+      const { data } = await API.updateAttendance(id, index, updateAttendance);
 
-  try {
-    const { data } = await API.updateAttendance(id, updateAttendance);
-
-    dispatch({ type: UPDATE_ATTENDANCE, payload: data });
-  } catch (error) {
-    console.log(error);
-  }
-};
+      dispatch({ type: UPDATE_ATTENDANCE, payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 // // ----------------------------------------------Delete Attendance---------------------------------------------------
 // export const deleteAttendance = (id) => async (dispatch) => {

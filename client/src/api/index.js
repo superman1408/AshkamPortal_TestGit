@@ -91,8 +91,8 @@ export const logList = (formData, id) =>
 
 export const getAttendancePosts = () => API.get("/attend/attendanceposts");
 
-export const updateAttendance = (id, updatedAttendance) =>
-  API.patch(`/attend/${id}/updateAttendance`, updatedAttendance);
+export const updateAttendance = (id, index, updatedAttendance) =>
+  API.patch(`/attend/${id}/${index}/updateAttendance`, updatedAttendance);
 
 export const deleteAttendance = (id) => API.delete(`/attend/deleteAttendance`);
 

@@ -116,6 +116,7 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
       setEditIndex(-1); // reset edit mode
       setLogData({ logDate: "", logIn: "", logOut: "" }); // clear form
     }
+    window.location.reload();
   };
 
   const handleAttendanceSubmit = (e) => {
@@ -244,7 +245,7 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
       logOut: updatedArray[index].logOut,
     });
 
-    console.log(updatedArray[index]);
+    // console.log(updatedArray[index]);
   };
 
   const updateArray = () => {

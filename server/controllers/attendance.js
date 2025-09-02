@@ -20,21 +20,30 @@ export const getAttendancePosts = async (req, res) => {
 //------------------Update Operation --------------------------
 export const updateAttendance = async (req, res) => {
   console.log("You reached me");
-  
-  // const { id: _id } = req.params;
-  // const post = req.body;
 
-  // if (!mongoose.Types.ObjectId.isValid(_id))
-  //   return res.status(404).send("no post with that id found");
+  const id = req.params.id;
+  const indexNumber = parseInt(req.params.index);
+  const valueToEdit = req.body;
 
-  // const updateAttendance = await AttendanceDetail.findByIdAndUpdate(
-  //   _id,
-  //   { ...post, _id },
-  //   {
-  //     new: true,
-  //   }
-  // );
-  // res.json(updateAttendance);
+  console.log(id, indexNumber, valueToEdit);
+
+  try {
+    if (!mongoose.Types.ObjectId.isValid(id))
+      return res.status(404).send("Invalid User ID!");
+
+    const post = await AttendanceDetail.findById(id);
+    if (!post) return res.status(404).send("No User Found");
+
+    post.logDate.splice(indexNumber, 1, valueToEdit.logDate);
+    post.logIn.splice(indexNumber, 1, valueToEdit.logIn);
+    post.logOut.splice(indexNumber, 1, valueToEdit.logOut);
+
+    await post.save();
+
+    res.status(200).json({ message: "Item Edited successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
 // ________________________delete operation___________________________
