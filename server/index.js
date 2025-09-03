@@ -4,7 +4,6 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
-
 import userRouters from "./routes/user.js";
 import postsRouters from "./routes/posts.js";
 import mailRouters from "./routes/mail.js";
@@ -13,11 +12,9 @@ const app = express();
 dotenv.config();
 
 const PORT = process.env.PORT || 8080;
-const HOST = process.env.HOST || 'localhost';
+const HOST = process.env.HOST || "localhost";
 
 const CONNECT = process.env.CONNECTION_URL;
-
-
 
 app.use(express.static("client"));
 app.use(bodyParser.json({ limit: "35mb", extended: true }));
@@ -51,7 +48,6 @@ app.get("/", (req, res) => {
 //   )
 //   .catch((error) => console.log(error));
 
-
 mongoose.set("strictQuery", true);
 
 mongoose
@@ -59,7 +55,9 @@ mongoose
   .then(() =>
     app.listen(PORT, HOST, () => {
       console.log(
-        "Listening at " + `http://${HOST}:${PORT}` + "\nMongoDB database is connected..!!"
+        "Listening at " +
+          `http://${HOST}:${PORT}` +
+          "\nMongoDB database is connected..!!"
       );
     })
   )

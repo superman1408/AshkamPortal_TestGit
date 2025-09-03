@@ -1,14 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Divider, Grid, CircularProgress, Box, Button } from "@mui/material";
-
 import { useDispatch, useSelector } from "react-redux";
-
-import "./Style1.css"; // Import CSS file for styling
 import { tableDelete, tableEdit, todoList } from "../../../action/posts";
-// import ProjectCodePopUp from "./ProjectCodePopUp";
 import ActivityCodePopUp from "./ActivityCodePopUp";
-import { getPosts } from "../../../action/posts";
 
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -34,11 +29,12 @@ function TimeSheet({ currentId, posts }) {
   const [overTime, setOverTime] = useState("");
   const [editIndex, setEditIndex] = useState(-1);
   const [isLoading, setIsLoading] = useState(true);
-
-  const [projectopen, setProjectOpen] = useState(false);
-
   const [activityopen, setActivityOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // State for filter
+  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
 
   const user = JSON.parse(localStorage.getItem("profile"));
   // eslint-disable-next-line no-unused-vars
@@ -48,7 +44,7 @@ function TimeSheet({ currentId, posts }) {
 
   const [disable, setDisabled] = useState(true);
 
-  const array = [];
+  // const array = [];
 
   const matches = useMediaQuery("(min-width:1120px)");
 
@@ -65,29 +61,36 @@ function TimeSheet({ currentId, posts }) {
     }
   }, [loggedInUserId, currentId, role]);
 
-  useEffect(() => {
-    array.length = 0;
-    dispatch(getPosts()).then(() => {
-      // eslint-disable-next-line array-callback-return
-      posts.map((post) => {
+  // Build array from posts + currentId using useMemo()
+  const array = useMemo(() => {
+    let temp = [];
+    posts.forEach((post) => {
+      if (post._id === currentId) {
         for (let i = 0; i < post.projectCode.length; i++) {
-          if (post._id === currentId) {
-            array.push({
-              projectCode: post.projectCode[i],
-              activityCode: post.activityCode[i],
-              date: post.date[i],
-              netTime: post.netTime[i],
-              overTime: post.overTime[i],
-              editIndex: post.editIndex[i],
-            });
-
-            // setRole(post?.role);
-          }
+          temp.push({
+            projectCode: post.projectCode[i],
+            activityCode: post.activityCode[i],
+            date: post.date[i],
+            netTime: post.netTime[i],
+            overTime: post.overTime[i],
+            editIndex: post.editIndex[i],
+          });
         }
-      });
+      }
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, currentId, posts]);
+    return temp;
+  }, [posts, currentId]);
+
+  // Filter array for selected month and year
+  const filteredData = useMemo(() => {
+    return array.filter((entry) => {
+      const entryDate = new Date(entry.date);
+      return (
+        entryDate.getMonth() === selectedMonth &&
+        entryDate.getFullYear() === selectedYear
+      );
+    });
+  }, [array, selectedMonth, selectedYear]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -195,14 +198,6 @@ function TimeSheet({ currentId, posts }) {
     return weekOfMonth === 2 || weekOfMonth === 4;
   };
 
-  // const handleNetSubmit = (e) => {
-  //   let value = parseInt(e.target.value);
-  //   if (value > 8) {
-  //     value = 8;
-  //   }
-  //   setNetTime(value);
-  // };
-
   //Logic for clearing the form.........
   const clearForm = () => {
     setProjectCode("");
@@ -213,30 +208,9 @@ function TimeSheet({ currentId, posts }) {
     setEditIndex(-1);
   };
 
-  const togglePopup1 = () => {
-    setProjectOpen(!projectopen);
-  };
-
   const togglePopup2 = () => {
     setActivityOpen(!activityopen);
   };
-
-  // Here the array is being loaded....!!!
-  // eslint-disable-next-line array-callback-return
-  posts.map((post) => {
-    for (let i = 0; i < post.projectCode.length; i++) {
-      if (post._id === currentId) {
-        array.push({
-          projectCode: post.projectCode[i],
-          activityCode: post.activityCode[i],
-          date: post.date[i],
-          netTime: post.netTime[i],
-          overTime: post.overTime[i],
-          editIndex: post.editIndex[i],
-        });
-      }
-    }
-  });
 
   //This logic is creating a delay time for loading the array....!!
   useEffect(() => {
@@ -257,36 +231,17 @@ function TimeSheet({ currentId, posts }) {
       .catch((err) => {
         return console.log("Error in deleting the file..!!");
       });
-    updateArray();
   };
 
   //To Edit the entry....!!!!
   const editEntry = (index) => {
-    let updatedArray = updateArray();
+    // let updatedArray = updateArray();
     setEditIndex(index);
-    setProjectCode(updatedArray[index].projectCode);
-    setActivityCode(updatedArray[index].activityCode);
-    setDate(updatedArray[index].date);
-    setNetTime(updatedArray[index].netTime);
-    setOverTime(updatedArray[index].overTime);
-  };
-
-  const updateArray = () => {
-    // eslint-disable-next-line array-callback-return
-    posts.map((post) => {
-      for (let i = 0; i < post.projectCode.length; i++) {
-        if (post._id === currentId) {
-          array.push({
-            projectCode: post.projectCode[i],
-            activityCode: post.activityCode[i],
-            date: post.date[i],
-            netTime: post.netTime[i],
-            overTime: post.overTime[i],
-          });
-        }
-      }
-    });
-    return array;
+    setProjectCode(array[index].projectCode);
+    setActivityCode(array[index].activityCode);
+    setDate(array[index].date);
+    setNetTime(array[index].netTime);
+    setOverTime(array[index].overTime);
   };
 
   const componentRef = useRef();
@@ -331,6 +286,22 @@ function TimeSheet({ currentId, posts }) {
     navigate(-1);
   };
 
+  // constants.js
+  const MONTHS = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
   return (
     <div>
       <div style={{ display: "inline" }}>
@@ -358,8 +329,6 @@ function TimeSheet({ currentId, posts }) {
       >
         Project Time Sheet
       </strong>
-      {/* <Divider sx={{ fontSize: "50px", fontWeight: "bold" }} /> */}
-      {/*   */}
       <div style={{ display: "flex" }}>
         {matches && (
           <div style={{ display: "flex" }}>
@@ -404,8 +373,6 @@ function TimeSheet({ currentId, posts }) {
                     type="date"
                     id="date"
                     defaultValue={date}
-                    // onChange={(e) => setDate(e.target.value)}
-                    //
                     onChange={handleCheck}
                     required
                   />
@@ -437,13 +404,6 @@ function TimeSheet({ currentId, posts }) {
                     autoComplete="off"
                   />
                   {/* ______________________________________pop window contents_____________________________________________ */}
-
-                  {/* {projectopen && (
-                  <ProjectCodePopUp
-                    setProjectCode={setProjectCode}
-                    setProjectOpen={setProjectOpen}
-                  />
-                )} */}
                 </div>
 
                 <div className="form-group">
@@ -586,6 +546,52 @@ function TimeSheet({ currentId, posts }) {
                 minHeight: "100%",
               }}
             >
+              <div
+                style={{
+                  display: "flex",
+                  gap: "10px",
+                  marginBottom: "15px",
+                  fontFamily: "Roboto",
+                }}
+              >
+                <select
+                  style={{
+                    backgroundColor: "#0d325c",
+                    color: "white",
+                    padding: "5px",
+                    fontFamily: "Roboto",
+                  }}
+                  value={selectedYear}
+                  onChange={(e) => setSelectedYear(parseInt(e.target.value))}
+                >
+                  {Array.from(
+                    new Set(
+                      array.map((entry) => new Date(entry.date).getFullYear())
+                    )
+                  )
+                    .sort((a, b) => b - a) // descending order
+                    .map((year, index) => (
+                      <option key={index} value={year}>
+                        {year}
+                      </option>
+                    ))}
+                </select>
+                <select
+                  style={{
+                    backgroundColor: "#0d325c",
+                    color: "white",
+                    padding: "5px",
+                  }}
+                  value={selectedMonth}
+                  onChange={(e) => setSelectedMonth(parseInt(e.target.value))}
+                >
+                  {MONTHS.map((month, index) => (
+                    <option key={index} value={index}>
+                      {month}
+                    </option>
+                  ))}
+                </select>
+              </div>
               {isLoading ? (
                 <Box
                   sx={{
@@ -647,6 +653,7 @@ function TimeSheet({ currentId, posts }) {
                           <td style={{ padding: "5px" }}>TIME SHEET SUMMARY</td>
                         </tr>
                       </table>
+
                       <table
                         style={{
                           // marginLeft: "100px",
@@ -751,11 +758,9 @@ function TimeSheet({ currentId, posts }) {
                                           fontFamily: "Roboto",
                                         }}
                                       >
-                                        {post?.date[0] +
-                                          " " +
-                                          "to" +
-                                          " " +
-                                          post?.date[post.date.length - 1]}
+                                        {MONTHS[selectedMonth] +
+                                          "-" +
+                                          selectedYear}
                                       </td>
                                     </tr>
                                   </>
@@ -835,7 +840,7 @@ function TimeSheet({ currentId, posts }) {
                         </tr>
                       </thead>
                       <tbody>
-                        {array
+                        {(role === "admin" ? array : filteredData)
                           .sort((a, b) => new Date(a.date) - new Date(b.date))
                           .map((post, index) => (
                             <tr key={index}>
