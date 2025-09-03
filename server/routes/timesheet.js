@@ -1,7 +1,9 @@
 import express from "express";
-import { getTimesheetPosts } from "../controllers/timesheet";
+import { timesheetList, getTimesheetPosts } from "../controllers/timesheet.js";
 
 const router = express.Router();
+
+router.post("/:id/timesheet", timesheetList);
 
 router.get("/timesheetposts", getTimesheetPosts);
 

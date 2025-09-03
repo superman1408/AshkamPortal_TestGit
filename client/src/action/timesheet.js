@@ -5,9 +5,11 @@ export const timesheetList = (formData, id) => async (dispatch) => {
   console.log("Hello I am working at TimesheetList!!");
 
   try {
-    const { data } = await API.logList(formData, id);
+    const { data } = await API.timesheetList(formData, id);
+    console.log("Inside");
 
     dispatch({ type: TIMESHEET_LIST, payload: data });
+    return data.timesheetList;
   } catch (error) {
     console.log(error);
   }
@@ -15,27 +17,24 @@ export const timesheetList = (formData, id) => async (dispatch) => {
 
 // -----------------------------For getting timesheet Data---------------------------
 export const getTimesheetPosts = () => async (dispatch) => {
-  try {
-    const { data } = await API.getTimesheetPosts();
-
-    dispatch({ type: FETCH_TIMESHEET, payload: data });
-  } catch (error) {
-    console.log(error);
-  }
+  //   try {
+  //     const { data } = await API.getTimesheetPosts();
+  //     dispatch({ type: FETCH_TIMESHEET, payload: data });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
 };
 
 // // -----------------------------Update Timesheet --------------------------
-// export const updateTimesheet = (id, post) => async (dispatch) => {
-//   console.log("Code is workinng");
-
-//   try {
-//     const { data } = await API.updateTimesheet(id, post);
-
-//     dispatch({ type: UPDATE, payload: data });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+export const updateTimesheet = (id, post) => async (dispatch) => {
+  //   console.log("Code is workinng");
+  //   try {
+  //     const { data } = await API.updateTimesheet(id, post);
+  //     dispatch({ type: UPDATE, payload: data });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+};
 
 // // -----------------------------Delete Timesheet------------------------------
 // export const deleteTimesheet = (id) => async (dispatch) => {

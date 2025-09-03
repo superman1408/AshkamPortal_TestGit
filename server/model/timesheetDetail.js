@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const timesheetSchema = mongoose.Schema({
+  existingUser: {
+    type: [String],
+    default: [],
+  }, // reference to Projects code for Time Sheet
   projectCode: {
     type: [String],
     default: [],

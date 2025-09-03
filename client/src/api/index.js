@@ -99,6 +99,6 @@ export const deleteAttendance = (id) => API.delete(`/attend/deleteAttendance`);
 //-----------------------------------Timesheet Operations---------------------------------------
 
 export const timesheetList = (formData, id) =>
-  API.post(`/posts/${id}/timesheet`, formData);
+  API.post(`/timesheet/${id}/timesheet`, formData);
 
 export const getTimesheetPosts = () => API.get("/timesheet/timesheetposts");

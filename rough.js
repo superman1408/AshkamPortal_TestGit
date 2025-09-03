@@ -10,8 +10,6 @@ import { tableDelete, tableEdit, todoList } from "../../../action/posts";
 import ActivityCodePopUp from "./ActivityCodePopUp";
 import { getPosts } from "../../../action/posts";
 
-import { timesheetList } from "../../../action/timesheet";
-
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 import LOGO from "../../../assets/AshkamLogoTransparentbc.png";
@@ -23,7 +21,7 @@ import Panel from "../../Panel/Panel";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import LoadingSpinner from "../../ReactSpinner/reactSpinner";
 
-function TimeSheet({ currentId, posts = [], tSheet = [] }) {
+function TimeSheet({ currentId, posts }) {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -36,7 +34,6 @@ function TimeSheet({ currentId, posts = [], tSheet = [] }) {
   const [overTime, setOverTime] = useState("");
   const [editIndex, setEditIndex] = useState(-1);
   const [isLoading, setIsLoading] = useState(true);
-  const [timesheet, setTimesheet] = useState("");
 
   const [projectopen, setProjectOpen] = useState(false);
 
@@ -90,33 +87,7 @@ function TimeSheet({ currentId, posts = [], tSheet = [] }) {
       });
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, currentId]);
-
-  //------------------------------------------------For getting data of Timesheet--------------------------------------------------
-  // useEffect(() => {
-  //   array.length = 0;
-  //   dispatch(getTimesheetPosts()).then(() => {
-  //     // eslint-disable-next-line array-callback-return
-  //     tSheet.map((t) => {
-  //       for (let i = 0; i < t.projectCode.length; i++) {
-  //         console.log("Data pushed successfully");
-  //         if (t._id === currentId) {
-  //           array.push({
-  //             projectCode: t.projectCode[i],
-  //             activityCode: t.activityCode[i],
-  //             date: t.date[i],
-  //             netTime: t.netTime[i],
-  //             overTime: t.overTime[i],
-  //             editIndex: t.editIndex[i],
-  //           });
-
-  //           // setRole(post?.role);
-  //         }
-  //       }
-  //     });
-  //   });
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [dispatch, currentId]);
+  }, [dispatch, currentId, posts]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -146,11 +117,11 @@ function TimeSheet({ currentId, posts = [], tSheet = [] }) {
           );
         } else {
           setEntries([...entries, newEntry]);
-          await dispatch(timesheetList(newEntry, currentId)).then((res) => {
+          await dispatch(todoList(newEntry, currentId)).then((res) => {
             console.log("Data is recieved in the Data Base");
             clearForm();
             alert("✅ Entry submitted successfully!");
-            // window.location.reload();
+            window.location.reload();
           });
         }
       } catch (err) {
@@ -252,22 +223,20 @@ function TimeSheet({ currentId, posts = [], tSheet = [] }) {
 
   // Here the array is being loaded....!!!
   // eslint-disable-next-line array-callback-return
-  {
-    tSheet?.map((t) => {
-      for (let i = 0; i < t.projectCode.length; i++) {
-        if (t._id === currentId) {
-          array.push({
-            projectCode: t.projectCode[i],
-            activityCode: t.activityCode[i],
-            date: t.date[i],
-            netTime: t.netTime[i],
-            overTime: t.overTime[i],
-            editIndex: t.editIndex[i],
-          });
-        }
+  posts.map((post) => {
+    for (let i = 0; i < post.projectCode.length; i++) {
+      if (post._id === currentId) {
+        array.push({
+          projectCode: post.projectCode[i],
+          activityCode: post.activityCode[i],
+          date: post.date[i],
+          netTime: post.netTime[i],
+          overTime: post.overTime[i],
+          editIndex: post.editIndex[i],
+        });
       }
-    });
-  }
+    }
+  });
 
   //This logic is creating a delay time for loading the array....!!
   useEffect(() => {
@@ -304,15 +273,15 @@ function TimeSheet({ currentId, posts = [], tSheet = [] }) {
 
   const updateArray = () => {
     // eslint-disable-next-line array-callback-return
-    tSheet.map((t) => {
-      for (let i = 0; i < t.projectCode.length; i++) {
-        if (t._id === currentId) {
+    posts.map((post) => {
+      for (let i = 0; i < post.projectCode.length; i++) {
+        if (post._id === currentId) {
           array.push({
-            projectCode: t.projectCode[i],
-            activityCode: t.activityCode[i],
-            date: t.date[i],
-            netTime: t.netTime[i],
-            overTime: t.overTime[i],
+            projectCode: post.projectCode[i],
+            activityCode: post.activityCode[i],
+            date: post.date[i],
+            netTime: post.netTime[i],
+            overTime: post.overTime[i],
           });
         }
       }
@@ -695,8 +664,8 @@ function TimeSheet({ currentId, posts = [], tSheet = [] }) {
                         <tbody>
                           {
                             // eslint-disable-next-line array-callback-return
-                            tSheet.map((t, index) => {
-                              if (t._id === currentId) {
+                            posts.map((post, index) => {
+                              if (post._id === currentId) {
                                 return (
                                   <>
                                     <tr key={index}>
@@ -716,7 +685,7 @@ function TimeSheet({ currentId, posts = [], tSheet = [] }) {
                                           fontFamily: "Roboto",
                                         }}
                                       >
-                                        {t?.employeeId}
+                                        {post?.employeeId}
                                       </td>
                                       <th
                                         style={{
@@ -734,11 +703,17 @@ function TimeSheet({ currentId, posts = [], tSheet = [] }) {
                                           fontFamily: "Roboto",
                                         }}
                                       >
-                                        {t?.firstName.charAt(0).toUpperCase() +
-                                          t?.firstName.slice(1).toLowerCase() +
+                                        {post?.firstName
+                                          .charAt(0)
+                                          .toUpperCase() +
+                                          post?.firstName
+                                            .slice(1)
+                                            .toLowerCase() +
                                           " " +
-                                          t?.lastName.charAt(0).toUpperCase() +
-                                          t?.lastName.slice(1).toLowerCase()}
+                                          post?.lastName
+                                            .charAt(0)
+                                            .toUpperCase() +
+                                          post?.lastName.slice(1).toLowerCase()}
                                       </td>
                                     </tr>
                                     <tr key={index}>
@@ -758,7 +733,7 @@ function TimeSheet({ currentId, posts = [], tSheet = [] }) {
                                           fontFamily: "Roboto",
                                         }}
                                       >
-                                        {t?.department}
+                                        {post?.department}
                                       </td>
                                       <th
                                         style={{
@@ -776,11 +751,11 @@ function TimeSheet({ currentId, posts = [], tSheet = [] }) {
                                           fontFamily: "Roboto",
                                         }}
                                       >
-                                        {t?.date[0] +
+                                        {post?.date[0] +
                                           " " +
                                           "to" +
                                           " " +
-                                          t?.date[t.date.length - 1]}
+                                          post?.date[post.date.length - 1]}
                                       </td>
                                     </tr>
                                   </>
