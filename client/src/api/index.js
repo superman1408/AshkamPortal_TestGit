@@ -86,8 +86,11 @@ export const presentList = (formData, id) =>
 
 // export const fetchAttendancePosts = () => API.get("/posts/attendanceposts");
 
+// export const logList = (formData, id) =>
+//   API.post(`/posts/${id}/loglist`, formData);
+
 export const logList = (formData, id) =>
-  API.post(`/posts/${id}/loglist`, formData);
+  API.post(`/attend/${id}/loglist`, formData);
 
 export const getAttendancePosts = () => API.get("/attend/attendanceposts");
 

@@ -23,7 +23,7 @@ import Panel from "../../Panel/Panel";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import LoadingSpinner from "../../ReactSpinner/reactSpinner";
 
-function TimeSheet({ currentId, posts = [], tSheet = [] }) {
+function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -253,7 +253,7 @@ function TimeSheet({ currentId, posts = [], tSheet = [] }) {
   // Here the array is being loaded....!!!
   // eslint-disable-next-line array-callback-return
   {
-    tSheet?.map((t) => {
+    timesheetData?.map((t) => {
       for (let i = 0; i < t.projectCode.length; i++) {
         if (t._id === currentId) {
           array.push({
@@ -304,7 +304,7 @@ function TimeSheet({ currentId, posts = [], tSheet = [] }) {
 
   const updateArray = () => {
     // eslint-disable-next-line array-callback-return
-    tSheet.map((t) => {
+    timesheetData.map((t) => {
       for (let i = 0; i < t.projectCode.length; i++) {
         if (t._id === currentId) {
           array.push({
@@ -361,6 +361,8 @@ function TimeSheet({ currentId, posts = [], tSheet = [] }) {
   const handleGoBack = () => {
     navigate(-1);
   };
+
+  console.log("timesheetData", timesheetData);
 
   return (
     <div>
@@ -695,7 +697,7 @@ function TimeSheet({ currentId, posts = [], tSheet = [] }) {
                         <tbody>
                           {
                             // eslint-disable-next-line array-callback-return
-                            tSheet.map((t, index) => {
+                            timesheetData.map((t, index) => {
                               if (t._id === currentId) {
                                 return (
                                   <>
