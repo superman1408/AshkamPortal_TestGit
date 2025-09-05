@@ -9,7 +9,7 @@ import event from "./event";
 
 import salary from "./salary";
 
-import timesheet from "./timesheet";
+import timesheetData from "./timesheet";
 
 export default combineReducers({
   posts,
@@ -17,5 +17,5 @@ export default combineReducers({
   attend,
   event,
   salary,
-  timesheet,
+  timesheetData,
 });

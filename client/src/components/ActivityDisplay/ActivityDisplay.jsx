@@ -22,14 +22,14 @@ const ActivityDisplay = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
   const role = user.result.role;
 
-  console.log(posts);
+  // console.log(timesheetData);
 
   // console.log(tSheet);
 
   useEffect(() => {
     if (posts) {
       dispatch(getPosts()).then(() => {
-        console.log("Activity Display is recieving the posts..!!!@@@@@@");
+        // console.log("Activity Display is recieving the posts..!!!@@@@@@");
         // eslint-disable-next-line array-callback-return
         posts.map((post) => {
           if (post._id === currentId) {
@@ -39,15 +39,15 @@ const ActivityDisplay = () => {
       });
     }
     setIsLoading(false);
-  }, [isLoading]);
+  }, [isLoading, dispatch, posts]);
 
   useEffect(() => {
-    if (!timesheetData) {
+    if (timesheetData) {
       dispatch(getTimesheetPosts()).then(() => {
-        console.log(
-          "Activity Display is recieving the posts in Timesheet..!!!@@@@@@"
-        );
-        console.log(timesheetData);
+        // console.log(
+        //   "Activity Display is recieving the posts in Timesheet..!!!@@@@@@"
+        // );
+        // console.log(timesheetData);
         // eslint-disable-next-line array-callback-return
         timesheetData.map((t) => {
           if (t._id === currentId) {
@@ -57,9 +57,9 @@ const ActivityDisplay = () => {
       });
     }
     setIsLoading(false);
-  }, [timesheetData, isLoading]);
+  }, [isLoading, timesheetData]);
 
-  //
+  // console.log(timesheetData);
 
   return (
     <div>

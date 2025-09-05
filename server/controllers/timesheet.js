@@ -68,12 +68,9 @@ export const timesheetList = async (req, res) => {
   }
 };
 
-// -------------------get operation------------------
+// -------------------------------get operation--------------------------------
 export const getTimesheetPosts = async (req, res) => {
-  console.log("this is working Timesheet");
   try {
-    console.log("inside Timesheet");
-
     const postMessage = await TimesheetDetail.find({});
 
     console.log(postMessage);

@@ -7,7 +7,7 @@ export default (timesheetData = [], action) => {
       return action.payload;
 
     case FETCH_TIMESHEET:
-      return action.payload;
+      return [...timesheetData, action.payload];
 
     default:
       return timesheetData;

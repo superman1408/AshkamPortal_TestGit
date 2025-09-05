@@ -1,32 +1,36 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Divider, Grid, CircularProgress, Box, Button } from "@mui/material";
-
-import { useDispatch, useSelector } from "react-redux";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useDispatch } from "react-redux";
+import { useReactToPrint } from "react-to-print";
 
 import "./Style1.css"; // Import CSS file for styling
-import { tableDelete, tableEdit, todoList } from "../../../action/posts";
+
+import { tableDelete, tableEdit } from "../../../action/posts";
+
 // import ProjectCodePopUp from "./ProjectCodePopUp";
+
 import ActivityCodePopUp from "./ActivityCodePopUp";
+
 import { getPosts } from "../../../action/posts";
 
-import { timesheetList } from "../../../action/timesheet";
-
-import useMediaQuery from "@mui/material/useMediaQuery";
+import { timesheetList, getTimesheetPosts } from "../../../action/timesheet";
 
 import LOGO from "../../../assets/AshkamLogoTransparentbc.png";
-
-import { useReactToPrint } from "react-to-print";
 
 import Panel from "../../Panel/Panel";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+
 import LoadingSpinner from "../../ReactSpinner/reactSpinner";
 
 function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+
+  // console.log(timesheetData._id);
 
   const [entries, setEntries] = useState([]);
   const [projectCode, setProjectCode] = useState("");
@@ -51,8 +55,6 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
 
   const [disable, setDisabled] = useState(true);
 
-  const array = [];
-
   const matches = useMediaQuery("(min-width:1120px)");
 
   const loggedInUserId = user?.result?._id;
@@ -72,51 +74,11 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
     array.length = 0;
     dispatch(getPosts()).then(() => {
       // eslint-disable-next-line array-callback-return
-      posts.map((post) => {
-        for (let i = 0; i < post.projectCode.length; i++) {
-          if (post._id === currentId) {
-            array.push({
-              projectCode: post.projectCode[i],
-              activityCode: post.activityCode[i],
-              date: post.date[i],
-              netTime: post.netTime[i],
-              overTime: post.overTime[i],
-              editIndex: post.editIndex[i],
-            });
-
-            // setRole(post?.role);
-          }
-        }
-      });
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, currentId]);
 
   //------------------------------------------------For getting data of Timesheet--------------------------------------------------
-  // useEffect(() => {
-  //   array.length = 0;
-  //   dispatch(getTimesheetPosts()).then(() => {
-  //     // eslint-disable-next-line array-callback-return
-  //     tSheet.map((t) => {
-  //       for (let i = 0; i < t.projectCode.length; i++) {
-  //         console.log("Data pushed successfully");
-  //         if (t._id === currentId) {
-  //           array.push({
-  //             projectCode: t.projectCode[i],
-  //             activityCode: t.activityCode[i],
-  //             date: t.date[i],
-  //             netTime: t.netTime[i],
-  //             overTime: t.overTime[i],
-  //             editIndex: t.editIndex[i],
-  //           });
-
-  //           // setRole(post?.role);
-  //         }
-  //       }
-  //     });
-  //   });
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [dispatch, currentId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -224,6 +186,41 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
     return weekOfMonth === 2 || weekOfMonth === 4;
   };
 
+  // Build array from posts + currentId using useMemo()
+
+  const array = useMemo(() => {
+    let temp = [];
+
+    timesheetData.map((t) => {
+      console.log(t);
+      t.map((s) => {
+        console.log(s._id);
+      });
+      if (t._id === currentId) {
+        console.log("Id is matching");
+        for (let i = 0; i < t.projectCode.length; i++) {
+          temp.push({
+            projectCode: t.projectCode[i],
+
+            activityCode: t.activityCode[i],
+
+            date: t.date[i],
+
+            netTime: t.netTime[i],
+
+            overTime: t.overTime[i],
+
+            editIndex: t.editIndex[i],
+          });
+        }
+      } else {
+        console.log("Id is not matching");
+      }
+    });
+
+    return temp;
+  }, [dispatch, currentId]);
+
   // const handleNetSubmit = (e) => {
   //   let value = parseInt(e.target.value);
   //   if (value > 8) {
@@ -250,24 +247,10 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
     setActivityOpen(!activityopen);
   };
 
+  // Build array from posts + currentId using useMemo()
+
   // Here the array is being loaded....!!!
   // eslint-disable-next-line array-callback-return
-  {
-    timesheetData?.map((t) => {
-      for (let i = 0; i < t.projectCode.length; i++) {
-        if (t._id === currentId) {
-          array.push({
-            projectCode: t.projectCode[i],
-            activityCode: t.activityCode[i],
-            date: t.date[i],
-            netTime: t.netTime[i],
-            overTime: t.overTime[i],
-            editIndex: t.editIndex[i],
-          });
-        }
-      }
-    });
-  }
 
   //This logic is creating a delay time for loading the array....!!
   useEffect(() => {
@@ -278,7 +261,7 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
     }
   }, [isLoading]);
 
-  //Logic for deleting the entry......!!!
+  // Logic for deleting the entry......!!!
   const deleteEntry = (index) => {
     dispatch(tableDelete(currentId, index))
       .then(() => {
@@ -288,36 +271,16 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
       .catch((err) => {
         return console.log("Error in deleting the file..!!");
       });
-    updateArray();
   };
 
   //To Edit the entry....!!!!
   const editEntry = (index) => {
-    let updatedArray = updateArray();
     setEditIndex(index);
-    setProjectCode(updatedArray[index].projectCode);
-    setActivityCode(updatedArray[index].activityCode);
-    setDate(updatedArray[index].date);
-    setNetTime(updatedArray[index].netTime);
-    setOverTime(updatedArray[index].overTime);
-  };
-
-  const updateArray = () => {
-    // eslint-disable-next-line array-callback-return
-    timesheetData.map((t) => {
-      for (let i = 0; i < t.projectCode.length; i++) {
-        if (t._id === currentId) {
-          array.push({
-            projectCode: t.projectCode[i],
-            activityCode: t.activityCode[i],
-            date: t.date[i],
-            netTime: t.netTime[i],
-            overTime: t.overTime[i],
-          });
-        }
-      }
-    });
-    return array;
+    setProjectCode(array[index].projectCode);
+    setActivityCode(array[index].activityCode);
+    setDate(array[index].date);
+    setNetTime(array[index].netTime);
+    setOverTime(array[index].overTime);
   };
 
   const componentRef = useRef();
@@ -362,7 +325,7 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
     navigate(-1);
   };
 
-  console.log("timesheetData", timesheetData);
+  // console.log("timesheetData", timesheetData);
 
   return (
     <div>
@@ -697,8 +660,8 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                         <tbody>
                           {
                             // eslint-disable-next-line array-callback-return
-                            timesheetData.map((t, index) => {
-                              if (t._id === currentId) {
+                            posts.map((post, index) => {
+                              if (post._id === currentId) {
                                 return (
                                   <>
                                     <tr key={index}>
@@ -718,7 +681,7 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                                           fontFamily: "Roboto",
                                         }}
                                       >
-                                        {t?.employeeId}
+                                        {post?.employeeId}
                                       </td>
                                       <th
                                         style={{
@@ -736,11 +699,17 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                                           fontFamily: "Roboto",
                                         }}
                                       >
-                                        {t?.firstName.charAt(0).toUpperCase() +
-                                          t?.firstName.slice(1).toLowerCase() +
+                                        {post?.firstName
+                                          .charAt(0)
+                                          .toUpperCase() +
+                                          post?.firstName
+                                            .slice(1)
+                                            .toLowerCase() +
                                           " " +
-                                          t?.lastName.charAt(0).toUpperCase() +
-                                          t?.lastName.slice(1).toLowerCase()}
+                                          post?.lastName
+                                            .charAt(0)
+                                            .toUpperCase() +
+                                          post?.lastName.slice(1).toLowerCase()}
                                       </td>
                                     </tr>
                                     <tr key={index}>
@@ -760,7 +729,7 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                                           fontFamily: "Roboto",
                                         }}
                                       >
-                                        {t?.department}
+                                        {post?.department}
                                       </td>
                                       <th
                                         style={{
@@ -771,19 +740,19 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                                       >
                                         Duration
                                       </th>
-                                      <td
+                                      {/* <td
                                         style={{
                                           border: "1px solid black",
                                           textAlign: "center",
                                           fontFamily: "Roboto",
                                         }}
                                       >
-                                        {t?.date[0] +
+                                        {post?.date[0] +
                                           " " +
                                           "to" +
                                           " " +
-                                          t?.date[t.date.length - 1]}
-                                      </td>
+                                          post?.date[post.date.length - 1]}
+                                      </td> */}
                                     </tr>
                                   </>
                                 );
@@ -864,7 +833,7 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                       <tbody>
                         {array
                           .sort((a, b) => new Date(a.date) - new Date(b.date))
-                          .map((post, index) => (
+                          .map((t, index) => (
                             <tr key={index}>
                               <td
                                 style={{
@@ -874,7 +843,7 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                                   textAlign: "center",
                                 }}
                               >
-                                {post.date} {/* here I have to arrange */}
+                                {/* {post.date} here I have to arrange */}
                               </td>
                               <td
                                 style={{
@@ -884,7 +853,7 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                                   textAlign: "center",
                                 }}
                               >
-                                {post.projectCode}
+                                {t.projectCode}
                               </td>
                               <td
                                 style={{
@@ -894,7 +863,7 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                                   textAlign: "center",
                                 }}
                               >
-                                {post.activityCode}
+                                {t.activityCode}
                               </td>
                               <td
                                 style={{
@@ -904,7 +873,7 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                                   textAlign: "center",
                                 }}
                               >
-                                {post.netTime}
+                                {t.netTime}
                               </td>
                               <td
                                 style={{
@@ -914,7 +883,7 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                                   textAlign: "center",
                                 }}
                               >
-                                {post.overTime}
+                                {t.overTime}
                               </td>
                               {printingShow === false && role === "admin" && (
                                 <>

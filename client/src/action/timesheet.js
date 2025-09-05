@@ -18,12 +18,13 @@ export const timesheetList = (formData, id) => async (dispatch) => {
 // -----------------------------For getting timesheet Data---------------------------
 
 export const getTimesheetPosts = () => async (dispatch) => {
-  console.log("Code is received in getTimesheetPosts!");
+  // console.log("Code is received in getTimesheetPosts!");
   try {
     const { data } = await API.getTimesheetPosts();
+    // console.log("inside getTimeSheetPost");
 
     dispatch({ type: FETCH_TIMESHEET, payload: data });
-    console.log("data", data);
+    // console.log("data", data);
   } catch (error) {
     console.log(error);
   }
