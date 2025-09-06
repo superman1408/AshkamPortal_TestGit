@@ -833,60 +833,62 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                       <tbody>
                         {array
                           .sort((a, b) => new Date(a.date) - new Date(b.date))
-                          .map((t, index) => (
-                            <tr key={index}>
-                              <td
-                                style={{
-                                  color: "#e55d17",
-                                  fontFamily: "Roboto",
-                                  padding: "10px",
-                                  textAlign: "center",
-                                }}
-                              >
-                                {/* {post.date} here I have to arrange */}
-                              </td>
-                              <td
-                                style={{
-                                  color: "#e55d17",
-                                  fontFamily: "Roboto",
-                                  padding: "10px",
-                                  textAlign: "center",
-                                }}
-                              >
-                                {t.projectCode}
-                              </td>
-                              <td
-                                style={{
-                                  color: "#e55d17",
-                                  fontFamily: "Roboto",
-                                  padding: "10px",
-                                  textAlign: "center",
-                                }}
-                              >
-                                {t.activityCode}
-                              </td>
-                              <td
-                                style={{
-                                  color: "#e55d17",
-                                  fontFamily: "Roboto",
-                                  padding: "10px",
-                                  textAlign: "center",
-                                }}
-                              >
-                                {t.netTime}
-                              </td>
-                              <td
-                                style={{
-                                  color: "#e55d17",
-                                  fontFamily: "Roboto",
-                                  padding: "10px",
-                                  textAlign: "center",
-                                }}
-                              >
-                                {t.overTime}
-                              </td>
-                              {printingShow === false && role === "admin" && (
-                                <>
+                          .map((t) =>
+                            t.map((s, index) => {
+                              <tr key={s._id || index}>
+                                <td
+                                  style={{
+                                    color: "#e55d17",
+                                    fontFamily: "Roboto",
+                                    padding: "10px",
+                                    textAlign: "center",
+                                  }}
+                                >
+                                  {/* show date if needed */}
+                                  {s.date}
+                                </td>
+                                <td
+                                  style={{
+                                    color: "#e55d17",
+                                    fontFamily: "Roboto",
+                                    padding: "10px",
+                                    textAlign: "center",
+                                  }}
+                                >
+                                  {s.projectCode}
+                                </td>
+                                <td
+                                  style={{
+                                    color: "#e55d17",
+                                    fontFamily: "Roboto",
+                                    padding: "10px",
+                                    textAlign: "center",
+                                  }}
+                                >
+                                  {s.activityCode}
+                                </td>
+                                <td
+                                  style={{
+                                    color: "#e55d17",
+                                    fontFamily: "Roboto",
+                                    padding: "10px",
+                                    textAlign: "center",
+                                  }}
+                                >
+                                  {s.netTime}
+                                </td>
+                                <td
+                                  style={{
+                                    color: "#e55d17",
+                                    fontFamily: "Roboto",
+                                    padding: "10px",
+                                    textAlign: "center",
+                                  }}
+                                >
+                                  {s.overTime}
+                                </td>
+
+                                {printingShow === false && role === "admin" && (
                                   <td
                                     style={{
                                       display: "flex",
@@ -911,21 +913,19 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                                     </button>
 
                                     {role === "manager" && (
-                                      <>
-                                        <button
-                                          id="editButton"
-                                          style={{ fontFamily: "Roboto" }}
-                                          onClick={() => editEntry(index)}
-                                        >
-                                          Edit
-                                        </button>
-                                      </>
+                                      <button
+                                        id="editButton"
+                                        style={{ fontFamily: "Roboto" }}
+                                        onClick={() => editEntry(index)}
+                                      >
+                                        Edit
+                                      </button>
                                     )}
                                   </td>
-                                </>
-                              )}
-                            </tr>
-                          ))}
+                                )}
+                              </tr>;
+                            })
+                          )}
                       </tbody>
                     </table>
                   </Grid>
