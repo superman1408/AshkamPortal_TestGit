@@ -63,7 +63,7 @@ export const timesheetList = async (req, res) => {
 
     res.json(updatedPost);
   } catch (error) {
-    console.error("Error in timesheetList:", error);
+    // console.error("Error in timesheetList:", error);
     res.status(500).json({ message: error.message });
   }
 };
