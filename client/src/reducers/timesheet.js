@@ -15,9 +15,7 @@ export default (timesheetData = [], action) => {
       return action.payload;
 
     case UPDATE_TIMESHEET:
-      return timesheetData.map((a) =>
-        a._id === action.payload._id ? action.payload : a
-      );
+      return [...timesheetData, action.payload];
 
     case DELETE_TIMESHEET:
       return timesheetData.filter((data) => data.id !== action.payload);

@@ -7,8 +7,6 @@ import { useReactToPrint } from "react-to-print";
 
 import "./Style1.css"; // Import CSS file for styling
 
-import { tableDelete, tableEdit } from "../../../action/posts";
-
 // import ProjectCodePopUp from "./ProjectCodePopUp";
 
 import ActivityCodePopUp from "./ActivityCodePopUp";
@@ -135,7 +133,7 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
       setIsSubmitting(false); // Reset only if validation fails
     }
     clearForm();
-    // window.location.reload();
+    window.location.reload();
   };
 
   //
@@ -273,10 +271,8 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
   const deleteEntry = (index) => {
     dispatch(deleteTimesheet(currentId, index))
       .then(() => {
-        console.log("itemdeleted");
-
-        // setIsLoading(true);
-        // window.location.reload();
+        setIsLoading(true);
+        window.location.reload();
       })
       .catch((err) => {
         return console.log("Error in deleting the file..!!");

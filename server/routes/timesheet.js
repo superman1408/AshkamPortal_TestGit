@@ -12,7 +12,7 @@ router.post("/:id/timesheet", timesheetList);
 
 router.get("/timesheetposts", getTimesheetPosts);
 
-router.patch("/:id/:index/updateTimesheet", updateTimesheet);
+router.patch("/:id/:indexed/updateTimesheet", updateTimesheet);
 
 router.delete("/:id/deleteTimesheet/:indexed", deleteTimesheet);
 

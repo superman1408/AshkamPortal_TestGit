@@ -48,12 +48,9 @@ export const updateTimesheet = (id, post) => async (dispatch) => {
 
 // // -----------------------------Delete Timesheet------------------------------
 export const deleteTimesheet = (id, indexed) => async (dispatch) => {
-  console.log("Code is working");
-
   try {
     await API.deleteTimesheet(id, indexed);
     dispatch({ type: DELETE_TIMESHEET, payload: id });
-    console.log("workinnnnnnng");
   } catch (error) {
     console.log(error);
   }

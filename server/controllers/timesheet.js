@@ -93,7 +93,7 @@ export const updateTimesheet = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id))
       return res.status(404).send("Invalid User ID!");
 
-    const post = await AttendanceDetail.findById(id);
+    const post = await TimesheetDetail.findById(id);
     if (!post) return res.status(404).send("No User Found");
 
     post.projectCode.splice(indexNumber, 1, valueToEdit.projectCode);
@@ -114,18 +114,14 @@ export const updateTimesheet = async (req, res) => {
 // Delete operation
 
 export const deleteTimesheet = async (req, res) => {
-  console.log("yhan aa rha hai");
-
   const indexNumber = parseInt(req.params.indexed);
   const id = req.params.id;
-
-  console.log("id", id);
 
   try {
     if (!mongoose.Types.ObjectId.isValid(id))
       return res.status(404).send("no post with that id found");
 
-    const post = await AuthenticateUser.findById(id);
+    const post = await TimesheetDetail.findById(id);
 
     if (!post) return res.status(404).send("No User Found");
 
