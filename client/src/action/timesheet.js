@@ -1,5 +1,10 @@
 import * as API from "../api";
-import { TIMESHEET_LIST, FETCH_TIMESHEET } from "../constants/actionTypes";
+import {
+  TIMESHEET_LIST,
+  FETCH_TIMESHEET,
+  UPDATE_TIMESHEET,
+  DELETE_TIMESHEET,
+} from "../constants/actionTypes";
 
 export const timesheetList = (formData, id) => async (dispatch) => {
   console.log("Hello I am working at TimesheetList!!");
@@ -17,10 +22,10 @@ export const timesheetList = (formData, id) => async (dispatch) => {
 
 // -----------------------------For getting timesheet Data---------------------------
 
-export const getTimesheetPosts = () => async (dispatch) => {
+export const getTimesheetPosts = (userId) => async (dispatch) => {
   // console.log("Code is received in getTimesheetPosts!");
   try {
-    const { data } = await API.getTimesheetPosts();
+    const { data } = await API.getTimesheetPosts(userId);
     // console.log("inside getTimeSheetPost");
 
     dispatch({ type: FETCH_TIMESHEET, payload: data });
@@ -31,24 +36,25 @@ export const getTimesheetPosts = () => async (dispatch) => {
 };
 
 // // -----------------------------Update Timesheet --------------------------
-// export const updateTimesheet = (id, post) => async (dispatch) => {
-//   //   console.log("Code is workinng");
-//   //   try {
-//   //     const { data } = await API.updateTimesheet(id, post);
-//   //     dispatch({ type: UPDATE, payload: data });
-//   //   } catch (error) {
-//   //     console.log(error);
-//   //   }
-// };
+export const updateTimesheet = (id, post) => async (dispatch) => {
+  console.log("Code is workinng");
+  try {
+    const { data } = await API.updateTimesheet(id, post);
+    dispatch({ type: UPDATE_TIMESHEET, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // // -----------------------------Delete Timesheet------------------------------
-// export const deleteTimesheet = (id) => async (dispatch) => {
-//   console.log("Code is working");
+export const deleteTimesheet = (id, indexed) => async (dispatch) => {
+  console.log("Code is working");
 
-//   try {
-//     await API.deleteTimesheet(id);
-//     dispatch({ type: DELETE, payload: id });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+  try {
+    await API.deleteTimesheet(id, indexed);
+    dispatch({ type: DELETE_TIMESHEET, payload: id });
+    console.log("workinnnnnnng");
+  } catch (error) {
+    console.log(error);
+  }
+};

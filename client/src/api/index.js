@@ -104,4 +104,11 @@ export const deleteAttendance = (id) => API.delete(`/attend/deleteAttendance`);
 export const timesheetList = (formData, id) =>
   API.post(`/timesheet/${id}/timesheet`, formData);
 
-export const getTimesheetPosts = () => API.get("/timesheet/timesheetposts");
+export const getTimesheetPosts = (userId) =>
+  API.get(`/timesheet/timesheetposts?userId=${userId}`);
+
+export const updateTimesheet = (id, index, updatedTimesheet) =>
+  API.patch(`/timesheetData/${id}/${index}/updateTimesheet`, updatedTimesheet);
+
+export const deleteTimesheet = (id, indexed) =>
+  API.delete(`/timesheetData/${id}/deleteTimesheet/${indexed}`);

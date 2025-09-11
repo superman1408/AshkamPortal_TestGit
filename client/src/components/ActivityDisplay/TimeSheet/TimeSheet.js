@@ -15,7 +15,12 @@ import ActivityCodePopUp from "./ActivityCodePopUp";
 
 import { getPosts } from "../../../action/posts";
 
-import { timesheetList, getTimesheetPosts } from "../../../action/timesheet";
+import {
+  timesheetList,
+  getTimesheetPosts,
+  deleteTimesheet,
+  updateTimesheet,
+} from "../../../action/timesheet";
 
 import LOGO from "../../../assets/AshkamLogoTransparentbc.png";
 
@@ -38,9 +43,11 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
   const [date, setDate] = useState("");
   const [netTime, setNetTime] = useState("");
   const [overTime, setOverTime] = useState("");
+  const [remarks, setRemarks] = useState("");
   const [editIndex, setEditIndex] = useState(-1);
   const [isLoading, setIsLoading] = useState(true);
   const [timesheet, setTimesheet] = useState("");
+  const [showTooltip, setShowTooltip] = useState(false);
 
   const [projectopen, setProjectOpen] = useState(false);
 
@@ -91,6 +98,7 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
       netTime: parseFloat(netTime),
       overTime: parseFloat(overTime),
       editIndex: parseFloat(editIndex),
+      remarks,
     };
 
     if (validateEntry(newEntry)) {
@@ -100,7 +108,7 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
           const updatedEntries = [...entries];
           updatedEntries[editIndex] = newEntry;
           setEntries(updatedEntries);
-          await dispatch(tableEdit(currentId, indexed, newEntry)).then(
+          await dispatch(updateTimesheet(currentId, indexed, newEntry)).then(
             (res) => {
               console.log("Data is recieved in the Data Base for Editing....");
               setEditIndex(-1); // Reset edit index
@@ -127,6 +135,7 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
       setIsSubmitting(false); // Reset only if validation fails
     }
     clearForm();
+    // window.location.reload();
   };
 
   //
@@ -191,34 +200,33 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
   const array = useMemo(() => {
     let temp = [];
 
-    timesheetData.map((t) => {
-      t.map((s) => {
-        console.log(s._id);
-      });
-      if (t._id === currentId) {
-        console.log("Id is matching");
-        for (let i = 0; i < t.projectCode.length; i++) {
+    timesheetData.map((data) => {
+      if (data._id === currentId) {
+        // console.log("Id is matching");
+        for (let i = 0; i < data.projectCode.length; i++) {
           temp.push({
-            projectCode: t.projectCode[i],
+            projectCode: data.projectCode[i],
 
-            activityCode: t.activityCode[i],
+            activityCode: data.activityCode[i],
 
-            date: t.date[i],
+            date: data.date[i],
 
-            netTime: t.netTime[i],
+            netTime: data.netTime[i],
 
-            overTime: t.overTime[i],
+            overTime: data.overTime[i],
 
-            editIndex: t.editIndex[i],
+            editIndex: data.editIndex[i],
+
+            remarks: data.remarks[i],
           });
         }
       } else {
-        console.log("Id is not matching");
+        // console.log("Id is not matching");
       }
     });
 
     return temp;
-  }, [dispatch, currentId]);
+  }, [timesheetData, currentId]);
 
   // const handleNetSubmit = (e) => {
   //   let value = parseInt(e.target.value);
@@ -235,6 +243,7 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
     setDate("");
     setNetTime("");
     setOverTime("");
+    setRemarks("");
     setEditIndex(-1);
   };
 
@@ -262,10 +271,12 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
 
   // Logic for deleting the entry......!!!
   const deleteEntry = (index) => {
-    dispatch(tableDelete(currentId, index))
+    dispatch(deleteTimesheet(currentId, index))
       .then(() => {
-        setIsLoading(true);
-        window.location.reload();
+        console.log("itemdeleted");
+
+        // setIsLoading(true);
+        // window.location.reload();
       })
       .catch((err) => {
         return console.log("Error in deleting the file..!!");
@@ -280,6 +291,7 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
     setDate(array[index].date);
     setNetTime(array[index].netTime);
     setOverTime(array[index].overTime);
+    setRemarks(array[index].remarks);
   };
 
   const componentRef = useRef();
@@ -325,6 +337,16 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
   };
 
   // console.log("timesheetData", timesheetData);
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    if (value.length >= 50) {
+      setShowTooltip(true); // show tooltip only once
+    } else {
+      setShowTooltip(false);
+      setRemarks(value);
+    }
+  };
 
   return (
     <div>
@@ -506,6 +528,50 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                     onChange={(e) => setOverTime(parseFloat(e.target.value))}
                     step="0.1"
                   />
+                </div>
+                <div className="form-group">
+                  <label
+                    style={{ color: "#16355d", fontFamily: "Roboto" }}
+                    htmlFor="overTime"
+                  >
+                    Remarks:
+                  </label>
+                  <input
+                    style={{
+                      width: "100%",
+                      height: "30px",
+                      padding: "8px",
+                      fontSize: "16px",
+                      border: "1px solid #ccc",
+                      borderRadius: "4px",
+                      color: "#e55d17",
+                    }}
+                    type="text"
+                    id="remarks"
+                    placeholder="Enter text (max 50 chars)"
+                    maxLength={50} // ✅ correct way in React
+                    // value={overTime}
+                    defaultValue={remarks}
+                    onChange={(e) => {
+                      setRemarks(e.target.value);
+                      handleChange(e);
+                    }}
+                    step="0.1"
+                  />
+                  {showTooltip && (
+                    <div
+                      style={{
+                        color: "red",
+                        fontSize: "12px",
+                        marginTop: "4px",
+                        whiteSpace: "nowrap", // ✅ keep tooltip one-line
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      ⚠️ Maximum 50 characters allowed
+                    </div>
+                  )}
                 </div>
                 {/* </div> */}
 
@@ -779,7 +845,7 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                           <th
                             style={{
                               textAlign: "center",
-                              width: "15%",
+                              // width: "15%",
                               color: "#16355d",
                               fontFamily: "Roboto",
                             }}
@@ -789,7 +855,7 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                           <th
                             style={{
                               textAlign: "center",
-                              width: "25%",
+                              // width: "25%",
                               color: "#16355d",
                               fontFamily: "Roboto",
                             }}
@@ -799,7 +865,7 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                           <th
                             style={{
                               textAlign: "center",
-                              width: "25%",
+                              // width: "25%",
                               color: "#16355d",
                               fontFamily: "Roboto",
                             }}
@@ -810,7 +876,7 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                           <th
                             style={{
                               textAlign: "center",
-                              width: "15%",
+                              width: "10%",
                               color: "#16355d",
                               fontFamily: "Roboto",
                             }}
@@ -820,83 +886,116 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                           <th
                             style={{
                               textAlign: "center",
-                              width: "15%",
+                              width: "10%",
                               color: "#16355d",
                               fontFamily: "Roboto",
                             }}
                           >
                             Over Time (hrs)
                           </th>
+                          <th
+                            style={{
+                              textAlign: "center",
+                              width: "30%",
+                              color: "#16355d",
+                              fontFamily: "Roboto",
+                            }}
+                          >
+                            Remarks
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
                         {/* .sort((a, b) => new Date(a.date) - new Date(b.date))/// */}
-                        {array.map((t) =>
-                          t.map((s, index) => {
-                            console.log(s._id);
+                        {array.map((data, index) => (
+                          <tr key={index}>
+                            <td
+                              style={{
+                                color: "#e55d17",
+                                fontFamily: "Roboto",
+                                padding: "10px",
+                                textAlign: "center",
+                              }}
+                            >
+                              {/* show date if needed */}
+                              {data.date}
+                            </td>
+                            <td
+                              style={{
+                                color: "#e55d17",
+                                fontFamily: "Roboto",
+                                padding: "10px",
+                                textAlign: "center",
+                              }}
+                            >
+                              {data.projectCode}
+                            </td>
+                            <td
+                              style={{
+                                color: "#e55d17",
+                                fontFamily: "Roboto",
+                                padding: "10px",
+                                textAlign: "center",
+                              }}
+                            >
+                              {data.activityCode}
+                            </td>
+                            <td
+                              style={{
+                                color: "#e55d17",
+                                fontFamily: "Roboto",
+                                padding: "10px",
+                                textAlign: "center",
+                              }}
+                            >
+                              {data.netTime}
+                            </td>
+                            <td
+                              style={{
+                                color: "#e55d17",
+                                fontFamily: "Roboto",
+                                padding: "10px",
+                                textAlign: "center",
+                              }}
+                            >
+                              {data.overTime}
+                            </td>
+                            <td
+                              style={{
+                                color: "#e55d17",
+                                fontFamily: "Roboto",
+                                padding: "10px",
+                                textAlign: "center",
+                              }}
+                            >
+                              {data.remarks}
+                            </td>
 
-                            <tr key={s._id || index}>
+                            {printingShow === false && role === "admin" && (
                               <td
                                 style={{
-                                  color: "#e55d17",
-                                  fontFamily: "Roboto",
+                                  display: "flex",
+                                  justifyContent: "space-around",
                                   padding: "10px",
                                   textAlign: "center",
                                 }}
                               >
-                                {/* show date if needed */}
-                                {s.date}
-                              </td>
-                              <td
-                                style={{
-                                  color: "#e55d17",
-                                  fontFamily: "Roboto",
-                                  padding: "10px",
-                                  textAlign: "center",
-                                }}
-                              >
-                                {s.projectCode}
-                              </td>
-                              <td
-                                style={{
-                                  color: "#e55d17",
-                                  fontFamily: "Roboto",
-                                  padding: "10px",
-                                  textAlign: "center",
-                                }}
-                              >
-                                {s.activityCode}
-                              </td>
-                              <td
-                                style={{
-                                  color: "#e55d17",
-                                  fontFamily: "Roboto",
-                                  padding: "10px",
-                                  textAlign: "center",
-                                }}
-                              >
-                                {s.netTime}
-                              </td>
-                              <td
-                                style={{
-                                  color: "#e55d17",
-                                  fontFamily: "Roboto",
-                                  padding: "10px",
-                                  textAlign: "center",
-                                }}
-                              >
-                                {s.overTime}
-                              </td>
-
-                              {printingShow === false && role === "admin" && (
-                                <td
-                                  style={{
-                                    display: "flex",
-                                    justifyContent: "space-around",
-                                    padding: "10px",
-                                    textAlign: "center",
-                                  }}
+                                <button
+                                  id="editButton"
+                                  style={{ fontFamily: "Roboto" }}
+                                  onClick={() => updateTimesheet(index)}
                                 >
+                                  Edit
+                                </button>
+                                <button
+                                  id="deleteButton"
+                                  style={{ fontFamily: "Roboto" }}
+                                  onClick={() => deleteEntry(index)}
+                                >
+                                  Delete
+                                </button>
+
+                                {role === "manager" && (
                                   <button
                                     id="editButton"
                                     style={{ fontFamily: "Roboto" }}
@@ -904,28 +1003,11 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                                   >
                                     Edit
                                   </button>
-                                  <button
-                                    id="deleteButton"
-                                    style={{ fontFamily: "Roboto" }}
-                                    onClick={() => deleteEntry(index)}
-                                  >
-                                    Delete
-                                  </button>
-
-                                  {role === "manager" && (
-                                    <button
-                                      id="editButton"
-                                      style={{ fontFamily: "Roboto" }}
-                                      onClick={() => editEntry(index)}
-                                    >
-                                      Edit
-                                    </button>
-                                  )}
-                                </td>
-                              )}
-                            </tr>;
-                          })
-                        )}
+                                )}
+                              </td>
+                            )}
+                          </tr>
+                        ))}
                       </tbody>
                     </table>
                   </Grid>

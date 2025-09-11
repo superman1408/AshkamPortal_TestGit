@@ -43,7 +43,7 @@ const ActivityDisplay = () => {
 
   useEffect(() => {
     if (timesheetData) {
-      dispatch(getTimesheetPosts()).then(() => {
+      dispatch(getTimesheetPosts(currentId)).then(() => {
         // console.log(
         //   "Activity Display is recieving the posts in Timesheet..!!!@@@@@@"
         // );
@@ -57,7 +57,7 @@ const ActivityDisplay = () => {
       });
     }
     setIsLoading(false);
-  }, [isLoading, timesheetData]);
+  }, [isLoading, currentId, dispatch]);
 
   // console.log(timesheetData);
 

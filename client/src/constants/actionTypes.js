@@ -27,3 +27,5 @@ export const UPDATE_ATTENDANCE = "UPDATE_ATTENDANCE";
 
 export const TIMESHEET_LIST = "TIMESHEET_LIST"; ///for punching Timesheet data
 export const FETCH_TIMESHEET = "FETCH_TIMESHEET"; // for fetching Timesheet data
+export const UPDATE_TIMESHEET = "UPDATE_TIMESHEET"; // for UPDATING Timesheet data
+export const DELETE_TIMESHEET = "DELETE_TIMESHEET"; // for DELETING Timesheet data
