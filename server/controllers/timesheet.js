@@ -84,7 +84,7 @@ export const updateTimesheet = async (req, res) => {
   console.log("You reached me");
 
   const id = req.params.id;
-  const indexNumber = parseInt(req.params.index);
+  const indexNumber = parseInt(req.params.indexed);
   const valueToEdit = req.body;
 
   console.log(id, indexNumber, valueToEdit);

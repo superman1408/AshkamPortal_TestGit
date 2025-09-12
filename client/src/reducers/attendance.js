@@ -2,7 +2,6 @@ import {
   ATTEND_ALL,
   UPDATE_ATTENDANCE,
   DELETE,
-  FETCHLOGLIST,
   LOGLIST,
 } from "../constants/actionTypes";
 

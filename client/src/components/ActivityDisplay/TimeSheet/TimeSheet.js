@@ -15,9 +15,9 @@ import { getPosts } from "../../../action/posts";
 
 import {
   timesheetList,
-  getTimesheetPosts,
   deleteTimesheet,
   updateTimesheet,
+  getTimesheetPosts,
 } from "../../../action/timesheet";
 
 import LOGO from "../../../assets/AshkamLogoTransparentbc.png";
@@ -110,6 +110,8 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
             (res) => {
               console.log("Data is recieved in the Data Base for Editing....");
               setEditIndex(-1); // Reset edit index
+              alert("✅ Updated Data successfully!");
+              dispatch(getTimesheetPosts()); // 🔄 refresh data
             }
           );
         } else {
@@ -118,6 +120,7 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
             console.log("Data is recieved in the Data Base");
             clearForm();
             alert("✅ Entry submitted successfully!");
+            dispatch(getTimesheetPosts()); // 🔄 refresh data
             // window.location.reload();
           });
         }
@@ -269,14 +272,20 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
 
   // Logic for deleting the entry......!!!
   const deleteEntry = (index) => {
-    dispatch(deleteTimesheet(currentId, index))
-      .then(() => {
-        setIsLoading(true);
-        window.location.reload();
-      })
-      .catch((err) => {
-        return console.log("Error in deleting the file..!!");
-      });
+    if (window.confirm("Are you sure you want to delete this?")) {
+      dispatch(deleteTimesheet(currentId, index))
+        .then(() => {
+          setIsLoading(true);
+          // setEntries(entries.filter((_, i) => i !== index)); // remove from UI
+          alert("✅ Deleted successfully!");
+          // navigate(0); // ✅ refresh current route (React way of reload)
+          dispatch(getTimesheetPosts()); // 🔄 refresh data
+        })
+        .catch((err) => {
+          alert("Error While Deleting!");
+          return console.log("Error in deleting the file..!!");
+        });
+    }
   };
 
   //To Edit the entry....!!!!
@@ -902,96 +911,81 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                         </tr>
                       </thead>
                       <tbody>
-                        {/* .sort((a, b) => new Date(a.date) - new Date(b.date))/// */}
-                        {array.map((data, index) => (
-                          <tr key={index}>
-                            <td
-                              style={{
-                                color: "#e55d17",
-                                fontFamily: "Roboto",
-                                padding: "10px",
-                                textAlign: "center",
-                              }}
-                            >
-                              {/* show date if needed */}
-                              {data.date}
-                            </td>
-                            <td
-                              style={{
-                                color: "#e55d17",
-                                fontFamily: "Roboto",
-                                padding: "10px",
-                                textAlign: "center",
-                              }}
-                            >
-                              {data.projectCode}
-                            </td>
-                            <td
-                              style={{
-                                color: "#e55d17",
-                                fontFamily: "Roboto",
-                                padding: "10px",
-                                textAlign: "center",
-                              }}
-                            >
-                              {data.activityCode}
-                            </td>
-                            <td
-                              style={{
-                                color: "#e55d17",
-                                fontFamily: "Roboto",
-                                padding: "10px",
-                                textAlign: "center",
-                              }}
-                            >
-                              {data.netTime}
-                            </td>
-                            <td
-                              style={{
-                                color: "#e55d17",
-                                fontFamily: "Roboto",
-                                padding: "10px",
-                                textAlign: "center",
-                              }}
-                            >
-                              {data.overTime}
-                            </td>
-                            <td
-                              style={{
-                                color: "#e55d17",
-                                fontFamily: "Roboto",
-                                padding: "10px",
-                                textAlign: "center",
-                              }}
-                            >
-                              {data.remarks}
-                            </td>
-
-                            {printingShow === false && role === "admin" && (
+                        {array
+                          .sort((a, b) => new Date(a.date) - new Date(b.date)) // ascending by date
+                          .map((data, index) => (
+                            <tr key={index}>
                               <td
                                 style={{
-                                  display: "flex",
-                                  justifyContent: "space-around",
+                                  color: "#e55d17",
+                                  fontFamily: "Roboto",
                                   padding: "10px",
                                   textAlign: "center",
                                 }}
                               >
-                                <button
-                                  id="editButton"
-                                  style={{ fontFamily: "Roboto" }}
-                                  onClick={() => updateTimesheet(index)}
-                                >
-                                  Edit
-                                </button>
-                                <button
-                                  id="deleteButton"
-                                  style={{ fontFamily: "Roboto" }}
-                                  onClick={() => deleteEntry(index)}
-                                >
-                                  Delete
-                                </button>
+                                {/* show date if needed */}
+                                {data.date}
+                              </td>
+                              <td
+                                style={{
+                                  color: "#e55d17",
+                                  fontFamily: "Roboto",
+                                  padding: "10px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {data.projectCode}
+                              </td>
+                              <td
+                                style={{
+                                  color: "#e55d17",
+                                  fontFamily: "Roboto",
+                                  padding: "10px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {data.activityCode}
+                              </td>
+                              <td
+                                style={{
+                                  color: "#e55d17",
+                                  fontFamily: "Roboto",
+                                  padding: "10px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {data.netTime}
+                              </td>
+                              <td
+                                style={{
+                                  color: "#e55d17",
+                                  fontFamily: "Roboto",
+                                  padding: "10px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {data.overTime}
+                              </td>
+                              <td
+                                style={{
+                                  color: "#e55d17",
+                                  fontFamily: "Roboto",
+                                  padding: "10px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {data.remarks}
+                              </td>
 
-                                {role === "manager" && (
+                              {printingShow === false && role === "admin" && (
+                                <td
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "space-around",
+                                    padding: "10px",
+                                    textAlign: "center",
+                                  }}
+                                >
                                   <button
                                     id="editButton"
                                     style={{ fontFamily: "Roboto" }}
@@ -999,16 +993,34 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                                   >
                                     Edit
                                   </button>
-                                )}
-                              </td>
-                            )}
-                          </tr>
-                        ))}
+
+                                  <button
+                                    id="deleteButton"
+                                    style={{ fontFamily: "Roboto" }}
+                                    onClick={() => deleteEntry(index)}
+                                  >
+                                    Delete
+                                  </button>
+
+                                  {role === "manager" && (
+                                    <button
+                                      id="editButton"
+                                      style={{ fontFamily: "Roboto" }}
+                                      onClick={() => editEntry(index)}
+                                    >
+                                      Edit
+                                    </button>
+                                  )}
+                                </td>
+                              )}
+                            </tr>
+                          ))}
                       </tbody>
                     </table>
                   </Grid>
                 </div>
               )}
+
               <Divider
                 height="100px"
                 sx={{

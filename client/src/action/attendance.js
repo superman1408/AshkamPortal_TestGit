@@ -1,7 +1,6 @@
 import * as API from "../api";
 import {
   LOGLIST,
-  FETCHLOGLIST,
   ATTEND_ALL,
   UPDATE_ATTENDANCE,
 } from "../constants/actionTypes";
