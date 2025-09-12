@@ -8,6 +8,9 @@ import {
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (attendance = [], action) => {
   switch (action.type) {
+    case LOGLIST:
+      return [...attendance, action.payload];
+
     case ATTEND_ALL:
       return action.payload;
 

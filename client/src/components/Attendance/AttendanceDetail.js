@@ -14,8 +14,12 @@ import {
 } from "@mui/material";
 
 import { getPosts } from "../../action/posts";
-import { getAttendancePosts, updateAttendance } from "../../action/attendance";
-import { dailyAttendance, logList } from "../../action/posts";
+import {
+  getAttendancePosts,
+  updateAttendance,
+  logList,
+} from "../../action/attendance";
+import { dailyAttendance } from "../../action/posts";
 // import HalfDoughnutWithPointer from "../Attendance/AttendanceChart";
 import PunctualityRadarChart from "./AttendanceChart";
 import Panel from "../Panel/Panel";
