@@ -223,6 +223,19 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
     fontFamily: "Roboto",
   };
 
+  const logdayStyle = {
+    backgroundColor: "#f5f376ff",
+    color: "#494814ff",
+    padding: "8px 16px",
+    borderRadius: "12px",
+    fontWeight: "500",
+    display: "inline-block",
+    fontFamily: "Roboto",
+    width: "120px", // fixed width
+    textAlign: "center", // keeps text centered
+    marginLeft: "30px",
+  };
+
   const handleGoBack = () => {
     navigate(-1); // this means "go back one step in history"
   };
@@ -664,7 +677,19 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
                       <td
                         style={{ ...cellStyle, borderRadius: "12px 0 0 12px" }}
                       >
-                        {item?.logDate}
+                        {item?.logDate && (
+                          <>
+                            {item.logDate}{" "}
+                            <span style={logdayStyle}>
+                              {new Date(item.logDate).toLocaleDateString(
+                                "en-US",
+                                {
+                                  weekday: "long",
+                                }
+                              )}
+                            </span>
+                          </>
+                        )}
                       </td>
                       <td>
                         <span style={loginStyle}>{item?.logIn}</span>

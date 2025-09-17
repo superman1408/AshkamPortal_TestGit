@@ -353,6 +353,29 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
     }
   };
 
+  const MONTHS = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const filteredArray = array.filter((data) => {
+    const entryDate = new Date(data.date);
+    return (
+      entryDate.getMonth() === selectedMonth &&
+      entryDate.getFullYear() === selectedYear
+    );
+  });
+
   return (
     <div>
       <div style={{ display: "inline" }}>
@@ -947,98 +970,91 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                         </tr>
                       </thead>
                       <tbody>
-                        {array
-                          .sort((a, b) => new Date(a.date) - new Date(b.date)) // ascending by date
-                          .map((data, index) => (
-                            <tr key={index}>
-                              <td
-                                style={{
-                                  color: "#e55d17",
-                                  fontFamily: "Roboto",
-                                  padding: "10px",
-                                  textAlign: "center",
-                                }}
-                              >
-                                {/* show date if needed */}
-                                {data.date}
-                              </td>
-                              <td
-                                style={{
-                                  color: "#e55d17",
-                                  fontFamily: "Roboto",
-                                  padding: "10px",
-                                  textAlign: "center",
-                                }}
-                              >
-                                {data.projectCode}
-                              </td>
-                              <td
-                                style={{
-                                  color: "#e55d17",
-                                  fontFamily: "Roboto",
-                                  padding: "10px",
-                                  textAlign: "center",
-                                }}
-                              >
-                                {data.activityCode}
-                              </td>
-                              <td
-                                style={{
-                                  color: "#e55d17",
-                                  fontFamily: "Roboto",
-                                  padding: "10px",
-                                  textAlign: "center",
-                                }}
-                              >
-                                {data.netTime}
-                              </td>
-                              <td
-                                style={{
-                                  color: "#e55d17",
-                                  fontFamily: "Roboto",
-                                  padding: "10px",
-                                  textAlign: "center",
-                                }}
-                              >
-                                {data.overTime}
-                              </td>
-                              <td
-                                style={{
-                                  color: "#e55d17",
-                                  fontFamily: "Roboto",
-                                  padding: "10px",
-                                  textAlign: "center",
-                                }}
-                              >
-                                {data.remarks}
-                              </td>
-
-                              {printingShow === false && role === "admin" && (
+                        {/* Here added fileterd array to display according to month & added conditional statement if there is no data */}
+                        {(role === "admin" ? array : filteredArray).length ===
+                        0 ? (
+                          <tr>
+                            <td
+                              colSpan={7} // ✅ span across all columns
+                              style={{
+                                textAlign: "center",
+                                padding: "15px",
+                                color: "#888",
+                                fontFamily: "Roboto",
+                              }}
+                            >
+                              No data available for this month/year
+                            </td>
+                          </tr>
+                        ) : (
+                          (role === "admin" ? array : filteredArray)
+                            .sort((a, b) => new Date(a.date) - new Date(b.date))
+                            .map((data, index) => (
+                              <tr key={index}>
                                 <td
                                   style={{
-                                    display: "flex",
-                                    justifyContent: "space-around",
+                                    color: "#e55d17",
                                     padding: "10px",
                                     textAlign: "center",
                                   }}
                                 >
-                                  <button
-                                    id="editButton"
-                                    style={{ fontFamily: "Roboto" }}
-                                    onClick={() => editEntry(index)}
-                                  >
-                                    Edit
-                                  </button>
+                                  {data.date}
+                                </td>
+                                <td
+                                  style={{
+                                    color: "#e55d17",
+                                    padding: "10px",
+                                    textAlign: "center",
+                                  }}
+                                >
+                                  {data.projectCode}
+                                </td>
+                                <td
+                                  style={{
+                                    color: "#e55d17",
+                                    padding: "10px",
+                                    textAlign: "center",
+                                  }}
+                                >
+                                  {data.activityCode}
+                                </td>
+                                <td
+                                  style={{
+                                    color: "#e55d17",
+                                    padding: "10px",
+                                    textAlign: "center",
+                                  }}
+                                >
+                                  {data.netTime}
+                                </td>
+                                <td
+                                  style={{
+                                    color: "#e55d17",
+                                    padding: "10px",
+                                    textAlign: "center",
+                                  }}
+                                >
+                                  {data.overTime}
+                                </td>
+                                <td
+                                  style={{
+                                    color: "#e55d17",
+                                    padding: "10px",
+                                    textAlign: "center",
+                                  }}
+                                >
+                                  {data.remarks}
+                                </td>
 
-                                  <button
-                                    id="deleteButton"
-                                    style={{ fontFamily: "Roboto" }}
-                                    onClick={() => deleteEntry(index)}
+                                {printingShow === false && role === "admin" && (
+                                  <td
+                                    style={{
+                                      display: "flex",
+                                      justifyContent: "space-around",
+                                      padding: "10px",
+                                      textAlign: "center",
+                                    }}
                                   >
-                                    Delete
-                                  </button>
-
-                                  {role === "manager" && (
                                     <button
                                       id="editButton"
                                       style={{ fontFamily: "Roboto" }}
@@ -1046,11 +1062,18 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                                     >
                                       Edit
                                     </button>
-                                  )}
-                                </td>
-                              )}
-                            </tr>
-                          ))}
+                                    <button
+                                      id="deleteButton"
+                                      style={{ fontFamily: "Roboto" }}
+                                      onClick={() => deleteEntry(index)}
+                                    >
+                                      Delete
+                                    </button>
+                                  </td>
+                                )}
+                              </tr>
+                            ))
+                        )}
                       </tbody>
                     </table>
                   </Grid>

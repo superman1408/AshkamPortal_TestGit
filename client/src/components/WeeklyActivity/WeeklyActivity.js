@@ -8,7 +8,8 @@ import {
   Container,
   useTheme,
 } from "@mui/material";
-import { getPosts } from "../../action/posts";
+// import { getPosts } from "../../action/posts";
+import { getTimesheetPosts } from "../../action/timesheet";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
@@ -38,13 +39,15 @@ const WeeklyActivity = () => {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  const posts = useSelector((state) => state.posts);
+  // const posts = useSelector((state) => state.posts);
+
+  const timesheetData = useSelector((state) => state.timesheetData);
   const dispatch = useDispatch();
   const theme = useTheme();
 
   useEffect(() => {
     setIsLoading(true);
-    dispatch(getPosts()).then(() => {
+    dispatch(getTimesheetPosts()).then(() => {
       setIsLoading(false);
     });
   }, []);
@@ -60,7 +63,7 @@ const WeeklyActivity = () => {
   const navigate = useNavigate();
 
   // Filter the post based on currentId
-  const filteredPosts = posts.filter((post) => post._id === currentId);
+  const filteredPosts = timesheetData.filter((post) => post._id === currentId);
 
   // Sort by date
   // const sortedPosts = [...filteredPosts].sort(

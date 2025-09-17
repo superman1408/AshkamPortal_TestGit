@@ -15,7 +15,7 @@ dotenv.config();
 
 const PORT = process.env.PORT || 8080;
 const HOST = process.env.HOST || "localhost";
-const HOST = process.env.HOST || "localhost";
+// const HOST = process.env.HOST || "localhost";
 
 const CONNECT = process.env.CONNECTION_URL;
 
@@ -63,9 +63,7 @@ mongoose
         "Listening at " +
           `http://${HOST}:${PORT}` +
           "\nMongoDB database is connected..!!"
-        "Listening at " +
-          `http://${HOST}:${PORT}` +
-          "\nMongoDB database is connected..!!"
+        
       );
     })
   )
