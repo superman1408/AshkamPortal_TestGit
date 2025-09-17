@@ -112,6 +112,12 @@ const WeeklyActivity = () => {
     }
   });
 
+  const currentMonth = dayjs().month();
+  const currentYear = dayjs().year();
+
+  console.log(currentMonth);
+  console.log(currentYear);
+
   // Convert the map back to an array
   const groupedEntries = Object.keys(groupedMap)
     .map((date) => ({
@@ -121,16 +127,30 @@ const WeeklyActivity = () => {
     }))
     .sort((a, b) => new Date(a.date) - new Date(b.date));
 
+  // console.log(groupedMap);
+
+  const filteredEntries = groupedEntries.filter((entry) => {
+    const entryDate = dayjs(entry.date);
+
+    return (
+      entryDate.isValid() &&
+      entryDate.month() === currentMonth &&
+      entryDate.year() === currentYear
+    );
+  });
+
+  console.log(filteredEntries);
+
   // Then extract your data for the graph
-  const labels = groupedEntries.map(
+  const labels = filteredEntries.map(
     (entry) =>
       entry.date && dayjs(entry.date).isValid()
         ? dayjs(entry.date).format("ddd, DD MMM")
         : "N/A" // or "--" or "" or "N/A" if you prefer
   );
 
-  const netTimeData = groupedEntries.map((entry) => entry.netTime);
-  const overTimeData = groupedEntries.map((entry) => entry.overTime);
+  const netTimeData = filteredEntries.map((entry) => entry.netTime);
+  const overTimeData = filteredEntries.map((entry) => entry.overTime);
 
   const data = {
     labels,
@@ -215,7 +235,6 @@ const WeeklyActivity = () => {
               </Grid>
             </Grid>
             <div style={{ height: 400 }}>
-              {" "}
               {/* or whatever height you want */}
               <Bar
                 options={{ ...options, maintainAspectRatio: false }}
