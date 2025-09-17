@@ -1,25 +1,39 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { Divider, Grid, CircularProgress, Box, Button } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import { tableDelete, tableEdit, todoList } from "../../../action/posts";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useDispatch } from "react-redux";
+import { useReactToPrint } from "react-to-print";
+
+import "./Style1.css"; // Import CSS file for styling
+
+// import ProjectCodePopUp from "./ProjectCodePopUp";
+
 import ActivityCodePopUp from "./ActivityCodePopUp";
 
-import useMediaQuery from "@mui/material/useMediaQuery";
+import { getPosts } from "../../../action/posts";
+
+import {
+  timesheetList,
+  deleteTimesheet,
+  updateTimesheet,
+  getTimesheetPosts,
+} from "../../../action/timesheet";
 
 import LOGO from "../../../assets/AshkamLogoTransparentbc.png";
-
-import { useReactToPrint } from "react-to-print";
 
 import Panel from "../../Panel/Panel";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+
 import LoadingSpinner from "../../ReactSpinner/reactSpinner";
 
-function TimeSheet({ currentId, posts }) {
+function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+
+  // console.log(timesheetData._id);
 
   const [entries, setEntries] = useState([]);
   const [projectCode, setProjectCode] = useState("");
@@ -27,8 +41,14 @@ function TimeSheet({ currentId, posts }) {
   const [date, setDate] = useState("");
   const [netTime, setNetTime] = useState("");
   const [overTime, setOverTime] = useState("");
+  const [remarks, setRemarks] = useState("");
   const [editIndex, setEditIndex] = useState(-1);
   const [isLoading, setIsLoading] = useState(true);
+  const [timesheet, setTimesheet] = useState("");
+  const [showTooltip, setShowTooltip] = useState(false);
+
+  const [projectopen, setProjectOpen] = useState(false);
+
   const [activityopen, setActivityOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -43,8 +63,6 @@ function TimeSheet({ currentId, posts }) {
   const [printingShow, setPrintingShow] = useState(false);
 
   const [disable, setDisabled] = useState(true);
-
-  // const array = [];
 
   const matches = useMediaQuery("(min-width:1120px)");
 
@@ -61,36 +79,15 @@ function TimeSheet({ currentId, posts }) {
     }
   }, [loggedInUserId, currentId, role]);
 
-  // Build array from posts + currentId using useMemo()
-  const array = useMemo(() => {
-    let temp = [];
-    posts.forEach((post) => {
-      if (post._id === currentId) {
-        for (let i = 0; i < post.projectCode.length; i++) {
-          temp.push({
-            projectCode: post.projectCode[i],
-            activityCode: post.activityCode[i],
-            date: post.date[i],
-            netTime: post.netTime[i],
-            overTime: post.overTime[i],
-            editIndex: post.editIndex[i],
-          });
-        }
-      }
+  useEffect(() => {
+    array.length = 0;
+    dispatch(getPosts()).then(() => {
+      // eslint-disable-next-line array-callback-return
     });
-    return temp;
-  }, [posts, currentId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, currentId]);
 
-  // Filter array for selected month and year
-  const filteredData = useMemo(() => {
-    return array.filter((entry) => {
-      const entryDate = new Date(entry.date);
-      return (
-        entryDate.getMonth() === selectedMonth &&
-        entryDate.getFullYear() === selectedYear
-      );
-    });
-  }, [array, selectedMonth, selectedYear]);
+  //------------------------------------------------For getting data of Timesheet--------------------------------------------------
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -103,6 +100,7 @@ function TimeSheet({ currentId, posts }) {
       netTime: parseFloat(netTime),
       overTime: parseFloat(overTime),
       editIndex: parseFloat(editIndex),
+      remarks,
     };
 
     if (validateEntry(newEntry)) {
@@ -112,19 +110,22 @@ function TimeSheet({ currentId, posts }) {
           const updatedEntries = [...entries];
           updatedEntries[editIndex] = newEntry;
           setEntries(updatedEntries);
-          await dispatch(tableEdit(currentId, indexed, newEntry)).then(
+          await dispatch(updateTimesheet(currentId, indexed, newEntry)).then(
             (res) => {
               console.log("Data is recieved in the Data Base for Editing....");
               setEditIndex(-1); // Reset edit index
+              alert("✅ Updated Data successfully!");
+              dispatch(getTimesheetPosts()); // 🔄 refresh data
             }
           );
         } else {
           setEntries([...entries, newEntry]);
-          await dispatch(todoList(newEntry, currentId)).then((res) => {
+          await dispatch(timesheetList(newEntry, currentId)).then((res) => {
             console.log("Data is recieved in the Data Base");
             clearForm();
             alert("✅ Entry submitted successfully!");
-            window.location.reload();
+            dispatch(getTimesheetPosts()); // 🔄 refresh data
+            // window.location.reload();
           });
         }
       } catch (err) {
@@ -139,6 +140,7 @@ function TimeSheet({ currentId, posts }) {
       setIsSubmitting(false); // Reset only if validation fails
     }
     clearForm();
+    window.location.reload();
   };
 
   //
@@ -198,6 +200,47 @@ function TimeSheet({ currentId, posts }) {
     return weekOfMonth === 2 || weekOfMonth === 4;
   };
 
+  // Build array from posts + currentId using useMemo()
+
+  const array = useMemo(() => {
+    let temp = [];
+
+    timesheetData.map((data) => {
+      if (data._id === currentId) {
+        // console.log("Id is matching");
+        for (let i = 0; i < data.projectCode.length; i++) {
+          temp.push({
+            projectCode: data.projectCode[i],
+
+            activityCode: data.activityCode[i],
+
+            date: data.date[i],
+
+            netTime: data.netTime[i],
+
+            overTime: data.overTime[i],
+
+            editIndex: data.editIndex[i],
+
+            remarks: data.remarks[i],
+          });
+        }
+      } else {
+        // console.log("Id is not matching");
+      }
+    });
+
+    return temp;
+  }, [timesheetData, currentId]);
+
+  // const handleNetSubmit = (e) => {
+  //   let value = parseInt(e.target.value);
+  //   if (value > 8) {
+  //     value = 8;
+  //   }
+  //   setNetTime(value);
+  // };
+
   //Logic for clearing the form.........
   const clearForm = () => {
     setProjectCode("");
@@ -205,12 +248,18 @@ function TimeSheet({ currentId, posts }) {
     setDate("");
     setNetTime("");
     setOverTime("");
+    setRemarks("");
     setEditIndex(-1);
   };
 
   const togglePopup2 = () => {
     setActivityOpen(!activityopen);
   };
+
+  // Build array from posts + currentId using useMemo()
+
+  // Here the array is being loaded....!!!
+  // eslint-disable-next-line array-callback-return
 
   //This logic is creating a delay time for loading the array....!!
   useEffect(() => {
@@ -221,27 +270,33 @@ function TimeSheet({ currentId, posts }) {
     }
   }, [isLoading]);
 
-  //Logic for deleting the entry......!!!
+  // Logic for deleting the entry......!!!
   const deleteEntry = (index) => {
-    dispatch(tableDelete(currentId, index))
-      .then(() => {
-        setIsLoading(true);
-        window.location.reload();
-      })
-      .catch((err) => {
-        return console.log("Error in deleting the file..!!");
-      });
+    if (window.confirm("Are you sure you want to delete this?")) {
+      dispatch(deleteTimesheet(currentId, index))
+        .then(() => {
+          setIsLoading(true);
+          // setEntries(entries.filter((_, i) => i !== index)); // remove from UI
+          alert("✅ Deleted successfully!");
+          // navigate(0); // ✅ refresh current route (React way of reload)
+          dispatch(getTimesheetPosts()); // 🔄 refresh data
+        })
+        .catch((err) => {
+          alert("Error While Deleting!");
+          return console.log("Error in deleting the file..!!");
+        });
+    }
   };
 
   //To Edit the entry....!!!!
   const editEntry = (index) => {
-    // let updatedArray = updateArray();
     setEditIndex(index);
     setProjectCode(array[index].projectCode);
     setActivityCode(array[index].activityCode);
     setDate(array[index].date);
     setNetTime(array[index].netTime);
     setOverTime(array[index].overTime);
+    setRemarks(array[index].remarks);
   };
 
   const componentRef = useRef();
@@ -286,21 +341,17 @@ function TimeSheet({ currentId, posts }) {
     navigate(-1);
   };
 
-  // constants.js
-  const MONTHS = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+  // console.log("timesheetData", timesheetData);
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    if (value.length >= 50) {
+      setShowTooltip(true); // show tooltip only once
+    } else {
+      setShowTooltip(false);
+      setRemarks(value);
+    }
+  };
 
   return (
     <div>
@@ -471,6 +522,50 @@ function TimeSheet({ currentId, posts }) {
                     onChange={(e) => setOverTime(parseFloat(e.target.value))}
                     step="0.1"
                   />
+                </div>
+                <div className="form-group">
+                  <label
+                    style={{ color: "#16355d", fontFamily: "Roboto" }}
+                    htmlFor="overTime"
+                  >
+                    Remarks:
+                  </label>
+                  <input
+                    style={{
+                      width: "100%",
+                      height: "30px",
+                      padding: "8px",
+                      fontSize: "16px",
+                      border: "1px solid #ccc",
+                      borderRadius: "4px",
+                      color: "#e55d17",
+                    }}
+                    type="text"
+                    id="remarks"
+                    placeholder="Enter text (max 50 chars)"
+                    maxLength={50} // ✅ correct way in React
+                    // value={overTime}
+                    defaultValue={remarks}
+                    onChange={(e) => {
+                      setRemarks(e.target.value);
+                      handleChange(e);
+                    }}
+                    step="0.1"
+                  />
+                  {showTooltip && (
+                    <div
+                      style={{
+                        color: "red",
+                        fontSize: "12px",
+                        marginTop: "4px",
+                        whiteSpace: "nowrap", // ✅ keep tooltip one-line
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      ⚠️ Maximum 50 characters allowed
+                    </div>
+                  )}
                 </div>
                 {/* </div> */}
 
@@ -751,17 +846,19 @@ function TimeSheet({ currentId, posts }) {
                                       >
                                         Duration
                                       </th>
-                                      <td
+                                      {/* <td
                                         style={{
                                           border: "1px solid black",
                                           textAlign: "center",
                                           fontFamily: "Roboto",
                                         }}
                                       >
-                                        {MONTHS[selectedMonth] +
-                                          "-" +
-                                          selectedYear}
-                                      </td>
+                                        {post?.date[0] +
+                                          " " +
+                                          "to" +
+                                          " " +
+                                          post?.date[post.date.length - 1]}
+                                      </td> */}
                                     </tr>
                                   </>
                                 );
@@ -789,7 +886,7 @@ function TimeSheet({ currentId, posts }) {
                           <th
                             style={{
                               textAlign: "center",
-                              width: "15%",
+                              // width: "15%",
                               color: "#16355d",
                               fontFamily: "Roboto",
                             }}
@@ -799,7 +896,7 @@ function TimeSheet({ currentId, posts }) {
                           <th
                             style={{
                               textAlign: "center",
-                              width: "25%",
+                              // width: "25%",
                               color: "#16355d",
                               fontFamily: "Roboto",
                             }}
@@ -809,7 +906,7 @@ function TimeSheet({ currentId, posts }) {
                           <th
                             style={{
                               textAlign: "center",
-                              width: "25%",
+                              // width: "25%",
                               color: "#16355d",
                               fontFamily: "Roboto",
                             }}
@@ -820,7 +917,7 @@ function TimeSheet({ currentId, posts }) {
                           <th
                             style={{
                               textAlign: "center",
-                              width: "15%",
+                              width: "10%",
                               color: "#16355d",
                               fontFamily: "Roboto",
                             }}
@@ -830,19 +927,29 @@ function TimeSheet({ currentId, posts }) {
                           <th
                             style={{
                               textAlign: "center",
-                              width: "15%",
+                              width: "10%",
                               color: "#16355d",
                               fontFamily: "Roboto",
                             }}
                           >
                             Over Time (hrs)
                           </th>
+                          <th
+                            style={{
+                              textAlign: "center",
+                              width: "30%",
+                              color: "#16355d",
+                              fontFamily: "Roboto",
+                            }}
+                          >
+                            Remarks
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
-                        {(role === "admin" ? array : filteredData)
-                          .sort((a, b) => new Date(a.date) - new Date(b.date))
-                          .map((post, index) => (
+                        {array
+                          .sort((a, b) => new Date(a.date) - new Date(b.date)) // ascending by date
+                          .map((data, index) => (
                             <tr key={index}>
                               <td
                                 style={{
@@ -852,7 +959,8 @@ function TimeSheet({ currentId, posts }) {
                                   textAlign: "center",
                                 }}
                               >
-                                {post.date} {/* here I have to arrange */}
+                                {/* show date if needed */}
+                                {data.date}
                               </td>
                               <td
                                 style={{
@@ -862,7 +970,7 @@ function TimeSheet({ currentId, posts }) {
                                   textAlign: "center",
                                 }}
                               >
-                                {post.projectCode}
+                                {data.projectCode}
                               </td>
                               <td
                                 style={{
@@ -872,7 +980,7 @@ function TimeSheet({ currentId, posts }) {
                                   textAlign: "center",
                                 }}
                               >
-                                {post.activityCode}
+                                {data.activityCode}
                               </td>
                               <td
                                 style={{
@@ -882,7 +990,7 @@ function TimeSheet({ currentId, posts }) {
                                   textAlign: "center",
                                 }}
                               >
-                                {post.netTime}
+                                {data.netTime}
                               </td>
                               <td
                                 style={{
@@ -892,18 +1000,45 @@ function TimeSheet({ currentId, posts }) {
                                   textAlign: "center",
                                 }}
                               >
-                                {post.overTime}
+                                {data.overTime}
                               </td>
+                              <td
+                                style={{
+                                  color: "#e55d17",
+                                  fontFamily: "Roboto",
+                                  padding: "10px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {data.remarks}
+                              </td>
+
                               {printingShow === false && role === "admin" && (
-                                <>
-                                  <td
-                                    style={{
-                                      display: "flex",
-                                      justifyContent: "space-around",
-                                      padding: "10px",
-                                      textAlign: "center",
-                                    }}
+                                <td
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "space-around",
+                                    padding: "10px",
+                                    textAlign: "center",
+                                  }}
+                                >
+                                  <button
+                                    id="editButton"
+                                    style={{ fontFamily: "Roboto" }}
+                                    onClick={() => editEntry(index)}
                                   >
+                                    Edit
+                                  </button>
+
+                                  <button
+                                    id="deleteButton"
+                                    style={{ fontFamily: "Roboto" }}
+                                    onClick={() => deleteEntry(index)}
+                                  >
+                                    Delete
+                                  </button>
+
+                                  {role === "manager" && (
                                     <button
                                       id="editButton"
                                       style={{ fontFamily: "Roboto" }}
@@ -911,27 +1046,8 @@ function TimeSheet({ currentId, posts }) {
                                     >
                                       Edit
                                     </button>
-                                    <button
-                                      id="deleteButton"
-                                      style={{ fontFamily: "Roboto" }}
-                                      onClick={() => deleteEntry(index)}
-                                    >
-                                      Delete
-                                    </button>
-
-                                    {role === "manager" && (
-                                      <>
-                                        <button
-                                          id="editButton"
-                                          style={{ fontFamily: "Roboto" }}
-                                          onClick={() => editEntry(index)}
-                                        >
-                                          Edit
-                                        </button>
-                                      </>
-                                    )}
-                                  </td>
-                                </>
+                                  )}
+                                </td>
                               )}
                             </tr>
                           ))}
@@ -940,6 +1056,7 @@ function TimeSheet({ currentId, posts }) {
                   </Grid>
                 </div>
               )}
+
               <Divider
                 height="100px"
                 sx={{

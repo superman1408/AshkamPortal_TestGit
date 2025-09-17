@@ -14,13 +14,19 @@ import {
 } from "@mui/material";
 
 import { getPosts } from "../../action/posts";
-import { dailyAttendance, logList } from "../../action/posts";
+import {
+  getAttendancePosts,
+  updateAttendance,
+  logList,
+} from "../../action/attendance";
+import { dailyAttendance } from "../../action/posts";
 // import HalfDoughnutWithPointer from "../Attendance/AttendanceChart";
 import PunctualityRadarChart from "./AttendanceChart";
 import Panel from "../Panel/Panel";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import LoadingSpinner from "../ReactSpinner/reactSpinner";
 
-const AttendanceDetail = ({ currentId, posts }) => {
+const AttendanceDetail = ({ currentId, attend, posts }) => {
   const dispatch = useDispatch();
 
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -30,6 +36,8 @@ const AttendanceDetail = ({ currentId, posts }) => {
   const [totalHours, setTotalHours] = useState(null);
 
   const [hoveredData, setHoveredData] = useState(false);
+
+  const [editIndex, setEditIndex] = useState(-1);
 
   const [formData, setFormData] = useState({
     presentEmployee: "",
@@ -52,42 +60,66 @@ const AttendanceDetail = ({ currentId, posts }) => {
 
   useEffect(() => {
     array.length = 0;
-    dispatch(getPosts()).then(() => {
-      posts.map((post) => {
-        if (post._id === currentId) {
+    dispatch(getAttendancePosts()).then(() => {
+      attend.map((a) => {
+        if (a._id === currentId) {
           // console.log(post.logIn);
-          for (let i = 0; i < post.logIn.length; i++) {
+          for (let i = 0; i < a.logIn.length; i++) {
             array.push({
-              logIn: post.logIn[i],
+              logIn: a.logIn[i],
+              // editIndex: post.editIndex[i],
             });
           }
         }
       });
     });
-  }, [currentId, dispatch, posts, array]);
-
-  // console.log("logData", logData);
+  }, [currentId, dispatch]);
 
   //  changes the "handle submit" code as window.location.relaod() is not good practice for sending response to server side
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault(); // Prevent default form submission
+  //   if (isSubmitting) return; // Prevent duplicate submissions
+
+  //   setIsSubmitting(true);
+  //   await dispatch(logList(logData, currentId))
+  //     .then(() => {
+  //       alert("Successfully Logged!");
+
+  //       // Update the state or perform any necessary updates instead of reloading
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     })
+  //     .finally(() => {
+  //       setIsSubmitting(false); // Reset the form submission state
+  //     });
+
+  //   window.location.reload();
+  // };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default form submission
-    if (isSubmitting) return; // Prevent duplicate submissions
+    e.preventDefault();
+    if (isSubmitting) return;
 
     setIsSubmitting(true);
-    await dispatch(logList(logData, currentId))
-      .then(() => {
+
+    try {
+      if (editIndex >= 0) {
+        // 🔹 UPDATE existing record
+        await dispatch(updateAttendance(currentId, editIndex, logData));
+        alert("Successfully Updated!");
+      } else {
+        // 🔹 ADD new record
+        await dispatch(logList(logData, currentId));
         alert("Successfully Logged!");
-
-        // Update the state or perform any necessary updates instead of reloading
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setIsSubmitting(false); // Reset the form submission state
-      });
-
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsSubmitting(false);
+      setEditIndex(-1); // reset edit mode
+      setLogData({ logDate: "", logIn: "", logOut: "" }); // clear form
+    }
     window.location.reload();
   };
 
@@ -98,13 +130,13 @@ const AttendanceDetail = ({ currentId, posts }) => {
   };
 
   // eslint-disable-next-line array-callback-return
-  posts.forEach((post) => {
-    if (post._id === currentId) {
-      for (let i = 0; i < post.logDate.length; i++) {
+  attend.map((a) => {
+    if (a._id === currentId) {
+      for (let i = 0; i < a.logDate.length; i++) {
         array.push({
-          logDate: post.logDate[i],
-          logIn: post.logIn[i],
-          logOut: post.logOut[i],
+          logDate: a.logDate[i],
+          logIn: a.logIn[i],
+          logOut: a.logOut[i],
         });
       }
     }
@@ -193,6 +225,47 @@ const AttendanceDetail = ({ currentId, posts }) => {
 
   const handleGoBack = () => {
     navigate(-1); // this means "go back one step in history"
+  };
+
+  // console.log(attend);
+  // console.log(posts);
+  // console.log(currentId);
+
+  //Logic for clearing the form.........
+  const clearForm = () => {
+    setLogData({ logDate: "", logIn: "", logOut: "" });
+    setEditIndex(-1);
+  };
+
+  //To Edit the entry....!!!!
+  const editEntry = (index) => {
+    let updatedArray = updateArray();
+    console.log("editEntry is working");
+
+    setEditIndex(index);
+    setLogData({
+      logDate: updatedArray[index].logDate,
+      logIn: updatedArray[index].logIn,
+      logOut: updatedArray[index].logOut,
+    });
+
+    // console.log(updatedArray[index]);
+  };
+
+  const updateArray = () => {
+    const newArray = [];
+    attend.forEach((a) => {
+      if (a._id === currentId) {
+        for (let i = 0; i < a.logDate.length; i++) {
+          newArray.push({
+            logDate: a.logDate[i],
+            logIn: a.logIn[i],
+            logOut: a.logOut[i],
+          });
+        }
+      }
+    });
+    return newArray;
   };
 
   return (
@@ -300,12 +373,20 @@ const AttendanceDetail = ({ currentId, posts }) => {
                   >
                     {posts.map((post) => {
                       if (post._id === currentId) {
+                        const firstName = post?.firstName
+                          ? post.firstName.charAt(0).toUpperCase() +
+                            post.firstName.slice(1).toLowerCase()
+                          : "";
+
+                        const lastName = post?.lastName
+                          ? post.lastName.charAt(0).toUpperCase() +
+                            post.lastName.slice(1).toLowerCase()
+                          : "";
+
                         return (
-                          post?.firstName.charAt(0).toUpperCase() +
-                          post?.firstName.slice(1).toLowerCase() +
-                          " " +
-                          post?.lastName.charAt(0).toUpperCase() +
-                          post?.lastName.slice(1).toLowerCase()
+                          <span key={post._id}>
+                            {firstName} {lastName}
+                          </span>
                         );
                       }
                       return null;
@@ -314,7 +395,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
 
                   <Box sx={{ display: "flex", justifyContent: "center" }}>
                     {(() => {
-                      const matchedPost = posts.find(
+                      const matchedPost = attend.find(
                         (post) => post._id === currentId
                       );
 
@@ -386,7 +467,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
                     <input
                       type="date"
                       id="logDate"
-                      value={logData.logDate}
+                      value={logData.logDate || ""}
                       onChange={(e) =>
                         setLogData({ ...logData, logDate: e.target.value })
                       }
@@ -416,7 +497,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
                     <input
                       type="time"
                       id="logIn"
-                      value={logData.logIn}
+                      value={logData.logIn || ""}
                       onChange={(e) =>
                         setLogData({ ...logData, logIn: e.target.value })
                       }
@@ -446,7 +527,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
                     <input
                       type="time"
                       id="logOut"
-                      value={logData.logOut}
+                      value={logData.logOut || ""}
                       onChange={(e) =>
                         setLogData({ ...logData, logOut: e.target.value })
                       }
@@ -461,7 +542,7 @@ const AttendanceDetail = ({ currentId, posts }) => {
                   </div>
                   {/* SUBMIT BUTTON */}
                   <div style={{ textAlign: "right" }}>
-                    <Button
+                    {/*<Button
                       type="submit"
                       variant="contained"
                       sx={{
@@ -475,7 +556,27 @@ const AttendanceDetail = ({ currentId, posts }) => {
                       }}
                     >
                       Submit
-                    </Button>
+                    </Button>*/}
+                    <button
+                      style={{
+                        fontFamily: "Roboto",
+                        cursor: isSubmitting ? "not-allowed" : "pointer",
+                        opacity: isSubmitting ? 0.6 : 1,
+                      }}
+                      type="submit"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <div style={{ display: "flex" }}>
+                          Submitting...
+                          <LoadingSpinner size={16} color="#999" />
+                        </div>
+                      ) : editIndex !== -1 ? (
+                        "Update"
+                      ) : (
+                        "Submit"
+                      )}
+                    </button>
                   </div>
                 </div>
               </form>
@@ -571,6 +672,45 @@ const AttendanceDetail = ({ currentId, posts }) => {
                       <td>
                         <span style={logoutStyle}>{item?.logOut}</span>
                       </td>
+                      {role === "admin" && (
+                        <>
+                          <td
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-around",
+                              padding: "10px",
+                              textAlign: "center",
+                            }}
+                          >
+                            <button
+                              id="editButton"
+                              style={{ fontFamily: "Roboto" }}
+                              onClick={() => editEntry(index)}
+                            >
+                              Edit
+                            </button>
+                            {/* <button
+                              id="deleteButton"
+                              style={{ fontFamily: "Roboto" }}
+                              onClick={() => deleteEntry(index)}
+                            >
+                              Delete
+                            </button> */}
+
+                            {role === "manager" && (
+                              <>
+                                <button
+                                  id="editButton"
+                                  style={{ fontFamily: "Roboto" }}
+                                  onClick={() => editEntry(index)}
+                                >
+                                  Edit
+                                </button>
+                              </>
+                            )}
+                          </td>
+                        </>
+                      )}
                     </tr>
                   ))}
                 </tbody>
@@ -584,5 +724,3 @@ const AttendanceDetail = ({ currentId, posts }) => {
 };
 
 export default AttendanceDetail;
-
-//

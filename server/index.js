@@ -7,11 +7,14 @@ import dotenv from "dotenv";
 import userRouters from "./routes/user.js";
 import postsRouters from "./routes/posts.js";
 import mailRouters from "./routes/mail.js";
+import attendRouters from "./routes/attendence.js";
+import timesheetRouters from "./routes/timesheet.js";
 
 const app = express();
 dotenv.config();
 
 const PORT = process.env.PORT || 8080;
+const HOST = process.env.HOST || "localhost";
 const HOST = process.env.HOST || "localhost";
 
 const CONNECT = process.env.CONNECTION_URL;
@@ -24,6 +27,8 @@ app.use(cors());
 app.use("/user", userRouters);
 app.use("/posts", postsRouters);
 app.use("/mail", mailRouters);
+app.use("/attend", attendRouters);
+app.use("/timesheet", timesheetRouters);
 
 app.get("/", (req, res) => {
   res.send("Hello to ASHKAM  API");
@@ -55,6 +60,9 @@ mongoose
   .then(() =>
     app.listen(PORT, HOST, () => {
       console.log(
+        "Listening at " +
+          `http://${HOST}:${PORT}` +
+          "\nMongoDB database is connected..!!"
         "Listening at " +
           `http://${HOST}:${PORT}` +
           "\nMongoDB database is connected..!!"

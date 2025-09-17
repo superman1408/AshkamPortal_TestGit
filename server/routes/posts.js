@@ -10,14 +10,13 @@ import {
   editTable,
   deleteTable,
   dailyAttendance,
-  getAttendancePosts,
-  logList,
   dailyEvent,
   getAllevents,
   salarySlipData,
   getSalary,
   leaveList,
   presentList,
+  logList,
 } from "../controllers/posts.js";
 
 import auth from "../middleware/auth.js";
@@ -27,7 +26,6 @@ const router = express.Router();
 
 router.get("/", getPosts);
 
-router.get("/attendanceposts", getAttendancePosts);
 
 router.get("/:id", getPost);
 
@@ -42,6 +40,7 @@ router.post("/:id/todo", auth, todoList);
 router.patch("/:id/:indexed/edit", auth, editTable);
 
 router.delete("/:id/deleteTable/:indexed", auth, deleteTable);
+
 
 // @desc    Get all skills data for autocomplete
 

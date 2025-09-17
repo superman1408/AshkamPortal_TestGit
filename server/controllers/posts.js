@@ -4,11 +4,13 @@ import fs from "fs";
 
 import AuthenticateUser from "../model/authDetails.js";
 
-import UserAttendance from "../model/attendanceDetail.js";
+// import UserAttendance from "../model/attendanceDetail.js";
 
 import EventDetail from "../model/eventDetail.js";
 
 import PaySlipModel from "../model/payslip.js";
+
+import AttendanceDetail from "../model/attendanceDetail.js";
 
 // ....................Multer Storage.apply.......................
 const storage = multer.diskStorage({
@@ -275,28 +277,94 @@ export const getAllevents = async (req, res) => {
   }
 };
 
-export const getAttendancePosts = async (req, res) => {
-  try {
-    const postMessage = await UserAttendance.find({});
-    res.status(200).json(postMessage);
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-};
+// -------------------get operation------------------
+// export const getAttendancePosts = async (req, res) => {
+//   console.log("this is working Attendence");
+//   try {
+//     const postMessage = await AttendanceDetail.find({});
+
+//     // console.log(postMessage);
+
+//     res.status(200).json(postMessage);
+//   } catch (error) {
+//     res.status(404).json({ message: error.message });
+//   }
+// };
+
+// try {
+//   const postMessage = await AuthenticateUser.find({});
+//   // console.log(postMessage);
+//   res.status(200).json(postMessage);
+//   // console.log("postMessage", postMessage);
+// } catch (error) {
+//   res.status(404).json({ message: error.message });
+// }
+
+//------------------Update Operation --------------------------
+// export const updateAttendance = async (req, res) => {
+//   const { id: _id } = req.params;
+//   const post = req.body;
+
+//   if (!mongoose.Types.ObjectId.isValid(_id))
+//     return res.status(404).send("no post with that id found");
+
+//   const updateAttendance = await UserAttendance.findByIdAndUpdate(
+//     _id,
+//     { ...post, _id },
+//     {
+//       new: true,
+//     }
+//   );
+//   res.json(updateAttendance);
+// };
+
+// ________________________delete operation___________________________
+
+// export const deleteAttendance = async (req, res) => {
+//   const { id } = req.params;
+
+//   if (!mongoose.Types.ObjectId.isValid(id))
+//     return res.status(404).send("no post with that id found");
+
+//   await UserAttendance.findByIdAndRemove(id);
+//   res.json({ message: "Post deleted successfully" });
+// };
 
 // _________________________log List Status_____________________________
+// export const logList = async (req, res) => {
+//   const { id } = req.params;
+//   const value = req.body;
+
+//   try {
+//     const user = await AuthenticateUser.findById(id);
+
+//     user.logDate.push(value.logDate);
+//     user.logIn.push(value.logIn);
+//     user.logOut.push(value.logOut);
+
+//     const updatedPost = await AuthenticateUser.findByIdAndUpdate(id, user, {
+//       new: true,
+//     });
+
+//     res.json(updatedPost);
+//   } catch (error) {
+//     res.status(409).json({ message: error.message });
+//   }
+// };
+
+// -------------------------For Creation and updation(AttendanceDetail)---------------------------------
 export const logList = async (req, res) => {
   const { id } = req.params;
   const value = req.body;
 
   try {
-    const user = await AuthenticateUser.findById(id);
+    const user = await AttendanceDetail.findById(id);
 
     user.logDate.push(value.logDate);
     user.logIn.push(value.logIn);
     user.logOut.push(value.logOut);
 
-    const updatedPost = await AuthenticateUser.findByIdAndUpdate(id, user, {
+    const updatedPost = await AttendanceDetail.findByIdAndUpdate(id, user, {
       new: true,
     });
 
@@ -305,6 +373,20 @@ export const logList = async (req, res) => {
     res.status(409).json({ message: error.message });
   }
 };
+
+// -------------------------For creating id-------------------------
+// export const logList = async (req, res) => {
+//   console.log("Yes you are watching log for attendance function");
+
+//   try {
+//     const Post = req.body;
+//     const newPost = new AttendanceDetail(Post);
+//     await newPost.save();
+//     res.status(201).json(newPost);
+//   } catch (error) {
+//     res.status(409).json({ message: error.message });
+//   }
+// };
 
 export const salarySlipData = async (req, res) => {
   try {
