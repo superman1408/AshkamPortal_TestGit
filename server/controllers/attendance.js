@@ -2,20 +2,51 @@ import mongoose from "mongoose";
 import AttendanceDetail from "../model/attendanceDetail.js";
 
 // -------------------------For Creation and updation(AttendanceDetail)---------------------------------
+// export const logList = async (req, res) => {
+//   console.log();
+
+//   const { id } = req.params;
+//   const value = req.body;
+
+//   try {
+//     const user = await AttendanceDetail.findById(id);
+
+//     user.logDate.push(value.logDate);
+//     user.logIn.push(value.logIn);
+//     user.logOut.push(value.logOut);
+
+//     const updatedPost = await AttendanceDetail.findByIdAndUpdate(id, user, {
+//       new: true,
+//     });
+
+//     res.json(updatedPost);
+//   } catch (error) {
+//     res.status(409).json({ message: error.message });
+//   }
+// };
+
 export const logList = async (req, res) => {
+  console.log();
+
   const { id } = req.params;
   const value = req.body;
 
   try {
-    const user = await AttendanceDetail.findById(id);
-
-    user.logDate.push(value.logDate);
-    user.logIn.push(value.logIn);
-    user.logOut.push(value.logOut);
-
-    const updatedPost = await AttendanceDetail.findByIdAndUpdate(id, user, {
-      new: true,
-    });
+    const updatedPost = await AttendanceDetail.findByIdAndUpdate(
+      id,
+      {
+        $push: {
+          logDate: value.logDate,
+          logIn: value.logIn,
+          logOut: value.logOut,
+        },
+      },
+      {
+        new: true,
+        upsert: true, // ✅ create document if it doesn’t exist
+        setDefaultsOnInsert: true, // ✅ apply default [] from schema
+      }
+    );
 
     res.json(updatedPost);
   } catch (error) {
