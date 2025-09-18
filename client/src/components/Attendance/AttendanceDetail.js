@@ -669,6 +669,11 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
                     <th style={headerDateCellStyle}>Date</th>
                     <th style={headerCellStyle}>Log In</th>
                     <th style={headerCellStyle}>Log Out</th>
+                    {role === "admin" ? (
+                      <th style={headerCellStyle}>Action</th>
+                    ) : (
+                      ""
+                    )}
                   </tr>
                 </thead>
 
