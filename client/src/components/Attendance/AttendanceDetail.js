@@ -183,6 +183,17 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
 
   const [checked, setChecked] = React.useState(false);
 
+  const headerDateCellStyle = {
+    padding: "12px",
+    width: "300px",
+    fontFamily: "Roboto",
+    fontSize: "14px",
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "white",
+    backgroundColor: "#16355d",
+  };
+
   const headerCellStyle = {
     padding: "12px",
     fontFamily: "Roboto",
@@ -231,7 +242,7 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
     fontWeight: "500",
     display: "inline-block",
     fontFamily: "Roboto",
-    width: "120px", // fixed width
+    width: "100px", // fixed width
     textAlign: "center", // keeps text centered
     marginLeft: "30px",
   };
@@ -655,7 +666,7 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
               >
                 <thead style={{ borderRadius: "12px" }}>
                   <tr style={{ borderRadius: "12px" }}>
-                    <th style={headerCellStyle}>Date</th>
+                    <th style={headerDateCellStyle}>Date</th>
                     <th style={headerCellStyle}>Log In</th>
                     <th style={headerCellStyle}>Log Out</th>
                   </tr>
