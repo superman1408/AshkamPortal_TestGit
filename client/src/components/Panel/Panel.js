@@ -534,7 +534,7 @@ const Panel = () => {
   const location = useLocation();
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const id = user?.result?._id;
 

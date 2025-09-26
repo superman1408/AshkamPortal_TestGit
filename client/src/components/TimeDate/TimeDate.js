@@ -1,7 +1,7 @@
 import React from "react";
 import { WiDayCloudy } from "react-icons/wi";
 
-import { Grid, Typography, Container, useTheme } from "@mui/material";
+import { Grid, Typography, Card, useTheme } from "@mui/material";
 
 const TimeDate = () => {
   const theme = useTheme();
@@ -11,11 +11,13 @@ const TimeDate = () => {
 
   return (
     <div style={{ display: "flex", flex: 1 }}>
-      <Container
+      <Card
+        elevation={6}
         sx={{
           display: "flex",
           backdropFilter: "blur(8px)",
-          background: "linear-gradient(145deg, #ffffffcc, #f3f4f6cc)",
+          // background: "linear-gradient(145deg, #ffffffcc, #f3f4f6cc)",
+          background: "smokewhite",
           maxWidth: "500px",
           flexDirection: "column",
           marginLeft: "20px",
@@ -93,7 +95,7 @@ const TimeDate = () => {
             </Grid>
           </div>
         </Grid>
-      </Container>
+      </Card>
     </div>
   );
 };

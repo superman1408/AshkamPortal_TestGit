@@ -34,7 +34,7 @@ const App = () => {
     return stored ? JSON.parse(stored) : null;
   });
 
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
 
   //   return (
   //     <BrowserRouter>
