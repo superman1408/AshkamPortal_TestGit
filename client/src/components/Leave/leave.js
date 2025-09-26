@@ -175,7 +175,6 @@ const Leave = () => {
         Leave Section
       </h2>
       <Box sx={{ display: "flex", width: "100%" }}>
-        <Panel />
 
         <Box
           component="main"

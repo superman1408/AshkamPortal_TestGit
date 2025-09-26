@@ -404,11 +404,6 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
         Project Time Sheet
       </strong>
       <div style={{ display: "flex" }}>
-        {matches && (
-          <div style={{ display: "flex" }}>
-            <Panel prop={user.result} />
-          </div>
-        )}
         <Grid
           container
           spacing={2}

@@ -256,8 +256,6 @@ const RegistrationForm = () => {
         </Button>
       </div>
       <div style={{ display: "flex" }}>
-        <Panel prop={user.result} />
-
         <Container
           fluid="true"
           ref={componentRef}
@@ -306,13 +304,14 @@ const RegistrationForm = () => {
                     }}
                   />
                   <div>
-                    {
-                      ((role === "admin") || ((user.result.department.toLowerCase() === "human resource") && (user.result.role === "manager"))) && (
-                        <ComboBox posts={posts} setCurrentId={setCurrentId} />
-                      )
-                    }
-                    </div>
-                    <div>
+                    {(role === "admin" ||
+                      (user.result.department.toLowerCase() ===
+                        "human resource" &&
+                        user.result.role === "manager")) && (
+                      <ComboBox posts={posts} setCurrentId={setCurrentId} />
+                    )}
+                  </div>
+                  <div>
                     {role === "admin" && (
                       <>
                         <Grid

@@ -25,7 +25,7 @@ const Admin = ({ currentId }) => {
         // bgcolor: "#f4f6f8"
       }}
     >
-      <Panel prop={user.result} />
+      
 
       <Box
         ml={2}

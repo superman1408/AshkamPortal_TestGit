@@ -2,6 +2,13 @@ body {
   margin: auto;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   overflow: auto;
+  background: #F0F0F0
+}
+
+/* body {
+  margin: auto;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow: auto;
   background: linear-gradient(
     315deg,
     rgb(221, 155, 217) 3%,
@@ -72,4 +79,4 @@ body {
   100% {
     transform: translateX(1);
   }
-}
+} */

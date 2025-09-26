@@ -98,11 +98,11 @@ const Communication = () => {
           width: "100%",
         }}
       >
-        {matches && (
+        {/* {matches && (
           <Grid item md={2} sx={{ minWidth: "200px" }}>
             <Panel />
           </Grid>
-        )}
+        )} */}
 
         {/* Inbox + Message Body Container */}
 

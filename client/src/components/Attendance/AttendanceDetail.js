@@ -332,10 +332,6 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
           },
         }}
       >
-        <Grid item xs={12} md={2} sx={{ display: "flex" }}>
-          <Panel />
-        </Grid>
-
         <Grid
           item
           xs={12}

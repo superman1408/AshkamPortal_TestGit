@@ -83,7 +83,8 @@ const Auth = () => {
       justify="center"
       style={{
         minheight: "100%",
-        backgroundImage: `url(${image})`,
+        // backgroundImage: `url(${image})`,
+        backgroundColor: "#ebf0f5",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         padding: "20px",

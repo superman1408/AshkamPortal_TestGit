@@ -1,10 +1,4 @@
-import {
-  Container,
-  Typography,
-  Grid,
-  IconButton,
-  useTheme,
-} from "@mui/material";
+import { Typography, Grid, IconButton, useTheme, Card } from "@mui/material";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -35,19 +29,16 @@ const Department = () => {
   }, [dispatch, posts]);
 
   return (
-    <Container
+    <Card
+      elevation={6}
       sx={{
+        p: 2,
         backdropFilter: "blur(8px)",
-        background: "linear-gradient(145deg, #ffffffcc, #f3f4f6cc)",
-        boxShadow: "0 4px 30px rgba(0, 0, 0, 0.05)",
-        maxWidth: 700,
-        width: "100%",
-        p: 3,
-        borderRadius: "10px",
-        overflow: "hidden",
-        position: "relative",
-        height: "330px",
-        transition: "all 0.2s ease-in-out",
+        // background: "linear-gradient(145deg, #ffffffcc, #f3f4f6cc)",
+        background: "smokewhite",
+        borderRadius: 3,
+        transition: "0.3s",
+        height: "100%",
         "&:hover": {
           transform: "scale(1.02)",
           boxShadow: theme.shadows[6],
@@ -116,7 +107,7 @@ const Department = () => {
           })}
         </div>
       </Grid>
-    </Container>
+    </Card>
   );
 };
 
