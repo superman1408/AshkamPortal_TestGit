@@ -190,11 +190,12 @@ const RegistrationForm = () => {
 
     setIsSubmitting(true); // Start loading
     if (currentId) {
-      await dispatch(updatePost(currentId, postData));
+      await dispatch(updatePost(currentId, postData)).then(() => {
+        return alert(
+          "Profile updated successfully.Please logout & login again to see the changes!!"
+        );
+      });
 
-      alert(
-        "✅ Registration successful. Please log out and sign in again to see changes."
-      );
       setUser(null);
       navigate(`/home`, { replace: true });
 
