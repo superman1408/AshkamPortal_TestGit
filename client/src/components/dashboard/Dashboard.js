@@ -25,8 +25,6 @@ const Admin = ({ currentId }) => {
         // bgcolor: "#f4f6f8"
       }}
     >
-      
-
       <Box
         ml={2}
         component="main"
@@ -41,7 +39,6 @@ const Admin = ({ currentId }) => {
         }}
       >
         <Grid container spacing={2}>
-          
           <Topbar />
           <Grid item xs={12} md={4} sx={{ p: 1, width: "100%" }}>
             <Department />

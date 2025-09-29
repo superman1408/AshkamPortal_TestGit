@@ -2,7 +2,6 @@ import React from "react";
 import { Typography, Grid, Avatar, Stack, Divider } from "@mui/material";
 
 const Lead = ({ post, verifyDepat }) => {
-  const user = JSON.parse(localStorage.getItem("profile"));
   return (
     <div>
       <Grid
@@ -52,12 +51,15 @@ const Lead = ({ post, verifyDepat }) => {
               fontWeight: "bold",
             }}
           >
-            {post.jobTitle}
+            {post.jobTitle}-{post.role.toUpperCase()}
           </Typography>
         </Grid>
       </Grid>
       <Divider orientation="horizontal" />
-      {user.result.role === post.role ? (
+
+{/*  This section commented as user is rendering everytime when Lead component is called so it is shifted to Department.js file */}
+
+      {/* {user.result.role === post.role ? (
         <Grid sx={{ marginBottom: "62px" }}></Grid>
       ) : (
         <Grid
@@ -114,7 +116,7 @@ const Lead = ({ post, verifyDepat }) => {
             </Typography>
           </Grid>
         </Grid>
-      )}
+      )} */}
     </div>
   );
 };

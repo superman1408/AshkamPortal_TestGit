@@ -46,12 +46,12 @@ const Attendance = () => {
           backdropFilter: "blur(8px)",
           // background: "linear-gradient(145deg, #ffffffcc, #f3f4f6cc)",
           background: "smokewhite",
-          boxShadow: 1,
+          // boxShadow: 1,
           borderRadius: "10px",
           overflow: "hidden",
           position: "relative", // Set position to relative
           flex: 1,
-          transition: "all 0.2s ease-in-out",
+          transition: "0.3s",
           "@media (max-width: 600px)": {
             display: "flex",
             margin: "20px 0px 0px 0px",

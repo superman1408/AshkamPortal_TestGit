@@ -24,7 +24,7 @@ import Decommission from "./components/Decommission/Decommission";
 import Panel from "./components/Panel/Panel";
 
 const drawerWidth = 0; // must match Panel
-const collapsedWidth = 72;
+const collapsedWidth = 0;
 
 const App = () => {
   // const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));

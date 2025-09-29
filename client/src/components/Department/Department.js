@@ -1,4 +1,12 @@
-import { Typography, Grid, IconButton, useTheme, Card } from "@mui/material";
+import {
+  Typography,
+  Grid,
+  IconButton,
+  useTheme,
+  Card,
+  Avatar,
+  Stack,
+} from "@mui/material";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -105,6 +113,72 @@ const Department = () => {
             }
             return null;
           })}
+        </div>
+        <div>
+          {user?.result?.role !== "manager" && (
+            <Grid
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                marginBottom: "2px",
+              }}
+            >
+              <Grid
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  marginTop: "10px",
+                }}
+              >
+                <div>
+                  <Stack flexDirection="row">
+                    <Avatar
+                      sx={{
+                        width: 40,
+                        height: 40,
+                        marginLeft: "10px",
+                        marginTop: "20px",
+                      }}
+                      alt="Femy sharp"
+                      src={user.result.selectedFile}
+                    />
+                  </Stack>
+                </div>
+              </Grid>
+              <Grid
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <Typography
+                  sx={{
+                    marginLeft: "20px",
+                    marginRight: "0px",
+                    marginTop: "18px",
+                    fontSize: "14px",
+                    fontFamily: "Roboto",
+                    color: "#16355d",
+                  }}
+                >
+                  {user.result.firstName + " " + user.result.lastName}
+                </Typography>
+                <Typography
+                  sx={{
+                    marginLeft: "20px",
+                    marginRight: "30px",
+                    fontFamily: "Roboto",
+                    fontSize: "12px",
+                    marginBottom: "2px",
+                    fontWeight: "bold",
+                    color: "#16355d",
+                  }}
+                >
+                  {user.result.jobTitle}
+                </Typography>
+              </Grid>
+            </Grid>
+          )}
         </div>
       </Grid>
     </Card>
