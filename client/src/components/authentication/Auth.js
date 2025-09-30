@@ -376,7 +376,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import AdminPanelSettings from "@mui/icons-material/AdminPanelSettings";
 import { ToastContainer } from "react-toastify";
-import image from "../../assets/LoginBackground.png";
+import image from "../../assets/ERP.png";
 import "./style.css";
 
 const initialData = {
@@ -438,9 +438,11 @@ const Auth = () => {
         {/* Left illustration */}
         <Box
           sx={{
+            backgroundColor: "#fff9c7",
             flex: 1,
             backgroundImage: `url(${image})`,
-            backgroundSize: "cover",
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             display: { xs: "none", md: "block" },
           }}

@@ -424,7 +424,7 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
             sx={{
               width: "flex",
               padding: "15px",
-              backgroundColor: "whitesmoke",
+              backgroundColor: "white",
               margin: "10px 8px 0px 20px",
               borderRadius: "12px",
             }}

@@ -399,7 +399,7 @@ const Navibar = () => {
                 }}
               >
                 {/* Search */}
-                <Form className="d-flex me-3">
+                {/* <Form className="d-flex me-3">
                   <Form.Control
                     type="search"
                     placeholder="Search..."
@@ -407,14 +407,14 @@ const Navibar = () => {
                     style={{ borderRadius: "20px" }}
                   />
                   <Button variant="outline-primary">Go</Button>
-                </Form>
+                </Form> */}
 
                 {/* Notification */}
-                <Tooltip title="Notifications">
+                {/* <Tooltip title="Notifications">
                   <IconButton onClick={notify}>
                     <NotificationsNoneRoundedIcon sx={{ color: "#16355d" }} />
                   </IconButton>
-                </Tooltip>
+                </Tooltip> */}
 
                 {/* Profile / Logout */}
                 {matches ? (
@@ -432,6 +432,7 @@ const Navibar = () => {
                   <>
                     <Tooltip title="Profile">
                       <Avatar
+                        src={user.result.selectedFile}
                         sx={{
                           bgcolor: "#16355d",
                           width: 36,
@@ -441,7 +442,8 @@ const Navibar = () => {
                         }}
                         onClick={() => openPage(user.result._id, "profile")}
                       >
-                        {user.result.name?.charAt(0).toUpperCase()}
+                        {user?.result?.firstName.charAt(0).toUpperCase() +
+                          user?.result?.lastName.charAt(0).toUpperCase()}
                       </Avatar>
                     </Tooltip>
                     <Divider orientation="vertical" flexItem />

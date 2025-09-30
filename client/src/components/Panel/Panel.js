@@ -634,7 +634,8 @@ const Panel = () => {
                   boxShadow: "0 6px 14px rgba(3,143,124,0.3)",
                 }}
               >
-                {userName.charAt(0)}
+                {user?.result?.firstName.charAt(0).toUpperCase() +
+                  user?.result?.lastName.charAt(0).toUpperCase()}
               </Avatar>
               <Typography
                 variant="subtitle1"

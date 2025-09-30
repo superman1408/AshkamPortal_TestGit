@@ -244,9 +244,12 @@ const App = () => {
                 width: "100%",
                 marginTop: "5px",
                 textAlign: "center",
+                position: "fixed",
+                bottom: 0,
+                left: 0,
               }}
             >
-              ©️ 2023 ASHKAM ENERGY PRIVATE LIMITED. All rights reserved.
+              ©️ 2025 ASHKAM ENERGY PRIVATE LIMITED. All rights reserved.
             </footer>
           </div>
         </Box>

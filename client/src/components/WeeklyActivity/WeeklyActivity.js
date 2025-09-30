@@ -5,7 +5,7 @@ import {
   Typography,
   Grid,
   IconButton,
-  Card,
+  Container,
   useTheme,
 } from "@mui/material";
 // import { getPosts } from "../../action/posts";
@@ -177,44 +177,19 @@ const WeeklyActivity = () => {
 
   return (
     <div style={{ display: "flex", flex: 1 }}>
-      <Card
+      <Container
         mt={2}
-        // sx={{
-        //   padding: "5px",
-        //   maxWidth: "500px",
-        //   backdropFilter: "blur(8px)",
-        //   background: "linear-gradient(145deg, #ffffffcc, #f3f4f6cc)",
-        //   boxShadow: 1,
-        //   width: "100%",
-        //   borderRadius: "10px",
-        //   height: "auto",
-
-        //   transform: "all 0.2 ease-in-out",
-        //   "@media (max-width: 600px)": {
-        //     margin: "20px 0px 0px 0px",
-        //     height: "auto",
-        //   },
-        //   transition: "all 0.2s ease-in-out",
-        //   "&:hover": {
-        //     transform: "scale(1.02)",
-        //     boxShadow: theme.shadows[6],
-        //   },
-        // }}
-
         elevation={6}
         sx={{
           display: "flex",
           maxWidth: "500px",
           width: "100%",
           flexDirection: "column",
-          marginLeft: "20px",
           padding: "10px",
           height: "auto",
-
           backdropFilter: "blur(8px)",
-          // background: "linear-gradient(145deg, #ffffffcc, #f3f4f6cc)",
-          background: "smokewhite",
-          // boxShadow: 1,
+          background: "white",
+          boxShadow: 6,
           borderRadius: "10px",
           overflow: "hidden",
           position: "relative", // Set position to relative
@@ -228,17 +203,6 @@ const WeeklyActivity = () => {
           "&:hover": {
             transform: "scale(1.02)",
             boxShadow: theme.shadows[6],
-
-            // p: 2,
-            // backdropFilter: "blur(8px)",
-            // // background: "linear-gradient(145deg, #ffffffcc, #f3f4f6cc)",
-            // background: "smokewhite",
-            // borderRadius: 3,
-            // transition: "0.3s",
-            // height: "100%",
-            // "&:hover": {
-            //   transform: "scale(1.02)",
-            //   boxShadow: theme.shadows[6],
           },
         }}
       >
@@ -288,7 +252,7 @@ const WeeklyActivity = () => {
             {/* <Bar options={options} data={data} /> */}
           </Grid>
         </div>
-      </Card>
+      </Container>
     </div>
   );
 };
