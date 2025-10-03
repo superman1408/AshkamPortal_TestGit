@@ -38,6 +38,7 @@ const customSelectStyles = {
     borderRadius: "8px",
     marginTop: 4,
     boxShadow: "0 4px 14px rgba(0, 0, 0, 0.1)",
+    zIndex: 1000,
   }),
   dropdownIndicator: (base, state) => ({
     ...base,
