@@ -44,6 +44,8 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
     absentEmployee: "",
   });
 
+  // const auth =
+
   const [logData, setLogData] = useState({
     logDate: "",
     logIn: "",
@@ -414,44 +416,43 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
                   </Typography>
 
                   <Box sx={{ display: "flex", justifyContent: "center" }}>
-                    {(() => {
-                      const matchedPost = attend.find(
-                        (post) => post._id === currentId
-                      );
+                    {posts.map((post) => {
+                      if (post._id === currentId) {
+                        let statusText = "Not found";
+                        let statusColor = "grey";
 
-                      let statusText = "Not found";
-                      let statusColor = "grey";
-
-                      if (matchedPost) {
-                        if (matchedPost.presentStatus === "true") {
-                          statusText = "Present";
-                          statusColor = "green";
-                        } else if (matchedPost.presentStatus === "false") {
-                          statusText = "Absent";
-                          statusColor = "red";
-                        } else {
-                          statusText = "Unknown";
-                          statusColor = "orange";
+                        if (post) {
+                          if (post.presentStatus === "true") {
+                            statusText = "Present";
+                            statusColor = "green";
+                          } else if (post.presentStatus === "false") {
+                            statusText = "Absent";
+                            statusColor = "red";
+                          } else {
+                            statusText = "Unknown";
+                            statusColor = "orange";
+                          }
                         }
-                      }
 
-                      return (
-                        <Typography
-                          sx={{
-                            fontFamily: "Roboto",
-                            fontSize: 12,
-                            color: "white",
-                            bgcolor: statusColor,
-                            borderRadius: "12px",
-                            padding: "5px",
-                            width: "50%",
-                            textAlign: "center",
-                          }}
-                        >
-                          {statusText}
-                        </Typography>
-                      );
-                    })()}
+                        return (
+                          <Typography
+                            sx={{
+                              fontFamily: "Roboto",
+                              fontSize: 12,
+                              color: "white",
+                              bgcolor: statusColor,
+                              borderRadius: "12px",
+                              padding: "5px",
+                              width: "50%",
+                              textAlign: "center",
+                            }}
+                          >
+                            {statusText}
+                          </Typography>
+                        );
+                      }
+                      return null;
+                    })}
                   </Box>
                 </div>
 

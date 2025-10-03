@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import Evolve from "./TimeSheet/TimeSheet";
+import TimeSheet from "./TimeSheet/TimeSheet";
 import { getPosts } from "../../action/posts";
 
 import "./Style.css";
@@ -71,7 +71,7 @@ const ActivityDisplay = () => {
           {role === "admin" && (
             <ComboBox posts={posts} setCurrentId={setCurrentId} />
           )}
-          <Evolve
+          <TimeSheet
             currentId={currentId}
             posts={posts}
             timesheetData={timesheetData}

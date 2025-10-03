@@ -338,19 +338,34 @@ const LeaveTable = ({ posts, currentId }) => {
     currentId && setLeaveBalances(initialLeaveBalances);
   }, [currentId]);
 
-  const handleSubmit = async () => {
-    await dispatch(leaveList(leaveBalances, currentId)).then(() => {
-      alert("Leave Status is uploaded...!!!");
-    });
+  // const handleSubmit = async () => {
+  //   console.log("Clicked");
+
+  //   await dispatch(leaveList(leaveBalances, currentId)).then(() => {
+  //     alert("Leave Status is uploaded...!!!");
+  //   });
+  //   window.location.reload();
+  // };
+
+  const reloadPage = () => {
     window.location.reload();
   };
 
+  const handleSubmit = async () => {
+    console.log("Clicked");
+
+    await dispatch(leaveList(leaveBalances, currentId)).then(() => {
+      alert("Leave Status is uploaded...!!!");
+    });
+    reloadPage();
+  };
+
   return (
-    <Box sx={{ p: 2 }}>
+    <Box>
       <Card
         sx={{
           p: 3,
-          borderRadius: 3,
+          borderRadius: 1,
           boxShadow: 6,
           background: "linear-gradient(135deg, #fdfdfd, #f4f7fb)",
         }}
@@ -363,6 +378,7 @@ const LeaveTable = ({ posts, currentId }) => {
             fontWeight: 700,
             color: "#0D325C",
             letterSpacing: 1,
+            fontFamily: "Roboto",
           }}
         >
           Leave Management
