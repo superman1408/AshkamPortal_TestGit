@@ -28,12 +28,10 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 import LoadingSpinner from "../../ReactSpinner/reactSpinner";
 
-function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
+function TimeSheet({ currentId, posts, timesheetData }) {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-
-  // console.log(timesheetData._id);
 
   const [entries, setEntries] = useState([]);
   const [projectCode, setProjectCode] = useState("");
@@ -79,12 +77,22 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
     }
   }, [loggedInUserId, currentId, role]);
 
+  // useEffect(() => {
+  //   array.length = 0;
+  //   dispatch(getPosts()).then(() => {
+  //     // eslint-disable-next-line array-callback-return
+  //   });
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [dispatch, currentId]);
+
   useEffect(() => {
-    array.length = 0;
-    dispatch(getPosts()).then(() => {
-      // eslint-disable-next-line array-callback-return
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Fetch posts whenever currentId changes
+    dispatch(getPosts())
+      .then(() => {
+        // Optionally, clear local entries if you want
+        setEntries([]);
+      })
+      .catch((err) => console.error("Error fetching posts:", err));
   }, [dispatch, currentId]);
 
   //------------------------------------------------For getting data of Timesheet--------------------------------------------------
@@ -864,19 +872,15 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                                       >
                                         Duration
                                       </th>
-                                      {/* <td
+                                      <td
                                         style={{
                                           border: "1px solid black",
                                           textAlign: "center",
                                           fontFamily: "Roboto",
                                         }}
                                       >
-                                        {post?.date[0] +
-                                          " " +
-                                          "to" +
-                                          " " +
-                                          post?.date[post.date.length - 1]}
-                                      </td> */}
+                                        {MONTHS[selectedMonth]}
+                                      </td>
                                     </tr>
                                   </>
                                 );
@@ -982,92 +986,95 @@ function TimeSheet({ currentId, posts = [], timesheetData = [] }) {
                             </td>
                           </tr>
                         ) : (
-                          (role === "admin" ? array : filteredArray)
-                            .sort((a, b) => new Date(a.date) - new Date(b.date))
-                            .map((data, index) => (
-                              <tr key={index}>
-                                <td
-                                  style={{
-                                    color: "#e55d17",
-                                    padding: "10px",
-                                    textAlign: "center",
-                                  }}
-                                >
-                                  {data.date}
-                                </td>
-                                <td
-                                  style={{
-                                    color: "#e55d17",
-                                    padding: "10px",
-                                    textAlign: "center",
-                                  }}
-                                >
-                                  {data.projectCode}
-                                </td>
-                                <td
-                                  style={{
-                                    color: "#e55d17",
-                                    padding: "10px",
-                                    textAlign: "center",
-                                  }}
-                                >
-                                  {data.activityCode}
-                                </td>
-                                <td
-                                  style={{
-                                    color: "#e55d17",
-                                    padding: "10px",
-                                    textAlign: "center",
-                                  }}
-                                >
-                                  {data.netTime}
-                                </td>
-                                <td
-                                  style={{
-                                    color: "#e55d17",
-                                    padding: "10px",
-                                    textAlign: "center",
-                                  }}
-                                >
-                                  {data.overTime}
-                                </td>
-                                <td
-                                  style={{
-                                    color: "#e55d17",
-                                    padding: "10px",
-                                    textAlign: "center",
-                                  }}
-                                >
-                                  {data.remarks}
-                                </td>
+                          (role === "admin"
+                            ? array
+                            : filteredArray.sort(
+                                (a, b) => new Date(a.date) - new Date(b.date)
+                              )
+                          ).map((data, index) => (
+                            <tr key={index}>
+                              <td
+                                style={{
+                                  color: "#e55d17",
+                                  padding: "10px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {data.date}
+                              </td>
+                              <td
+                                style={{
+                                  color: "#e55d17",
+                                  padding: "10px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {data.projectCode}
+                              </td>
+                              <td
+                                style={{
+                                  color: "#e55d17",
+                                  padding: "10px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {data.activityCode}
+                              </td>
+                              <td
+                                style={{
+                                  color: "#e55d17",
+                                  padding: "10px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {data.netTime}
+                              </td>
+                              <td
+                                style={{
+                                  color: "#e55d17",
+                                  padding: "10px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {data.overTime}
+                              </td>
+                              <td
+                                style={{
+                                  color: "#e55d17",
+                                  padding: "10px",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {data.remarks}
+                              </td>
 
-                                {printingShow === false && role === "admin" && (
-                                  <td
-                                    style={{
-                                      display: "flex",
-                                      justifyContent: "space-around",
-                                      padding: "10px",
-                                      textAlign: "center",
-                                    }}
+                              {printingShow === false && role === "admin" && (
+                                <td
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "space-around",
+                                    padding: "10px",
+                                    textAlign: "center",
+                                  }}
+                                >
+                                  <button
+                                    id="editButton"
+                                    style={{ fontFamily: "Roboto" }}
+                                    onClick={() => editEntry(index)}
                                   >
-                                    <button
-                                      id="editButton"
-                                      style={{ fontFamily: "Roboto" }}
-                                      onClick={() => editEntry(index)}
-                                    >
-                                      Edit
-                                    </button>
-                                    <button
-                                      id="deleteButton"
-                                      style={{ fontFamily: "Roboto" }}
-                                      onClick={() => deleteEntry(index)}
-                                    >
-                                      Delete
-                                    </button>
-                                  </td>
-                                )}
-                              </tr>
-                            ))
+                                    Edit
+                                  </button>
+                                  <button
+                                    id="deleteButton"
+                                    style={{ fontFamily: "Roboto" }}
+                                    onClick={() => deleteEntry(index)}
+                                  >
+                                    Delete
+                                  </button>
+                                </td>
+                              )}
+                            </tr>
+                          ))
                         )}
                       </tbody>
                     </table>

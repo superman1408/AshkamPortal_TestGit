@@ -549,17 +549,16 @@ const Leave = () => {
                   textAlign: "center",
                   bgcolor: "#0D325C",
                   color: "#fff",
+                  fontFamily: "Roboto",
                   mb: 2,
                 }}
               >
-                Mail
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{ display: "flex", alignItems: "center", mb: 2 }}
-              >
                 <PublicSharpIcon sx={{ mr: 1 }} /> {user.result.email}
               </Typography>
+              {/* <Typography
+                variant="body2"
+                sx={{ display: "flex", alignItems: "center", mb: 2 }}
+              ></Typography> */}
 
               <Grid container spacing={2}>
                 <Grid item xs={12}>
