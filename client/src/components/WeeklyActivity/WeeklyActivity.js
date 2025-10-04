@@ -8,7 +8,8 @@ import {
   Container,
   useTheme,
 } from "@mui/material";
-import { getPosts } from "../../action/posts";
+// import { getPosts } from "../../action/posts";
+import { getTimesheetPosts } from "../../action/timesheet";
 import DescriptionIcon from "@mui/icons-material/Description";
 import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
@@ -38,13 +39,15 @@ const WeeklyActivity = () => {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  const posts = useSelector((state) => state.posts);
+  // const posts = useSelector((state) => state.posts);
+
+  const timesheetData = useSelector((state) => state.timesheetData);
   const dispatch = useDispatch();
   const theme = useTheme();
 
   useEffect(() => {
     setIsLoading(true);
-    dispatch(getPosts()).then(() => {
+    dispatch(getTimesheetPosts()).then(() => {
       setIsLoading(false);
     });
   }, []);
@@ -60,7 +63,7 @@ const WeeklyActivity = () => {
   const navigate = useNavigate();
 
   // Filter the post based on currentId
-  const filteredPosts = posts.filter((post) => post._id === currentId);
+  const filteredPosts = timesheetData.filter((post) => post._id === currentId);
 
   // Sort by date
   // const sortedPosts = [...filteredPosts].sort(
@@ -112,6 +115,12 @@ const WeeklyActivity = () => {
     }
   });
 
+  const currentMonth = dayjs().month();
+  const currentYear = dayjs().year();
+
+  console.log(currentMonth);
+  console.log(currentYear);
+
   // Convert the map back to an array
   const groupedEntries = Object.keys(groupedMap)
     .map((date) => ({
@@ -121,16 +130,30 @@ const WeeklyActivity = () => {
     }))
     .sort((a, b) => new Date(a.date) - new Date(b.date));
 
+  // console.log(groupedMap);
+
+  const filteredEntries = groupedEntries.filter((entry) => {
+    const entryDate = dayjs(entry.date);
+
+    return (
+      entryDate.isValid() &&
+      entryDate.month() === currentMonth &&
+      entryDate.year() === currentYear
+    );
+  });
+
+  console.log(filteredEntries);
+
   // Then extract your data for the graph
-  const labels = groupedEntries.map(
+  const labels = filteredEntries.map(
     (entry) =>
       entry.date && dayjs(entry.date).isValid()
         ? dayjs(entry.date).format("ddd, DD MMM")
         : "N/A" // or "--" or "" or "N/A" if you prefer
   );
 
-  const netTimeData = groupedEntries.map((entry) => entry.netTime);
-  const overTimeData = groupedEntries.map((entry) => entry.overTime);
+  const netTimeData = filteredEntries.map((entry) => entry.netTime);
+  const overTimeData = filteredEntries.map((entry) => entry.overTime);
 
   const data = {
     labels,
@@ -156,22 +179,27 @@ const WeeklyActivity = () => {
     <div style={{ display: "flex", flex: 1 }}>
       <Container
         mt={2}
+        elevation={6}
         sx={{
-          padding: "5px",
+          display: "flex",
           maxWidth: "500px",
-          backdropFilter: "blur(8px)",
-          background: "linear-gradient(145deg, #ffffffcc, #f3f4f6cc)",
-          boxShadow: 1,
           width: "100%",
-          borderRadius: "10px",
+          flexDirection: "column",
+          padding: "10px",
           height: "auto",
-
-          transform: "all 0.2 ease-in-out",
+          backdropFilter: "blur(8px)",
+          background: "white",
+          boxShadow: 6,
+          borderRadius: "10px",
+          overflow: "hidden",
+          position: "relative", // Set position to relative
+          flex: 1,
+          transition: "0.3s",
           "@media (max-width: 600px)": {
+            display: "flex",
             margin: "20px 0px 0px 0px",
-            height: "auto",
+            width: "40vh",
           },
-          transition: "all 0.2s ease-in-out",
           "&:hover": {
             transform: "scale(1.02)",
             boxShadow: theme.shadows[6],
@@ -215,7 +243,6 @@ const WeeklyActivity = () => {
               </Grid>
             </Grid>
             <div style={{ height: 400 }}>
-              {" "}
               {/* or whatever height you want */}
               <Bar
                 options={{ ...options, maintainAspectRatio: false }}

@@ -34,7 +34,7 @@ const ComboBox = ({ posts, setCurrentId }) => {
         float: "right",
         marginTop: "10px",
         width: "200px",
-        backgroundColor: "#f2f2f2",
+        backgroundColor: "#ffffffff",
         fontFamily: "Roboto",
         fontSize: "15px",
       }}

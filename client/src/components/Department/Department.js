@@ -1,9 +1,11 @@
 import {
-  Container,
   Typography,
   Grid,
   IconButton,
   useTheme,
+  Card,
+  Avatar,
+  Stack,
 } from "@mui/material";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -35,19 +37,16 @@ const Department = () => {
   }, [dispatch, posts]);
 
   return (
-    <Container
+    <Card
+      elevation={6}
       sx={{
+        p: 2,
         backdropFilter: "blur(8px)",
-        background: "linear-gradient(145deg, #ffffffcc, #f3f4f6cc)",
-        boxShadow: "0 4px 30px rgba(0, 0, 0, 0.05)",
-        maxWidth: 700,
-        width: "100%",
-        p: 3,
-        borderRadius: "10px",
-        overflow: "hidden",
-        position: "relative",
-        height: "330px",
-        transition: "all 0.2s ease-in-out",
+        // background: "linear-gradient(145deg, #ffffffcc, #f3f4f6cc)",
+        background: "smokewhite",
+        borderRadius: 3,
+        transition: "0.3s",
+        height: "100%",
         "&:hover": {
           transform: "scale(1.02)",
           boxShadow: theme.shadows[6],
@@ -115,8 +114,74 @@ const Department = () => {
             return null;
           })}
         </div>
+        <div>
+          {user?.result?.role !== "manager" && (
+            <Grid
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                marginBottom: "2px",
+              }}
+            >
+              <Grid
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  marginTop: "10px",
+                }}
+              >
+                <div>
+                  <Stack flexDirection="row">
+                    <Avatar
+                      sx={{
+                        width: 40,
+                        height: 40,
+                        marginLeft: "10px",
+                        marginTop: "20px",
+                      }}
+                      alt="Femy sharp"
+                      src={user.result.selectedFile}
+                    />
+                  </Stack>
+                </div>
+              </Grid>
+              <Grid
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <Typography
+                  sx={{
+                    marginLeft: "20px",
+                    marginRight: "0px",
+                    marginTop: "18px",
+                    fontSize: "14px",
+                    fontFamily: "Roboto",
+                    color: "#16355d",
+                  }}
+                >
+                  {user.result.firstName + " " + user.result.lastName}
+                </Typography>
+                <Typography
+                  sx={{
+                    marginLeft: "20px",
+                    marginRight: "30px",
+                    fontFamily: "Roboto",
+                    fontSize: "12px",
+                    marginBottom: "2px",
+                    fontWeight: "bold",
+                    color: "#16355d",
+                  }}
+                >
+                  {user.result.jobTitle}
+                </Typography>
+              </Grid>
+            </Grid>
+          )}
+        </div>
       </Grid>
-    </Container>
+    </Card>
   );
 };
 

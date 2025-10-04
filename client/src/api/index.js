@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://192.168.168.110:8080/",
+  baseURL: "http://192.168.168.110:8000/",
+  // baseURL: "http://localhost:8080/",
 });
 
 API.interceptors.request.use((req) => {
@@ -64,10 +65,7 @@ export const dailyEvent = (formData) => API.post(`/posts/dailyEvent`, formData);
 
 export const getAllEvents = () => API.get(`/posts/events/display`);
 
-export const fetchAttendancePosts = () => API.get("/posts/attendanceposts");
-
-export const logList = (formData, id) =>
-  API.post(`/posts/${id}/loglist`, formData);
+//---------------------------------------------------------------------------------------------
 
 export const salarySlipData = (id, formData) =>
   API.post(`/posts/${id}/salarySlipData`, formData, {
@@ -84,3 +82,34 @@ export const leaveList = (formData, id) =>
 export const presentList = (formData, id) =>
   API.patch(`/posts/${id}/presentList`, formData);
 // SERVER ADDRESS : https://ashkam-server-b9bc1f76ae2f.herokuapp.com/
+
+//-----------------------------------Attendance Operations-----------------------------------
+
+// export const fetchAttendancePosts = () => API.get("/posts/attendanceposts");
+
+// export const logList = (formData, id) =>
+//   API.post(`/posts/${id}/loglist`, formData);
+
+export const logList = (formData, id) =>
+  API.post(`/attend/${id}/loglist`, formData);
+
+export const getAttendancePosts = () => API.get("/attend/attendanceposts");
+
+export const updateAttendance = (id, index, updatedAttendance) =>
+  API.patch(`/attend/${id}/${index}/updateAttendance`, updatedAttendance);
+
+export const deleteAttendance = (id) => API.delete(`/attend/deleteAttendance`);
+
+//-----------------------------------Timesheet Operations---------------------------------------
+
+export const timesheetList = (formData, id) =>
+  API.post(`/timesheet/${id}/timesheet`, formData);
+
+export const getTimesheetPosts = (userId) =>
+  API.get(`/timesheet/timesheetposts?userId=${userId}`);
+
+export const updateTimesheet = (id, indexed, updatedTimesheet) =>
+  API.patch(`/timesheet/${id}/${indexed}/updateTimesheet`, updatedTimesheet);
+
+export const deleteTimesheet = (id, indexed) =>
+  API.delete(`/timesheet/${id}/deleteTimesheet/${indexed}`);

@@ -57,7 +57,7 @@ const AbsentComboBox = ({ posts, setCurrentId }) => {
         marginTop: "10px",
         // marginLeft: "200px",
         width: "200px",
-        backgroundColor: "#f2f2f2",
+        backgroundColor: "#ffffffff",
         fontFamily: "Roboto",
         fontSize: "15px",
       }}
