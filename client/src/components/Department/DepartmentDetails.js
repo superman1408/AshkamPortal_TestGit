@@ -20,7 +20,6 @@ import {
   ButtonBase,
   Divider,
 } from "@mui/material";
-import avatar1 from "../../assets/MD.jpg";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const DepartmentDetails = () => {
