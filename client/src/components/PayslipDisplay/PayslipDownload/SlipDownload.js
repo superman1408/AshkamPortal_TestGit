@@ -95,7 +95,7 @@ const SlipDownload = ({ posts, currentId, salary, isLoading }) => {
         <Divider
           sx={{
             borderWidth: "3px",
-            bgcolor: "#e55d17",
+            bgcolor: "#336699",
           }}
         />
         {isLoading ? (

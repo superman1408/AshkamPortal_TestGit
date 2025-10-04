@@ -265,6 +265,9 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
                 onFocus={togglePopup}
                 variant="outlined"
                 size="small"
+                InputProps={{
+                  readOnly: true, // disables typing
+                }}
                 sx={{ flex: 1 }}
               />
               {titleOpen && (

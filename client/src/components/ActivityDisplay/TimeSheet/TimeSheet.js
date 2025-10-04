@@ -44,6 +44,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
   const [isLoading, setIsLoading] = useState(true);
   const [timesheet, setTimesheet] = useState("");
   const [showTooltip, setShowTooltip] = useState(false);
+  const [isStatus, setIsStatus] = useState(true);
 
   const [projectopen, setProjectOpen] = useState(false);
 
@@ -712,6 +713,11 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                     </option>
                   ))}
                 </select>
+                {role === "admin" && (
+                  <Button onClick={() => setIsStatus((pre) => !pre)}>
+                    {isStatus ? "Active" : "Inactive"}
+                  </Button>
+                )}
               </div>
               {isLoading ? (
                 <Box
@@ -986,7 +992,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                             </td>
                           </tr>
                         ) : (
-                          (role === "admin"
+                          (role === "admin" && isStatus === true
                             ? array
                             : filteredArray.sort(
                                 (a, b) => new Date(a.date) - new Date(b.date)
@@ -1087,7 +1093,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                 sx={{
                   marginTop: "20px",
                   borderWidth: "5px",
-                  bgcolor: "#e55d17",
+                  bgcolor: "#336699",
                 }}
               />
               <button
