@@ -343,7 +343,7 @@ const Navibar = () => {
                 color: "#16355d",
               }}
             >
-              Ashkam ERP
+              Enterprise Suite
             </Navbar.Brand>
 
             <Navbar.Toggle aria-controls="navbarScroll" />
