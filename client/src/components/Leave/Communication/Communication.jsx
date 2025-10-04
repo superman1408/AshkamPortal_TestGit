@@ -200,7 +200,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Inbox from "./Inbox/inbox";
 import MessageBody from "./Message/MessageBody";
 import { getPosts } from "../../../action/posts";
-import InboxBodyImage from "../../../../src/assets/messageBackground.png";
+// import InboxBodyImage from "../../../../src/assets/Inbox.gif";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const Communication = () => {
@@ -310,7 +310,7 @@ const Communication = () => {
               borderRadius: 2,
               height: "calc(100vh - 150px)",
               overflowY: "auto",
-              backgroundImage: `url(${InboxBodyImage})`,
+              backgroundImage: `url("https://res.cloudinary.com/realtimeapp/image/upload/v1727179087/samples/landscapes/beach-boat.jpg")`,
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
               backgroundSize: "cover",
