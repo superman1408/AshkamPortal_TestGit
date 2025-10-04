@@ -20,7 +20,7 @@ import PayslipDisplay from "./components/PayslipDisplay/PayslipDisplay";
 import DepartmentDetails from "./components/Department/DepartmentDetails";
 import AbsentDetails from "./components/ManagingTeam/AbsentDetail/AbsentDetails";
 import AbsentDetailsDisplay from "./components/ManagingTeam/AbsentDetail/AbsentDetailsDisplay";
-import Decommission from "./components/Decommission/Decommission";
+// import Decommission from "./components/Decommission/Decommission";
 import Panel from "./components/Panel/Panel";
 
 const drawerWidth = 0; // must match Panel
