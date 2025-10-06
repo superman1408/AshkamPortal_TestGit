@@ -26,6 +26,8 @@ import Panel from "../../Panel/Panel";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
+import ArchiveIcon from "@mui/icons-material/Archive";
+
 import LoadingSpinner from "../../ReactSpinner/reactSpinner";
 
 function TimeSheet({ currentId, posts, timesheetData }) {
@@ -347,6 +349,10 @@ function TimeSheet({ currentId, posts, timesheetData }) {
   }, []);
 
   const handleGoBack = () => {
+    navigate(-1);
+  };
+
+  const handleArchive = () => {
     navigate(-1);
   };
 
@@ -718,7 +724,22 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                     {isStatus ? "Active" : "Inactive"}
                   </Button>
                 )}
+                <Button
+                  onClick={handleArchive}
+                  sx={{
+                    padding: "8px 16px",
+                    float: "right",
+                    color: "#16355d",
+                    display: {
+                      xs: "none",
+                      sm: "inline-block",
+                    },
+                  }}
+                >
+                  <ArchiveIcon />
+                </Button>
               </div>
+              <div style={{ display: "inline" }}></div>
               {isLoading ? (
                 <Box
                   sx={{
