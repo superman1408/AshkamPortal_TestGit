@@ -22,7 +22,7 @@ import {
 
 import LOGO from "../../../assets/AshkamLogoTransparentbc.png";
 
-import Panel from "../../Panel/Panel";
+// import ArchiveTimesheet from "./ArchiveTimesheet";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
@@ -353,7 +353,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
   };
 
   const handleArchive = () => {
-    navigate(-1);
+    navigate(`/${currentId}/archiveTimesheet`);
   };
 
   // console.log("timesheetData", timesheetData);
