@@ -1,6 +1,14 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { Divider, Grid, CircularProgress, Box, Button } from "@mui/material";
+import {
+  Divider,
+  Grid,
+  CircularProgress,
+  Box,
+  Button,
+  IconButton,
+  Tooltip,
+} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useDispatch } from "react-redux";
 import { useReactToPrint } from "react-to-print";
@@ -682,62 +690,85 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                   fontFamily: "Roboto",
                 }}
               >
-                <select
-                  style={{
-                    backgroundColor: "#0d325c",
-                    color: "white",
-                    padding: "5px",
-                    fontFamily: "Roboto",
-                  }}
-                  value={selectedYear}
-                  onChange={(e) => setSelectedYear(parseInt(e.target.value))}
+                <Grid
+                  container
+                  alignItems="center"
+                  justifyContent="space-between"
                 >
-                  {Array.from(
-                    new Set(
-                      array.map((entry) => new Date(entry.date).getFullYear())
-                    )
-                  )
-                    .sort((a, b) => b - a) // descending order
-                    .map((year, index) => (
-                      <option key={index} value={year}>
-                        {year}
-                      </option>
-                    ))}
-                </select>
-                <select
-                  style={{
-                    backgroundColor: "#0d325c",
-                    color: "white",
-                    padding: "5px",
-                  }}
-                  value={selectedMonth}
-                  onChange={(e) => setSelectedMonth(parseInt(e.target.value))}
-                >
-                  {MONTHS.map((month, index) => (
-                    <option key={index} value={index}>
-                      {month}
-                    </option>
-                  ))}
-                </select>
-                {role === "admin" && (
-                  <Button onClick={() => setIsStatus((pre) => !pre)}>
-                    {isStatus ? "Active" : "Inactive"}
-                  </Button>
-                )}
-                <Button
-                  onClick={handleArchive}
-                  sx={{
-                    padding: "8px 16px",
-                    float: "right",
-                    color: "#16355d",
-                    display: {
-                      xs: "none",
-                      sm: "inline-block",
-                    },
-                  }}
-                >
-                  <ArchiveIcon />
-                </Button>
+                  <Grid item>
+                    <Box sx={{ display: "flex", gap: 1 }}>
+                      {/* <Select>Year</Select> */}
+                      <select
+                        style={{
+                          backgroundColor: "#0d325c",
+                          color: "white",
+                          padding: "5px",
+                          fontFamily: "Roboto",
+                        }}
+                        value={selectedYear}
+                        onChange={(e) =>
+                          setSelectedYear(parseInt(e.target.value))
+                        }
+                      >
+                        {Array.from(
+                          new Set(
+                            array.map((entry) =>
+                              new Date(entry.date).getFullYear()
+                            )
+                          )
+                        )
+                          .sort((a, b) => b - a) // descending order
+                          .map((year, index) => (
+                            <option key={index} value={year}>
+                              {year}
+                            </option>
+                          ))}
+                      </select>
+                      {/* <Select>Month</Select> */}
+
+                      <select
+                        style={{
+                          backgroundColor: "#0d325c",
+                          color: "white",
+                          padding: "5px",
+                        }}
+                        value={selectedMonth}
+                        onChange={(e) =>
+                          setSelectedMonth(parseInt(e.target.value))
+                        }
+                      >
+                        {MONTHS.map((month, index) => (
+                          <option key={index} value={index}>
+                            {month}
+                          </option>
+                        ))}
+                      </select>
+                      {role === "admin" && (
+                        <Button onClick={() => setIsStatus((pre) => !pre)}>
+                          {isStatus ? "Active" : "Inactive"}
+                        </Button>
+                      )}
+                    </Box>
+                  </Grid>{" "}
+                  <Grid item>
+                    <Tooltip title="Archived">
+                      <IconButton
+                        onClick={handleArchive}
+                        sx={{
+                          padding: "8px 16px",
+                          float: "right",
+                          color: "#16355d",
+                          display: {
+                            xs: "none",
+                            sm: "inline-block",
+                          },
+                        }}
+                      >
+                        <ArchiveIcon />
+                      </IconButton>
+                    </Tooltip>
+                  </Grid>
+                </Grid>
               </div>
               <div style={{ display: "inline" }}></div>
               {isLoading ? (
