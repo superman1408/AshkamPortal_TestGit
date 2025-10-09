@@ -380,12 +380,12 @@ const TimeDate = () => {
       if (description.includes("overcast") || description.includes("broken")) {
         return {
           bg: "linear-gradient(135deg, #90A4AE, #CFD8DC)", // grayish
-          text: "#ffffff",
+          text: "#16355d",
         };
       }
       return {
         bg: "linear-gradient(135deg, #B0BEC5, #ffffff)",
-        text: "#ffffff",
+        text: "#16355d",
       };
     }
 
@@ -403,7 +403,7 @@ const TimeDate = () => {
       case "Thunderstorm":
         return {
           bg: "linear-gradient(135deg, #455A64, #CFD8DC)",
-          text: "#ffffff",
+          text: "#16355d",
         };
       default:
         return {

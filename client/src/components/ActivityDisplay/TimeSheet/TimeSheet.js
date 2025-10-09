@@ -8,6 +8,8 @@ import {
   Button,
   IconButton,
   Tooltip,
+  Card,
+  Typography,
 } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useDispatch } from "react-redux";
