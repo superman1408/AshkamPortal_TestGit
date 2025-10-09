@@ -13,23 +13,16 @@ import {
 } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useDispatch } from "react-redux";
-import { useReactToPrint } from "react-to-print";
-
 import "./Style1.css"; // Import CSS file for styling
-
-// import ProjectCodePopUp from "./ProjectCodePopUp";
-
 import ActivityCodePopUp from "./ActivityCodePopUp";
 
 import { getPosts } from "../../../action/posts";
-
 import {
   timesheetList,
   deleteTimesheet,
   updateTimesheet,
   getTimesheetPosts,
 } from "../../../action/timesheet";
-
 import LOGO from "../../../assets/AshkamLogoTransparentbc.png";
 
 // import ArchiveTimesheet from "./ArchiveTimesheet";
@@ -39,6 +32,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArchiveIcon from "@mui/icons-material/Archive";
 
 import LoadingSpinner from "../../ReactSpinner/reactSpinner";
+import DownloadButton from "../../DownloadButton/DownloadButton";
 
 function TimeSheet({ currentId, posts, timesheetData }) {
   const dispatch = useDispatch();
@@ -58,8 +52,6 @@ function TimeSheet({ currentId, posts, timesheetData }) {
   const [showTooltip, setShowTooltip] = useState(false);
   const [isStatus, setIsStatus] = useState(true);
 
-  const [projectopen, setProjectOpen] = useState(false);
-
   const [activityopen, setActivityOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -74,13 +66,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
   const [printingShow, setPrintingShow] = useState(false);
 
   const [disable, setDisabled] = useState(true);
-
-  const matches = useMediaQuery("(min-width:1120px)");
-
   const loggedInUserId = user?.result?._id;
-
-  // const role = user?.result?.role;
-
   // For enabling form only for login users
   useEffect(() => {
     if (loggedInUserId === currentId || role === "admin") {
@@ -89,14 +75,6 @@ function TimeSheet({ currentId, posts, timesheetData }) {
       setDisabled(true);
     }
   }, [loggedInUserId, currentId, role]);
-
-  // useEffect(() => {
-  //   array.length = 0;
-  //   dispatch(getPosts()).then(() => {
-  //     // eslint-disable-next-line array-callback-return
-  //   });
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [dispatch, currentId]);
 
   useEffect(() => {
     // Fetch posts whenever currentId changes
@@ -321,28 +299,6 @@ function TimeSheet({ currentId, posts, timesheetData }) {
   };
 
   const componentRef = useRef();
-
-  const currentDate = new Date().toLocaleDateString();
-  const currentTime = new Date().toLocaleTimeString();
-  const dateTime = `${currentDate} ${currentTime}`;
-
-  const downloadPdf = useReactToPrint({
-    content: () => componentRef.current,
-    dateTime,
-
-    documentTitle: "TimeSheet Summary",
-    onBeforePrint: () => setPrintingShow(true),
-    onAfterPrint: () => {
-      setPrintingShow(false);
-    },
-  });
-
-  const handletrue = () => {
-    setPrintingShow(true);
-    setTimeout(() => {
-      downloadPdf();
-    }, 10);
-  };
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -1224,7 +1180,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                   bgcolor: "#336699",
                 }}
               />
-              <button
+              {/* <button
                 id="download"
                 style={{
                   fontFamily: "Roboto",
@@ -1234,7 +1190,13 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                 onClick={handletrue}
               >
                 Download
-              </button>
+              </button> */}
+
+              <DownloadButton
+                componentRef={componentRef}
+                filename="Timesheet Summary"
+                setPrintingShow={setPrintingShow}
+              />
             </Grid>
           </Grid>
         </Grid>
