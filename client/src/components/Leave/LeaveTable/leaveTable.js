@@ -371,7 +371,7 @@ const LeaveTable = ({ posts, currentId }) => {
         }}
       >
         <Typography
-          variant="h5"
+          variant="h6"
           sx={{
             mb: 3,
             textAlign: "center",
