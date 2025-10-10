@@ -49,7 +49,7 @@ const DownloadButton = ({
             boxShadow: "0 8px 20px rgba(0,0,0,0.25)",
           },
           float: "right",
-          marginTop: "20px",
+          margin: "20px 0px 60px 0px",
         }}
       >
         Download PDF
