@@ -1179,6 +1179,11 @@ const RegistrationForm = () => {
     });
   };
 
+  const gender = [
+    { value: "Female", label: "Female" },
+    { value: "Male", label: "Male" },
+  ];
+
   const maritalOptions = [
     { value: "Single", label: "Single" },
     { value: "Married", label: "Married" },
@@ -1402,6 +1407,21 @@ const RegistrationForm = () => {
                   />
                 </LocalizationProvider>
               </Grid>
+              <Grid item xs={12} sm={6}>
+                <Select
+                  placeholder="Gender"
+                  name="gender"
+                  value={gender.find(
+                    (opt) => opt.value === postData.maritalStatus
+                  )}
+                  options={gender}
+                  onChange={(option) =>
+                    setPostData({ ...postData, gender: option.value })
+                  }
+                  styles={customSelectStyles}
+                />
+              </Grid>
+
               <Grid item xs={12} sm={6}>
                 <TextField
                   fullWidth

@@ -309,6 +309,7 @@ import CelebrationIcon from "@mui/icons-material/Celebration";
 import { motion } from "framer-motion";
 import Image from "../../assets/birthday.png";
 import "./style.css";
+import spotlight from "../../assets/spotlight_icon.png";
 
 const Birthday = () => {
   const dispatch = useDispatch();
@@ -386,24 +387,42 @@ const Birthday = () => {
       >
         {/* Header */}
         <Grid container alignItems="center" gap={1} mb={2}>
-          <CakeIcon sx={{ color: "#d35400" }} />
+          {/* <CakeIcon sx={{ color: "#d35400" }} /> */}
+          <div style={{ padding: "10px" }}>
+            <img style={{ color: "#16355d", padding: "2px" }} src={spotlight} />
+          </div>
+
           <Typography
             variant="h6"
-            sx={{ fontWeight: 700, color: "#16355d", fontFamily: "Roboto" }}
+            sx={{
+              fontFamily: "Roboto",
+              fontWeight: "bold",
+              // marginLeft: "100px",
+              color: "#16355d",
+            }}
           >
-            Birthdays Today
+            In the Spotlight Today
           </Typography>
         </Grid>
 
         {/* Birthday Section */}
         {birthdaysToday.length === 0 ? (
-          <Typography
-            variant="body1"
-            align="center"
-            sx={{ color: "#047681", fontWeight: 500 }}
-          >
-            🎂 No birthdays today. Check back tomorrow!
-          </Typography>
+          <>
+            <Typography
+              variant="body1"
+              align="center"
+              sx={{ color: "#047681", fontWeight: 500 }}
+            >
+              No Event.
+            </Typography>
+            <Typography
+              variant="body1"
+              align="center"
+              sx={{ color: "#047681", fontWeight: 500 }}
+            >
+              Check back tomorrow!
+            </Typography>
+          </>
         ) : (
           <Box
             sx={{
@@ -457,7 +476,7 @@ const Birthday = () => {
 
         {/* Event Section */}
         <Box
-          mt={3}
+          mt={2}
           sx={{
             overflow: "hidden",
             position: "relative",

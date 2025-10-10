@@ -22,6 +22,7 @@ import AbsentDetails from "./components/ManagingTeam/AbsentDetail/AbsentDetails"
 import AbsentDetailsDisplay from "./components/ManagingTeam/AbsentDetail/AbsentDetailsDisplay";
 // import Decommission from "./components/Decommission/Decommission";
 import Panel from "./components/Panel/Panel";
+import ArchiveTimesheet from "./components/ActivityDisplay/TimeSheet/ArchiveTimesheet";
 
 const drawerWidth = 0; // must match Panel
 const collapsedWidth = 0;
@@ -203,6 +204,11 @@ const App = () => {
 
                 {/* <Route path="/mail/:id/payslip" exact element={<Payslip />} /> */}
 
+                <Route
+                  path="/:id/archiveTimesheet"
+                  exact
+                  element={<ArchiveTimesheet />}
+                />
                 <Route path="/aboutUs" exact element={<AboutUS />} />
                 <Route path="/home" exact element={<Dashboard />} />
                 <Route
