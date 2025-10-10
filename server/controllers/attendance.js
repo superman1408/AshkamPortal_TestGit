@@ -26,8 +26,6 @@ import AttendanceDetail from "../model/attendanceDetail.js";
 // };
 
 export const logList = async (req, res) => {
-  console.log();
-
   const { id } = req.params;
   const value = req.body;
 
@@ -71,13 +69,9 @@ export const getAttendancePosts = async (req, res) => {
 
 //------------------Update Operation --------------------------
 export const updateAttendance = async (req, res) => {
-  console.log("You reached me");
-
   const id = req.params.id;
   const indexNumber = parseInt(req.params.index);
   const valueToEdit = req.body;
-
-  console.log(id, indexNumber, valueToEdit);
 
   try {
     if (!mongoose.Types.ObjectId.isValid(id))
