@@ -10,6 +10,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import LOGO from "../../../assets/AshkamLogoTransparentbc.png";
 
 import ComboBox from "./ComboBox";
+import DownloadButton from "../../DownloadButton/DownloadButton";
 
 const ArchiveTimesheet = () => {
   const posts = useSelector((state) => state.posts || []);
@@ -443,17 +444,11 @@ const ArchiveTimesheet = () => {
           bgcolor: "#336699",
         }}
       />
-      <button
-        id="download"
-        style={{
-          fontFamily: "Roboto",
-          float: "right",
-          margin: "40px",
-        }}
-        onClick={handletrue}
-      >
-        Download
-      </button>
+      <DownloadButton
+        componentRef={componentRef}
+        filename="Archived Timesheet"
+        setPrintingShow={setPrintingShow}
+      />
     </div>
   );
 };

@@ -13,23 +13,16 @@ import {
 } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useDispatch } from "react-redux";
-import { useReactToPrint } from "react-to-print";
-
 import "./Style1.css"; // Import CSS file for styling
-
-// import ProjectCodePopUp from "./ProjectCodePopUp";
-
 import ActivityCodePopUp from "./ActivityCodePopUp";
 
 import { getPosts } from "../../../action/posts";
-
 import {
   timesheetList,
   deleteTimesheet,
   updateTimesheet,
   getTimesheetPosts,
 } from "../../../action/timesheet";
-
 import LOGO from "../../../assets/AshkamLogoTransparentbc.png";
 
 // import ArchiveTimesheet from "./ArchiveTimesheet";
@@ -39,6 +32,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArchiveIcon from "@mui/icons-material/Archive";
 
 import LoadingSpinner from "../../ReactSpinner/reactSpinner";
+import DownloadButton from "../../DownloadButton/DownloadButton";
 
 function TimeSheet({ currentId, posts, timesheetData }) {
   const dispatch = useDispatch();
@@ -58,8 +52,6 @@ function TimeSheet({ currentId, posts, timesheetData }) {
   const [showTooltip, setShowTooltip] = useState(false);
   const [isStatus, setIsStatus] = useState(true);
 
-  const [projectopen, setProjectOpen] = useState(false);
-
   const [activityopen, setActivityOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -74,13 +66,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
   const [printingShow, setPrintingShow] = useState(false);
 
   const [disable, setDisabled] = useState(true);
-
-  const matches = useMediaQuery("(min-width:1120px)");
-
   const loggedInUserId = user?.result?._id;
-
-  // const role = user?.result?.role;
-
   // For enabling form only for login users
   useEffect(() => {
     if (loggedInUserId === currentId || role === "admin") {
@@ -89,14 +75,6 @@ function TimeSheet({ currentId, posts, timesheetData }) {
       setDisabled(true);
     }
   }, [loggedInUserId, currentId, role]);
-
-  // useEffect(() => {
-  //   array.length = 0;
-  //   dispatch(getPosts()).then(() => {
-  //     // eslint-disable-next-line array-callback-return
-  //   });
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [dispatch, currentId]);
 
   useEffect(() => {
     // Fetch posts whenever currentId changes
@@ -321,28 +299,6 @@ function TimeSheet({ currentId, posts, timesheetData }) {
   };
 
   const componentRef = useRef();
-
-  const currentDate = new Date().toLocaleDateString();
-  const currentTime = new Date().toLocaleTimeString();
-  const dateTime = `${currentDate} ${currentTime}`;
-
-  const downloadPdf = useReactToPrint({
-    content: () => componentRef.current,
-    dateTime,
-
-    documentTitle: "TimeSheet Summary",
-    onBeforePrint: () => setPrintingShow(true),
-    onAfterPrint: () => {
-      setPrintingShow(false);
-    },
-  });
-
-  const handletrue = () => {
-    setPrintingShow(true);
-    setTimeout(() => {
-      downloadPdf();
-    }, 10);
-  };
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -637,9 +593,26 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                         justifyContent: "space-around",
                       }}
                     >
-                      <button
-                        style={{
+                      <Button
+                        variant="contained"
+                        sx={{
+                          background:
+                            "linear-gradient(135deg, #0d325c, #16355d)",
+                          borderRadius: "5px",
+                          color: "#fff",
+                          padding: "5px 20px",
                           fontFamily: "Roboto",
+                          fontWeight: 600,
+                          textTransform: "none",
+                          boxShadow: "0 6px 15px rgba(0,0,0,0.2)",
+                          transition: "all 0.3s ease",
+                          "&:hover": {
+                            background:
+                              "linear-gradient(135deg, #16355d, #0d325c)",
+                            transform: "translateY(-2px)",
+                            boxShadow: "0 8px 20px rgba(0,0,0,0.25)",
+                          },
+
                           cursor: isSubmitting ? "not-allowed" : "pointer",
                           opacity: isSubmitting ? 0.6 : 1,
                         }}
@@ -647,24 +620,47 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                         disabled={isSubmitting}
                       >
                         {isSubmitting ? (
-                          <div style={{ display: "flex" }}>
+                          <Box
+                            sx={{
+                              display: "flex",
+                              alignItems: "center",
+                              color: "inherit",
+                            }}
+                          >
                             Submitting...
-                            <LoadingSpinner size={16} color="#999" />
-                          </div>
+                            <LoadingSpinner size={16} color="#fff" />
+                          </Box>
                         ) : editIndex !== -1 ? (
                           "Update"
                         ) : (
                           "Submit"
                         )}
-                      </button>
+                      </Button>
 
-                      <button
-                        style={{ fontFamily: "Roboto" }}
+                      <Button
+                        variant="contained"
+                        sx={{
+                          background:
+                            "linear-gradient(135deg, #0d325c, #16355d)",
+                          borderRadius: "5px",
+                          padding: "5px 20px",
+                          fontFamily: "Roboto",
+                          fontWeight: 600,
+                          textTransform: "none",
+                          boxShadow: "0 6px 15px rgba(0,0,0,0.2)",
+                          transition: "all 0.3s ease",
+                          "&:hover": {
+                            background:
+                              "linear-gradient(135deg, #16355d, #0d325c)",
+                            transform: "translateY(-2px)",
+                            boxShadow: "0 8px 20px rgba(0,0,0,0.25)",
+                          },
+                        }}
                         type="button"
                         onClick={clearForm}
                       >
                         Clear
-                      </button>
+                      </Button>
                     </div>
                   )}
                 </fieldset>
@@ -768,11 +764,24 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                       {/* <Select>Year</Select> */}
                       <select
                         style={{
-                          backgroundColor: "#0d325c",
-                          color: "white",
-                          padding: "5px",
-                          fontFamily: "Roboto",
+                          backgroundColor: "#ffffff", // clean white background
+                          color: "#16355d", // navy text color
+                          border: "1.8px solid #16355d", // same navy as buttons
+                          borderRadius: "6px", // soft edges for cohesion
+                          padding: "6px 12px", // breathing room
+                          fontFamily: "Roboto, sans-serif",
+                          fontWeight: 500,
+                          fontSize: "15px",
+                          outline: "none", // remove browser default blue outline
+                          cursor: "pointer",
+                          transition: "all 0.2s ease-in-out",
                         }}
+                        onFocus={
+                          (e) => (e.target.style.border = "1.8px solid #007bff") // focus border color
+                        }
+                        onBlur={
+                          (e) => (e.target.style.border = "1.8px solid #16355d") // revert after focus
+                        }
                         value={selectedYear}
                         onChange={(e) =>
                           setSelectedYear(parseInt(e.target.value))
@@ -796,10 +805,24 @@ function TimeSheet({ currentId, posts, timesheetData }) {
 
                       <select
                         style={{
-                          backgroundColor: "#0d325c",
-                          color: "white",
-                          padding: "5px",
+                          backgroundColor: "#ffffff", // clean white background
+                          color: "#16355d", // navy text color
+                          border: "1.8px solid #16355d", // same navy as buttons
+                          borderRadius: "6px", // soft edges for cohesion
+                          padding: "6px 12px", // breathing room
+                          fontFamily: "Roboto, sans-serif",
+                          fontWeight: 500,
+                          fontSize: "15px",
+                          outline: "none", // remove browser default blue outline
+                          cursor: "pointer",
+                          transition: "all 0.2s ease-in-out",
                         }}
+                        onFocus={
+                          (e) => (e.target.style.border = "1.8px solid #007bff") // focus border color
+                        }
+                        onBlur={
+                          (e) => (e.target.style.border = "1.8px solid #16355d") // revert after focus
+                        }
                         value={selectedMonth}
                         onChange={(e) =>
                           setSelectedMonth(parseInt(e.target.value))
@@ -813,7 +836,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                       </select>
                       {role === "admin" && (
                         <Button onClick={() => setIsStatus((pre) => !pre)}>
-                          {isStatus ? "Active" : "Inactive"}
+                          {isStatus ? "Inactive" : "Active"}
                         </Button>
                       )}
                     </Box>
@@ -1190,20 +1213,82 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                                       textAlign: "center",
                                     }}
                                   >
-                                    <button
+                                    <Button
                                       id="editButton"
-                                      style={{ fontFamily: "Roboto" }}
+                                      variant="contained"
+                                      sx={{
+                                        background:
+                                          "linear-gradient(135deg, #047681, #047681)",
+                                        borderRadius: "5px",
+                                        padding: "5px 20px",
+                                        fontFamily: "Roboto",
+                                        fontWeight: 600,
+                                        textTransform: "none",
+                                        boxShadow: "0 6px 15px rgba(0,0,0,0.2)",
+                                        transition: "all 0.3s ease",
+                                        "&:hover": {
+                                          background:
+                                            "linear-gradient(135deg, #047681, #047681)",
+                                          transform: "translateY(-2px)",
+                                          boxShadow:
+                                            "0 8px 20px rgba(0,0,0,0.25)",
+                                        },
+                                      }}
                                       onClick={() => editEntry(index)}
                                     >
                                       Edit
-                                    </button>
-                                    <button
+                                    </Button>
+                                    <Button
                                       id="deleteButton"
-                                      style={{ fontFamily: "Roboto" }}
+                                      variant="contained"
+                                      sx={{
+                                        background:
+                                          "linear-gradient(135deg, #dc3545, #da2335ff)",
+                                        borderRadius: "5px",
+                                        padding: "5px 20px",
+                                        fontFamily: "Roboto",
+                                        fontWeight: 600,
+                                        textTransform: "none",
+                                        boxShadow: "0 6px 15px rgba(0,0,0,0.2)",
+                                        transition: "all 0.3s ease",
+                                        "&:hover": {
+                                          background:
+                                            "linear-gradient(135deg, #dc3545, #da2335ff)",
+                                          transform: "translateY(-2px)",
+                                          boxShadow:
+                                            "0 8px 20px rgba(231, 22, 22, 0.25)",
+                                        },
+                                      }}
                                       onClick={() => deleteEntry(index)}
                                     >
                                       Delete
-                                    </button>
+                                    </Button>
+
+                                    {/* <Button
+                                      id="deleteButton"
+                                      variant="contained"
+                                      sx={{
+                                        background:
+                                          "linear-gradient(135deg, #dc3545, #da2335ff",
+                                        borderRadius: "5px",
+                                        padding: "5px 20px",
+                                        fontFamily: "Roboto",
+                                        fontWeight: 600,
+                                        textTransform: "none",
+                                        boxShadow: "0 6px 15px rgba(0,0,0,0.2)",
+                                        transition: "all 0.3s ease",
+                                        "&:hover": {
+                                          background:
+                                            "linear-gradient(135deg, #dc3545, #da2335ff)",
+                                          transform: "translateY(-2px)",
+                                          boxShadow:
+                                            "0 8px 20px rgba(231, 53, 53, 0.25)",
+                                        },
+                                      }}
+                                      onClick={() => deleteEntry(index)}
+                                    >
+                                      Delete
+                                    </Button> */}
                                   </td>
                                 )}
                               </tr>
@@ -1224,7 +1309,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                   bgcolor: "#336699",
                 }}
               />
-              <button
+              {/* <button
                 id="download"
                 style={{
                   fontFamily: "Roboto",
@@ -1234,7 +1319,13 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                 onClick={handletrue}
               >
                 Download
-              </button>
+              </button> */}
+
+              <DownloadButton
+                componentRef={componentRef}
+                filename="Timesheet Summary"
+                setPrintingShow={setPrintingShow}
+              />
             </Grid>
           </Grid>
         </Grid>
