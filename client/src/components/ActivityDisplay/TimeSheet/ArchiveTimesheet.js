@@ -10,7 +10,6 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import LOGO from "../../../assets/AshkamLogoTransparentbc.png";
 
 import ComboBox from "./ComboBox";
-import DownloadButton from "../../DownloadButton/DownloadButton";
 
 const ArchiveTimesheet = () => {
   const posts = useSelector((state) => state.posts || []);
@@ -21,10 +20,14 @@ const ArchiveTimesheet = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [selectedDept, setSelectedDept] = useState("");
 
   const user = JSON.parse(localStorage.getItem("profile"));
 
+  const departments = [...new Set(posts.map((p) => p.department))];
+
   const role = user.result.role;
+  const userDept = user.result.department;
 
   const dispatch = useDispatch();
 
@@ -34,6 +37,31 @@ const ArchiveTimesheet = () => {
     dispatch(getPosts());
     setIsLoading(false);
   }, [dispatch, isLoading]);
+
+  //------------------------------Filtered post by department-----------------------------
+  // const filteredPosts = selectedDept
+  //   ? posts.filter((p) => p.department === selectedDept)
+  //   : posts;
+
+  //---------------------------------Filtered post by role-----------------------------------
+  const filteredPostsByRole = useMemo(() => {
+    if (role === "manager") {
+      // Show only posts from manager’s department
+      return posts.filter((p) => p.department === userDept);
+    }
+    // Admin or others can see all
+    return posts;
+  }, [posts, role, userDept]);
+
+  //-----------------------------------Filtered post for Combobox-----------------------------
+  const filteredPostsForCombo = useMemo(() => {
+    if (role === "admin") {
+      return selectedDept
+        ? filteredPostsByRole.filter((p) => p.department === selectedDept)
+        : filteredPostsByRole;
+    }
+    return filteredPostsByRole; // manager already filtered above
+  }, [filteredPostsByRole, selectedDept, role]);
 
   const array = useMemo(() => {
     let temp = [];
@@ -104,7 +132,29 @@ const ArchiveTimesheet = () => {
   return (
     <div>
       {(role === "admin" || role === "manager") && (
-        <ComboBox posts={posts} setCurrentId={setCurrentId} />
+        <>
+          {role === "admin" && (
+            <select
+              value={selectedDept}
+              onChange={(e) => setSelectedDept(e.target.value)}
+              style={{
+                margin: "10px",
+                padding: "5px",
+                borderRadius: "8px",
+                fontFamily: "Roboto",
+              }}
+            >
+              <option value="">All Departments</option>
+              {departments.map((dept, index) => (
+                <option key={index} value={dept}>
+                  {dept}
+                </option>
+              ))}
+            </select>
+          )}
+
+          <ComboBox posts={filteredPostsForCombo} setCurrentId={setCurrentId} />
+        </>
       )}
 
       <div style={{ display: "inline" }}>
@@ -444,11 +494,17 @@ const ArchiveTimesheet = () => {
           bgcolor: "#336699",
         }}
       />
-      <DownloadButton
-        componentRef={componentRef}
-        filename="Archived Timesheet"
-        setPrintingShow={setPrintingShow}
-      />
+      <button
+        id="download"
+        style={{
+          fontFamily: "Roboto",
+          float: "right",
+          margin: "40px",
+        }}
+        onClick={handletrue}
+      >
+        Download
+      </button>
     </div>
   );
 };
