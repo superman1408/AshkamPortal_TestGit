@@ -1,7 +1,15 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../../action/posts";
-import { Grid, Button, Divider, Box, CircularProgress } from "@mui/material";
+import {
+  Grid,
+  Button,
+  Divider,
+  Box,
+  CircularProgress,
+  Typography,
+  Badge,
+} from "@mui/material";
 import { useParams, useNavigate } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
 
@@ -129,6 +137,11 @@ const ArchiveTimesheet = () => {
     "December",
   ];
 
+  const monthlyTotalNetTime = array.reduce(
+    (total, entry) => total + (parseFloat(entry.netTime) || 0),
+    0
+  );
+
   return (
     <div>
       {(role === "admin" || role === "manager") && (
@@ -182,6 +195,20 @@ const ArchiveTimesheet = () => {
       >
         Archive Time Sheet
       </strong>
+
+      <Badge
+        sx={{
+          color: "white",
+          fontWeight: "bold",
+          bgcolor: "#0d325c",
+          padding: "3px",
+          borderRadius: "5px",
+          marginLeft: "12px",
+          fontSize: "12px",
+        }}
+      >
+        Total Net Time : {monthlyTotalNetTime} h
+      </Badge>
 
       {/* Main Body */}
       {isLoading ? (

@@ -387,7 +387,6 @@
 
 // export default Message;
 
-
 // new code
 
 import React, { useState, useEffect } from "react";
@@ -426,22 +425,21 @@ const Message = ({ post, currentId }) => {
   // };
 
   const handleStatusChange = async (status) => {
-  if (post.status !== "Accepted" && post.status !== "Rejected") {
-    try {
-      setIsLoading(true);
-      await dispatch(updateStatus(post._id, { status }));
-      alert("Status is changed");
-      navigate("/home");
-    } catch (error) {
-      console.error("Failed to update status:", error);
-      alert("Something went wrong!");
-      window.location.reload();
-    } finally {
-      setIsLoading(false);
+    if (post.status !== "Accepted" && post.status !== "Rejected") {
+      try {
+        setIsLoading(true);
+        await dispatch(updateStatus(post._id, { status }));
+        alert("Status is changed");
+        navigate("/home");
+      } catch (error) {
+        console.error("Failed to update status:", error);
+        alert("Something went wrong!");
+        window.location.reload();
+      } finally {
+        setIsLoading(false);
+      }
     }
-  }
-};
-
+  };
 
   const getCardColor = (status) => {
     switch (status) {
@@ -551,8 +549,25 @@ const Message = ({ post, currentId }) => {
                   </Button>
                 </Box>
               ) : (
-                <Typography textAlign="center" color="gray">
-                  Status finalized.
+                // <Typography textAlign="center" color="blue">
+                //   {(item?.status === "Accepted") || (item?.status === "Rejected")
+                //     ? "Response finalized"
+                //     : "Response awaited"}
+                // </Typography>
+                <Typography
+                  textAlign="center"
+                  color={
+                    item?.status === "Accepted"
+                      ? "green"
+                      : item?.status === "Rejected"
+                      ? "red"
+                      : "#0d325c"
+                  }
+                  sx={{ fontWeight: 500 }}
+                >
+                  {item?.status === "Accepted" || item?.status === "Rejected"
+                    ? "Response finalized"
+                    : "Response awaited"}
                 </Typography>
               )}
             </Card>
