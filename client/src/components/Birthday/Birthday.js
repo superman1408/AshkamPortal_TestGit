@@ -306,7 +306,7 @@ import { getPosts, getEvents } from "../../action/posts";
 import FormDialog from "./DialogBox/Dialog";
 import CakeIcon from "@mui/icons-material/Cake";
 import CelebrationIcon from "@mui/icons-material/Celebration";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 import Image from "../../assets/birthday.png";
 import "./style.css";
 import spotlight from "../../assets/spotlight_icon.png";
@@ -483,7 +483,7 @@ const Birthday = () => {
             height: "35px",
           }}
         >
-          <motion.div
+          {/* <motion.div
             animate={{ x: ["100%", "-100%"] }}
             transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
             style={{
@@ -494,7 +494,15 @@ const Birthday = () => {
             }}
           >
             {evento}
-          </motion.div>
+
+          </motion.div> */}
+
+          <marquee  style={{
+              whiteSpace: "nowrap",
+              fontWeight: 600,
+              fontFamily: "Roboto",
+              color: "#16355d",
+            }}>{evento}</marquee>
         </Box>
 
         {/* Admin Action */}
