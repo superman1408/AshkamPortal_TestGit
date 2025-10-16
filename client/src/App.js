@@ -24,6 +24,8 @@ import AbsentDetailsDisplay from "./components/ManagingTeam/AbsentDetail/AbsentD
 import Panel from "./components/Panel/Panel";
 import ArchiveTimesheet from "./components/ActivityDisplay/TimeSheet/ArchiveTimesheet";
 
+import Diwali1 from "./assets/Diwali2.gif";
+
 const drawerWidth = 0; // must match Panel
 const collapsedWidth = 0;
 
@@ -163,6 +165,7 @@ const App = () => {
         >
           <Box component="header" sx={{ p: 1 }}>
             <img src={LOGO} alt="logo" style={{ width: "185px" }} />
+            <img src={Diwali1} alt="Diwali" style={{ width: "80px" }} />
           </Box>
           <Navibar />
           <Container maxWidth={false}>
