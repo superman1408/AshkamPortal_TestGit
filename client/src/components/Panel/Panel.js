@@ -523,6 +523,8 @@ import BadgeIcon from "@mui/icons-material/Badge";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ForwardToInboxTwoToneIcon from "@mui/icons-material/ForwardToInboxTwoTone";
+import PostAddIcon from "@mui/icons-material/PostAdd";
+import PunchClockIcon from "@mui/icons-material/PunchClock";
 
 const drawerWidth = 260;
 const collapsedWidth = 72;
@@ -580,8 +582,8 @@ const Panel = () => {
     { text: "Dashboard", icon: <DashboardIcon />, action: dashboardMode },
     { text: "Profile", icon: <PeopleAltIcon />, action: employeeMode },
     { text: "Inbox", icon: <ForwardToInboxTwoToneIcon />, action: inboxMode },
-    { text: "Analytics", icon: <AnalyticsIcon />, action: analytics },
-    { text: "Attendance Report", icon: <BadgeIcon />, action: attendance },
+    { text: "Attendance Report", icon: <PunchClockIcon />, action: attendance },
+    { text: "Work Summary", icon: <PostAddIcon />, action: analytics },
   ];
 
   return (
