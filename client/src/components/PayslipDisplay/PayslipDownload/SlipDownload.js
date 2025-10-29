@@ -2,19 +2,21 @@ import React, { useMemo } from "react";
 import {
   Typography,
   Card,
-  CardMedia,
-  CardContent,
-  CardActions,
   Divider,
-  Grid,
   Box,
   LinearProgress,
+  Button,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+  Avatar,
 } from "@mui/material";
-
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
+import DeleteIcon from "@mui/icons-material/Delete";
 import CorporateImage from "../../../assets/salary.png";
 
-const SlipDownload = ({ posts, currentId, salary, isLoading }) => {
+const SlipDownload = ({ posts, currentId, salary, isLoading, onDelete }) => {
   const handleDownload = async (slip) => {
     try {
       const binaryDataBuffer = slip.pdf.data;
@@ -38,117 +40,139 @@ const SlipDownload = ({ posts, currentId, salary, isLoading }) => {
   }, [posts, currentId]);
 
   return (
-    <>
-      <Card
-        sx={{
-          textAlign: "center",
-          margin: "10px",
-          // "@media(max-Width:600px)": { width: "40vh", margin: "0px" },
-        }}
-      >
-        <div>
-          {Array.isArray(matchedPosts) ? (
-            matchedPosts.map((post, index) => (
-              <div
-                key={index}
-                style={{
-                  display: "flex",
-                  justifyContent: "space-evenly",
-                  gap: "20px",
-                  padding: "20px",
+    <Card
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "flex-start",
+        minHeight: "100vh",
+        paddingTop: "50px",
+        backgroundColor: "#f0f4f8",
+      }}
+    >
+      {/* Employee Info */}
+      <div>
+        {Array.isArray(matchedPosts) ? (
+          matchedPosts.map((post, index) => (
+            <Box
+              key={index}
+              sx={{
+                display: "flex",
+                justifyContent: "space-evenly",
+                flexWrap: "wrap",
+                gap: "20px",
+                padding: "20px",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontFamily: "Roboto",
+                  fontWeight: "bold",
+                  color: post?.employeeId ? "#16355d" : "red",
                 }}
               >
-                <Typography
-                  sx={{
-                    margin: "auto 20px",
-                    fontFamily: "Robota",
-                    fontWeight: "bold",
-                    color: post?.employeeId ? "#16355d" : "red",
-                  }}
-                >
-                  Employee Id :
-                  {post?.employeeId
-                    ? post?.employeeId
-                    : "Please complete your profile !!"}
-                </Typography>
-                <Typography
-                  sx={{
-                    margin: "auto 20px",
-                    fontFamily: "Robota",
-                    fontWeight: "bold",
-                    color: "#16355d",
-                  }}
-                >
-                  Employee Name :
-                  {post?.firstName.charAt(0).toUpperCase() +
-                    post?.firstName.slice(1).toLowerCase() +
-                    " " +
-                    post?.lastName.charAt(0).toUpperCase() +
-                    post?.lastName.slice(1).toLowerCase()}
-                </Typography>
-              </div>
-            ))
-          ) : (
-            <Typography>Error: post is not an array</Typography>
-          )}
-        </div>
-        <Divider
-          sx={{
-            borderWidth: "3px",
-            bgcolor: "#336699",
-          }}
-        />
-        {isLoading ? (
-          <Box sx={{ marginTop: "100px" }}>
-            <LinearProgress thickness={1} />
-          </Box>
+                Employee Id :
+                {post?.employeeId
+                  ? post?.employeeId
+                  : "Please complete your profile !!"}
+              </Typography>
+              <Typography
+                sx={{
+                  fontFamily: "Roboto",
+                  fontWeight: "bold",
+                  color: "#16355d",
+                }}
+              >
+                Employee Name :
+                {`${post?.firstName.charAt(0).toUpperCase()}${post?.firstName
+                  .slice(1)
+                  .toLowerCase()} ${post?.lastName
+                  .charAt(0)
+                  .toUpperCase()}${post?.lastName.slice(1).toLowerCase()}`}
+              </Typography>
+            </Box>
+          ))
         ) : (
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "center",
-              gap: "20px",
-            }}
-          >
-            {salary.map((slip, index) =>
-              currentId === slip.identify ? (
-                <div
-                  key={index}
-                  style={{
-                    flex: "1 1 160px",
-                    maxWidth: "180px",
-                    margin: "10px",
+          <Typography color="error">Error: post is not an array</Typography>
+        )}
+      </div>
+
+      <Divider sx={{ borderWidth: "3px", bgcolor: "#336699" }} />
+
+      {/* Loader */}
+      {isLoading ? (
+        <Box sx={{ marginTop: "100px" }}>
+          <LinearProgress />
+        </Box>
+      ) : (
+        <List
+          sx={{
+            width: "100%",
+            maxWidth: "100%",
+            bgcolor: "background.paper",
+            padding: "10px",
+          }}
+        >
+          {salary
+            .filter((slip) => currentId === slip.identify)
+            .map((slip, index) => (
+              <React.Fragment key={index}>
+                <ListItem
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    borderRadius: 2,
+                    boxShadow: 1,
+                    mb: 1,
+                    p: 2,
+                    "&:hover": { backgroundColor: "#f5f5f5" },
                   }}
                 >
-                  <Card sx={{ maxWidth: 180, maxHeight: 280 }}>
-                    <CardMedia
-                      component="img"
-                      height="140"
-                      image={CorporateImage}
-                      alt="Corporate Image"
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                    <ListItemAvatar>
+                      <Avatar
+                        src={CorporateImage}
+                        alt="Salary Slip"
+                        sx={{ width: 56, height: 56 }}
+                      />
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary={
+                        <Typography sx={{ color: "#16355d", fontWeight: 600 }}>
+                          {slip.title}
+                        </Typography>
+                      }
+                      secondary="PDF Document"
                     />
-                    <CardContent sx={{ textAlign: "center" }}>
-                      <Typography sx={{ color: "#16355d" }}>
-                        {slip.title}
-                      </Typography>
-                    </CardContent>
-                    <CardActions sx={{ justifyContent: "center" }}>
-                      <button
-                        style={{ fontFamily: "Roboto" }}
-                        onClick={() => handleDownload(slip)}
-                      >
-                        Download <FileDownloadIcon />
-                      </button>
-                    </CardActions>
-                  </Card>
-                </div>
-              ) : null
-            )}
-          </div>
-        )}
-      </Card>
-    </>
+                  </Box>
+
+                  <Box sx={{ display: "flex", gap: 1 }}>
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      size="small"
+                      onClick={() => handleDownload(slip)}
+                      startIcon={<FileDownloadIcon />}
+                    >
+                      Download
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      color="error"
+                      size="small"
+                      onClick={() => onDelete?.(slip)}
+                      startIcon={<DeleteIcon />}
+                    >
+                      Delete
+                    </Button>
+                  </Box>
+                </ListItem>
+              </React.Fragment>
+            ))}
+        </List>
+      )}
+    </Card>
   );
 };
 
