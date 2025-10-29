@@ -165,7 +165,7 @@ const App = () => {
         >
           <Box component="header" sx={{ p: 1 }}>
             <img src={LOGO} alt="logo" style={{ width: "185px" }} />
-            <img src={Diwali1} alt="Diwali" style={{ width: "80px" }} />
+            {/* <img src={Diwali1} alt="Diwali" style={{ width: "80px" }} /> */}
           </Box>
           <Navibar />
           <Container maxWidth={false}>

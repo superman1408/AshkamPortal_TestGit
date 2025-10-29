@@ -19,48 +19,48 @@ const Admin = ({ currentId }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
   const role = user.result.role;
 
-  // 🔥 Firecracker function
-  const fireCrackers = () => {
-    const duration = 3 * 1000; // 3 seconds
-    const animationEnd = Date.now() + duration;
-    const defaults = {
-      startVelocity: 30,
-      spread: 360,
-      ticks: 60,
-      zIndex: 2000,
-    };
+  // // 🔥 Firecracker function
+  // const fireCrackers = () => {
+  //   const duration = 3 * 1000; // 3 seconds
+  //   const animationEnd = Date.now() + duration;
+  //   const defaults = {
+  //     startVelocity: 30,
+  //     spread: 360,
+  //     ticks: 60,
+  //     zIndex: 2000,
+  //   };
 
-    const randomInRange = (min, max) => Math.random() * (max - min) + min;
+  //   const randomInRange = (min, max) => Math.random() * (max - min) + min;
 
-    const interval = setInterval(() => {
-      const timeLeft = animationEnd - Date.now();
+  //   const interval = setInterval(() => {
+  //     const timeLeft = animationEnd - Date.now();
 
-      if (timeLeft <= 0) {
-        clearInterval(interval);
-        return;
-      }
+  //     if (timeLeft <= 0) {
+  //       clearInterval(interval);
+  //       return;
+  //     }
 
-      const particleCount = 50 * (timeLeft / duration);
+  //     const particleCount = 50 * (timeLeft / duration);
 
-      confetti(
-        Object.assign({}, defaults, {
-          particleCount,
-          origin: {
-            x: randomInRange(0.1, 0.9),
-            y: randomInRange(0.1, 0.5),
-          },
-          colors: ["#ffeb00", "#eb6e08ff", "#f1db13ff"],
-          shapes: ["circle"],
-          scalar: 0.8,
-        })
-      );
-    }, 250);
-  };
+  //     confetti(
+  //       Object.assign({}, defaults, {
+  //         particleCount,
+  //         origin: {
+  //           x: randomInRange(0.1, 0.9),
+  //           y: randomInRange(0.1, 0.5),
+  //         },
+  //         colors: ["#ffeb00", "#eb6e08ff", "#f1db13ff"],
+  //         shapes: ["circle"],
+  //         scalar: 0.8,
+  //       })
+  //     );
+  //   }, 250);
+  // };
 
-  // 🔹 Trigger firecrackers once when dashboard loads
-  useEffect(() => {
-    fireCrackers();
-  }, []);
+  // // 🔹 Trigger firecrackers once when dashboard loads
+  // useEffect(() => {
+  //   fireCrackers();
+  // }, []);
 
   return (
     <Box
@@ -85,7 +85,7 @@ const Admin = ({ currentId }) => {
           gap: 2,
         }}
       >
-        <Fab
+        {/* <Fab
           onClick={fireCrackers}
           sx={{
             position: "fixed",
@@ -110,7 +110,7 @@ const Admin = ({ currentId }) => {
               objectFit: "cover",
             }}
           />
-        </Fab>
+        </Fab> */}
 
         <Grid container spacing={2}>
           <Topbar />
