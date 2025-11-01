@@ -422,6 +422,16 @@ export const salarySlipData = async (req, res) => {
   }
 };
 
+export const deleteSalarySlip = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id))
+    return res.status(404).send("no post with that id found");
+
+  await PaySlipModel.findByIdAndRemove(id);
+  res.json({ message: "Post deleted successfully" });
+};
+
 export const getSalary = async (req, res) => {
   try {
     const slipData = await PaySlipModel.find({});

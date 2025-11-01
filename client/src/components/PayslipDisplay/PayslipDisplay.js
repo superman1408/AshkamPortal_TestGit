@@ -5,7 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Grid, Button, Typography, Card } from "@mui/material";
 
-import { getPosts, getSalarySlipData } from "../../action/posts";
+import {
+  getPosts,
+  getSalarySlipData,
+  deleteSalarySlip,
+} from "../../action/posts";
 import { useParams } from "react-router-dom";
 import Panel from "../Panel/Panel";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -46,6 +50,24 @@ const PayslipDisplay = () => {
       }
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  // Logic for deleting the entry......!!!
+  const deleteEntry = (index) => {
+    if (window.confirm("Are you sure you want to delete this?")) {
+      dispatch(deleteSalarySlip(currentId, index))
+        .then(() => {
+          setIsLoading(true);
+          // setEntries(entries.filter((_, i) => i !== index)); // remove from UI
+          alert("✅ Deleted successfully!");
+          // navigate(0); // ✅ refresh current route (React way of reload)
+          dispatch(getSalarySlipData()); // 🔄 refresh data
+        })
+        .catch((err) => {
+          alert("Error While Deleting!");
+          return console.log("Error in deleting the file..!!");
+        });
     }
   };
 
@@ -154,6 +176,7 @@ const PayslipDisplay = () => {
                 currentId={currentId}
                 salary={salary}
                 isLoading={isLoading}
+                deleteEntry={deleteEntry}
               />
             </Card>
           </Grid>

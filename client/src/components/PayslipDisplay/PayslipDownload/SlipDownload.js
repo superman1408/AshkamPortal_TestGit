@@ -16,7 +16,14 @@ import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CorporateImage from "../../../assets/salary.png";
 
-const SlipDownload = ({ posts, currentId, salary, isLoading, onDelete }) => {
+const SlipDownload = ({
+  posts,
+  currentId,
+  salary,
+  isLoading,
+  onDelete,
+  deleteEntry,
+}) => {
   const handleDownload = async (slip) => {
     try {
       const binaryDataBuffer = slip.pdf.data;
@@ -161,7 +168,7 @@ const SlipDownload = ({ posts, currentId, salary, isLoading, onDelete }) => {
                       variant="outlined"
                       color="error"
                       size="small"
-                      onClick={() => onDelete?.(slip)}
+                      onClick={() => deleteEntry()}
                       startIcon={<DeleteIcon />}
                     >
                       Delete

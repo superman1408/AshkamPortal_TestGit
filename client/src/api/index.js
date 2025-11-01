@@ -76,6 +76,8 @@ export const salarySlipData = (id, formData) =>
 
 export const fetchSalarySlipData = () => API.get("/posts/salary/slip");
 
+export const deleteSalarySlip = (id) => API.delete(`/posts/${id}`);
+
 export const leaveList = (formData, id) =>
   API.patch(`/posts/${id}/leavelist`, formData);
 

@@ -15,6 +15,7 @@ import {
   SALARY_ALL,
   LEAVELIST,
   PRESENTLIST,
+  SALARY_SLIP_DELETE,
 } from "../constants/actionTypes";
 
 import * as API from "../api";
@@ -177,8 +178,6 @@ export const dailyAttendance = (formdata) => async (dispatch) => {
   }
 };
 
-
-
 // -----------------------------Update Attendance --------------------------
 export const updateAttendance = (id, post) => async (dispatch) => {
   console.log("Code is workinng");
@@ -203,8 +202,6 @@ export const deleteAttendance = (id) => async (dispatch) => {
     console.log(error);
   }
 };
-
-
 
 export const logList = (formData, id) => async (dispatch) => {
   console.log("Hello I am working at loglist!!");
@@ -248,6 +245,17 @@ export const getSalarySlipData = () => async (dispatch) => {
     const { data } = await API.fetchSalarySlipData();
 
     dispatch({ type: SALARY_ALL, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//----------------------------------------------For Deletion of salary slip-----------------------------------------------------
+export const deleteSalarySlip = (id) => async (dispatch) => {
+  try {
+    await API.deleteSalarySlip(id);
+
+    dispatch({ type: SALARY_SLIP_DELETE, payload: id });
   } catch (error) {
     console.log(error);
   }
