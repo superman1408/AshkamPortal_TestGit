@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import WeeklyActivity from "../WeeklyActivity/WeeklyActivity";
 import TotalEmployee from "../TotalEmployee/TotalEmployee";
 import AbsenteesDisplay from "../ManagingTeam/AbsenteesDisplay";
 import Calender from "../Calender/Calender";
 import Birthday from "../Birthday/Birthday";
-import { Box, Grid, Typography, Paper, Fab } from "@mui/material";
+import { Box, Grid, Typography, Paper, Fab, Button } from "@mui/material";
 import Panel from "../Panel/Panel";
 import Attendance from "../Attendance/Attendance";
 import Department from "../Department/Department";
@@ -18,6 +19,12 @@ import DiwaliGif from "../../assets/Diwali.gif";
 const Admin = ({ currentId }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
   const role = user.result.role;
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/attendance");
+  };
 
   // // 🔥 Firecracker function
   // const fireCrackers = () => {
@@ -138,6 +145,7 @@ const Admin = ({ currentId }) => {
             <Box mt={2}>
               <AbsenteesDisplay />
             </Box>
+            <Button onClick={handleClick}>Click Me</Button>
           </Grid>
         </Grid>
       </Box>

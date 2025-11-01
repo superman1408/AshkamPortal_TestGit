@@ -63,7 +63,6 @@ mongoose
         "Listening at " +
           `http://${HOST}:${PORT}` +
           "\nMongoDB database is connected..!!"
-        
       );
     })
   )

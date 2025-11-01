@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://192.168.168.110:8000/",
+  baseURL: "http://localhost:5000/",
   // baseURL: "http://localhost:8080/",
 });
 
@@ -113,3 +113,10 @@ export const updateTimesheet = (id, indexed, updatedTimesheet) =>
 
 export const deleteTimesheet = (id, indexed) =>
   API.delete(`/timesheet/${id}/deleteTimesheet/${indexed}`);
+
+export const uploadAttendanceFile = (formData) =>
+  API.post("/attend/attendance/upload", formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+
+export const fetchAttendanceFile = () => API.get("/attend/attendancefile");

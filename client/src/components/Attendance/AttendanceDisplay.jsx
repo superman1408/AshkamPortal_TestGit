@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 // import Evolve from "./UnderTrial/Evolve";
 import { getPosts } from "../../action/posts";
-import { getAttendancePosts } from "../../action/attendance";
+import { getAttendancePosts, getAttendanceFile } from "../../action/attendance";
 
 import AttendanceCombo from "./AttendanceCombo";
 import AttendanceDetail from "./AttendanceDetail";
@@ -21,6 +21,16 @@ const AttendanceDisplay = () => {
   const [isLoading, setIsLoading] = useState(true);
   const user = JSON.parse(localStorage.getItem("profile"));
   const role = user.result.role;
+
+  const { attendanceFiles, uploading, error } = useSelector(
+    (state) => state.attendance
+  );
+
+  useEffect(() => {
+    dispatch(getAttendanceFile());
+  }, [dispatch]);
+
+  console.log("attendanceUpload", attendanceFiles);
 
   // useEffect(() => {
   //   dispatch(getAttendancePosts());
@@ -88,6 +98,7 @@ const AttendanceDisplay = () => {
             currentId={currentId}
             attend={attend}
             posts={posts}
+            attendanceFiles={attendanceFiles}
           />
         </>
       )}

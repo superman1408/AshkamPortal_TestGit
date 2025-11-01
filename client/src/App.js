@@ -25,6 +25,7 @@ import Panel from "./components/Panel/Panel";
 import ArchiveTimesheet from "./components/ActivityDisplay/TimeSheet/ArchiveTimesheet";
 
 import Diwali1 from "./assets/Diwali2.gif";
+import AttendanceUpload from "./components/AttendanceUpload/AttendanceUpload";
 
 const drawerWidth = 0; // must match Panel
 const collapsedWidth = 0;
@@ -214,6 +215,12 @@ const App = () => {
                 />
                 <Route path="/aboutUs" exact element={<AboutUS />} />
                 <Route path="/home" exact element={<Dashboard />} />
+                <Route
+                  path="/attend/attendance/upload"
+                  exact
+                  element={<AttendanceUpload />}
+                />
+                {/* Please check spelling of each props inside route  */}
                 <Route
                   path="posts/:id/fullweeklyactivity"
                   exact

@@ -26,7 +26,7 @@ import Panel from "../Panel/Panel";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import LoadingSpinner from "../ReactSpinner/reactSpinner";
 
-const AttendanceDetail = ({ currentId, attend, posts }) => {
+const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
   const dispatch = useDispatch();
 
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -293,6 +293,14 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
     });
     return newArray;
   };
+
+  console.log("attendanceFiles", attendanceFiles);
+
+  const matchedPost = posts.find((post) => post._id === currentId);
+
+  const empAttendance = attendanceFiles.filter(
+    (item) => item.employeeId === matchedPost?.employeeId
+  );
 
   return (
     <div style={{ height: "auto" }}>
@@ -666,91 +674,95 @@ const AttendanceDetail = ({ currentId, attend, posts }) => {
                     <th style={headerDateCellStyle}>Date</th>
                     <th style={headerCellStyle}>Log In</th>
                     <th style={headerCellStyle}>Log Out</th>
-                    {role === "admin" ? (
+                    {/* {role === "admin" ? (
                       <th style={headerCellStyle}>Action</th>
                     ) : (
                       ""
-                    )}
+                    )} */}
                   </tr>
                 </thead>
 
                 <tbody>
-                  {array.map((item, index) => (
-                    <tr
-                      key={index}
-                      onClick={() => handleHoverDate(item.logDate)}
-                      style={{
-                        backgroundColor: "#fff",
-                        boxShadow: "0 2px 6px rgba(0, 0, 0, 0.05)",
-                        borderRadius: "12px",
-                        // cursor: "pointer",
-                        textAlign: "center",
-                      }}
-                    >
-                      <td
-                        style={{ ...cellStyle, borderRadius: "12px 0 0 12px" }}
-                      >
-                        {item?.logDate && (
-                          <>
-                            {item.logDate}{" "}
-                            <span style={logdayStyle}>
-                              {new Date(item.logDate).toLocaleDateString(
-                                "en-US",
-                                {
-                                  weekday: "long",
-                                }
-                              )}
-                            </span>
-                          </>
-                        )}
-                      </td>
-                      <td>
-                        <span style={loginStyle}>{item?.logIn}</span>
-                      </td>
-                      <td>
-                        <span style={logoutStyle}>{item?.logOut}</span>
-                      </td>
-                      {role === "admin" && (
-                        <>
+                  {empAttendance.map((item, index) =>
+                    item.dates.map((dateStr, i) => {
+                      const dateObj = new Date(dateStr);
+                      const formatDate = `${dateObj
+                        .getUTCDate()
+                        .toString()
+                        .padStart(2, "0")}/${(dateObj.getUTCMonth() + 1)
+                        .toString()
+                        .padStart(2, "0")}/${dateObj.getUTCFullYear()}`;
+
+                      // Find day and date
+                      const day = dateObj.getDay(); // 0=Sunday, 6=Saturday
+                      const date = dateObj.getDate();
+
+                      // 🧮 Find which week of the month it is
+                      const weekOfMonth = Math.ceil(date / 7);
+
+                      // ✅ Identify Sundays and 1st, 3rd, 5th Saturdays
+                      const isSunday = day === 0;
+                      const is2nd4thSaturday =
+                        day === 6 && (weekOfMonth === 2 || weekOfMonth === 4);
+
+                      const isHoliday = isSunday || is2nd4thSaturday;
+
+                      // 🎨 Set colors accordingly
+                      const dayColor = isHoliday ? "red" : "#494814ff";
+                      const rowBg = isHoliday ? "#fff5f5" : "#fff"; // subtle red tint
+
+                      return (
+                        <tr
+                          key={`${index}-${i}`}
+                          onClick={() => handleHoverDate(dateStr)}
+                          style={{
+                            backgroundColor: rowBg,
+                            boxShadow: "0 2px 6px rgba(0, 0, 0, 0.05)",
+                            borderRadius: "12px",
+                            textAlign: "center",
+                          }}
+                        >
                           <td
                             style={{
-                              display: "flex",
-                              justifyContent: "space-around",
-                              padding: "10px",
-                              textAlign: "center",
+                              ...cellStyle,
+                              borderRadius: "12px 0 0 12px",
                             }}
                           >
-                            <button
-                              id="editButton"
-                              style={{ fontFamily: "Roboto" }}
-                              onClick={() => editEntry(index)}
-                            >
-                              Edit
-                            </button>
-                            {/* <button
-                              id="deleteButton"
-                              style={{ fontFamily: "Roboto" }}
-                              onClick={() => deleteEntry(index)}
-                            >
-                              Delete
-                            </button> */}
-
-                            {role === "manager" && (
-                              <>
-                                <button
-                                  id="editButton"
-                                  style={{ fontFamily: "Roboto" }}
-                                  onClick={() => editEntry(index)}
-                                >
-                                  Edit
-                                </button>
-                              </>
-                            )}
+                            {formatDate}
+                            <span style={{ ...logdayStyle, color: dayColor }}>
+                              {dateObj.toLocaleDateString("en-US", {
+                                weekday: "long",
+                              })}
+                            </span>
                           </td>
-                        </>
-                      )}
-                    </tr>
-                  ))}
+                          <td>
+                            <span style={loginStyle}>{item?.inTimes[i]}</span>
+                          </td>
+                          <td>
+                            <span style={logoutStyle}>{item?.outTimes[i]}</span>
+                          </td>
+                          {/* {role === "admin" && (
+                            <td
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-around",
+                                padding: "10px",
+                                textAlign: "center",
+                              }}
+                            >
+                              <button
+                                id="editButton"
+                                style={{ fontFamily: "Roboto" }}
+                                onClick={() => editEntry(index)}
+                              >
+                                Edit
+                              </button>
+                            </td>
+                          )} */}
+                        </tr>
+                      );
+                    })
+                  )}
                 </tbody>
               </table>
             </div>

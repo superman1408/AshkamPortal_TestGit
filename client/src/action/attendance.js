@@ -3,6 +3,10 @@ import {
   LOGLIST,
   ATTEND_ALL,
   UPDATE_ATTENDANCE,
+  ATTENDANCE_UPLOAD_FAIL,
+  ATTENDANCE_UPLOAD_START,
+  ATTENDANCE_UPLOAD_SUCCESS,
+  FETCH_ATTENDANCEFILE,
 } from "../constants/actionTypes";
 
 export const logList = (formData, id) => async (dispatch) => {
@@ -50,3 +54,37 @@ export const updateAttendance =
 //     console.log(error);
 //   }
 // };
+
+export const uploadAttendanceFile = (formData) => async (dispatch) => {
+  console.log("Here Come data");
+
+  try {
+    dispatch({ type: ATTENDANCE_UPLOAD_START });
+
+    // Do NOT redeclare formData, just create a new FormData object
+    const dataToSend = new FormData();
+    dataToSend.append("file", formData); // append the file passed from frontend
+
+    const res = await API.uploadAttendanceFile(dataToSend);
+
+    dispatch({ type: ATTENDANCE_UPLOAD_SUCCESS, payload: res.data });
+  } catch (error) {
+    dispatch({
+      type: ATTENDANCE_UPLOAD_FAIL,
+      payload: error?.response?.data?.message || error.message,
+    });
+  }
+};
+
+export const getAttendanceFile = () => async (dispatch) => {
+  console.log("Here Tour");
+
+  try {
+    const { data } = await API.fetchAttendanceFile();
+
+    dispatch({ type: FETCH_ATTENDANCEFILE, payload: data });
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
