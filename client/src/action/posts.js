@@ -251,13 +251,26 @@ export const getSalarySlipData = () => async (dispatch) => {
 };
 
 //----------------------------------------------For Deletion of salary slip-----------------------------------------------------
+// export const deleteSalarySlip = () => async (dispatch) => {
+//   console.log("Here Comes Client");
+
+//   // try {
+//   //   await API.deleteSalarySlip(id, indexed);
+
+//   //   dispatch({ type: SALARY_SLIP_DELETE, payload: id });
+//   // } catch (error) {
+//   //   console.log(error);
+//   // }
+// };
+
 export const deleteSalarySlip = (id) => async (dispatch) => {
   try {
     await API.deleteSalarySlip(id);
-
     dispatch({ type: SALARY_SLIP_DELETE, payload: id });
+    return Promise.resolve(); // ✅ so that .then() works
   } catch (error) {
     console.log(error);
+    return Promise.reject(error);
   }
 };
 

@@ -422,14 +422,62 @@ export const salarySlipData = async (req, res) => {
   }
 };
 
+// export const deleteSalarySlip = async (req, res) => {
+//   const { id } = req.params;
+
+//   if (!mongoose.Types.ObjectId.isValid(id))
+//     return res.status(404).send("no post with that id found");
+
+//   await PaySlipModel.findByIdAndRemove(id);
+//   res.json({ message: "Post deleted successfully" });
+// };
+
+// Delete operation
+
+// export const deleteSalarySlip = async (req, res) => {
+//   const indexNumber = parseInt(req.params.indexed);
+//   const id = req.params.id;
+
+//   console.log(indexNumber);
+//   console.log(id);
+//   console.log("Hello Server side");
+
+//   // try {
+//   //   if (!mongoose.Types.ObjectId.isValid(id))
+//   //     return res.status(404).send("no post with that id found");
+
+//   //   await PaySlipModel.findByIdAndRemove(id);
+
+//   //   // if (!post) return res.status(404).send("No User Found");
+
+//   //   // post.title.splice(indexNumber, 1);
+
+//   //   // await post.save();
+
+//   //   res.status(200).json({ message: "Item deleted successfully" });
+//   // } catch (error) {
+//   //   res.status(500).json({ message: error.message });
+//   // }
+// };
+
+// controller/posts.js (or relevant controller file)
+
+// import PaySlipModel from "../models/paySlipModel.js";
+
 export const deleteSalarySlip = async (req, res) => {
-  const { id } = req.params;
+  try {
+    const { id } = req.params; // slip id from route
 
-  if (!mongoose.Types.ObjectId.isValid(id))
-    return res.status(404).send("no post with that id found");
+    const slip = await PaySlipModel.findById(id);
 
-  await PaySlipModel.findByIdAndRemove(id);
-  res.json({ message: "Post deleted successfully" });
+    if (!slip) return res.status(404).json({ message: "Slip not found" });
+
+    await slip.deleteOne();
+
+    res.status(200).json({ message: "Slip deleted successfully", id });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
 export const getSalary = async (req, res) => {

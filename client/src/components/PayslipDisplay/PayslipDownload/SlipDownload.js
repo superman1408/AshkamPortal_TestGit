@@ -169,7 +169,7 @@ const SlipDownload = ({
                       variant="outlined"
                       color="error"
                       size="small"
-                      onClick={() => deleteEntry()}
+                      onClick={() => deleteEntry(slip._id)}
                       startIcon={<DeleteIcon />}
                     >
                       Delete

@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://192.168.168.110:8000/",
-  // baseURL: "http://localhost:8080/",
+  // baseURL: "http://192.168.168.110:8000/",
+  baseURL: "http://localhost:8080/",
 });
 
 API.interceptors.request.use((req) => {
@@ -76,7 +76,11 @@ export const salarySlipData = (id, formData) =>
 
 export const fetchSalarySlipData = () => API.get("/posts/salary/slip");
 
-export const deleteSalarySlip = (id) => API.delete(`/posts/${id}`);
+// export const deleteSalarySlip = () =>
+//   API.delete(`/posts/salary/slip/deleteslip`);
+
+export const deleteSalarySlip = (id) =>
+  API.delete(`/posts/salary/slip/deleteslip/${id}`);
 
 export const leaveList = (formData, id) =>
   API.patch(`/posts/${id}/leavelist`, formData);

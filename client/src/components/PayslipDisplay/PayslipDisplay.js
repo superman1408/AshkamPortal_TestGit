@@ -4,6 +4,7 @@ import SlipDownload from "./PayslipDownload/SlipDownload";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Grid, Button, Typography, Card } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
 
 import {
   getPosts,
@@ -39,10 +40,9 @@ const PayslipDisplay = () => {
   const verify = () => {
     try {
       if (
-        // user.result.role === "admin" ||
+        user.result.role === "admin" ||
         (user.result.department.toLowerCase() === "human resource" &&
-          user.result.role === "manager") ||
-        user.result.role === "admin"
+          user.result.role === "manager")
       ) {
         return true;
       } else {
@@ -54,19 +54,55 @@ const PayslipDisplay = () => {
   };
 
   // Logic for deleting the entry......!!!
-  const deleteEntry = (index) => {
+  // const deleteEntry = (index) => {
+  //   if (window.confirm("Are you sure you want to delete this?")) {
+  //     dispatch(deleteSalarySlip(currentId, index))
+  //       .then(() => {
+  //         setIsLoading(true);
+  //         // setEntries(entries.filter((_, i) => i !== index)); // remove from UI
+  //         alert("✅ Deleted successfully!");
+  //         // navigate(0); // ✅ refresh current route (React way of reload)
+  //         dispatch(getSalarySlipData()); // 🔄 refresh data
+  //       })
+  //       .catch((err) => {
+  //         alert("Error While Deleting!");
+  //         return console.log("Error in deleting the file..!!");
+  //       });
+  //   }
+  // };
+
+  // const handleDelete = (id) => {
+  //   if (window.confirm("Are you sure you want to delete this?")) {
+  //     dispatch(deleteSalarySlip(id))
+  //       .then(() => {
+  //         setIsLoading(true);
+  //         alert("✅ Deleted successfully!");
+  //         dispatch(getSalarySlipData()).then(() => {
+  //           setIsLoading(true);
+  //         }); // 🔄 refresh data
+  //       })
+  //       .catch((err) => {
+  //         alert("Error While Deleting!");
+  //         return console.log("Error in deleting the file..!!");
+  //       });
+  //   }
+  // };
+  const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this?")) {
-      dispatch(deleteSalarySlip(currentId, index))
+      setIsLoading(true); // start loading early
+
+      dispatch(deleteSalarySlip(id))
         .then(() => {
-          setIsLoading(true);
-          // setEntries(entries.filter((_, i) => i !== index)); // remove from UI
+          return dispatch(getSalarySlipData()); // refresh data
+        })
+        .then(() => {
+          setIsLoading(false); // stop loading
           alert("✅ Deleted successfully!");
-          // navigate(0); // ✅ refresh current route (React way of reload)
-          dispatch(getSalarySlipData()); // 🔄 refresh data
         })
         .catch((err) => {
-          alert("Error While Deleting!");
-          return console.log("Error in deleting the file..!!");
+          setIsLoading(false);
+          alert("❌ Error while deleting!");
+          console.error("Error in deleting the file:", err);
         });
     }
   };
@@ -176,7 +212,7 @@ const PayslipDisplay = () => {
                 currentId={currentId}
                 salary={salary}
                 isLoading={isLoading}
-                deleteEntry={deleteEntry}
+                deleteEntry={handleDelete}
               />
             </Card>
           </Grid>
