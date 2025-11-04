@@ -40,6 +40,9 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
 
   const [editIndex, setEditIndex] = useState(-1);
 
+  const [selectedMonth, setSelectedMonth] = useState("");
+  const [selectedYear, setSelectedYear] = useState("");
+
   const [formData, setFormData] = useState({
     presentEmployee: "",
     absentEmployee: "",
@@ -254,7 +257,6 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
     navigate(-1); // this means "go back one step in history"
   };
 
- 
   //Logic for clearing the form.........
   const clearForm = () => {
     setLogData({ logDate: "", logIn: "", logOut: "" });
@@ -271,7 +273,6 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
       logIn: updatedArray[index].logIn,
       logOut: updatedArray[index].logOut,
     });
-
   };
 
   const updateArray = () => {
@@ -555,8 +556,8 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
                     </Card>
                   </div>
 
-                  {/* <div className="form-group" style={{ marginBottom: "20px" }}> */}
-                  {/* <label
+                  <div className="form-group" style={{ marginBottom: "20px" }}>
+                    <label
                       htmlFor="logDate"
                       style={{
                         display: "block",
@@ -567,8 +568,8 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
                       }}
                     >
                       Date:
-                    </label> */}
-                  {/* <input
+                    </label>
+                    <input
                       type="date"
                       id="logDate"
                       value={logData.logDate || ""}
@@ -583,9 +584,9 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
                         outlineColor: "#16355d",
                       }}
                     />
-                  </div> */}
+                  </div>
                   {/* LOG IN */}
-                  {/* <div className="form-group" style={{ marginBottom: "20px" }}>
+                  <div className="form-group" style={{ marginBottom: "20px" }}>
                     <label
                       htmlFor="logIn"
                       style={{
@@ -597,8 +598,8 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
                       }}
                     >
                       Log In Time:
-                    </label> */}
-                  {/* <input
+                    </label>
+                    <input
                       type="time"
                       id="logIn"
                       value={logData.logIn || ""}
@@ -613,9 +614,9 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
                         outlineColor: "#16355d",
                       }}
                     />
-                  </div> */}
+                  </div>
                   {/* LOG OUT */}
-                  {/* <div className="form-group" style={{ marginBottom: "20px" }}>
+                  <div className="form-group" style={{ marginBottom: "20px" }}>
                     <label
                       htmlFor="logOut"
                       style={{
@@ -643,10 +644,10 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
                         outlineColor: "#16355d",
                       }}
                     />
-                  </div> */}
+                  </div>
                   {/* SUBMIT BUTTON */}
-                  {/* <div style={{ textAlign: "right" }}> */}
-                  {/*<Button
+                  <div style={{ textAlign: "right" }}>
+                    <Button
                       type="submit"
                       variant="contained"
                       sx={{
@@ -660,8 +661,8 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
                       }}
                     >
                       Submit
-                    </Button>*/}
-                  {/* <button
+                    </Button>
+                    {/* <button
                       style={{
                         fontFamily: "Roboto",
                         cursor: isSubmitting ? "not-allowed" : "pointer",
@@ -681,7 +682,7 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
                         "Submit"
                       )}
                     </button> */}
-                  {/* </div> */}
+                  </div>
                 </div>
               </form>
             </>
@@ -734,6 +735,71 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
               Daily Time Records
             </Typography>
             <Divider sx={{ borderWidth: "3px", margin: "5px" }} />
+
+            {/* Month & Year Filters */}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "10px",
+                marginBottom: "15px",
+              }}
+            >
+              <select
+                value={selectedMonth}
+                onChange={(e) => setSelectedMonth(e.target.value)}
+                style={{
+                  padding: "6px 10px",
+                  borderRadius: "8px",
+                  border: "1px solid #ccc",
+                  outlineColor: "#16355d",
+                  fontFamily: "Roboto",
+                }}
+              >
+                <option value="">Select Month</option>
+                {[
+                  "January",
+                  "February",
+                  "March",
+                  "April",
+                  "May",
+                  "June",
+                  "July",
+                  "August",
+                  "September",
+                  "October",
+                  "November",
+                  "December",
+                ].map((month, index) => (
+                  <option key={index} value={index + 1}>
+                    {month}
+                  </option>
+                ))}
+              </select>
+
+              <select
+                value={selectedYear}
+                onChange={(e) => setSelectedYear(e.target.value)}
+                style={{
+                  padding: "6px 10px",
+                  borderRadius: "8px",
+                  border: "1px solid #ccc",
+                  outlineColor: "#16355d",
+                  fontFamily: "Roboto",
+                }}
+              >
+                <option value="">Select Year</option>
+                {Array.from({ length: 5 }, (_, i) => 2023 + i).map((year) => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <Divider sx={{ borderWidth: "3px", margin: "5px" }} />
+
             <div>
               <table
                 style={{
@@ -759,71 +825,77 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
 
                 <tbody>
                   {empAttendance.map((item, index) =>
-                    item.dates.map((dateStr, i) => {
-                      const dateObj = new Date(dateStr);
-                      const formatDate = `${dateObj
-                        .getUTCDate()
-                        .toString()
-                        .padStart(2, "0")}/${(dateObj.getUTCMonth() + 1)
-                        .toString()
-                        .padStart(2, "0")}/${dateObj.getUTCFullYear()}`;
+                    item.dates
+                      .filter((dateStr) => {
+                        const dateObj = new Date(dateStr);
+                        const month = dateObj.getMonth() + 1;
+                        const year = dateObj.getFullYear();
+                        return (
+                          (!selectedMonth ||
+                            month === parseInt(selectedMonth)) &&
+                          (!selectedYear || year === parseInt(selectedYear))
+                        );
+                      })
+                      .map((dateStr, i) => {
+                        const dateObj = new Date(dateStr);
+                        const formatDate = `${dateObj
+                          .getUTCDate()
+                          .toString()
+                          .padStart(2, "0")}/${(dateObj.getUTCMonth() + 1)
+                          .toString()
+                          .padStart(2, "0")}/${dateObj.getUTCFullYear()}`;
 
-                      // Find day and date
-                      const day = dateObj.getDay(); // 0=Sunday, 6=Saturday
-                      const date = dateObj.getDate();
+                        const day = dateObj.getDay();
+                        const date = dateObj.getDate();
+                        const weekOfMonth = Math.ceil(date / 7);
+                        const isSunday = day === 0;
+                        const is2nd4thSaturday =
+                          day === 6 && (weekOfMonth === 2 || weekOfMonth === 4);
+                        const isHoliday = isSunday || is2nd4thSaturday;
 
-                      // 🧮 Find which week of the month it is
-                      const weekOfMonth = Math.ceil(date / 7);
+                        const dayColor = isHoliday ? "white" : "#494814ff";
+                        const dayBg = isHoliday ? "red" : "#f5f376ff";
+                        const rowBg = isHoliday ? "#fcf0f0ff" : "#fff";
 
-                      // ✅ Identify Sundays and 1st, 3rd, 5th Saturdays
-                      const isSunday = day === 0;
-                      const is2nd4thSaturday =
-                        day === 6 && (weekOfMonth === 2 || weekOfMonth === 4);
-
-                      const isHoliday = isSunday || is2nd4thSaturday;
-
-                      // 🎨 Set colors accordingly
-                      const dayColor = isHoliday ? "white" : "#494814ff";
-                      const dayBg = isHoliday ? "red" : "#f5f376ff"; // yellow for regular days
-                      const rowBg = isHoliday ? "#fcf0f0ff" : "#fff"; // light tint on full row
-
-                      return (
-                        <tr
-                          key={`${index}-${i}`}
-                          onClick={() => handleHoverDate(dateStr)}
-                          style={{
-                            backgroundColor: rowBg,
-                            boxShadow: "0 2px 6px rgba(0, 0, 0, 0.05)",
-                            borderRadius: "12px",
-                            textAlign: "center",
-                          }}
-                        >
-                          <td
+                        return (
+                          <tr
+                            key={`${index}-${i}`}
+                            onClick={() => handleHoverDate(dateStr)}
                             style={{
-                              ...cellStyle,
-                              borderRadius: "12px 0 0 12px",
+                              backgroundColor: rowBg,
+                              boxShadow: "0 2px 6px rgba(0, 0, 0, 0.05)",
+                              borderRadius: "12px",
+                              textAlign: "center",
                             }}
                           >
-                            {formatDate}
-                            <span
+                            <td
                               style={{
-                                ...logdayStyle,
-                                color: dayColor,
-                                backgroundColor: dayBg,
+                                ...cellStyle,
+                                borderRadius: "12px 0 0 12px",
                               }}
                             >
-                              {dateObj.toLocaleDateString("en-US", {
-                                weekday: "long",
-                              })}
-                            </span>
-                          </td>
-                          <td>
-                            <span style={loginStyle}>{item?.inTimes[i]}</span>
-                          </td>
-                          <td>
-                            <span style={logoutStyle}>{item?.outTimes[i]}</span>
-                          </td>
-                          {/* {role === "admin" && (
+                              {formatDate}
+                              <span
+                                style={{
+                                  ...logdayStyle,
+                                  color: dayColor,
+                                  backgroundColor: dayBg,
+                                }}
+                              >
+                                {dateObj.toLocaleDateString("en-US", {
+                                  weekday: "long",
+                                })}
+                              </span>
+                            </td>
+                            <td>
+                              <span style={loginStyle}>{item?.inTimes[i]}</span>
+                            </td>
+                            <td>
+                              <span style={logoutStyle}>
+                                {item?.outTimes[i]}
+                              </span>
+                            </td>
+                            {/* {role === "admin" && (
                             <td
                               style={{
                                 display: "flex",
@@ -841,9 +913,9 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
                               </button>
                             </td>
                           )} */}
-                        </tr>
-                      );
-                    })
+                          </tr>
+                        );
+                      })
                   )}
                 </tbody>
               </table>
