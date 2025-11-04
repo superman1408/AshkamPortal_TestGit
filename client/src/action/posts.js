@@ -227,6 +227,19 @@ export const dailyEvent = (formData) => async (dispatch) => {
   }
 };
 
+// export const salarySlipData = (id, formData) => async (dispatch) => {
+//   try {
+//     const { data } = await API.salarySlipData(id, formData, {
+//       headers: {
+//         "Content-Type": "multipart/form-data",
+//       },
+//     });
+//     dispatch({ type: SALARY_SLIP, payload: data });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
 export const salarySlipData = (id, formData) => async (dispatch) => {
   try {
     const { data } = await API.salarySlipData(id, formData, {
@@ -234,9 +247,13 @@ export const salarySlipData = (id, formData) => async (dispatch) => {
         "Content-Type": "multipart/form-data",
       },
     });
+
     dispatch({ type: SALARY_SLIP, payload: data });
+
+    return Promise.resolve(data); // ✅ so that 'await' or '.then()' works
   } catch (error) {
-    console.log(error);
+    console.error("Upload error:", error);
+    return Promise.reject(error); // ✅ allows the component's 'catch' to trigger
   }
 };
 

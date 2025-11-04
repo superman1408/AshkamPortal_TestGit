@@ -51,10 +51,11 @@ const SlipDownload = ({
     <Card
       sx={{
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "flex-start",
-        minHeight: "100vh",
-        paddingTop: "50px",
+        // minHeight: "100vh",
+        paddingTop: "10px",
         backgroundColor: "#f0f4f8",
       }}
     >
@@ -66,6 +67,7 @@ const SlipDownload = ({
               key={index}
               sx={{
                 display: "flex",
+                flexDirection: "column",
                 justifyContent: "space-evenly",
                 flexWrap: "wrap",
                 gap: "20px",
@@ -73,6 +75,7 @@ const SlipDownload = ({
               }}
             >
               <Typography
+                align="center"
                 sx={{
                   fontFamily: "Roboto",
                   fontWeight: "bold",
@@ -85,6 +88,7 @@ const SlipDownload = ({
                   : "Please complete your profile !!"}
               </Typography>
               <Typography
+                align="center"
                 sx={{
                   fontFamily: "Roboto",
                   fontWeight: "bold",

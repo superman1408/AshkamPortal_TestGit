@@ -187,7 +187,7 @@ import LoadingSpinner from "../../ReactSpinner/reactSpinner";
 const Uploading = ({ posts, currentId, setCurrentId }) => {
   const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState(null);
-  const [title, setTitle] = useState(null);
+  const [title, setTitle] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [titleOpen, setTitleOpen] = useState(false);
 

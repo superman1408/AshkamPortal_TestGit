@@ -3,8 +3,11 @@ import Uploading from "./PayslipLayout/Uploading";
 import SlipDownload from "./PayslipDownload/SlipDownload";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Grid, Button, Typography, Card } from "@mui/material";
+import { Grid, Button, Typography, Card, Box } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
+
+import LoadingSpinner from ".././ReactSpinner/reactSpinner";
+import CircularProgress from "@mui/material";
 
 import {
   getPosts,
@@ -87,23 +90,26 @@ const PayslipDisplay = () => {
   //       });
   //   }
   // };
-  const handleDelete = (id) => {
-    if (window.confirm("Are you sure you want to delete this?")) {
-      setIsLoading(true); // start loading early
+  //
 
-      dispatch(deleteSalarySlip(id))
-        .then(() => {
-          return dispatch(getSalarySlipData()); // refresh data
-        })
-        .then(() => {
-          setIsLoading(false); // stop loading
-          alert("✅ Deleted successfully!");
-        })
-        .catch((err) => {
-          setIsLoading(false);
-          alert("❌ Error while deleting!");
-          console.error("Error in deleting the file:", err);
-        });
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to delete this?")) {
+      try {
+        setIsLoading(true); // Show loading spinner/button
+
+        // Optional: brief info message before actual delete
+        alert("🕓 Deleting the file, please wait...");
+
+        await dispatch(deleteSalarySlip(id)); // Delete API call
+        await dispatch(getSalarySlipData()); // Refresh data
+
+        alert("✅ Deleted successfully!");
+      } catch (err) {
+        console.error("Error while deleting the file:", err);
+        alert("❌ Error while deleting!");
+      } finally {
+        setIsLoading(false); // Hide spinner/button
+      }
     }
   };
 
@@ -207,13 +213,29 @@ const PayslipDisplay = () => {
               >
                 Download Payslip
               </Typography>
-              <SlipDownload
-                posts={posts}
-                currentId={currentId}
-                salary={salary}
-                isLoading={isLoading}
-                deleteEntry={handleDelete}
-              />
+              {isLoading ? (
+                <Box
+                  sx={{
+                    textAlign: "center",
+                    padding: "2px",
+                    fontWeight: "bolder",
+                    fontFamily: "Roboto",
+                    color: "#16355d",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <LoadingSpinner size={40} color="#251010ff" />
+                </Box>
+              ) : (
+                <SlipDownload
+                  posts={posts}
+                  currentId={currentId}
+                  salary={salary}
+                  isLoading={isLoading}
+                  deleteEntry={handleDelete}
+                />
+              )}
             </Card>
           </Grid>
         </Grid>
