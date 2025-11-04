@@ -56,8 +56,6 @@ export const updateAttendance =
 // };
 
 export const uploadAttendanceFile = (formData) => async (dispatch) => {
-  console.log("Here Come data");
-
   try {
     dispatch({ type: ATTENDANCE_UPLOAD_START });
 
@@ -77,13 +75,10 @@ export const uploadAttendanceFile = (formData) => async (dispatch) => {
 };
 
 export const getAttendanceFile = () => async (dispatch) => {
-  console.log("Here Tour");
-
   try {
     const { data } = await API.fetchAttendanceFile();
 
     dispatch({ type: FETCH_ATTENDANCEFILE, payload: data });
-    console.log(data);
   } catch (error) {
     console.log(error);
   }

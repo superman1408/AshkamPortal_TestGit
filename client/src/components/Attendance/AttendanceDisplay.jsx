@@ -30,8 +30,6 @@ const AttendanceDisplay = () => {
     dispatch(getAttendanceFile());
   }, [dispatch]);
 
-  console.log("attendanceUpload", attendanceFiles);
-
   // useEffect(() => {
   //   dispatch(getAttendancePosts());
   //   // console.log(attend);
@@ -57,7 +55,6 @@ const AttendanceDisplay = () => {
     if (!attend) {
       dispatch(getAttendancePosts()).then(() => {
         // eslint-disable-next-line array-callback-return
-        console.log(attend);
 
         attend.map((a) => {
           if (a._id === currentId) {

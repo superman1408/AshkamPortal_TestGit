@@ -118,9 +118,6 @@ const WeeklyActivity = () => {
   const currentMonth = dayjs().month();
   const currentYear = dayjs().year();
 
-  console.log(currentMonth);
-  console.log(currentYear);
-
   // Convert the map back to an array
   const groupedEntries = Object.keys(groupedMap)
     .map((date) => ({
@@ -129,8 +126,6 @@ const WeeklyActivity = () => {
       overTime: groupedMap[date].overTime,
     }))
     .sort((a, b) => new Date(a.date) - new Date(b.date));
-
-  // console.log(groupedMap);
 
   const filteredEntries = groupedEntries.filter((entry) => {
     const entryDate = dayjs(entry.date);
@@ -141,8 +136,6 @@ const WeeklyActivity = () => {
       entryDate.year() === currentYear
     );
   });
-
-  console.log(filteredEntries);
 
   // Then extract your data for the graph
   const labels = filteredEntries.map(

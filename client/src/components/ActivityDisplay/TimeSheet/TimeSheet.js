@@ -759,7 +759,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                   alignItems="center"
                   justifyContent="space-between"
                 >
-                  <Grid item>
+                  <Grid>
                     <Box sx={{ display: "flex", gap: 1 }}>
                       {/* <Select>Year</Select> */}
                       <select

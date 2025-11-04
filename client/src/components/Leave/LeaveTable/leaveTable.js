@@ -322,16 +322,15 @@ const LeaveTable = ({ posts, currentId }) => {
   ];
 
   const verify = () => {
-    try {
-      return (
-        (user.result.department.toLowerCase() === "human resource" &&
-          user.result.role === "manager") ||
-        user.result.role === "admin"
-      );
-    } catch (error) {
-      console.log(error);
-      return false;
-    }
+    const department = user?.result?.department?.toLowerCase();
+    const role = user?.result?.role?.toLowerCase();
+
+    if (!department || !role) return false;
+
+    return (
+      (department === "human resource" && role === "manager") ||
+      role === "admin"
+    );
   };
 
   useEffect(() => {

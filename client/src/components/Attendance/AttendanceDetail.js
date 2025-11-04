@@ -25,6 +25,7 @@ import PunctualityRadarChart from "./AttendanceChart";
 import Panel from "../Panel/Panel";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import LoadingSpinner from "../ReactSpinner/reactSpinner";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 
 const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
   const dispatch = useDispatch();
@@ -253,10 +254,7 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
     navigate(-1); // this means "go back one step in history"
   };
 
-  // console.log(attend);
-  // console.log(posts);
-  // console.log(currentId);
-
+ 
   //Logic for clearing the form.........
   const clearForm = () => {
     setLogData({ logDate: "", logIn: "", logOut: "" });
@@ -266,7 +264,6 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
   //To Edit the entry....!!!!
   const editEntry = (index) => {
     let updatedArray = updateArray();
-    console.log("editEntry is working");
 
     setEditIndex(index);
     setLogData({
@@ -275,7 +272,6 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
       logOut: updatedArray[index].logOut,
     });
 
-    // console.log(updatedArray[index]);
   };
 
   const updateArray = () => {
@@ -293,8 +289,6 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
     });
     return newArray;
   };
-
-  console.log("attendanceFiles", attendanceFiles);
 
   const matchedPost = posts.find((post) => post._id === currentId);
 
@@ -478,10 +472,91 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
                     marginRight: "auto",
                   }}
                 >
-                  {/* DATE */}
+                  <div
+                    style={{
+                      borderRadius: "20px",
+                      padding: "32px 24px",
+                      maxWidth: "420px",
+                      background: "linear-gradient(145deg, #ffffff, #f3f6fa)",
+                      boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
+                      margin: "24px auto",
+                      backdropFilter: "blur(6px)",
+                      border: "1px solid rgba(22,53,93,0.1)",
+                      transition: "transform 0.2s ease, box-shadow 0.2s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = "translateY(-4px)";
+                      e.currentTarget.style.boxShadow =
+                        "0 12px 30px rgba(0,0,0,0.12)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = "translateY(0)";
+                      e.currentTarget.style.boxShadow =
+                        "0 8px 24px rgba(0,0,0,0.08)";
+                    }}
+                  >
+                    <Card
+                      sx={{
+                        borderRadius: "16px",
+                        padding: "24px",
+                        textAlign: "center",
+                        background: "linear-gradient(135deg, #f5f8fb, #ffffff)",
+                        boxShadow: "0 4px 10px rgba(0,0,0,0.08)",
+                        border: "1px solid rgba(22,53,93,0.1)",
+                        transition: "all 0.3s ease",
+                        "&:hover": {
+                          transform: "translateY(-4px)",
+                          boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
+                        },
+                      }}
+                    >
+                      <CloudUploadIcon
+                        sx={{ fontSize: 48, color: "#16355d", mb: 1 }}
+                      />
+                      <Typography
+                        sx={{
+                          fontFamily: "Roboto",
+                          fontWeight: "700",
+                          color: "#16355d",
+                          fontSize: "1.1rem",
+                          marginBottom: "6px",
+                        }}
+                      >
+                        Upload Attendance
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: "0.9rem",
+                          color: "#5b6c8a",
+                          marginBottom: "16px",
+                          fontFamily: "Inter, sans-serif",
+                        }}
+                      >
+                        Keep your records updated in one click.
+                      </Typography>
+                      <Button
+                        variant="contained"
+                        startIcon={<CloudUploadIcon />}
+                        sx={{
+                          background:
+                            "linear-gradient(90deg, #16355d, #1f497d)",
+                          borderRadius: "10px",
+                          textTransform: "none",
+                          fontWeight: 600,
+                          "&:hover": {
+                            background:
+                              "linear-gradient(90deg, #1f497d, #2b5ca8)",
+                          },
+                        }}
+                        onClick={() => navigate("/attend/attendance/upload")}
+                      >
+                        Go to Upload Section
+                      </Button>
+                    </Card>
+                  </div>
 
-                  <div className="form-group" style={{ marginBottom: "20px" }}>
-                    <label
+                  {/* <div className="form-group" style={{ marginBottom: "20px" }}> */}
+                  {/* <label
                       htmlFor="logDate"
                       style={{
                         display: "block",
@@ -492,8 +567,8 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
                       }}
                     >
                       Date:
-                    </label>
-                    <input
+                    </label> */}
+                  {/* <input
                       type="date"
                       id="logDate"
                       value={logData.logDate || ""}
@@ -508,9 +583,9 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
                         outlineColor: "#16355d",
                       }}
                     />
-                  </div>
+                  </div> */}
                   {/* LOG IN */}
-                  <div className="form-group" style={{ marginBottom: "20px" }}>
+                  {/* <div className="form-group" style={{ marginBottom: "20px" }}>
                     <label
                       htmlFor="logIn"
                       style={{
@@ -522,8 +597,8 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
                       }}
                     >
                       Log In Time:
-                    </label>
-                    <input
+                    </label> */}
+                  {/* <input
                       type="time"
                       id="logIn"
                       value={logData.logIn || ""}
@@ -538,9 +613,9 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
                         outlineColor: "#16355d",
                       }}
                     />
-                  </div>
+                  </div> */}
                   {/* LOG OUT */}
-                  <div className="form-group" style={{ marginBottom: "20px" }}>
+                  {/* <div className="form-group" style={{ marginBottom: "20px" }}>
                     <label
                       htmlFor="logOut"
                       style={{
@@ -568,10 +643,10 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
                         outlineColor: "#16355d",
                       }}
                     />
-                  </div>
+                  </div> */}
                   {/* SUBMIT BUTTON */}
-                  <div style={{ textAlign: "right" }}>
-                    {/*<Button
+                  {/* <div style={{ textAlign: "right" }}> */}
+                  {/*<Button
                       type="submit"
                       variant="contained"
                       sx={{
@@ -586,7 +661,7 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
                     >
                       Submit
                     </Button>*/}
-                    <button
+                  {/* <button
                       style={{
                         fontFamily: "Roboto",
                         cursor: isSubmitting ? "not-allowed" : "pointer",
@@ -605,8 +680,8 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
                       ) : (
                         "Submit"
                       )}
-                    </button>
-                  </div>
+                    </button> */}
+                  {/* </div> */}
                 </div>
               </form>
             </>
@@ -708,8 +783,9 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
                       const isHoliday = isSunday || is2nd4thSaturday;
 
                       // 🎨 Set colors accordingly
-                      const dayColor = isHoliday ? "red" : "#494814ff";
-                      const rowBg = isHoliday ? "#fff5f5" : "#fff"; // subtle red tint
+                      const dayColor = isHoliday ? "white" : "#494814ff";
+                      const dayBg = isHoliday ? "red" : "#f5f376ff"; // yellow for regular days
+                      const rowBg = isHoliday ? "#fcf0f0ff" : "#fff"; // light tint on full row
 
                       return (
                         <tr
@@ -729,7 +805,13 @@ const AttendanceDetail = ({ currentId, attend, posts, attendanceFiles }) => {
                             }}
                           >
                             {formatDate}
-                            <span style={{ ...logdayStyle, color: dayColor }}>
+                            <span
+                              style={{
+                                ...logdayStyle,
+                                color: dayColor,
+                                backgroundColor: dayBg,
+                              }}
+                            >
                               {dateObj.toLocaleDateString("en-US", {
                                 weekday: "long",
                               })}

@@ -133,8 +133,6 @@ function excelTimeToString(excelTime) {
 // =======================
 
 export const uploadAttendanceFile = async (req, res) => {
-  console.log("Here come the Cursor");
-
   try {
     if (!req.file) return res.status(400).json({ message: "No file uploaded" });
 
@@ -225,9 +223,7 @@ export const uploadAttendanceFile = async (req, res) => {
 export const getAttendanceFile = async (req, res) => {
   try {
     const postMessage = await Attendance.find({});
-    console.log(postMessage);
     res.status(200).json(postMessage);
-    // console.log("postMessage", postMessage);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
