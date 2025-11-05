@@ -9,24 +9,50 @@ const ComboBox = ({ posts, setCurrentId }) => {
     setCurrentId(value);
   };
 
+  // const formatName = (firstName, lastName) => {
+  //   if (typeof firstName === "string" && typeof lastName === "string") {
+  //     return (
+  //       firstName.charAt(0).toUpperCase() +
+  //       firstName.slice(1).toLowerCase() +
+  //       " " +
+  //       lastName.charAt(0).toUpperCase() +
+  //       lastName.slice(1).toLowerCase()
+  //     );
+  //   }
+  //   return ""; // Return an empty string if firstName or lastName is not a string
+  // };
+
+  // const sortedPosts = [...posts].sort((a, b) => {
+  //   const nameA = formatName(a.firstName, a.lastName);
+  //   const nameB = formatName(b.firstName, b.lastName);
+  //   return nameA.localeCompare(nameB);
+  // });
+
   const formatName = (firstName, lastName) => {
-    if (typeof firstName === "string" && typeof lastName === "string") {
-      return (
-        firstName.charAt(0).toUpperCase() +
-        firstName.slice(1).toLowerCase() +
-        " " +
-        lastName.charAt(0).toUpperCase() +
-        lastName.slice(1).toLowerCase()
-      );
-    }
-    return ""; // Return an empty string if firstName or lastName is not a string
+    const safeFirst = firstName ? String(firstName).trim() : "";
+    const safeLast = lastName ? String(lastName).trim() : "";
+
+    const formattedFirst =
+      safeFirst.length > 0
+        ? safeFirst.charAt(0).toUpperCase() + safeFirst.slice(1).toLowerCase()
+        : "";
+    const formattedLast =
+      safeLast.length > 0
+        ? safeLast.charAt(0).toUpperCase() + safeLast.slice(1).toLowerCase()
+        : "";
+
+    // Only join names that exist (avoids extra spaces)
+    return [formattedFirst, formattedLast].filter(Boolean).join(" ");
   };
 
-  const sortedPosts = [...posts].sort((a, b) => {
-    const nameA = formatName(a.firstName, a.lastName);
-    const nameB = formatName(b.firstName, b.lastName);
-    return nameA.localeCompare(nameB);
-  });
+  // Now sort safely
+  const sortedPosts = Array.isArray(posts)
+    ? [...posts].sort((a, b) => {
+        const nameA = formatName(a?.firstName, a?.lastName);
+        const nameB = formatName(b?.firstName, b?.lastName);
+        return nameA.localeCompare(nameB);
+      })
+    : [];
 
   return (
     <select

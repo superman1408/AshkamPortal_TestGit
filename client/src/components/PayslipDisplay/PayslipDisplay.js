@@ -97,11 +97,11 @@ const PayslipDisplay = () => {
       try {
         setIsLoading(true); // Show loading spinner/button
 
-        // Optional: brief info message before actual delete
-        alert("🕓 Deleting the file, please wait...");
-
         await dispatch(deleteSalarySlip(id)); // Delete API call
         await dispatch(getSalarySlipData()); // Refresh data
+
+        // Optional: brief info message before actual delete
+        alert("🕓 Deleting the file, please wait...");
 
         alert("✅ Deleted successfully!");
       } catch (err) {
