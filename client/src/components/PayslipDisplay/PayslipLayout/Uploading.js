@@ -224,7 +224,7 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
 
         alert("✅ Salary slip uploaded successfully.");
         setIsSubmitting(false);
-        window.location.reload();
+        // window.location.reload();
       } catch (err) {
         console.log(err);
         setIsSubmitting(false);

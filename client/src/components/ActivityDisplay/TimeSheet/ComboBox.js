@@ -1,7 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getPosts } from "../../../action/posts"; // adjust the import path if needed
 
 const ComboBox = ({ posts, setCurrentId }) => {
   const [selectedOption, setSelectedOption] = useState("");
+  const dispatch = useDispatch();
+
+  //  ✅ Fetch posts on component mount
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
 
   const handleChange = (event) => {
     const value = event.target.value;

@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getPosts } from "../../action/posts";
 
 const AbsentComboBox = ({ posts, setCurrentId }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
   const [selectedOption, setSelectedOption] = useState("");
+  const dispatch = useDispatch();
+
+  //  ✅ Fetch posts on component mount
+  useEffect(() => {
+    dispatch(getPosts());
+  }, []);
 
   const handleChange = (event) => {
     const value = event.target.value;

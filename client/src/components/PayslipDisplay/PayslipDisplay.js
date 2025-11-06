@@ -226,6 +226,7 @@ const PayslipDisplay = () => {
                   }}
                 >
                   <LoadingSpinner size={40} color="#251010ff" />
+                  Loading....
                 </Box>
               ) : (
                 <SlipDownload
