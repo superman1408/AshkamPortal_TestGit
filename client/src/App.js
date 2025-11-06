@@ -23,6 +23,7 @@ import AbsentDetailsDisplay from "./components/ManagingTeam/AbsentDetail/AbsentD
 // import Decommission from "./components/Decommission/Decommission";
 import Panel from "./components/Panel/Panel";
 import ArchiveTimesheet from "./components/ActivityDisplay/TimeSheet/ArchiveTimesheet";
+import AdminRoute from "./components/ProtectedRoute/AdminRoute";
 
 import Diwali1 from "./assets/Diwali2.gif";
 import AttendanceUpload from "./components/AttendanceUpload/AttendanceUpload";
@@ -218,7 +219,9 @@ const App = () => {
                 <Route
                   path="/attend/attendance/upload"
                   exact
-                  element={<AttendanceUpload />}
+                  element={
+                    <AdminRoute element={AttendanceUpload} user={user} />
+                  }
                 />
                 {/* Please check spelling of each props inside route  */}
                 <Route
