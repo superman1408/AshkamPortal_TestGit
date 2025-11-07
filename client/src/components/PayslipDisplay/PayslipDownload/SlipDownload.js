@@ -67,11 +67,12 @@ const SlipDownload = ({
               key={index}
               sx={{
                 display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-evenly",
+                flexDirection: "row",
+                justifyContent: "space-between",
                 flexWrap: "wrap",
                 gap: "20px",
                 padding: "20px",
+                width: "100%", // 👈 ensures full width available
               }}
             >
               <Typography

@@ -7,7 +7,7 @@ import { Grid, Button, Typography, Card, Box } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 
 import LoadingSpinner from ".././ReactSpinner/reactSpinner";
-import CircularProgress from "@mui/material";
+import { CircularProgress } from "@mui/material";
 
 import {
   getPosts,
@@ -31,12 +31,32 @@ const PayslipDisplay = () => {
 
   const [isLoading, setIsLoading] = useState(true);
 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     dispatch(getPosts());
+  //     await dispatch(getSalarySlipData());
+  //     setIsLoading(false);
+  //   };
+  //   fetchData();
+  // }, [dispatch]);
+
   useEffect(() => {
     const fetchData = async () => {
-      dispatch(getPosts());
-      await dispatch(getSalarySlipData());
-      setIsLoading(false);
+      try {
+        setIsLoading(true);
+
+        await Promise.all([
+          dispatch(getPosts()),
+          dispatch(getSalarySlipData()),
+        ]);
+
+        setIsLoading(false);
+      } catch (err) {
+        console.error("Error loading data:", err);
+        setIsLoading(false);
+      }
     };
+
     fetchData();
   }, [dispatch]);
 
@@ -216,17 +236,14 @@ const PayslipDisplay = () => {
               {isLoading ? (
                 <Box
                   sx={{
-                    textAlign: "center",
-                    padding: "2px",
-                    fontWeight: "bolder",
-                    fontFamily: "Roboto",
-                    color: "#16355d",
-                    display: "flex",
-                    alignItems: "center",
+                    display: "flex", // Make it a flex container
+                    alignItems: "center", // Vertically center
+                    justifyContent: "center",
+                    width: "100%",
+                    boxSizing: "border-box",
                   }}
                 >
-                  <LoadingSpinner size={40} color="#251010ff" />
-                  Loading....
+                  <CircularProgress />
                 </Box>
               ) : (
                 <SlipDownload

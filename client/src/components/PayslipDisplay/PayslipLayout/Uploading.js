@@ -190,6 +190,7 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
   const [title, setTitle] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [titleOpen, setTitleOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleFileChange = (e) => setSelectedFile(e.target.files[0]);
   const handleTitleChange = (e) => setTitle(e.target.value);
