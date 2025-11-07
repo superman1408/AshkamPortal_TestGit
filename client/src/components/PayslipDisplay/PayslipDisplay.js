@@ -70,19 +70,6 @@ const PayslipDisplay = () => {
       (department === "human resource" && role === "manager") ||
       role === "admin"
     );
-    try {
-      if (
-        user.result.role === "admin" ||
-        (user.result.department.toLowerCase() === "human resource" &&
-          user.result.role === "manager")
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   // Logic for deleting the entry......!!!
@@ -261,6 +248,7 @@ const PayslipDisplay = () => {
                   salary={salary}
                   isLoading={isLoading}
                   deleteEntry={handleDelete}
+                  verify={verify()}
                 />
               )}
             </Card>

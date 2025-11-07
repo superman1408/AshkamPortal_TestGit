@@ -24,6 +24,7 @@ const SlipDownload = ({
   isLoading,
   onDelete,
   deleteEntry,
+  verify,
 }) => {
   const handleDownload = async (slip) => {
     try {
@@ -46,6 +47,7 @@ const SlipDownload = ({
   const matchedPosts = useMemo(() => {
     return posts.filter((post) => post._id === currentId);
   }, [posts, currentId]);
+  console.log(verify);
 
   return (
     <Card
@@ -170,15 +172,18 @@ const SlipDownload = ({
                     >
                       Download
                     </Button>
-                    <Button
-                      variant="outlined"
-                      color="error"
-                      size="small"
-                      onClick={() => deleteEntry(slip._id)}
-                      startIcon={<DeleteIcon />}
-                    >
-                      Delete
-                    </Button>
+
+                    {verify && (
+                      <Button
+                        variant="outlined"
+                        color="error"
+                        size="small"
+                        onClick={() => deleteEntry(slip._id)}
+                        startIcon={<DeleteIcon />}
+                      >
+                        Delete
+                      </Button>
+                    )}
                   </Box>
                 </ListItem>
               </React.Fragment>
