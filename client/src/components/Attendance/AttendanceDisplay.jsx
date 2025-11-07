@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../action/posts";
 import { getAttendancePosts, getAttendanceFile } from "../../action/attendance";
 
-import AttendanceCombo from "./AttendanceCombo";
+// import AttendanceCombo from "./AttendanceCombo";
+import ComboBox from "../ComboBox/ComboBox";
 import AttendanceDetail from "./AttendanceDetail";
 
 const AttendanceDisplay = () => {
@@ -89,7 +90,7 @@ const AttendanceDisplay = () => {
       {!isLoading && (
         <>
           {verify() === true && (
-            <AttendanceCombo posts={posts} setCurrentId={setCurrentId} />
+            <ComboBox posts={posts} setCurrentId={setCurrentId} />
           )}
           <AttendanceDetail
             currentId={currentId}

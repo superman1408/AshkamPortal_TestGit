@@ -1444,6 +1444,24 @@ const AttendanceDetail = ({ currentId, posts, attendanceFiles }) => {
               }}
             >
               <select
+                value={selectedYear}
+                onChange={(e) => setSelectedYear(e.target.value)}
+                style={{
+                  padding: "6px 10px",
+                  borderRadius: "8px",
+                  border: "1px solid #ccc",
+                  outlineColor: "#16355d",
+                  fontFamily: "Roboto",
+                }}
+              >
+                <option value="">Select Year</option>
+                {availableYears.map((year) => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))}
+              </select>
+              <select
                 value={selectedMonth}
                 onChange={(e) => setSelectedMonth(e.target.value)}
                 style={{
@@ -1471,25 +1489,6 @@ const AttendanceDetail = ({ currentId, posts, attendanceFiles }) => {
                 ].map((month, index) => (
                   <option key={index} value={index + 1}>
                     {month}
-                  </option>
-                ))}
-              </select>
-
-              <select
-                value={selectedYear}
-                onChange={(e) => setSelectedYear(e.target.value)}
-                style={{
-                  padding: "6px 10px",
-                  borderRadius: "8px",
-                  border: "1px solid #ccc",
-                  outlineColor: "#16355d",
-                  fontFamily: "Roboto",
-                }}
-              >
-                <option value="">Select Year</option>
-                {availableYears.map((year) => (
-                  <option key={year} value={year}>
-                    {year}
                   </option>
                 ))}
               </select>

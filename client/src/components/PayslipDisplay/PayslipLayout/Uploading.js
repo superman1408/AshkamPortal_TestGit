@@ -180,6 +180,7 @@ import { useDispatch } from "react-redux";
 import { Card, Grid, Typography, Box, Button, TextField } from "@mui/material";
 import { salarySlipData } from "../../../action/posts";
 import ComboBox from "../../ComboBox/ComboBox";
+// import ComboBox from "./ComboBox";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import TitlePopup from "./TitlePopup";
 import LoadingSpinner from "../../ReactSpinner/reactSpinner";
