@@ -497,12 +497,18 @@ const Birthday = () => {
 
           </motion.div> */}
 
-          <marquee  style={{
+          <marquee
+            style={{
               whiteSpace: "nowrap",
               fontWeight: 600,
               fontFamily: "Roboto",
               color: "#16355d",
-            }}>{evento}</marquee>
+              padding: "10px",
+              backgroundColor: "#FBF1D8",
+            }}
+          >
+            {evento}
+          </marquee>
         </Box>
 
         {/* Admin Action */}
