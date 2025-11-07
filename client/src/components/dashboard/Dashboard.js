@@ -1,23 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import WeeklyActivity from "../WeeklyActivity/WeeklyActivity";
 import TotalEmployee from "../TotalEmployee/TotalEmployee";
 import AbsenteesDisplay from "../ManagingTeam/AbsenteesDisplay";
-import Calender from "../Calender/Calender";
 import Birthday from "../Birthday/Birthday";
-import { Box, Grid, Typography, Paper, Fab } from "@mui/material";
-import Panel from "../Panel/Panel";
+import { Box, Grid } from "@mui/material";
 import Attendance from "../Attendance/Attendance";
 import Department from "../Department/Department";
 import TimeDate from "../TimeDate/TimeDate";
 import Topbar from "../Topbar/Topbar";
 
-import confetti from "canvas-confetti";
-
-import DiwaliGif from "../../assets/Diwali.gif";
-
-const Admin = ({ currentId }) => {
+const Dashboard = ({ currentId }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
   const role = user.result.role;
+
+  const navigate = useNavigate();
 
   // // 🔥 Firecracker function
   // const fireCrackers = () => {
@@ -145,4 +142,4 @@ const Admin = ({ currentId }) => {
   );
 };
 
-export default Admin;
+export default Dashboard;

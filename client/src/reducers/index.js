@@ -11,6 +11,8 @@ import salary from "./salary";
 
 import timesheetData from "./timesheet";
 
+import attendance from "./attendanceUpload";
+
 export default combineReducers({
   posts,
   auth,
@@ -18,4 +20,5 @@ export default combineReducers({
   event,
   salary,
   timesheetData,
+  attendance,
 });

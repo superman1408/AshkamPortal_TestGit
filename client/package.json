@@ -2,7 +2,7 @@
   "name": "client",
   "version": "2.0.0",
   "private": true,
-  "proxy":  "http://localhost:8080/",
+  "proxy": "http://localhost:5000/",
   "dependencies": {
     "@coreui/react-chartjs": "^2.1.2",
     "@emotion/react": "^11.10.6",
@@ -33,6 +33,7 @@
     "bootstrap": "^5.3.1",
     "chart.js": "^3.9.1",
     "confetti-js": "^0.0.18",
+    "d3": "^7.9.0",
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.13",
     "dotenv": "^16.0.3",

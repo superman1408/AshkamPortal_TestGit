@@ -61,6 +61,15 @@ const PayslipDisplay = () => {
   }, [dispatch]);
 
   const verify = () => {
+    const department = user?.result?.department?.toLowerCase();
+    const role = user?.result?.role?.toLowerCase();
+
+    if (!department || !role) return false;
+
+    return (
+      (department === "human resource" && role === "manager") ||
+      role === "admin"
+    );
     try {
       if (
         user.result.role === "admin" ||
