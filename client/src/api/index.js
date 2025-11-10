@@ -76,6 +76,12 @@ export const salarySlipData = (id, formData) =>
 
 export const fetchSalarySlipData = () => API.get("/posts/salary/slip");
 
+// export const deleteSalarySlip = () =>
+//   API.delete(`/posts/salary/slip/deleteslip`);
+
+export const deleteSalarySlip = (id) =>
+  API.delete(`/posts/salary/slip/deleteslip/${id}`);
+
 export const leaveList = (formData, id) =>
   API.patch(`/posts/${id}/leavelist`, formData);
 
@@ -113,3 +119,10 @@ export const updateTimesheet = (id, indexed, updatedTimesheet) =>
 
 export const deleteTimesheet = (id, indexed) =>
   API.delete(`/timesheet/${id}/deleteTimesheet/${indexed}`);
+
+export const uploadAttendanceFile = (formData) =>
+  API.post("/attend/attendance/upload", formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+
+export const fetchAttendanceFile = () => API.get("/attend/attendancefile");

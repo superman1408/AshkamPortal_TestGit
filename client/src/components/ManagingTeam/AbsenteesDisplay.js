@@ -208,7 +208,7 @@
 
 // export default AbsenteesDisplay;
 
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React, { useEffect, useMemo, useCallback } from "react";
 import {
   Grid,
   Typography,
@@ -275,7 +275,6 @@ const AbsenteesDisplay = () => {
           // height: "150px",
 
           backdropFilter: "blur(8px)",
-          // background: "linear-gradient(145deg, #ffffffcc, #f3f4f6cc)",
           background: "smokewhite",
           // boxShadow: 1,
           borderRadius: "10px",
@@ -291,22 +290,16 @@ const AbsenteesDisplay = () => {
           "&:hover": {
             transform: "scale(1.02)",
             boxShadow: theme.shadows[6],
-
-            // p: 2,
-            // backdropFilter: "blur(8px)",
-            // // background: "linear-gradient(145deg, #ffffffcc, #f3f4f6cc)",
-            // background: "smokewhite",
-            // borderRadius: 3,
-            // transition: "0.3s",
-            // height: "100%",
-            // "&:hover": {
-            //   transform: "scale(1.02)",
-            //   boxShadow: theme.shadows[6],
           },
         }}
       >
         {/* Header */}
-        <Grid sx={{ display: "flex", flexDirection: "row" }} Card alignItems="center" gap={1} mb={2}>
+        <Grid
+          sx={{ display: "flex", flexDirection: "row" }}
+          alignItems="center"
+          gap={1}
+          mb={2}
+        >
           <IconButton
             sx={{ color: "#16355d" }}
             onClick={
@@ -330,7 +323,6 @@ const AbsenteesDisplay = () => {
         {/* Absentees Grid */}
         {absentees.length > 0 ? (
           <Grid
-            Card
             sx={{
               display: "grid",
               gridTemplateColumns: "repeat(4, 1fr)",

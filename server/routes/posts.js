@@ -17,6 +17,7 @@ import {
   leaveList,
   presentList,
   logList,
+  deleteSalarySlip,
 } from "../controllers/posts.js";
 
 import auth from "../middleware/auth.js";
@@ -25,7 +26,6 @@ import upload from "../middleware/storage.js";
 const router = express.Router();
 
 router.get("/", getPosts);
-
 
 router.get("/:id", getPost);
 
@@ -40,7 +40,6 @@ router.post("/:id/todo", auth, todoList);
 router.patch("/:id/:indexed/edit", auth, editTable);
 
 router.delete("/:id/deleteTable/:indexed", auth, deleteTable);
-
 
 // @desc    Get all skills data for autocomplete
 
@@ -57,6 +56,10 @@ router.post("/:id/loglist", logList);
 router.patch("/:id/leaveList", leaveList);
 
 router.post("/:id/salarySlipData", upload.single("pdf"), salarySlipData);
+
+// router.delete("/salary/slip/deleteslip", deleteSalarySlip);
+
+router.delete("/salary/slip/deleteslip/:id", deleteSalarySlip);
 
 router.get("/salary/slip", getSalary);
 

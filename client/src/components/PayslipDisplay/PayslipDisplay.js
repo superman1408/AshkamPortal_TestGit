@@ -3,9 +3,17 @@ import Uploading from "./PayslipLayout/Uploading";
 import SlipDownload from "./PayslipDownload/SlipDownload";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Grid, Button, Typography, Card } from "@mui/material";
+import { Grid, Button, Typography, Card, Box } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
 
-import { getPosts, getSalarySlipData } from "../../action/posts";
+import LoadingSpinner from ".././ReactSpinner/reactSpinner";
+import { CircularProgress } from "@mui/material";
+
+import {
+  getPosts,
+  getSalarySlipData,
+  deleteSalarySlip,
+} from "../../action/posts";
 import { useParams } from "react-router-dom";
 import Panel from "../Panel/Panel";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -23,29 +31,101 @@ const PayslipDisplay = () => {
 
   const [isLoading, setIsLoading] = useState(true);
 
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     dispatch(getPosts());
+  //     await dispatch(getSalarySlipData());
+  //     setIsLoading(false);
+  //   };
+  //   fetchData();
+  // }, [dispatch]);
+
   useEffect(() => {
     const fetchData = async () => {
-      dispatch(getPosts());
-      await dispatch(getSalarySlipData());
-      setIsLoading(false);
+      try {
+        setIsLoading(true);
+
+        await Promise.all([
+          dispatch(getPosts()),
+          dispatch(getSalarySlipData()),
+        ]);
+
+        setIsLoading(false);
+      } catch (err) {
+        console.error("Error loading data:", err);
+        setIsLoading(false);
+      }
     };
+
     fetchData();
   }, [dispatch]);
 
   const verify = () => {
-    try {
-      if (
-        // user.result.role === "admin" ||
-        (user.result.department.toLowerCase() === "human resource" &&
-          user.result.role === "manager") ||
-        user.result.role === "admin"
-      ) {
-        return true;
-      } else {
-        return false;
+    const department = user?.result?.department?.toLowerCase();
+    const role = user?.result?.role?.toLowerCase();
+
+    if (!department || !role) return false;
+
+    return (
+      (department === "human resource" && role === "manager") ||
+      role === "admin"
+    );
+  };
+
+  // Logic for deleting the entry......!!!
+  // const deleteEntry = (index) => {
+  //   if (window.confirm("Are you sure you want to delete this?")) {
+  //     dispatch(deleteSalarySlip(currentId, index))
+  //       .then(() => {
+  //         setIsLoading(true);
+  //         // setEntries(entries.filter((_, i) => i !== index)); // remove from UI
+  //         alert("✅ Deleted successfully!");
+  //         // navigate(0); // ✅ refresh current route (React way of reload)
+  //         dispatch(getSalarySlipData()); // 🔄 refresh data
+  //       })
+  //       .catch((err) => {
+  //         alert("Error While Deleting!");
+  //         return console.log("Error in deleting the file..!!");
+  //       });
+  //   }
+  // };
+
+  // const handleDelete = (id) => {
+  //   if (window.confirm("Are you sure you want to delete this?")) {
+  //     dispatch(deleteSalarySlip(id))
+  //       .then(() => {
+  //         setIsLoading(true);
+  //         alert("✅ Deleted successfully!");
+  //         dispatch(getSalarySlipData()).then(() => {
+  //           setIsLoading(true);
+  //         }); // 🔄 refresh data
+  //       })
+  //       .catch((err) => {
+  //         alert("Error While Deleting!");
+  //         return console.log("Error in deleting the file..!!");
+  //       });
+  //   }
+  // };
+  //
+
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to delete this?")) {
+      try {
+        setIsLoading(true); // Show loading spinner/button
+
+        await dispatch(deleteSalarySlip(id)); // Delete API call
+        await dispatch(getSalarySlipData()); // Refresh data
+
+        // Optional: brief info message before actual delete
+        alert("🕓 Deleting the file, please wait...");
+
+        alert("✅ Deleted successfully!");
+      } catch (err) {
+        console.error("Error while deleting the file:", err);
+        alert("❌ Error while deleting!");
+      } finally {
+        setIsLoading(false); // Hide spinner/button
       }
-    } catch (error) {
-      console.log(error);
     }
   };
 
@@ -149,12 +229,28 @@ const PayslipDisplay = () => {
               >
                 Download Payslip
               </Typography>
-              <SlipDownload
-                posts={posts}
-                currentId={currentId}
-                salary={salary}
-                isLoading={isLoading}
-              />
+              {isLoading ? (
+                <Box
+                  sx={{
+                    display: "flex", // Make it a flex container
+                    alignItems: "center", // Vertically center
+                    justifyContent: "center",
+                    width: "100%",
+                    boxSizing: "border-box",
+                  }}
+                >
+                  <CircularProgress />
+                </Box>
+              ) : (
+                <SlipDownload
+                  posts={posts}
+                  currentId={currentId}
+                  salary={salary}
+                  isLoading={isLoading}
+                  deleteEntry={handleDelete}
+                  verify={verify()}
+                />
+              )}
             </Card>
           </Grid>
         </Grid>

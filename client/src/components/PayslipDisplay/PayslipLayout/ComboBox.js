@@ -5,7 +5,9 @@ const ComboBox = ({ posts, setCurrentId }) => {
 
   const handleChange = (event) => {
     const value = event.target.value;
+
     setSelectedOption(value);
+
     setCurrentId(value);
   };
 
@@ -19,12 +21,15 @@ const ComboBox = ({ posts, setCurrentId }) => {
         lastName.slice(1).toLowerCase()
       );
     }
+
     return ""; // Return an empty string if firstName or lastName is not a string
   };
 
   const sortedPosts = [...posts].sort((a, b) => {
     const nameA = formatName(a.firstName, a.lastName);
+
     const nameB = formatName(b.firstName, b.lastName);
+
     return nameA.localeCompare(nameB);
   });
 
@@ -34,11 +39,17 @@ const ComboBox = ({ posts, setCurrentId }) => {
       onChange={handleChange}
       style={{
         color: "#16355d",
+
         float: "left",
+
         marginTop: "10px",
+
         width: "200px",
+
         backgroundColor: "#f2f2f2",
+
         fontFamily: "Roboto",
+
         fontSize: "15px",
       }}
     >
@@ -48,6 +59,7 @@ const ComboBox = ({ posts, setCurrentId }) => {
       >
         Select Employee
       </option>
+
       {sortedPosts.map((item, index) => {
         if (
           typeof item === "object" &&

@@ -180,6 +180,7 @@ import { useDispatch } from "react-redux";
 import { Card, Grid, Typography, Box, Button, TextField } from "@mui/material";
 import { salarySlipData } from "../../../action/posts";
 import ComboBox from "../../ComboBox/ComboBox";
+// import ComboBox from "./ComboBox";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import TitlePopup from "./TitlePopup";
 import LoadingSpinner from "../../ReactSpinner/reactSpinner";
@@ -187,9 +188,10 @@ import LoadingSpinner from "../../ReactSpinner/reactSpinner";
 const Uploading = ({ posts, currentId, setCurrentId }) => {
   const dispatch = useDispatch();
   const [selectedFile, setSelectedFile] = useState(null);
-  const [title, setTitle] = useState(null);
+  const [title, setTitle] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [titleOpen, setTitleOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleFileChange = (e) => setSelectedFile(e.target.files[0]);
   const handleTitleChange = (e) => setTitle(e.target.value);
@@ -224,7 +226,7 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
 
         alert("✅ Salary slip uploaded successfully.");
         setIsSubmitting(false);
-        window.location.reload();
+        // window.location.reload();
       } catch (err) {
         console.log(err);
         setIsSubmitting(false);
