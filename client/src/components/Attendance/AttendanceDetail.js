@@ -1560,7 +1560,7 @@ const [selectedYear, setSelectedYear] = useState(currentYear.toString());
                   </tr>
                 </thead>
 
-                <tbody>
+                {/* <tbody>
                   {empAttendance.map((item, index) =>
                     item.dates
                       .filter((dateStr) => {
@@ -1635,7 +1635,75 @@ const [selectedYear, setSelectedYear] = useState(currentYear.toString());
                         );
                       })
                   )}
+                </tbody> */}
+
+                <tbody>
+                  {empAttendance.flatMap((item, index) =>
+                    item.dates.map((dateStr, i) => {
+                      const dateObj = new Date(dateStr);
+                      const month = dateObj.getMonth() + 1;
+                      const year = dateObj.getFullYear();
+
+                      // ✅ Filter here so we keep correct index pairing
+                      if (
+                        (selectedMonth && month !== parseInt(selectedMonth)) ||
+                        (selectedYear && year !== parseInt(selectedYear))
+                      ) {
+                        return null;
+                      }
+
+                      const formatDate = `${dateObj
+                        .getUTCDate()
+                        .toString()
+                        .padStart(2, "0")}/${(dateObj.getUTCMonth() + 1)
+                        .toString()
+                        .padStart(2, "0")}/${dateObj.getUTCFullYear()}`;
+
+                      const day = dateObj.getDay();
+                      const date = dateObj.getDate();
+                      const weekOfMonth = Math.ceil(date / 7);
+                      const isSunday = day === 0;
+                      const is2nd4thSaturday = day === 6 && (weekOfMonth === 2 || weekOfMonth === 4);
+                      const isHoliday = isSunday || is2nd4thSaturday;
+
+                      const dayColor = isHoliday ? "white" : "#494814ff";
+                      const dayBg = isHoliday ? "red" : "#f5f376ff";
+                      const rowBg = isHoliday ? "#fcf0f0ff" : "#fff";
+
+                      return (
+                        <tr
+                          key={`${index}-${i}`}
+                          style={{
+                            backgroundColor: rowBg,
+                            boxShadow: "0 2px 6px rgba(0, 0, 0, 0.05)",
+                            borderRadius: "12px",
+                            textAlign: "center",
+                          }}
+                        >
+                          <td style={{ ...cellStyle, borderRadius: "12px 0 0 12px" }}>
+                            {formatDate}
+                            <span
+                              style={{
+                                ...logdayStyle,
+                                color: dayColor,
+                                backgroundColor: dayBg,
+                              }}
+                            >
+                              {dateObj.toLocaleDateString("en-US", { weekday: "long" })}
+                            </span>
+                          </td>
+                          <td>
+                            <span style={loginStyle}>{item.inTimes[i]}</span>
+                          </td>
+                          <td>
+                            <span style={logoutStyle}>{item.outTimes[i]}</span>
+                          </td>
+                        </tr>
+                      );
+                    }).filter(Boolean) // <-- ✅ filter here after mapping
+                  )}
                 </tbody>
+
               </table>
             </div>
           </Grid>
