@@ -8,7 +8,6 @@ import {
   TODOLIST,
   SKILLDATA,
   UPDATE_TABLE,
-  ATTEND_ALL,
   LOGLIST,
   DAILY_EVENT,
   EVENT_ALL,
@@ -16,6 +15,7 @@ import {
   SALARY_ALL,
   LEAVELIST,
   PRESENTLIST,
+  SALARY_SLIP_DELETE,
 } from "../constants/actionTypes";
 
 import * as API from "../api";
@@ -48,7 +48,6 @@ export const getPosts = () => async (dispatch) => {
 //     console.log(error);
 //   }
 // };
-
 
 // _________________________________________
 
@@ -179,20 +178,37 @@ export const dailyAttendance = (formdata) => async (dispatch) => {
   }
 };
 
-export const getAttendancePosts = () => async (dispatch) => {
-  try {
-    const { data } = await API.fetchAttendancePosts();
+// -----------------------------Update Attendance --------------------------
+export const updateAttendance = (id, post) => async (dispatch) => {
+  console.log("Code is workinng");
 
-    dispatch({ type: ATTEND_ALL, payload: data });
+  try {
+    const { data } = await API.updateAttendance(id, post);
+
+    dispatch({ type: UPDATE, payload: data });
   } catch (error) {
     console.log(error);
   }
 };
 
-export const logList = (post, id) => async (dispatch) => {
+// -----------------------------Delete Attendance------------------------------
+export const deleteAttendance = (id) => async (dispatch) => {
+  console.log("Code is working");
+
   try {
-    const { data } = await API.logList(post, id);
-    //console.log(data);
+    await API.deleteAttendance(id);
+    dispatch({ type: DELETE, payload: id });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const logList = (formData, id) => async (dispatch) => {
+  console.log("Hello I am working at loglist!!");
+
+  try {
+    const { data } = await API.logList(formData, id);
+
     dispatch({ type: LOGLIST, payload: data });
   } catch (error) {
     console.log(error);
@@ -211,6 +227,19 @@ export const dailyEvent = (formData) => async (dispatch) => {
   }
 };
 
+// export const salarySlipData = (id, formData) => async (dispatch) => {
+//   try {
+//     const { data } = await API.salarySlipData(id, formData, {
+//       headers: {
+//         "Content-Type": "multipart/form-data",
+//       },
+//     });
+//     dispatch({ type: SALARY_SLIP, payload: data });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
 export const salarySlipData = (id, formData) => async (dispatch) => {
   try {
     const { data } = await API.salarySlipData(id, formData, {
@@ -218,9 +247,13 @@ export const salarySlipData = (id, formData) => async (dispatch) => {
         "Content-Type": "multipart/form-data",
       },
     });
+
     dispatch({ type: SALARY_SLIP, payload: data });
+
+    return Promise.resolve(data); // ✅ so that 'await' or '.then()' works
   } catch (error) {
-    console.log(error);
+    console.error("Upload error:", error);
+    return Promise.reject(error); // ✅ allows the component's 'catch' to trigger
   }
 };
 
@@ -231,6 +264,30 @@ export const getSalarySlipData = () => async (dispatch) => {
     dispatch({ type: SALARY_ALL, payload: data });
   } catch (error) {
     console.log(error);
+  }
+};
+
+//----------------------------------------------For Deletion of salary slip-----------------------------------------------------
+// export const deleteSalarySlip = () => async (dispatch) => {
+//   console.log("Here Comes Client");
+
+//   // try {
+//   //   await API.deleteSalarySlip(id, indexed);
+
+//   //   dispatch({ type: SALARY_SLIP_DELETE, payload: id });
+//   // } catch (error) {
+//   //   console.log(error);
+//   // }
+// };
+
+export const deleteSalarySlip = (id) => async (dispatch) => {
+  try {
+    await API.deleteSalarySlip(id);
+    dispatch({ type: SALARY_SLIP_DELETE, payload: id });
+    return Promise.resolve(); // ✅ so that .then() works
+  } catch (error) {
+    console.log(error);
+    return Promise.reject(error);
   }
 };
 

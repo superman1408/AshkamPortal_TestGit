@@ -67,7 +67,32 @@ const AbsentDetails = ({ posts, currentId }) => {
             if (post._id === currentId) {
               return (
                 <FormControl key={index} fullWidth>
-                  <FormLabel>{post.firstName + " " + post.lastName}</FormLabel>
+                  <Grid sx={{ display: "flex" }}>
+                    <FormLabel>
+                      {post.firstName + " " + post.lastName}
+                    </FormLabel>
+
+                    <span
+                      style={{
+                        backgroundColor:
+                          post.presentStatus === "true"
+                            ? "green"
+                            : post.presentStatus === "false"
+                            ? "red"
+                            : "orange",
+                        color: "white",
+                        padding: "4px 8px",
+                        borderRadius: "8px",
+                        marginLeft: "20px",
+                      }}
+                    >
+                      {post.presentStatus === "true"
+                        ? "Present"
+                        : post.presentStatus === "false"
+                        ? "Absent"
+                        : "Unknown"}
+                    </span>
+                  </Grid>
                   <RadioGroup
                     row
                     onChange={(e) =>

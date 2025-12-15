@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React, { useState, useEffect } from "react";
 
 const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
@@ -640,9 +641,15 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">Activity Code</h5>
-            <button type="button" className="close" onClick={closetoggle}>
+            <Button
+              variant="contained"
+              type="button"
+              className="close"
+              sx={{ background: "linear-gradient(135deg, #0d325c, #16355d)" }}
+              onClick={closetoggle}
+            >
               <span aria-hidden="true">&times;</span>
-            </button>
+            </Button>
           </div>
           <div className="modal-body">
             <div>
@@ -771,13 +778,13 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
                 marginTop: "20px",
               }}
             >
-              <button
-                style={{ fontFamily: "Roboto" }}
+              <Button
                 variant="contained"
+                sx={{ background: "linear-gradient(135deg, #0d325c, #16355d)" }}
                 onClick={appendData}
               >
                 Save
-              </button>
+              </Button>
               {/* Add additional buttons or actions if needed */}
             </div>
           </div>

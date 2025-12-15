@@ -10,6 +10,19 @@ const attendanceSchema = mongoose.Schema({
   dailyevent: {
     type: String,
   },
+  logDate: {
+    type: [String],
+    default: [],
+  },
+  logIn: {
+    type: [String],
+    default: [],
+  },
+
+  logOut: {
+    type: [String],
+    default: [],
+  },
 });
 
 const AttendanceDetail = mongoose.model("AttendanceDetail", attendanceSchema);

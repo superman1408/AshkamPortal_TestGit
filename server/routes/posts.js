@@ -10,14 +10,14 @@ import {
   editTable,
   deleteTable,
   dailyAttendance,
-  getAttendancePosts,
-  logList,
   dailyEvent,
   getAllevents,
   salarySlipData,
   getSalary,
   leaveList,
   presentList,
+  logList,
+  deleteSalarySlip,
 } from "../controllers/posts.js";
 
 import auth from "../middleware/auth.js";
@@ -26,8 +26,6 @@ import upload from "../middleware/storage.js";
 const router = express.Router();
 
 router.get("/", getPosts);
-
-router.get("/attendanceposts", getAttendancePosts);
 
 router.get("/:id", getPost);
 
@@ -58,6 +56,10 @@ router.post("/:id/loglist", logList);
 router.patch("/:id/leaveList", leaveList);
 
 router.post("/:id/salarySlipData", upload.single("pdf"), salarySlipData);
+
+// router.delete("/salary/slip/deleteslip", deleteSalarySlip);
+
+router.delete("/salary/slip/deleteslip/:id", deleteSalarySlip);
 
 router.get("/salary/slip", getSalary);
 
