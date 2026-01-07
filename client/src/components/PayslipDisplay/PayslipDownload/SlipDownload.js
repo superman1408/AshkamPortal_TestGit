@@ -56,7 +56,7 @@ const SlipDownload = ({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "flex-start",
-        // minHeight: "100vh",
+        minHeight: "100vh",
         paddingTop: "10px",
         backgroundColor: "#f0f4f8",
       }}
