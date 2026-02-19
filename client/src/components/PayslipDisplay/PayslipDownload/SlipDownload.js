@@ -49,6 +49,10 @@ const SlipDownload = ({
   }, [posts, currentId]);
   console.log(verify);
 
+  const filteredSalary = useMemo(() => {
+    return salary.filter((slip) => currentId === slip.identify);
+  }, [salary, currentId]);
+
   return (
     <Card
       sx={{
@@ -128,66 +132,67 @@ const SlipDownload = ({
             padding: "10px",
           }}
         >
-          {salary
+          {/* {salary
             .filter((slip) => currentId === slip.identify)
-            .map((slip, index) => (
-              <React.Fragment key={index}>
-                <ListItem
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    borderRadius: 2,
-                    boxShadow: 1,
-                    mb: 1,
-                    p: 2,
-                    "&:hover": { backgroundColor: "#f5f5f5" },
-                  }}
-                >
-                  <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                    <ListItemAvatar>
-                      <Avatar
-                        src={CorporateImage}
-                        alt="Salary Slip"
-                        sx={{ width: 56, height: 56 }}
-                      />
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary={
-                        <Typography sx={{ color: "#16355d", fontWeight: 600 }}>
-                          {slip.title}
-                        </Typography>
-                      }
-                      secondary="PDF Document"
+            .map((slip, index) => ( */}
+          {filteredSalary.map((slip) => (
+            <React.Fragment key={slip._id}>
+              <ListItem
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  borderRadius: 2,
+                  boxShadow: 1,
+                  mb: 1,
+                  p: 2,
+                  "&:hover": { backgroundColor: "#f5f5f5" },
+                }}
+              >
+                <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                  <ListItemAvatar>
+                    <Avatar
+                      src={CorporateImage}
+                      alt="Salary Slip"
+                      sx={{ width: 56, height: 56 }}
                     />
-                  </Box>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={
+                      <Typography sx={{ color: "#16355d", fontWeight: 600 }}>
+                        {slip.title}
+                      </Typography>
+                    }
+                    secondary="PDF Document"
+                  />
+                </Box>
 
-                  <Box sx={{ display: "flex", gap: 1 }}>
+                <Box sx={{ display: "flex", gap: 1 }}>
+                  <Button
+                    variant="outlined"
+                    color="primary"
+                    size="small"
+                    onClick={() => handleDownload(slip)}
+                    startIcon={<FileDownloadIcon />}
+                  >
+                    Download
+                  </Button>
+
+                  {verify && (
                     <Button
                       variant="outlined"
-                      color="primary"
+                      color="error"
                       size="small"
-                      onClick={() => handleDownload(slip)}
-                      startIcon={<FileDownloadIcon />}
+                      onClick={() => deleteEntry(slip._id)}
+                      startIcon={<DeleteIcon />}
                     >
-                      Download
+                      Delete
                     </Button>
-
-                    {verify && (
-                      <Button
-                        variant="outlined"
-                        color="error"
-                        size="small"
-                        onClick={() => deleteEntry(slip._id)}
-                        startIcon={<DeleteIcon />}
-                      >
-                        Delete
-                      </Button>
-                    )}
-                  </Box>
-                </ListItem>
-              </React.Fragment>
-            ))}
+                  )}
+                </Box>
+              </ListItem>
+            </React.Fragment>
+          ))}
         </List>
       )}
     </Card>
