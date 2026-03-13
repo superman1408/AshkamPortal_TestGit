@@ -295,6 +295,9 @@ import {
   LinearScale,
 } from "chart.js";
 
+import FlipIcon from "@mui/icons-material/Flip";
+import { IconButton } from "@mui/material";
+
 Chart.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale);
 
 const LeaveTable = ({ posts, currentId }) => {
@@ -313,6 +316,8 @@ const LeaveTable = ({ posts, currentId }) => {
   const [leaveBalances, setLeaveBalances] = useState(initialLeaveBalances);
   const [selectedDate, setSelectedDate] = useState(null);
 
+  const [flipped, setFlipped] = useState(false);
+
   // Mock international holidays
   const holidays = [
     { date: "2026-01-01", name: "New Year's Day 🎉" },
@@ -328,6 +333,20 @@ const LeaveTable = ({ posts, currentId }) => {
     { date: "2026-10-20", name: "Dussehra 🏹" },
     { date: "2026-11-16", name: "Chhath Puja☀️🙏" },
     { date: "2026-12-25", name: "Christmas 🎄🎅🎁" },
+  ];
+
+  const restrictedHolidays = [
+    { date: "2026-01-14", name: "Makar Sankranti 🪁" },
+    { date: "2026-01-23", name: "Basant panchami 🙏" },
+    { date: "2026-03-05", name: "Holi🌈 " },
+    { date: "2026-04-03", name: "Good Friday 🕯️" },
+    { date: "2026-05-01", name: "Budha Purnima🙏 " },
+    { date: "2026-07-16", name: "Rath Yatra 🛕" },
+    { date: "2026-08-28", name: "Raksha Bandhan 🎁 " },
+    { date: "2026-09-04", name: "Janmashtami🦚 " },
+    { date: "2026-09-14", name: "Ganesh Chaturthi " },
+    { date: "2026-11-09", name: "Diwali🪔 " },
+    { date: "2026-11-11", name: "Bhai Dooj👧👦 " },
   ];
 
   const verify = () => {
@@ -461,38 +480,89 @@ const LeaveTable = ({ posts, currentId }) => {
                 bgcolor: "white",
                 borderRadius: 2,
                 boxShadow: 2,
+                perspective: "1000px",
               }}
             >
-              <Typography
-                variant="subtitle1"
-                sx={{ fontWeight: 600, color: "#16355d", mb: 2 }}
+              <Box
+                sx={{
+                  position: "relative",
+                  width: "100%",
+                  transformStyle: "preserve-3d",
+                  transition: "transform 0.6s",
+                  transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
+                }}
               >
-                Calendar & Holidays
-              </Typography>
-              {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DatePicker
-                  label="Select Date"
-                  value={selectedDate}
-                  onChange={(newValue) => setSelectedDate(newValue)}
-                  sx={{ width: "100%" }}
-                />
-              </LocalizationProvider> */}
-
-              <Box sx={{ mt: 2 }}>
-                <Typography
-                  variant="body2"
-                  color="textSecondary"
-                  fontWeight={800}
+                {/* FRONT SIDE */}
+                <Box
+                  sx={{
+                    backfaceVisibility: "hidden",
+                  }}
                 >
-                  CLOSED HOLIDAYS
-                </Typography>
-                <ul style={{ margin: 0, paddingLeft: "20px" }}>
-                  {holidays.map((holiday, i) => (
-                    <li key={i} style={{ fontSize: "14px", marginTop: "5px" }}>
-                      {holiday.date} — {holiday.name}
-                    </li>
-                  ))}
-                </ul>
+                  <Box
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      fontWeight={800}
+                    >
+                      CLOSED HOLIDAYS
+                    </Typography>
+
+                    <IconButton size="small" onClick={() => setFlipped(true)}>
+                      <FlipIcon />
+                    </IconButton>
+                  </Box>
+
+                  <ul style={{ margin: 0, paddingLeft: "20px" }}>
+                    {holidays.map((holiday, i) => (
+                      <li
+                        key={i}
+                        style={{ fontSize: "14px", marginTop: "5px" }}
+                      >
+                        {holiday.date} — {holiday.name}
+                      </li>
+                    ))}
+                  </ul>
+                </Box>
+
+                {/* BACK SIDE */}
+                <Box
+                  sx={{
+                    position: "absolute",
+                    top: 0,
+                    width: "100%",
+                    transform: "rotateY(180deg)",
+                    backfaceVisibility: "hidden",
+                  }}
+                >
+                  <Box
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      fontWeight={800}
+                    >
+                      RESTRICTED HOLIDAYS
+                    </Typography>
+
+                    <IconButton size="small" onClick={() => setFlipped(false)}>
+                      <FlipIcon />
+                    </IconButton>
+                  </Box>
+
+                  <ul style={{ margin: 0, paddingLeft: "20px" }}>
+                    {restrictedHolidays.map((holiday, i) => (
+                      <li
+                        key={i}
+                        style={{ fontSize: "14px", marginTop: "5px" }}
+                      >
+                        {holiday.date} — {holiday.name}
+                      </li>
+                    ))}
+                  </ul>
+                </Box>
               </Box>
             </Box>
           </Grid>
