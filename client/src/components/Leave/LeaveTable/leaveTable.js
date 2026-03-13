@@ -315,10 +315,19 @@ const LeaveTable = ({ posts, currentId }) => {
 
   // Mock international holidays
   const holidays = [
-    { date: "2025-10-20", name: "Diwali" },
-    { date: "2025-10-27", name: "Chhath Puja" },
-    { date: "2025-12-25", name: "Christmas Day" },
-    { date: "2026-01-01", name: "Happy New Year 2026" },
+    { date: "2026-01-01", name: "New Year's Day 🎉" },
+    { date: "2026-01-26", name: "Republic Day 🏛️ 🏳️‍🌈" },
+    { date: "2026-03-04", name: "Holi 🌈" },
+    { date: "2026-03-21", name: "Eid 🌙" },
+    { date: "2026-03-26", name: "Ram Navmi 🚩" },
+    { date: "2026-05-27", name: "Bakrid 🌙" },
+    { date: "2026-06-26", name: "Muharram 🕌" },
+    { date: "2026-08-15", name: "Independance Day ✨🏳️‍🌈" },
+    { date: "2026-10-02", name: "Gandhi jayanti 🕊️" },
+    { date: "2026-10-19", name: "Maha navami 💃 🪔 🌺" },
+    { date: "2026-10-20", name: "Dussehra 🏹" },
+    { date: "2026-11-16", name: "Chhath Puja☀️🙏" },
+    { date: "2026-12-25", name: "Christmas 🎄🎅🎁" },
   ];
 
   const verify = () => {
@@ -473,9 +482,9 @@ const LeaveTable = ({ posts, currentId }) => {
                 <Typography
                   variant="body2"
                   color="textSecondary"
-                  fontWeight={600}
+                  fontWeight={800}
                 >
-                  Upcoming Holidays:
+                  CLOSED HOLIDAYS
                 </Typography>
                 <ul style={{ margin: 0, paddingLeft: "20px" }}>
                   {holidays.map((holiday, i) => (
