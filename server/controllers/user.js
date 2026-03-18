@@ -105,6 +105,8 @@ export const reset = async (req, res) => {
     existingUser.password = hashedPassword;
 
     await existingUser.save();
+    console.log("PASSWORD IS RESETTING PLEASE WAIT......!!");
+    
 
     res.status(200).json({ message: "Password updated successfully" });
   } catch (error) {
