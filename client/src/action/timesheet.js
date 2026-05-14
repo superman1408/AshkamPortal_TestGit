@@ -36,19 +36,20 @@ export const getTimesheetPosts = (userId) => async (dispatch) => {
 };
 
 // // -----------------------------Update Timesheet --------------------------
-export const updateTimesheet = (id, indexed, updatedTimesheet) => async (dispatch) => {
-  console.log("Code is workinng");
-  try {
-    const { data } = await API.updateTimesheet(id, indexed, updatedTimesheet);
-    console.log("data", data);
+export const updateTimesheet =
+  (id, indexed, updatedTimesheet) => async (dispatch) => {
+    console.log("Code is workinng");
+    try {
+      const { data } = await API.updateTimesheet(id, indexed, updatedTimesheet);
+      console.log("data", data);
 
-    dispatch({ type: UPDATE_TIMESHEET, payload: data });
-  } catch (error) {
-    console.log(error);
-  }
-};
+      dispatch({ type: UPDATE_TIMESHEET, payload: data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-// // -----------------------------Delete Timesheet------------------------------
+// -----------------------------Delete Timesheet------------------------------
 export const deleteTimesheet = (id, indexed) => async (dispatch) => {
   try {
     await API.deleteTimesheet(id, indexed);
