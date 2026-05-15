@@ -61,7 +61,7 @@ router.post("/:id/salarySlipData", upload.single("pdf"), salarySlipData);
 
 router.delete("/salary/slip/deleteslip/:id", deleteSalarySlip);
 
-router.get("/salary/slip", getSalary);
+router.get("/salary/slip/:id", getSalary);
 
 router.patch("/:id/presentList", presentList);
 

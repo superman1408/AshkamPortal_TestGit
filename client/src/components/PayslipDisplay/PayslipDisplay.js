@@ -47,7 +47,7 @@ const PayslipDisplay = () => {
 
         await Promise.all([
           dispatch(getPosts()),
-          dispatch(getSalarySlipData()),
+          dispatch(getSalarySlipData(id)),
         ]);
 
         setIsLoading(false);
@@ -58,7 +58,7 @@ const PayslipDisplay = () => {
     };
 
     fetchData();
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const verify = () => {
     const department = user?.result?.department?.toLowerCase();
