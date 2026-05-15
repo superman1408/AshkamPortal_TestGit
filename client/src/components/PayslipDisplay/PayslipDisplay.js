@@ -196,7 +196,7 @@ const PayslipDisplay = () => {
                     fontWeight={600}
                     sx={{
                       textAlign: "center",
-                      padding: "2px",
+                      padding: "8px",
                       fontWeight: "bolder",
                       fontFamily: "Roboto",
                       color: "#16355d",

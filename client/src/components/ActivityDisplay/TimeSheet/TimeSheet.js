@@ -115,7 +115,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
               setEditIndex(-1); // Reset edit index
               alert("✅ Updated Data successfully!");
               dispatch(getTimesheetPosts()); // 🔄 refresh data
-            }
+            },
           );
         } else {
           setEntries([...entries, newEntry]);
@@ -134,7 +134,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
       }
     } else {
       alert(
-        'Invalid entry! Please check your input values and try again. Selected Date must not fall under "SUNDAY" & 2nd-4th "SATURDAY".'
+        'Invalid entry! Please check your input values and try again. Selected Date must not fall under "SUNDAY" & 2nd-4th "SATURDAY".',
       );
       setIsSubmitting(false); // Reset only if validation fails
     }
@@ -170,7 +170,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
 
     const totalNetTime = entriesForCurrentWeek.reduce(
       (total, entry) => total + entry.netTime,
-      0
+      0,
     );
 
     return totalNetTime + newEntry.netTime <= 9;
@@ -184,7 +184,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
       (currentDay === 6 && isSecondOrFourthSaturday(selectedDate));
     if (isInvalidDate) {
       alert(
-        'Invalid entry! Please check your input values and try again. Selected Date must not fall under "SUNDAY" & 2nd-4th "SATURDAY".'
+        'Invalid entry! Please check your input values and try again. Selected Date must not fall under "SUNDAY" & 2nd-4th "SATURDAY".',
       );
       window.location.reload();
     } else {
@@ -790,9 +790,9 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                         {Array.from(
                           new Set(
                             array.map((entry) =>
-                              new Date(entry.date).getFullYear()
-                            )
-                          )
+                              new Date(entry.date).getFullYear(),
+                            ),
+                          ),
                         )
                           .sort((a, b) => b - a) // descending order
                           .map((year, index) => (
@@ -1145,7 +1145,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                             (role === "admin" && isStatus === true
                               ? array
                               : filteredArray.sort(
-                                  (a, b) => new Date(a.date) - new Date(b.date)
+                                  (a, b) => new Date(a.date) - new Date(b.date),
                                 )
                             ).map((data, index) => (
                               <tr key={index}>
