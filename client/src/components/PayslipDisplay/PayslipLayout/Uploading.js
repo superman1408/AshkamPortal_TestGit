@@ -193,7 +193,20 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
   const [titleOpen, setTitleOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  const handleFileChange = (e) => setSelectedFile(e.target.files[0]);
+  // const handleFileChange = (e) => setSelectedFile(e.target.files[0]);
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      setSelectedFile(file);
+
+      // Auto Preview
+      const fileURL = URL.createObjectURL(file);
+      window.open(fileURL, "_blank");
+    }
+  };
+
   const handleTitleChange = (e) => setTitle(e.target.value);
   const togglePopup = () => setTitleOpen(!titleOpen);
 
@@ -207,7 +220,7 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
 
       if (fileSizeInMB > MAX_FILE_SIZE_MB) {
         alert(
-          `⚠️ File size exceeds ${MAX_FILE_SIZE_MB} MB. Please upload a smaller file.`
+          `⚠️ File size exceeds ${MAX_FILE_SIZE_MB} MB. Please upload a smaller file.`,
         );
         setIsSubmitting(false);
         return;
@@ -221,7 +234,7 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
         await dispatch(
           salarySlipData(currentId, formData, {
             headers: { "Content-Type": "multipart/form-data" },
-          })
+          }),
         );
 
         alert("✅ Salary slip uploaded successfully.");
@@ -240,85 +253,145 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
   return (
     <Grid item xs={12}>
       <Card sx={{ p: 3, maxWidth: 900, margin: "auto" }}>
-        <Grid
-          container
-          spacing={3}
-          alignItems="center"
-          justifyContent="space-between"
-        >
-          {/* ComboBox Selection */}
-          <Grid item xs={12} md={4}>
-            <ComboBox posts={posts} setCurrentId={setCurrentId} />
-          </Grid>
+        <Grid container spacing={3} alignItems="center">
+          <Grid
+            container
+            spacing={3}
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            {/* ComboBox Selection */}
+            <Grid item xs={12} md={4}>
+              <ComboBox posts={posts} setCurrentId={setCurrentId} />
+            </Grid>
 
-          {/* File Upload Section */}
-          <Grid item xs={12} md={5}>
-            <Box
-              display="flex"
-              flexDirection={{ xs: "column", sm: "row" }}
-              alignItems="center"
-              gap={2}
-            >
-              {/* Title Input */}
-              <TextField
-                label="Enter Title"
-                value={title || ""}
-                onChange={handleTitleChange}
-                onFocus={togglePopup}
-                variant="outlined"
-                size="small"
-                InputProps={{
-                  readOnly: true, // disables typing
-                }}
-                sx={{ flex: 1 }}
-              />
-              {titleOpen && (
-                <TitlePopup setTitle={setTitle} setTitleOpen={setTitleOpen} />
-              )}
+            {/* File Upload Section */}
+            <Grid item xs={12} md={5}>
+              <Box
+                display="flex"
+                flexDirection={{ xs: "column", sm: "row" }}
+                alignItems="center"
+                gap={2}
+              >
+                {/* Title Input */}
+                <TextField
+                  label="Enter Title"
+                  value={title || ""}
+                  onChange={handleTitleChange}
+                  onFocus={togglePopup}
+                  variant="outlined"
+                  size="small"
+                  InputProps={{
+                    readOnly: true, // disables typing
+                  }}
+                  sx={{ flex: 1 }}
+                />
+                {titleOpen && (
+                  <TitlePopup setTitle={setTitle} setTitleOpen={setTitleOpen} />
+                )}
 
-              {/* File Input */}
+                {/* File Input */}
+                <Button
+                  variant="contained"
+                  component="label"
+                  sx={{ backgroundColor: "#16355d" }}
+                >
+                  Add File
+                  <input
+                    type="file"
+                    hidden
+                    onChange={handleFileChange}
+                    accept=".pdf"
+                  />
+                </Button>
+              </Box>
+            </Grid>
+
+            {/* Upload Button */}
+            <Grid item xs={12} md={3}>
               <Button
                 variant="contained"
-                component="label"
-                sx={{ backgroundColor: "#16355d" }}
+                color="primary"
+                fullWidth
+                onClick={handleUpload}
+                disabled={isSubmitting}
+                sx={{
+                  height: 50,
+                  fontWeight: "bold",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
               >
-                Upload File
-                <input
-                  type="file"
-                  hidden
-                  onChange={handleFileChange}
-                  accept=".pdf"
-                />
+                {isSubmitting ? (
+                  <Box display="flex" alignItems="center" gap={1}>
+                    Uploading <LoadingSpinner size={16} color="#fff" />
+                  </Box>
+                ) : (
+                  <>
+                    Upload <FileUploadIcon sx={{ ml: 1 }} />
+                  </>
+                )}
               </Button>
-            </Box>
+            </Grid>
           </Grid>
+          <Grid
+            container
+            spacing={3}
+            alignItems="center"
+            justifyContent="center"
+            sx={{
+              width: "100%",
+              margin: "0 auto",
+            }}
+          >
+            {/* Preview Section Bottom */}
+            {selectedFile && (
+              <Grid item s={12}>
+                <Box
+                  sx={{
+                    mt: 2,
+                    p: 2,
+                    border: "1px solid #dcdcdc",
+                    borderRadius: "10px",
+                    backgroundColor: "#f8f9fa",
+                    width: "100%",
+                  }}
+                >
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: "green",
+                      fontWeight: "bold",
+                      mb: 1,
+                    }}
+                  >
+                    ✅ File added successfully
+                  </Typography>
 
-          {/* Upload Button */}
-          <Grid item xs={12} md={3}>
-            <Button
-              variant="contained"
-              color="primary"
-              fullWidth
-              onClick={handleUpload}
-              disabled={isSubmitting}
-              sx={{
-                height: 50,
-                fontWeight: "bold",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              {isSubmitting ? (
-                <Box display="flex" alignItems="center" gap={1}>
-                  Uploading <LoadingSpinner size={16} color="#fff" />
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      display: "block",
+                      color: "#333",
+                      wordBreak: "break-word",
+                    }}
+                  >
+                    {selectedFile.name}
+                  </Typography>
+
+                  <Button
+                    size="small"
+                    sx={{ mt: 1 }}
+                    onClick={() =>
+                      window.open(URL.createObjectURL(selectedFile), "_blank")
+                    }
+                  >
+                    Preview File
+                  </Button>
                 </Box>
-              ) : (
-                <>
-                  Upload <FileUploadIcon sx={{ ml: 1 }} />
-                </>
-              )}
-            </Button>
+              </Grid>
+            )}
           </Grid>
         </Grid>
       </Card>
