@@ -91,7 +91,7 @@ export const updatePost = async (req, res) => {
     { ...post, _id },
     {
       new: true,
-    }
+    },
   );
   res.json(updatedPost);
 };
@@ -480,13 +480,43 @@ export const deleteSalarySlip = async (req, res) => {
   }
 };
 
+// code to fetch Salary slip from database
+
+// export const getSalary = async (req, res) => {
+//   try {
+//     const slipData = await PaySlipModel.find({});
+//     console.log(slipData.length);
+
+//     res.status(200).json(slipData);
+//   } catch (error) {
+//     res.status(500).json({ message: error });
+//   }
+// };
+
 export const getSalary = async (req, res) => {
   try {
-    const slipData = await PaySlipModel.find({});
+    const slipData = await PaySlipModel.aggregate([
+      {
+        $sort: { _id: -1 }, // newest first
+      },
+      {
+        $group: {
+          _id: "$identify", // group by employee
+          slips: { $push: "$$ROOT" }, // collect slips
+        },
+      },
+      {
+        $project: {
+          slips: { $slice: ["$slips", 3] }, // take latest 3
+        },
+      },
+    ]);
+
+    console.log(slipData);
 
     res.status(200).json(slipData);
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).json({ message: error.message });
   }
 };
 
