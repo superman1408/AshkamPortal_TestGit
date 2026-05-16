@@ -142,35 +142,53 @@ const PayslipDisplay = () => {
         flexDirection: "column",
       }}
     >
-      <div style={{ display: "flex" }}>
-        <div style={{ display: "inline" }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          mb: 3,
+          px: 1,
+        }}
+      >
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
           <Button
             onClick={handleGoBack}
             sx={{
-              padding: "8px 16px",
-              color: "#16355d",
-              display: {
-                xs: "none",
-                sm: "inline-block",
-              },
+              minWidth: "45px",
+              width: "45px",
+              height: "45px",
+              borderRadius: "14px",
+              background: "#fff",
+              boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
             }}
           >
             <ArrowBackIcon />
           </Button>
-        </div>
-        <div>
-          <strong
-            style={{
-              color: "#16355d",
-              marginLeft: "50px",
-              fontFamily: "Roboto",
-              fontSize: "30px",
-            }}
-          >
-            Salary Slip
-          </strong>
-        </div>
-      </div>
+
+          <Box>
+            <Typography
+              sx={{
+                fontSize: { xs: "24px", md: "34px" },
+                fontWeight: 700,
+                color: "#0f172a",
+              }}
+            >
+              Salary Slip
+            </Typography>
+
+            <Typography
+              sx={{
+                color: "#64748b",
+                fontSize: "14px",
+              }}
+            >
+              Manage and download employee salary slips
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
+
       <Grid
         sx={{
           display: "flex",
@@ -229,7 +247,7 @@ const PayslipDisplay = () => {
               >
                 Download Payslip
               </Typography>
-              {isLoading ? (
+              {/* {isLoading ? (
                 <Box
                   sx={{
                     display: "flex", // Make it a flex container
@@ -241,16 +259,16 @@ const PayslipDisplay = () => {
                 >
                   <CircularProgress />
                 </Box>
-              ) : (
-                <SlipDownload
-                  posts={posts}
-                  currentId={currentId}
-                  salary={salary}
-                  isLoading={isLoading}
-                  deleteEntry={handleDelete}
-                  verify={verify()}
-                />
-              )}
+              ) : ( */}
+              <SlipDownload
+                posts={posts}
+                currentId={currentId}
+                salary={salary}
+                isLoading={isLoading}
+                deleteEntry={handleDelete}
+                verify={verify()}
+              />
+              {/* )} */}
             </Card>
           </Grid>
         </Grid>
