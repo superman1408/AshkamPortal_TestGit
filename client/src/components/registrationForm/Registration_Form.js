@@ -1031,6 +1031,7 @@ import {
 } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs from "dayjs";
 import FileBase from "react-file-base64";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts, updatePost } from "../../action/posts";
@@ -1154,7 +1155,7 @@ const RegistrationForm = () => {
     if (currentId) {
       await dispatch(updatePost(currentId, postData)).then(() => {
         return alert(
-          "Profile updated successfully.Please logout & login again to see the changes!!"
+          "Profile updated successfully.Please logout & login again to see the changes!!",
         );
       });
 
@@ -1171,17 +1172,24 @@ const RegistrationForm = () => {
     setIsSubmitting(false);
   };
 
+  useEffect(() => {
+    if (postData.dob) {
+      setdob(dayjs(postData.dob));
+    }
+  }, [postData.dob]);
+
   const handleDOB = (date) => {
     setdob(date);
     setPostData({
       ...postData,
-      dob: new Intl.DateTimeFormat("en-US").format(date),
+      // dob: new Intl.DateTimeFormat("en-US").format(date),
+      dob: date ? date.format("MM-DD-YYYY") : "",
     });
   };
 
   const gender = [
-    { value: "Female", label: "Female" },
-    { value: "Male", label: "Male" },
+    { value: "female", label: "Female" },
+    { value: "male", label: "Male" },
   ];
 
   const maritalOptions = [
@@ -1412,9 +1420,7 @@ const RegistrationForm = () => {
                 <Select
                   placeholder="Gender"
                   name="gender"
-                  value={gender.find(
-                    (opt) => opt.value === postData.maritalStatus
-                  )}
+                  value={gender.find((opt) => opt.value === postData.gender)}
                   options={gender}
                   onChange={(option) =>
                     setPostData({ ...postData, gender: option.value })
@@ -1436,7 +1442,7 @@ const RegistrationForm = () => {
                   placeholder="Marital Status"
                   name="maritalStatus"
                   value={maritalOptions.find(
-                    (opt) => opt.value === postData.maritalStatus
+                    (opt) => opt.value === postData.maritalStatus,
                   )}
                   options={maritalOptions}
                   onChange={(option) =>
@@ -1538,7 +1544,7 @@ const RegistrationForm = () => {
                 <Select
                   placeholder="Select Department"
                   value={departmentOptions.find(
-                    (opt) => opt.value === postData.department
+                    (opt) => opt.value === postData.department,
                   )}
                   options={departmentOptions}
                   onChange={(option) =>
