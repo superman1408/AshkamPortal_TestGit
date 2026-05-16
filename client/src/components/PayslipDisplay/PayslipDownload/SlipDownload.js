@@ -28,7 +28,19 @@ const SlipDownload = ({
 }) => {
   const handleDownload = async (slip) => {
     try {
-      const binaryDataBuffer = slip.pdf.data;
+      // Depending on how Mongo/Mongoose serializes Buffer,
+      // slip.pdf can be either a Buffer or an object like { data: [...] }.
+      const pdfValue = slip?.pdf;
+      if (!pdfValue) throw new Error("PDF data not found in slip");
+
+      const binaryDataBuffer = Array.isArray(pdfValue?.data)
+        ? pdfValue.data
+        : Array.isArray(pdfValue)
+          ? pdfValue
+          : pdfValue?.data
+            ? pdfValue.data
+            : pdfValue;
+
       const bufferArray = new Uint8Array(binaryDataBuffer).buffer;
       const blob = new Blob([bufferArray], { type: "application/pdf" });
       const url = URL.createObjectURL(blob);
@@ -49,22 +61,20 @@ const SlipDownload = ({
   }, [posts, currentId]);
   console.log(verify);
 
-  // const filteredSalary = useMemo(() => {
-  //   return salary.filter((slip) => currentId === slip.identify);
-  // }, [salary, currentId]);
-
   const filteredSalary = useMemo(() => {
-    return salary.filter((employee) => currentId === employee._id);
+    return salary.filter((slip) => currentId === slip.identify);
   }, [salary, currentId]);
+
+  // const filteredSalary = useMemo(() => {
+  //   return salary.filter((employee) => currentId === employee._id);
+  // }, [salary, currentId]);
 
   return (
     <Card
       sx={{
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "flex-start",
-        minHeight: "100vh",
+
         paddingTop: "10px",
         backgroundColor: "#f0f4f8",
       }}
@@ -80,7 +90,6 @@ const SlipDownload = ({
                 flexDirection: "row",
                 justifyContent: "space-between",
                 flexWrap: "wrap",
-                gap: "20px",
                 padding: "20px",
                 width: "100%", // 👈 ensures full width available
               }}
@@ -140,66 +149,91 @@ const SlipDownload = ({
             .filter((slip) => currentId === slip.identify)
             .map((slip, index) => ( */}
 
-          {filteredSalary.map((employee) =>
-            employee.slips.map((slip) => (
-              <React.Fragment key={slip._id}>
-                <ListItem
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    borderRadius: 2,
-                    boxShadow: 1,
-                    mb: 1,
-                    p: 2,
-                    "&:hover": { backgroundColor: "#f5f5f5" },
-                  }}
-                >
-                  <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                    <ListItemAvatar>
-                      <Avatar
-                        src={CorporateImage}
-                        alt="Salary Slip"
-                        sx={{ width: 56, height: 56 }}
-                      />
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary={
-                        <Typography sx={{ color: "#16355d", fontWeight: 600 }}>
-                          {slip.title}
-                        </Typography>
-                      }
-                      secondary="PDF Document"
+          {filteredSalary.map((slip) => (
+            // employee.slips.map((slip) =>
+            <React.Fragment key={slip._id}>
+              <ListItem
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  borderRadius: "22px",
+                  background: "rgba(255,255,255,0.8)",
+                  backdropFilter: "blur(10px)",
+                  border: "1px solid rgba(255,255,255,0.4)",
+                  boxShadow: "0 8px 30px rgba(15,23,42,0.06)",
+                  mb: 2,
+                  p: 2,
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    transform: "translateY(-4px)",
+                    boxShadow: "0 12px 40px rgba(15,23,42,0.12)",
+                  },
+                }}
+              >
+                <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                  <ListItemAvatar>
+                    <Avatar
+                      src={CorporateImage}
+                      alt="Salary Slip"
+                      sx={{
+                        width: 60,
+                        height: 60,
+                        borderRadius: "18px",
+                        boxShadow: "0 6px 20px rgba(0,0,0,0.1)",
+                      }}
                     />
-                  </Box>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={
+                      <Typography sx={{ color: "#16355d", fontWeight: 600 }}>
+                        {slip.title}
+                      </Typography>
+                    }
+                    secondary="PDF Document"
+                  />
+                </Box>
 
-                  <Box sx={{ display: "flex", gap: 1 }}>
+                <Box sx={{ display: "flex", gap: 1 }}>
+                  <Button
+                    variant="outlined"
+                    sx={{
+                      borderRadius: "14px",
+                      textTransform: "none",
+                      px: 2,
+                      color: "white",
+                      background: "linear-gradient(135deg,#2563eb,#4f46e5)",
+                      boxShadow: "0 8px 20px rgba(37,99,235,0.3)",
+                      "&:hover": {
+                        background: "linear-gradient(135deg,#1d4ed8,#4338ca)",
+                      },
+                    }}
+                    onClick={() => handleDownload(slip)}
+                    startIcon={<FileDownloadIcon />}
+                  >
+                    Download
+                  </Button>
+
+                  {verify && (
                     <Button
                       variant="outlined"
-                      color="primary"
-                      size="small"
-                      onClick={() => handleDownload(slip)}
-                      startIcon={<FileDownloadIcon />}
+                      color="error"
+                      sx={{
+                        borderRadius: "14px",
+                        textTransform: "none",
+                        px: 2,
+                        boxShadow: "0 8px 20px rgba(239,68,68,0.25)",
+                      }}
+                      onClick={() => deleteEntry(slip._id)}
+                      startIcon={<DeleteIcon />}
                     >
-                      Download
+                      Delete
                     </Button>
-
-                    {verify && (
-                      <Button
-                        variant="outlined"
-                        color="error"
-                        size="small"
-                        onClick={() => deleteEntry(slip._id)}
-                        startIcon={<DeleteIcon />}
-                      >
-                        Delete
-                      </Button>
-                    )}
-                  </Box>
-                </ListItem>
-              </React.Fragment>
-            )),
-          )}
+                  )}
+                </Box>
+              </ListItem>
+            </React.Fragment>
+          ))}
         </List>
       )}
     </Card>
