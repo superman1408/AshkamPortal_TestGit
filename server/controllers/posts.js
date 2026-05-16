@@ -91,7 +91,7 @@ export const updatePost = async (req, res) => {
     { ...post, _id },
     {
       new: true,
-    }
+    },
   );
   res.json(updatedPost);
 };
@@ -480,13 +480,62 @@ export const deleteSalarySlip = async (req, res) => {
   }
 };
 
+// code to fetch Salary slip from database
+
+// export const getSalary = async (req, res) => {
+//   try {
+//     const slipData = await PaySlipModel.find({});
+//     console.log(slipData.length);
+
+//     res.status(200).json(slipData);
+//   } catch (error) {
+//     res.status(500).json({ message: error });
+//   }
+// };
+
 export const getSalary = async (req, res) => {
   try {
-    const slipData = await PaySlipModel.find({});
+    const currentDate = new Date();
+
+    // Previous month
+    const previousDate1 = new Date(currentDate);
+    previousDate1.setMonth(previousDate1.getMonth() - 1);
+
+    // Previous 2nd month
+    const previousDate2 = new Date(currentDate);
+    previousDate2.setMonth(previousDate2.getMonth() - 2);
+
+    // Previous 3rd month
+    const previousDate3 = new Date(currentDate);
+    previousDate3.setMonth(previousDate3.getMonth() - 3);
+
+    // Month + Year
+    const searchText1 = `${previousDate1.toLocaleString("default", {
+      month: "long",
+    })}, ${previousDate1.getFullYear()}`;
+
+    const searchText2 = `${previousDate2.toLocaleString("default", {
+      month: "long",
+    })}, ${previousDate2.getFullYear()}`;
+
+    const searchText3 = `${previousDate3.toLocaleString("default", {
+      month: "long",
+    })}, ${previousDate3.getFullYear()}`;
+
+    // Fetch both months
+    const slipData = await PaySlipModel.find({
+      $or: [
+        { title: { $regex: searchText1, $options: "i" } },
+        { title: { $regex: searchText2, $options: "i" } },
+        { title: { $regex: searchText3, $options: "i" } },
+      ],
+    });
+
+    console.log(slipData.length);
 
     res.status(200).json(slipData);
   } catch (error) {
-    res.status(500).json({ message: error });
+    res.status(500).json({ message: error.message });
   }
 };
 

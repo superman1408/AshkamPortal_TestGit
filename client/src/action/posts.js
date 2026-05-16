@@ -257,9 +257,9 @@ export const salarySlipData = (id, formData) => async (dispatch) => {
   }
 };
 
-export const getSalarySlipData = () => async (dispatch) => {
+export const getSalarySlipData = (id) => async (dispatch) => {
   try {
-    const { data } = await API.fetchSalarySlipData();
+    const { data } = await API.fetchSalarySlipData(id);
 
     dispatch({ type: SALARY_ALL, payload: data });
   } catch (error) {
