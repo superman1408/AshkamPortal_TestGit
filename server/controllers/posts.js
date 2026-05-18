@@ -531,7 +531,7 @@ export const getSalary = async (req, res) => {
       ],
     });
 
-    console.log(slipData.length);
+    
 
     res.status(200).json(slipData);
   } catch (error) {
