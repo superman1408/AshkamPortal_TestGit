@@ -21,15 +21,21 @@ const TitlePopup = ({ setTitle, setTitleOpen }) => {
   };
 
   const maxOffset = 0;
+ 
   const thisYear = new Date().getFullYear();
-  const allYears = [];
-  for (let x = 0; x <= maxOffset; x++) {
-    allYears.push(thisYear - x);
-  }
 
-  const yearList = allYears.map((x) => {
-    return <option key={x}>{x}</option>;
-  });
+const allYears = [
+  thisYear - 1,
+  thisYear,
+  thisYear + 1,
+];
+
+const yearList = allYears.map((x) => (
+  <option key={x} value={x}>
+    {x}
+  </option>
+));
+
 
   useEffect(() => {}, [month]);
 

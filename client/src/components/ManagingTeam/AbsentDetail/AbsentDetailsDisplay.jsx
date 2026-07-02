@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../../../action/posts";
 import AbsentDetails from "./AbsentDetails";
 import AbsentComboBox from "../../ComboBox/ComboBox";
-import Panel from "../../Panel/Panel";
 import { useParams } from "react-router-dom";
 import { Card, Divider } from "@mui/material";
 

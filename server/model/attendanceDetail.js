@@ -1,16 +1,34 @@
 import mongoose from "mongoose";
 
-const attendanceSchema = mongoose.Schema({
-  presentEmployee: {
-    type: String,
+const attendanceSchema = mongoose.Schema(
+  {
+    presentEmployee: {
+      type: String,
+    },
+    absentEmployee: {
+      type: String,
+    },
+    dailyevent: {
+      type: String,
+    },
+    logDate: {
+      type: [String],
+      default: [],
+    },
+    logIn: {
+      type: [String],
+      default: [],
+    },
+
+    logOut: {
+      type: [String],
+      default: [],
+    },
   },
-  absentEmployee: {
-    type: String,
+  {
+    timestamps: true,
   },
-  dailyevent: {
-    type: String,
-  },
-});
+);
 
 const AttendanceDetail = mongoose.model("AttendanceDetail", attendanceSchema);
 export default AttendanceDetail;

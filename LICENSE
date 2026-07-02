@@ -1,28 +1,113 @@
-BSD 3-Clause License
+PROPRIETARY SOFTWARE LICENSE AGREEMENT
+Version 2.0
+Effective Date: May 16, 2026
 
-Copyright (c) 2026, Pratik Kumar
+Copyright (c) 2026 Ashkam Energy Pvt. Ltd.
+All Rights Reserved.
 
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
+1. OWNERSHIP
 
-1. Redistributions of source code must retain the above copyright notice, this
-   list of conditions and the following disclaimer.
+This Enterprise Resource Planning (ERP) software system,
+including all source code, modules, databases, user interfaces,
+documentation, APIs, designs, workflows, and related materials
+(the "Software"), is the exclusive property of
+Ashkam Energy Pvt. Ltd.
 
-2. Redistributions in binary form must reproduce the above copyright notice,
-   this list of conditions and the following disclaimer in the documentation
-   and/or other materials provided with the distribution.
+2. CONFIDENTIALITY
 
-3. Neither the name of the copyright holder nor the names of its
-   contributors may be used to endorse or promote products derived from
-   this software without specific prior written permission.
+The Software contains proprietary and confidential information.
+Unauthorized access, disclosure, duplication, reproduction,
+distribution, reverse engineering, or modification of the Software
+is strictly prohibited.
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+3. INTERNAL USE ONLY
+
+The Software is licensed solely for internal business operations
+of Ashkam Energy Pvt. Ltd.
+
+No individual, employee, contractor, vendor, or third party may:
+
+- copy the Software outside authorized systems
+- distribute or share source code
+- publish the Software publicly
+- sublicense or resell the Software
+- use the Software for external commercial purposes
+  without prior written permission from
+  Ashkam Energy Pvt. Ltd.
+
+4. INTELLECTUAL PROPERTY
+
+All intellectual property rights related to the Software,
+including future updates, enhancements, integrations,
+custom modules, and derivative works,
+shall remain the sole property of
+Ashkam Energy Pvt. Ltd.
+
+5. RESTRICTIONS
+
+The following actions are prohibited unless explicitly approved
+in writing:
+
+- reverse engineering
+- decompiling
+- public redistribution
+- unauthorized cloud deployment
+- code extraction
+- unauthorized database duplication
+- removal of copyright notices
+
+6. EMPLOYEE AND CONTRACTOR ACCESS
+
+Employees, developers, consultants, and contractors may access
+the Software only for authorized organizational duties and must
+maintain strict confidentiality regarding all proprietary materials.
+
+7. TERMINATION
+
+Access rights to the Software may be revoked immediately upon:
+
+- termination of employment
+- breach of confidentiality
+- unauthorized usage
+- violation of this agreement
+
+Upon termination, all copies and access credentials must be removed
+or returned to Ashkam Energy Pvt. Ltd.
+
+8. NO WARRANTY
+
+The Software is provided "as is" without warranties of any kind,
+express or implied, including but not limited to fitness for a
+particular purpose, reliability, or uninterrupted operation.
+
+9. LIMITATION OF LIABILITY
+
+Ashkam Energy Pvt. Ltd. shall not be liable for any indirect,
+incidental, special, or consequential damages arising from use
+or misuse of the Software.
+
+10. GOVERNING AUTHORITY
+
+This agreement shall be governed in accordance with the applicable
+laws and organizational policies governing
+Ashkam Energy Pvt. Ltd.
+
+---
+
+ERP SOFTWARE DETAILS
+
+Software Name : Enterprise Suite
+License Type : Proprietary Internal Use License
+Version : 2.0.0
+Release Date : May 16, 2026
+Maintained By : Ashkam Energy Pvt. Ltd.
+
+---
+
+AUTHORIZED USE ONLY
+
+This ERP system is a private internal software platform developed
+exclusively for the operational requirements of
+Ashkam Energy Pvt. Ltd.
+
+Unauthorized usage is strictly prohibited.

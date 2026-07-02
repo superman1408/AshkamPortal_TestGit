@@ -3,13 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getPosts } from "../../action/posts";
 
-import {
-  Grid,
-  Typography,
-  IconButton,
-  Container,
-  useTheme,
-} from "@mui/material";
+import { Grid, Typography, IconButton, Card, useTheme } from "@mui/material";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 
 const Attendance = () => {
@@ -39,7 +33,8 @@ const Attendance = () => {
 
   return (
     <div style={{ display: "flex", flex: 1 }}>
-      <Container
+      <Card
+        elevation={6}
         sx={{
           display: "flex",
           maxWidth: "500px",
@@ -49,13 +44,14 @@ const Attendance = () => {
           height: "150px",
 
           backdropFilter: "blur(8px)",
-          background: "linear-gradient(145deg, #ffffffcc, #f3f4f6cc)",
-          boxShadow: 1,
+          // background: "linear-gradient(145deg, #ffffffcc, #f3f4f6cc)",
+          background: "smokewhite",
+          // boxShadow: 1,
           borderRadius: "10px",
           overflow: "hidden",
           position: "relative", // Set position to relative
           flex: 1,
-          transition: "all 0.2s ease-in-out",
+          transition: "0.3s",
           "@media (max-width: 600px)": {
             display: "flex",
             margin: "20px 0px 0px 0px",
@@ -64,6 +60,17 @@ const Attendance = () => {
           "&:hover": {
             transform: "scale(1.02)",
             boxShadow: theme.shadows[6],
+
+            // p: 2,
+            // backdropFilter: "blur(8px)",
+            // // background: "linear-gradient(145deg, #ffffffcc, #f3f4f6cc)",
+            // background: "smokewhite",
+            // borderRadius: 3,
+            // transition: "0.3s",
+            // height: "100%",
+            // "&:hover": {
+            //   transform: "scale(1.02)",
+            //   boxShadow: theme.shadows[6],
           },
         }}
       >
@@ -129,7 +136,7 @@ const Attendance = () => {
             </Grid>
           </div>
         </Grid>
-      </Container>
+      </Card>
     </div>
   );
 };
