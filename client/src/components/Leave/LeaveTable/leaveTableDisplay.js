@@ -41,22 +41,19 @@ const LeaveTableDisplay = () => {
   // };
 
   const verify = () => {
-    try {
-      if (
-        // user.result.role === "admin" ||
-        (user.result.department.toLowerCase() === "human resource" &&
-          user.result.role === "manager") ||
-        user.result.role === "admin"
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    const department = user?.result?.department?.toLowerCase();
+    const role = user?.result?.role?.toLowerCase();
+
+    if (!department || !role) return false;
+
+    return (
+      (department === "human resource" && role === "manager") ||
+      role === "admin"
+    );
   };
 
+
+  
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       {!isLoading && (

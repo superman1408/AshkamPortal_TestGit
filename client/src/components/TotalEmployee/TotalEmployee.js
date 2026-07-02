@@ -60,7 +60,8 @@ const TotalEmployee = () => {
       sx={{
         p: 2,
         backdropFilter: "blur(8px)",
-        background: "linear-gradient(145deg, #ffffffcc, #f3f4f6cc)",
+        // background: "linear-gradient(145deg, #ffffffcc, #f3f4f6cc)",
+        background: "smokewhite",
         borderRadius: 3,
         transition: "0.3s",
         height: "100%",

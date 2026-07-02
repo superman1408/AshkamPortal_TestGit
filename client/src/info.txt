@@ -1,0 +1,12 @@
+Date: 10-11-2025
+
+Version : 1.2.0
+
+Status : Running 
+
+[
+    1) Full Frontend is updated in which weather card is added
+    2) Time Sheet Model is seggregated & both frontend-backend is updated
+    3) Attendance Model is also seggregated
+    4)Layout of Leave & Inbox section is updated
+]
