@@ -306,6 +306,9 @@ const Navibar = () => {
       case "timeSheet":
         navigate(`posts/${id}/fullweeklyactivity`);
         break;
+      case "projects":
+        navigate(`/projects`);
+        break;
       case "profile":
         navigate(`/${id}/profile`);
         break;
@@ -378,6 +381,13 @@ const Navibar = () => {
                     Salary Slip
                   </NavDropdown.Item>
                 </NavDropdown>
+
+                <Nav.Link
+                  onClick={() => openPage(user.result._id, "projects")}
+                  style={{ fontWeight: "500", color: "#16355d" }}
+                >
+                  Projects
+                </Nav.Link>
 
                 <Nav.Link
                   onClick={() => openPage(user.result._id, "about")}

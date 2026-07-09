@@ -35,3 +35,8 @@ export const ATTENDANCE_UPLOAD_START = "ATTENDANCE_UPLOAD_START";
 export const ATTENDANCE_UPLOAD_SUCCESS = "ATTENDANCE_UPLOAD_SUCCESS";
 export const ATTENDANCE_UPLOAD_FAIL = "ATTENDANCE_UPLOAD_FAIL";
 export const FETCH_ATTENDANCEFILE = "FETCH_ATTENDANCEFILE";
+
+export const PROJECT_LIST = "PROJECT_LIST"; ///for punching project data
+export const FETCH_PROJECT = "FETCH_PROJECT"; // for fetching project data
+export const DELETE_PROJECT = "DELETE_PROJECT"; // for UPDATING project data
+export const UPDATE_PROJECT = "UPDATE_PROJECT"; // for DELETING project data

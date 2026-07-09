@@ -9,6 +9,7 @@ import postsRouters from "./routes/posts.js";
 import mailRouters from "./routes/mail.js";
 import attendRouters from "./routes/attendence.js";
 import timesheetRouters from "./routes/timesheet.js";
+import projectRouters from "./routes/project.js";
 
 const app = express();
 dotenv.config();
@@ -29,6 +30,7 @@ app.use("/posts", postsRouters);
 app.use("/mail", mailRouters);
 app.use("/attend", attendRouters);
 app.use("/timesheet", timesheetRouters);
+app.use("/", projectRouters);
 
 app.get("/", (req, res) => {
   res.send("Hello to ASHKAM  API");
@@ -62,8 +64,8 @@ mongoose
       console.log(
         "Listening at " +
           `http://${HOST}:${PORT}` +
-          "\nMongoDB database is connected..!!"
+          "\nMongoDB database is connected..!!",
       );
-    })
+    }),
   )
   .catch((error) => console.log(error));

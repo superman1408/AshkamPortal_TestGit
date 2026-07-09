@@ -27,6 +27,7 @@ import AdminRoute from "./components/ProtectedRoute/AdminRoute";
 
 import Diwali1 from "./assets/Diwali2.gif";
 import AttendanceUpload from "./components/AttendanceUpload/AttendanceUpload";
+import ProjectPage from "./components/ProjectSection/ProjectPage";
 
 const drawerWidth = 0; // must match Panel
 const collapsedWidth = 0;
@@ -245,6 +246,8 @@ const App = () => {
                   exact
                   element={<DepartmentDetails />}
                 />
+
+                <Route path="/projects" exact element={<ProjectPage />} />
 
                 <Route
                   path="/:id/absentdetails"
