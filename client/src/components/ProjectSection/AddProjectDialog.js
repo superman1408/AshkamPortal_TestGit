@@ -35,7 +35,7 @@ const AddProjectDialog = ({ open, onClose, posts }) => {
     description: "",
     projectType: "Engineering",
     disciplines: [],
-    projectManager: "",
+    projectManager: [""],
     projectMembers: [],
   });
 
@@ -88,6 +88,36 @@ const AddProjectDialog = ({ open, onClose, posts }) => {
   };
 
   if (!open) return null;
+
+  console.log(posts);
+
+  const handleManagerChange = (index, value) => {
+    const updatedManagers = [...newProject.projectManagers];
+    updatedManagers[index] = value;
+
+    setNewProject({
+      ...newProject,
+      projectManagers: updatedManagers,
+    });
+  };
+
+  const addManager = () => {
+    setNewProject({
+      ...newProject,
+      projectManagers: [...newProject.projectManagers, ""],
+    });
+  };
+
+  const removeManager = (index) => {
+    const updatedManagers = newProject.projectManagers.filter(
+      (_, i) => i !== index,
+    );
+
+    setNewProject({
+      ...newProject,
+      projectManagers: updatedManagers,
+    });
+  };
 
   return (
     <div className="dialog-overlay">
@@ -203,7 +233,7 @@ const AddProjectDialog = ({ open, onClose, posts }) => {
                 </div>
 
                 <div className="form-group full-width">
-                  <label>Description</label>
+                  <label>Scope of the Project</label>
 
                   <textarea
                     rows="4"
@@ -276,23 +306,50 @@ const AddProjectDialog = ({ open, onClose, posts }) => {
                   <h4>Assign Team Members</h4>
                 </div>
 
-                <div className="form-grid">
-                  <div className="form-group">
-                    <label>Project Manager</label>
+                <div className="form-group">
+                  <label>Project Manager</label>
 
-                    <select
-                      name="projectManager"
-                      value={newProject.projectManager}
-                      onChange={handleChange}
+                  {newProject.projectManagers.map((manager, index) => (
+                    <div
+                      key={index}
+                      style={{
+                        display: "flex",
+                        gap: "10px",
+                        marginBottom: "10px",
+                      }}
                     >
-                      <option>Select Project Manager</option>
-                      {posts.map((post) => (
-                        <option key={post._id} value={post._id}>
-                          {post.employeeId} - {post.employeeName}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
+                      <select
+                        value={manager}
+                        onChange={(e) =>
+                          handleManagerChange(index, e.target.value)
+                        }
+                      >
+                        <option value="">Select Project Manager</option>
+
+                        {posts.map((post) => (
+                          <option
+                            key={post._id}
+                            value={`${post.firstName} ${post.lastName}`}
+                          >
+                            {post.firstName} {post.lastName}
+                          </option>
+                        ))}
+                      </select>
+
+                      {index > 0 && (
+                        <button
+                          type="button"
+                          onClick={() => removeManager(index)}
+                        >
+                          Remove
+                        </button>
+                      )}
+                    </div>
+                  ))}
+
+                  <button type="button" onClick={addManager}>
+                    + Add Manager
+                  </button>
 
                   {/* <div className="form-group">
                   <label>Project Coordinator</label>
@@ -314,7 +371,7 @@ const AddProjectDialog = ({ open, onClose, posts }) => {
                     >
                       {posts.map((post) => (
                         <option key={post._id} value={post._id}>
-                          {post.employeeId} - {post.employeeName}
+                          {post.firstName} - {post.lastName}
                         </option>
                       ))}
                     </select>

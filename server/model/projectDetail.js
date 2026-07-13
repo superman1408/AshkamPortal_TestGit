@@ -53,10 +53,12 @@ const ProjectSchema = new mongoose.Schema(
     // Team
     // ==========================
 
-    projectManager: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Employee",
-    },
+    projectManager: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Employee",
+      },
+    ],
 
     projectMembers: [
       {
