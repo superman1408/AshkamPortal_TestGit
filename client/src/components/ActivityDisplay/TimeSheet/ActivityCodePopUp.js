@@ -82,17 +82,26 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       ProjectEngineering: "PE",
       Task: "TA",
       Coding: "CO",
+      Analysis: "AN",
+      Modeling: "MO",
+      Review: "RE",
+      "Simulation/Analysis": "SA",
+      "Documentation & Reporting": "DO-RP",
+      "3D Modelling": "3D-M",
+      DataSheets: "DS",
+
+      // civil
 
       // IT - Activities
-      NetworkSetup: "NW",
-      HardwareAndSoftware: "HS",
-      SocialMedia: "SM",
-      GraphicDesign: "GD",
-      WebsiteUpdates: "WB",
-      SystemSecurity: "SS",
-      SoftwareDevelopment: "SD",
-      ServerConfiguration: "SV",
-      OtherActivities: "OA",
+      // Analysis: "AN",
+      Development: "DV",
+      Testing: "TS",
+      Infrastructure: "IN",
+      "System Support": "SS",
+      Security: "SC",
+      Deployment: "DP",
+      Documentation: "DO",
+      "Graphic Design": "GD",
     };
 
     return Activities[ActivitiesCode];
@@ -126,7 +135,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       CoordinationORSupervision: "001",
       DataSheets: "002",
       DocReviews: "001",
-      Duct: "002",
+      Duct_Sizing: "002",
       Earthing: "004",
       Earthing1: "005",
       Electrical: "001",
@@ -149,19 +158,19 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       InterfaceSchedule1: "005",
       Idle: "005",
       Layout: "001",
-      Leave: "004",
+      // Leave: "004",
       Lighting: "005",
       Lighting1: "006",
       LightningProtection: "006",
       LightningProtection1: "007",
-      LineList: "001",
+      LineList: "002",
       LineSizing: "001",
       LoadList: "002",
       LoopDrawings: "004",
       MaxsurfStability: "003",
       Mechanical: "002",
       Meetings: "002",
-      MooringLayout: "002",
+      MooringLayout: "003",
       MooringAnalysis: "001",
       NavalArchCalcs: "004",
       MTO: "001",
@@ -190,34 +199,260 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       Training: "003",
       Three_D_Model: "001",
 
+      // Addition
+
+      // Common sub activities
+
+      Client_Meeting: "001",
+      Vendor_Meeting: "002",
+      External_Meeting: "003",
+      Internal_Meeting: "004",
+      Outdoor_Site_Visit: "005",
+      Interdisciplinary_Coordination: "006",
+      Leave: "008",
+      Self_Study: "007",
+
+      DCI: "003",
+      MOM: "004",
+      Scheduling_and_Planning: "005",
+      Rate_Analysis: "006",
+      Inventory: "007",
+      Manual_Calcualtion: "001",
+      Foundation_Design: "002",
+      Member_Design: "003",
+      Sub_Structure: "001",
+      Super_Structure: "002",
+      Misc_Structure: "003",
+      STAAD_Modeling: "001",
+      Auto_CAD_3D_Modeling: "002",
+      Civil_Design_Basis: "001",
+      STRL_Design_Basis: "002",
+      Design_Report: "003",
+      Feseability_Report: "004",
+      Site_Report: "005",
+      QAP_Report: "006",
+      Specification: "007",
+      Documentaion: "008",
+      Data_Sheet: "009",
+      Civil_Reinf_Drawing: "004",
+      Fabrication_Drawing: "005",
+      As_Built_Drawing: "006",
+      Drawing_Review: "001",
+      Document_Review: "002",
+      Construction_Activity_Review: "003",
+
+      Client_Coordination: "007",
+      RFI_Clarification: "008",
+      Change_Order_Management: "009",
+
+      Process_Simulation: "001",
+      Hydraulic_Analysis: "002",
+      Equip_List: "001",
+      Line_List: "002",
+      Utility_summary_List: "003",
+      Equipment_Sizing: "001",
+      Hydraulic_Calculations: "002",
+      PSV_Sizing: "003",
+      Control_Valve_Sizing: "004",
+      Utility_Capacity_Calculation: "005",
+      Calculations_Review: "006",
+      Process_Design_Basis: "001",
+      H_and_MB: "003",
+      Hydraulic_Report: "002",
+      Process_Datasheets: "004",
+      Pipeline_Size_Selection_Report: "005",
+      Operation_And_Control_Philosophy: "006",
+      Overpressure_Protection_Philosophy: "007",
+      Cause_And_Effect_Diagram: "008",
+      HAZARDOUS_AREA_CLASSIFICATION_REPORT: "009",
+      HAZOP_HAZID_Support: "010",
+      Emergency_Shutdown_Philosophy: "011",
+      commissioning_and_Commissioning_Report: "012",
+      Installation_Operation_and_Maintance_Manual: "013",
+      Specification_Packages: "014",
+      Block_flow_diagram: "001",
+      Process_Flow_Diagram: "002",
+      P_and_ID: "003",
+      Plot_Plan_Equipment_Layout: "004",
+      Vendor_Document_Review: "001",
+      Internal_Document_Review: "002",
+
+      Architectural_BOQ_MTO: "001",
+      Material_Selection: "002",
+      Area_Calculations: "001",
+      Calculations_Review_Ar: "002",
+      Architectural_Design_Basissis: "002",
+      Design_Proposal_Presentation: "003",
+      Conceptual_Design: "002",
+      GA_Drawing: "001",
+      Architectural_Drawing: "003",
+      Presentation_Drawing: "004",
+      Equipment_Furniture_Layout: "005",
+      Working_Drawings: "006",
+      Case_Study: "008",
+      Training_Ar: "009",
+      Three_D_Modelling_Interior_Exterior: "001",
+      Three_D_Rendering: "002",
+      Walkthrough: "003",
+      BOQ: "002",
+      Calculation: "003",
+      Psychrometric: "003",
+      Heat_Load: "004",
+      Equipment_Sizing_Na: "005",
+      Linkedin_Post: "003",
+      Report_Hvac: "005",
+      Equipment_Layout: "004",
+      Presentaion: "003",
+      Seminar: "004",
+      Review: "005",
+      Reliability: "007",
+      Schematics_Na: "005",
+      Ship_Vessel: "001",
+      Offsore: "002",
+      Onshore: "004",
+      Bid_Documents: "006",
+      Wall_Thickness_Analysis: "001",
+      BOQ_Pi: "003",
+      MR: "004",
+      BOM: "005",
+      Schedule_List: "006",
+      Manhours: "007",
+      Proposal: "008",
+      BID: "009",
+
+      Wall_Thickness_Calculation: "001",
+      On_Bottom_Roughness: "002",
+      On_Bottom_Stability: "003",
+      Pipe_Soil_Interaction: "004",
+      Free_Span: "005",
+      Cathodic_Protection: "006",
+      Expansion_Analysis: "007",
+      Crossing_Calculation: "008",
+      Stress_Analysis: "009",
+      Surge_Analysis: "010",
+      Pipelay_Analysis: "011",
+      Hydraulic: "012",
+      Buoyancy_Calculation: "013",
+      Equipment_Sizing_Pi: "014",
+
+      Pipeline_General_Note_And_Drawing_Index: "001",
+      Field_Layout_Drawing: "002",
+      Typical_Anode_Detail_Drawing: "003",
+      Pipeline_Route_Drawing: "004",
+      Alignment_Sheets_For_Pipelines_Drawings: "005",
+      PLEM_Approach_Drawing: "006",
+      PLEM_Tie_In_Spool_Drawing: "007",
+      Shore_Approach_Drawing: "008",
+      Additional_Stabilization_Drawing: "009",
+      Trench_And_Backfill_Drawing: "010",
+      Crossing_Detail_Drawing: "011",
+      Pipeline_Stress_Analysis_Report: "012",
+      Anchor_Thrust_Block_Drawings_If_Required: "013",
+      Pipeline_Installation_Analysis_Report: "014",
+      Tie_In_Details: "015",
+      Battery_Limit_Drawing: "016",
+
+      Design_Basis: "001",
+      Stress_Report: "003",
+      Surge_Report: "004",
+      Pipeline_Wall_Thickness_Report: "005",
+      Pipeline_On_Bottom_Stability_Analysis_Report: "006",
+      Pipeline_Expansion_Analysis_Report: "007",
+      Free_Span_Analysis_Report: "008",
+      Pipeline_And_Soil_Interaction_Report: "009",
+      Pipeline_Design_Global_Buckling_And_Walking_Analysis_Design_Report: "010",
+      Pipeline_On_Bottom_Roughness_Analysis_And_Report: "011",
+      Cathodic_Protection_System_Design_Report: "012",
+      Crossing_Design_Analysis_And_Report: "013",
+      Specification_For_Line_Pipe: "014",
+      Specification_For_Fittings: "015",
+      Specification_For_Bend: "016",
+      Specification_For_Valves: "017",
+      Specification_For_Painting_And_Protective_Coating: "018",
+      Specification_For_Pipeline_Cleaning_Flushing_And_Flooding: "019",
+      Specification_For_Pipeline_Crossing: "020",
+      Specification_For_Free_Span_Correction: "021",
+      Specification_For_Anti_Corrosion_Coating: "022",
+      Specification_For_Cathodic_Protection_And_Sacrificial_Anodes: "023",
+      Specification_For_Offshore_Trenching_And_Backfilling: "024",
+      Specification_For_Field_Joint_Coating: "025",
+      Specification_For_Pipeline_Welding: "026",
+
+      Sacrificial_Anode: "001",
+      Flanges_And_Fittings: "002",
+      Bends: "003",
+      Linepipe: "004",
+      Valves: "005",
+
+      Report_Review: "004",
+
       //IT - SubActivities-Codes
-      RouterORSwitchConfig: "001",
-      Cabling: "002",
-      NetworkMaintenanceTroubleshooting: "003",
-      HardwareORInstallation: "001",
-      SoftwareInstallationUpdates: "002",
-      HardwareTroubleshooting: "003",
-      SocialMediaPost: "001",
-      MarketingCollateralLayoutDesign: "002",
-      BusinessDevelopmentMaterial: "003",
-      PresentationAndDocumentation: "004",
-      WebsiteContentUpdate: "001",
-      WebsiteUI_UXEnhancement: "002",
-      WebsiteBugFixes_Maintenance: "003",
-      Antivirus_FirewallSetup: "001",
-      SecurityAudit_Monitoring: "002",
-      DataBackup_Recovery: "003",
-      RequirementAnalysis: "001",
-      BackendDevelopment: "002",
-      FrontendDevelopment: "003",
-      Testing_Debugging: "004",
-      Deployment_Maintenance: "005",
-      ServerHostingSetup: "001",
-      DatabaseConfiguration: "002",
-      CloudServiceIntegration: "003",
-      InternalMeeting_Documentation: "001",
-      Training_KnowledgeSharing: "002",
-      VendorCoordination_Procurement: "003",
+      // RouterORSwitchConfig: "001",
+      // Cabling: "002",
+      // NetworkMaintenanceTroubleshooting: "003",
+      // HardwareORInstallation: "001",
+      // SoftwareInstallationUpdates: "002",
+      // HardwareTroubleshooting: "003",
+      // SocialMediaPost: "001",
+      // MarketingCollateralLayoutDesign: "002",
+      // BusinessDevelopmentMaterial: "003",
+      // PresentationAndDocumentation: "004",
+      // WebsiteContentUpdate: "001",
+      // WebsiteUI_UXEnhancement: "002",
+      // WebsiteBugFixes_Maintenance: "003",
+      // Antivirus_FirewallSetup: "001",
+      // SecurityAudit_Monitoring: "002",
+      // DataBackup_Recovery: "003",
+      // RequirementAnalysis: "001",
+      // BackendDevelopment: "002",
+      // FrontendDevelopment: "003",
+      // Testing_Debugging: "004",
+      // Deployment_Maintenance: "005",
+      // ServerHostingSetup: "001",
+      // DatabaseConfiguration: "002",
+      // CloudServiceIntegration: "003",
+      // InternalMeeting_Documentation: "001",
+      // Training_KnowledgeSharing: "002",
+      // VendorCoordination_Procurement: "003",
+
+      Requirement_Analysis: "001",
+      System_Analysis: "002",
+      Database_Design: "003",
+      UI_UX_Design: "004",
+      Frontend_Development: "001",
+      Backend_Development: "002",
+      API_Development: "003",
+      Database_Development: "004",
+      Website_Development: "005",
+      Unit_Testing: "001",
+      Integration_Testing: "002",
+      Bug_Fixing: "003",
+      Performance_Testing: "004",
+      Hardware_Installation: "001",
+      Software_Installation: "002",
+      System_Maintenance: "003",
+      Technical_Support: "004",
+      Troubleshooting: "005",
+      Firewall_Configuration: "001",
+      Security_Audit: "002",
+      Data_Backup: "003",
+      Disaster_Recovery: "004",
+      Application_Deployment: "001",
+      Server_Deployment: "002",
+      Release_Management: "003",
+      Technical_Documentation: "001",
+      User_Documentation: "002",
+      Training_Material: "003",
+      UI_Design: "001",
+      Social_Media_Design: "002",
+      Marketing_Material: "003",
+      Presentation_Design: "004",
+      Code_Review: "001",
+      Design_Review: "002",
+      Testing_Review: "004",
+
+      Interdepartmental_Coordination: "004",
+      Research_And_Learning: "005",
     };
 
     return SubActivityies[SubActivityName];
@@ -243,47 +478,354 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
     },
 
     Process: {
+      "Simulation/Analysis": [
+        { label: "Process Simulation", value: "Process_Simulation" },
+        { label: "Hydraulic Analysis", value: "Hydraulic_Analysis" },
+      ],
       Lists: [
-        { label: "LineList", value: "LineList" },
-        { label: "Heat & MassBalance", value: "HeatandMassBalance" },
+        { label: "Equip. List", value: "Equip_List" },
+        { label: "LineList", value: "Line_List" },
+        { label: "Utility summary List", value: "Utility_summary_List" },
       ],
-      Calculations: [{ label: "Equipment Sizing", value: "EquipmentSizing" }],
+      Calculations: [
+        { label: "Equipment Sizing", value: "Equipment_Sizing" },
+        { label: "Hydraulic Calculations", value: "Hydraulic_Calculations" },
+        { label: "PSV Sizing", value: "PSV_Sizing" },
+        { label: "Control Valve Sizing", value: "Control_Valve_Sizing" },
+        {
+          label: "Utility Capacity Calculationg",
+          value: "Utility_Capacity_Calculation",
+        },
+        { label: "Calculations Review", value: "Calculations_Review_Ar" },
+      ],
+      "Documentation & Reporting": [
+        { label: "Process Design Basis", value: "Process_Design_Basis" },
+        { label: "Hydraulic report", value: "Hydraulic_Report" },
+        { label: "H&MB", value: "H_and_MB" },
+        { label: "Process Datasheets", value: "Process_Datasheets" },
+        {
+          label: "Pipeline Size Selection Report",
+          value: "Pipeline_Size_Selection_Report",
+        },
+        {
+          label: "Operation And Control Philosophy",
+          value: "Operation_And_Control_Philosophy",
+        },
+        {
+          label: "Overpressure Protection Philosophy",
+          value: "Overpressure_Protection_Philosophy",
+        },
+        {
+          label: "Cause And Effect Diagram",
+          value: "Cause_And_Effect_Diagram",
+        },
+        {
+          label: "HAZARDOUS AREA CLASSIFICATION REPORT",
+          value: "HAZARDOUS_AREA_CLASSIFICATION_REPORT",
+        },
+        { label: "HAZOP/HAZID Support", value: "HAZOP_HAZID_Support" },
+        {
+          label: "Emergency Shutdown Philosophy",
+          value: "Emergency_Shutdown_Philosophy",
+        },
+        {
+          label: "Pre-commissioning & Commissioning Report ",
+          value: "Pre-commissioning_and_Commissioning_Report ",
+        },
+        {
+          label: "Installation Operation & Maintance Manual",
+          value: "Installation_Operation_and_Maintance_Manual",
+        },
+        { label: "Specification - Packages", value: "Specification_Packages" },
+      ],
       Drawings: [
-        { label: "PFD", value: "PFD" },
-        { label: "P&ID", value: "P_OR_ID" },
+        { label: "Block Flow Diagram", value: "Block_flow_diagram" },
+        { label: "Process Flow Diagram", value: "Process_Flow_Diagram" },
+        { label: "P&ID", value: "P_and_ID" },
+        {
+          label: "Plot Plan/Equipment layout",
+          value: "Plot_Plan_Equipment_Layout",
+        },
       ],
-      Documents: [
-        { label: "Specifications", value: "Specifications" },
-        { label: "DataSheets", value: "DataSheets" },
+
+      Review: [
+        { label: "Vendor Document Review", value: "Vendor_Document_Review" },
+        {
+          label: "Internal Document Review",
+          value: "Internal_Document_Review",
+        },
       ],
+
       General: [
-        { label: "Coordination", value: "Coordination" },
-        { label: "Meetings", value: "Meetings" },
+        { label: "Client Meeting", value: "Client_Meeting" },
+        { label: "Vendor Meeting", value: "Vendor_Meeting" },
+        { label: "External Meeting", value: "External_Meeting" },
+        { label: "Internal Meeting", value: "Internal_Meeting" },
+        { label: "Outdoor/site Visit", value: "Outdoor_site_Visit" },
+        {
+          label: "Interdisciplinary Coordination",
+          value: "Interdisciplinary_Coordination",
+        },
+        { label: "Self-Study", value: "Self_Study" },
+        { label: "Leave", value: "Leave" },
       ],
     },
 
     PipingORPipeline: {
+      "Simulation/Analysis": [
+        {
+          label: "Wall Thickness Calculation ",
+          value: "Wall_Thickness_Calculation ",
+        },
+
+        { label: "On-Bottom Roughness", value: "On_Bottom_Roughness" },
+        { label: "On-Bottom Stability", value: "On_Bottom_Stability" },
+        { label: "Pipe Soil Interaction", value: "Pipe_Soil_Interaction" },
+        { label: "Free Span", value: "Free_Span" },
+        { label: "Cathodic Protection", value: "Cathodic_Protection" },
+        { label: "Expansion Analysis", value: "Expansion_Analysis" },
+        { label: "Crossing Calculation", value: "Crossing Calculation" },
+        { label: "Stress Analysis", value: "Stress_Analysis" },
+        { label: "Surge Analysis", value: "Surge_Analysis" },
+        { label: "Pipelay Analysis", value: "Pipelay_Analysis" },
+        { label: "Hydraulic Analysis", value: "Hydraulic" },
+      ],
       Lists: [
-        { label: "Line List", value: "LineList" },
-        { label: "MTO", value: "MTO1" },
+        { label: "Equip. list", value: "Equip_list" },
+        { label: "Line List", value: "Line_List" },
+        { label: "BOQ", value: "BOQ_Pi" },
+        { label: "MR", value: "MR" },
+        { label: "BOM", value: "BOM" },
+        { label: "Schedule List", value: "Schedule_List" },
+        { label: "Manhours", value: "Manhours" },
+        { label: "Proposal", value: "Proposal" },
+        { label: "BID", value: "BID" },
       ],
       Calculations: [
-        { label: "Line Sizing", value: "LineSizing" },
-        { label: "Pipe Stress", value: "PipeStress" },
+        {
+          label: "Wall Thickness Calculation",
+          value: "Wall_Thickness_Calculation",
+        },
+        { label: "On-Bottom Roughnes", value: "On_Bottom_Roughness" },
+        { label: "On-Bottom Stability", value: "On_Bottom_Stability" },
+        { label: "Pipe Soil Interaction", value: "Pipe_Soil_Interaction" },
+        { label: "Free Span", value: "Free_Span" },
+        { label: "Cathodic Protection", value: "Cathodic_Protection" },
+        { label: "Expansion Analysis", value: "Expansion_Analysis" },
+        { label: "Crossing Calculation", value: "Crossing_Calculation" },
+        { label: "Stress Analysis", value: "Stress_Analysis" },
+        { label: "Surge Analysis", value: "Surge_Analysis" },
+        { label: "Pipelay Analysis", value: "Pipelay_Analysis" },
+        { label: "Hydraulic Calculations", value: "Hydraulic" },
+        { label: "Buoyancy Calculation", value: "Buoyancy_Calculation" },
+        { label: "Equipment Sizing", value: "Equipment_Sizing_Pi" },
       ],
       Drawings: [
-        { label: "Equipment Layout", value: "EquipmentLayout" },
-        { label: "Piping Layout", value: "PipingLayout" },
+        {
+          label: "Pipeline General Note And Drawing Index",
+          value: "Pipeline_General_Note_And_Drawing_Index",
+        },
+        {
+          label: "Field Layout Drawing",
+          value: "Field_Layout_Drawing",
+        },
+        {
+          label: "Typical Anode Detail Drawing",
+          value: "Typical_Anode_Detail_Drawing",
+        },
+        {
+          label: "Pipeline Route Drawing",
+          value: "Pipeline_Route_Drawing",
+        },
+        {
+          label: "Alignment Sheets For Pipelines Drawings",
+          value: "Alignment_Sheets_For_Pipelines_Drawings",
+        },
+        {
+          label: "PLEM Approach Drawing",
+          value: "PLEM_Approach_Drawing",
+        },
+        {
+          label: "PLEM Tie-In Spool Drawing",
+          value: "PLEM_Tie_In_Spool_Drawing",
+        },
+        {
+          label: "Shore Approach Drawing",
+          value: "Shore_Approach_Drawing",
+        },
+        {
+          label: "Additional Stabilization Drawing",
+          value: "Additional_Stabilization_Drawing",
+        },
+        {
+          label: "Trench & Backfill Drawing",
+          value: "Trench_And_Backfill_Drawing",
+        },
+        {
+          label: "Crossing Detail Drawing",
+          value: "Crossing_Detail_Drawing",
+        },
+        {
+          label: "Pipeline Stress Analysis Report",
+          value: "Pipeline_Stress_Analysis_Report",
+        },
+        {
+          label: "Anchor/Thrust Block Drawings (If Required)",
+          value: "Anchor_Thrust_Block_Drawings_If_Required",
+        },
+        {
+          label: "Pipeline Installation Analysis Report",
+          value: "Pipeline_Installation_Analysis_Report",
+        },
+        {
+          label: "Tie-In Details",
+          value: "Tie_In_Details",
+        },
+        {
+          label: "Battery Limit Drawing",
+          value: "Battery_Limit_Drawing",
+        },
       ],
-      Documents: [
-        { label: "Specifications", value: "Specifications" },
-        { label: "DataSheets", value: "DataSheets" },
+      "Documentation & Reporting": [
+        { label: "Design Basis", value: "Design_Basis" },
+        { label: "Hydraulic Report", value: "Hydraulic_Report" },
+        { label: "Stress Report", value: "Stress_Report" },
+        { label: "Surge Report", value: "Surge_Report" },
+        {
+          label: "Pipeline Wall Thickness Report",
+          value: "Pipeline_Wall_Thickness_Report",
+        },
+        {
+          label: "Pipeline On-Bottom Stability Analysis Report",
+          value: "Pipeline_On_Bottom_Stability_Analysis_Report",
+        },
+        {
+          label: "Pipeline Expansion Analysis Report",
+          value: "Pipeline_Expansion_Analysis_Report",
+        },
+        {
+          label: "Free Span Analysis Report",
+          value: "Free_Span_Analysis_Report",
+        },
+        {
+          label: "Pipeline And Soil Interaction Report",
+          value: "Pipeline_And_Soil_Interaction_Report",
+        },
+        {
+          label:
+            "Pipeline Design Global Buckling And Walking Analysis Design Report",
+          value:
+            "Pipeline_Design_Global_Buckling_And_Walking_Analysis_Design_Report",
+        },
+        {
+          label: "Pipeline On-Bottom Roughness Analysis And Report",
+          value: "Pipeline_On_Bottom_Roughness_Analysis_And_Report",
+        },
+        {
+          label: "Cathodic Protection System Design Report",
+          value: "Cathodic_Protection_System_Design_Report",
+        },
+        {
+          label: "Crossing Design Analysis And Report",
+          value: "Crossing_Design_Analysis_And_Report",
+        },
+        {
+          label: "Specification For Line Pipe",
+          value: "Specification_For_Line_Pipe",
+        },
+        {
+          label: "Specification For Fittings",
+          value: "Specification_For_Fittings",
+        },
+        {
+          label: "Specification For Bend",
+          value: "Specification_For_Bend",
+        },
+        {
+          label: "Specification For Valves",
+          value: "Specification_For_Valves",
+        },
+        {
+          label: "Specification For Painting and Protective Coating",
+          value: "Specification_For_Painting_And_Protective_Coating",
+        },
+        {
+          label: "Specification For Pipeline Cleaning - Flushing and Flooding",
+          value: "Specification_For_Pipeline_Cleaning_Flushing_And_Flooding",
+        },
+        {
+          label: "Specification For Pipeline Crossing",
+          value: "Specification_For_Pipeline_Crossing",
+        },
+        {
+          label: "Specification For Free Span Correction",
+          value: "Specification_For_Free_Span_Correction",
+        },
+        {
+          label: "Specification For Anti-Corrosion Coating",
+          value: "Specification_For_Anti_Corrosion_Coating",
+        },
+        {
+          label: "Specification For Cathodic Protection And Sacrificial Anodes",
+          value: "Specification_For_Cathodic_Protection_And_Sacrificial_Anodes",
+        },
+        {
+          label: "Specification For Offshore Trenching And Backfilling",
+          value: "Specification_For_Offshore_Trenching_And_Backfilling",
+        },
+        {
+          label: "Specification For Field Joint Coating",
+          value: "Specification_For_Field_Joint_Coating",
+        },
+        {
+          label: "Specification For Pipeline Welding",
+          value: "Specification_For_Pipeline_Welding",
+        },
+      ],
+      DataSheets: [
+        {
+          label: "Sacrificial Anode",
+          value: "Sacrificial_Anode",
+        },
+        {
+          label: "Flanges And Fittings",
+          value: "Flanges_And_Fittings",
+        },
+        {
+          label: "Bends",
+          value: "Bends",
+        },
+        {
+          label: "Linepipe",
+          value: "Linepipe",
+        },
+        {
+          label: "Valves",
+          value: "Valves",
+        },
+      ],
+      Review: [
+        { label: "Vendor Document Review", value: "Vendor_Document_Review" },
+        {
+          label: "Internal Document review",
+          value: "Internal_Document_Review",
+        },
+        { label: "Drawing Review", value: "Drawing_Review" },
+        { label: "Report Review", value: "Report_Review" },
       ],
       General: [
-        { label: "Coordination", value: "Coordination" },
-        { label: "Meetings", value: "Meetings" },
+        { label: "Client Meeting", value: "Client_Meeting" },
+        { label: "Vendor Meeting", value: "Vendor_Meeting" },
+        { label: "External Meeting", value: "External_Meeting" },
+        { label: "Internal Meeting", value: "Internal_Meeting" },
+        { label: "Outdoor/Site Visit", value: "Outdoor_Site_Visit" },
+        {
+          label: "Interdisciplinary Coordination",
+          value: "Interdisciplinary_Coordination",
+        },
+        { label: "Self-Study", value: "Self_Study" },
+        { label: "Leave", value: "Leave" },
       ],
-      Task: [{ label: "3D Model", value: "Three_D_Model" }],
     },
 
     Mechanical: {
@@ -302,7 +844,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
     Electrical: {
       Drawings: [
         { label: "Single Line Drawings", value: "SingleLineDrawings" },
-        { label: "Schematic Drawings", value: "SchematicDrawings" },
+        { label: "Schematic Drawings", value: "Schematics" },
         { label: "Equipment Layouts", value: "EquipmentLayouts" },
         { label: "Lighting", value: "Lighting1" },
         { label: "Earthing", value: "Earthing1" },
@@ -367,53 +909,180 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
 
     CivilORStructural: {
       Lists: [
-        { label: "MTO/BOQ", value: "MTO_OR_BOQ" },
+        { label: "MTO/BOQ", value: "MTO_OR_BOQ", code: "001" },
         { label: "Bar Bending Schedule", value: "BarBendingSchedule" },
+        { label: "DCI", value: "DCI" },
+        { label: "MOM", value: "MOM" },
+        { label: "Scheduling & Planning", value: "Scheduling_and_Planning" },
+        { label: "Rate Analysis", value: "Rate_Analysis" },
+        { label: "Inventory", value: "Inventory" },
       ],
       Calculations: [
-        { label: "Sub Structure", value: "SubStructure" },
-        { label: "Super Structure", value: "SuperStructure" },
+        { label: "Manual Calcualtion", value: "Manual_Calcualtion" },
+        { label: "Foundation Design", value: "Foundation_Design" },
+        { label: "Member Design", value: "Member_Design" },
       ],
-      Documents: [
-        { label: "Specifications", value: "Specifications" },
-        { label: "Data Sheets", value: "DataSheets" },
-        { label: "Reports", value: "Reports" },
+      Analysis: [
+        { label: "Sub Structure", value: "Sub_Structure" },
+        { label: "Super Structure", value: "Super_Structure" },
+        { label: "Misc. Structure", value: "Misc_Structure" },
+      ],
+      Modeling: [
+        { label: "STAAD Modeling", value: "STAAD_Modeling" },
+        { label: "Auto CAD 3D Modeling", value: "Auto_CAD_3D_Modeling" },
+      ],
+      "Documentation & Reporting": [
+        { label: "Civil Design Basis", value: "Civil_Design_Basis" },
+        { label: "STRL. Design Basis", value: "STRL_Design_Basis" },
+        { label: "Design Report", value: "Design_Report" },
+        { label: "Feseability Report", value: "Feseability_Report" },
+        { label: "Site Report", value: "Site_Report" },
+        { label: "QAP Report", value: "QAP_Report" },
+        { label: "Specification", value: "Specification" },
+        { label: "Documentaion ", value: "Documentaion " },
+        { label: "Data Sheet", value: "Data_Sheet" },
       ],
       Drawings: [
         { label: "General Arrangement", value: "GeneralArrangement" },
         { label: "Structural Drawings", value: "StructuralDrawings" },
         { label: "Foundation Layout", value: "FoundationLayout" },
+        { label: "Civil/Reinf. Drawing", value: "Civil_Reinf_Drawing" },
+        { label: "Fabrication Drawing", value: "Fabrication_Drawing" },
+        { label: "As Built Drawing", value: "As_Built_Drawing" },
+      ],
+      Review: [
+        { label: "Drawing Review", value: "Drawing_Review" },
+        { label: "Document Review", value: "Document_Review" },
+        {
+          label: "Construction Activity Review",
+          value: "Construction_Activity_Review",
+        },
       ],
       General: [
-        { label: "Coordination", value: "Coordination" },
-        { label: "Meetings", value: "Meetings" },
+        { label: "Client Meeting", value: "Client_Meeting" },
+        { label: "Vendor Meeting", value: "Vendor_Meeting" },
+        { label: "External Meeting", value: "External_Meeting" },
+        { label: "Internal Meeting", value: "Internal_Meeting" },
+        { label: "Outdoor/Site Visit", value: "Outdoor_Site_Visit" },
+        {
+          label: "Interdisciplinary Coordination",
+          value: "Interdisciplinary_Coordination",
+        },
+        { label: "Client Coordination", value: "Client_Coordination" },
+        { label: "RFI Clarification", value: "RFI_Clarification" },
+        {
+          label: "Change Order Management",
+          value: "Change_Order_Management",
+        },
       ],
-      Task: [{ label: "3D Model", value: "Three_D_Model" }],
     },
 
     Architectural: {
-      Documents: [{ label: "Specifications", value: "Specifications" }],
-      Drawings: [{ label: "Layout", value: "Layout" }],
-      General: [
-        { label: "Coordination", value: "Coordination" },
-        { label: "Meetings", value: "Meetings" },
+      Lists: [
+        { label: "Architectural BOQ/MTO", value: "Architectural_BOQ_MTO" },
+        { label: "Material Selection", value: "Material_Selection" },
       ],
-      Task: [{ label: "3D Model", value: "Three_D_Model" }],
+      Calculation: [
+        { label: "Area Calculations", value: "Area_Calculations" },
+        { label: "Calculations Review", value: "Calculations_Review" },
+      ],
+      "Documentation & Reporting": [
+        { label: "Specifications", value: "Specifications" },
+        {
+          label: "Architectural Design Basis",
+          value: "Architectural_Design_Basis",
+        },
+        {
+          label: "Design Proposal/ Presentation",
+          value: "Design_Proposal_Presentation",
+        },
+      ],
+      Drawings: [
+        { label: "GA Drawing", value: "GA_Drawing" },
+        { label: "Conceptual Design", value: "Conceptual_Design" },
+        { label: "Architectural Drawing", value: "Architectural_Drawing" },
+        { label: "Presentation Drawing", value: "Presentation_Drawing" },
+        {
+          label: "Equipment/ Furniture Layout",
+          value: "Equipment_Furniture_Layout",
+        },
+        { label: "Working Drawings", value: "Working_Drawings" },
+      ],
+      Review: [
+        {
+          label: "Vendor Document Review",
+          value: "Vendor_Document_Review",
+        },
+        {
+          label: "Internal Document Review",
+          value: "Internal_Document_Review",
+        },
+      ],
+      General: [
+        { label: "Client Meeting", value: "Client_Meeting" },
+        { label: "Vendor Meeting", value: "Vendor_Meeting" },
+        { label: "External Meeting", value: "External_Meeting" },
+        { label: "Internal Meeting", value: "Internal_Meeting" },
+        { label: "Outdoor/Site Visit", value: "Outdoor_Site_Visit" },
+        {
+          label: "Interdisciplinary Coordination",
+          value: "Interdisciplinary_Coordination",
+        },
+        { label: "Case-Study", value: "Case_Study" },
+        { label: "Self-Study", value: "Self_Study" },
+        {
+          label: "Training",
+          value: "Training_Ar",
+        },
+        {
+          label: "Leave",
+          value: "Leave",
+        },
+      ],
+      Task: [
+        {
+          label: "3D Modelling (Interior / Exterior)",
+          value: "Three_D_Modelling_Interior_Exterior",
+        },
+        { label: "3D Rendering", value: "Three_D_Rendering" },
+        { label: "Walkthrough", value: "Walkthrough" },
+      ],
     },
 
     HVAC: {
+      Lists: [
+        { label: "MTO", value: "MTO" },
+        { label: "BOQ", value: "BOQ" },
+        { label: "DCI", value: "DCI" },
+      ],
       Calculations: [
         { label: "Air flow", value: "Airflow" },
-        { label: "Duct", value: "Duct" },
+        { label: "Duct Sizing", value: "Duct_Sizing" },
+        { label: "Psychrometric", value: "Psychrometric" },
+        { label: "Heat Load", value: "Heat_Load" },
+        { label: "Equipment Sizing", value: "Equipment_Sizing_Na" },
       ],
       Documents: [
         { label: "Specifications", value: "Specifications" },
         { label: "Data Sheets", value: "DataSheets" },
+        { label: "Linkedin Post", value: "Linkedin_Post" },
+        { label: "MOM", value: "MOM" },
+        { label: "Report", value: "Report_Hvac" },
+        { label: "Bid Documents", value: "Bid_Documents" },
       ],
-      Drawings: [{ label: "Layout", value: "Layout" }],
+
+      Drawings: [
+        { label: "GA Drawing", value: "GA_Drawing" },
+        { label: "Schematics", value: "Schematics" },
+        { label: "Piping", value: "Piping" },
+        { label: "Equipment Layout", value: "Equipment_Layout" },
+      ],
       General: [
         { label: "Coordination", value: "Coordination" },
         { label: "Meetings", value: "Meetings" },
+        { label: "Presentaion", value: "Presentaion" },
+        { label: "Seminar", value: "Seminar" },
+        { label: "Review", value: "Review" },
       ],
     },
 
@@ -470,28 +1139,48 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
     },
 
     NavalArchitecture: {
-      Lists: [{ label: "MTO", value: "MTO" }],
+      Lists: [
+        { label: "MTO", value: "MTO" },
+        { label: "BOQ", value: "BOQ" },
+        { label: "DCI", value: "DCI" },
+      ],
       Calculations: [
         { label: "Mooring Analysis", value: "MooringAnalysis" },
         { label: "FEA/CFD", value: "FEA_OR_CFD" },
         { label: "Maxsurf Stability", value: "MaxsurfStability" },
         { label: "Naval Arch Calcs", value: "NavalArchCalcs" },
+        { label: "Equipment Sizing", value: "Equipment_Sizing_Na" },
         { label: "Sacs Offshore", value: "SacsOffshore" },
-        { label: "Equipment Sizing", value: "EquipmentSizing2" },
+        { label: "Reliability", value: "Reliability" },
       ],
       Drawings: [
+        { label: "GA Drawing", value: "GA_Drawing" },
         { label: "Structural Drawings", value: "StructuralDrawings" },
         { label: "Mooring Layout", value: "MooringLayout" },
-        { label: "Equipment Layouts", value: "EquipmentLayouts" },
-        { label: "Schematics", value: "Schematics" },
+        { label: "Equipment Layouts", value: "Equipment_Layout" },
+        { label: "Schematics", value: "Schematics_Na" },
+      ],
+      "3D Modelling": [
+        { label: "Ship/Vessel", value: "Ship_Vessel" },
+        { label: "Offsore", value: "Offsore" },
+        { label: "Piping", value: "Piping" },
+        { label: "Onshore", value: "Onshore" },
+        { label: "Equipments", value: "Equipments" },
       ],
       Documents: [
-        { label: "Report", value: "Report" },
-        { label: "DataSheets", value: "DataSheets" },
+        { label: "Technical Specifications", value: "Specifications" },
+        { label: "Data Sheets", value: "DataSheets" },
+        { label: "Linkedin Post", value: "Linkedin_Post" },
+        { label: "MOM", value: "MOM" },
+        { label: "Report", value: "Report_Hvac" },
+        { label: "Bid Documents", value: "Bid_Documents" },
       ],
       General: [
         { label: "Coordination", value: "Coordination" },
         { label: "Meetings", value: "Meetings" },
+        { label: "Presentaion", value: "Presentaion" },
+        { label: "Seminar", value: "Seminar" },
+        { label: "Review", value: "Review" },
       ],
       Assembly: [
         { label: "Electrical", value: "Electrical" },
@@ -502,130 +1191,93 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
         { label: "Algorithm", value: "Algorithm" },
       ],
     },
+
     //  IT Sub- Activities
 
     InformationTechnology: {
-      NetworkSetup: [
-        { label: "Router/Switch Config", value: "RouterORSwitchConfig" },
-        { label: "Cabling", value: "Cabling" },
-        {
-          label: "Network Maintenance & Troubleshooting",
-          value: "NetworkMaintenanceTroubleshooting",
-        },
-      ],
-      HardwareAndSoftware: [
-        {
-          label: "Hardware Installation (PC, Printer)",
-          value: "HardwareORInstallation",
-        },
-        {
-          label: "Software Installation & Updates",
-          value: "SoftwareInstallationUpdates",
-        },
-        {
-          label: "Hardware Troubleshooting",
-          value: "HardwareTroubleshooting",
-        },
+      Analysis: [
+        { label: "Requirement Analysis", value: "Requirement_Analysis" },
+        { label: "System Analysis", value: "System_Analysis" },
+        { label: "Database Design", value: "Database_Design" },
+        { label: "UI/UX Design", value: "UI_UX_Design" },
       ],
 
-      GraphicDesign: [
-        {
-          label: "Social Media Post",
-          value: "SocialMediaPost",
-        },
-        {
-          label: "Marketing Collateral Layout Design",
-          value: "MarketingCollateralLayoutDesign",
-        },
-        {
-          label: "Business Development Material",
-          value: "BusinessDevelopmentMaterial",
-        },
-        {
-          label: "Presentation and Documentation",
-          value: "PresentationAndDocumentation",
-        },
-      ],
-      WebsiteUpdates: [
-        {
-          label: "Website Content Update",
-          value: "WebsiteContentUpdate",
-        },
-        {
-          label: "Website UI/UX Enhancement",
-          value: "WebsiteUI_UXEnhancement",
-        },
-        {
-          label: "Website Bug Fixes & Maintenance",
-          value: "WebsiteBugFixes_Maintenance",
-        },
-      ],
-      SystemSecurity: [
-        {
-          label: "Antivirus & Firewall Setup",
-          value: "Antivirus_FirewallSetup",
-        },
-        {
-          label: "Security Audit & Monitoring",
-          value: "SecurityAudit_Monitoring",
-        },
-        {
-          label: "Data Backup & Recovery",
-          value: "DataBackup_Recovery",
-        },
+      Development: [
+        { label: "Frontend Development", value: "Frontend_Development" },
+        { label: "Backend Development", value: "Backend_Development" },
+        { label: "API Development", value: "API_Development" },
+        { label: "Database Development", value: "Database_Development" },
+        { label: "Website Development", value: "Website_Development" },
       ],
 
-      SoftwareDevelopment: [
-        {
-          label: "Requirement Analysis",
-          value: "RequirementAnalysis",
-        },
-        {
-          label: "Backend Development",
-          value: "BackendDevelopment",
-        },
-        {
-          label: "Frontend Development",
-          value: "FrontendDevelopment",
-        },
-        {
-          label: "Testing & Debugging",
-          value: "Testing_Debugging",
-        },
-        {
-          label: "Deployment & Maintenance",
-          value: "Deployment_Maintenance",
-        },
+      Testing: [
+        { label: "Unit Testing", value: "Unit_Testing" },
+        { label: "Integration Testing", value: "Integration_Testing" },
+        { label: "Bug Fixing", value: "Bug_Fixing" },
+        { label: "Performance Testing", value: "Performance_Testing" },
       ],
 
-      ServerConfiguration: [
-        {
-          label: "Server Hosting Setup",
-          value: "ServerHostingSetup",
-        },
-        {
-          label: "Database Configuration",
-          value: "DatabaseConfiguration",
-        },
-        {
-          label: "Cloud Service Integration",
-          value: "CloudServiceIntegration",
-        },
+      Infrastructure: [
+        { label: "Network Configuration", value: "Network_Configuration" },
+        { label: "Server Configuration", value: "Server_Configuration" },
+        { label: "Database Configuration", value: "Database_Configuration" },
+        { label: "Cloud Configuration", value: "Cloud_Configuration" },
       ],
 
-      OtherActivities: [
+      "System Support": [
+        { label: "Hardware Installation", value: "Hardware_Installation" },
+        { label: "Software Installation", value: "Software_Installation" },
+        { label: "System Maintenance", value: "System_Maintenance" },
+        { label: "Technical Support", value: "Technical_Support" },
+        { label: "Troubleshooting", value: "Troubleshooting" },
+      ],
+
+      Security: [
+        { label: "Firewall Configuration", value: "Firewall_Configuration" },
+        { label: "Security Audit", value: "Security_Audit" },
+        { label: "Data Backup", value: "Data_Backup" },
+        { label: "Disaster Recovery", value: "Disaster_Recovery" },
+      ],
+
+      Deployment: [
+        { label: "Application Deployment", value: "Application_Deployment" },
+        { label: "Server Deployment", value: "Server_Deployment" },
+        { label: "Release Management", value: "Release_Management" },
+      ],
+
+      Documentation: [
         {
-          label: "Internal Meeting & Documentation",
-          value: "InternalMeeting_Documentation",
+          label: "Technical Documentation",
+          value: "Technical_Documentation",
         },
+        { label: "User Documentation", value: "User_Documentation" },
+        { label: "Training Material", value: "Training_Material" },
+      ],
+
+      "Graphic Design": [
+        { label: "UI Design", value: "UI_Design" },
+        { label: "Social Media Design", value: "Social_Media_Design" },
+        { label: "Marketing Material", value: "Marketing_Material" },
+        { label: "Presentation Design", value: "Presentation_Design" },
+      ],
+
+      Review: [
+        { label: "Code Review", value: "Code_Review" },
+        { label: "Design Review", value: "Design_Review" },
+        { label: "Document Review", value: "Document_Review" },
+        { label: "Testing Review", value: "Testing_Review" },
+      ],
+
+      General: [
+        { label: "Client Meeting", value: "Client_Meeting" },
+        { label: "Internal Meeting", value: "Internal_Meeting" },
+        { label: "External Meeting", value: "External_Meeting" },
         {
-          label: "Training & Knowledge Sharing",
-          value: "Training_KnowledgeSharing",
+          label: "Interdepartmental Coordination",
+          value: "Interdepartmental_Coordination",
         },
-        {
-          label: "Vendor Coordination & Procurement",
-          value: "VendorCoordination_Procurement",
-        },
+        { label: "Research & Learning", value: "Research_And_Learning" },
+        { label: "Leave", value: "Leave" },
       ],
     },
   };
@@ -725,7 +1377,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
                       <option key={act} value={act}>
                         {act}
                       </option>
-                    )
+                    ),
                   )}
               </select>
 
@@ -767,7 +1419,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
                             {label}
                           </option>
                         );
-                      }
+                      },
                     )}
                 </select>
               </div>
