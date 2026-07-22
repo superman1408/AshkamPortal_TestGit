@@ -196,7 +196,6 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       SubStructure: "001",
       SuperStructure: "002",
       Testing: "001",
-      Training: "003",
       Three_D_Model: "001",
 
       // Addition
@@ -205,12 +204,26 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
 
       Client_Meeting: "001",
       Vendor_Meeting: "002",
-      External_Meeting: "003",
-      Internal_Meeting: "004",
-      Outdoor_Site_Visit: "005",
+      Internal_Meeting: "003",
+      External_Meeting: "004",
+
+      Client_Coordination: "005",
       Interdisciplinary_Coordination: "006",
-      Leave: "008",
-      Self_Study: "007",
+      RFI_Clarification: "007",
+      Change_Order_Management: "008",
+
+      Outdoor_Site_Visit: "009",
+
+      Presentation: "010",
+      Seminar: "011",
+      Training: "012",
+      Self_Study: "013",
+      Case_Study: "014",
+
+      Review: "015",
+      Documentation: "016",
+
+      Leave: "017",
 
       DCI: "003",
       MOM: "004",
@@ -240,10 +253,6 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       Drawing_Review: "001",
       Document_Review: "002",
       Construction_Activity_Review: "003",
-
-      Client_Coordination: "007",
-      RFI_Clarification: "008",
-      Change_Order_Management: "009",
 
       Process_Simulation: "001",
       Hydraulic_Analysis: "002",
@@ -289,8 +298,6 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       Presentation_Drawing: "004",
       Equipment_Furniture_Layout: "005",
       Working_Drawings: "006",
-      Case_Study: "008",
-      Training_Ar: "009",
       Three_D_Modelling_Interior_Exterior: "001",
       Three_D_Rendering: "002",
       Walkthrough: "003",
@@ -303,8 +310,6 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       Report_Hvac: "005",
       Equipment_Layout: "004",
       Presentaion: "003",
-      Seminar: "004",
-      Review: "005",
       Reliability: "007",
       Schematics_Na: "005",
       Ship_Vessel: "001",
@@ -974,6 +979,10 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
           label: "Change Order Management",
           value: "Change_Order_Management",
         },
+        {
+          label: "Leave",
+          value: "Leave",
+        },
       ],
     },
 
@@ -1032,7 +1041,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
         { label: "Self-Study", value: "Self_Study" },
         {
           label: "Training",
-          value: "Training_Ar",
+          value: "Training",
         },
         {
           label: "Leave",
@@ -1078,11 +1087,25 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
         { label: "Equipment Layout", value: "Equipment_Layout" },
       ],
       General: [
-        { label: "Coordination", value: "Coordination" },
-        { label: "Meetings", value: "Meetings" },
-        { label: "Presentaion", value: "Presentaion" },
-        { label: "Seminar", value: "Seminar" },
-        { label: "Review", value: "Review" },
+        { label: "Client Meeting", value: "Client_Meeting" },
+        { label: "Vendor Meeting", value: "Vendor_Meeting" },
+        { label: "External Meeting", value: "External_Meeting" },
+        { label: "Internal Meeting", value: "Internal_Meeting" },
+        { label: "Outdoor/Site Visit", value: "Outdoor_Site_Visit" },
+        {
+          label: "Interdisciplinary Coordination",
+          value: "Interdisciplinary_Coordination",
+        },
+        { label: "Case-Study", value: "Case_Study" },
+        { label: "Self-Study", value: "Self_Study" },
+        {
+          label: "Training",
+          value: "Training",
+        },
+        {
+          label: "Leave",
+          value: "Leave",
+        },
       ],
     },
 
@@ -1176,11 +1199,25 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
         { label: "Bid Documents", value: "Bid_Documents" },
       ],
       General: [
-        { label: "Coordination", value: "Coordination" },
-        { label: "Meetings", value: "Meetings" },
-        { label: "Presentaion", value: "Presentaion" },
-        { label: "Seminar", value: "Seminar" },
-        { label: "Review", value: "Review" },
+        { label: "Client Meeting", value: "Client_Meeting" },
+        { label: "Vendor Meeting", value: "Vendor_Meeting" },
+        { label: "External Meeting", value: "External_Meeting" },
+        { label: "Internal Meeting", value: "Internal_Meeting" },
+        { label: "Outdoor/Site Visit", value: "Outdoor_Site_Visit" },
+        {
+          label: "Interdisciplinary Coordination",
+          value: "Interdisciplinary_Coordination",
+        },
+        { label: "Case-Study", value: "Case_Study" },
+        { label: "Self-Study", value: "Self_Study" },
+        {
+          label: "Training",
+          value: "Training",
+        },
+        {
+          label: "Leave",
+          value: "Leave",
+        },
       ],
       Assembly: [
         { label: "Electrical", value: "Electrical" },
@@ -1276,7 +1313,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
           label: "Interdepartmental Coordination",
           value: "Interdepartmental_Coordination",
         },
-        { label: "Research & Learning", value: "Research_And_Learning" },
+        { label: "Research & Learning/Self-Study", value: "Self_Study" },
         { label: "Leave", value: "Leave" },
       ],
     },
