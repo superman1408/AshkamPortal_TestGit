@@ -86,7 +86,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       Modeling: "MO",
       Review: "RE",
       "Simulation/Analysis": "SA",
-      "Documentation & Reporting": "DO-RP",
+      "Documentation & Reporting": "DO",
       "3D Modelling": "3D-M",
       DataSheets: "DS",
 
@@ -290,7 +290,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       Material_Selection: "002",
       Area_Calculations: "001",
       Calculations_Review_Ar: "002",
-      Architectural_Design_Basissis: "002",
+      Architectural_Design_Basis: "002",
       Design_Proposal_Presentation: "003",
       Conceptual_Design: "002",
       GA_Drawing: "001",
@@ -1319,6 +1319,22 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
     },
   };
 
+  const inputStyle = {
+    width: "100%",
+    height: "42px",
+    padding: "0 14px",
+    fontSize: "15px",
+    fontFamily: "Roboto",
+    color: "#16355d",
+    background: "#fff",
+    border: "1px solid #D5DBE5",
+    borderRadius: "8px",
+    outline: "none",
+    transition: "all .25s",
+
+    boxSizing: "border-box",
+  };
+
   return (
     <div
       className="modal fade show"
@@ -1346,12 +1362,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
 
               <label>Discipline</label>
               <select
-                style={{
-                  width: "200px",
-                  height: "30px",
-                  fontSize: "16px",
-                  marginTop: "10px",
-                }}
+                style={inputStyle}
                 name="Discipline"
                 value={discipline}
                 onChange={handleDisciplineChange}
@@ -1396,12 +1407,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
               </label>
 
               <select
-                style={{
-                  width: "200px",
-                  height: "30px",
-                  fontSize: "16px",
-                  marginTop: "10px",
-                }}
+                style={inputStyle}
                 name="Activities"
                 value={activities}
                 onChange={handleActivitiesChange}
@@ -1429,12 +1435,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
                   Sub Activities
                 </label>
                 <select
-                  style={{
-                    width: "200px",
-                    height: "30px",
-                    fontSize: "16px",
-                    marginTop: "10px",
-                  }}
+                  style={inputStyle}
                   name="Discipline"
                   value={subActivity}
                   onChange={handleSubActivityChange}

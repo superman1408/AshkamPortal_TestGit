@@ -49,6 +49,7 @@ export const timesheetList = async (req, res) => {
           existingUser: id,
           projectCode: value.projectCode,
           activityCode: value.activityCode,
+          refdocNumber: value.refdocNumber,
           date: value.date,
           netTime: value.netTime,
           overTime: value.overTime,
@@ -59,7 +60,7 @@ export const timesheetList = async (req, res) => {
         new: true,
         upsert: true, // ✅ create document if it doesn’t exist
         setDefaultsOnInsert: true, // ✅ apply default [] from schema
-      }
+      },
     );
 
     res.json(updatedPost);
@@ -98,6 +99,7 @@ export const updateTimesheet = async (req, res) => {
 
     post.projectCode.splice(indexNumber, 1, valueToEdit.projectCode);
     post.activityCode.splice(indexNumber, 1, valueToEdit.activityCode);
+    post.refdocNumber.splice(indexNumber, 1, valueToEdit.refdocNumber);
     post.date.splice(indexNumber, 1, valueToEdit.date);
     post.netTime.splice(indexNumber, 1, valueToEdit.netTime);
     post.overTime.splice(indexNumber, 1, valueToEdit.overTime);
@@ -127,6 +129,7 @@ export const deleteTimesheet = async (req, res) => {
 
     post.projectCode.splice(indexNumber, 1);
     post.activityCode.splice(indexNumber, 1);
+    post.refdocNumber.splice(indexNumber, 1);
     post.date.splice(indexNumber, 1);
     post.netTime.splice(indexNumber, 1);
     post.overTime.splice(indexNumber, 1);

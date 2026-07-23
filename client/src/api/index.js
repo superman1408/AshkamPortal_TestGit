@@ -126,3 +126,5 @@ export const uploadAttendanceFile = (formData) =>
   });
 
 export const fetchAttendanceFile = () => API.get("/attend/attendancefile");
+
+export const getProjectCodes = () => API.get("/projects");
