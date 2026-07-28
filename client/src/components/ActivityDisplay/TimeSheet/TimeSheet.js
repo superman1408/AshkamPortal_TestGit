@@ -1,18 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  Divider,
-  Grid,
-  CircularProgress,
-  Box,
-  Button,
-  IconButton,
-  Tooltip,
-  Card,
-  Typography,
-  Select,
-  MenuItem,
-} from "@mui/material";
+import { Divider, Grid, CircularProgress, Box, Button, IconButton, Tooltip, Card, Typography, Select, MenuItem} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useDispatch } from "react-redux";
 import "./Style1.css"; // Import CSS file for styling
@@ -226,39 +214,83 @@ function TimeSheet({ currentId, posts, timesheetData }) {
   };
 
   // Build array from posts + currentId using useMemo()
-
   const array = useMemo(() => {
-    let temp = [];
-
-    timesheetData.map((data) => {
-      if (data._id === currentId) {
-        // console.log("Id is matching");
-        for (let i = 0; i < data.projectCode.length; i++) {
-          temp.push({
-            projectCode: data.projectCode[i],
-
-            activityCode: data.activityCode[i],
-
-            refdocNumber: data.refdocNumber[i],
-
-            date: data.date[i],
-
-            netTime: data.netTime[i],
-
-            overTime: data.overTime[i],
-
-            editIndex: data.editIndex[i],
-
-            remarks: data.remarks[i],
-          });
-        }
-      } else {
-        // console.log("Id is not matching");
+    if (!Array.isArray(timesheetData)) return [];
+  
+    const temp = [];
+  
+    timesheetData.forEach((data) => {
+      if (data?._id !== currentId) return;
+  
+      const projectCode = data.projectCode || [];
+      const activityCode = data.activityCode || [];
+      const refdocNumber = data.refdocNumber || [];
+      const date = data.date || [];
+      const netTime = data.netTime || [];
+      const overTime = data.overTime || [];
+      const editIndex = data.editIndex || [];
+      const remarks = data.remarks || [];
+  
+      const length = Math.max(
+        projectCode.length,
+        activityCode.length,
+        refdocNumber.length,
+        date.length,
+        netTime.length,
+        overTime.length,
+        editIndex.length,
+        remarks.length
+      );
+  
+      for (let i = 0; i < length; i++) {
+        temp.push({
+          projectCode: projectCode[i] ?? "",
+          activityCode: activityCode[i] ?? "",
+          refdocNumber: refdocNumber[i] ?? "",
+          date: date[i] ?? "",
+          netTime: netTime[i] ?? 0,
+          overTime: overTime[i] ?? 0,
+          editIndex: editIndex[i] ?? i,
+          remarks: remarks[i] ?? "",
+        });
       }
     });
-
+  
     return temp;
   }, [timesheetData, currentId]);
+
+  // const array = useMemo(() => {
+  //   let temp = [];
+
+  //   timesheetData.map((data) => {
+  //     if (data._id === currentId) {
+  //       // console.log("Id is matching");
+  //       for (let i = 0; i < data.projectCode.length; i++) {
+  //         temp.push({
+  //           projectCode: data.projectCode[i],
+
+  //           activityCode: data.activityCode[i],
+
+  //           refdocNumber: data.refdocNumber[i],
+
+  //           date: data.date[i],
+
+  //           netTime: data.netTime[i],
+
+  //           overTime: data.overTime[i],
+
+  //           editIndex: data.editIndex[i],
+
+  //           remarks: data.remarks[i],
+  //         });
+  //       }
+  //     } else {
+  //       // console.log("Id is not matching");
+  //     }
+  //   });
+
+  //   return temp;
+  // }, [timesheetData, currentId]);
 
   // const handleNetSubmit = (e) => {
   //   let value = parseInt(e.target.value);
