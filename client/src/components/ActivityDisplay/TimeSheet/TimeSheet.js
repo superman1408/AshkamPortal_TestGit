@@ -10,6 +10,8 @@ import {
   Tooltip,
   Card,
   Typography,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useDispatch } from "react-redux";
@@ -24,6 +26,7 @@ import {
   getTimesheetPosts,
 } from "../../../action/timesheet";
 import LOGO from "../../../assets/AshkamLogoTransparentbc.png";
+import { getProjectCodes } from "../../../api";
 
 // import ArchiveTimesheet from "./ArchiveTimesheet";
 
@@ -33,6 +36,8 @@ import ArchiveIcon from "@mui/icons-material/Archive";
 
 import LoadingSpinner from "../../ReactSpinner/reactSpinner";
 import DownloadButton from "../../DownloadButton/DownloadButton";
+import EditRoundedIcon from "@mui/icons-material/EditRounded";
+import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 
 function TimeSheet({ currentId, posts, timesheetData }) {
   const dispatch = useDispatch();
@@ -41,6 +46,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
 
   const [entries, setEntries] = useState([]);
   const [projectCode, setProjectCode] = useState("");
+  const [refdocNumber, setRefdocNumber] = useState("");
   const [activityCode, setActivityCode] = useState("");
   const [date, setDate] = useState("");
   const [netTime, setNetTime] = useState("");
@@ -54,6 +60,8 @@ function TimeSheet({ currentId, posts, timesheetData }) {
 
   const [activityopen, setActivityOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [projectCodes, setProjectCodes] = useState([]);
 
   // State for filter
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
@@ -88,6 +96,23 @@ function TimeSheet({ currentId, posts, timesheetData }) {
 
   //------------------------------------------------For getting data of Timesheet--------------------------------------------------
 
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const { data } = await getProjectCodes();
+
+        console.log("API Response:", data);
+        console.log("Is Array:", Array.isArray(data));
+
+        setProjectCodes(data.split(",").map((code) => code.trim()));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true); // Start loading
@@ -95,6 +120,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
     const newEntry = {
       projectCode,
       activityCode,
+      refdocNumber,
       date,
       netTime: parseFloat(netTime),
       overTime: parseFloat(overTime),
@@ -213,6 +239,8 @@ function TimeSheet({ currentId, posts, timesheetData }) {
 
             activityCode: data.activityCode[i],
 
+            refdocNumber: data.refdocNumber[i],
+
             date: data.date[i],
 
             netTime: data.netTime[i],
@@ -244,6 +272,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
   const clearForm = () => {
     setProjectCode("");
     setActivityCode("");
+    setRefdocNumber("");
     setDate("");
     setNetTime("");
     setOverTime("");
@@ -291,6 +320,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
   const editEntry = (index) => {
     setEditIndex(index);
     setProjectCode(array[index].projectCode);
+    setRefdocNumber(array[index].refdocNumber);
     setActivityCode(array[index].activityCode);
     setDate(array[index].date);
     setNetTime(array[index].netTime);
@@ -366,6 +396,24 @@ function TimeSheet({ currentId, posts, timesheetData }) {
     })
     .reduce((total, entry) => total + (parseFloat(entry.netTime) || 0), 0);
 
+  // style for input box
+
+  const inputStyle = {
+    width: "100%",
+    height: "42px",
+    padding: "0 14px",
+    fontSize: "15px",
+    fontFamily: "Roboto",
+    color: "#16355d",
+    background: "#fff",
+    border: "1px solid #D5DBE5",
+    borderRadius: "8px",
+    outline: "none",
+    transition: "all .25s",
+
+    boxSizing: "border-box",
+  };
+
   return (
     <div>
       <div style={{ display: "inline" }}>
@@ -393,6 +441,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
       >
         Project Time Sheet
       </strong>
+
       <div style={{ display: "flex" }}>
         <Grid
           container
@@ -407,14 +456,20 @@ function TimeSheet({ currentId, posts, timesheetData }) {
             },
           }}
         >
-          <Grid item xs={12} md={2}>
+          <Grid item xs={12} md={3}>
             <Card
+              elevation={0}
               sx={{
-                width: "flex",
-                padding: "15px",
-                backgroundColor: "white",
-                margin: "10px 8px 0px 20px",
-                borderRadius: "12px",
+                p: 3,
+                m: "10px 8px 0px 20px",
+                borderRadius: 4,
+                bgcolor: "#ffffff",
+                border: "1px solid #E5E7EB",
+                boxShadow: "0 10px 30px rgba(22,53,93,0.08)",
+
+                "&:hover": {
+                  boxShadow: "0 14px 40px rgba(22,53,93,0.12)",
+                },
               }}
             >
               <form onSubmit={handleSubmit} className="time-sheet-form">
@@ -429,9 +484,10 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                     <input
                       type="date"
                       id="date"
-                      defaultValue={date}
+                      value={date}
                       onChange={handleCheck}
                       required
+                      style={inputStyle}
                     />
                   </div>
                   <div className="form-group">
@@ -441,8 +497,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                     >
                       Project Code:
                     </label>
-
-                    <input
+                    {/* <input
                       style={{
                         width: "100%",
                         height: "30px",
@@ -459,8 +514,59 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                       // onFocus={togglePopup1} // Using onFocus event to trigger the popup
                       onChange={(e) => setProjectCode(e.target.value)}
                       autoComplete="off"
-                    />
-                    {/* ______________________________________pop window contents_____________________________________________ */}
+                    /> */}
+                    <Select
+                      labelId="project-code-label"
+                      value={projectCode}
+                      displayEmpty
+                      renderValue={(selected) => {
+                        if (selected === "") {
+                          return (
+                            <span style={{ color: "#9CA3AF" }}>
+                              Select Project Code
+                            </span>
+                          );
+                        }
+                        return selected;
+                      }}
+                      label="Project Code"
+                      onChange={(e) => setProjectCode(e.target.value)}
+                      sx={{
+                        width: "100%",
+                        backgroundColor: "#fff",
+                        borderRadius: "8px",
+                        fontFamily: "Roboto",
+                        color: "#16355d",
+
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#16355d",
+                        },
+
+                        "&:hover .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#16355d",
+                        },
+
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "#16355d",
+                          borderWidth: "2px",
+                        },
+
+                        "& .MuiSelect-select": {
+                          padding: "10px 14px",
+                        },
+                      }}
+                    >
+                      <MenuItem value="" disabled>
+                        <em>Select Project Code</em>
+                      </MenuItem>
+                      {projectCodes.map((code) => (
+                        <MenuItem key={code} value={code}>
+                          {code}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                    {/* ______________________________________pop window
+                    contents_____________________________________________ */}
                   </div>
 
                   <div className="form-group">
@@ -471,19 +577,11 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                       Activity Code:
                     </label>
                     <input
-                      style={{
-                        width: "100%",
-                        height: "30px",
-                        padding: "8px",
-                        fontSize: "16px",
-                        border: "1px solid #ccc",
-                        borderRadius: "4px",
-                        color: "#e55d17",
-                      }}
+                      style={inputStyle}
                       type="text"
                       id="activityCode"
-                      // value={activityCode}
-                      defaultValue={activityCode}
+                      value={activityCode}
+                      // defaultValue={activityCode}
                       onFocus={togglePopup2}
                       readOnly
                       autoComplete="off"
@@ -499,6 +597,24 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                   <div className="form-group">
                     <label
                       style={{ color: "#16355d", fontFamily: "Roboto" }}
+                      htmlFor="refdocNumber"
+                    >
+                      Ref. Document Number:
+                    </label>
+                    <input
+                      style={inputStyle}
+                      type="text"
+                      id="refdocNumber"
+                      value={refdocNumber}
+                      // defaultValue={refdocNumber}
+                      onChange={(e) => setRefdocNumber(e.target.value)}
+                      autoComplete="off"
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label
+                      style={{ color: "#16355d", fontFamily: "Roboto" }}
                       htmlFor="netTime"
                     >
                       Net Time (hrs):
@@ -506,11 +622,22 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                     <input
                       type="number"
                       id="netTime"
-                      // value={netTime}
-                      defaultValue={netTime}
-                      onChange={(e) => setNetTime(parseFloat(e.target.value))}
+                      value={netTime}
+                      // defaultValue={netTime}
                       step="0.1"
-                      // max={8}
+                      max="7.5"
+                      style={inputStyle}
+                      onChange={(e) => {
+                        const value = parseFloat(e.target.value);
+
+                        if (value <= 7.5 || e.target.value === "") {
+                          setNetTime(value);
+                        } else {
+                          alert("Net Time cannot exceed 7.5 hours.");
+                          e.target.value = 7.5;
+                          setNetTime(7.5);
+                        }
+                      }}
                     />
                   </div>
                   <div className="form-group">
@@ -523,35 +650,28 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                     <input
                       type="number"
                       id="overTime"
-                      // value={overTime}
-                      defaultValue={overTime}
+                      value={overTime}
+                      // defaultValue={overTime}
                       onChange={(e) => setOverTime(parseFloat(e.target.value))}
                       step="0.1"
+                      style={inputStyle}
+                      required
                     />
                   </div>
                   <div className="form-group">
                     <label
                       style={{ color: "#16355d", fontFamily: "Roboto" }}
-                      htmlFor="overTime"
+                      htmlFor="Remarks"
                     >
                       Remarks:
                     </label>
                     <input
-                      style={{
-                        width: "100%",
-                        height: "30px",
-                        padding: "8px",
-                        fontSize: "16px",
-                        border: "1px solid #ccc",
-                        borderRadius: "4px",
-                        color: "#e55d17",
-                      }}
+                      style={inputStyle}
                       type="text"
                       id="remarks"
                       placeholder="Enter text (max 50 chars)"
                       maxLength={50} // ✅ correct way in React
-                      // value={overTime}
-                      defaultValue={remarks}
+                      value={remarks}
                       onChange={(e) => {
                         setRemarks(e.target.value);
                         handleChange(e);
@@ -665,64 +785,6 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                   )}
                 </fieldset>
               </form>
-            </Card>
-            {/* Card for Total Net Time */}
-            <Card
-              item
-              xs={12}
-              md={3} // make it a bit wider for visibility
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "20px",
-                background: "linear-gradient(135deg, #ffffff, #f0f4ff)",
-                margin: "10px 8px 0px 20px",
-                borderRadius: "16px",
-                boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
-                transition: "transform 0.3s, box-shadow 0.3s",
-                "&:hover": {
-                  transform: "translateY(-5px)",
-                  boxShadow: "0 12px 25px rgba(0,0,0,0.15)",
-                },
-              }}
-            >
-              <Typography
-                sx={{
-                  color: "#16355d",
-                  fontFamily: "Roboto",
-                  fontSize: "14px",
-                  fontWeight: 500,
-                  marginBottom: "10px",
-                  textTransform: "uppercase",
-                  letterSpacing: 1,
-                }}
-              >
-                Total Net Time
-              </Typography>
-
-              <Typography
-                sx={{
-                  color: "#0d325c",
-                  fontFamily: "Roboto",
-                  fontSize: "28px",
-                  fontWeight: 700,
-                }}
-              >
-                {monthlyTotalNetTime} h
-              </Typography>
-
-              <Typography
-                sx={{
-                  color: "#5a6a85",
-                  fontFamily: "Roboto",
-                  fontSize: "12px",
-                  marginTop: "5px",
-                }}
-              >
-                Calculated for this month
-              </Typography>
             </Card>
           </Grid>
 
@@ -839,6 +901,41 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                           {isStatus ? "Inactive" : "Active"}
                         </Button>
                       )}
+                      {/* Card for Total Net Time */}
+                      <Card
+                        elevation={0}
+                        sx={{
+                          px: 2,
+                          py: 1,
+                          borderRadius: 2,
+                          border: "1px solid #E5E7EB",
+                          borderLeft: "4px solid #047681",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 1.5,
+                          boxShadow: "0 4px 12px rgba(22,53,93,0.08)",
+                        }}
+                      >
+                        <Typography
+                          sx={{
+                            fontSize: 13,
+                            color: "#5A6A85",
+                            fontWeight: 600,
+                          }}
+                        >
+                          Total Net Time :
+                        </Typography>
+
+                        <Typography
+                          sx={{
+                            fontSize: 20,
+                            color: "#16355d",
+                            fontWeight: 700,
+                          }}
+                        >
+                          {monthlyTotalNetTime} hrs
+                        </Typography>
+                      </Card>
                     </Box>
                   </Grid>{" "}
                   <Grid item>
@@ -889,31 +986,15 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                         <table
                           table
                           style={{
-                            padding: "5px",
-                            backgroundColor: "#f2f2f2",
-                            borderCollapse: "collapse",
-                            border: "1px solid black",
-                            // marginLeft: "auto",
-                            // marginRight: "auto",
-                            // borderRadius: "12px",
                             width: "100%",
-                            marginBottom: "10px",
-                            maxWidth: "800px", // Set a max-width to prevent tables from expanding too much
+                            borderCollapse: "separate",
+                            borderSpacing: 0,
+                            fontFamily: "Roboto",
+                            overflow: "hidden",
                           }}
                         >
                           {/* <thead> */}
-                          <tr
-                            height="50px"
-                            style={{
-                              // backgroundColor: "lightgray",
-                              color: "black",
-                              // textAlign: "center",
-                              fontSize: "20px",
-                              fontWeight: "600",
-                              border: "1px solid black",
-                              borderRadius: "12px",
-                            }}
-                          >
+                          <tr>
                             <div
                               style={{
                                 padding: "10px",
@@ -948,12 +1029,37 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                                 if (post._id === currentId) {
                                   return (
                                     <>
-                                      <tr key={index}>
+                                      <tr
+                                        key={index}
+                                        style={{
+                                          backgroundColor:
+                                            index % 2 === 0
+                                              ? "#ffffff"
+                                              : "#F8FAFC",
+                                          transition: "0.25s",
+                                        }}
+                                        onMouseEnter={(e) => {
+                                          e.currentTarget.style.background =
+                                            "#EEF5FF";
+                                        }}
+                                        onMouseLeave={(e) => {
+                                          e.currentTarget.style.background =
+                                            index % 2 === 0
+                                              ? "#ffffff"
+                                              : "#F8FAFC";
+                                        }}
+                                      >
                                         <th
                                           style={{
-                                            border: "1px solid black",
+                                            background: "#16355d",
+                                            color: "#fff",
+                                            padding: "14px",
+                                            fontSize: "14px",
+                                            fontWeight: 600,
                                             textAlign: "center",
-                                            fontFamily: "Roboto",
+                                            position: "sticky",
+                                            top: 0,
+                                            letterSpacing: ".4px",
                                           }}
                                         >
                                           Employee Id
@@ -969,9 +1075,15 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                                         </td>
                                         <th
                                           style={{
-                                            border: "1px solid black",
+                                            background: "#16355d",
+                                            color: "#fff",
+                                            padding: "14px",
+                                            fontSize: "14px",
+                                            fontWeight: 600,
                                             textAlign: "center",
-                                            fontFamily: "Roboto",
+                                            position: "sticky",
+                                            top: 0,
+                                            letterSpacing: ".4px",
                                           }}
                                         >
                                           Name
@@ -998,12 +1110,37 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                                               .toLowerCase()}
                                         </td>
                                       </tr>
-                                      <tr key={index}>
+                                      <tr
+                                        key={index}
+                                        style={{
+                                          backgroundColor:
+                                            index % 2 === 0
+                                              ? "#ffffff"
+                                              : "#F8FAFC",
+                                          transition: "0.25s",
+                                        }}
+                                        onMouseEnter={(e) => {
+                                          e.currentTarget.style.background =
+                                            "#EEF5FF";
+                                        }}
+                                        onMouseLeave={(e) => {
+                                          e.currentTarget.style.background =
+                                            index % 2 === 0
+                                              ? "#ffffff"
+                                              : "#F8FAFC";
+                                        }}
+                                      >
                                         <th
                                           style={{
-                                            border: "1px solid black",
+                                            background: "#16355d",
+                                            color: "#fff",
+                                            padding: "14px",
+                                            fontSize: "14px",
+                                            fontWeight: 600,
                                             textAlign: "center",
-                                            fontFamily: "Roboto",
+                                            position: "sticky",
+                                            top: 0,
+                                            letterSpacing: ".4px",
                                           }}
                                         >
                                           Department
@@ -1019,9 +1156,15 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                                         </td>
                                         <th
                                           style={{
-                                            border: "1px solid black",
+                                            background: "#16355d",
+                                            color: "#fff",
+                                            padding: "14px",
+                                            fontSize: "14px",
+                                            fontWeight: 600,
                                             textAlign: "center",
-                                            fontFamily: "Roboto",
+                                            position: "sticky",
+                                            top: 0,
+                                            letterSpacing: ".4px",
                                           }}
                                         >
                                           Duration
@@ -1063,30 +1206,45 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                           <tr>
                             <th
                               style={{
+                                background: "#16355d",
+                                color: "#fff",
+                                padding: "14px",
+                                fontSize: "14px",
+                                fontWeight: 600,
                                 textAlign: "center",
-                                // width: "15%",
-                                color: "#16355d",
-                                fontFamily: "Roboto",
+                                position: "sticky",
+                                top: 0,
+                                letterSpacing: ".4px",
                               }}
                             >
                               Date (yyyy-mm-dd)
                             </th>
                             <th
                               style={{
+                                background: "#16355d",
+                                color: "#fff",
+                                padding: "14px",
+                                fontSize: "14px",
+                                fontWeight: 600,
                                 textAlign: "center",
-                                // width: "25%",
-                                color: "#16355d",
-                                fontFamily: "Roboto",
+                                position: "sticky",
+                                top: 0,
+                                letterSpacing: ".4px",
                               }}
                             >
                               Project Code
                             </th>
                             <th
                               style={{
+                                background: "#16355d",
+                                color: "#fff",
+                                padding: "14px",
+                                fontSize: "14px",
+                                fontWeight: 600,
                                 textAlign: "center",
-                                // width: "25%",
-                                color: "#16355d",
-                                fontFamily: "Roboto",
+                                position: "sticky",
+                                top: 0,
+                                letterSpacing: ".4px",
                               }}
                             >
                               Activity Code
@@ -1094,30 +1252,61 @@ function TimeSheet({ currentId, posts, timesheetData }) {
 
                             <th
                               style={{
+                                background: "#16355d",
+                                color: "#fff",
+                                padding: "14px",
+                                fontSize: "14px",
+                                fontWeight: 600,
                                 textAlign: "center",
-                                width: "10%",
-                                color: "#16355d",
-                                fontFamily: "Roboto",
+                                position: "sticky",
+                                top: 0,
+                                letterSpacing: ".4px",
+                              }}
+                            >
+                              Ref. Doc. Number
+                            </th>
+
+                            <th
+                              style={{
+                                background: "#16355d",
+                                color: "#fff",
+                                padding: "14px",
+                                fontSize: "14px",
+                                fontWeight: 600,
+                                textAlign: "center",
+                                position: "sticky",
+                                top: 0,
+                                letterSpacing: ".4px",
                               }}
                             >
                               Net Time (hrs)
                             </th>
                             <th
                               style={{
+                                background: "#16355d",
+                                color: "#fff",
+                                padding: "14px",
+                                fontSize: "14px",
+                                fontWeight: 600,
                                 textAlign: "center",
-                                width: "10%",
-                                color: "#16355d",
-                                fontFamily: "Roboto",
+                                position: "sticky",
+                                top: 0,
+                                letterSpacing: ".4px",
                               }}
                             >
                               Over Time (hrs)
                             </th>
                             <th
                               style={{
+                                background: "#16355d",
+                                color: "#fff",
+                                padding: "14px",
+                                fontSize: "14px",
+                                fontWeight: 600,
                                 textAlign: "center",
-                                width: "30%",
-                                color: "#16355d",
-                                fontFamily: "Roboto",
+                                position: "sticky",
+                                top: 0,
+                                letterSpacing: ".4px",
                               }}
                             >
                               Remarks
@@ -1148,57 +1337,94 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                                   (a, b) => new Date(a.date) - new Date(b.date),
                                 )
                             ).map((data, index) => (
-                              <tr key={index}>
+                              <tr
+                                key={index}
+                                style={{
+                                  backgroundColor:
+                                    index % 2 === 0 ? "#ffffff" : "#F8FAFC",
+                                  transition: "0.25s",
+                                }}
+                                onMouseEnter={(e) => {
+                                  e.currentTarget.style.background = "#EEF5FF";
+                                }}
+                                onMouseLeave={(e) => {
+                                  e.currentTarget.style.background =
+                                    index % 2 === 0 ? "#ffffff" : "#F8FAFC";
+                                }}
+                              >
                                 <td
                                   style={{
-                                    color: "#e55d17",
-                                    padding: "10px",
+                                    padding: "14px",
                                     textAlign: "center",
+                                    color: "#374151",
+                                    borderBottom: "1px solid #F1F5F9",
+                                    fontSize: "14px",
                                   }}
                                 >
                                   {data.date}
                                 </td>
                                 <td
                                   style={{
-                                    color: "#e55d17",
-                                    padding: "10px",
+                                    padding: "14px",
                                     textAlign: "center",
+                                    color: "#374151",
+                                    borderBottom: "1px solid #F1F5F9",
+                                    fontSize: "14px",
                                   }}
                                 >
                                   {data.projectCode}
                                 </td>
                                 <td
                                   style={{
-                                    color: "#e55d17",
-                                    padding: "10px",
+                                    padding: "14px",
                                     textAlign: "center",
+                                    color: "#374151",
+                                    borderBottom: "1px solid #F1F5F9",
+                                    fontSize: "14px",
                                   }}
                                 >
                                   {data.activityCode}
                                 </td>
                                 <td
                                   style={{
-                                    color: "#e55d17",
-                                    padding: "10px",
+                                    padding: "14px",
                                     textAlign: "center",
+                                    color: "#374151",
+                                    borderBottom: "1px solid #F1F5F9",
+                                    fontSize: "14px",
+                                  }}
+                                >
+                                  {data.refdocNumber}
+                                </td>
+                                <td
+                                  style={{
+                                    padding: "14px",
+                                    textAlign: "center",
+                                    color: "#374151",
+                                    borderBottom: "1px solid #F1F5F9",
+                                    fontSize: "14px",
                                   }}
                                 >
                                   {data.netTime}
                                 </td>
                                 <td
                                   style={{
-                                    color: "#e55d17",
-                                    padding: "10px",
+                                    padding: "14px",
                                     textAlign: "center",
+                                    color: "#374151",
+                                    borderBottom: "1px solid #F1F5F9",
+                                    fontSize: "14px",
                                   }}
                                 >
                                   {data.overTime}
                                 </td>
                                 <td
                                   style={{
-                                    color: "#e55d17",
-                                    padding: "10px",
+                                    padding: "14px",
                                     textAlign: "center",
+                                    color: "#374151",
+                                    borderBottom: "1px solid #F1F5F9",
+                                    fontSize: "14px",
                                   }}
                                 >
                                   {data.remarks}
@@ -1207,88 +1433,42 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                                 {printingShow === false && role === "admin" && (
                                   <td
                                     style={{
-                                      display: "flex",
-                                      justifyContent: "space-around",
-                                      padding: "10px",
                                       textAlign: "center",
+                                      whiteSpace: "nowrap",
                                     }}
                                   >
-                                    <Button
-                                      id="editButton"
-                                      variant="contained"
-                                      sx={{
-                                        background:
-                                          "linear-gradient(135deg, #047681, #047681)",
-                                        borderRadius: "5px",
-                                        padding: "5px 20px",
-                                        fontFamily: "Roboto",
-                                        fontWeight: 600,
-                                        textTransform: "none",
-                                        boxShadow: "0 6px 15px rgba(0,0,0,0.2)",
-                                        transition: "all 0.3s ease",
-                                        "&:hover": {
-                                          background:
-                                            "linear-gradient(135deg, #047681, #047681)",
-                                          transform: "translateY(-2px)",
-                                          boxShadow:
-                                            "0 8px 20px rgba(0,0,0,0.25)",
-                                        },
-                                      }}
-                                      onClick={() => editEntry(index)}
-                                    >
-                                      Edit
-                                    </Button>
-                                    <Button
-                                      id="deleteButton"
-                                      variant="contained"
-                                      sx={{
-                                        background:
-                                          "linear-gradient(135deg, #dc3545, #da2335ff)",
-                                        borderRadius: "5px",
-                                        padding: "5px 20px",
-                                        fontFamily: "Roboto",
-                                        fontWeight: 600,
-                                        textTransform: "none",
-                                        boxShadow: "0 6px 15px rgba(0,0,0,0.2)",
-                                        transition: "all 0.3s ease",
-                                        "&:hover": {
-                                          background:
-                                            "linear-gradient(135deg, #dc3545, #da2335ff)",
-                                          transform: "translateY(-2px)",
-                                          boxShadow:
-                                            "0 8px 20px rgba(231, 22, 22, 0.25)",
-                                        },
-                                      }}
-                                      onClick={() => deleteEntry(index)}
-                                    >
-                                      Delete
-                                    </Button>
+                                    <Tooltip title="Edit">
+                                      <IconButton
+                                        onClick={() => editEntry(index)}
+                                        sx={{
+                                          mr: 1,
+                                          bgcolor: "#E8F8F8",
+                                          color: "#047681",
+                                          "&:hover": {
+                                            bgcolor: "#047681",
+                                            color: "#fff",
+                                          },
+                                        }}
+                                      >
+                                        <EditRoundedIcon fontSize="small" />
+                                      </IconButton>
+                                    </Tooltip>
 
-                                    {/* <Button
-                                      id="deleteButton"
-                                      variant="contained"
-                                      sx={{
-                                        background:
-                                          "linear-gradient(135deg, #dc3545, #da2335ff",
-                                        borderRadius: "5px",
-                                        padding: "5px 20px",
-                                        fontFamily: "Roboto",
-                                        fontWeight: 600,
-                                        textTransform: "none",
-                                        boxShadow: "0 6px 15px rgba(0,0,0,0.2)",
-                                        transition: "all 0.3s ease",
-                                        "&:hover": {
-                                          background:
-                                            "linear-gradient(135deg, #dc3545, #da2335ff)",
-                                          transform: "translateY(-2px)",
-                                          boxShadow:
-                                            "0 8px 20px rgba(231, 53, 53, 0.25)",
-                                        },
-                                      }}
-                                      onClick={() => deleteEntry(index)}
-                                    >
-                                      Delete
-                                    </Button> */}
+                                    <Tooltip title="Delete">
+                                      <IconButton
+                                        onClick={() => deleteEntry(index)}
+                                        sx={{
+                                          bgcolor: "#FDECEC",
+                                          color: "#dc3545",
+                                          "&:hover": {
+                                            bgcolor: "#dc3545",
+                                            color: "#fff",
+                                          },
+                                        }}
+                                      >
+                                        <DeleteRoundedIcon fontSize="small" />
+                                      </IconButton>
+                                    </Tooltip>
                                   </td>
                                 )}
                               </tr>

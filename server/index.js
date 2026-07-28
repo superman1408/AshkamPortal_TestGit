@@ -19,6 +19,8 @@ const HOST = process.env.HOST || "localhost";
 
 const CONNECT = process.env.CONNECTION_URL;
 
+const projectCodes = process.env.PROJECT_CODES;
+
 app.use(express.static("client"));
 app.use(bodyParser.json({ limit: "35mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "35mb", extended: true }));
@@ -32,6 +34,10 @@ app.use("/timesheet", timesheetRouters);
 
 app.get("/", (req, res) => {
   res.send("Hello to ASHKAM  API");
+});
+
+app.get("/projects", (req, res) => {
+  res.json(projectCodes);
 });
 
 // // Route for handling file uploads
@@ -62,8 +68,8 @@ mongoose
       console.log(
         "Listening at " +
           `http://${HOST}:${PORT}` +
-          "\nMongoDB database is connected..!!"
+          "\nMongoDB database is connected..!!",
       );
-    })
+    }),
   )
   .catch((error) => console.log(error));

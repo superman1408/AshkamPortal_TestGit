@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://192.168.168.121:8000/",
-  // baseURL: "http://localhost:8000/",
+  // baseURL: "http://192.168.168.121:8000/",
+  baseURL: "http://localhost:8000/",
 });
 
 API.interceptors.request.use((req) => {
@@ -126,3 +126,5 @@ export const uploadAttendanceFile = (formData) =>
   });
 
 export const fetchAttendanceFile = () => API.get("/attend/attendancefile");
+
+export const getProjectCodes = () => API.get("/projects");

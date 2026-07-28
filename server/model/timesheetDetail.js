@@ -14,6 +14,10 @@ const timesheetSchema = mongoose.Schema(
       type: [String],
       default: [],
     }, // reference to Projects code for Time Sheet
+    refdocNumber: {
+      type: [String],
+      default: [],
+    },
     date: {
       type: [String],
       default: [],
@@ -43,7 +47,7 @@ const timesheetSchema = mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 const timesheetDetail = mongoose.model("timesheetDetail", timesheetSchema);
