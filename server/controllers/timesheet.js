@@ -35,13 +35,166 @@ import TimesheetDetail from "../model/timesheetDetail.js";
 //   }
 // };
 
+// export const timesheetList = async (req, res) => {
+//   console.log("This side is working");
+
+//   const { id } = req.params;
+//   const value = req.body;
+
+//   try {
+//     const updatedPost = await TimesheetDetail.findByIdAndUpdate(
+//       id,
+//       {
+//         $push: {
+//           existingUser: id,
+//           projectCode: value.projectCode,
+//           activityCode: value.activityCode,
+//           refdocNumber: value.refdocNumber,
+//           date: value.date,
+//           netTime: value.netTime,
+//           overTime: value.overTime,
+//           remarks: value.remarks,
+//         },
+//       },
+//       {
+//         new: true,
+//         upsert: true, // ✅ create document if it doesn’t exist
+//         setDefaultsOnInsert: true, // ✅ apply default [] from schema
+//       },
+//     );
+
+//     res.json(updatedPost);
+//   } catch (error) {
+//     // console.error("Error in timesheetList:", error);
+//     res.status(500).json({ message: error.message });
+//   }
+// };
+
+
+// export const timesheetList = async (req, res) => {
+//   console.log("This side is working");
+
+//   const { id } = req.params;
+//   const value = req.body;
+
+//   try {
+//     // Get existing document
+//     let doc = await TimesheetDetail.findById(id);
+
+//     // If document already exists, make sure refdocNumber
+//     // has the same length as the other arrays.
+//     if (doc) {
+//       const maxLength = Math.max(
+//         doc.existingUser.length,
+//         doc.projectCode.length,
+//         doc.activityCode.length,
+//         doc.date.length,
+//         doc.netTime.length,
+//         doc.overTime.length,
+//         doc.remarks.length
+//       );
+
+//       if (doc.refdocNumber.length < maxLength) {
+//         const missing = maxLength - doc.refdocNumber.length;
+
+//         await TimesheetDetail.findByIdAndUpdate(id, {
+//           $push: {
+//             refdocNumber: {
+//               $each: Array(missing).fill("No Data"),
+//             },
+//           },
+//         });
+//       }
+//     }
+
+//     // Now insert the new row
+//     const updatedPost = await TimesheetDetail.findByIdAndUpdate(
+//       id,
+//       {
+//         $push: {
+//           existingUser: id,
+//           projectCode: value.projectCode,
+//           activityCode: value.activityCode,
+//           refdocNumber: value.refdocNumber || "",
+//           date: value.date,
+//           netTime: value.netTime,
+//           overTime: value.overTime,
+//           remarks: value.remarks,
+//         },
+//       },
+//       {
+//         new: true,
+//         upsert: true,
+//         setDefaultsOnInsert: true,
+//       }
+//     );
+
+//     res.json(updatedPost);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// };
+
+
 export const timesheetList = async (req, res) => {
-  console.log("This side is working");
+  console.log("This side is working in time sheet");
 
   const { id } = req.params;
   const value = req.body;
 
   try {
+    // Repair existing documents (run once only - remove later)
+    const docs = await TimesheetDetail.find();
+
+    for (const item of docs) {
+      const maxLength = Math.max(
+        item.projectCode.length,
+        item.activityCode.length,
+        item.date.length,
+        item.netTime.length,
+        item.overTime.length,
+        item.remarks.length,
+        item.existingUser.length
+      );
+
+      while (item.refdocNumber.length < maxLength) {
+        item.refdocNumber.push("No Data");
+      }
+
+      if (item.refdocNumber.length > maxLength) {
+        item.refdocNumber = item.refdocNumber.slice(0, maxLength);
+      }
+
+      await item.save();
+    }
+
+    // Fetch current user's document again
+    const doc = await TimesheetDetail.findById(id);
+
+    if (doc) {
+      const updatedPost = await TimesheetDetail.findByIdAndUpdate(
+        id,
+        {
+          $push: {
+            existingUser: id,
+            projectCode: value.projectCode,
+            activityCode: value.activityCode,
+            refdocNumber: value.refdocNumber || "No Data",
+            date: value.date,
+            netTime: value.netTime,
+            overTime: value.overTime,
+            remarks: value.remarks,
+          },
+        },
+        {
+          new: true,
+        }
+      );
+
+      return res.json(updatedPost);
+    }
+
+    // Create document if it doesn't exist
     const updatedPost = await TimesheetDetail.findByIdAndUpdate(
       id,
       {
@@ -49,7 +202,7 @@ export const timesheetList = async (req, res) => {
           existingUser: id,
           projectCode: value.projectCode,
           activityCode: value.activityCode,
-          refdocNumber: value.refdocNumber,
+          refdocNumber: value.refdocNumber || "No Data",
           date: value.date,
           netTime: value.netTime,
           overTime: value.overTime,
@@ -58,14 +211,14 @@ export const timesheetList = async (req, res) => {
       },
       {
         new: true,
-        upsert: true, // ✅ create document if it doesn’t exist
-        setDefaultsOnInsert: true, // ✅ apply default [] from schema
-      },
+        upsert: true,
+        setDefaultsOnInsert: true,
+      }
     );
 
     res.json(updatedPost);
   } catch (error) {
-    // console.error("Error in timesheetList:", error);
+    console.error(error);
     res.status(500).json({ message: error.message });
   }
 };
