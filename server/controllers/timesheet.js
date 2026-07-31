@@ -295,3 +295,56 @@ export const deleteTimesheet = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+
+// Introducing a button connected to one function which will identify the length of all the arrays and push "No Data" in the referrence document array till that length
+
+export const updateRefDoc = async (req, res) => {
+  console.log("waiting to connect for changes in ref doc array.");
+
+  try {
+    const { id } = req.params;
+    console.log(id);
+    
+
+    const doc = await TimesheetDetail.findById(id);
+
+    console.log(doc);
+    
+
+    if (!doc) {
+      return res.status(404).json({
+        success: false,
+        message: "Timesheet not found.",
+      });
+    }
+
+    const maxLength = doc.date.length;
+
+    console.log(maxLength);
+    
+    doc.refdocNumber = [
+      ...doc.refdocNumber.slice(0, maxLength),
+      ...Array(
+        Math.max(0, maxLength - doc.refdocNumber.length)
+      ).fill("No Data"),
+    ];
+
+    console.log(doc);
+    
+
+    await doc.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Ref Doc array synchronized successfully.",
+      data: doc,
+    });
+  } catch (error) {
+    console.error("Error updating refDoc:", error);
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};

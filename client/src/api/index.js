@@ -125,6 +125,9 @@ export const uploadAttendanceFile = (formData) =>
     headers: { "Content-Type": "multipart/form-data" },
   });
 
+export const updateRefDoc = (id, formData) =>
+  API.patch(`/timesheet/${id}/updateRefDoc`, formData);
+
 export const fetchAttendanceFile = () => API.get("/attend/attendancefile");
 
 export const getProjectCodes = () => API.get("/projects");

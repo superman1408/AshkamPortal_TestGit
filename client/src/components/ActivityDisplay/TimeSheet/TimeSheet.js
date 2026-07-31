@@ -12,6 +12,7 @@ import {
   deleteTimesheet,
   updateTimesheet,
   getTimesheetPosts,
+  updateRefDoc,
 } from "../../../action/timesheet";
 import LOGO from "../../../assets/AshkamLogoTransparentbc.png";
 import { getProjectCodes } from "../../../api";
@@ -395,6 +396,65 @@ function TimeSheet({ currentId, posts, timesheetData }) {
       setRemarks(value);
     }
   };
+
+//----------------------Reference Documents----------------------
+  const handleRefDoc = async (e) => {
+    console.log("I AM REFERENCE DOCUMENT.");
+    e.preventDefault();
+    setIsSubmitting(true); // Start loading
+
+    const newEntry = {
+      projectCode,
+      activityCode,
+      refdocNumber,
+      date,
+      netTime: parseFloat(netTime),
+      overTime: parseFloat(overTime),
+      editIndex: parseFloat(editIndex),
+      remarks,
+    };
+
+    if (validateEntry(newEntry)) {
+      try {
+        if (editIndex !== -1) {
+          const indexed = [editIndex];
+          const updatedEntries = [...entries];
+          updatedEntries[editIndex] = newEntry;
+          setEntries(updatedEntries);
+          await dispatch(updateRefDoc(currentId, newEntry)).then(
+            (res) => {
+              console.log("Data is recieved in the Data Base for Editing....");
+              setEditIndex(-1); // Reset edit index
+              alert("✅ Updated Data successfully!");
+              dispatch(getTimesheetPosts()); // 🔄 refresh data
+            },
+          );
+        } else {
+          setEntries([...entries, newEntry]);
+          await dispatch(updateRefDoc(currentId, newEntry)).then((res) => {
+            console.log("Data is recieved in the Data Base");
+            clearForm();
+            alert("✅ Entry submitted successfully!");
+            dispatch(getTimesheetPosts()); // 🔄 refresh data
+            // window.location.reload();
+          });
+        }
+      } catch (err) {
+        console.error("Submission failed :", err);
+        alert("❌ Something went wrong while submitting.");
+        setIsSubmitting(false); // Stop loading
+      }
+    } else {
+      alert(
+        'Invalid entry! Please check your input values and try again. Selected Date must not fall under "SUNDAY" & 2nd-4th "SATURDAY".',
+      );
+      setIsSubmitting(false); // Reset only if validation fails
+    }
+    clearForm();
+    window.location.reload();
+  };
+
+
 
   const MONTHS = [
     "January",
@@ -813,6 +873,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                       >
                         Clear
                       </Button>
+                      <Button type="button" onClick={handleRefDoc}>Ref Doc</Button>
                     </div>
                   )}
                 </fieldset>

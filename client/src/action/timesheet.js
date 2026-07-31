@@ -4,6 +4,7 @@ import {
   FETCH_TIMESHEET,
   UPDATE_TIMESHEET,
   DELETE_TIMESHEET,
+  UPDATE_REFDOC,
 } from "../constants/actionTypes";
 
 export const timesheetList = (formData, id) => async (dispatch) => {
@@ -54,6 +55,19 @@ export const deleteTimesheet = (id, indexed) => async (dispatch) => {
   try {
     await API.deleteTimesheet(id, indexed);
     dispatch({ type: DELETE_TIMESHEET, payload: id });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+//---------------------------Update Referrence Document----------------------------------------
+export const updateRefDoc = (id, formData) => async (dispatch) => {
+  console.log("Action section in upload referrence document is achieved.");
+
+  try {
+    const { data } = await API.updateRefDoc(id, formData);
+    dispatch({ type: UPDATE_REFDOC, payload: data })
   } catch (error) {
     console.log(error);
   }
