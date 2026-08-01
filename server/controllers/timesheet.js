@@ -1,140 +1,8 @@
 import mongoose from "mongoose";
 import TimesheetDetail from "../model/timesheetDetail.js";
 // ----------------------------------------------Timesheet  List Status-----------------------------------------
-// export const timesheetList = async (req, res) => {
-//   console.log("This side is working");
 
-//   const { id } = req.params;
-//   const value = req.body;
-
-//   console.log(id);
-//   console.log(value);
-//   try {
-//     const user = await TimesheetDetail.findById(id);
-
-//     if (!user) {
-//       return res.status(404).json({
-//         message: "User not found",
-//       });
-//     }
-//     user.existingUser.push(value.id);
-//     user.projectCode.push(value.projectCode);
-//     user.activityCode.push(value.activityCode);
-//     user.date.push(value.date);
-//     user.netTime.push(value.netTime);
-//     user.overTime.push(value.overTime);
-
-//     const updatedPost = await TimesheetDetail.findByIdAndUpdate(id, user, {
-//       new: true,
-//     });
-
-//     res.json(updatedPost);
-//   } catch (error) {
-//     res.status(409).json({ message: error.message });
-//     console.log("Here is error");
-//   }
-// };
-
-// export const timesheetList = async (req, res) => {
-//   console.log("This side is working");
-
-//   const { id } = req.params;
-//   const value = req.body;
-
-//   try {
-//     const updatedPost = await TimesheetDetail.findByIdAndUpdate(
-//       id,
-//       {
-//         $push: {
-//           existingUser: id,
-//           projectCode: value.projectCode,
-//           activityCode: value.activityCode,
-//           refdocNumber: value.refdocNumber,
-//           date: value.date,
-//           netTime: value.netTime,
-//           overTime: value.overTime,
-//           remarks: value.remarks,
-//         },
-//       },
-//       {
-//         new: true,
-//         upsert: true, // ✅ create document if it doesn’t exist
-//         setDefaultsOnInsert: true, // ✅ apply default [] from schema
-//       },
-//     );
-
-//     res.json(updatedPost);
-//   } catch (error) {
-//     // console.error("Error in timesheetList:", error);
-//     res.status(500).json({ message: error.message });
-//   }
-// };
-
-
-// export const timesheetList = async (req, res) => {
-//   console.log("This side is working");
-
-//   const { id } = req.params;
-//   const value = req.body;
-
-//   try {
-//     // Get existing document
-//     let doc = await TimesheetDetail.findById(id);
-
-//     // If document already exists, make sure refdocNumber
-//     // has the same length as the other arrays.
-//     if (doc) {
-//       const maxLength = Math.max(
-//         doc.existingUser.length,
-//         doc.projectCode.length,
-//         doc.activityCode.length,
-//         doc.date.length,
-//         doc.netTime.length,
-//         doc.overTime.length,
-//         doc.remarks.length
-//       );
-
-//       if (doc.refdocNumber.length < maxLength) {
-//         const missing = maxLength - doc.refdocNumber.length;
-
-//         await TimesheetDetail.findByIdAndUpdate(id, {
-//           $push: {
-//             refdocNumber: {
-//               $each: Array(missing).fill("No Data"),
-//             },
-//           },
-//         });
-//       }
-//     }
-
-//     // Now insert the new row
-//     const updatedPost = await TimesheetDetail.findByIdAndUpdate(
-//       id,
-//       {
-//         $push: {
-//           existingUser: id,
-//           projectCode: value.projectCode,
-//           activityCode: value.activityCode,
-//           refdocNumber: value.refdocNumber || "",
-//           date: value.date,
-//           netTime: value.netTime,
-//           overTime: value.overTime,
-//           remarks: value.remarks,
-//         },
-//       },
-//       {
-//         new: true,
-//         upsert: true,
-//         setDefaultsOnInsert: true,
-//       }
-//     );
-
-//     res.json(updatedPost);
-//   } catch (error) {
-//     res.status(500).json({ message: error.message });
-//   }
-// };
-
+// ______________________________ new entry operation_________________________________________
 
 export const timesheetList = async (req, res) => {
   console.log("This side is working in time sheet");
@@ -143,58 +11,6 @@ export const timesheetList = async (req, res) => {
   const value = req.body;
 
   try {
-    // Repair existing documents (run once only - remove later)
-    const docs = await TimesheetDetail.find();
-
-    for (const item of docs) {
-      const maxLength = Math.max(
-        item.projectCode.length,
-        item.activityCode.length,
-        item.date.length,
-        item.netTime.length,
-        item.overTime.length,
-        item.remarks.length,
-        item.existingUser.length
-      );
-
-      while (item.refdocNumber.length < maxLength) {
-        item.refdocNumber.push("No Data");
-      }
-
-      if (item.refdocNumber.length > maxLength) {
-        item.refdocNumber = item.refdocNumber.slice(0, maxLength);
-      }
-
-      await item.save();
-    }
-
-    // Fetch current user's document again
-    const doc = await TimesheetDetail.findById(id);
-
-    if (doc) {
-      const updatedPost = await TimesheetDetail.findByIdAndUpdate(
-        id,
-        {
-          $push: {
-            existingUser: id,
-            projectCode: value.projectCode,
-            activityCode: value.activityCode,
-            refdocNumber: value.refdocNumber || "No Data",
-            date: value.date,
-            netTime: value.netTime,
-            overTime: value.overTime,
-            remarks: value.remarks,
-          },
-        },
-        {
-          new: true,
-        }
-      );
-
-      return res.json(updatedPost);
-    }
-
-    // Create document if it doesn't exist
     const updatedPost = await TimesheetDetail.findByIdAndUpdate(
       id,
       {
@@ -211,12 +27,12 @@ export const timesheetList = async (req, res) => {
       },
       {
         new: true,
-        upsert: true,
-        setDefaultsOnInsert: true,
-      }
+        upsert: true, // ✅ create document if it doesn’t exist
+        setDefaultsOnInsert: true, // ✅ apply default [] from schema
+      },
     );
 
-    res.json(updatedPost);
+    return res.json(updatedPost);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: error.message });
@@ -296,7 +112,6 @@ export const deleteTimesheet = async (req, res) => {
   }
 };
 
-
 // Introducing a button connected to one function which will identify the length of all the arrays and push "No Data" in the referrence document array till that length
 
 export const updateRefDoc = async (req, res) => {
@@ -305,12 +120,10 @@ export const updateRefDoc = async (req, res) => {
   try {
     const { id } = req.params;
     console.log(id);
-    
 
     const doc = await TimesheetDetail.findById(id);
 
     console.log(doc);
-    
 
     if (!doc) {
       return res.status(404).json({
@@ -322,16 +135,15 @@ export const updateRefDoc = async (req, res) => {
     const maxLength = doc.date.length;
 
     console.log(maxLength);
-    
+
     doc.refdocNumber = [
       ...doc.refdocNumber.slice(0, maxLength),
-      ...Array(
-        Math.max(0, maxLength - doc.refdocNumber.length)
-      ).fill("No Data"),
+      ...Array(Math.max(0, maxLength - doc.refdocNumber.length)).fill(
+        "No Data",
+      ),
     ];
 
     console.log(doc);
-    
 
     await doc.save();
 

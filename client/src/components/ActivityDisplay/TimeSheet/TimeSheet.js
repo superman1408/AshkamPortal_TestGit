@@ -1,6 +1,18 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { Divider, Grid, CircularProgress, Box, Button, IconButton, Tooltip, Card, Typography, Select, MenuItem} from "@mui/material";
+import {
+  Divider,
+  Grid,
+  CircularProgress,
+  Box,
+  Button,
+  IconButton,
+  Tooltip,
+  Card,
+  Typography,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useDispatch } from "react-redux";
 import "./Style1.css"; // Import CSS file for styling
@@ -217,12 +229,12 @@ function TimeSheet({ currentId, posts, timesheetData }) {
   // Build array from posts + currentId using useMemo()
   const array = useMemo(() => {
     if (!Array.isArray(timesheetData)) return [];
-  
+
     const temp = [];
-  
+
     timesheetData.forEach((data) => {
       if (data?._id !== currentId) return;
-  
+
       const projectCode = data.projectCode || [];
       const activityCode = data.activityCode || [];
       const refdocNumber = data.refdocNumber || [];
@@ -231,7 +243,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
       const overTime = data.overTime || [];
       const editIndex = data.editIndex || [];
       const remarks = data.remarks || [];
-  
+
       const length = Math.max(
         projectCode.length,
         activityCode.length,
@@ -240,9 +252,9 @@ function TimeSheet({ currentId, posts, timesheetData }) {
         netTime.length,
         overTime.length,
         editIndex.length,
-        remarks.length
+        remarks.length,
       );
-  
+
       for (let i = 0; i < length; i++) {
         temp.push({
           projectCode: projectCode[i] ?? "",
@@ -256,7 +268,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
         });
       }
     });
-  
+
     return temp;
   }, [timesheetData, currentId]);
 
@@ -397,7 +409,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
     }
   };
 
-//----------------------Reference Documents----------------------
+  //----------------------Reference Documents----------------------
   const handleRefDoc = async (e) => {
     console.log("I AM REFERENCE DOCUMENT.");
     e.preventDefault();
@@ -421,14 +433,12 @@ function TimeSheet({ currentId, posts, timesheetData }) {
           const updatedEntries = [...entries];
           updatedEntries[editIndex] = newEntry;
           setEntries(updatedEntries);
-          await dispatch(updateRefDoc(currentId, newEntry)).then(
-            (res) => {
-              console.log("Data is recieved in the Data Base for Editing....");
-              setEditIndex(-1); // Reset edit index
-              alert("✅ Updated Data successfully!");
-              dispatch(getTimesheetPosts()); // 🔄 refresh data
-            },
-          );
+          await dispatch(updateRefDoc(currentId, newEntry)).then((res) => {
+            console.log("Data is recieved in the Data Base for Editing....");
+            setEditIndex(-1); // Reset edit index
+            alert("✅ Updated Data successfully!");
+            dispatch(getTimesheetPosts()); // 🔄 refresh data
+          });
         } else {
           setEntries([...entries, newEntry]);
           await dispatch(updateRefDoc(currentId, newEntry)).then((res) => {
@@ -453,8 +463,6 @@ function TimeSheet({ currentId, posts, timesheetData }) {
     clearForm();
     window.location.reload();
   };
-
-
 
   const MONTHS = [
     "January",
@@ -873,7 +881,9 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                       >
                         Clear
                       </Button>
-                      <Button type="button" onClick={handleRefDoc}>Ref Doc</Button>
+                      <Button type="button" onClick={handleRefDoc}>
+                        Ref Doc
+                      </Button>
                     </div>
                   )}
                 </fieldset>
