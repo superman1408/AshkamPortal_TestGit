@@ -75,6 +75,8 @@ function TimeSheet({ currentId, posts, timesheetData }) {
   const [printingShow, setPrintingShow] = useState(false);
 
   const [disable, setDisabled] = useState(true);
+  const [disableRefButton, setDisabledRefButton] = useState(true);
+
   const loggedInUserId = user?.result?._id;
   // For enabling form only for login users
   useEffect(() => {
@@ -881,9 +883,11 @@ function TimeSheet({ currentId, posts, timesheetData }) {
                       >
                         Clear
                       </Button>
-                      <Button type="button" onClick={handleRefDoc}>
-                        Ref Doc
-                      </Button>
+                      {role === "admin" && (
+                        <Button type="button" onClick={handleRefDoc}>
+                          Ref Doc
+                        </Button>
+                      )}
                     </div>
                   )}
                 </fieldset>
