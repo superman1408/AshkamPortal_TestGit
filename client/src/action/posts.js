@@ -31,6 +31,18 @@ export const getPosts = () => async (dispatch) => {
   }
 };
 
+// --------------------------- For fetching getactive posts data from database----------------------------------
+
+export const getActivePosts = () => async (dispatch) => {
+  try {
+    const { data } = await API.fetchActivePosts();
+
+    dispatch({ type: FETCH_ALL, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // export const getPosts = (page = 1) => async (dispatch) => {
 //   try {
 //     const { data } = await API.fetchPosts(page);

@@ -32,22 +32,24 @@ const TotalEmployee = () => {
   const [menCount, setMenCount] = useState(0);
   const [womenCount, setWomenCount] = useState(0);
 
+  const activeEmployees = posts.filter((emp) => emp.activeStatus === "Active");
+
   useEffect(() => {
     dispatch(getPosts());
   }, [dispatch]);
 
   useEffect(() => {
-    if (posts.length > 0) {
+    if (activeEmployees.length > 0) {
       let men = 0;
       let women = 0;
-      posts.forEach((post) => {
+      activeEmployees.forEach((post) => {
         if (post.gender === "male") men++;
         else if (post.gender === "female") women++;
       });
       setMenCount(men);
       setWomenCount(women);
     }
-  }, [posts]);
+  }, [activeEmployees]);
 
   const data = [
     { name: "Men", value: menCount },

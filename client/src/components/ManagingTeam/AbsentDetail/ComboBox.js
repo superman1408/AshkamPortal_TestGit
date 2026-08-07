@@ -3,11 +3,15 @@ import React, { useState } from "react";
 const AbsentComboBox = ({ posts, setCurrentId }) => {
   const [selectedOption, setSelectedOption] = useState("");
 
+  
+
   const handleChange = (event) => {
     const value = event.target.value;
     setSelectedOption(value);
     setCurrentId(value);
   };
+
+  console.log(posts);
 
   const formatName = (firstName, lastName) => {
     return (
@@ -19,7 +23,7 @@ const AbsentComboBox = ({ posts, setCurrentId }) => {
     );
   };
 
-  const sortedPosts = [...posts].sort((a, b) => {
+  const sortedPosts = [...activeEmployees].sort((a, b) => {
     const nameA = formatName(a.firstName, a.lastName);
     const nameB = formatName(b.firstName, b.lastName);
     return nameA.localeCompare(nameB);
