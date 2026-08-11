@@ -4,47 +4,49 @@ const authSchema = mongoose.Schema(
   {
     firstName: {
       type: String,
-      require: true,
+      required: true,
     },
     lastName: {
       type: String,
-      require: true,
+      required: true,
     },
     dob: {
       type: String,
-      require: true,
+      required: true,
     },
     gender: {
       type: String,
-      require: true,
+      required: true,
     },
     maritalStatus: {
       type: String,
-      require: true,
+      required: true,
     },
     email: {
       type: String,
-      require: true,
+      required: true,
     },
     contactNumber: {
       type: String,
-      require: true,
+      required: true,
     },
     password: {
       type: String,
-      require: true,
+      required: true,
     },
     confirmPassword: {
       type: String,
-      require: true,
+      required: true,
     },
     role: {
       type: String,
-      require: true,
+      required: true,
     },
     activeStatus: {
       type: String,
-      require: true,
+      required: false,
+      enum: ["Active", "Resigned"],
+      default: "Active",
     },
     employeeId: {
       type: String,
