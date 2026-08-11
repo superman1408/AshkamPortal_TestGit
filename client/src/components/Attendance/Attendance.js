@@ -23,8 +23,11 @@ const Attendance = () => {
   }, [dispatch]);
 
   const absentEmployees = activeEmployees.filter(
-    (post) => activeEmployees.presentStatus === "false",
+    (post) => post.presentStatus === "false",
   );
+
+  // console.log(absentEmployees);
+  
 
   // const empStrength = posts.filter((post) => post.gender);
 
