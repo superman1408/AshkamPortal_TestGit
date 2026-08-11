@@ -1064,6 +1064,7 @@ const RegistrationForm = () => {
     firstName: "",
     lastName: "",
     role: "",
+    activeStatus: "",
     dob: "",
     gender: "",
     email: "",
@@ -1113,6 +1114,7 @@ const RegistrationForm = () => {
                 firstName: items.firstName,
                 lastName: items.lastName,
                 role: items.role,
+                activeStatus: items.activeStatus,
                 dob: items.dob,
                 gender: items.gender,
                 email: items.email,
@@ -1195,6 +1197,11 @@ const RegistrationForm = () => {
   const maritalOptions = [
     { value: "Single", label: "Single" },
     { value: "Married", label: "Married" },
+  ];
+
+  const activeStatusOptions = [
+    { value: "Active", label: "Active" },
+    { value: "Resigned", label: "Resigned" },
   ];
 
   const departmentOptions = [
@@ -1336,29 +1343,66 @@ const RegistrationForm = () => {
                       </label>
                     </div>
                   </Grid>
-                  <Typography
-                    sx={{
-                      margin: "30px 0px 0px 0px",
-                      fontSize: "18px",
-                      fontWeight: "bold",
-                      fontFamily: "Roboto",
-                    }}
+                  <div
+                    style={{ display: "flex", justifyContent: "space-between" }}
                   >
-                    Role :
-                  </Typography>
+                    <div>
+                      <Typography
+                        sx={{
+                          margin: "30px 0px 0px 0px",
+                          fontSize: "18px",
+                          fontWeight: "bold",
+                          fontFamily: "Roboto",
+                        }}
+                      >
+                        Role :
+                      </Typography>
 
-                  <TextField
-                    type="text"
-                    name="role"
-                    variant="outlined"
-                    label="Role"
-                    sx={{ marginTop: "10px" }}
-                    value={postData.role}
-                    disabled={true}
-                    onChange={(e) =>
-                      setPostData({ ...postData, role: e.target.value })
-                    }
-                  />
+                      <TextField
+                        type="text"
+                        name="role"
+                        variant="outlined"
+                        label="Role"
+                        sx={{ marginTop: "10px" }}
+                        value={postData.role}
+                        disabled={true}
+                        onChange={(e) =>
+                          setPostData({ ...postData, status: e.target.value })
+                        }
+                      />
+                    </div>
+
+                    <div>
+                      <Typography
+                        sx={{
+                          margin: "30px 0px 0px 0px",
+                          fontSize: "18px",
+                          fontWeight: "bold",
+                          fontFamily: "Roboto",
+                        }}
+                      >
+                        Status :
+                      </Typography>
+
+                      <div style={{ width: "300px" }}>
+                        <Select
+                          placeholder="Select Active Status"
+                          name="activeStatus"
+                          value={activeStatusOptions.find(
+                            (opt) => opt.value === postData.activeStatus,
+                          )}
+                          options={activeStatusOptions}
+                          onChange={(option) =>
+                            setPostData({
+                              ...postData,
+                              activeStatus: option.value,
+                            })
+                          }
+                          styles={customSelectStyles}
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </>
               )}
             </div>

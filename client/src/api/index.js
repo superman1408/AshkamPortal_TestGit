@@ -22,6 +22,8 @@ export const fetchPosts = () => API.get("/posts");
 
 export const fetchPost = (id) => API.get(`/posts/${id}`);
 
+export const fetchActivePosts = () => API.get("/posts/active");
+
 export const create = (newPost) => API.post("/posts", newPost);
 
 export const updatePost = (id, updatedPost) =>

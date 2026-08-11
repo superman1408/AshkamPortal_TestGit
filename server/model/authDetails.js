@@ -42,6 +42,10 @@ const authSchema = mongoose.Schema(
       type: String,
       require: true,
     },
+    activeStatus: {
+      type: String,
+      require: true,
+    },
     employeeId: {
       type: String,
     },

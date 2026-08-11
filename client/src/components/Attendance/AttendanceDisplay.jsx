@@ -24,7 +24,7 @@ const AttendanceDisplay = () => {
   const role = user.result.role;
 
   const { attendanceFiles, uploading, error } = useSelector(
-    (state) => state.attendance
+    (state) => state.attendance,
   );
 
   useEffect(() => {
@@ -51,6 +51,8 @@ const AttendanceDisplay = () => {
     }
     setIsLoading(false);
   }, [isLoading, dispatch, posts]);
+
+  const activeEmployees = posts.filter((emp) => emp.activeStatus === "Active");
 
   useEffect(() => {
     if (!attend) {
@@ -90,7 +92,7 @@ const AttendanceDisplay = () => {
       {!isLoading && (
         <>
           {verify() === true && (
-            <ComboBox posts={posts} setCurrentId={setCurrentId} />
+            <ComboBox posts={activeEmployees} setCurrentId={setCurrentId} />
           )}
           <AttendanceDetail
             currentId={currentId}

@@ -11,6 +11,8 @@ const AbsentDetailsDisplay = () => {
   const { id } = useParams();
   const posts = useSelector((state) => state.posts);
 
+  const activeEmployees = posts.filter((emp) => emp.activeStatus === "Active");
+
   const [currentId, setCurrentId] = useState(id);
 
   const dispatch = useDispatch();
@@ -57,7 +59,7 @@ const AbsentDetailsDisplay = () => {
             padding: "16px",
           }}
         >
-          <AbsentComboBox posts={posts} setCurrentId={setCurrentId} />
+          <AbsentComboBox posts={activeEmployees} setCurrentId={setCurrentId} />
           <Divider
             sx={{
               margin: "20px 0",
