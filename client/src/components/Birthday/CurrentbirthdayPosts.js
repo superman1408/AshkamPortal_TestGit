@@ -23,7 +23,7 @@ const CurrentbirthdayPosts = () => {
   }, [dispatch, currentId]);
 
   const activeEmployee = posts.filter((emp) => emp.activeStatus === "Active");
-  console.log(activeEmployee, activeEmployee);
+  console.log("activeEmployee", activeEmployee);
   
 
 

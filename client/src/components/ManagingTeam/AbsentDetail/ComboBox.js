@@ -23,7 +23,7 @@ const AbsentComboBox = ({ posts, setCurrentId }) => {
     );
   };
 
-  const sortedPosts = [...activeEmployees].sort((a, b) => {
+  const sortedPosts = [...posts].sort((a, b) => {
     const nameA = formatName(a.firstName, a.lastName);
     const nameB = formatName(b.firstName, b.lastName);
     return nameA.localeCompare(nameB);
