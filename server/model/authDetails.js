@@ -4,43 +4,43 @@ const authSchema = mongoose.Schema(
   {
     firstName: {
       type: String,
-      required: true,
+      required: false,
     },
     lastName: {
       type: String,
-      required: true,
+      required: false,
     },
     dob: {
       type: String,
-      required: true,
+      required: false,
     },
     gender: {
       type: String,
-      required: true,
+      required: false,
     },
     maritalStatus: {
       type: String,
-      required: true,
+      required: false,
     },
     email: {
       type: String,
-      required: true,
+      required: false,
     },
     contactNumber: {
       type: String,
-      required: true,
+      required: false,
     },
     password: {
       type: String,
-      required: true,
+      required: false,
     },
-    confirmPassword: {
-      type: String,
-      required: true,
-    },
+    // confirmPassword: {
+    //   type: String,
+    //   required: false,
+    // },
     role: {
       type: String,
-      required: true,
+      required: false,
     },
     activeStatus: {
       type: String,
@@ -112,12 +112,10 @@ const authSchema = mongoose.Schema(
     },
     jobCode: {
       type: [String],
-      require: true,
       default: [],
     },
     startTime: {
       type: [String],
-      require: true,
       default: Date.now,
     },
     endTime: {
