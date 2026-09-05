@@ -104,9 +104,6 @@ function TimeSheet({ currentId, posts, timesheetData }) {
       try {
         const { data } = await getProjectCodes();
 
-        console.log("API Response:", data);
-        console.log("Is Array:", Array.isArray(data));
-
         setProjectCodes(data.split(",").map((code) => code.trim()));
       } catch (error) {
         console.log(error);
@@ -552,7 +549,7 @@ function TimeSheet({ currentId, posts, timesheetData }) {
             display: "flex",
             padding: "12px",
             flexDirection: "row",
-            "@media (max-width: 600px)": {
+            "@media (maxWidth: 600px)": {
               xs: "column",
               sm: "row",
             },

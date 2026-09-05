@@ -43,7 +43,6 @@ const Birthday = () => {
   }, [dispatch, event]);
 
   const activeEmployee = posts.filter((emp) => emp.activeStatus === "Active");
-  console.log("activeEmployee", activeEmployee);
 
   const birthdaysToday = activeEmployee.filter((post) => {
     const day = new Date(post.dob).getDate();

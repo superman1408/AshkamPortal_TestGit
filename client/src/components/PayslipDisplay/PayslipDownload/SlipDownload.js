@@ -59,7 +59,6 @@ const SlipDownload = ({
   const matchedPosts = useMemo(() => {
     return posts.filter((post) => post._id === currentId);
   }, [posts, currentId]);
-  console.log(verify);
 
   const filteredSalary = useMemo(() => {
     return salary.filter((slip) => currentId === slip.identify);
