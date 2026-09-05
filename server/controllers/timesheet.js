@@ -5,7 +5,7 @@ import TimesheetDetail from "../model/timesheetDetail.js";
 // ______________________________ new entry operation_________________________________________
 
 export const timesheetList = async (req, res) => {
-  console.log("This side is working in time sheet");
+  console.log("This side is create log in time sheet");
 
   const { id } = req.params;
   const value = req.body;
@@ -51,13 +51,13 @@ export const getTimesheetPosts = async (req, res) => {
 
 //------------------Update Operation --------------------------
 export const updateTimesheet = async (req, res) => {
-  console.log("You reached me");
+  console.log("You reached Update Timesheet");
 
   const id = req.params.id;
   const indexNumber = parseInt(req.params.indexed);
   const valueToEdit = req.body;
 
-  console.log(id, indexNumber, valueToEdit);
+  // console.log(id, indexNumber, valueToEdit);
 
   try {
     if (!mongoose.Types.ObjectId.isValid(id))
@@ -85,6 +85,8 @@ export const updateTimesheet = async (req, res) => {
 // Delete operation
 
 export const deleteTimesheet = async (req, res) => {
+  console.log("You reached delete Time Sheet");
+  
   const indexNumber = parseInt(req.params.indexed);
   const id = req.params.id;
 
@@ -119,11 +121,11 @@ export const updateRefDoc = async (req, res) => {
 
   try {
     const { id } = req.params;
-    console.log(id);
+    // console.log(id);
 
     const doc = await TimesheetDetail.findById(id);
 
-    console.log(doc);
+    // console.log(doc);
 
     if (!doc) {
       return res.status(404).json({
@@ -134,7 +136,7 @@ export const updateRefDoc = async (req, res) => {
 
     const maxLength = doc.date.length;
 
-    console.log(maxLength);
+    // console.log(maxLength);
 
     doc.refdocNumber = [
       ...doc.refdocNumber.slice(0, maxLength),
@@ -143,7 +145,7 @@ export const updateRefDoc = async (req, res) => {
       ),
     ];
 
-    console.log(doc);
+    // console.log(doc);
 
     await doc.save();
 
