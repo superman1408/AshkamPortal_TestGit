@@ -19,9 +19,9 @@ const HOST = process.env.HOST || "localhost";
 
 const CONNECT = process.env.CONNECTION_URL;
 
-// const projectCodes = process.env.PROJECT_CODES;
+const projectCodes = process.env.PROJECT_CODES;
 
-const projectCodes = (process.env.PROJECT_CODES || "")
+const projectCodesD = (process.env.PROJECT_CODES || "")
   .split(",")
   .map(code => code.trim())
   .filter(Boolean);
@@ -105,19 +105,19 @@ app.get("/", (req, res) => {
 
 
 
-// app.get("/projects", (req, res) => {
-//   res.json(projectCodes);
-// });
-
-
 app.get("/projects", (req, res) => {
+  res.json(projectCodes);
+});
+
+
+app.get("/projectsList", (req, res) => {
   // Return JSON to API clients
   if (!req.accepts("html")) {
-    return res.json(projectCodes);
+    return res.json(projectCodesD);
   }
 
   // Format project codes for browser display
-  const codes = projectCodes
+  const codes = projectCodesD
     .map(code => String(code).trim())
     .filter(Boolean);
 
