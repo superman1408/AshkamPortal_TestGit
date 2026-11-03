@@ -25,7 +25,10 @@ import Panel from "./components/Panel/Panel";
 import ArchiveTimesheet from "./components/ActivityDisplay/TimeSheet/ArchiveTimesheet";
 import AdminRoute from "./components/ProtectedRoute/AdminRoute";
 
-import Diwali1 from "./assets/Diwali2.gif";
+import faviconGif from "./assets/favicon1.gif";
+import DiwaliGif from "./assets/favicon.gif";
+import Fab from "@mui/material/Fab";
+
 import AttendanceUpload from "./components/AttendanceUpload/AttendanceUpload";
 
 const drawerWidth = 0; // must match Panel
@@ -168,6 +171,36 @@ const App = () => {
           <Box component="header" sx={{ p: 1 }}>
             <img src={LOGO} alt="logo" style={{ width: "185px" }} />
             {/* <img src={Diwali1} alt="Diwali" style={{ width: "80px" }} /> */}
+            <Fab
+              // onClick={fireCrackers}
+              sx={{
+                position: "absolute",
+                top: 20,
+                left: 240,
+                backgroundColor: "transparent",
+                boxShadow: "none",
+                width: 80,
+                height: 100,
+                cursor: "default",
+                pointerEvents: "none",
+
+                "&:hover": {
+                  backgroundColor: "transparent",
+                  boxShadow: "none",
+                },
+              }}
+            >
+              <img
+                src={faviconGif} // or {DiwaliGif} if imported
+                alt="Fireworks"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                }}
+              />
+            </Fab>
           </Box>
           <Navibar />
           <Container maxWidth={false}>

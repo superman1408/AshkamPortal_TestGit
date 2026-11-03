@@ -10,6 +10,12 @@ import Department from "../Department/Department";
 import TimeDate from "../TimeDate/TimeDate";
 import Topbar from "../Topbar/Topbar";
 
+import DiwaliGif from "../../assets/favicon.gif";
+
+// import DiwaliGif from "./assets/favicon.gif";
+// import faviconGif from "./assets/favicon.gif";
+import Fab from "@mui/material/Fab";
+
 const Dashboard = ({ currentId }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
   const role = user.result.role;
@@ -82,16 +88,16 @@ const Dashboard = ({ currentId }) => {
           gap: 2,
         }}
       >
-        {/* <Fab
-          onClick={fireCrackers}
+        <Fab
+          // onClick={fireCrackers}
           sx={{
             position: "fixed",
             bottom: 20,
-            right: 40,
+            right: 20,
             backgroundColor: "transparent",
             boxShadow: "none",
-            width: 230,
-            height: 230,
+            width: 150,
+            height: 150,
             "&:hover": {
               // backgroundColor: "transparent",
             },
@@ -107,7 +113,7 @@ const Dashboard = ({ currentId }) => {
               objectFit: "cover",
             }}
           />
-        </Fab> */}
+        </Fab>
 
         <Grid container spacing={2}>
           <Topbar />
