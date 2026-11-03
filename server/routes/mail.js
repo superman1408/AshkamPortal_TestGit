@@ -13,3 +13,5 @@ router.post("/:id/mailData", sendData);
 router.post("/:id/status", updatedStatus);
 
 export default router;
+
+// Routes for emailS

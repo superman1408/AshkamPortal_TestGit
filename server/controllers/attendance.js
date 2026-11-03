@@ -47,7 +47,7 @@ export const logList = async (req, res) => {
         new: true,
         upsert: true, // ✅ create document if it doesn’t exist
         setDefaultsOnInsert: true, // ✅ apply default [] from schema
-      }
+      },
     );
 
     res.json(updatedPost);
@@ -201,7 +201,7 @@ export const uploadAttendanceFile = async (req, res) => {
             statuses: { $each: statuses },
           },
         },
-        { upsert: true, new: true }
+        { upsert: true, new: true },
       );
     });
 
