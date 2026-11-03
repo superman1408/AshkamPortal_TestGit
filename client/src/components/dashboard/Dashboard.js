@@ -88,7 +88,7 @@ const Dashboard = ({ currentId }) => {
           gap: 2,
         }}
       >
-        <Fab
+        {/* <Fab
           // onClick={fireCrackers}
           sx={{
             position: "fixed",
@@ -113,7 +113,7 @@ const Dashboard = ({ currentId }) => {
               objectFit: "cover",
             }}
           />
-        </Fab>
+        </Fab> */}
 
         <Grid container spacing={2}>
           <Topbar />
