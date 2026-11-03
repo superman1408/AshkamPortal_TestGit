@@ -3,11 +3,15 @@ import React, { useState } from "react";
 const AbsentComboBox = ({ posts, setCurrentId }) => {
   const [selectedOption, setSelectedOption] = useState("");
 
+  
+
   const handleChange = (event) => {
     const value = event.target.value;
     setSelectedOption(value);
     setCurrentId(value);
   };
+
+  console.log(posts);
 
   const formatName = (firstName, lastName) => {
     return (

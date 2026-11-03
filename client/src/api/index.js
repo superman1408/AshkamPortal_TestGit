@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API = axios.create({
   baseURL: "http://192.168.168.101:8000/",
-  // baseURL: "http://localhost:8000/",
+  // baseURL: "http://localhost:8080/",
 });
 
 API.interceptors.request.use((req) => {
@@ -21,6 +21,8 @@ export const fetchPosts = () => API.get("/posts");
 //   axios.get(`/posts?page=${page}&limit=10`);
 
 export const fetchPost = (id) => API.get(`/posts/${id}`);
+
+export const fetchActivePosts = () => API.get("/posts/active");
 
 export const create = (newPost) => API.post("/posts", newPost);
 
@@ -125,4 +127,9 @@ export const uploadAttendanceFile = (formData) =>
     headers: { "Content-Type": "multipart/form-data" },
   });
 
+export const updateRefDoc = (id, formData) =>
+  API.patch(`/timesheet/${id}/updateRefDoc`, formData);
+
 export const fetchAttendanceFile = () => API.get("/attend/attendancefile");
+
+export const getProjectCodes = () => API.get("/projects");

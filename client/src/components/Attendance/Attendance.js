@@ -16,19 +16,24 @@ const Attendance = () => {
 
   const posts = useSelector((state) => state.posts);
 
+  const activeEmployees = posts.filter((emp) => emp.activeStatus === "Active");
+
   useEffect(() => {
     dispatch(getPosts());
   }, [dispatch]);
 
-  const absentEmployees = posts.filter(
-    (post) => post.presentStatus === "false"
+  const absentEmployees = activeEmployees.filter(
+    (post) => post.presentStatus === "false",
   );
+
+  // console.log(absentEmployees);
+  
 
   // const empStrength = posts.filter((post) => post.gender);
 
   const empStrength = useMemo(
-    () => posts.filter((post) => post.gender),
-    [posts]
+    () => activeEmployees.filter((post) => post.gender),
+    [activeEmployees],
   );
 
   return (

@@ -226,7 +226,7 @@ import { useNavigate } from "react-router-dom";
 const AbsenteesDisplay = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
   const id = user?.result?._id;
-  const posts = useSelector((state) => state.posts) || [];
+  const posts = useSelector((state) => state.posts);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -253,13 +253,13 @@ const AbsenteesDisplay = () => {
       .filter((post) => post.firstName && post.lastName)
       .sort((a, b) =>
         formatName(a.firstName, a.lastName).localeCompare(
-          formatName(b.firstName, b.lastName)
-        )
+          formatName(b.firstName, b.lastName),
+        ),
       );
   }, [posts, formatName]);
 
   const absentees = sortedPosts.filter(
-    (post) => post.presentStatus === "false" || post.presentStatus === false
+    (post) => post.presentStatus === "false" || post.presentStatus === false,
   );
 
   return (

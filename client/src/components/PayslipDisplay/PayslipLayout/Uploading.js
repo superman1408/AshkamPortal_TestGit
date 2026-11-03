@@ -73,6 +73,8 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
     }
   };
 
+  const activeEmployees = posts.filter((emp) => emp.activeStatus === "Active");
+
   return (
     <Grid item xs={12}>
       <Card sx={{ p: 3, maxWidth: 900, margin: "auto" }}>
@@ -85,7 +87,7 @@ const Uploading = ({ posts, currentId, setCurrentId }) => {
           >
             {/* ComboBox Selection */}
             <Grid item xs={12} md={4}>
-              <ComboBox posts={posts} setCurrentId={setCurrentId} />
+              <ComboBox posts={activeEmployees} setCurrentId={setCurrentId} />
             </Grid>
 
             {/* File Upload Section */}

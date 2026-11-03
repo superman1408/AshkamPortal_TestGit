@@ -7,6 +7,7 @@ export const LOGOUT = "LOGOUT";
 export const MAIL = "MAIL";
 export const SENDMAILDATA = "SENDMAILDATA";
 export const FETCH_POST = "FETCH_POST";
+export const FETCH_ACTIVE = "FETCH_ACTIVE";
 export const UPDATE_STATUS = "UPDATE_STATUS";
 export const TODOLIST = "TODOLIST";
 export const SKILLDATA = "SKILLDATA";
@@ -31,6 +32,8 @@ export const TIMESHEET_LIST = "TIMESHEET_LIST"; ///for punching Timesheet data
 export const FETCH_TIMESHEET = "FETCH_TIMESHEET"; // for fetching Timesheet data
 export const UPDATE_TIMESHEET = "UPDATE_TIMESHEET"; // for UPDATING Timesheet data
 export const DELETE_TIMESHEET = "DELETE_TIMESHEET"; // for DELETING Timesheet data
+export const UPDATE_REFDOC = "UPDATE_REFDOC";// for UPDATING reference document in database
+
 export const ATTENDANCE_UPLOAD_START = "ATTENDANCE_UPLOAD_START";
 export const ATTENDANCE_UPLOAD_SUCCESS = "ATTENDANCE_UPLOAD_SUCCESS";
 export const ATTENDANCE_UPLOAD_FAIL = "ATTENDANCE_UPLOAD_FAIL";

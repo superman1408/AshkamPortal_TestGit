@@ -64,6 +64,20 @@ export const getPost = async (req, res) => {
   }
 };
 
+// ------------------------ fetch get active posts---------------------------------------
+
+export const getActivePosts = async (req, res) => {
+  try {
+    const postMessage = await AuthenticateUser.find({
+      activeStatus: "Active",
+    });
+
+    res.status(200).json(postMessage);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
 // ________________________create operation___________________________
 
 export const createPost = async (req, res) => {
@@ -530,8 +544,6 @@ export const getSalary = async (req, res) => {
         { title: { $regex: searchText3, $options: "i" } },
       ],
     });
-
-    
 
     res.status(200).json(slipData);
   } catch (error) {

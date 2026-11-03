@@ -1,42 +1,11 @@
 import mongoose from "mongoose";
 import TimesheetDetail from "../model/timesheetDetail.js";
 // ----------------------------------------------Timesheet  List Status-----------------------------------------
-// export const timesheetList = async (req, res) => {
-//   console.log("This side is working");
 
-//   const { id } = req.params;
-//   const value = req.body;
-
-//   console.log(id);
-//   console.log(value);
-//   try {
-//     const user = await TimesheetDetail.findById(id);
-
-//     if (!user) {
-//       return res.status(404).json({
-//         message: "User not found",
-//       });
-//     }
-//     user.existingUser.push(value.id);
-//     user.projectCode.push(value.projectCode);
-//     user.activityCode.push(value.activityCode);
-//     user.date.push(value.date);
-//     user.netTime.push(value.netTime);
-//     user.overTime.push(value.overTime);
-
-//     const updatedPost = await TimesheetDetail.findByIdAndUpdate(id, user, {
-//       new: true,
-//     });
-
-//     res.json(updatedPost);
-//   } catch (error) {
-//     res.status(409).json({ message: error.message });
-//     console.log("Here is error");
-//   }
-// };
+// ______________________________ new entry operation_________________________________________
 
 export const timesheetList = async (req, res) => {
-  console.log("This side is working");
+  console.log("This side is create log in time sheet");
 
   const { id } = req.params;
   const value = req.body;
@@ -49,6 +18,7 @@ export const timesheetList = async (req, res) => {
           existingUser: id,
           projectCode: value.projectCode,
           activityCode: value.activityCode,
+          refdocNumber: value.refdocNumber || "No Data",
           date: value.date,
           netTime: value.netTime,
           overTime: value.overTime,
@@ -59,12 +29,12 @@ export const timesheetList = async (req, res) => {
         new: true,
         upsert: true, // ✅ create document if it doesn’t exist
         setDefaultsOnInsert: true, // ✅ apply default [] from schema
-      }
+      },
     );
 
-    res.json(updatedPost);
+    return res.json(updatedPost);
   } catch (error) {
-    // console.error("Error in timesheetList:", error);
+    console.error(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -81,13 +51,13 @@ export const getTimesheetPosts = async (req, res) => {
 
 //------------------Update Operation --------------------------
 export const updateTimesheet = async (req, res) => {
-  console.log("You reached me");
+  console.log("You reached Update Timesheet");
 
   const id = req.params.id;
   const indexNumber = parseInt(req.params.indexed);
   const valueToEdit = req.body;
 
-  console.log(id, indexNumber, valueToEdit);
+  // console.log(id, indexNumber, valueToEdit);
 
   try {
     if (!mongoose.Types.ObjectId.isValid(id))
@@ -98,6 +68,7 @@ export const updateTimesheet = async (req, res) => {
 
     post.projectCode.splice(indexNumber, 1, valueToEdit.projectCode);
     post.activityCode.splice(indexNumber, 1, valueToEdit.activityCode);
+    post.refdocNumber.splice(indexNumber, 1, valueToEdit.refdocNumber);
     post.date.splice(indexNumber, 1, valueToEdit.date);
     post.netTime.splice(indexNumber, 1, valueToEdit.netTime);
     post.overTime.splice(indexNumber, 1, valueToEdit.overTime);
@@ -114,6 +85,8 @@ export const updateTimesheet = async (req, res) => {
 // Delete operation
 
 export const deleteTimesheet = async (req, res) => {
+  console.log("You reached delete Time Sheet");
+  
   const indexNumber = parseInt(req.params.indexed);
   const id = req.params.id;
 
@@ -127,6 +100,7 @@ export const deleteTimesheet = async (req, res) => {
 
     post.projectCode.splice(indexNumber, 1);
     post.activityCode.splice(indexNumber, 1);
+    post.refdocNumber.splice(indexNumber, 1);
     post.date.splice(indexNumber, 1);
     post.netTime.splice(indexNumber, 1);
     post.overTime.splice(indexNumber, 1);
@@ -137,5 +111,54 @@ export const deleteTimesheet = async (req, res) => {
     res.status(200).json({ message: "Item deleted successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+};
+
+// Introducing a button connected to one function which will identify the length of all the arrays and push "No Data" in the referrence document array till that length
+
+export const updateRefDoc = async (req, res) => {
+  console.log("waiting to connect for changes in ref doc array.");
+
+  try {
+    const { id } = req.params;
+    // console.log(id);
+
+    const doc = await TimesheetDetail.findById(id);
+
+    // console.log(doc);
+
+    if (!doc) {
+      return res.status(404).json({
+        success: false,
+        message: "Timesheet not found.",
+      });
+    }
+
+    const maxLength = doc.date.length;
+
+    // console.log(maxLength);
+
+    doc.refdocNumber = [
+      ...doc.refdocNumber.slice(0, maxLength),
+      ...Array(Math.max(0, maxLength - doc.refdocNumber.length)).fill(
+        "No Data",
+      ),
+    ];
+
+    // console.log(doc);
+
+    await doc.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "Ref Doc array synchronized successfully.",
+      data: doc,
+    });
+  } catch (error) {
+    console.error("Error updating refDoc:", error);
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
   }
 };

@@ -37,8 +37,10 @@ export const signin = async (req, res) => {
 };
 
 export const signup = async (req, res) => {
-  const { email, password, confirmPassword, role, firstName, lastName } =
-    req.body;
+  const { email, password, confirmPassword, role, firstName, lastName } = req.body;
+
+  console.log({email, password, confirmPassword, role, firstName, lastName });
+  
 
   // Checking for empty fields
   const admin_code = req.params;
@@ -47,16 +49,21 @@ export const signup = async (req, res) => {
   try {
     const existingUser = await AuthenticateUser.findOne({ email });
 
-    if (existingUser)
-      return res.status(400).json({ message: "User already exist bro" });
+    if (existingUser) return res.status(400).json({ message: "User already exist bro" });
 
-    if (password !== confirmPassword)
-      return res.status(400).json({ message: "Passwords do not match" });
+    console.log("Stage 1 Pass");
+    
+
+    if (password !== confirmPassword) return res.status(400).json({ message: "Passwords do not match" });
+
+    console.log("Stage 2 Pass");
 
     if (role === "admin") {
       if (admin_code.code !== secretCode)
         return res.status(400).json({ message: "Secret Code do not match" });
-    }
+    };
+
+    console.log("Stage 3 Pass");
 
     const hashedPassword = await bcrypt.hash(password, 12);
     const result = await AuthenticateUser.create({
@@ -67,14 +74,18 @@ export const signup = async (req, res) => {
       lastName,
     });
 
+    console.log("Stage 4 Pass");
+
     const token = jwt.sign({ email: result.email, id: result._id }, "test", {
       expiresIn: "1h",
     });
 
+    console.log("Stage 5 Pass");
+
     res.status(200).json({ result, token });
   } catch (error) {
     res.status(500).json({ message: "Something went wrong" });
-    // console.log(error);
+    console.log(error);
   }
 };
 

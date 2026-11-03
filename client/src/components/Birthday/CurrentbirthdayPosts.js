@@ -22,12 +22,17 @@ const CurrentbirthdayPosts = () => {
     dispatch(getPosts());
   }, [dispatch, currentId]);
 
+  const activeEmployee = posts.filter((emp) => emp.activeStatus === "Active");
+  console.log("activeEmployee", activeEmployee);
+  
+
+
   const currentDay = new Date().getDate();
   const currentMonth = new Date().getMonth() + 1;
 
   return (
     <>
-      {posts.map((post) => {
+      {activeEmployee.map((post) => {
         // console.log(post.dob);
 
         let day = new Date(post.dob).getDate();

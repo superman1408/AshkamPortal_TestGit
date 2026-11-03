@@ -2,6 +2,7 @@ import express from "express";
 import {
   createPost,
   getPosts,
+  getActivePosts,
   updatePost,
   deletePost,
   getPost,
@@ -24,6 +25,8 @@ import auth from "../middleware/auth.js";
 import upload from "../middleware/storage.js";
 
 const router = express.Router();
+
+router.get("/active", getActivePosts);
 
 router.get("/", getPosts);
 
