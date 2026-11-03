@@ -285,6 +285,33 @@ const App = () => {
                   element={<AbsentDetailsDisplay />}
                 />
               </Routes>
+
+              <Fab
+                // onClick={fireCrackers}
+                sx={{
+                  position: "fixed",
+                  bottom: 50,
+                  right: 20,
+                  backgroundColor: "transparent",
+                  boxShadow: "none",
+                  width: 150,
+                  height: 150,
+                  "&:hover": {
+                    // backgroundColor: "transparent",
+                  },
+                }}
+              >
+                <img
+                  src={DiwaliGif} // or {DiwaliGif} if imported
+                  alt="Fireworks"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                  }}
+                />
+              </Fab>
             </div>
           </Container>{" "}
           <div>
