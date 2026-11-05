@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Box } from "@mui/material";
+import { Container, Box, Fab } from "@mui/material";
 import Authentication from "./components/authentication/Auth";
 import Leave from "./components/Leave/leave";
 import AboutUS from "./components/AboutUs/aboutUs";
@@ -26,6 +26,9 @@ import ArchiveTimesheet from "./components/ActivityDisplay/TimeSheet/ArchiveTime
 import AdminRoute from "./components/ProtectedRoute/AdminRoute";
 
 import Diwali1 from "./assets/Diwali2.gif";
+import faviconGif from "./assets/favicon1.gif";
+import DiwaliGif from "./assets/favicon.gif";
+
 import AttendanceUpload from "./components/AttendanceUpload/AttendanceUpload";
 
 const drawerWidth = 0; // must match Panel
@@ -168,6 +171,36 @@ const App = () => {
           <Box component="header" sx={{ p: 1 }}>
             <img src={LOGO} alt="logo" style={{ width: "185px" }} />
             {/* <img src={Diwali1} alt="Diwali" style={{ width: "80px" }} /> */}
+            <Fab
+              // onClick={fireCrackers}
+              sx={{
+                position: "absolute",
+                top: 20,
+                left: 240,
+                backgroundColor: "transparent",
+                boxShadow: "none",
+                width: 80,
+                height: 100,
+                cursor: "default",
+                pointerEvents: "none",
+
+                "&:hover": {
+                  backgroundColor: "transparent",
+                  boxShadow: "none",
+                },
+              }}
+            >
+              <img
+                src={faviconGif} // or {DiwaliGif} if imported
+                alt="Fireworks"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                }}
+              />
+            </Fab>
           </Box>
           <Navibar />
           <Container maxWidth={false}>
@@ -252,6 +285,37 @@ const App = () => {
                   element={<AbsentDetailsDisplay />}
                 />
               </Routes>
+
+              <Fab
+                // onClick={fireCrackers}
+                sx={{
+                  position: "fixed",
+                  bottom: 20,
+                  right: 40,
+                  backgroundColor: "transparent",
+                  boxShadow: "none",
+                  width: 120,
+                  height: 120,
+                  cursor: "default",
+                  pointerEvents: "none",
+
+                  "&:hover": {
+                    backgroundColor: "transparent",
+                    boxShadow: "none",
+                  },
+                }}
+              >
+                <img
+                  src={DiwaliGif} // or {DiwaliGif} if imported
+                  alt="Fireworks"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                  }}
+                />
+              </Fab>
             </div>
           </Container>{" "}
           <div>
@@ -268,7 +332,7 @@ const App = () => {
                 left: 0,
               }}
             >
-              ©️ 2025 ASHKAM ENERGY PRIVATE LIMITED. All rights reserved.
+              ©️ 2026 ASHKAM ENERGY PRIVATE LIMITED. All rights reserved.
             </footer>
           </div>
         </Box>

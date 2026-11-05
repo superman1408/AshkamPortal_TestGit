@@ -87,7 +87,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       Review: "RE",
       "Simulation/Analysis": "SA",
       "Documentation & Reporting": "DO",
-      "3D Modelling": "3D-M",
+      "3D Modelling": "3DM",
       DataSheets: "DS",
 
       // civil
@@ -180,6 +180,7 @@ const ActivityCodePopUp = ({ setActivityCode, setActivityOpen }) => {
       PFD: "001",
       PipeStress: "002",
       PipingLayout: "002",
+      Piping: "003",
       Planning: "001",
       PowerSystemCalculations: "001",
       Proposals: "001",
