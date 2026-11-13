@@ -110,7 +110,7 @@ app.get("/projects", (req, res) => {
 });
 
 
-app.get("/projectsList", (req, res) => {
+app.get("/projectslist", (req, res) => {
   // Return JSON to API clients
   if (!req.accepts("html")) {
     return res.json(projectCodesD);
